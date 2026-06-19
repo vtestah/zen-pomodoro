@@ -794,16 +794,29 @@ class PomodoroApplet extends Applet.TextIconApplet {
         if (!this._breathCircle) {
             return;
         }
-        let t = ((GLib.get_monotonic_time() / 1000) - this._breathStartMs) % 16000;
+        // Phase durations [in, hold, out, hold] in seconds.
+        let pat = this._opt_breathingPattern || 'box';
+        let phases = (pat === '478') ? [4, 7, 8, 0]
+            : (pat === 'relax') ? [4, 0, 6, 0]
+            : [4, 4, 4, 4];
+        let cycle = (phases[0] + phases[1] + phases[2] + phases[3]) * 1000;
+        if (cycle <= 0) {
+            cycle = 16000;
+        }
+        let reduce = Boolean(this._opt_reduceMotion);
+        let t = ((GLib.get_monotonic_time() / 1000) - this._breathStartMs) % cycle;
         let minR = 90, maxR = 240, r, phase;
-        if (t < 4000) {
-            r = minR + (maxR - minR) * (t / 4000);
+        let inEnd = phases[0] * 1000;
+        let hold1End = inEnd + phases[1] * 1000;
+        let outEnd = hold1End + phases[2] * 1000;
+        if (t < inEnd) {
+            r = reduce ? maxR : (minR + (maxR - minR) * (t / (phases[0] * 1000)));
             phase = _("Breathe in");
-        } else if (t < 8000) {
+        } else if (t < hold1End) {
             r = maxR;
             phase = _("Hold");
-        } else if (t < 12000) {
-            r = maxR - (maxR - minR) * ((t - 8000) / 4000);
+        } else if (t < outEnd) {
+            r = reduce ? minR : (maxR - (maxR - minR) * ((t - hold1End) / (phases[2] * 1000)));
             phase = _("Breathe out");
         } else {
             r = minR;
@@ -1148,6 +1161,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
     }
 
     _isFocusFramePulseActive(ticks) {
+        if (this._opt_reduceMotion) {
+            return false;
+        }
         if (this._opt_focusCalmEnding) {
             return false;
         }
@@ -1910,8 +1926,12 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 if (primary) {
                     let [, natW] = this._focusTaskChip.get_preferred_width(-1);
                     let [, natH] = this._focusTaskChip.get_preferred_height(natW);
-                    let x = primary.x + primary.width - natW - POMODORO_FOCUS_CHIP_MARGIN;
-                    let y = primary.y + primary.height - natH - POMODORO_FOCUS_CHIP_MARGIN;
+                    let m = POMODORO_FOCUS_CHIP_MARGIN;
+                    let pos = this._opt_chipPosition || 'br';
+                    let left = (pos === 'bl' || pos === 'tl');
+                    let top = (pos === 'tl' || pos === 'tr');
+                    let x = left ? (primary.x + m) : (primary.x + primary.width - natW - m);
+                    let y = top ? (primary.y + m) : (primary.y + primary.height - natH - m);
                     this._focusTaskChip.set_position(Math.round(x), Math.round(y));
                 }
                 if (typeof this._focusTaskChip.raise_top === 'function') {
@@ -2005,13 +2025,35 @@ class PomodoroApplet extends Applet.TextIconApplet {
         // Gentle fade-in of the focus frame so the "entry" is smooth, not abrupt.
         let fstyleFade = this._opt_frameStyle || 'glow';
         let framesToFade = (fstyleFade === 'glow' || fstyleFade === 'corners') ? this._focusGlowFrames : this._focusFrames;
+
+        // Hold duration derived from ritual_seconds (fade-in + fade-out ≈ 1.1s).
+        let holdMs = Math.max(0, ((this._opt_ritualSeconds || 4) * 1000) - 1100);
+
+        if (this._opt_reduceMotion) {
+            // No motion: show frame + label instantly, hold, then hide.
+            for (let frame of framesToFade) {
+                frame.opacity = 255;
+                frame.show();
+            }
+            this._focusRitualLabel.opacity = 255;
+            let holdId = Mainloop.timeout_add(holdMs + 600, () => {
+                this._removeRitualTimeout(holdId);
+                if (this._focusRitualLabel) {
+                    this._focusRitualLabel.hide();
+                }
+                return false;
+            });
+            this._focusRitualTimeouts.push(holdId);
+            return;
+        }
+
         for (let frame of framesToFade) {
             this._animateActorOpacity(frame, 0, 255, POMODORO_FOCUS_RITUAL_FRAME_FADE_MS, null);
         }
 
         // Fade the centered label in, hold, then fade out and hide.
         this._animateActorOpacity(this._focusRitualLabel, 0, 255, POMODORO_FOCUS_RITUAL_FADE_IN_MS, () => {
-            let holdId = Mainloop.timeout_add(POMODORO_FOCUS_RITUAL_HOLD_MS, () => {
+            let holdId = Mainloop.timeout_add(holdMs, () => {
                 this._removeRitualTimeout(holdId);
                 this._animateActorOpacity(this._focusRitualLabel, 255, 0, POMODORO_FOCUS_RITUAL_FADE_OUT_MS, () => {
                     if (this._focusRitualLabel) {
@@ -2035,6 +2077,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
     }
 
     _playGlowBreath() {
+        if (this._opt_reduceMotion) {
+            return;
+        }
         this._cancelGlowBreath();
 
         let steps = Math.max(1, Math.round(POMODORO_FOCUS_GLOW_BREATH_MS / POMODORO_FOCUS_RITUAL_STEP_MS));
@@ -3018,12 +3063,18 @@ class PomodoroMenu extends Applet.AppletPopupMenu {
 
         this._nullWidgetRefs();
 
-        if (this.actor && typeof this.actor.set_style === "function") {
-            this.actor.set_style("min-width: 320px;");
-        }
+        this._applyMenuActorStyle();
 
         this._rebuildMenu();
         this.updateCounts(0, 0);
+    }
+
+    _applyMenuActorStyle() {
+        if (this.actor && typeof this.actor.set_style === "function") {
+            let scale = this._menuFontScale || 100;
+            let minW = Math.round(320 * scale / 100);
+            this.actor.set_style(`min-width: ${minW}px; font-size: ${scale}%;`);
+        }
     }
 
     _nullWidgetRefs() {
@@ -3144,9 +3195,7 @@ class PomodoroMenu extends Applet.AppletPopupMenu {
         if (typeof opts.fontScale === "number" && opts.fontScale > 0) {
             this._menuFontScale = opts.fontScale;
         }
-        if (this.actor) {
-            this.actor.set_style(`font-size: ${this._menuFontScale}%;`);
-        }
+        this._applyMenuActorStyle();
         // Re-apply colours to whatever is currently shown.
         if (this._lastRuntimeState) {
             this._applyRuntimeToWidgets(this._lastRuntimeState);
@@ -3161,7 +3210,7 @@ class PomodoroMenu extends Applet.AppletPopupMenu {
         let breakish = (state === "short-break" || state === "long-break" ||
             state === "short-break-paused" || state === "long-break-paused" || state === "break-over");
         if (this._primaryActionItem.actor) {
-            this._primaryActionItem.actor.set_style("");
+            this._primaryActionItem.actor.set_style(null);
         }
         if (this._primaryActionItem.label) {
             this._primaryActionItem.label.set_style_class_name("pomodoro-primary");
@@ -3509,7 +3558,7 @@ class PomodoroMenu extends Applet.AppletPopupMenu {
         if (this._stateBadgeLabel) {
             this._stateBadgeLabel.set_text(badge.toUpperCase());
             this._stateBadgeLabel.set_style_class_name(badgeAccent ? "pomodoro-badge" : "pomodoro-badge pomodoro-badge-idle");
-            this._stateBadgeLabel.set_style(badgeAccent ? `color: ${badgeAccent};` : "");
+            this._stateBadgeLabel.set_style(badgeAccent ? `color: ${badgeAccent};` : null);
         }
         if (this._timeLeftLabel) {
             this._timeLeftLabel.set_text(timeLeft || "--:--");

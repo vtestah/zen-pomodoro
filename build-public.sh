@@ -20,14 +20,14 @@ rm -rf "$OUT"
 mkdir -p "$FILES/po"
 
 echo "==> copy code + assets (no .mo)"
-cp "$SRC/applet.js" "$SRC/timer.js" "$SRC/sound.js" "$SRC/menu.js" "$SRC/dialogs.js" "$SRC/stylesheet.css" "$SRC/settings-schema.json" "$FILES/"
+cp "$SRC/applet.js" "$SRC/timer.js" "$SRC/sound.js" "$SRC/menu.js" "$SRC/dialogs.js" "$SRC/constants.js" "$SRC/visual.js" "$SRC/stylesheet.css" "$SRC/settings-schema.json" "$FILES/"
 cp "$REPO"/*.png "$REPO"/*.svg "$FILES/" 2>/dev/null || true
 [ -d "$REPO/sounds" ] && cp -r "$REPO/sounds" "$FILES/"
 [ -d "$REPO/bin" ] && cp -r "$REPO/bin" "$FILES/"
 cp "$REPO/po/"*.po "$FILES/po/"
 
 echo "==> process modules (strip markers + rewrite paths)"
-for __jsf in "$FILES/applet.js" "$FILES/menu.js" "$FILES/dialogs.js"; do
+for __jsf in "$FILES/applet.js" "$FILES/menu.js" "$FILES/dialogs.js" "$FILES/constants.js" "$FILES/visual.js"; do
 python3 - "$__jsf" <<'PY'
 import sys, re
 f=sys.argv[1]

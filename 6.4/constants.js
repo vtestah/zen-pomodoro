@@ -1,5 +1,6 @@
 const GLib = imports.gi.GLib;
 
+// @PUBLIC_STRIP_BEGIN
 var POMODORO_FOCUS_START_SCRIPT = GLib.build_filenamev([GLib.get_home_dir(), ".local", "bin", "pomodoro", "focus-start.sh"]);
 var POMODORO_FOCUS_STOP_SCRIPT = GLib.build_filenamev([GLib.get_home_dir(), ".local", "bin", "pomodoro", "focus-stop.sh"]);
 var POMODORO_CONFIG_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "config.env"]);

@@ -1,0 +1,730 @@
+const St = imports.gi.St;
+const Applet = imports.ui.applet;
+const PopupMenu = imports.ui.popupMenu;
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
+
+const UUID = "zen-pomodoro@vtestah";
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+function _(str) {
+    return Gettext.dgettext(UUID, str);
+}
+
+var PomodoroMenu = class extends Applet.AppletPopupMenu {
+    constructor(launcher, orientation) {
+        super(launcher, orientation);
+        this._pomodoroCount = 0;
+        this._pomodoroSetCount = 0;
+        this._pomodoriTotal = 4;
+        this._primaryActionMode = "start";
+
+        // Layout category: "idle" (stopped / break-over) or "active" (running / paused).
+        this._layoutCategory = "idle";
+        // Cache of the last runtime object so a rebuild can restore in-place state.
+        this._lastRuntimeState = null;
+        // Cache of the preset indicator so a rebuild can restore DOT ornaments.
+        this._presetState = {
+            activePreset: "25/5/15 x4",
+            isPreset25Active: true,
+            isPreset50Active: false
+        };
+        // Progress bar state (drawn in the status header during active/paused).
+        this._progressBarPercent = 0;
+        this._progressBarActive = false;
+        this._progressBarColor = [0.84, 0.60, 0.19];
+
+        // Appearance (accent colours + font scale), pushed by the applet via
+        // setAppearance(); defaults reproduce the original look.
+        this._accentFocusCss = "rgb(235, 175, 75)";
+        this._accentBreakCss = "rgb(120, 205, 155)";
+        this._menuFontScale = 100;
+
+        this._nullWidgetRefs();
+
+        this._applyMenuActorStyle();
+
+        this._rebuildMenu();
+        this.updateCounts(0, 0);
+    }
+
+    _applyMenuActorStyle() {
+        if (this.actor && typeof this.actor.set_style === "function") {
+            let scale = this._menuFontScale || 100;
+            let minW = Math.round(320 * scale / 100);
+            this.actor.set_style(`min-width: ${minW}px; font-size: ${scale}%;`);
+        }
+    }
+
+    _nullWidgetRefs() {
+        this._statusItem = null;
+        this._stateBadgeLabel = null;
+        this._timeLeftLabel = null;
+        this._progressLabel = null;
+        this._progressBar = null;
+        this._cycleLabel = null;
+        this._dailyLabel = null;
+        this._taskLabel = null;
+        this._sitesLabel = null;
+        this._presetSummaryLabel = null;
+        this._presetSubmenu = null;
+        this._compactInfoLabel = null;
+        this._hotkeyItem = null;
+        this._hotkeyLabel = null;
+        this._chooseTaskItem = null;
+        this._zenItem = null;
+        this._focusUntilItem = null;
+        this._primaryActionItem = null;
+        this._preset25Item = null;
+        this._preset50Item = null;
+        this._resetTimerItem = null;
+        this._resetAllItem = null;
+        this._skipTimerItem = null;
+        this._sessionSubmenu = null;
+    }
+
+    _getLayoutCategory(state) {
+        if (state === "pomodoro-stop" || state === "break-over") {
+            return "idle";
+        }
+        return "active";
+    }
+
+    _rebuildMenu() {
+        this.removeAll();
+        this._nullWidgetRefs();
+
+        try {
+            if (this._layoutCategory === "active") {
+                this._buildActiveLayout();
+            } else {
+                this._buildIdleLayout();
+            }
+        } catch (e) {
+            global.logError(`PomodoroMenu rebuild error: ${e.message}`);
+            let fallback = new PopupMenu.PopupMenuItem(_("Error: menu unavailable"));
+            fallback.setSensitive(false);
+            this.addMenuItem(fallback);
+            return;
+        }
+
+        // Restore cached visual state into the freshly created widgets.
+        this._applyCachedPreset();
+        this._updateCycleIndicator();
+        if (this._lastRuntimeState) {
+            this._applyRuntimeToWidgets(this._lastRuntimeState);
+        }
+    }
+
+    _makeSectionLabel(text) {
+        let item = new PopupMenu.PopupBaseMenuItem({ reactive: false });
+        let label = new St.Label({
+            text: text,
+            style_class: "pomodoro-section"
+        });
+        item.addActor(label);
+        return item;
+    }
+
+    _makeInfoRow(labelText, valueText) {
+        let item = new PopupMenu.PopupBaseMenuItem({ reactive: false });
+        let label = new St.Label({
+            text: labelText,
+            style_class: "pomodoro-info-label"
+        });
+        let value = new St.Label({
+            text: valueText,
+            style_class: "pomodoro-info-value"
+        });
+        // Let the menu item lay these out as two columns: the label keeps its
+        // natural width on the left, the value expands and right-aligns. This
+        // mirrors PopupMenuItem's label/status pattern and prevents the label
+        // and value from merging.
+        item.addActor(label);
+        item.addActor(value, { expand: true, span: -1, align: St.Align.END });
+        return { item: item, value: value };
+    }
+
+    // @PUBLIC_STRIP_BEGIN
+    _makeCompactInfoRow(presetLabel, sitesBlocked) {
+    // @PUBLIC_STRIP_ELSE
+    // _makeCompactInfoRow(presetLabel) {
+    // @PUBLIC_STRIP_END
+        let item = new PopupMenu.PopupBaseMenuItem({ reactive: false });
+        let label = new St.Label({
+            // @PUBLIC_STRIP_BEGIN
+            text: `${presetLabel} \u00B7 ${sitesBlocked ? _("blocked") : _("ready")}`,
+            // @PUBLIC_STRIP_ELSE
+            // text: `${presetLabel}`,
+            // @PUBLIC_STRIP_END
+            style_class: "pomodoro-compact"
+        });
+        item.addActor(label);
+        return { item: item, label: label };
+    }
+
+    _stylePrimaryAction() {
+        if (!this._primaryActionItem || !this._primaryActionItem.label) {
+            return;
+        }
+
+        this._primaryActionItem.label.set_style_class_name("pomodoro-primary");
+    }
+
+    setAppearance(opts) {
+        opts = opts || {};
+        if (opts.accentFocus) {
+            this._accentFocusCss = opts.accentFocus;
+        }
+        if (opts.accentBreak) {
+            this._accentBreakCss = opts.accentBreak;
+        }
+        if (typeof opts.fontScale === "number" && opts.fontScale > 0) {
+            this._menuFontScale = opts.fontScale;
+        }
+        this._applyMenuActorStyle();
+        // Re-apply colours to whatever is currently shown.
+        if (this._lastRuntimeState) {
+            this._applyRuntimeToWidgets(this._lastRuntimeState);
+        }
+    }
+
+    _setPrimaryActionAccent(state) {
+        if (!this._primaryActionItem || !this._primaryActionItem.actor) {
+            return;
+        }
+
+        let breakish = (state === "short-break" || state === "long-break" ||
+            state === "short-break-paused" || state === "long-break-paused" || state === "break-over");
+        if (this._primaryActionItem.actor) {
+            this._primaryActionItem.actor.set_style(null);
+        }
+        if (this._primaryActionItem.label) {
+            this._primaryActionItem.label.set_style_class_name("pomodoro-primary");
+            this._primaryActionItem.label.set_style(
+                `color: ${breakish ? this._accentBreakCss : this._accentFocusCss};`
+            );
+        }
+    }
+
+    _buildStatusHeader() {
+        this._statusItem = new PopupMenu.PopupBaseMenuItem({ reactive: false });
+        let statusBox = new St.BoxLayout({
+            vertical: true,
+            x_expand: true,
+            style_class: "pomodoro-status"
+        });
+
+        let topRow = new St.BoxLayout({ vertical: false, x_expand: true });
+        this._stateBadgeLabel = new St.Label({
+            text: _("READY"),
+            style_class: "pomodoro-badge pomodoro-badge-idle"
+        });
+        this._timeLeftLabel = new St.Label({
+            text: "--:--",
+            style_class: "pomodoro-time"
+        });
+        let timeBin = new St.Bin({ x_align: St.Align.END, x_expand: true });
+        timeBin.add_actor(this._timeLeftLabel);
+        topRow.add_actor(this._stateBadgeLabel);
+        topRow.add_actor(timeBin);
+
+        this._progressBar = new St.DrawingArea({
+            x_expand: true,
+            style: "height: 6px; margin: 1px 0 2px 0;"
+        });
+        this._progressBar.connect('repaint', (area) => {
+            this._repaintProgressBar(area);
+        });
+
+        this._progressLabel = new St.Label({
+            text: _("Ready to start"),
+            style_class: "pomodoro-progress"
+        });
+        this._cycleLabel = new St.Label({
+            text: "",
+            style_class: "pomodoro-cycle"
+        });
+        this._taskLabel = new St.Label({
+            text: _("Task will be selected on start"),
+            style_class: "pomodoro-task"
+        });
+        this._dailyLabel = new St.Label({
+            text: "",
+            style_class: "pomodoro-cycle"
+        });
+
+        statusBox.add_actor(topRow);
+        statusBox.add_actor(this._progressBar);
+        statusBox.add_actor(this._progressLabel);
+        statusBox.add_actor(this._cycleLabel);
+        statusBox.add_actor(this._taskLabel);
+        statusBox.add_actor(this._dailyLabel);
+        this._statusItem.addActor(statusBox);
+        this.addMenuItem(this._statusItem);
+    }
+
+    _repaintProgressBar(area) {
+        let cr = area.get_context();
+        try {
+            let [w, h] = area.get_surface_size();
+
+            // Track.
+            cr.setSourceRGBA(1, 1, 1, 0.12);
+            cr.rectangle(0, 0, w, h);
+            cr.fill();
+
+            if (this._progressBarActive) {
+                let pct = Math.max(0, Math.min(100, this._progressBarPercent)) / 100;
+                let fw = Math.round(w * pct);
+                if (fw > 0) {
+                    let c = this._progressBarColor || [0.84, 0.60, 0.19];
+                    cr.setSourceRGBA(c[0], c[1], c[2], 0.95);
+                    cr.rectangle(0, 0, fw, h);
+                    cr.fill();
+                }
+            }
+        } finally {
+            cr.$dispose();
+        }
+    }
+
+    _updateProgressBar(state, progressPercent) {
+        let active = (typeof progressPercent === "number");
+        this._progressBarActive = active;
+        this._progressBarPercent = active ? progressPercent : 0;
+
+        let breakish = (state === "short-break" || state === "long-break" ||
+            state === "short-break-paused" || state === "long-break-paused");
+        this._progressBarColor = breakish ? [0.36, 0.78, 0.55] : [0.84, 0.60, 0.19];
+
+        if (this._progressBar) {
+            if (active) {
+                this._progressBar.show();
+            } else {
+                this._progressBar.hide();
+            }
+            this._progressBar.queue_repaint();
+        }
+    }
+
+    _updateCycleIndicator() {
+        if (!this._cycleLabel) {
+            return;
+        }
+
+        let total = this._pomodoriTotal > 0 ? this._pomodoriTotal : 4;
+        let current = Math.min(this._pomodoroCount + 1, total);
+        let text = _("Pomodoro %d / %d").format(current, total);
+        if (this._pomodoroSetCount > 0) {
+            text += "  \u00B7  " + Array(this._pomodoroSetCount + 1).join("\u25cf");
+        }
+        this._cycleLabel.set_text(text);
+    }
+
+    _buildPrimaryAction() {
+        this._primaryActionItem = new PopupMenu.PopupMenuItem(_("Start focus"));
+        this._primaryActionItem.connect("activate", () => {
+            if (this._primaryActionMode === "pause") {
+                this.emit('stop-timer');
+            } else {
+                this.emit('start-timer');
+            }
+        });
+        this.addMenuItem(this._primaryActionItem);
+        this._stylePrimaryAction();
+    }
+
+    _makeSkipResetItems() {
+        let skipItem = new PopupMenu.PopupMenuItem(_("Skip step"));
+        this._skipTimerItem = skipItem;
+        skipItem.connect('activate', () => {
+            this.emit('skip-timer');
+        });
+
+        let resetItem = new PopupMenu.PopupMenuItem(_("Reset session"));
+        this._resetTimerItem = resetItem;
+        resetItem.connect('activate', () => {
+            this.toggleTimerState(false);
+            this.emit('reset-timer');
+        });
+
+        return { skipItem: skipItem, resetItem: resetItem };
+    }
+
+    _makeResetAllSubmenu() {
+        // Confirmation submenu to prevent accidental loss of completed counts.
+        let submenu = new PopupMenu.PopupSubMenuMenuItem(_("Reset all"));
+        let confirm = new PopupMenu.PopupMenuItem(_("Confirm reset of everything"));
+        if (confirm.label) {
+            confirm.label.set_style_class_name("pomodoro-reset-confirm");
+        }
+        confirm.connect('activate', () => {
+            this.toggleTimerState(false);
+            this.emit('reset-counts');
+            this.emit('reset-timer');
+        });
+        submenu.menu.addMenuItem(confirm);
+        this._resetAllItem = submenu;
+        return submenu;
+    }
+
+    _buildHotkeyHint() {
+        this._hotkeyItem = new PopupMenu.PopupBaseMenuItem({ reactive: false });
+        this._hotkeyLabel = new St.Label({
+            text: "",
+            style_class: "pomodoro-hotkey"
+        });
+        this._hotkeyItem.addActor(this._hotkeyLabel);
+        if (this._hotkeyItem.actor) {
+            this._hotkeyItem.actor.hide();
+        }
+        this.addMenuItem(this._hotkeyItem);
+    }
+
+    _buildIdleLayout() {
+        this._buildStatusHeader();
+
+        // @PUBLIC_STRIP_BEGIN
+        let sitesRow = this._makeInfoRow(_("Sites"), _("ready"));
+        this._sitesLabel = sitesRow.value;
+        this.addMenuItem(sitesRow.item);
+        // @PUBLIC_STRIP_END
+
+        this._buildHotkeyHint();
+
+        this._buildPrimaryAction();
+
+        this._chooseTaskItem = new PopupMenu.PopupMenuItem(_("Task\u2026"));
+        this._chooseTaskItem.connect('activate', () => {
+            this.emit('choose-task');
+        });
+        this.addMenuItem(this._chooseTaskItem);
+
+        this._focusUntilItem = new PopupMenu.PopupMenuItem(_("Focus until\u2026"));
+        this._focusUntilItem.connect('activate', () => {
+            this.emit('focus-until');
+        });
+        this.addMenuItem(this._focusUntilItem);
+
+        this._zenItem = new PopupMenu.PopupMenuItem(_("Zen mode"));
+        this._zenItem.connect('activate', () => {
+            this.emit('toggle-zen');
+        });
+        this.addMenuItem(this._zenItem);
+
+        this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+
+        // Presets collapsed into a submenu to reduce idle clutter.
+        this._presetSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Preset"));
+        let preset25 = new PopupMenu.PopupMenuItem("25 / 5 / 15 x4");
+        this._preset25Item = preset25;
+        preset25.connect('activate', () => {
+            this.emit('preset-25-5');
+        });
+        this._presetSubmenu.menu.addMenuItem(preset25);
+
+        let preset50 = new PopupMenu.PopupMenuItem("50 / 10 / 20 x4");
+        this._preset50Item = preset50;
+        preset50.connect('activate', () => {
+            this.emit('preset-50-10');
+        });
+        this._presetSubmenu.menu.addMenuItem(preset50);
+        this.addMenuItem(this._presetSubmenu);
+
+        this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+        this.addMenuItem(this._makeSectionLabel(_("SESSION")));
+
+        let sr = this._makeSkipResetItems();
+        this.addMenuItem(sr.skipItem);
+        this.addMenuItem(sr.resetItem);
+        this.addMenuItem(this._makeResetAllSubmenu());
+    }
+
+    _buildActiveLayout() {
+        this._buildStatusHeader();
+
+        // @PUBLIC_STRIP_BEGIN
+        let compact = this._makeCompactInfoRow(this._presetState.activePreset || "unknown", false);
+        // @PUBLIC_STRIP_ELSE
+        // let compact = this._makeCompactInfoRow(this._presetState.activePreset || "unknown");
+        // @PUBLIC_STRIP_END
+        this._compactInfoLabel = compact.label;
+        this.addMenuItem(compact.item);
+
+        this._buildPrimaryAction();
+
+        this._sessionSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Session\u2026"));
+        let sr = this._makeSkipResetItems();
+        this._sessionSubmenu.menu.addMenuItem(sr.skipItem);
+        this._sessionSubmenu.menu.addMenuItem(sr.resetItem);
+        this._sessionSubmenu.menu.addMenuItem(this._makeResetAllSubmenu());
+        this.addMenuItem(this._sessionSubmenu);
+    }
+
+    toggleTimerState(state) {
+        this._primaryActionMode = state ? "pause" : "start";
+    }
+
+    updateRuntimeState(runtime) {
+        runtime = runtime || {};
+        let state = runtime.state || "pomodoro-stop";
+        let newCategory = this._getLayoutCategory(state);
+
+        this._lastRuntimeState = runtime;
+
+        if (newCategory !== this._layoutCategory) {
+            // Category changed: tear down and rebuild. The rebuild re-applies
+            // the cached runtime to the new widgets, so no further work needed.
+            this._layoutCategory = newCategory;
+            this._rebuildMenu();
+            return;
+        }
+
+        // Same category: update labels and styles in-place.
+        this._applyRuntimeToWidgets(runtime);
+    }
+
+    _applyRuntimeToWidgets(runtime) {
+        runtime = runtime || {};
+        let state = runtime.state || "pomodoro-stop";
+        let activePreset = runtime.activePreset || "unknown";
+        let task = runtime.task || "";
+        let selectedTask = runtime.selectedTask || "";
+        let timeLeft = runtime.timeLeft || "";
+        let progressPercent = runtime.progressPercent;
+        let isIdle = (state === "pomodoro-stop" || state === "break-over");
+
+        if (typeof runtime.pomodoriTotal === "number") {
+            this._pomodoriTotal = runtime.pomodoriTotal;
+        }
+        if (typeof runtime.pomodoriDone === "number") {
+            this._pomodoroCount = runtime.pomodoriDone;
+        }
+        if (typeof runtime.setsDone === "number") {
+            this._pomodoroSetCount = runtime.setsDone;
+        }
+        this._updateCycleIndicator();
+
+        if (this._dailyLabel) {
+            let goal = runtime.dailyGoal || 0;
+            if (goal > 0) {
+                let count = runtime.dailyCount || 0;
+                let text = _("Today: %d / %d").format(count, goal);
+                if (runtime.streak && runtime.streak > 0) {
+                    text += "   \u{1F525}" + runtime.streak;
+                }
+                this._dailyLabel.set_text(text);
+                this._dailyLabel.show();
+            } else {
+                this._dailyLabel.hide();
+            }
+        }
+
+        let badge = runtime.stateLabel || "Ready";
+        if (badge === "Ready") {
+            badge = "READY";
+        }
+
+        if (this._progressLabel) {
+            if (typeof progressPercent === "number") {
+                let line = `${progressPercent}${_("% complete")}`;
+                if (runtime.endTime) {
+                    line += ` \u00B7 ` + _("until %s").format(runtime.endTime);
+                }
+                this._progressLabel.set_text(line);
+            } else {
+                this._progressLabel.set_text(state === "break-over" ? _("Break finished") : _("Ready to start"));
+            }
+        }
+
+        this._updateProgressBar(state, progressPercent);
+
+        let badgeAccent = null;
+        if (state === "pomodoro" || state === "pomodoro-paused") {
+            badgeAccent = this._accentFocusCss;
+        } else if (state === "short-break" || state === "long-break" ||
+            state === "short-break-paused" || state === "long-break-paused" || state === "break-over") {
+            badgeAccent = this._accentBreakCss;
+        }
+
+        if (this._stateBadgeLabel) {
+            this._stateBadgeLabel.set_text(badge.toUpperCase());
+            this._stateBadgeLabel.set_style_class_name(badgeAccent ? "pomodoro-badge" : "pomodoro-badge pomodoro-badge-idle");
+            this._stateBadgeLabel.set_style(badgeAccent ? `color: ${badgeAccent};` : null);
+        }
+        if (this._timeLeftLabel) {
+            this._timeLeftLabel.set_text(timeLeft || "--:--");
+            this._timeLeftLabel.set_style_class_name(isIdle ? "pomodoro-time pomodoro-time-idle" : "pomodoro-time");
+        }
+
+        if (this._taskLabel) {
+            if (task) {
+                this._taskLabel.set_text(_("Task: %s").format(task));
+            } else if (selectedTask && isIdle) {
+                this._taskLabel.set_text(_("Task: %s").format(selectedTask));
+            } else if (state === "pomodoro-stop") {
+                this._taskLabel.set_text(_("Task will be selected on start"));
+            } else {
+                this._taskLabel.set_text(_("Task: none"));
+            }
+        }
+
+        // @PUBLIC_STRIP_BEGIN
+        let sitesText = runtime.focusBlockActive ? _("blocked") : _("ready");
+        if (typeof runtime.blockedSitesCount === "number" && runtime.blockedSitesCount > 0) {
+            sitesText += ` (${runtime.blockedSitesCount})`;
+        }
+        // @PUBLIC_STRIP_END
+
+        // Idle layout: separate Sites and Preset info rows.
+        // @PUBLIC_STRIP_BEGIN
+        if (this._sitesLabel) {
+            this._sitesLabel.set_text(sitesText);
+        }
+        // @PUBLIC_STRIP_END
+        if (this._presetSummaryLabel) {
+            this._presetSummaryLabel.set_text(activePreset);
+        }
+        if (this._presetSubmenu && this._presetSubmenu.label) {
+            this._presetSubmenu.label.set_text(_("Preset") + ": " + activePreset);
+        }
+
+        // Active layout: single compact "preset · status" row.
+        if (this._compactInfoLabel) {
+            // @PUBLIC_STRIP_BEGIN
+            this._compactInfoLabel.set_text(`${activePreset} \u00B7 ${sitesText}`);
+            // @PUBLIC_STRIP_ELSE
+            // this._compactInfoLabel.set_text(`${activePreset}`);
+            // @PUBLIC_STRIP_END
+        }
+
+        // Hotkey hint (idle only; shown when a hotkey is configured).
+        if (this._hotkeyItem && this._hotkeyLabel) {
+            let hk = this._prettyHotkey(runtime.hotkey);
+            if (hk) {
+                this._hotkeyLabel.set_text(_("Hotkey: %s").format(hk));
+                if (this._hotkeyItem.actor) {
+                    this._hotkeyItem.actor.show();
+                }
+            } else if (this._hotkeyItem.actor) {
+                this._hotkeyItem.actor.hide();
+            }
+        }
+
+        if (this._chooseTaskItem) {
+            this._chooseTaskItem.setSensitive(state === "pomodoro-stop");
+        }
+        if (this._zenItem && this._zenItem.actor) {
+            if (runtime.zenEnabled) {
+                this._zenItem.actor.show();
+            } else {
+                this._zenItem.actor.hide();
+            }
+        }
+        if (this._focusUntilItem && this._focusUntilItem.actor) {
+            if (runtime.focusUntilEnabled) {
+                this._focusUntilItem.actor.show();
+            } else {
+                this._focusUntilItem.actor.hide();
+            }
+        }
+
+        if (this._primaryActionItem) {
+            if (runtime.timerPaused) {
+                let resumeLabel = (state === "short-break-paused" || state === "long-break-paused")
+                    ? _("Resume break") : _("Resume focus");
+                this._primaryActionItem.setLabel(resumeLabel);
+                this._primaryActionItem.setOrnament(PopupMenu.OrnamentType.NONE);
+                this._primaryActionMode = "resume";
+            } else if (runtime.timerRunning) {
+                this._primaryActionItem.setLabel(state === "pomodoro" ? _("Pause focus") : _("Pause break"));
+                this._primaryActionItem.setOrnament(PopupMenu.OrnamentType.CHECK, true);
+                this._primaryActionMode = "pause";
+            } else if (state === "break-over") {
+                this._primaryActionItem.setLabel(_("Start next focus"));
+                this._primaryActionItem.setOrnament(PopupMenu.OrnamentType.NONE);
+                this._primaryActionMode = "start";
+            } else {
+                this._primaryActionItem.setLabel(_("Start focus"));
+                this._primaryActionItem.setOrnament(PopupMenu.OrnamentType.NONE);
+                this._primaryActionMode = "start";
+            }
+            this._stylePrimaryAction();
+            this._setPrimaryActionAccent(state);
+        }
+
+        if (this._skipTimerItem) {
+            this._skipTimerItem.setSensitive(Boolean(runtime.timerRunning || runtime.timerPaused));
+        }
+        if (this._resetTimerItem) {
+            this._resetTimerItem.setSensitive(state !== "pomodoro-stop" || Boolean(runtime.timerRunning || runtime.timerPaused));
+        }
+    }
+
+    _prettyHotkey(hk) {
+        if (!hk || typeof hk !== "string") {
+            return "";
+        }
+
+        let first = hk.split("::")[0].trim();
+        if (!first) {
+            return "";
+        }
+
+        return first.replace(/</g, "").replace(/>/g, "+");
+    }
+
+    updatePresetIndicator(activePreset, isPreset25Active, isPreset50Active) {
+        this._presetState = {
+            activePreset: activePreset,
+            isPreset25Active: Boolean(isPreset25Active),
+            isPreset50Active: Boolean(isPreset50Active)
+        };
+        this._applyCachedPreset();
+    }
+
+    _applyCachedPreset() {
+        let preset = this._presetState || {};
+
+        if (this._presetSummaryLabel && preset.activePreset) {
+            this._presetSummaryLabel.set_text(preset.activePreset);
+        }
+        if (this._presetSubmenu && this._presetSubmenu.label && preset.activePreset) {
+            this._presetSubmenu.label.set_text(_("Preset") + ": " + preset.activePreset);
+        }
+        // @PUBLIC_STRIP_BEGIN
+        if (this._compactInfoLabel && preset.activePreset && this._lastRuntimeState) {
+            let blocked = Boolean(this._lastRuntimeState.focusBlockActive);
+            let t = blocked ? _("blocked") : _("ready");
+            if (typeof this._lastRuntimeState.blockedSitesCount === "number" && this._lastRuntimeState.blockedSitesCount > 0) {
+                t += ` (${this._lastRuntimeState.blockedSitesCount})`;
+            }
+            this._compactInfoLabel.set_text(`${preset.activePreset} \u00B7 ${t}`);
+        }
+        // @PUBLIC_STRIP_ELSE
+        // if (this._compactInfoLabel && preset.activePreset) {
+        //     this._compactInfoLabel.set_text(`${preset.activePreset}`);
+        // }
+        // @PUBLIC_STRIP_END
+        if (this._preset25Item) {
+            this._preset25Item.setOrnament(PopupMenu.OrnamentType.CHECK, Boolean(preset.isPreset25Active));
+        }
+        if (this._preset50Item) {
+            this._preset50Item.setOrnament(PopupMenu.OrnamentType.CHECK, Boolean(preset.isPreset50Active));
+        }
+    }
+
+    showPomodoroInProgress(pomodoriNumber) {
+        if (typeof pomodoriNumber === "number" && pomodoriNumber > 0) {
+            this._pomodoriTotal = pomodoriNumber;
+        }
+        this._updateCycleIndicator();
+    }
+
+    updateCounts(setCount, pomodoroCount) {
+        this._pomodoroSetCount = setCount;
+        this._pomodoroCount = pomodoroCount;
+        this._updateCycleIndicator();
+    }
+}

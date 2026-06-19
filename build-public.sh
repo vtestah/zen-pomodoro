@@ -20,14 +20,15 @@ rm -rf "$OUT"
 mkdir -p "$FILES/po"
 
 echo "==> copy code + assets (no .mo)"
-cp "$SRC/applet.js" "$SRC/timer.js" "$SRC/sound.js" "$SRC/stylesheet.css" "$SRC/settings-schema.json" "$FILES/"
+cp "$SRC/applet.js" "$SRC/timer.js" "$SRC/sound.js" "$SRC/menu.js" "$SRC/dialogs.js" "$SRC/stylesheet.css" "$SRC/settings-schema.json" "$FILES/"
 cp "$REPO"/*.png "$REPO"/*.svg "$FILES/" 2>/dev/null || true
 [ -d "$REPO/sounds" ] && cp -r "$REPO/sounds" "$FILES/"
 [ -d "$REPO/bin" ] && cp -r "$REPO/bin" "$FILES/"
 cp "$REPO/po/"*.po "$FILES/po/"
 
-echo "==> process applet.js (strip markers + rewrite paths)"
-python3 - "$FILES/applet.js" <<'PY'
+echo "==> process modules (strip markers + rewrite paths)"
+for __jsf in "$FILES/applet.js" "$FILES/menu.js" "$FILES/dialogs.js"; do
+python3 - "$__jsf" <<'PY'
 import sys, re
 f=sys.argv[1]
 lines=open(f,encoding='utf-8').read().split('\n')
@@ -75,8 +76,9 @@ s=re.sub(r'(\n(\s*)GLib\.file_set_contents\((POMODORO_STATE_FILE|POMODORO_STATS_
          r'\n\2GLib.mkdir_with_parents(GLib.path_get_dirname(\3), 0o700);\1', s)
 
 open(f,'w',encoding='utf-8').write(s)
-print("   applet.js processed")
+print("   processed: "+f.split('/')[-1])
 PY
+done
 
 echo "==> process settings-schema.json (drop Scripts page/keys)"
 python3 - "$FILES/settings-schema.json" <<'PY'

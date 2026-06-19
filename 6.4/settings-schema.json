@@ -128,10 +128,112 @@
         "default" : true
     },
 
-    "focus_glow_frame" : {
-        "type" : "checkbox",
-        "description" : "Glow frame: soft edge glow with progress around the screen (off = classic border)",
-        "default" : true
+    "head_appearance": {
+        "type": "header",
+        "description": "Appearance"
+    },
+
+    "theme_preset": {
+        "type": "combobox",
+        "description": "Color theme",
+        "default": "warm",
+        "options": {
+            "Warm (amber / green)": "warm",
+            "Cool (teal)": "cool",
+            "Monochrome": "mono",
+            "Custom": "custom"
+        }
+    },
+
+    "accent_focus_color": {
+        "type": "colorchooser",
+        "description": "Custom focus accent color",
+        "default": "rgb(235,175,75)",
+        "dependency": "theme_preset=custom"
+    },
+
+    "accent_break_color": {
+        "type": "colorchooser",
+        "description": "Custom break accent color",
+        "default": "rgb(120,205,155)",
+        "dependency": "theme_preset=custom"
+    },
+
+    "frame_style": {
+        "type": "combobox",
+        "description": "On-screen focus frame style",
+        "default": "glow",
+        "options": {
+            "Glow": "glow",
+            "Classic border": "border",
+            "Corners only": "corners",
+            "Off": "off"
+        }
+    },
+
+    "glow_intensity": {
+        "type": "scale",
+        "default": 18,
+        "min": 5,
+        "max": 60,
+        "step": 1,
+        "description": "Glow intensity"
+    },
+
+    "glow_progress_width": {
+        "type": "scale",
+        "default": 2,
+        "min": 1,
+        "max": 6,
+        "step": 1,
+        "description": "Progress line thickness"
+    },
+
+    "breathing_pattern": {
+        "type": "combobox",
+        "description": "Breathing pattern",
+        "default": "box",
+        "options": {
+            "Box 4-4-4-4": "box",
+            "4-7-8": "478",
+            "Relaxing 4-6": "relax"
+        }
+    },
+
+    "chip_position": {
+        "type": "combobox",
+        "description": "Task chip position",
+        "default": "br",
+        "options": {
+            "Bottom-right": "br",
+            "Bottom-left": "bl",
+            "Top-right": "tr",
+            "Top-left": "tl"
+        }
+    },
+
+    "ritual_seconds": {
+        "type": "scale",
+        "default": 4,
+        "min": 1,
+        "max": 8,
+        "step": 1,
+        "description": "Start ritual duration (seconds)"
+    },
+
+    "reduce_motion": {
+        "type": "checkbox",
+        "description": "Reduce motion (disable focus animations)",
+        "default": false
+    },
+
+    "menu_font_scale": {
+        "type": "scale",
+        "default": 100,
+        "min": 80,
+        "max": 140,
+        "step": 5,
+        "description": "Menu font scale (%)"
     },
 
     "head_distinctive": {

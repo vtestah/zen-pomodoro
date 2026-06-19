@@ -178,7 +178,17 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_focusShowTaskChip = null;
         this._opt_focusCalmEnding = null;
         this._opt_focusStartRitual = null;
-        this._opt_focusGlowFrame = null;
+        this._opt_themePreset = null;
+        this._opt_accentFocusColor = null;
+        this._opt_accentBreakColor = null;
+        this._opt_frameStyle = null;
+        this._opt_glowIntensity = null;
+        this._opt_glowProgressWidth = null;
+        this._opt_breathingPattern = null;
+        this._opt_chipPosition = null;
+        this._opt_ritualSeconds = null;
+        this._opt_reduceMotion = null;
+        this._opt_menuFontScale = null;
         this._opt_sessionRecovery = null;
         this._opt_panelProgressIcon = null;
         this._opt_dailyGoal = null;
@@ -336,7 +346,17 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_show_task_chip", "_opt_focusShowTaskChip", () => { this._updateFocusFrame(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_calm_ending", "_opt_focusCalmEnding", () => { this._updateFocusFrame(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_start_ritual", "_opt_focusStartRitual", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_glow_frame", "_opt_focusGlowFrame", () => { this._updateFocusFrame(); });
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "theme_preset", "_opt_themePreset", () => { this._applyAppearance(); });
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "accent_focus_color", "_opt_accentFocusColor", () => { this._applyAppearance(); });
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "accent_break_color", "_opt_accentBreakColor", () => { this._applyAppearance(); });
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "frame_style", "_opt_frameStyle", () => { this._updateFocusFrame(); });
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "glow_intensity", "_opt_glowIntensity", () => { this._updateFocusFrame(); });
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "glow_progress_width", "_opt_glowProgressWidth", () => { this._updateFocusFrame(); });
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "breathing_pattern", "_opt_breathingPattern", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "chip_position", "_opt_chipPosition", () => { this._updateFocusFrame(); });
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "ritual_seconds", "_opt_ritualSeconds", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "reduce_motion", "_opt_reduceMotion", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "menu_font_scale", "_opt_menuFontScale", () => { this._applyAppearance(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "display_icon", "_opt_displayIconInPanel", this._onAppletIconChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "use_symbolic_icon", "_opt_useSymbolicIconInPanel", this._onAppletIconChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "show_timer", "_opt_showTimerInPanel", this._onShowTimerChanged.bind(this));
@@ -381,6 +401,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
             showSoxInfo = false;
         }
         this._settingsProvider.setValue('show_sox_info', showSoxInfo);
+
+        // Apply initial appearance (accent colours / font scale / frame style).
+        this._applyAppearance();
     }
 
     _updateHotkey() {
@@ -1548,6 +1571,17 @@ class PomodoroApplet extends Applet.TextIconApplet {
         }
 
         this._focusFrameLastTicks = ticks;
+
+        let fstyle = this._opt_frameStyle || 'glow';
+        if (fstyle === 'off') {
+            this._stopFocusFramePulse();
+            this._hideGlowFrames();
+            for (let frame of this._focusFrames) {
+                frame.hide();
+            }
+            return;
+        }
+
         if (this._isFocusFramePulseActive(ticks)) {
             this._startFocusFramePulse();
         } else {
@@ -1556,7 +1590,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
         this._updateFocusHud(ticks);
 
-        if (this._opt_focusGlowFrame) {
+        if (fstyle === 'glow' || fstyle === 'corners') {
             // Glow frame: soft inward vignette + perimeter progress (Cairo).
             // Visible for the whole session (focus and break) so the depleting
             // break ring is meaningful — unlike the classic border, which only
@@ -1652,18 +1686,72 @@ class PomodoroApplet extends Applet.TextIconApplet {
         return [x1, y0 + d];
     }
 
+    // Resolve the accent colour [r,g,b] for the current theme preset (or custom).
+    _accentRgb(breakish) {
+        let preset = this._opt_themePreset || "warm";
+        if (preset === "custom") {
+            return this._parseColor(breakish ? this._opt_accentBreakColor : this._opt_accentFocusColor, breakish);
+        }
+        let table = {
+            warm: { focus: POMODORO_FOCUS_GLOW_FOCUS_RGB, brk: POMODORO_FOCUS_GLOW_BREAK_RGB },
+            cool: { focus: [120, 180, 230], brk: [90, 200, 180] },
+            mono: { focus: [200, 200, 205], brk: [170, 175, 180] }
+        };
+        let t = table[preset] || table.warm;
+        return breakish ? t.brk.slice() : t.focus.slice();
+    }
+
+    // Parse "rgb(r,g,b)" / "rgba(...)" / "#rrggbb" into [r,g,b], with a safe fallback.
+    _parseColor(str, breakish) {
+        let fallback = breakish ? POMODORO_FOCUS_GLOW_BREAK_RGB.slice() : POMODORO_FOCUS_GLOW_FOCUS_RGB.slice();
+        if (!str || typeof str !== "string") {
+            return fallback;
+        }
+        let m = str.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i);
+        if (m) {
+            return [parseInt(m[1], 10), parseInt(m[2], 10), parseInt(m[3], 10)];
+        }
+        m = str.match(/^#([0-9a-fA-F]{6})$/);
+        if (m) {
+            let h = m[1];
+            return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+        }
+        return fallback;
+    }
+
+    _cssRgb(rgb) {
+        return `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
+    }
+
+    // Push accent colours / font scale to the menu and refresh frame + menu.
+    _applyAppearance() {
+        if (this._appletMenu && typeof this._appletMenu.setAppearance === "function") {
+            this._appletMenu.setAppearance({
+                accentFocus: this._cssRgb(this._accentRgb(false)),
+                accentBreak: this._cssRgb(this._accentRgb(true)),
+                fontScale: this._opt_menuFontScale || 100
+            });
+        }
+        this._updateFocusFrame();
+    }
+
     _getGlowColor() {
+        let base = this._accentRgb(this._glowBreakish);
         if (this._glowBreakish) {
-            return POMODORO_FOCUS_GLOW_BREAK_RGB;
+            return base;
         }
 
-        // Focus: gently warm the colour as the current pomodoro nears its end.
+        // Focus: gently warm the colour as the current pomodoro nears its end
+        // (only for the "warm" preset; other presets stay constant).
+        if ((this._opt_themePreset || "warm") !== "warm") {
+            return base;
+        }
         let p = this._glowCurrentElapsed || 0;
         if (p <= POMODORO_FOCUS_GLOW_END_SHIFT_START) {
-            return POMODORO_FOCUS_GLOW_FOCUS_RGB;
+            return base;
         }
         let t = Math.min(1, (p - POMODORO_FOCUS_GLOW_END_SHIFT_START) / (1 - POMODORO_FOCUS_GLOW_END_SHIFT_START));
-        let a = POMODORO_FOCUS_GLOW_FOCUS_RGB, b = POMODORO_FOCUS_GLOW_FOCUS_END_RGB;
+        let a = base, b = POMODORO_FOCUS_GLOW_FOCUS_END_RGB;
         return [
             Math.round(a[0] + (b[0] - a[0]) * t),
             Math.round(a[1] + (b[1] - a[1]) * t),
@@ -1695,31 +1783,54 @@ class PomodoroApplet extends Applet.TextIconApplet {
             // is left open so the frame never overlaps a bottom panel.
             let depth = Math.round(Math.min(w, h) * POMODORO_FOCUS_GLOW_DEPTH_RATIO);
             depth = Math.max(POMODORO_FOCUS_GLOW_DEPTH_MIN, Math.min(POMODORO_FOCUS_GLOW_DEPTH_MAX, depth));
-            let maxA = POMODORO_FOCUS_GLOW_MAX_ALPHA * (1 + (this._glowBreathBoost || 0));
+            let baseAlpha = (typeof this._opt_glowIntensity === 'number' && this._opt_glowIntensity > 0)
+                ? this._opt_glowIntensity / 100 : POMODORO_FOCUS_GLOW_MAX_ALPHA;
+            let pw = (typeof this._opt_glowProgressWidth === 'number' && this._opt_glowProgressWidth > 0)
+                ? this._opt_glowProgressWidth : POMODORO_FOCUS_GLOW_PROGRESS_WIDTH;
+            let maxA = baseAlpha * (1 + (this._glowBreathBoost || 0));
+            let cornersOnly = (this._opt_frameStyle === 'corners');
             cr.setLineWidth(1);
-            for (let i = 0; i < depth; i++) {
-                let t = 1 - (i / depth);
-                cr.setSourceRGBA(r, g, b, maxA * t * t);
-                let xx0 = x0 + i, xx1 = x1 - i, yy0 = y0 + i;
-                if (xx1 <= xx0) {
-                    continue;
+            if (cornersOnly) {
+                // Short L-brackets in the four corners instead of full edges.
+                let armX = Math.max(12, Math.min(60, (x1 - x0) * 0.06));
+                let armY = Math.max(12, Math.min(60, (y1 - y0) * 0.06));
+                for (let i = 0; i < depth; i++) {
+                    let t = 1 - (i / depth);
+                    cr.setSourceRGBA(r, g, b, maxA * t * t);
+                    let xx0 = x0 + i, xx1 = x1 - i, yy0 = y0 + i, yy1 = y1 - i;
+                    if (xx1 <= xx0 || yy1 <= yy0) {
+                        continue;
+                    }
+                    cr.moveTo(xx0, yy0 + armY); cr.lineTo(xx0, yy0); cr.lineTo(xx0 + armX, yy0); cr.stroke();
+                    cr.moveTo(xx1 - armX, yy0); cr.lineTo(xx1, yy0); cr.lineTo(xx1, yy0 + armY); cr.stroke();
+                    cr.moveTo(xx0, yy1 - armY); cr.lineTo(xx0, yy1); cr.lineTo(xx0 + armX, yy1); cr.stroke();
+                    cr.moveTo(xx1 - armX, yy1); cr.lineTo(xx1, yy1); cr.lineTo(xx1, yy1 - armY); cr.stroke();
                 }
-                // top
-                cr.moveTo(xx0, yy0);
-                cr.lineTo(xx1, yy0);
-                cr.stroke();
-                // left
-                cr.moveTo(xx0, yy0);
-                cr.lineTo(xx0, y1);
-                cr.stroke();
-                // right
-                cr.moveTo(xx1, yy0);
-                cr.lineTo(xx1, y1);
-                cr.stroke();
+            } else {
+                for (let i = 0; i < depth; i++) {
+                    let t = 1 - (i / depth);
+                    cr.setSourceRGBA(r, g, b, maxA * t * t);
+                    let xx0 = x0 + i, xx1 = x1 - i, yy0 = y0 + i;
+                    if (xx1 <= xx0) {
+                        continue;
+                    }
+                    // top
+                    cr.moveTo(xx0, yy0);
+                    cr.lineTo(xx1, yy0);
+                    cr.stroke();
+                    // left
+                    cr.moveTo(xx0, yy0);
+                    cr.lineTo(xx0, y1);
+                    cr.stroke();
+                    // right
+                    cr.moveTo(xx1, yy0);
+                    cr.lineTo(xx1, y1);
+                    cr.stroke();
+                }
             }
 
             // Faint full ∩ track.
-            cr.setLineWidth(POMODORO_FOCUS_GLOW_PROGRESS_WIDTH);
+            cr.setLineWidth(pw);
             cr.setSourceRGBA(r, g, b, POMODORO_FOCUS_GLOW_TRACK_ALPHA);
             cr.moveTo(x0, y1);
             cr.lineTo(x0, y0);
@@ -1752,7 +1863,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 let rem = (2 * sideLen + topLen) * frac;
 
                 cr.setSourceRGBA(r, g, b, POMODORO_FOCUS_GLOW_PROGRESS_ALPHA);
-                cr.setLineWidth(POMODORO_FOCUS_GLOW_PROGRESS_WIDTH);
+                cr.setLineWidth(pw);
                 cr.moveTo(x0, y1);
 
                 let seg = Math.min(sideLen, rem);
@@ -1892,7 +2003,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._focusRitualLabel.show();
 
         // Gentle fade-in of the focus frame so the "entry" is smooth, not abrupt.
-        let framesToFade = this._opt_focusGlowFrame ? this._focusGlowFrames : this._focusFrames;
+        let fstyleFade = this._opt_frameStyle || 'glow';
+        let framesToFade = (fstyleFade === 'glow' || fstyleFade === 'corners') ? this._focusGlowFrames : this._focusFrames;
         for (let frame of framesToFade) {
             this._animateActorOpacity(frame, 0, 255, POMODORO_FOCUS_RITUAL_FRAME_FADE_MS, null);
         }
@@ -2898,6 +3010,12 @@ class PomodoroMenu extends Applet.AppletPopupMenu {
         this._progressBarActive = false;
         this._progressBarColor = [0.84, 0.60, 0.19];
 
+        // Appearance (accent colours + font scale), pushed by the applet via
+        // setAppearance(); defaults reproduce the original look.
+        this._accentFocusCss = "rgb(235, 175, 75)";
+        this._accentBreakCss = "rgb(120, 205, 155)";
+        this._menuFontScale = 100;
+
         this._nullWidgetRefs();
 
         if (this.actor && typeof this.actor.set_style === "function") {
@@ -3015,6 +3133,26 @@ class PomodoroMenu extends Applet.AppletPopupMenu {
         this._primaryActionItem.label.set_style_class_name("pomodoro-primary");
     }
 
+    setAppearance(opts) {
+        opts = opts || {};
+        if (opts.accentFocus) {
+            this._accentFocusCss = opts.accentFocus;
+        }
+        if (opts.accentBreak) {
+            this._accentBreakCss = opts.accentBreak;
+        }
+        if (typeof opts.fontScale === "number" && opts.fontScale > 0) {
+            this._menuFontScale = opts.fontScale;
+        }
+        if (this.actor) {
+            this.actor.set_style(`font-size: ${this._menuFontScale}%;`);
+        }
+        // Re-apply colours to whatever is currently shown.
+        if (this._lastRuntimeState) {
+            this._applyRuntimeToWidgets(this._lastRuntimeState);
+        }
+    }
+
     _setPrimaryActionAccent(state) {
         if (!this._primaryActionItem || !this._primaryActionItem.actor) {
             return;
@@ -3026,8 +3164,9 @@ class PomodoroMenu extends Applet.AppletPopupMenu {
             this._primaryActionItem.actor.set_style("");
         }
         if (this._primaryActionItem.label) {
-            this._primaryActionItem.label.set_style_class_name(
-                breakish ? "pomodoro-primary pomodoro-primary-break" : "pomodoro-primary pomodoro-primary-focus"
+            this._primaryActionItem.label.set_style_class_name("pomodoro-primary");
+            this._primaryActionItem.label.set_style(
+                `color: ${breakish ? this._accentBreakCss : this._accentFocusCss};`
             );
         }
     }
@@ -3359,17 +3498,18 @@ class PomodoroMenu extends Applet.AppletPopupMenu {
 
         this._updateProgressBar(state, progressPercent);
 
-        let badgeClass = "pomodoro-badge pomodoro-badge-idle";
+        let badgeAccent = null;
         if (state === "pomodoro" || state === "pomodoro-paused") {
-            badgeClass = "pomodoro-badge pomodoro-badge-focus";
+            badgeAccent = this._accentFocusCss;
         } else if (state === "short-break" || state === "long-break" ||
             state === "short-break-paused" || state === "long-break-paused" || state === "break-over") {
-            badgeClass = "pomodoro-badge pomodoro-badge-break";
+            badgeAccent = this._accentBreakCss;
         }
 
         if (this._stateBadgeLabel) {
             this._stateBadgeLabel.set_text(badge.toUpperCase());
-            this._stateBadgeLabel.set_style_class_name(badgeClass);
+            this._stateBadgeLabel.set_style_class_name(badgeAccent ? "pomodoro-badge" : "pomodoro-badge pomodoro-badge-idle");
+            this._stateBadgeLabel.set_style(badgeAccent ? `color: ${badgeAccent};` : "");
         }
         if (this._timeLeftLabel) {
             this._timeLeftLabel.set_text(timeLeft || "--:--");

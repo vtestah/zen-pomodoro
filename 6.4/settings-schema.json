@@ -102,7 +102,9 @@
             "keys": [
                 "focus_show_task_chip",
                 "focus_calm_ending",
-                "focus_start_ritual"
+                "focus_start_ritual",
+                "preset_tasks",
+                "require_focus_task"
             ]
         },
         "sec_theme": {
@@ -286,6 +288,42 @@
         "type": "checkbox",
         "description": "Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus begins",
         "default": true
+    },
+    "preset_tasks": {
+        "type": "list",
+        "description": "Preset focus tasks (quick-pick buttons in the focus dialog)",
+        "columns": [
+            {
+                "id": "task",
+                "title": "Task",
+                "type": "string"
+            }
+        ],
+        "default": [
+            {
+                "task": "Планирование"
+            },
+            {
+                "task": "Код"
+            },
+            {
+                "task": "Тексты"
+            },
+            {
+                "task": "Учеба"
+            },
+            {
+                "task": "Разбор задач"
+            },
+            {
+                "task": "Изучение Pytest"
+            }
+        ]
+    },
+    "require_focus_task": {
+        "type": "checkbox",
+        "description": "Require a focus task before starting",
+        "default": false
     },
     "theme_preset": {
         "type": "combobox",

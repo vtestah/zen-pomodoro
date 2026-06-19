@@ -86,6 +86,10 @@ d=json.load(open(f,encoding='utf-8'),object_pairs_hook=collections.OrderedDict)
 drop={"enable_scripts","custom_short_break_script","custom_long_break_script"}
 for k in list(d.keys()):
     if k in drop: del d[k]
+# Generic, non-personal default preset tasks for the public package.
+if "preset_tasks" in d:
+    d["preset_tasks"]["default"]=[{"task":t} for t in
+        ["Deep work","Writing","Study","Email","Planning"]]
 lay=d.get("layout")
 if lay:
     lay["pages"]=[p for p in lay.get("pages",[]) if p!="scripts"]
@@ -151,7 +155,7 @@ for j in "$FILES/metadata.json" "$FILES/settings-schema.json" "$OUT/info.json"; 
   python3 -m json.tool "$j" >/dev/null && echo "   JSON OK: ${j##*/}" || { echo "   JSON FAIL: $j"; fail=1; }
 done
 echo "   forbidden-pattern scan:"
-if grep -rInE "/home/vladimir|[^a-zA-Z]sudo[^a-zA-Z]|focus-start|focus-stop|/etc/hosts|domains\.txt|PUSHOVER|Pushover|_startFocusBlockIfNeeded|_stopFocusBlockIfNeeded|_runFocusPreflight|_runFocusStartScript|_runFocusStopScript|_runPomodoroScript|_checkAndExecuteCustomScript|_getBlockedSitesCount|_isTaskRequired|_reloadPresetTasks|_focusBlockActive|enable_scripts|_opt_enableScripts|_opt_customShortBreakScript|_opt_customLongBreakScript|sitesText|_sitesLabel|_hintLabel|_presetTaskBox|focus-pomodoro|PUBLIC_STRIP|\.config.*pomodoro" "$OUT" 2>/dev/null | grep -v Binary; then
+if grep -rInE "/home/vladimir|[^a-zA-Z]sudo[^a-zA-Z]|focus-start|focus-stop|/etc/hosts|domains\.txt|PUSHOVER|Pushover|_startFocusBlockIfNeeded|_stopFocusBlockIfNeeded|_runFocusPreflight|_runFocusStartScript|_runFocusStopScript|_runPomodoroScript|_checkAndExecuteCustomScript|_getBlockedSitesCount|_focusBlockActive|enable_scripts|_opt_enableScripts|_opt_customShortBreakScript|_opt_customLongBreakScript|sitesText|_sitesLabel|focus-pomodoro|PUBLIC_STRIP|\.config.*pomodoro" "$OUT" 2>/dev/null | grep -v Binary; then
   echo "   !! FORBIDDEN REMNANTS FOUND"; fail=1
 else
   echo "   clean"

@@ -182,6 +182,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_focusShowTaskChip = null;
         this._opt_focusCalmEnding = null;
         this._opt_focusStartRitual = null;
+        this._opt_presetTasks = null;
+        this._opt_requireFocusTask = null;
         this._opt_themePreset = null;
         this._opt_accentFocusColor = null;
         this._opt_accentBreakColor = null;
@@ -350,6 +352,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_show_task_chip", "_opt_focusShowTaskChip", () => { this._updateFocusFrame(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_calm_ending", "_opt_focusCalmEnding", () => { this._updateFocusFrame(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_start_ritual", "_opt_focusStartRitual", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "preset_tasks", "_opt_presetTasks", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "require_focus_task", "_opt_requireFocusTask", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "theme_preset", "_opt_themePreset", () => { this._applyAppearance(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "accent_focus_color", "_opt_accentFocusColor", () => { this._applyAppearance(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "accent_break_color", "_opt_accentBreakColor", () => { this._applyAppearance(); });
@@ -1745,6 +1749,25 @@ class PomodoroApplet extends Applet.TextIconApplet {
         return `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
     }
 
+    // Preset focus tasks from settings (list of {task}) -> array of strings.
+    _presetTaskStrings() {
+        let arr = this._opt_presetTasks;
+        if (!Array.isArray(arr)) {
+            return [];
+        }
+        let out = [];
+        for (let row of arr) {
+            let t = (row && typeof row.task === "string") ? row.task.replace(/\s+/g, " ").trim() : "";
+            if (t) {
+                out.push(t);
+            }
+            if (out.length >= 8) {
+                break;
+            }
+        }
+        return out;
+    }
+
     // Push accent colours / font scale to the menu and refresh frame + menu.
     _applyAppearance() {
         if (this._appletMenu && typeof this._appletMenu.setAppearance === "function") {
@@ -2770,7 +2793,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             return;
         }
 
-        this._focusTaskDialog.setDefaultTask(this._currentFocusTask);
+        this._focusTaskDialog.setDefaultTask(this._currentFocusTask, this._presetTaskStrings(), Boolean(this._opt_requireFocusTask));
         this._focusTaskDialog.open();
     }
 
@@ -2780,7 +2803,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         }
 
         this._taskSelectOnly = true;
-        this._focusTaskDialog.setDefaultTask(this._currentFocusTask);
+        this._focusTaskDialog.setDefaultTask(this._currentFocusTask, this._presetTaskStrings(), Boolean(this._opt_requireFocusTask));
         this._focusTaskDialog.open();
     }
 
@@ -3911,7 +3934,6 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         this._entryText = this._entry.clutter_text;
         content.add_child(this._entry);
 
-        // @PUBLIC_STRIP_BEGIN
         this._hintLabel = new St.Label({
             text: _("Choose or type a focus task"),
             style: 'color: rgba(255, 190, 64, 0.95); padding-top: 6px;'
@@ -3925,7 +3947,6 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
             style: 'spacing: 6px; padding-top: 8px;'
         });
         content.add_child(this._presetTaskBox);
-        // @PUBLIC_STRIP_END
 
         this.contentLayout.add(content);
         this.setInitialKeyFocus(this._entryText);
@@ -3957,7 +3978,9 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         ]);
     }
 
-    setDefaultTask(task) {
+    setDefaultTask(task, presets, requireTask) {
+        this._presets = Array.isArray(presets) ? presets : [];
+        this._requireTask = Boolean(requireTask);
         this._reloadPresetTasks();
         this._hideTaskRequiredHint();
         this._entryText.set_text(task || "");
@@ -3965,71 +3988,29 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         this._entryText.set_selection(0, -1);
     }
 
-    // @PUBLIC_STRIP_BEGIN
     _isTaskRequired() {
-        try {
-            let [success, contents] = GLib.file_get_contents(POMODORO_CONFIG_FILE);
-            if (!success) {
-                return true;
-            }
-
-            let text = ByteArray.toString(contents);
-            let match = text.match(/^\s*POMODORO_REQUIRE_FOCUS_TASK\s*=\s*"?([^"\n#]*)"?/m);
-            if (!match) {
-                return true;
-            }
-
-            let value = match[1].replace(/\s+$/, "").toLowerCase();
-            return !(value === "0" || value === "false" || value === "no" || value === "off");
-        } catch (e) {
-            return true;
-        }
+        return Boolean(this._requireTask);
     }
 
     _showTaskRequiredHint() {
-        this._hintLabel.show();
+        if (this._hintLabel) { this._hintLabel.show(); }
         this.setInitialKeyFocus(this._entryText);
         this._entryText.grab_key_focus();
     }
 
     _hideTaskRequiredHint() {
-        this._hintLabel.hide();
-    }
-
-    _readPresetTasks() {
-        let tasks = [];
-
-        try {
-            let [success, contents] = GLib.file_get_contents(POMODORO_FOCUS_TASKS_FILE);
-            if (!success) {
-                return tasks;
-            }
-
-            let text = ByteArray.toString(contents);
-            for (let line of text.split(/\r?\n/)) {
-                let task = line.replace(/\s+#.*$/, "").replace(/\s+/g, " ").trim();
-                if (!task || task.startsWith("#")) {
-                    continue;
-                }
-
-                tasks.push(task);
-                if (tasks.length >= 8) {
-                    break;
-                }
-            }
-        } catch (e) {
-            return tasks;
-        }
-
-        return tasks;
+        if (this._hintLabel) { this._hintLabel.hide(); }
     }
 
     _reloadPresetTasks() {
+        if (!this._presetTaskBox) {
+            return;
+        }
         for (let child of this._presetTaskBox.get_children()) {
             child.destroy();
         }
 
-        let tasks = this._readPresetTasks();
+        let tasks = Array.isArray(this._presets) ? this._presets : [];
         if (tasks.length === 0) {
             this._presetTaskBox.hide();
             return;
@@ -4070,16 +4051,13 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         this._entryText.set_text(task || "");
         this._confirm();
     }
-    // @PUBLIC_STRIP_END
 
     _confirm() {
         let task = this._getTask();
-        // @PUBLIC_STRIP_BEGIN
         if (!task && this._isTaskRequired()) {
             this._showTaskRequiredHint();
             return;
         }
-        // @PUBLIC_STRIP_END
 
         this.close();
         this.emit('focus-task-confirmed', task);

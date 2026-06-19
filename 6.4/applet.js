@@ -17,7 +17,7 @@ const Meta = imports.gi.Meta;
 
 const UUID = "zen-pomodoro@vtestah";
 
-let TimerModule, SoundModule, DialogsModule, MenuModule, ConstantsModule, VisualModule, FeaturesModule;
+let TimerModule, SoundModule, DialogsModule, MenuModule, ConstantsModule, VisualModule, FeaturesModule, SoundFxModule;
 
 if (typeof require !== 'undefined') {
     TimerModule = require('./timer');
@@ -27,6 +27,7 @@ if (typeof require !== 'undefined') {
     ConstantsModule = require('./constants');
     VisualModule = require('./visual');
     FeaturesModule = require('./features');
+    SoundFxModule = require('./soundfx');
 } else {
     const AppletDir = imports.ui.appletManager.applets[UUID];
     TimerModule = AppletDir.timer;
@@ -36,6 +37,7 @@ if (typeof require !== 'undefined') {
     ConstantsModule = AppletDir.constants;
     VisualModule = AppletDir.visual;
     FeaturesModule = AppletDir.features;
+    SoundFxModule = AppletDir.soundfx;
 }
 
 const Gettext = imports.gettext;
@@ -1238,33 +1240,15 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._refreshZenLabels();
     }
     
-    _playTickerSound(previewOnly = false) {
-        if (this._opt_playTickerSound) {
-            this._sounds.tick.play({ loop: true, volume: this._opt_tickerSoundVolume / 100, preview: previewOnly });
-        }
-    }
+
     
-    _stopTickerSound() {
-        this._sounds.tick.stop();
-    }
+
     
-    _playBreakSound(previewOnly = false) {
-        if (this._opt_playBreakSound) {
-            this._sounds.break.play({ volume: this._opt_breakSoundVolume / 100, preview: previewOnly });
-        }
-    }
+
     
-    _playWarnSound(previewOnly = false) {
-        if (this._opt_playWarnSound) {
-            this._sounds.warn.play({ volume: this._opt_warnSoundVolume / 100, preview: previewOnly });
-        }
-    }
+
     
-    _playStartSound(previewOnly = false) {
-        if (this._opt_playStartSound) {
-            this._sounds.start.play({ volume: this._opt_startSoundVolume / 100, preview: previewOnly });
-        }
-    }
+
     
     _loadSoundEffect(soundEffectInstance, soundPath) {
         soundPath = SoundModule.addPathIfRelative(soundPath, this._defaultSoundPath);
@@ -1276,17 +1260,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
         return soundEffectInstance;
     }
     
-    _loadSoundEffects() {
-        if (!SoundModule.isPlayable()) {
-            global.logError("Unable to play pomodoro sound, make sure 'play' command is available on your path from the sox package");
-        }
-    
-        this._sounds = this._sounds || {};
-        this._sounds.tick = this._loadSoundEffect(this._sounds.tick, this._opt_tickerSoundPath);
-        this._sounds.break = this._loadSoundEffect(this._sounds.break, this._opt_breakSoundPath);
-        this._sounds.warn = this._loadSoundEffect(this._sounds.warn, this._opt_warnSoundPath);
-        this._sounds.start = this._loadSoundEffect(this._sounds.start, this._opt_startSoundPath);
-    }
 
     // @PUBLIC_STRIP_BEGIN
     _runPomodoroScript(filePath, args = []) {
@@ -1839,3 +1812,4 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
 VisualModule.install(PomodoroApplet.prototype);
 FeaturesModule.install(PomodoroApplet.prototype);
+SoundFxModule.install(PomodoroApplet.prototype);

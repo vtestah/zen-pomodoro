@@ -1,0 +1,379 @@
+{
+    "head_durations": {
+        "type": "header",
+        "description": "Durations (minutes)"
+    },
+
+    "pomodoro_duration": {
+        "type": "scale",
+        "default": 25,
+        "min": 1,
+        "max": 60,
+        "step": 1,
+        "description": "Pomodoro Duration:"
+    },
+
+    "short_break_duration": {
+        "type": "scale",
+        "default": 5,
+        "min": 1,
+        "max": 15,
+        "step": 1,
+        "description": "Short Break Duration:"
+    },
+
+    "long_break_duration": {
+        "type": "scale",
+        "default": 15,
+        "min": 1,
+        "max": 60,
+        "step": 1,
+        "description": "Long Break Duration:"
+    },
+
+    "pomodori_number": {
+        "type": "scale",
+        "default": 4,
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "description": "Number of pomodori before long break:"
+    },
+
+    "head_options": {
+        "type": "header",
+        "description": "Options"
+    },
+
+    "start_automatically_on_load" : {
+        "type" : "checkbox",
+        "description" : "Start the pomodoro timer as soon as the applet loads",
+        "default" : false
+    },
+
+    "session_recovery" : {
+        "type" : "checkbox",
+        "description" : "Recover an in-progress focus session after a Cinnamon restart (resume manually)",
+        "default" : true
+    },
+
+    "show_dialog_messages" : {
+        "type" : "checkbox",
+        "description" : "Show Dialog Messages",
+        "default" : true
+    },
+
+    "auto_start_after_pomodoro_ends" : {
+        "type" : "checkbox",
+        "description" : "Auto start after a pomodoro ends",
+        "default" : true
+    },
+
+    "auto_start_after_short_break_ends" : {
+        "type" : "checkbox",
+        "description" : "Auto start after a short break ends",
+        "default" : true
+    },
+
+    "auto_start_after_break_ends" : {
+        "type" : "checkbox",
+        "description" : "Auto start a new pomodoro after a break ends",
+        "default" : true
+    },
+
+    "display_icon" : {
+        "type" : "checkbox",
+        "description" : "Display the pomodoro icon in the applet panel",
+        "default" : true
+    },
+
+    "use_symbolic_icon" : {
+        "type" : "checkbox",
+        "description" : "Use a symbolic icon in the applet panel",
+        "default" : true
+    },
+
+    "show_timer" : {
+        "type" : "checkbox",
+        "description" : "Show the pomodoro timer in the applet panel",
+        "default" : true
+    },
+
+    "hotkey": {
+        "type": "keybinding",
+        "description": "Set the keybinding to open the applet menu",
+        "default": "<Super><Shift>p"
+    },
+
+    "head_focus_hud": {
+        "type": "header",
+        "description": "Focus HUD"
+    },
+
+    "focus_show_task_chip" : {
+        "type" : "checkbox",
+        "description" : "Show the current task as an on-screen chip during focus",
+        "default" : false
+    },
+
+    "focus_calm_ending" : {
+        "type" : "checkbox",
+        "description" : "Calm ending: no anxious pulsing near the end of a timer",
+        "default" : true
+    },
+
+    "focus_start_ritual" : {
+        "type" : "checkbox",
+        "description" : "Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus begins",
+        "default" : true
+    },
+
+    "focus_glow_frame" : {
+        "type" : "checkbox",
+        "description" : "Glow frame: soft edge glow with progress around the screen (off = classic border)",
+        "default" : true
+    },
+
+    "head_distinctive": {
+        "type": "header",
+        "description": "Distinctive"
+    },
+
+    "panel_progress_icon" : {
+        "type" : "checkbox",
+        "description" : "Show timer progress as a ring on the panel icon",
+        "default" : true
+    },
+
+    "daily_goal": {
+        "type": "scale",
+        "default": 0,
+        "min": 0,
+        "max": 16,
+        "step": 1,
+        "description": "Daily focus goal (pomodori, 0 = off)"
+    },
+
+    "auto_pause_idle" : {
+        "type" : "checkbox",
+        "description" : "Auto-pause focus when you are away (idle)",
+        "default" : false
+    },
+
+    "auto_pause_idle_minutes": {
+        "type": "scale",
+        "default": 5,
+        "min": 1,
+        "max": 30,
+        "step": 1,
+        "description": "Idle minutes before auto-pause",
+        "dependency": "auto_pause_idle"
+    },
+
+    "auto_resume_on_activity" : {
+        "type" : "checkbox",
+        "description" : "Resume automatically when you return",
+        "default" : false,
+        "dependency": "auto_pause_idle"
+    },
+
+    "flow_extend" : {
+        "type" : "checkbox",
+        "description" : "Offer to extend focus when a pomodoro ends (stay in flow)",
+        "default" : true
+    },
+
+    "flow_extend_minutes": {
+        "type": "scale",
+        "default": 5,
+        "min": 1,
+        "max": 30,
+        "step": 1,
+        "description": "Extend amount (minutes)",
+        "dependency": "flow_extend"
+    },
+
+    "focus_ambient_sound" : {
+        "type" : "checkbox",
+        "description" : "Play soft ambient (brown noise) during focus",
+        "default" : false
+    },
+
+    "focus_ambient_volume": {
+        "type": "scale",
+        "default": 40,
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "description": "Ambient volume",
+        "dependency": "focus_ambient_sound"
+    },
+
+    "break_breathing" : {
+        "type" : "checkbox",
+        "description" : "Show a breathing guide during breaks",
+        "default" : false
+    },
+
+    "zen_mode_enabled" : {
+        "type" : "checkbox",
+        "description" : "Enable Zen mode (full-screen focus overlay, toggled from the menu)",
+        "default" : false
+    },
+
+    "focus_until_enabled" : {
+        "type" : "checkbox",
+        "description" : "Show 'Focus until…' in the menu (focus until a clock time)",
+        "default" : false
+    },
+
+    "head_sounds": {
+        "type": "header",
+        "description": "Sounds"
+    },
+
+    "sox-info": {
+        "type": "label",
+        "description": "Please install 'sox' and restart Cinnamon to use the sound feature!",
+        "dependency": "show_sox_info"
+    },
+
+    "show_sox_info" : {
+        "type" : "generic",
+        "default" : false
+    },
+
+    "timer_sound" : {
+        "type" : "checkbox",
+        "description" : "Play Timer Sound",
+        "default" : false
+    },
+
+    "timer_sound_file" : {
+        "type" : "filechooser",
+        "description" : "Timer Sound File",
+        "default" : "tick.ogg",
+        "select-dir" : false,
+        "dependency" : "timer_sound"
+    },
+
+    "timer_sound_volume": {
+        "type": "scale",
+        "default": 100,
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "description": "Sound volume:",
+        "dependency" : "timer_sound"
+    },
+
+    "break_sound" : {
+        "type" : "checkbox",
+        "description" : "Play Break Sound",
+        "default" : true
+    },
+
+    "break_sound_file" : {
+        "type" : "filechooser",
+        "description" : "Break Sound File",
+        "default" : "deskbell.wav",
+        "select-dir" : false,
+        "dependency" : "break_sound"
+    },
+
+    "break_sound_volume": {
+        "type": "scale",
+        "default": 100,
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "description": "Sound volume:",
+        "dependency" : "break_sound"
+    },
+
+    "warn_sound" : {
+        "type" : "checkbox",
+        "description" : "Play Warn Sound",
+        "default" : false
+    },
+
+    "warn_sound_delay": {
+        "type": "scale",
+        "default": 30,
+        "min": 5,
+        "max": 600,
+        "step": 5,
+        "description": "Warn Delay (in secs):",
+        "dependency" : "warn_sound"
+    },
+
+    "warn_sound_file" : {
+        "type" : "filechooser",
+        "description" : "Warn Sound File",
+        "default" : "warn.wav",
+        "select-dir" : false,
+        "dependency" : "warn_sound"
+    },
+
+    "warn_sound_volume": {
+        "type": "scale",
+        "default": 100,
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "description": "Sound volume:",
+        "dependency" : "warn_sound"
+    },
+
+
+    "start_sound" : {
+        "type" : "checkbox",
+        "description" : "Play Start Sound",
+        "default" : true
+    },
+
+    "start_sound_file" : {
+        "type" : "filechooser",
+        "description" : "Start Sound File",
+        "default" : "deskbell.wav",
+        "select-dir" : false,
+        "dependency" : "start_sound"
+    },
+
+    "start_sound_volume": {
+        "type": "scale",
+        "default": 100,
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "description": "Sound volume:",
+        "dependency" : "start_sound"
+    },
+
+    "head_scripts": {
+        "type": "header",
+        "description": "Scripts"
+    },
+
+    "enable_scripts" : {
+        "type" : "checkbox",
+        "description" : "Enable scripts",
+        "default" : false
+    },
+
+    "custom_short_break_script": {
+        "type" : "filechooser",
+        "default" : "",
+        "description" : "Execute this custom script when a short break starts",
+        "select-dir" : false,
+        "dependency": "enable_scripts"
+     },
+
+     "custom_long_break_script": {
+        "type" : "filechooser",
+        "default" : "",
+        "description" : "Execute this custom script when a long break starts",
+        "select-dir" : false,
+        "dependency": "enable_scripts"
+     }
+}

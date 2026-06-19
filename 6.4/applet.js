@@ -15,7 +15,7 @@ const GObject = imports.gi.GObject;
 const Dialog = imports.ui.dialog;
 const Meta = imports.gi.Meta;
 
-const UUID = "focus-pomodoro@vladimir.local";
+const UUID = "zen-pomodoro@vtestah";
 
 let TimerModule, SoundModule;
 

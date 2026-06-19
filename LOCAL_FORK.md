@@ -6,7 +6,7 @@ This is a personal local fork of the Cinnamon Spices applet
 Canonical local UUID:
 
 ```text
-focus-pomodoro@vladimir.local
+zen-pomodoro@vtestah
 ```
 
 The original applet directory may still exist as a fallback:
@@ -18,7 +18,7 @@ The original applet directory may still exist as a fallback:
 Do not make new production changes there. The maintained local applet is:
 
 ```text
-~/.local/share/cinnamon/applets/focus-pomodoro@vladimir.local
+~/.local/share/cinnamon/applets/zen-pomodoro@vtestah
 ```
 
 The local fork keeps upstream attribution in `metadata.json`. The goal of the
@@ -28,7 +28,7 @@ customizations.
 Main local integration points:
 
 - `6.4/applet.js`: Cinnamon applet UI, timer flow, presets, panel cue, frame cue.
-- `~/.config/cinnamon/spices/focus-pomodoro@vladimir.local/focus-pomodoro@vladimir.local.json`: Cinnamon settings.
+- `~/.config/cinnamon/spices/zen-pomodoro@vtestah/zen-pomodoro@vtestah.json`: Cinnamon settings.
 - `~/.local/bin/pomodoro`: external scripts for site blocking, DND, Pushover, break flow, diagnostics.
 - `~/.local/bin/pomodoro/AI_CONTEXT.md`: detailed maintenance notes for future AI agents.
 

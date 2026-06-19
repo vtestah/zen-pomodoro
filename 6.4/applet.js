@@ -31,11 +31,13 @@ if (typeof require !== 'undefined') {
 const Gettext = imports.gettext;
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
+// @PUBLIC_STRIP_BEGIN
 const POMODORO_FOCUS_START_SCRIPT = GLib.build_filenamev([GLib.get_home_dir(), ".local", "bin", "pomodoro", "focus-start.sh"]);
 const POMODORO_FOCUS_STOP_SCRIPT = GLib.build_filenamev([GLib.get_home_dir(), ".local", "bin", "pomodoro", "focus-stop.sh"]);
 const POMODORO_CONFIG_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "config.env"]);
 const POMODORO_FOCUS_TASKS_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "tasks.txt"]);
 const POMODORO_DOMAINS_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "domains.txt"]);
+// @PUBLIC_STRIP_END
 const POMODORO_STATE_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "applet-state.json"]);
 const POMODORO_STATE_MAX_AGE_MS = 3 * 60 * 60 * 1000;
 const POMODORO_STATS_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "daily-stats.json"]);
@@ -841,6 +843,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         }
     }
 
+    // @PUBLIC_STRIP_BEGIN
     _getBlockedSitesCount() {
         let now = GLib.get_monotonic_time();
         if (this.__domainsCountCache !== undefined && this.__domainsCountAt &&
@@ -869,6 +872,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this.__domainsCountAt = now;
         return count;
     }
+    // @PUBLIC_STRIP_END
 
     _persistSessionState(force = false) {
         if (!this._opt_sessionRecovery) {
@@ -2402,11 +2406,13 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._playCompletionFlourish(_("Pomodoro done"));
             this._recordPomodoroCompleted();
             Main.notify(_("Take a short break"));
+            // @PUBLIC_STRIP_BEGIN
             if (this._opt_enableScripts && this._opt_customShortBreakScript) {
                 let breakSecs = convertMinutesToSeconds(this._opt_shortBreakTimeMinutes);
                 let workSecs = convertMinutesToSeconds(this._opt_pomodoroTimeMinutes);
                 this._checkAndExecuteCustomScript(this._opt_customShortBreakScript, breakSecs, workSecs);
             }
+            // @PUBLIC_STRIP_END
         });
     
         shortBreakTimer.connect('timer-stopped', () => {
@@ -2434,11 +2440,13 @@ class PomodoroApplet extends Applet.TextIconApplet {
             } else {
                 Main.notify(_("Take a long break"));
             }
+            // @PUBLIC_STRIP_BEGIN
             if (this._opt_enableScripts && this._opt_customLongBreakScript) {
                 let breakSecs = convertMinutesToSeconds(this._opt_longBreakTimeMinutes);
                 let workSecs = convertMinutesToSeconds(this._opt_pomodoroTimeMinutes);
                 this._checkAndExecuteCustomScript(this._opt_customLongBreakScript, breakSecs, workSecs);
             }
+            // @PUBLIC_STRIP_END
         });
     
         longBreakTimer.connect('timer-stopped', () => {
@@ -2540,6 +2548,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._sounds.start = this._loadSoundEffect(this._sounds.start, this._opt_startSoundPath);
     }
 
+    // @PUBLIC_STRIP_BEGIN
     _runPomodoroScript(filePath, args = []) {
         if (filePath.startsWith('file://')) {
             filePath = filePath.substr(7);
@@ -2641,6 +2650,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._focusBlockActive = false;
         return this._runFocusStopScript();
     }
+    // @PUBLIC_STRIP_END
 
     _pauseTimerFromMenu() {
         let timer = this._timerQueue.getCurrentTimer();
@@ -2847,11 +2857,13 @@ class PomodoroApplet extends Applet.TextIconApplet {
     }
 
     _startTimerAfterFocusTask(task) {
+        // @PUBLIC_STRIP_BEGIN
         if (!this._runFocusPreflight()) {
             this._timerQueue.preventStart(true);
             this._appletMenu.toggleTimerState(false);
             return;
         }
+        // @PUBLIC_STRIP_END
 
         this._setCurrentFocusTask(task);
         this._timerQueue.preventStart(false);
@@ -3295,10 +3307,18 @@ class PomodoroMenu extends Applet.AppletPopupMenu {
         return { item: item, value: value };
     }
 
+    // @PUBLIC_STRIP_BEGIN
     _makeCompactInfoRow(presetLabel, sitesBlocked) {
+    // @PUBLIC_STRIP_ELSE
+    // _makeCompactInfoRow(presetLabel) {
+    // @PUBLIC_STRIP_END
         let item = new PopupMenu.PopupBaseMenuItem({ reactive: false });
         let label = new St.Label({
+            // @PUBLIC_STRIP_BEGIN
             text: `${presetLabel} \u00B7 ${sitesBlocked ? _("blocked") : _("ready")}`,
+            // @PUBLIC_STRIP_ELSE
+            // text: `${presetLabel}`,
+            // @PUBLIC_STRIP_END
             style_class: "pomodoro-compact"
         });
         item.addActor(label);
@@ -3527,9 +3547,11 @@ class PomodoroMenu extends Applet.AppletPopupMenu {
     _buildIdleLayout() {
         this._buildStatusHeader();
 
+        // @PUBLIC_STRIP_BEGIN
         let sitesRow = this._makeInfoRow(_("Sites"), _("ready"));
         this._sitesLabel = sitesRow.value;
         this.addMenuItem(sitesRow.item);
+        // @PUBLIC_STRIP_END
 
         this._buildHotkeyHint();
 
@@ -3584,7 +3606,11 @@ class PomodoroMenu extends Applet.AppletPopupMenu {
     _buildActiveLayout() {
         this._buildStatusHeader();
 
+        // @PUBLIC_STRIP_BEGIN
         let compact = this._makeCompactInfoRow(this._presetState.activePreset || "unknown", false);
+        // @PUBLIC_STRIP_ELSE
+        // let compact = this._makeCompactInfoRow(this._presetState.activePreset || "unknown");
+        // @PUBLIC_STRIP_END
         this._compactInfoLabel = compact.label;
         this.addMenuItem(compact.item);
 
@@ -3706,15 +3732,19 @@ class PomodoroMenu extends Applet.AppletPopupMenu {
             }
         }
 
+        // @PUBLIC_STRIP_BEGIN
         let sitesText = runtime.focusBlockActive ? _("blocked") : _("ready");
         if (typeof runtime.blockedSitesCount === "number" && runtime.blockedSitesCount > 0) {
             sitesText += ` (${runtime.blockedSitesCount})`;
         }
+        // @PUBLIC_STRIP_END
 
         // Idle layout: separate Sites and Preset info rows.
+        // @PUBLIC_STRIP_BEGIN
         if (this._sitesLabel) {
             this._sitesLabel.set_text(sitesText);
         }
+        // @PUBLIC_STRIP_END
         if (this._presetSummaryLabel) {
             this._presetSummaryLabel.set_text(activePreset);
         }
@@ -3724,7 +3754,11 @@ class PomodoroMenu extends Applet.AppletPopupMenu {
 
         // Active layout: single compact "preset · status" row.
         if (this._compactInfoLabel) {
+            // @PUBLIC_STRIP_BEGIN
             this._compactInfoLabel.set_text(`${activePreset} \u00B7 ${sitesText}`);
+            // @PUBLIC_STRIP_ELSE
+            // this._compactInfoLabel.set_text(`${activePreset}`);
+            // @PUBLIC_STRIP_END
         }
 
         // Hotkey hint (idle only; shown when a hotkey is configured).
@@ -3821,6 +3855,7 @@ class PomodoroMenu extends Applet.AppletPopupMenu {
         if (this._presetSubmenu && this._presetSubmenu.label && preset.activePreset) {
             this._presetSubmenu.label.set_text(_("Preset") + ": " + preset.activePreset);
         }
+        // @PUBLIC_STRIP_BEGIN
         if (this._compactInfoLabel && preset.activePreset && this._lastRuntimeState) {
             let blocked = Boolean(this._lastRuntimeState.focusBlockActive);
             let t = blocked ? _("blocked") : _("ready");
@@ -3829,6 +3864,11 @@ class PomodoroMenu extends Applet.AppletPopupMenu {
             }
             this._compactInfoLabel.set_text(`${preset.activePreset} \u00B7 ${t}`);
         }
+        // @PUBLIC_STRIP_ELSE
+        // if (this._compactInfoLabel && preset.activePreset) {
+        //     this._compactInfoLabel.set_text(`${preset.activePreset}`);
+        // }
+        // @PUBLIC_STRIP_END
         if (this._preset25Item) {
             this._preset25Item.setOrnament(PopupMenu.OrnamentType.CHECK, Boolean(preset.isPreset25Active));
         }
@@ -3871,6 +3911,7 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         this._entryText = this._entry.clutter_text;
         content.add_child(this._entry);
 
+        // @PUBLIC_STRIP_BEGIN
         this._hintLabel = new St.Label({
             text: _("Choose or type a focus task"),
             style: 'color: rgba(255, 190, 64, 0.95); padding-top: 6px;'
@@ -3884,6 +3925,7 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
             style: 'spacing: 6px; padding-top: 8px;'
         });
         content.add_child(this._presetTaskBox);
+        // @PUBLIC_STRIP_END
 
         this.contentLayout.add(content);
         this.setInitialKeyFocus(this._entryText);
@@ -3923,6 +3965,7 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         this._entryText.set_selection(0, -1);
     }
 
+    // @PUBLIC_STRIP_BEGIN
     _isTaskRequired() {
         try {
             let [success, contents] = GLib.file_get_contents(POMODORO_CONFIG_FILE);
@@ -4027,13 +4070,16 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         this._entryText.set_text(task || "");
         this._confirm();
     }
+    // @PUBLIC_STRIP_END
 
     _confirm() {
         let task = this._getTask();
+        // @PUBLIC_STRIP_BEGIN
         if (!task && this._isTaskRequired()) {
             this._showTaskRequiredHint();
             return;
         }
+        // @PUBLIC_STRIP_END
 
         this.close();
         this.emit('focus-task-confirmed', task);

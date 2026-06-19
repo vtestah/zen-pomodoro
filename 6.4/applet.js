@@ -17,85 +17,74 @@ const Meta = imports.gi.Meta;
 
 const UUID = "zen-pomodoro@vtestah";
 
-let TimerModule, SoundModule, DialogsModule, MenuModule;
+let TimerModule, SoundModule, DialogsModule, MenuModule, ConstantsModule;
 
 if (typeof require !== 'undefined') {
     TimerModule = require('./timer');
     SoundModule = require('./sound');
     DialogsModule = require('./dialogs');
     MenuModule = require('./menu');
+    ConstantsModule = require('./constants');
 } else {
     const AppletDir = imports.ui.appletManager.applets[UUID];
     TimerModule = AppletDir.timer;
     SoundModule = AppletDir.sound;
     DialogsModule = AppletDir.dialogs;
     MenuModule = AppletDir.menu;
+    ConstantsModule = AppletDir.constants;
 }
 
 const Gettext = imports.gettext;
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 // @PUBLIC_STRIP_BEGIN
-const POMODORO_FOCUS_START_SCRIPT = GLib.build_filenamev([GLib.get_home_dir(), ".local", "bin", "pomodoro", "focus-start.sh"]);
-const POMODORO_FOCUS_STOP_SCRIPT = GLib.build_filenamev([GLib.get_home_dir(), ".local", "bin", "pomodoro", "focus-stop.sh"]);
-const POMODORO_CONFIG_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "config.env"]);
-const POMODORO_FOCUS_TASKS_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "tasks.txt"]);
-const POMODORO_DOMAINS_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "domains.txt"]);
-// @PUBLIC_STRIP_END
-const POMODORO_STATE_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "applet-state.json"]);
-const POMODORO_STATE_MAX_AGE_MS = 3 * 60 * 60 * 1000;
-const POMODORO_STATS_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "daily-stats.json"]);
-const POMODORO_FOCUS_FRAME_BOTTOM_SAFE = "border-bottom: 0px;";
-const POMODORO_FOCUS_FRAME_NORMAL_STYLE = `border: 2px solid rgba(214, 152, 48, 0.72); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: transparent;`;
-const POMODORO_FOCUS_FRAME_WARNING_STYLE = `border: 2px solid rgba(235, 132, 35, 0.86); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: transparent;`;
-const POMODORO_BREAK_OVER_FRAME_STYLE = `border: 2px solid rgba(108, 224, 148, 0.70); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: rgba(96, 214, 139, 0.012);`;
-const POMODORO_FOCUS_FRAME_PULSE_INTERVAL_MS = 250;
-const POMODORO_FOCUS_FRAME_TRANSITION = "transition-duration: 220ms; transition-timing-function: ease-in-out;";
-const POMODORO_FOCUS_FRAME_PULSE_STYLES = [
-    `border: 2px solid rgba(255, 149, 64, 0.68); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: transparent; ${POMODORO_FOCUS_FRAME_TRANSITION}`,
-    `border: 2px solid rgba(255, 159, 68, 0.78); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: rgba(255, 190, 64, 0.010); ${POMODORO_FOCUS_FRAME_TRANSITION}`,
-    `border: 2px solid rgba(255, 176, 82, 0.88); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: rgba(255, 190, 64, 0.018); ${POMODORO_FOCUS_FRAME_TRANSITION}`,
-    `border: 2px solid rgba(255, 194, 96, 0.96); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: rgba(255, 190, 64, 0.026); ${POMODORO_FOCUS_FRAME_TRANSITION}`,
-    `border: 2px solid rgba(255, 176, 82, 0.88); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: rgba(255, 190, 64, 0.018); ${POMODORO_FOCUS_FRAME_TRANSITION}`,
-    `border: 2px solid rgba(255, 159, 68, 0.78); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: rgba(255, 190, 64, 0.010); ${POMODORO_FOCUS_FRAME_TRANSITION}`
-];
-const POMODORO_BREAK_FRAME_PULSE_STYLES = [
-    `border: 2px solid rgba(72, 188, 117, 0.62); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: transparent; ${POMODORO_FOCUS_FRAME_TRANSITION}`,
-    `border: 2px solid rgba(82, 198, 125, 0.72); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: rgba(96, 214, 139, 0.008); ${POMODORO_FOCUS_FRAME_TRANSITION}`,
-    `border: 2px solid rgba(92, 208, 134, 0.84); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: rgba(96, 214, 139, 0.016); ${POMODORO_FOCUS_FRAME_TRANSITION}`,
-    `border: 2px solid rgba(108, 224, 148, 0.94); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: rgba(96, 214, 139, 0.024); ${POMODORO_FOCUS_FRAME_TRANSITION}`,
-    `border: 2px solid rgba(92, 208, 134, 0.84); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: rgba(96, 214, 139, 0.016); ${POMODORO_FOCUS_FRAME_TRANSITION}`,
-    `border: 2px solid rgba(82, 198, 125, 0.72); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: rgba(96, 214, 139, 0.008); ${POMODORO_FOCUS_FRAME_TRANSITION}`
-];
-const POMODORO_FOCUS_FRAME_STYLE = POMODORO_FOCUS_FRAME_NORMAL_STYLE;
-const POMODORO_PANEL_FOCUS_CUE_STYLE = "background-color: rgba(214, 152, 48, 0.22); border-radius: 4px; padding-left: 6px; padding-right: 6px;";
-const POMODORO_PANEL_BREAK_CUE_STYLE = "background-color: rgba(62, 180, 111, 0.18); border-radius: 4px; padding-left: 6px; padding-right: 6px;";
-const POMODORO_PANEL_FOCUS_LABEL_STYLE = "font-weight: bold; color: rgb(255, 224, 153);";
-const POMODORO_PANEL_BREAK_LABEL_STYLE = "font-weight: bold; color: rgb(172, 245, 198);";
-const POMODORO_FOCUS_TASK_CHIP_STYLE = "background-color: rgba(18, 18, 18, 0.55); color: rgba(255, 224, 153, 0.92); border: 1px solid rgba(214, 152, 48, 0.4); border-radius: 9px; padding: 6px 12px; font-weight: bold;";
-const POMODORO_FOCUS_TASK_CHIP_PAUSED_STYLE = "background-color: rgba(18, 18, 18, 0.5); color: rgba(210, 210, 210, 0.82); border: 1px solid rgba(150, 150, 150, 0.35); border-radius: 9px; padding: 6px 12px; font-weight: bold;";
-const POMODORO_FOCUS_CHIP_MARGIN = 28;
-const POMODORO_FOCUS_RITUAL_STYLE = "font-size: 2.1em; font-weight: bold; color: rgba(255, 224, 153, 0.96); background-color: rgba(18, 18, 18, 0.58); border: 1px solid rgba(214, 152, 48, 0.45); border-radius: 14px; padding: 14px 28px;";
-const POMODORO_FOCUS_RITUAL_FADE_IN_MS = 600;
-const POMODORO_FOCUS_RITUAL_HOLD_MS = 2600;
-const POMODORO_FOCUS_RITUAL_FADE_OUT_MS = 700;
-const POMODORO_FOCUS_RITUAL_FRAME_FADE_MS = 900;
-const POMODORO_FOCUS_RITUAL_STEP_MS = 30;
-const POMODORO_FOCUS_GLOW_FOCUS_RGB = [255, 176, 82];
-const POMODORO_FOCUS_GLOW_FOCUS_END_RGB = [255, 110, 56];
-const POMODORO_FOCUS_GLOW_BREAK_RGB = [108, 224, 148];
-const POMODORO_FOCUS_GLOW_END_SHIFT_START = 0.8;
-const POMODORO_FOCUS_GLOW_DEPTH_RATIO = 0.035;
-const POMODORO_FOCUS_GLOW_DEPTH_MAX = 26;
-const POMODORO_FOCUS_GLOW_DEPTH_MIN = 14;
-const POMODORO_FOCUS_GLOW_MAX_ALPHA = 0.18;
-const POMODORO_FOCUS_GLOW_PROGRESS_WIDTH = 2;
-const POMODORO_FOCUS_GLOW_PROGRESS_ALPHA = 0.7;
-const POMODORO_FOCUS_GLOW_TRACK_ALPHA = 0.1;
-const POMODORO_FOCUS_GLOW_TICK_ALPHA = 0.3;
-const POMODORO_FOCUS_GLOW_TICK_RADIUS = 2.5;
-const POMODORO_FOCUS_GLOW_BREATH_BOOST = 0.9;
-const POMODORO_FOCUS_GLOW_BREATH_MS = 1500;
+const {
+    POMODORO_FOCUS_START_SCRIPT,
+    POMODORO_FOCUS_STOP_SCRIPT,
+    POMODORO_CONFIG_FILE,
+    POMODORO_FOCUS_TASKS_FILE,
+    POMODORO_DOMAINS_FILE,
+    POMODORO_STATE_FILE,
+    POMODORO_STATE_MAX_AGE_MS,
+    POMODORO_STATS_FILE,
+    POMODORO_FOCUS_FRAME_BOTTOM_SAFE,
+    POMODORO_FOCUS_FRAME_NORMAL_STYLE,
+    POMODORO_FOCUS_FRAME_WARNING_STYLE,
+    POMODORO_BREAK_OVER_FRAME_STYLE,
+    POMODORO_FOCUS_FRAME_PULSE_INTERVAL_MS,
+    POMODORO_FOCUS_FRAME_TRANSITION,
+    POMODORO_FOCUS_FRAME_PULSE_STYLES,
+    POMODORO_BREAK_FRAME_PULSE_STYLES,
+    POMODORO_FOCUS_FRAME_STYLE,
+    POMODORO_PANEL_FOCUS_CUE_STYLE,
+    POMODORO_PANEL_BREAK_CUE_STYLE,
+    POMODORO_PANEL_FOCUS_LABEL_STYLE,
+    POMODORO_PANEL_BREAK_LABEL_STYLE,
+    POMODORO_FOCUS_TASK_CHIP_STYLE,
+    POMODORO_FOCUS_TASK_CHIP_PAUSED_STYLE,
+    POMODORO_FOCUS_CHIP_MARGIN,
+    POMODORO_FOCUS_RITUAL_STYLE,
+    POMODORO_FOCUS_RITUAL_FADE_IN_MS,
+    POMODORO_FOCUS_RITUAL_HOLD_MS,
+    POMODORO_FOCUS_RITUAL_FADE_OUT_MS,
+    POMODORO_FOCUS_RITUAL_FRAME_FADE_MS,
+    POMODORO_FOCUS_RITUAL_STEP_MS,
+    POMODORO_FOCUS_GLOW_FOCUS_RGB,
+    POMODORO_FOCUS_GLOW_FOCUS_END_RGB,
+    POMODORO_FOCUS_GLOW_BREAK_RGB,
+    POMODORO_FOCUS_GLOW_END_SHIFT_START,
+    POMODORO_FOCUS_GLOW_DEPTH_RATIO,
+    POMODORO_FOCUS_GLOW_DEPTH_MAX,
+    POMODORO_FOCUS_GLOW_DEPTH_MIN,
+    POMODORO_FOCUS_GLOW_MAX_ALPHA,
+    POMODORO_FOCUS_GLOW_PROGRESS_WIDTH,
+    POMODORO_FOCUS_GLOW_PROGRESS_ALPHA,
+    POMODORO_FOCUS_GLOW_TRACK_ALPHA,
+    POMODORO_FOCUS_GLOW_TICK_ALPHA,
+    POMODORO_FOCUS_GLOW_TICK_RADIUS,
+    POMODORO_FOCUS_GLOW_BREATH_BOOST,
+    POMODORO_FOCUS_GLOW_BREATH_MS
+} = ConstantsModule;
 
 function _(str) {
     return Gettext.dgettext(UUID, str);

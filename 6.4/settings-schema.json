@@ -236,6 +236,20 @@
         "description": "Menu font scale (%)"
     },
 
+    "preview_appearance_button": {
+        "type": "button",
+        "description": "Preview focus frame",
+        "callback": "_previewAppearance",
+        "tooltip": "Briefly show the on-screen focus frame and task chip with the current colors and style (works when no timer is running)."
+    },
+
+    "preview_breathing_button": {
+        "type": "button",
+        "description": "Preview breathing guide",
+        "callback": "_previewBreathing",
+        "tooltip": "Briefly show the breathing guide with the selected pattern."
+    },
+
     "head_distinctive": {
         "type": "header",
         "description": "Distinctive"

@@ -129,6 +129,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._glowBreathBoost = 0;
         this._glowBreathedForTimer = false;
         this._glowBreathTimeouts = [];
+        this._appearancePreviewTimeout = 0;
+        this._breathingPreviewTimeout = 0;
         this._focusFrameMonitorsChangedId = null;
         this._focusFramePulseSourceId = null;
         this._focusFrameLastTicks = null;
@@ -1751,6 +1753,131 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._updateFocusFrame();
     }
 
+    _isSessionActive() {
+        let s = this._currentState;
+        return (s === 'pomodoro' || s === 'pomodoro-paused' ||
+            s === 'short-break' || s === 'long-break' ||
+            s === 'short-break-paused' || s === 'long-break-paused' ||
+            s === 'break-over');
+    }
+
+    // Settings button: briefly show the focus frame + a sample chip using the
+    // current appearance, so the user can tune visuals without a timer.
+    _previewAppearance() {
+        this._applyAppearance();
+
+        // If a session is running the real frame is already on screen.
+        if (this._isSessionActive()) {
+            return;
+        }
+
+        this._cancelAppearancePreview();
+        this._positionFocusFrame();
+
+        let fstyle = this._opt_frameStyle || 'glow';
+        let reduce = Boolean(this._opt_reduceMotion);
+
+        if (fstyle === 'glow' || fstyle === 'corners') {
+            this._glowBreakish = false;
+            this._glowSegments = this._opt_pomodoriNumber || 4;
+            this._glowCurrentElapsed = 0.62;
+            this._glowProgress = 0.62;
+            this._glowBreathBoost = 0;
+            for (let glow of this._focusGlowFrames) {
+                if (typeof glow.raise_top === 'function') {
+                    glow.raise_top();
+                }
+                glow.queue_repaint();
+                glow.show();
+                if (reduce) {
+                    glow.opacity = 255;
+                } else {
+                    this._animateActorOpacity(glow, 0, 255, POMODORO_FOCUS_RITUAL_FRAME_FADE_MS, null);
+                }
+            }
+        } else if (fstyle === 'border') {
+            for (let frame of this._focusFrames) {
+                frame.set_style(POMODORO_FOCUS_FRAME_NORMAL_STYLE);
+                frame.show();
+                if (reduce) {
+                    frame.opacity = 255;
+                } else {
+                    this._animateActorOpacity(frame, 0, 255, POMODORO_FOCUS_RITUAL_FRAME_FADE_MS, null);
+                }
+            }
+        }
+        // fstyle === 'off' → only the sample chip is shown.
+
+        if (this._focusTaskChip && this._focusTaskChipLabel) {
+            this._focusTaskChipLabel.set_text(`\u25CF  ${_("Preview")}`);
+            this._focusTaskChip.set_style(POMODORO_FOCUS_TASK_CHIP_STYLE);
+            let primary = Main.layoutManager ? Main.layoutManager.primaryMonitor : null;
+            if (primary) {
+                let [, natW] = this._focusTaskChip.get_preferred_width(-1);
+                let [, natH] = this._focusTaskChip.get_preferred_height(natW);
+                let m = POMODORO_FOCUS_CHIP_MARGIN;
+                let pos = this._opt_chipPosition || 'br';
+                let left = (pos === 'bl' || pos === 'tl');
+                let top = (pos === 'tl' || pos === 'tr');
+                let x = left ? (primary.x + m) : (primary.x + primary.width - natW - m);
+                let y = top ? (primary.y + m) : (primary.y + primary.height - natH - m);
+                this._focusTaskChip.set_position(Math.round(x), Math.round(y));
+            }
+            if (typeof this._focusTaskChip.raise_top === 'function') {
+                this._focusTaskChip.raise_top();
+            }
+            this._focusTaskChip.show();
+        }
+
+        this._appearancePreviewTimeout = Mainloop.timeout_add(3500, () => {
+            this._appearancePreviewTimeout = 0;
+            this._endAppearancePreview();
+            return false;
+        });
+    }
+
+    _cancelAppearancePreview() {
+        if (this._appearancePreviewTimeout) {
+            Mainloop.source_remove(this._appearancePreviewTimeout);
+            this._appearancePreviewTimeout = 0;
+        }
+    }
+
+    _endAppearancePreview() {
+        // If a real session started meanwhile, let the normal logic own the frame.
+        if (this._isSessionActive()) {
+            return;
+        }
+        this._hideGlowFrames();
+        for (let frame of this._focusFrames) {
+            frame.hide();
+        }
+        if (this._focusTaskChip) {
+            this._focusTaskChip.hide();
+        }
+    }
+
+    // Settings button: briefly show the breathing guide with the selected pattern.
+    _previewBreathing() {
+        if (this._isSessionActive()) {
+            return;
+        }
+        this._cancelBreathingPreview();
+        this._startBreathing();
+        this._breathingPreviewTimeout = Mainloop.timeout_add(9000, () => {
+            this._breathingPreviewTimeout = 0;
+            this._stopBreathing();
+            return false;
+        });
+    }
+
+    _cancelBreathingPreview() {
+        if (this._breathingPreviewTimeout) {
+            Mainloop.source_remove(this._breathingPreviewTimeout);
+            this._breathingPreviewTimeout = 0;
+        }
+    }
+
     _getGlowColor() {
         let base = this._accentRgb(this._glowBreakish);
         if (this._glowBreakish) {
@@ -3013,6 +3140,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
     on_applet_removed_from_panel() {
         Main.keybindingManager.removeHotKey(UUID);
         this._stopFocusBlockIfNeeded();
+        this._cancelAppearancePreview();
+        this._cancelBreathingPreview();
         this._clearIdleWatches();
         this._stopAmbientSound();
         this._stopBreathing();

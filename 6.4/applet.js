@@ -1230,7 +1230,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         pomodoroTimer.connect('timer-running', () => {
             this._setCurrentState('pomodoro');
             this._playTickerSound();
-            this._startFocusBlockIfNeeded(pomodoroTimer.getTicksRemaining());
+            if (this._opt_enableScripts) this._startFocusBlockIfNeeded(pomodoroTimer.getTicksRemaining());
         });
     
         pomodoroTimer.connect('timer-started', () => {
@@ -1639,7 +1639,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
     _startTimerAfterFocusTask(task) {
         // @PUBLIC_STRIP_BEGIN
-        if (!this._runFocusPreflight()) {
+        if (this._opt_enableScripts && !this._runFocusPreflight()) {
             this._timerQueue.preventStart(true);
             this._appletMenu.toggleTimerState(false);
             return;

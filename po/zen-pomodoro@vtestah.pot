@@ -428,15 +428,7 @@ msgid "Panel"
 msgstr ""
 
 #. settings-schema.json
-msgid "Focus HUD"
-msgstr ""
-
-#. settings-schema.json
 msgid "Appearance"
-msgstr ""
-
-#. settings-schema.json
-msgid "Features"
 msgstr ""
 
 #. settings-schema.json
@@ -444,7 +436,7 @@ msgid "Sounds"
 msgstr ""
 
 #. settings-schema.json
-msgid "Focus tools"
+msgid "Advanced"
 msgstr ""
 
 #. settings-schema.json
@@ -453,6 +445,10 @@ msgstr ""
 
 #. settings-schema.json
 msgid "Behavior"
+msgstr ""
+
+#. settings-schema.json
+msgid "On-screen focus cues"
 msgstr ""
 
 #. settings-schema.json
@@ -472,7 +468,7 @@ msgid "Ambient & modes"
 msgstr ""
 
 #. settings-schema.json
-msgid "Run a command on focus / break start"
+msgid "Run a command"
 msgstr ""
 
 #. settings-schema.json
@@ -510,6 +506,10 @@ msgid ""
 msgstr ""
 
 #. settings-schema.json
+msgid "Resume an in-progress focus session after a Cinnamon restart."
+msgstr ""
+
+#. settings-schema.json
 msgid "Show Dialog Messages"
 msgstr ""
 
@@ -534,6 +534,10 @@ msgid "Use a symbolic icon in the applet panel"
 msgstr ""
 
 #. settings-schema.json
+msgid "Use a monochrome symbolic icon that follows your panel theme."
+msgstr ""
+
+#. settings-schema.json
 msgid "Show the pomodoro timer in the applet panel"
 msgstr ""
 
@@ -550,9 +554,17 @@ msgid "Calm ending: no anxious pulsing near the end of a timer"
 msgstr ""
 
 #. settings-schema.json
+msgid "No anxious blinking near the end — a calm, steady cue instead."
+msgstr ""
+
+#. settings-schema.json
 msgid ""
 "Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus"
 " begins"
+msgstr ""
+
+#. settings-schema.json
+msgid "Briefly show 'Focus: <task>' with a smooth fade-in when focus begins."
 msgstr ""
 
 #. settings-schema.json
@@ -565,6 +577,10 @@ msgstr ""
 
 #. settings-schema.json
 msgid "Require a focus task before starting"
+msgstr ""
+
+#. settings-schema.json
+msgid "Ask for a task name before a focus session can start."
 msgstr ""
 
 #. settings-schema.json
@@ -585,6 +601,10 @@ msgstr ""
 
 #. settings-schema.json
 msgid "Custom"
+msgstr ""
+
+#. settings-schema.json
+msgid "Color theme for the on-screen cues and accents."
 msgstr ""
 
 #. settings-schema.json
@@ -616,7 +636,15 @@ msgid "Off"
 msgstr ""
 
 #. settings-schema.json
+msgid "How the on-screen focus frame is drawn."
+msgstr ""
+
+#. settings-schema.json
 msgid "Glow intensity"
+msgstr ""
+
+#. settings-schema.json
+msgid "Strength of the on-screen edge glow."
 msgstr ""
 
 #. settings-schema.json
@@ -637,6 +665,10 @@ msgstr ""
 
 #. settings-schema.json
 msgid "Relaxing 4-6"
+msgstr ""
+
+#. settings-schema.json
+msgid "Breathing rhythm used by the breathing guide."
 msgstr ""
 
 #. settings-schema.json
@@ -668,7 +700,15 @@ msgid "Reduce motion (disable focus animations)"
 msgstr ""
 
 #. settings-schema.json
+msgid "Disable focus animations (fades, pulsing, breathing)."
+msgstr ""
+
+#. settings-schema.json
 msgid "Menu font scale (%)"
+msgstr ""
+
+#. settings-schema.json
+msgid "Scale the applet menu's text size."
 msgstr ""
 
 #. settings-schema.json
@@ -694,11 +734,23 @@ msgid "Show timer progress as a ring on the panel icon"
 msgstr ""
 
 #. settings-schema.json
+msgid "Draw remaining time as a ring around the panel icon."
+msgstr ""
+
+#. settings-schema.json
 msgid "Daily focus goal (pomodori, 0 = off)"
 msgstr ""
 
 #. settings-schema.json
+msgid "Target pomodoros per day (0 turns off the goal and streak)."
+msgstr ""
+
+#. settings-schema.json
 msgid "Auto-pause focus when you are away (idle)"
+msgstr ""
+
+#. settings-schema.json
+msgid "Pause focus automatically when you step away from the computer."
 msgstr ""
 
 #. settings-schema.json
@@ -714,11 +766,19 @@ msgid "Offer to extend focus when a pomodoro ends (stay in flow)"
 msgstr ""
 
 #. settings-schema.json
+msgid "When a pomodoro ends, offer to extend it to stay in flow."
+msgstr ""
+
+#. settings-schema.json
 msgid "Extend amount (minutes)"
 msgstr ""
 
 #. settings-schema.json
 msgid "Play soft ambient (brown noise) during focus"
+msgstr ""
+
+#. settings-schema.json
+msgid "Play soft brown noise during focus."
 msgstr ""
 
 #. settings-schema.json
@@ -730,7 +790,15 @@ msgid "Show a breathing guide during breaks"
 msgstr ""
 
 #. settings-schema.json
+msgid "Show a breathing guide during breaks."
+msgstr ""
+
+#. settings-schema.json
 msgid "Enable Zen mode (full-screen focus overlay, toggled from the menu)"
+msgstr ""
+
+#. settings-schema.json
+msgid "Allow a full-screen Zen overlay, toggled from the menu."
 msgstr ""
 
 #. settings-schema.json
@@ -738,11 +806,23 @@ msgid "Show 'Focus until…' in the menu (focus until a clock time)"
 msgstr ""
 
 #. settings-schema.json
+msgid "Add a 'Focus until…' option (focus until a clock time)."
+msgstr ""
+
+#. settings-schema.json
 msgid "Mute notifications while focusing (Do Not Disturb)"
 msgstr ""
 
 #. settings-schema.json
+msgid "Mute Cinnamon notifications while focusing; restored afterwards."
+msgstr ""
+
+#. settings-schema.json
 msgid "Run a command when focus or a break starts"
+msgstr ""
+
+#. settings-schema.json
+msgid "Run a command of your choice when focus or a break starts."
 msgstr ""
 
 #. settings-schema.json
@@ -758,6 +838,10 @@ msgid "Send a push notification (Pushover) on breaks"
 msgstr ""
 
 #. settings-schema.json
+msgid "Send a push notification to your devices via Pushover."
+msgstr ""
+
+#. settings-schema.json
 msgid "Pushover user key"
 msgstr ""
 
@@ -767,6 +851,11 @@ msgstr ""
 
 #. settings-schema.json
 msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
+msgstr ""
+
+#. settings-schema.json
+msgid ""
+"Block distracting sites by editing /etc/hosts (asks for your password)."
 msgstr ""
 
 #. settings-schema.json
@@ -858,6 +947,10 @@ msgid "Play a chime at a regular interval during focus"
 msgstr ""
 
 #. settings-schema.json
+msgid "Play a sound at a fixed interval during focus to mark time passing."
+msgstr ""
+
+#. settings-schema.json
 msgid "Chime interval (seconds):"
 msgstr ""
 
@@ -867,6 +960,18 @@ msgstr ""
 
 #. settings-schema.json
 msgid "Chime volume:"
+msgstr ""
+
+#. settings-schema.json
+msgid "Ticking sound (during focus)"
+msgstr ""
+
+#. settings-schema.json
+msgid "Alert sounds"
+msgstr ""
+
+#. settings-schema.json
+msgid "Interval chime"
 msgstr ""
 
 #. metadata.json

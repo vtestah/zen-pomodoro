@@ -4,11 +4,10 @@
         "pages": [
             "timer",
             "panel",
-            "hud",
             "appearance",
-            "features",
+            "focus",
             "sounds",
-            "tools",
+            "advanced",
             "scripts"
         ],
         "timer": {
@@ -26,25 +25,19 @@
                 "sec_panel"
             ]
         },
-        "hud": {
-            "type": "page",
-            "title": "Focus HUD",
-            "sections": [
-                "sec_hud"
-            ]
-        },
         "appearance": {
             "type": "page",
             "title": "Appearance",
             "sections": [
                 "sec_theme",
+                "sec_hud",
                 "sec_motion",
                 "sec_preview"
             ]
         },
-        "features": {
+        "focus": {
             "type": "page",
-            "title": "Features",
+            "title": "Focus",
             "sections": [
                 "sec_goals",
                 "sec_modes"
@@ -57,9 +50,9 @@
                 "sec_sounds"
             ]
         },
-        "tools": {
+        "advanced": {
             "type": "page",
-            "title": "Focus tools",
+            "title": "Advanced",
             "sections": [
                 "sec_tools",
                 "sec_notify",
@@ -108,7 +101,7 @@
         },
         "sec_hud": {
             "type": "section",
-            "title": "Focus HUD",
+            "title": "On-screen focus cues",
             "keys": [
                 "focus_show_task_chip",
                 "focus_calm_ending",
@@ -178,9 +171,11 @@
             "keys": [
                 "sox-info",
                 "show_sox_info",
+                "hdr_tick",
                 "timer_sound",
                 "timer_sound_file",
                 "timer_sound_volume",
+                "hdr_alerts",
                 "break_sound",
                 "break_sound_file",
                 "break_sound_volume",
@@ -191,6 +186,7 @@
                 "start_sound",
                 "start_sound_file",
                 "start_sound_volume",
+                "hdr_interval",
                 "interval_chime",
                 "interval_chime_seconds",
                 "interval_chime_file",
@@ -199,7 +195,7 @@
         },
         "sec_tools": {
             "type": "section",
-            "title": "Run a command on focus / break start",
+            "title": "Run a command",
             "keys": [
                 "run_command_enabled",
                 "focus_start_command",
@@ -276,7 +272,8 @@
     "session_recovery": {
         "type": "checkbox",
         "description": "Recover an in-progress focus session after a Cinnamon restart (resume manually)",
-        "default": true
+        "default": true,
+        "tooltip": "Resume an in-progress focus session after a Cinnamon restart."
     },
     "show_dialog_messages": {
         "type": "checkbox",
@@ -306,7 +303,8 @@
     "use_symbolic_icon": {
         "type": "checkbox",
         "description": "Use a symbolic icon in the applet panel",
-        "default": true
+        "default": true,
+        "tooltip": "Use a monochrome symbolic icon that follows your panel theme."
     },
     "show_timer": {
         "type": "checkbox",
@@ -326,12 +324,14 @@
     "focus_calm_ending": {
         "type": "checkbox",
         "description": "Calm ending: no anxious pulsing near the end of a timer",
-        "default": true
+        "default": true,
+        "tooltip": "No anxious blinking near the end — a calm, steady cue instead."
     },
     "focus_start_ritual": {
         "type": "checkbox",
         "description": "Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus begins",
-        "default": true
+        "default": true,
+        "tooltip": "Briefly show 'Focus: <task>' with a smooth fade-in when focus begins."
     },
     "preset_tasks": {
         "type": "list",
@@ -367,7 +367,8 @@
     "require_focus_task": {
         "type": "checkbox",
         "description": "Require a focus task before starting",
-        "default": false
+        "default": false,
+        "tooltip": "Ask for a task name before a focus session can start."
     },
     "theme_preset": {
         "type": "combobox",
@@ -378,7 +379,8 @@
             "Cool (teal)": "cool",
             "Monochrome": "mono",
             "Custom": "custom"
-        }
+        },
+        "tooltip": "Color theme for the on-screen cues and accents."
     },
     "accent_focus_color": {
         "type": "colorchooser",
@@ -401,7 +403,8 @@
             "Classic border": "border",
             "Corners only": "corners",
             "Off": "off"
-        }
+        },
+        "tooltip": "How the on-screen focus frame is drawn."
     },
     "glow_intensity": {
         "type": "scale",
@@ -409,7 +412,8 @@
         "min": 5,
         "max": 60,
         "step": 1,
-        "description": "Glow intensity"
+        "description": "Glow intensity",
+        "tooltip": "Strength of the on-screen edge glow."
     },
     "glow_progress_width": {
         "type": "scale",
@@ -427,7 +431,8 @@
             "Box 4-4-4-4": "box",
             "4-7-8": "478",
             "Relaxing 4-6": "relax"
-        }
+        },
+        "tooltip": "Breathing rhythm used by the breathing guide."
     },
     "chip_position": {
         "type": "combobox",
@@ -451,7 +456,8 @@
     "reduce_motion": {
         "type": "checkbox",
         "description": "Reduce motion (disable focus animations)",
-        "default": false
+        "default": false,
+        "tooltip": "Disable focus animations (fades, pulsing, breathing)."
     },
     "menu_font_scale": {
         "type": "scale",
@@ -459,7 +465,8 @@
         "min": 80,
         "max": 140,
         "step": 5,
-        "description": "Menu font scale (%)"
+        "description": "Menu font scale (%)",
+        "tooltip": "Scale the applet menu's text size."
     },
     "preview_appearance_button": {
         "type": "button",
@@ -476,7 +483,8 @@
     "panel_progress_icon": {
         "type": "checkbox",
         "description": "Show timer progress as a ring on the panel icon",
-        "default": true
+        "default": true,
+        "tooltip": "Draw remaining time as a ring around the panel icon."
     },
     "daily_goal": {
         "type": "scale",
@@ -484,12 +492,14 @@
         "min": 0,
         "max": 16,
         "step": 1,
-        "description": "Daily focus goal (pomodori, 0 = off)"
+        "description": "Daily focus goal (pomodori, 0 = off)",
+        "tooltip": "Target pomodoros per day (0 turns off the goal and streak)."
     },
     "auto_pause_idle": {
         "type": "checkbox",
         "description": "Auto-pause focus when you are away (idle)",
-        "default": false
+        "default": false,
+        "tooltip": "Pause focus automatically when you step away from the computer."
     },
     "auto_pause_idle_minutes": {
         "type": "scale",
@@ -509,7 +519,8 @@
     "flow_extend": {
         "type": "checkbox",
         "description": "Offer to extend focus when a pomodoro ends (stay in flow)",
-        "default": true
+        "default": true,
+        "tooltip": "When a pomodoro ends, offer to extend it to stay in flow."
     },
     "flow_extend_minutes": {
         "type": "scale",
@@ -523,7 +534,8 @@
     "focus_ambient_sound": {
         "type": "checkbox",
         "description": "Play soft ambient (brown noise) during focus",
-        "default": false
+        "default": false,
+        "tooltip": "Play soft brown noise during focus."
     },
     "focus_ambient_volume": {
         "type": "scale",
@@ -537,27 +549,32 @@
     "break_breathing": {
         "type": "checkbox",
         "description": "Show a breathing guide during breaks",
-        "default": false
+        "default": false,
+        "tooltip": "Show a breathing guide during breaks."
     },
     "zen_mode_enabled": {
         "type": "checkbox",
         "description": "Enable Zen mode (full-screen focus overlay, toggled from the menu)",
-        "default": false
+        "default": false,
+        "tooltip": "Allow a full-screen Zen overlay, toggled from the menu."
     },
     "focus_until_enabled": {
         "type": "checkbox",
         "description": "Show 'Focus until…' in the menu (focus until a clock time)",
-        "default": false
+        "default": false,
+        "tooltip": "Add a 'Focus until…' option (focus until a clock time)."
     },
     "focus_dnd": {
         "type": "checkbox",
         "description": "Mute notifications while focusing (Do Not Disturb)",
-        "default": false
+        "default": false,
+        "tooltip": "Mute Cinnamon notifications while focusing; restored afterwards."
     },
     "run_command_enabled": {
         "type": "checkbox",
         "description": "Run a command when focus or a break starts",
-        "default": false
+        "default": false,
+        "tooltip": "Run a command of your choice when focus or a break starts."
     },
     "focus_start_command": {
         "type": "entry",
@@ -574,7 +591,8 @@
     "pushover_enabled": {
         "type": "checkbox",
         "description": "Send a push notification (Pushover) on breaks",
-        "default": false
+        "default": false,
+        "tooltip": "Send a push notification to your devices via Pushover."
     },
     "pushover_user_key": {
         "type": "entry",
@@ -591,7 +609,8 @@
     "enable_blocking": {
         "type": "checkbox",
         "description": "Enable distraction blocking (edits /etc/hosts via an admin prompt)",
-        "default": false
+        "default": false,
+        "tooltip": "Block distracting sites by editing /etc/hosts (asks for your password)."
     },
     "block_domains": {
         "type": "list",
@@ -732,7 +751,8 @@
     "interval_chime": {
         "type": "checkbox",
         "description": "Play a chime at a regular interval during focus",
-        "default": false
+        "default": false,
+        "tooltip": "Play a sound at a fixed interval during focus to mark time passing."
     },
     "interval_chime_seconds": {
         "type": "scale",
@@ -777,5 +797,17 @@
         "description": "Execute this custom script when a long break starts",
         "select-dir": false,
         "dependency": "enable_scripts"
+    },
+    "hdr_tick": {
+        "type": "header",
+        "description": "Ticking sound (during focus)"
+    },
+    "hdr_alerts": {
+        "type": "header",
+        "description": "Alert sounds"
+    },
+    "hdr_interval": {
+        "type": "header",
+        "description": "Interval chime"
     }
 }

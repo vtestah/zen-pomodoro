@@ -700,7 +700,8 @@ function install(proto) {
         try { GLib.file_set_contents(csvPath, csv); ok = true; } catch (e) { global.logError("Zen Pomodoro export csv: " + e); }
         try { GLib.file_set_contents(jsonPath, JSON.stringify(jsonObj, null, 2)); ok = true; } catch (e) { global.logError("Zen Pomodoro export json: " + e); }
         if (ok) {
-            Main.notify(_("Statistics exported"), _("Saved CSV + JSON to %s").format(dir));
+            try { Gio.AppInfo.launch_default_for_uri(GLib.filename_to_uri(dir, null), null); } catch (e) {}
+            Main.notify(_("Statistics exported"), _("Saved CSV + JSON to %s (opened the folder).").format(dir));
         } else {
             Main.notify(_("Export failed"));
         }
@@ -792,9 +793,8 @@ function install(proto) {
         this._dashPeakHour = peak ? peak.hour : null;
 
         let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
-        let scroll = new St.ScrollView({ style: 'max-height: 600px;' });
-        scroll.set_policy(St.PolicyType.NEVER, St.PolicyType.AUTOMATIC);
-        let root = new St.BoxLayout({ vertical: true, style: 'spacing: 10px; width: 560px; padding: 6px 12px;' });
+        let scroll = new St.ScrollView({ style: 'max-height: 600px;', hscrollbar_policy: St.PolicyType.NEVER, vscrollbar_policy: St.PolicyType.AUTOMATIC });
+        let root = new St.BoxLayout({ vertical: true, style: 'spacing: 9px; width: 544px; padding: 6px 10px;' });
 
         root.add(new St.Label({ text: _("Focus statistics"), style: 'font-size: 1.4em; font-weight: bold;' }));
 
@@ -818,22 +818,41 @@ function install(proto) {
         cards.add(this._dashStatCard(_("All time"), (st.total || 0) + " \ud83c\udf45", this._dashFmtMin(st.totalMinutes || 0), accent));
         root.add(cards);
 
+        // Weekly review in one line.
+        if ((st.total || 0) > 0) {
+            let dowSum = [0, 0, 0, 0, 0, 0, 0];
+            for (let k in h) { dowSum[new Date(k + "T00:00:00").getDay()] += (h[k].c || 0); }
+            let bestDow = 0;
+            for (let i = 1; i < 7; i++) { if (dowSum[i] > dowSum[bestDow]) { bestDow = i; } }
+            let dowNames = [_("Sun"), _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat")];
+            let review = new St.Label({ text: _("This week: %d \ud83c\udf45 \u00b7 %s \u00b7 best day %s").format(st.week || 0, this._dashFmtMin(st.weekMin || 0), dowNames[bestDow]) });
+            review.clutter_text.line_wrap = true;
+            root.add(review);
+        }
+
         let harvestN = Math.min(st.today || 0, 20);
         let harvestStr = harvestN > 0 ? "\ud83c\udf45".repeat(harvestN) : _("Nothing harvested yet today");
         if ((st.today || 0) > 20) { harvestStr += "  +" + ((st.today || 0) - 20); }
-        root.add(new St.Label({ text: _("Today's harvest") + ":  " + harvestStr }));
+        let harvestLabel = new St.Label({ text: _("Today's harvest") + ":  " + harvestStr });
+        harvestLabel.clutter_text.line_wrap = true;
+        root.add(harvestLabel);
 
         let estF = this._estimateFinish();
-        let infoBits = [];
-        if (estF) { infoBits.push(_("\u2248 finish %s \u00b7 %d \ud83c\udf45 left").format(estF.time, estF.remaining)); }
-        infoBits.push(_("Interruptions: %d today \u00b7 %d this week").format(st.interruptionsToday || 0, st.interruptionsWeek || 0));
-        root.add(new St.Label({ text: infoBits.join("        ") }));
+        if (estF) {
+            root.add(new St.Label({ text: _("\u2248 finish %s \u00b7 %d \ud83c\udf45 left").format(estF.time, estF.remaining) }));
+        }
+        root.add(new St.Label({ text: _("Interruptions: %d today \u00b7 %d this week").format(st.interruptionsToday || 0, st.interruptionsWeek || 0) }));
 
         // When you focus best — the most actionable insight.
         root.add(new St.Label({ text: _("When you focus (by hour)"), style: 'font-weight: bold; padding-top: 6px;' }));
         let hoursArea = new St.DrawingArea({ x_expand: true, style: 'height: 60px;' });
         hoursArea.connect('repaint', (a) => this._paintHours(a));
         root.add(hoursArea);
+        let axis = new St.BoxLayout({ vertical: false });
+        [_("night"), _("morning"), _("afternoon"), _("evening")].forEach((t) => {
+            axis.add(new St.Label({ text: t, x_expand: true, style: 'font-size: 0.72em; opacity: 0.65;' }));
+        });
+        root.add(axis);
         root.add(new St.Label({
             text: peak ? _("Most focused around %s — good time for deep work.").format(peak.label)
                        : _("Not enough data yet to spot your best focus time."),

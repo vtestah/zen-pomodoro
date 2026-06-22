@@ -90,7 +90,10 @@
                 "show_timer",
                 "show_seconds",
                 "panel_progress_icon",
-                "hotkey"
+                "hotkey",
+                "hotkey_toggle",
+                "hotkey_skip",
+                "start_on_click"
             ]
         },
         "sec_hud": {
@@ -319,6 +322,22 @@
         "type": "keybinding",
         "description": "Set the keybinding to open the applet menu",
         "default": "<Super><Shift>p"
+    },
+    "hotkey_toggle": {
+        "type": "keybinding",
+        "description": "Shortcut: start / pause the timer",
+        "default": ""
+    },
+    "hotkey_skip": {
+        "type": "keybinding",
+        "description": "Shortcut: skip to the next step",
+        "default": ""
+    },
+    "start_on_click": {
+        "type": "switch",
+        "description": "Start the timer with a single click when idle",
+        "default": false,
+        "tooltip": "When no timer is running, left-clicking the applet starts a focus session directly instead of opening the menu."
     },
     "focus_show_task_chip": {
         "type": "switch",

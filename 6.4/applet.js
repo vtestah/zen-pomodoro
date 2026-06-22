@@ -162,6 +162,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_showTimerInPanel = null;
         this._opt_showSeconds = null;
         this._opt_hotkey = null;
+        this._opt_hotkeyToggle = null;
+        this._opt_hotkeySkip = null;
+        this._opt_startOnClick = null;
         this._opt_playTickerSound = null;
         this._opt_tickerSoundPath = null;
         this._opt_tickerSoundVolume = null;
@@ -395,6 +398,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "use_symbolic_icon", "_opt_useSymbolicIconInPanel", this._onAppletIconChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "show_timer", "_opt_showTimerInPanel", this._onShowTimerChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "show_seconds", "_opt_showSeconds", this._onShowTimerChanged.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "hotkey_toggle", "_opt_hotkeyToggle", this._updateHotkey.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "hotkey_skip", "_opt_hotkeySkip", this._updateHotkey.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "start_on_click", "_opt_startOnClick", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "timer_sound", "_opt_playTickerSound", this._onPlayTickedSoundChanged.bind(this));
 
         // Binding properties that require updating or recalculating other settings
@@ -445,12 +451,34 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
     _updateHotkey() {
         Main.keybindingManager.removeHotKey(UUID);
-    
-        if (this._opt_hotkey !== null) {
-            // Register the new hotkey with the current keybinding setting
+        Main.keybindingManager.removeHotKey(UUID + "-toggle");
+        Main.keybindingManager.removeHotKey(UUID + "-skip");
+
+        if (this._opt_hotkey) {
             Main.keybindingManager.addHotKey(UUID, this._opt_hotkey, () => {
-                this.on_applet_clicked();
+                this._appletMenu.toggle();
             });
+        }
+        if (this._opt_hotkeyToggle) {
+            Main.keybindingManager.addHotKey(UUID + "-toggle", this._opt_hotkeyToggle, () => {
+                this._toggleTimerFromHotkey();
+            });
+        }
+        if (this._opt_hotkeySkip) {
+            Main.keybindingManager.addHotKey(UUID + "-skip", this._opt_hotkeySkip, () => {
+                if (this._appletMenu) {
+                    this._appletMenu.emit('skip-timer');
+                }
+            });
+        }
+    }
+
+    _toggleTimerFromHotkey() {
+        let timer = this._timerQueue ? this._timerQueue.getCurrentTimer() : null;
+        if (timer && timer.isRunning()) {
+            this._appletMenu.emit('stop-timer');
+        } else {
+            this._appletMenu.emit('start-timer');
         }
     }
     
@@ -1853,11 +1881,17 @@ class PomodoroApplet extends Applet.TextIconApplet {
     }
     
     on_applet_clicked() {
+        if (this._opt_startOnClick && this._currentState === 'pomodoro-stop') {
+            this._startTimerFromMenu();
+            return;
+        }
         this._appletMenu.toggle();
     }
     
     on_applet_removed_from_panel() {
         Main.keybindingManager.removeHotKey(UUID);
+        Main.keybindingManager.removeHotKey(UUID + "-toggle");
+        Main.keybindingManager.removeHotKey(UUID + "-skip");
         this._stopFocusBlockIfNeeded();
         this._cancelAppearancePreview();
         this._cancelBreathingPreview();

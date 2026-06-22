@@ -85,7 +85,7 @@ function install(proto) {
 
     proto._loadDailyStatsAsync = function(onDone) {
         this._readJsonAsync(POMODORO_STATS_FILE, (parsed) => {
-            let data = { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0 };
+            let data = { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0, totalMinutes: 0 };
             if (parsed && typeof parsed === "object") {
                 data.date = parsed.date || "";
                 data.count = parseInt(parsed.count) || 0;
@@ -93,23 +93,34 @@ function install(proto) {
                 data.lastGoalMetDate = parsed.lastGoalMetDate || "";
                 if (parsed.history && typeof parsed.history === "object") {
                     for (let k in parsed.history) {
-                        let v = parseInt(parsed.history[k]);
-                        if (!isNaN(v) && v > 0) {
-                            data.history[k] = v;
+                        let v = parsed.history[k];
+                        if (typeof v === "number") {
+                            if (v > 0) {
+                                data.history[k] = { c: parseInt(v) || 0, m: 0 };
+                            }
+                        } else if (v && typeof v === "object") {
+                            let c = parseInt(v.c) || 0;
+                            let m = parseInt(v.m) || 0;
+                            if (c > 0 || m > 0) {
+                                data.history[k] = { c: c, m: m };
+                            }
                         }
                     }
                 }
                 data.total = parseInt(parsed.total) || 0;
-                // Migrate stats saved before per-day history existed.
+                data.totalMinutes = parseInt(parsed.totalMinutes) || 0;
                 if (Object.keys(data.history).length === 0 && data.date && data.count > 0) {
-                    data.history[data.date] = data.count;
+                    data.history[data.date] = { c: data.count, m: 0 };
                 }
                 if (!data.total) {
                     let sum = 0;
-                    for (let k in data.history) {
-                        sum += data.history[k];
-                    }
+                    for (let k in data.history) { sum += data.history[k].c; }
                     data.total = sum;
+                }
+                if (!data.totalMinutes) {
+                    let sum = 0;
+                    for (let k in data.history) { sum += data.history[k].m; }
+                    data.totalMinutes = sum;
                 }
             }
             this._dailyStatsData = data;
@@ -130,29 +141,35 @@ function install(proto) {
         });
     };
 
+    proto._daysBetween = function(a, b) {
+        let da = new Date(a + "T00:00:00");
+        let db = new Date(b + "T00:00:00");
+        return Math.round((db - da) / 86400000);
+    };
+
     proto._recordPomodoroCompleted = function() {
         let today = this._todayStr();
         let yesterday = this._todayStr(new Date(Date.now() - 86400000));
-        let s = this._dailyStatsData || { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0 };
-        if (!s.history) {
-            s.history = {};
-        }
-        if (typeof s.total !== "number") {
-            s.total = 0;
-        }
+        let s = this._dailyStatsData || { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0, totalMinutes: 0 };
+        if (!s.history) { s.history = {}; }
+        if (typeof s.total !== "number") { s.total = 0; }
+        if (typeof s.totalMinutes !== "number") { s.totalMinutes = 0; }
         if (s.date !== today) {
             s.date = today;
             s.count = 0;
         }
+        let dur = this._opt_pomodoroTimeMinutes || 25;
         s.count += 1;
-        s.history[today] = (s.history[today] || 0) + 1;
+        let cell = s.history[today] || { c: 0, m: 0 };
+        cell.c += 1;
+        cell.m += dur;
+        s.history[today] = cell;
         s.total += 1;
+        s.totalMinutes += dur;
         // Keep the per-day history bounded (~18 weeks).
         let cutoff = this._todayStr(new Date(Date.now() - 126 * 86400000));
         for (let k in s.history) {
-            if (k < cutoff) {
-                delete s.history[k];
-            }
+            if (k < cutoff) { delete s.history[k]; }
         }
         let goal = this._opt_dailyGoal || 0;
         if (goal > 0 && s.count === goal) {
@@ -170,32 +187,52 @@ function install(proto) {
         this._updateMenuRuntime();
     };
 
-    // Marinara-style breakdown: today / last 7 days / last 30 days / all-time + streak.
+    // Rich stats: counts + focus time, current/longest active-day streak, best day,
+    // and a 12-week heatmap (84 daily counts, oldest -> newest).
     proto._computeStats = function() {
         let h = (this._dailyStatsData && this._dailyStatsData.history) ? this._dailyStatsData.history : {};
+        let cellOf = (d) => h[d] || { c: 0, m: 0 };
         let today = this._todayStr();
-        let week = 0;
-        let month = 0;
+        let weekC = 0, weekM = 0, monthC = 0, monthM = 0;
         for (let i = 0; i < 30; i++) {
-            let day = this._todayStr(new Date(Date.now() - i * 86400000));
-            let c = h[day] || 0;
-            month += c;
-            if (i < 7) {
-                week += c;
-            }
+            let cl = cellOf(this._todayStr(new Date(Date.now() - i * 86400000)));
+            monthC += cl.c; monthM += cl.m;
+            if (i < 7) { weekC += cl.c; weekM += cl.m; }
         }
-        let total = (this._dailyStatsData && typeof this._dailyStatsData.total === "number") ? this._dailyStatsData.total : 0;
-        let last7 = [];
-        for (let i = 6; i >= 0; i--) {
-            last7.push(h[this._todayStr(new Date(Date.now() - i * 86400000))] || 0);
+        let heatmap = [];
+        for (let i = 83; i >= 0; i--) {
+            heatmap.push(cellOf(this._todayStr(new Date(Date.now() - i * 86400000))).c);
+        }
+        let total = (this._dailyStatsData && this._dailyStatsData.total) || 0;
+        let totalMinutes = (this._dailyStatsData && this._dailyStatsData.totalMinutes) || 0;
+        let todayCell = cellOf(today);
+        let best = 0;
+        for (let k in h) { if (h[k].c > best) { best = h[k].c; } }
+        let cur = 0;
+        let startI = (todayCell.c > 0) ? 0 : 1;
+        for (let i = startI; i < 400; i++) {
+            if (cellOf(this._todayStr(new Date(Date.now() - i * 86400000))).c >= 1) { cur++; } else { break; }
+        }
+        let longest = 0, run = 0, prev = null;
+        let activeDates = Object.keys(h).filter((k) => h[k].c >= 1).sort();
+        for (let d of activeDates) {
+            run = (prev && this._daysBetween(prev, d) === 1) ? run + 1 : 1;
+            if (run > longest) { longest = run; }
+            prev = d;
         }
         return {
-            today: h[today] || 0,
-            week: week,
-            month: month,
+            today: todayCell.c,
+            todayMin: todayCell.m,
+            week: weekC,
+            weekMin: weekM,
+            month: monthC,
+            monthMin: monthM,
             total: total,
-            streak: this._dailyStreak || 0,
-            last7: last7
+            totalMinutes: totalMinutes,
+            streak: cur,
+            longestStreak: longest,
+            bestDay: best,
+            heatmap: heatmap
         };
     };
 

@@ -86,9 +86,11 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._statWeekItem = null;
         this._statMonthItem = null;
         this._statTotalItem = null;
+        this._statTimeItem = null;
         this._statStreakItem = null;
+        this._statBestItem = null;
         this._statsChart = null;
-        this._statsLast7 = null;
+        this._statsHeatmap = null;
     }
 
     _getLayoutCategory(state) {
@@ -297,31 +299,45 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
     }
 
-    _repaintStatsChart(area) {
+    _fmtDuration(min) {
+        min = Math.max(0, Math.round(min || 0));
+        if (min < 60) {
+            return _("%d min").format(min);
+        }
+        let hrs = Math.floor(min / 60);
+        let rem = min % 60;
+        return rem ? _("%dh %dm").format(hrs, rem) : _("%dh").format(hrs);
+    }
+
+    _repaintStatsHeatmap(area) {
         let cr = area.get_context();
         try {
             let [w, h] = area.get_surface_size();
-            let data = this._statsLast7 || [0, 0, 0, 0, 0, 0, 0];
-            let n = data.length || 7;
+            let data = this._statsHeatmap || [];
+            let cols = 12;
+            let rows = 7;
             let maxv = 1;
             for (let v of data) {
                 if (v > maxv) {
                     maxv = v;
                 }
             }
-            let gap = 4;
-            let bw = Math.max(1, (w - gap * (n - 1)) / n);
+            let gap = 2;
+            let cw = Math.max(2, (w - gap * (cols - 1)) / cols);
+            let ch = Math.max(2, (h - gap * (rows - 1)) / rows);
             let c = this._progressBarColor || [0.84, 0.60, 0.19];
-            for (let i = 0; i < n; i++) {
-                let x = Math.round(i * (bw + gap));
-                cr.setSourceRGBA(1, 1, 1, 0.10);
-                cr.rectangle(x, 0, Math.round(bw), h);
-                cr.fill();
-                let bh = Math.round((data[i] / maxv) * (h - 2));
-                if (bh > 0) {
-                    let isToday = (i === n - 1);
-                    cr.setSourceRGBA(c[0], c[1], c[2], isToday ? 0.98 : 0.55);
-                    cr.rectangle(x, h - bh, Math.round(bw), bh);
+            for (let col = 0; col < cols; col++) {
+                for (let row = 0; row < rows; row++) {
+                    let idx = col * rows + row;
+                    let v = (idx < data.length) ? data[idx] : 0;
+                    let x = Math.round(col * (cw + gap));
+                    let y = Math.round(row * (ch + gap));
+                    if (v > 0) {
+                        cr.setSourceRGBA(c[0], c[1], c[2], 0.25 + 0.75 * (v / maxv));
+                    } else {
+                        cr.setSourceRGBA(1, 1, 1, 0.08);
+                    }
+                    cr.rectangle(x, y, Math.round(cw), Math.round(ch));
                     cr.fill();
                 }
             }
@@ -486,13 +502,19 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._statTotalItem = new PopupMenu.PopupMenuItem(_("All time: %d").format(0));
         this._statTotalItem.setSensitive(false);
         this._statsSubmenu.menu.addMenuItem(this._statTotalItem);
-        this._statStreakItem = new PopupMenu.PopupMenuItem(_("Streak: %d days").format(0));
+        this._statTimeItem = new PopupMenu.PopupMenuItem(_("Focus time: %s today · %s total").format(this._fmtDuration(0), this._fmtDuration(0)));
+        this._statTimeItem.setSensitive(false);
+        this._statsSubmenu.menu.addMenuItem(this._statTimeItem);
+        this._statStreakItem = new PopupMenu.PopupMenuItem(_("Streak: %d days (best %d)").format(0, 0));
         this._statStreakItem.setSensitive(false);
         this._statsSubmenu.menu.addMenuItem(this._statStreakItem);
+        this._statBestItem = new PopupMenu.PopupMenuItem(_("Best day: %d").format(0));
+        this._statBestItem.setSensitive(false);
+        this._statsSubmenu.menu.addMenuItem(this._statBestItem);
         try {
             let chartItem = new PopupMenu.PopupBaseMenuItem({ reactive: false });
-            this._statsChart = new St.DrawingArea({ x_expand: true, style: "height: 52px; margin: 2px 6px 4px 6px;" });
-            this._statsChart.connect('repaint', (area) => this._repaintStatsChart(area));
+            this._statsChart = new St.DrawingArea({ x_expand: true, style: "height: 64px; margin: 2px 6px 4px 6px;" });
+            this._statsChart.connect('repaint', (area) => this._repaintStatsHeatmap(area));
             chartItem.addActor(this._statsChart);
             this._statsSubmenu.menu.addMenuItem(chartItem);
         } catch (e) {
@@ -603,11 +625,17 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             if (this._statTotalItem) {
                 this._statTotalItem.label.set_text(_("All time: %d").format(st.total || 0));
             }
-            if (this._statStreakItem) {
-                this._statStreakItem.label.set_text(_("Streak: %d days").format(st.streak || 0));
+            if (this._statTimeItem) {
+                this._statTimeItem.label.set_text(_("Focus time: %s today · %s total").format(this._fmtDuration(st.todayMin || 0), this._fmtDuration(st.totalMinutes || 0)));
             }
-            if (this._statsChart && Array.isArray(st.last7)) {
-                this._statsLast7 = st.last7;
+            if (this._statStreakItem) {
+                this._statStreakItem.label.set_text(_("Streak: %d days (best %d)").format(st.streak || 0, st.longestStreak || 0));
+            }
+            if (this._statBestItem) {
+                this._statBestItem.label.set_text(_("Best day: %d").format(st.bestDay || 0));
+            }
+            if (this._statsChart && Array.isArray(st.heatmap)) {
+                this._statsHeatmap = st.heatmap;
                 this._statsChart.queue_repaint();
             }
         }

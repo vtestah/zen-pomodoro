@@ -1887,6 +1887,33 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 return;
             }
 
+            // Ready state: replace the empty grey ring with a meaningful brand
+            // mark — a faint track, today's progress toward the daily goal, and
+            // a centred "tomato" dot that reads as "ready to start".
+            if (this._currentState === 'pomodoro-stop') {
+                let goal = this._opt_dailyGoal || 0;
+                let done = this._dailyCount || 0;
+                let met = (goal > 0 && done >= goal);
+                let ar = met ? 0.42 : 1.0;
+                let ag = met ? 0.88 : 0.69;
+                let ab = met ? 0.58 : 0.32;
+                cr.setLineWidth(2.5);
+                cr.setSourceRGBA(ar, ag, ab, 0.22);
+                cr.arc(cx, cy, radius, 0, 2 * Math.PI);
+                cr.stroke();
+                if (goal > 0 && done > 0) {
+                    let f = Math.min(1, done / goal);
+                    let start = -Math.PI / 2;
+                    cr.setSourceRGBA(ar, ag, ab, 0.95);
+                    cr.arc(cx, cy, radius, start, start + 2 * Math.PI * f);
+                    cr.stroke();
+                }
+                cr.setSourceRGBA(ar, ag, ab, 0.95);
+                cr.arc(cx, cy, Math.max(1.5, radius * 0.36), 0, 2 * Math.PI);
+                cr.fill();
+                return;
+            }
+
             let breakish = (this._currentState === 'short-break' || this._currentState === 'long-break' ||
                 this._currentState === 'short-break-paused' || this._currentState === 'long-break-paused' ||
                 this._currentState === 'break-over');

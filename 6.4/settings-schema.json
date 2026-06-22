@@ -206,7 +206,10 @@
             "keys": [
                 "pushover_enabled",
                 "pushover_user_key",
-                "pushover_app_token"
+                "pushover_app_token",
+                "pushover_title",
+                "pushover_msg_break",
+                "pushover_msg_resume"
             ]
         },
         "sec_blocking": {
@@ -632,6 +635,26 @@
         "type": "entry",
         "description": "Pushover application API token",
         "default": "",
+        "dependency": "pushover_enabled"
+    },
+    "pushover_title": {
+        "type": "entry",
+        "description": "Notification title",
+        "default": "Zen Pomodoro",
+        "dependency": "pushover_enabled"
+    },
+    "pushover_msg_break": {
+        "type": "entry",
+        "description": "Message when a break starts",
+        "default": "Pomodoro done — time for a break.",
+        "tooltip": "Sent on short and long breaks. Leave empty to send no message at break start.",
+        "dependency": "pushover_enabled"
+    },
+    "pushover_msg_resume": {
+        "type": "entry",
+        "description": "Message when a break ends",
+        "default": "Break's over — back to focus.",
+        "tooltip": "Sent when a break finishes. Leave empty to send no message.",
         "dependency": "pushover_enabled"
     },
     "enable_blocking": {

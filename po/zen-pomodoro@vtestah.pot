@@ -16,116 +16,104 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: applet.js:706
+#: applet.js:712
 msgid "Focus session restored — resume when ready"
 msgstr ""
 
-#: applet.js:741
+#: applet.js:747
 msgid "FOCUS"
 msgstr ""
 
-#: applet.js:743
+#: applet.js:749
 msgid "PAUSED FOCUS"
 msgstr ""
 
-#: applet.js:746
+#: applet.js:752
 msgid "BREAK"
 msgstr ""
 
-#: applet.js:749
+#: applet.js:755
 msgid "PAUSED BREAK"
 msgstr ""
 
-#: applet.js:751
+#: applet.js:757
 msgid "BREAK OVER"
 msgstr ""
 
-#: applet.js:754
+#: applet.js:760
 msgid "Ready"
 msgstr ""
 
-#: applet.js:772
+#: applet.js:778
 msgid "Short break running"
 msgstr ""
 
-#: applet.js:775
+#: applet.js:781
 msgid "Short break paused"
 msgstr ""
 
-#: applet.js:778
+#: applet.js:784
 msgid "Long break running"
 msgstr ""
 
-#: applet.js:781
+#: applet.js:787
 msgid "Long break paused"
 msgstr ""
 
-#: applet.js:784 applet.js:1133
+#: applet.js:790 applet.js:1139
 msgid "Break ended"
 msgstr ""
 
-#: applet.js:787
+#: applet.js:793
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr ""
 
-#: applet.js:792
+#: applet.js:798
 msgid "Pomodoro paused"
 msgstr ""
 
-#: applet.js:795
+#: applet.js:801
 msgid "Waiting to start"
 msgstr ""
 
-#: applet.js:977
-msgid "Break's over — back to focus."
-msgstr ""
-
-#: applet.js:1113
+#: applet.js:1119
 msgid "Pomodoro started"
 msgstr ""
 
-#: applet.js:1189
+#: applet.js:1195
 msgid "Let's go to work!"
 msgstr ""
 
-#: applet.js:1214
+#: applet.js:1220
 msgid "Pomodoro done"
 msgstr ""
 
-#: applet.js:1216
+#: applet.js:1222
 msgid "Take a short break"
 msgstr ""
 
-#: applet.js:1218
-msgid "Pomodoro done — time for a short break."
-msgstr ""
-
-#: applet.js:1239
+#: applet.js:1245
 msgid "Set complete!"
 msgstr ""
 
-#: applet.js:1244
+#: applet.js:1250
 msgid "Take a long break"
 msgstr ""
 
-#: applet.js:1247
-msgid "Set complete — time for a long break."
-msgstr ""
-
-#: applet.js:1286
+#: applet.js:1292
 msgid "Pomodoro ended"
 msgstr ""
 
-#: applet.js:1406
+#: applet.js:1412
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
 
-#: applet.js:1476 features.js:653
+#: applet.js:1482 features.js:658
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr ""
 
-#: applet.js:1493
+#: applet.js:1499
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr ""
@@ -142,11 +130,11 @@ msgstr ""
 msgid "Choose or type a focus task"
 msgstr ""
 
-#: dialogs.js:65 features.js:701
+#: dialogs.js:65 features.js:706
 msgid "Cancel"
 msgstr ""
 
-#: dialogs.js:72 features.js:702
+#: dialogs.js:72 features.js:707
 msgid "Start"
 msgstr ""
 
@@ -219,47 +207,47 @@ msgstr ""
 msgid "Pomodoro finished, ready to take a break?"
 msgstr ""
 
-#: features.js:416
+#: features.js:421
 msgid "Could not open the hosts file"
 msgstr ""
 
-#: features.js:465
+#: features.js:470
 msgid "Add some domains to block first."
 msgstr ""
 
-#: features.js:469
+#: features.js:474
 msgid "Distractions blocked."
 msgstr ""
 
-#: features.js:474
+#: features.js:479
 msgid "Distractions unblocked."
 msgstr ""
 
-#: features.js:511
+#: features.js:516
 msgid "Click to exit Zen"
 msgstr ""
 
-#: features.js:546 visual.js:894
+#: features.js:551 visual.js:894
 msgid "Focus"
 msgstr ""
 
-#: features.js:623
+#: features.js:628
 msgid "Breathe in"
 msgstr ""
 
-#: features.js:626 features.js:632
+#: features.js:631 features.js:637
 msgid "Hold"
 msgstr ""
 
-#: features.js:629
+#: features.js:634
 msgid "Breathe out"
 msgstr ""
 
-#: features.js:659
+#: features.js:664
 msgid "Focus until"
 msgstr ""
 
-#: features.js:660
+#: features.js:665
 msgid "Enter a time (HH:MM)"
 msgstr ""
 
@@ -881,6 +869,28 @@ msgstr ""
 
 #. settings-schema.json
 msgid "Pushover application API token"
+msgstr ""
+
+#. settings-schema.json
+msgid "Notification title"
+msgstr ""
+
+#. settings-schema.json
+msgid "Message when a break starts"
+msgstr ""
+
+#. settings-schema.json
+msgid ""
+"Sent on short and long breaks. Leave empty to send no message at break "
+"start."
+msgstr ""
+
+#. settings-schema.json
+msgid "Message when a break ends"
+msgstr ""
+
+#. settings-schema.json
+msgid "Sent when a break finishes. Leave empty to send no message."
 msgstr ""
 
 #. settings-schema.json

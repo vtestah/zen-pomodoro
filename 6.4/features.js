@@ -382,6 +382,11 @@ function install(proto) {
         if (!user || !token) {
             return;
         }
+        message = (message || '').trim();
+        if (!message) {
+            return;
+        }
+        let title = (this._opt_pushoverTitle || '').trim() || 'Zen Pomodoro';
         try {
             if (!this._pushoverSession) {
                 this._pushoverSession = new Soup.Session();
@@ -389,7 +394,7 @@ function install(proto) {
             let msg = Soup.Message.new('POST', 'https://api.pushover.net/1/messages.json');
             let body = 'token=' + encodeURIComponent(token) +
                 '&user=' + encodeURIComponent(user) +
-                '&title=' + encodeURIComponent('Zen Pomodoro') +
+                '&title=' + encodeURIComponent(title) +
                 '&message=' + encodeURIComponent(message);
             msg.set_request_body_from_bytes('application/x-www-form-urlencoded',
                 new GLib.Bytes(ByteArray.fromString(body)));

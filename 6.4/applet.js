@@ -111,6 +111,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
     constructor(metadata, orientation, panelHeight, instanceId) {
         super(orientation, panelHeight, instanceId);
         this._metadata = metadata;
+        this._orientation = orientation;
 
         // 'pomodoro', 'pomodoro-stop', 'short-break', 'long-break', 'break-over', '*-paused'
         this._currentState = 'pomodoro-stop';
@@ -509,7 +510,19 @@ class PomodoroApplet extends Applet.TextIconApplet {
             timerText += ` \u00B7 ${focusTask}`;
         }
     
-        this.set_applet_label(timerText);
+        let vertical = (this._orientation === St.Side.LEFT || this._orientation === St.Side.RIGHT);
+        if (vertical) {
+            // Vertical panels are narrow: show only the remaining minutes (the
+            // icon + progress ring carry the rest), or nothing when idle.
+            let compact = "";
+            if (this._currentState !== 'pomodoro-stop' && this._currentState !== 'break-over' &&
+                this._opt_showTimerInPanel && typeof ticks === 'number') {
+                compact = `${Math.max(0, Math.ceil(ticks / 60))}`;
+            }
+            this.set_applet_label(compact);
+        } else {
+            this.set_applet_label(timerText);
+        }
         this._updateMenuRuntime(ticks);
         if (this._panelProgressArea && this._opt_panelProgressIcon && this._panelProgressArea.visible) {
             this._panelProgressArea.queue_repaint();
@@ -1880,6 +1893,12 @@ class PomodoroApplet extends Applet.TextIconApplet {
         return true;
     }
     
+    on_orientation_changed(orientation) {
+        this._orientation = orientation;
+        let timer = this._timerQueue ? this._timerQueue.getCurrentTimer() : null;
+        this._setTimerLabel(timer ? timer.getTicksRemaining() : 0);
+    }
+
     on_applet_clicked() {
         if (this._opt_startOnClick && this._currentState === 'pomodoro-stop') {
             this._startTimerFromMenu();

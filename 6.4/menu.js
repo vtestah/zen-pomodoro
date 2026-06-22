@@ -89,6 +89,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._statTimeItem = null;
         this._statStreakItem = null;
         this._statBestItem = null;
+        this._statAchieveItem = null;
         this._statsChart = null;
         this._statsHeatmap = null;
     }
@@ -297,6 +298,16 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         } finally {
             cr.$dispose();
         }
+    }
+
+    _milestoneTier(value, tiers) {
+        let best = 0;
+        for (let t of tiers) {
+            if (value >= t) {
+                best = t;
+            }
+        }
+        return best;
     }
 
     _fmtDuration(min) {
@@ -511,6 +522,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._statBestItem = new PopupMenu.PopupMenuItem(_("Best day: %d").format(0));
         this._statBestItem.setSensitive(false);
         this._statsSubmenu.menu.addMenuItem(this._statBestItem);
+        this._statAchieveItem = new PopupMenu.PopupMenuItem(_("Milestones: %s").format(_("none yet")));
+        this._statAchieveItem.setSensitive(false);
+        this._statsSubmenu.menu.addMenuItem(this._statAchieveItem);
         try {
             let chartItem = new PopupMenu.PopupBaseMenuItem({ reactive: false });
             this._statsChart = new St.DrawingArea({ x_expand: true, style: "height: 64px; margin: 2px 6px 4px 6px;" });
@@ -617,7 +631,15 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 this._statTodayItem.label.set_text(_("Today: %d").format(st.today || 0));
             }
             if (this._statWeekItem) {
-                this._statWeekItem.label.set_text(_("Last 7 days: %d").format(st.week || 0));
+                let wk = st.week || 0;
+                let lw = st.lastWeek || 0;
+                let txt = _("Last 7 days: %d").format(wk);
+                if (lw > 0) {
+                    let pct = Math.round((wk - lw) / lw * 100);
+                    let arrow = (pct > 0) ? "▲" : ((pct < 0) ? "▼" : "■");
+                    txt += "  " + arrow + " " + Math.abs(pct) + "%";
+                }
+                this._statWeekItem.label.set_text(txt);
             }
             if (this._statMonthItem) {
                 this._statMonthItem.label.set_text(_("Last 30 days: %d").format(st.month || 0));
@@ -633,6 +655,18 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             }
             if (this._statBestItem) {
                 this._statBestItem.label.set_text(_("Best day: %d").format(st.bestDay || 0));
+            }
+            if (this._statAchieveItem) {
+                let tot = this._milestoneTier(st.total || 0, [10, 25, 50, 100, 250, 500, 1000, 2000]);
+                let stk = this._milestoneTier(st.longestStreak || 0, [3, 7, 14, 30, 60, 100, 365]);
+                let badges = [];
+                if (tot > 0) {
+                    badges.push("🏆 " + tot);
+                }
+                if (stk > 0) {
+                    badges.push("🔥 " + stk);
+                }
+                this._statAchieveItem.label.set_text(_("Milestones: %s").format(badges.length ? badges.join("   ") : _("none yet")));
             }
             if (this._statsChart && Array.isArray(st.heatmap)) {
                 this._statsHeatmap = st.heatmap;

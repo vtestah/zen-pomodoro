@@ -203,6 +203,10 @@ function install(proto) {
         for (let i = 83; i >= 0; i--) {
             heatmap.push(cellOf(this._todayStr(new Date(Date.now() - i * 86400000))).c);
         }
+        let lastWeek = 0;
+        for (let i = 7; i < 14; i++) {
+            lastWeek += cellOf(this._todayStr(new Date(Date.now() - i * 86400000))).c;
+        }
         let total = (this._dailyStatsData && this._dailyStatsData.total) || 0;
         let totalMinutes = (this._dailyStatsData && this._dailyStatsData.totalMinutes) || 0;
         let todayCell = cellOf(today);
@@ -225,6 +229,7 @@ function install(proto) {
             todayMin: todayCell.m,
             week: weekC,
             weekMin: weekM,
+            lastWeek: lastWeek,
             month: monthC,
             monthMin: monthM,
             total: total,

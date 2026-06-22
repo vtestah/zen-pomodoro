@@ -225,8 +225,16 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_pushoverMsgGoal = null;
         this._opt_pushoverMsgResume = null;
         this._opt_pushoverMsgFocus = null;
-        this._opt_pushoverSound = null;
-        this._opt_pushoverPriority = null;
+        this._opt_pushoverSndFocus = null;
+        this._opt_pushoverPriFocus = null;
+        this._opt_pushoverSndShortBreak = null;
+        this._opt_pushoverPriShortBreak = null;
+        this._opt_pushoverSndLongBreak = null;
+        this._opt_pushoverPriLongBreak = null;
+        this._opt_pushoverSndResume = null;
+        this._opt_pushoverPriResume = null;
+        this._opt_pushoverSndGoal = null;
+        this._opt_pushoverPriGoal = null;
         this._opt_blockDomains = null;
         this._opt_blockPasswordlessFull = null;
         this._opt_onboardingDone = null;
@@ -387,8 +395,16 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_msg_goal", "_opt_pushoverMsgGoal", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_msg_resume", "_opt_pushoverMsgResume", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_msg_focus", "_opt_pushoverMsgFocus", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_sound", "_opt_pushoverSound", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_priority", "_opt_pushoverPriority", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_snd_focus", "_opt_pushoverSndFocus", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_pri_focus", "_opt_pushoverPriFocus", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_snd_short_break", "_opt_pushoverSndShortBreak", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_pri_short_break", "_opt_pushoverPriShortBreak", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_snd_long_break", "_opt_pushoverSndLongBreak", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_pri_long_break", "_opt_pushoverPriLongBreak", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_snd_resume", "_opt_pushoverSndResume", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_pri_resume", "_opt_pushoverPriResume", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_snd_goal", "_opt_pushoverSndGoal", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_pri_goal", "_opt_pushoverPriGoal", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_domains", "_opt_blockDomains", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_passwordless_full", "_opt_blockPasswordlessFull", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "onboarding_done", "_opt_onboardingDone", emptyCallback);
@@ -1076,7 +1092,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._setTimerLabel(0);
         this._setAppletTooltip(0);
         this._updateFocusFrame(0);
-        this._sendPushover(this._opt_pushoverMsgResume);
+        this._sendPushover(this._opt_pushoverMsgResume, this._opt_pushoverSndResume, this._opt_pushoverPriResume);
     }
 
     _isPausedState(state = this._currentState) {
@@ -1291,7 +1307,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._playFocusStartRitual();
             Main.notify(_("Let's go to work!"));
             this._runEventCommand('focus');
-            this._sendPushover(this._opt_pushoverMsgFocus);
+            this._sendPushover(this._opt_pushoverMsgFocus, this._opt_pushoverSndFocus, this._opt_pushoverPriFocus);
         });
     
         pomodoroTimer.connect('timer-stopped', () => {
@@ -1320,7 +1336,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._recordPomodoroCompleted();
             Main.notify(_("Take a short break"));
             this._runEventCommand('break');
-            this._sendPushover(this._opt_pushoverMsgShortBreak);
+            this._sendPushover(this._opt_pushoverMsgShortBreak, this._opt_pushoverSndShortBreak, this._opt_pushoverPriShortBreak);
             // @PUBLIC_STRIP_BEGIN
             if (this._opt_enableScripts && this._opt_customShortBreakScript) {
                 let breakSecs = convertMinutesToSeconds(this._opt_shortBreakTimeMinutes);
@@ -1356,7 +1372,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 Main.notify(_("Take a long break"));
             }
             this._runEventCommand('break');
-            this._sendPushover(this._opt_pushoverMsgLongBreak);
+            this._sendPushover(this._opt_pushoverMsgLongBreak, this._opt_pushoverSndLongBreak, this._opt_pushoverPriLongBreak);
             // @PUBLIC_STRIP_BEGIN
             if (this._opt_enableScripts && this._opt_customLongBreakScript) {
                 let breakSecs = convertMinutesToSeconds(this._opt_longBreakTimeMinutes);

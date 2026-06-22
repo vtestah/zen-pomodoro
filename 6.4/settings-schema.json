@@ -207,13 +207,26 @@
                 "pushover_user_key",
                 "pushover_app_token",
                 "pushover_title",
+                "hdr_po_focus",
                 "pushover_msg_focus",
+                "pushover_snd_focus",
+                "pushover_pri_focus",
+                "hdr_po_short_break",
                 "pushover_msg_short_break",
+                "pushover_snd_short_break",
+                "pushover_pri_short_break",
+                "hdr_po_long_break",
                 "pushover_msg_long_break",
+                "pushover_snd_long_break",
+                "pushover_pri_long_break",
+                "hdr_po_resume",
                 "pushover_msg_resume",
+                "pushover_snd_resume",
+                "pushover_pri_resume",
+                "hdr_po_goal",
                 "pushover_msg_goal",
-                "pushover_sound",
-                "pushover_priority"
+                "pushover_snd_goal",
+                "pushover_pri_goal"
             ]
         },
         "sec_blocking": {
@@ -706,35 +719,6 @@
         "tooltip": "Sent when a break finishes. Leave empty to send no message.",
         "dependency": "pushover_enabled"
     },
-    "pushover_sound": {
-        "type": "combobox",
-        "description": "Notification sound",
-        "default": "pushover",
-        "options": {
-            "Default": "pushover",
-            "Magic": "magic",
-            "Bike": "bike",
-            "Cosmic": "cosmic",
-            "Gamelan": "gamelan",
-            "Incoming": "incoming",
-            "Intermission": "intermission",
-            "None": "none"
-        },
-        "dependency": "pushover_enabled",
-        "tooltip": "Sound the Pushover app plays for these notifications."
-    },
-    "pushover_priority": {
-        "type": "combobox",
-        "description": "Priority",
-        "default": "0",
-        "options": {
-            "Low": "-1",
-            "Normal": "0",
-            "High": "1"
-        },
-        "dependency": "pushover_enabled",
-        "tooltip": "Delivery priority: Low is quiet, High is more intrusive."
-    },
     "enable_blocking": {
         "type": "switch",
         "description": "Enable distraction blocking (edits /etc/hosts via an admin prompt)",
@@ -1072,6 +1056,161 @@
         "description": "Message when the daily goal is reached",
         "default": "🏆 Daily goal reached — great work!",
         "tooltip": "Sent once when you hit your daily pomodoro goal. {task} and {minutes} are substituted. Leave empty to send nothing.",
+        "dependency": "pushover_enabled"
+    },
+    "hdr_po_focus": {
+        "type": "header",
+        "description": "On focus start"
+    },
+    "pushover_snd_focus": {
+        "type": "combobox",
+        "description": "Notification sound",
+        "default": "pushover",
+        "options": {
+            "Default": "pushover",
+            "Magic": "magic",
+            "Bike": "bike",
+            "Cosmic": "cosmic",
+            "Gamelan": "gamelan",
+            "Incoming": "incoming",
+            "Intermission": "intermission",
+            "None": "none"
+        },
+        "dependency": "pushover_enabled"
+    },
+    "pushover_pri_focus": {
+        "type": "combobox",
+        "description": "Priority",
+        "default": "0",
+        "options": {
+            "Low": "-1",
+            "Normal": "0",
+            "High": "1"
+        },
+        "dependency": "pushover_enabled"
+    },
+    "hdr_po_short_break": {
+        "type": "header",
+        "description": "On short break"
+    },
+    "pushover_snd_short_break": {
+        "type": "combobox",
+        "description": "Notification sound",
+        "default": "pushover",
+        "options": {
+            "Default": "pushover",
+            "Magic": "magic",
+            "Bike": "bike",
+            "Cosmic": "cosmic",
+            "Gamelan": "gamelan",
+            "Incoming": "incoming",
+            "Intermission": "intermission",
+            "None": "none"
+        },
+        "dependency": "pushover_enabled"
+    },
+    "pushover_pri_short_break": {
+        "type": "combobox",
+        "description": "Priority",
+        "default": "0",
+        "options": {
+            "Low": "-1",
+            "Normal": "0",
+            "High": "1"
+        },
+        "dependency": "pushover_enabled"
+    },
+    "hdr_po_long_break": {
+        "type": "header",
+        "description": "On long break"
+    },
+    "pushover_snd_long_break": {
+        "type": "combobox",
+        "description": "Notification sound",
+        "default": "pushover",
+        "options": {
+            "Default": "pushover",
+            "Magic": "magic",
+            "Bike": "bike",
+            "Cosmic": "cosmic",
+            "Gamelan": "gamelan",
+            "Incoming": "incoming",
+            "Intermission": "intermission",
+            "None": "none"
+        },
+        "dependency": "pushover_enabled"
+    },
+    "pushover_pri_long_break": {
+        "type": "combobox",
+        "description": "Priority",
+        "default": "0",
+        "options": {
+            "Low": "-1",
+            "Normal": "0",
+            "High": "1"
+        },
+        "dependency": "pushover_enabled"
+    },
+    "hdr_po_resume": {
+        "type": "header",
+        "description": "On break end"
+    },
+    "pushover_snd_resume": {
+        "type": "combobox",
+        "description": "Notification sound",
+        "default": "pushover",
+        "options": {
+            "Default": "pushover",
+            "Magic": "magic",
+            "Bike": "bike",
+            "Cosmic": "cosmic",
+            "Gamelan": "gamelan",
+            "Incoming": "incoming",
+            "Intermission": "intermission",
+            "None": "none"
+        },
+        "dependency": "pushover_enabled"
+    },
+    "pushover_pri_resume": {
+        "type": "combobox",
+        "description": "Priority",
+        "default": "0",
+        "options": {
+            "Low": "-1",
+            "Normal": "0",
+            "High": "1"
+        },
+        "dependency": "pushover_enabled"
+    },
+    "hdr_po_goal": {
+        "type": "header",
+        "description": "On daily goal"
+    },
+    "pushover_snd_goal": {
+        "type": "combobox",
+        "description": "Notification sound",
+        "default": "pushover",
+        "options": {
+            "Default": "pushover",
+            "Magic": "magic",
+            "Bike": "bike",
+            "Cosmic": "cosmic",
+            "Gamelan": "gamelan",
+            "Incoming": "incoming",
+            "Intermission": "intermission",
+            "None": "none"
+        },
+        "dependency": "pushover_enabled"
+    },
+    "pushover_pri_goal": {
+        "type": "combobox",
+        "description": "Priority",
+        "default": "0",
+        "options": {
+            "Low": "-1",
+            "Normal": "0",
+            "High": "1"
+        },
         "dependency": "pushover_enabled"
     }
 }

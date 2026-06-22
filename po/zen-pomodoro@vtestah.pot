@@ -16,112 +16,112 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: applet.js:743
+#: applet.js:759
 msgid "Focus session restored — resume when ready"
 msgstr ""
 
-#: applet.js:778
+#: applet.js:794
 msgid "FOCUS"
 msgstr ""
 
-#: applet.js:780
+#: applet.js:796
 msgid "PAUSED FOCUS"
 msgstr ""
 
-#: applet.js:783
+#: applet.js:799
 msgid "BREAK"
 msgstr ""
 
-#: applet.js:786
+#: applet.js:802
 msgid "PAUSED BREAK"
 msgstr ""
 
-#: applet.js:788
+#: applet.js:804
 msgid "BREAK OVER"
 msgstr ""
 
-#: applet.js:791
+#: applet.js:807
 msgid "Ready"
 msgstr ""
 
-#: applet.js:809
+#: applet.js:825
 msgid "Short break running"
 msgstr ""
 
-#: applet.js:812
+#: applet.js:828
 msgid "Short break paused"
 msgstr ""
 
-#: applet.js:815
+#: applet.js:831
 msgid "Long break running"
 msgstr ""
 
-#: applet.js:818
+#: applet.js:834
 msgid "Long break paused"
 msgstr ""
 
-#: applet.js:821 applet.js:1196
+#: applet.js:837 applet.js:1212
 msgid "Break ended"
 msgstr ""
 
-#: applet.js:824
+#: applet.js:840
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr ""
 
-#: applet.js:829
+#: applet.js:845
 msgid "Pomodoro paused"
 msgstr ""
 
-#: applet.js:832
+#: applet.js:848
 msgid "Waiting to start"
 msgstr ""
 
-#: applet.js:966
+#: applet.js:982
 msgid "Classic"
 msgstr ""
 
-#: applet.js:967
+#: applet.js:983
 msgid "Long focus"
 msgstr ""
 
-#: applet.js:1176
+#: applet.js:1192
 msgid "Pomodoro started"
 msgstr ""
 
-#: applet.js:1252
+#: applet.js:1268
 msgid "Let's go to work!"
 msgstr ""
 
-#: applet.js:1278
+#: applet.js:1294
 msgid "Pomodoro done"
 msgstr ""
 
-#: applet.js:1280
+#: applet.js:1296
 msgid "Take a short break"
 msgstr ""
 
-#: applet.js:1303
+#: applet.js:1319
 msgid "Set complete!"
 msgstr ""
 
-#: applet.js:1308
+#: applet.js:1324
 msgid "Take a long break"
 msgstr ""
 
-#: applet.js:1350
+#: applet.js:1366
 msgid "Pomodoro ended"
 msgstr ""
 
-#: applet.js:1496
+#: applet.js:1512
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
 
-#: applet.js:1566 features.js:1524
+#: applet.js:1582 features.js:1527
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr ""
 
-#: applet.js:1583
+#: applet.js:1599
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr ""
@@ -138,11 +138,11 @@ msgstr ""
 msgid "Choose or type a focus task"
 msgstr ""
 
-#: dialogs.js:65 features.js:470 features.js:530 features.js:1572
+#: dialogs.js:65 features.js:470 features.js:530 features.js:1575
 msgid "Cancel"
 msgstr ""
 
-#: dialogs.js:72 features.js:1573
+#: dialogs.js:72 features.js:1576
 msgid "Start"
 msgstr ""
 
@@ -215,7 +215,7 @@ msgstr ""
 msgid "Pomodoro finished, ready to take a break?"
 msgstr ""
 
-#: features.js:406 features.js:958
+#: features.js:406 features.js:955
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr ""
@@ -447,7 +447,7 @@ msgstr ""
 msgid "%d interruptions this week — what keeps pulling you away?"
 msgstr ""
 
-#: features.js:854 features.js:973
+#: features.js:854 features.js:976
 #, javascript-format
 msgid "Most focused around %s — good time for deep work."
 msgstr ""
@@ -466,112 +466,112 @@ msgstr ""
 msgid "Start a focus session — your insights will appear here."
 msgstr ""
 
-#: features.js:915
+#: features.js:914
 msgid "Focus statistics"
 msgstr ""
 
-#: features.js:930
+#: features.js:928
 #, javascript-format
 msgid "%d / %d goal"
 msgstr ""
 
-#: features.js:931
+#: features.js:929
 msgid "Today"
 msgstr ""
 
-#: features.js:932
+#: features.js:930
 msgid "This week"
 msgstr ""
 
-#: features.js:933
+#: features.js:931
 msgid "Streak"
 msgstr ""
 
-#: features.js:933
+#: features.js:931
 #, javascript-format
 msgid "best %d"
 msgstr ""
 
-#: features.js:934
+#: features.js:932
 msgid "All time"
 msgstr ""
 
-#: features.js:943
+#: features.js:940
 msgid "Sun"
 msgstr ""
 
-#: features.js:943
+#: features.js:940
 msgid "Mon"
 msgstr ""
 
-#: features.js:943
+#: features.js:940
 msgid "Tue"
 msgstr ""
 
-#: features.js:943
+#: features.js:940
 msgid "Wed"
 msgstr ""
 
-#: features.js:943
+#: features.js:940
 msgid "Thu"
 msgstr ""
 
-#: features.js:943
+#: features.js:940
 msgid "Fri"
 msgstr ""
 
-#: features.js:943
+#: features.js:940
 msgid "Sat"
 msgstr ""
 
-#: features.js:944
+#: features.js:941
 #, javascript-format
 msgid "This week: %d 🍅 · %s · best day %s"
 msgstr ""
 
-#: features.js:950
+#: features.js:947
 msgid "Nothing harvested yet today"
 msgstr ""
 
-#: features.js:952
+#: features.js:949
 msgid "Today's harvest"
 msgstr ""
 
-#: features.js:960
+#: features.js:956
 #, javascript-format
 msgid "Interruptions: %d today · %d this week"
 msgstr ""
 
-#: features.js:963
+#: features.js:966
 msgid "When you focus (by hour)"
 msgstr ""
 
-#: features.js:968
+#: features.js:971
 msgid "night"
 msgstr ""
 
-#: features.js:968
+#: features.js:971
 msgid "morning"
 msgstr ""
 
-#: features.js:968
+#: features.js:971
 msgid "afternoon"
 msgstr ""
 
-#: features.js:968
+#: features.js:971
 msgid "evening"
 msgstr ""
 
-#: features.js:974
+#: features.js:977
 msgid "Not enough data yet to spot your best focus time."
 msgstr ""
 
-#: features.js:978
-msgid "Focus time — last 14 days"
+#: features.js:986
+msgid "By task"
 msgstr ""
 
-#: features.js:988
-msgid "By task"
+#: features.js:1001
+msgid "Focus time — last 14 days"
 msgstr ""
 
 #: features.js:1005
@@ -586,76 +586,76 @@ msgstr ""
 msgid "More"
 msgstr ""
 
-#: features.js:1023 menu.js:512 menu.js:656
+#: features.js:1027 menu.js:512 menu.js:656
 #, javascript-format
 msgid "Milestones: %s"
 msgstr ""
 
-#: features.js:1029
+#: features.js:1032
 msgid "Export CSV"
 msgstr ""
 
-#: features.js:1030
+#: features.js:1033
 msgid "Close"
 msgstr ""
 
-#: features.js:1224
+#: features.js:1227
 msgid "No task"
 msgstr ""
 
-#: features.js:1265
+#: features.js:1268
 msgid "Could not open the hosts file"
 msgstr ""
 
-#: features.js:1319
+#: features.js:1322
 msgid "Add some domains to block first."
 msgstr ""
 
-#: features.js:1323
+#: features.js:1326
 msgid "Distractions blocked."
 msgstr ""
 
-#: features.js:1328
+#: features.js:1331
 msgid "Distractions unblocked."
 msgstr ""
 
-#: features.js:1337
+#: features.js:1340
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr ""
 
-#: features.js:1338
+#: features.js:1341
 msgid "Passwordless blocking enabled (asks once per session)."
 msgstr ""
 
-#: features.js:1345
+#: features.js:1348
 msgid "Passwordless blocking removed."
 msgstr ""
 
-#: features.js:1382
+#: features.js:1385
 msgid "Click to exit Zen"
 msgstr ""
 
-#: features.js:1417 visual.js:894
+#: features.js:1420 visual.js:894
 msgid "Focus"
 msgstr ""
 
-#: features.js:1494
+#: features.js:1497
 msgid "Breathe in"
 msgstr ""
 
-#: features.js:1497 features.js:1503
+#: features.js:1500 features.js:1506
 msgid "Hold"
 msgstr ""
 
-#: features.js:1500
+#: features.js:1503
 msgid "Breathe out"
 msgstr ""
 
-#: features.js:1530
+#: features.js:1533
 msgid "Focus until"
 msgstr ""
 
-#: features.js:1531
+#: features.js:1534
 msgid "Enter a time (HH:MM)"
 msgstr ""
 
@@ -1499,66 +1499,6 @@ msgid "Sent when a break finishes. Leave empty to send no message."
 msgstr ""
 
 #. settings-schema.json
-msgid "Notification sound"
-msgstr ""
-
-#. settings-schema.json
-msgid "Default"
-msgstr ""
-
-#. settings-schema.json
-msgid "Magic"
-msgstr ""
-
-#. settings-schema.json
-msgid "Bike"
-msgstr ""
-
-#. settings-schema.json
-msgid "Cosmic"
-msgstr ""
-
-#. settings-schema.json
-msgid "Gamelan"
-msgstr ""
-
-#. settings-schema.json
-msgid "Incoming"
-msgstr ""
-
-#. settings-schema.json
-msgid "Intermission"
-msgstr ""
-
-#. settings-schema.json
-msgid "None"
-msgstr ""
-
-#. settings-schema.json
-msgid "Sound the Pushover app plays for these notifications."
-msgstr ""
-
-#. settings-schema.json
-msgid "Priority"
-msgstr ""
-
-#. settings-schema.json
-msgid "Low"
-msgstr ""
-
-#. settings-schema.json
-msgid "Normal"
-msgstr ""
-
-#. settings-schema.json
-msgid "High"
-msgstr ""
-
-#. settings-schema.json
-msgid "Delivery priority: Low is quiet, High is more intrusive."
-msgstr ""
-
-#. settings-schema.json
 msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
 msgstr ""
 
@@ -1856,6 +1796,78 @@ msgstr ""
 msgid ""
 "Sent once when you hit your daily pomodoro goal. {task} and {minutes} are "
 "substituted. Leave empty to send nothing."
+msgstr ""
+
+#. settings-schema.json
+msgid "On focus start"
+msgstr ""
+
+#. settings-schema.json
+msgid "Notification sound"
+msgstr ""
+
+#. settings-schema.json
+msgid "Default"
+msgstr ""
+
+#. settings-schema.json
+msgid "Magic"
+msgstr ""
+
+#. settings-schema.json
+msgid "Bike"
+msgstr ""
+
+#. settings-schema.json
+msgid "Cosmic"
+msgstr ""
+
+#. settings-schema.json
+msgid "Gamelan"
+msgstr ""
+
+#. settings-schema.json
+msgid "Incoming"
+msgstr ""
+
+#. settings-schema.json
+msgid "Intermission"
+msgstr ""
+
+#. settings-schema.json
+msgid "None"
+msgstr ""
+
+#. settings-schema.json
+msgid "Priority"
+msgstr ""
+
+#. settings-schema.json
+msgid "Low"
+msgstr ""
+
+#. settings-schema.json
+msgid "Normal"
+msgstr ""
+
+#. settings-schema.json
+msgid "High"
+msgstr ""
+
+#. settings-schema.json
+msgid "On short break"
+msgstr ""
+
+#. settings-schema.json
+msgid "On long break"
+msgstr ""
+
+#. settings-schema.json
+msgid "On break end"
+msgstr ""
+
+#. settings-schema.json
+msgid "On daily goal"
 msgstr ""
 
 #. metadata.json

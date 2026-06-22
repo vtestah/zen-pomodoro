@@ -682,7 +682,16 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         if (this._progressLabel) {
             if (typeof progressPercent === "number") {
-                let line = `${progressPercent}${_("% complete")}`;
+                let line;
+                if (state === "pomodoro" || state === "pomodoro-paused") {
+                    let total = runtime.pomodoriTotal || 4;
+                    let cur = Math.min(total, (runtime.pomodoriDone || 0) + 1);
+                    line = _("Pomodoro %d of %d").format(cur, total);
+                } else if (state === "long-break" || state === "long-break-paused") {
+                    line = _("Long break");
+                } else {
+                    line = _("Short break");
+                }
                 if (runtime.endTime) {
                     line += ` \u00B7 ` + _("until %s").format(runtime.endTime);
                 }

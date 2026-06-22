@@ -596,3 +596,218 @@ msgstr "Требовать задачу фокуса перед стартом"
 
 msgid "Task"
 msgstr "Задача"
+
+msgid "Advanced"
+msgstr "Дополнительно"
+
+msgid "On-screen focus cues"
+msgstr "Экранные подсказки фокуса"
+
+msgid "Run a command"
+msgstr "Запуск команды"
+
+msgid "Push notifications (Pushover)"
+msgstr "Push-уведомления (Pushover)"
+
+msgid "Distraction blocking (advanced)"
+msgstr "Блокировка отвлечений (продвинутое)"
+
+msgid "Ticking sound (during focus)"
+msgstr "Тиканье (во время фокуса)"
+
+msgid "Alert sounds"
+msgstr "Звуки оповещений"
+
+msgid "Interval chime"
+msgstr "Интервальный сигнал"
+
+msgid "Mute notifications while focusing (Do Not Disturb)"
+msgstr "Глушить уведомления во время фокуса (Не беспокоить)"
+
+msgid "Run a command when focus or a break starts"
+msgstr "Запускать команду при старте фокуса или перерыва"
+
+msgid "Command to run when focus starts"
+msgstr "Команда при старте фокуса"
+
+msgid "Command to run when a break starts"
+msgstr "Команда при старте перерыва"
+
+msgid "Send a push notification (Pushover) on breaks"
+msgstr "Отправлять push-уведомление (Pushover) на перерывах"
+
+msgid "Pushover user key"
+msgstr "Ключ пользователя Pushover"
+
+msgid "Pushover application API token"
+msgstr "API-токен приложения Pushover"
+
+msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
+msgstr "Включить блокировку отвлечений (правит /etc/hosts с запросом прав)"
+
+msgid "Domains to block (e.g. youtube.com)"
+msgstr "Домены для блокировки (напр. youtube.com)"
+
+msgid "Block these domains now"
+msgstr "Заблокировать эти домены"
+
+msgid "Unblock"
+msgstr "Разблокировать"
+
+msgid "Edit /etc/hosts manually (admin)"
+msgstr "Редактировать /etc/hosts вручную (админ)"
+
+msgid "Play a chime at a regular interval during focus"
+msgstr "Проигрывать сигнал через равные промежутки во время фокуса"
+
+msgid "Chime interval (seconds):"
+msgstr "Интервал сигнала (секунды):"
+
+msgid "Chime sound file"
+msgstr "Файл звука сигнала"
+
+msgid "Chime volume:"
+msgstr "Громкость сигнала:"
+
+msgid "Resume an in-progress focus session after a Cinnamon restart."
+msgstr "Восстановить незавершённую фокус-сессию после перезапуска Cinnamon."
+
+msgid "Draw remaining time as a ring around the panel icon."
+msgstr "Показывать остаток времени кольцом вокруг значка на панели."
+
+msgid "Use a monochrome symbolic icon that follows your panel theme."
+msgstr "Использовать монохромный символический значок под тему панели."
+
+msgid "No anxious blinking near the end — a calm, steady cue instead."
+msgstr "Без тревожного мигания в конце — спокойный ровный индикатор."
+
+msgid "Briefly show 'Focus: <task>' with a smooth fade-in when focus begins."
+msgstr ""
+"Кратко показывать «Фокус: <задача>» с плавным появлением в начале фокуса."
+
+msgid "Ask for a task name before a focus session can start."
+msgstr "Спрашивать название задачи перед началом фокуса."
+
+msgid "How the on-screen focus frame is drawn."
+msgstr "Как рисуется экранная рамка фокуса."
+
+msgid "Strength of the on-screen edge glow."
+msgstr "Сила свечения по краям экрана."
+
+msgid "Color theme for the on-screen cues and accents."
+msgstr "Цветовая тема экранных подсказок и акцентов."
+
+msgid "Breathing rhythm used by the breathing guide."
+msgstr "Ритм дыхания для дыхательного гида."
+
+msgid "Disable focus animations (fades, pulsing, breathing)."
+msgstr "Отключить анимации фокуса (затухания, пульсацию, дыхание)."
+
+msgid "Scale the applet menu's text size."
+msgstr "Масштаб текста в меню апплета."
+
+msgid "Target pomodoros per day (0 turns off the goal and streak)."
+msgstr "Цель помидоров в день (0 отключает цель и серию)."
+
+msgid "Pause focus automatically when you step away from the computer."
+msgstr "Автоматически ставить фокус на паузу, когда отходишь от компьютера."
+
+msgid "When a pomodoro ends, offer to extend it to stay in flow."
+msgstr "По окончании помидора предлагать продлить, чтобы остаться в потоке."
+
+msgid "Play soft brown noise during focus."
+msgstr "Проигрывать мягкий коричневый шум во время фокуса."
+
+msgid "Show a breathing guide during breaks."
+msgstr "Показывать дыхательный гид во время перерывов."
+
+msgid "Allow a full-screen Zen overlay, toggled from the menu."
+msgstr "Разрешить полноэкранный Zen-режим (включается из меню)."
+
+msgid "Add a 'Focus until…' option (focus until a clock time)."
+msgstr "Добавить пункт «Фокус до…» (фокус до времени на часах)."
+
+msgid "Mute Cinnamon notifications while focusing; restored afterwards."
+msgstr "Глушить уведомления Cinnamon во время фокуса; затем восстановить."
+
+msgid "Play a sound at a fixed interval during focus to mark time passing."
+msgstr ""
+"Проигрывать звук через фиксированный интервал во время фокуса, отмечая ход "
+"времени."
+
+msgid "Run a command of your choice when focus or a break starts."
+msgstr "Запускать выбранную команду при старте фокуса или перерыва."
+
+msgid "Send a push notification to your devices via Pushover."
+msgstr "Отправлять push-уведомление на устройства через Pushover."
+
+msgid ""
+"Block distracting sites by editing /etc/hosts (asks for your password)."
+msgstr "Блокировать отвлекающие сайты правкой /etc/hosts (запросит пароль)."
+
+msgid ""
+"Adds the domains above to /etc/hosts (you'll be asked for your password "
+"once). They stay blocked until you click Unblock."
+msgstr ""
+"Добавляет домены выше в /etc/hosts (один раз спросит пароль). Блокировка "
+"держится, пока не нажмёшь «Разблокировать»."
+
+msgid ""
+"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
+" once)."
+msgstr ""
+"Удаляет записи блокировки Zen Pomodoro из /etc/hosts (один раз спросит "
+"пароль)."
+
+msgid ""
+"Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only"
+" manages its own clearly-marked section."
+msgstr ""
+"Открывает /etc/hosts в редакторе с правами администратора. Zen Pomodoro "
+"управляет только своей помеченной секцией."
+
+msgid "Statistics"
+msgstr "Статистика"
+
+msgid "Today: %d"
+msgstr "Сегодня: %d"
+
+msgid "Last 7 days: %d"
+msgstr "За 7 дней: %d"
+
+msgid "Last 30 days: %d"
+msgstr "За 30 дней: %d"
+
+msgid "All time: %d"
+msgstr "За всё время: %d"
+
+msgid "Streak: %d days"
+msgstr "Серия: %d дн."
+
+msgid "Pomodoro done — time for a short break."
+msgstr "Помидор готов — пора на короткий перерыв."
+
+msgid "Set complete — time for a long break."
+msgstr "Сет завершён — пора на длинный перерыв."
+
+msgid "Break's over — back to focus."
+msgstr "Перерыв окончен — снова в фокус."
+
+msgid "Could not open the hosts file"
+msgstr "Не удалось открыть файл hosts"
+
+msgid "Add some domains to block first."
+msgstr "Сначала добавьте домены для блокировки."
+
+msgid "Distractions blocked."
+msgstr "Отвлечения заблокированы."
+
+msgid "Distractions unblocked."
+msgstr "Блокировка снята."
+
+msgid ""
+"No sound backend was found. Install GSound or a sound player (e.g. the "
+"'pulseaudio-utils' or 'sox' package) to enable sounds."
+msgstr ""
+"Звуковой backend не найден. Установите GSound или плеер (напр. пакет "
+"«pulseaudio-utils» или «sox»), чтобы включить звук."

@@ -117,7 +117,7 @@ msgstr ""
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
 
-#: applet.js:1565 features.js:1485
+#: applet.js:1565 features.js:1496
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr ""
 
@@ -138,11 +138,11 @@ msgstr ""
 msgid "Choose or type a focus task"
 msgstr ""
 
-#: dialogs.js:65 features.js:470 features.js:530 features.js:1533
+#: dialogs.js:65 features.js:470 features.js:530 features.js:1544
 msgid "Cancel"
 msgstr ""
 
-#: dialogs.js:72 features.js:1534
+#: dialogs.js:72 features.js:1545
 msgid "Start"
 msgstr ""
 
@@ -215,7 +215,7 @@ msgstr ""
 msgid "Pomodoro finished, ready to take a break?"
 msgstr ""
 
-#: features.js:406 features.js:919
+#: features.js:406 features.js:930
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr ""
@@ -257,389 +257,393 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: features.js:558 menu.js:526
+#: features.js:559 menu.js:526
 msgid "Quick start"
 msgstr ""
 
-#: features.js:561
+#: features.js:568
 msgid "Welcome to Zen Pomodoro 🍅"
 msgstr ""
 
-#: features.js:562
+#: features.js:569
 msgid ""
 "Work in calm focus intervals with gentle on-screen cues instead of alarms. "
 "Let's set it up in a few quick steps — you can change everything later in "
 "Settings."
 msgstr ""
 
-#: features.js:564
+#: features.js:571
 msgid "Your rhythm"
 msgstr ""
 
-#: features.js:565
+#: features.js:572
 msgid ""
 "Pick a focus / short break / long break length. The classic Pomodoro is 25 /"
 " 5 / 15 minutes."
 msgstr ""
 
-#: features.js:567
+#: features.js:574
 msgid "25 / 5 / 15"
 msgstr ""
 
-#: features.js:568
+#: features.js:575
 msgid "50 / 10 / 20"
 msgstr ""
 
-#: features.js:571
+#: features.js:578
 msgid "Daily goal"
 msgstr ""
 
-#: features.js:572
+#: features.js:579
 msgid ""
 "How many pomodoros do you aim for each day? It powers your streak and the "
 "progress ring (you can turn it off)."
 msgstr ""
 
-#: features.js:574
+#: features.js:581
 msgid "Off"
 msgstr ""
 
-#: features.js:580
+#: features.js:587
 msgid "Calm focus"
 msgstr ""
 
-#: features.js:581
+#: features.js:588
 msgid ""
 "Recommended: mute notifications while focusing and play a soft periodic "
 "chime. Fine-tune all sounds later in Settings → Sounds."
 msgstr ""
 
-#: features.js:583
+#: features.js:590
 msgid "Mute notifications"
 msgstr ""
 
-#: features.js:584
+#: features.js:591
 msgid "Soft chime"
 msgstr ""
 
-#: features.js:587
+#: features.js:594
 msgid "Block distractions"
 msgstr ""
 
-#: features.js:588
+#: features.js:595
 msgid ""
 "Optionally block distracting sites during focus (edits /etc/hosts via an "
 "admin prompt). Add domains in Settings → Advanced — you can even set it up "
 "to ask for your password only once."
 msgstr ""
 
-#: features.js:589
+#: features.js:596
 msgid "Enable blocking"
 msgstr ""
 
-#: features.js:591
+#: features.js:598
 msgid "Track tasks"
 msgstr ""
 
-#: features.js:592
+#: features.js:599
 msgid ""
 "Add tasks with an estimate in pomodoros from the menu's Tasks submenu. Your "
 "current task links to the focus session, and the dashboard shows where your "
 "time goes."
 msgstr ""
 
-#: features.js:593
+#: features.js:600
 msgid "Add your first task (optional)"
 msgstr ""
 
-#: features.js:596
+#: features.js:603
 msgid "Add task"
 msgstr ""
 
-#: features.js:598
+#: features.js:605
 msgid "You're all set 🍅"
 msgstr ""
 
-#: features.js:599
+#: features.js:606
 msgid ""
 "Open the menu to start a focus, pick a task, or open Statistics → the "
 "dashboard. Set keyboard shortcuts in Settings → Panel. Enjoy calm, focused "
 "work!"
 msgstr ""
 
-#: features.js:601
+#: features.js:608
+msgid "Start first focus"
+msgstr ""
+
+#: features.js:612
 msgid "Skip"
 msgstr ""
 
-#: features.js:602
+#: features.js:613
 msgid "Back"
 msgstr ""
 
-#: features.js:603
+#: features.js:614
 msgid "Next"
 msgstr ""
 
-#: features.js:604
+#: features.js:615
 msgid "Done"
 msgstr ""
 
-#: features.js:615 menu.js:313
+#: features.js:626 menu.js:313
 #, javascript-format
 msgid "%d min"
 msgstr ""
 
-#: features.js:619 menu.js:317
+#: features.js:630 menu.js:317
 #, javascript-format
 msgid "%dh %dm"
 msgstr ""
 
-#: features.js:619 menu.js:317
+#: features.js:630 menu.js:317
 #, javascript-format
 msgid "%dh"
 msgstr ""
 
-#: features.js:781
+#: features.js:792
 msgid "Statistics exported"
 msgstr ""
 
-#: features.js:781
+#: features.js:792
 #, javascript-format
 msgid "Saved CSV + JSON to %s (opened the folder)."
 msgstr ""
 
-#: features.js:783
+#: features.js:794
 msgid "Export failed"
 msgstr ""
 
-#: features.js:806
+#: features.js:817
 #, javascript-format
 msgid "%d to go today — at your pace, done by about %s."
 msgstr ""
 
-#: features.js:807
+#: features.js:818
 #, javascript-format
 msgid "%d more to reach today's goal of %d."
 msgstr ""
 
-#: features.js:809
+#: features.js:820
 #, javascript-format
 msgid "Daily goal reached — %d done today. Nice."
 msgstr ""
 
-#: features.js:812
+#: features.js:823
 #, javascript-format
 msgid "%d interruptions this week — what keeps pulling you away?"
 msgstr ""
 
-#: features.js:815 features.js:934
+#: features.js:826 features.js:945
 #, javascript-format
 msgid "Most focused around %s — good time for deep work."
 msgstr ""
 
-#: features.js:818
+#: features.js:829
 #, javascript-format
 msgid "Most focus went to “%s”."
 msgstr ""
 
-#: features.js:820
+#: features.js:831
 #, javascript-format
 msgid "%d pomodoros this week. Keep it going."
 msgstr ""
 
-#: features.js:821
+#: features.js:832
 msgid "Start a focus session — your insights will appear here."
 msgstr ""
 
-#: features.js:876
+#: features.js:887
 msgid "Focus statistics"
 msgstr ""
 
-#: features.js:891
+#: features.js:902
 #, javascript-format
 msgid "%d / %d goal"
 msgstr ""
 
-#: features.js:892
+#: features.js:903
 msgid "Today"
 msgstr ""
 
-#: features.js:893
+#: features.js:904
 msgid "This week"
 msgstr ""
 
-#: features.js:894
+#: features.js:905
 msgid "Streak"
-msgstr ""
-
-#: features.js:894
-#, javascript-format
-msgid "best %d"
-msgstr ""
-
-#: features.js:895
-msgid "All time"
-msgstr ""
-
-#: features.js:904
-msgid "Sun"
-msgstr ""
-
-#: features.js:904
-msgid "Mon"
-msgstr ""
-
-#: features.js:904
-msgid "Tue"
-msgstr ""
-
-#: features.js:904
-msgid "Wed"
-msgstr ""
-
-#: features.js:904
-msgid "Thu"
-msgstr ""
-
-#: features.js:904
-msgid "Fri"
-msgstr ""
-
-#: features.js:904
-msgid "Sat"
 msgstr ""
 
 #: features.js:905
 #, javascript-format
+msgid "best %d"
+msgstr ""
+
+#: features.js:906
+msgid "All time"
+msgstr ""
+
+#: features.js:915
+msgid "Sun"
+msgstr ""
+
+#: features.js:915
+msgid "Mon"
+msgstr ""
+
+#: features.js:915
+msgid "Tue"
+msgstr ""
+
+#: features.js:915
+msgid "Wed"
+msgstr ""
+
+#: features.js:915
+msgid "Thu"
+msgstr ""
+
+#: features.js:915
+msgid "Fri"
+msgstr ""
+
+#: features.js:915
+msgid "Sat"
+msgstr ""
+
+#: features.js:916
+#, javascript-format
 msgid "This week: %d 🍅 · %s · best day %s"
 msgstr ""
 
-#: features.js:911
+#: features.js:922
 msgid "Nothing harvested yet today"
 msgstr ""
 
-#: features.js:913
+#: features.js:924
 msgid "Today's harvest"
 msgstr ""
 
-#: features.js:921
+#: features.js:932
 #, javascript-format
 msgid "Interruptions: %d today · %d this week"
 msgstr ""
 
-#: features.js:924
+#: features.js:935
 msgid "When you focus (by hour)"
 msgstr ""
 
-#: features.js:929
+#: features.js:940
 msgid "night"
 msgstr ""
 
-#: features.js:929
+#: features.js:940
 msgid "morning"
 msgstr ""
 
-#: features.js:929
+#: features.js:940
 msgid "afternoon"
 msgstr ""
 
-#: features.js:929
+#: features.js:940
 msgid "evening"
 msgstr ""
 
-#: features.js:935
+#: features.js:946
 msgid "Not enough data yet to spot your best focus time."
 msgstr ""
 
-#: features.js:939
+#: features.js:950
 msgid "Focus time — last 14 days"
 msgstr ""
 
-#: features.js:949
+#: features.js:960
 msgid "By task"
 msgstr ""
 
-#: features.js:966
+#: features.js:977
 msgid "Activity — last 12 weeks"
 msgstr ""
 
-#: features.js:971
+#: features.js:982
 msgid "Less"
 msgstr ""
 
-#: features.js:975
+#: features.js:986
 msgid "More"
 msgstr ""
 
-#: features.js:984 menu.js:512 menu.js:656
+#: features.js:995 menu.js:512 menu.js:656
 #, javascript-format
 msgid "Milestones: %s"
 msgstr ""
 
-#: features.js:990
+#: features.js:1001
 msgid "Export CSV"
 msgstr ""
 
-#: features.js:991
+#: features.js:1002
 msgid "Close"
 msgstr ""
 
-#: features.js:1185
+#: features.js:1196
 msgid "No task"
 msgstr ""
 
-#: features.js:1226
+#: features.js:1237
 msgid "Could not open the hosts file"
 msgstr ""
 
-#: features.js:1280
+#: features.js:1291
 msgid "Add some domains to block first."
 msgstr ""
 
-#: features.js:1284
+#: features.js:1295
 msgid "Distractions blocked."
 msgstr ""
 
-#: features.js:1289
+#: features.js:1300
 msgid "Distractions unblocked."
 msgstr ""
 
-#: features.js:1298
+#: features.js:1309
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr ""
 
-#: features.js:1299
+#: features.js:1310
 msgid "Passwordless blocking enabled (asks once per session)."
 msgstr ""
 
-#: features.js:1306
+#: features.js:1317
 msgid "Passwordless blocking removed."
 msgstr ""
 
-#: features.js:1343
+#: features.js:1354
 msgid "Click to exit Zen"
 msgstr ""
 
-#: features.js:1378 visual.js:894
+#: features.js:1389 visual.js:894
 msgid "Focus"
 msgstr ""
 
-#: features.js:1455
+#: features.js:1466
 msgid "Breathe in"
 msgstr ""
 
-#: features.js:1458 features.js:1464
+#: features.js:1469 features.js:1475
 msgid "Hold"
 msgstr ""
 
-#: features.js:1461
+#: features.js:1472
 msgid "Breathe out"
 msgstr ""
 
-#: features.js:1491
+#: features.js:1502
 msgid "Focus until"
 msgstr ""
 
-#: features.js:1492
+#: features.js:1503
 msgid "Enter a time (HH:MM)"
 msgstr ""
 

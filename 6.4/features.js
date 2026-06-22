@@ -555,7 +555,14 @@ function install(proto) {
 
         let build = () => {
             content.destroy_all_children();
-            content.add(new St.Label({ text: _("Quick start") + "   " + (st.step + 1) + " / " + TOTAL, style: 'font-size: 0.8em; opacity: 0.6;' }));
+            let head = new St.BoxLayout({ vertical: false, style: 'spacing: 4px; padding-bottom: 2px;' });
+            head.add(new St.Label({ text: _("Quick start"), style: 'font-size: 0.8em; padding-right: 6px;' }));
+            for (let i = 0; i < TOTAL; i++) {
+                let dot = new St.Label({ text: "\ud83c\udf45", style: 'font-size: 0.95em;' });
+                dot.set_opacity(i <= st.step ? 255 : 70);
+                head.add(dot);
+            }
+            content.add(head);
             let s = st.step;
             if (s === 0) {
                 content.add(title(_("Welcome to Zen Pomodoro \ud83c\udf45")));
@@ -597,6 +604,10 @@ function install(proto) {
             } else {
                 content.add(title(_("You're all set \ud83c\udf45")));
                 content.add(para(_("Open the menu to start a focus, pick a task, or open Statistics → the dashboard. Set keyboard shortcuts in Settings → Panel. Enjoy calm, focused work!")));
+                let startBtn = new St.Button({ style_class: 'button', style: 'padding: 6px 14px; margin-top: 8px;' });
+                startBtn.set_label("\ud83c\udf45 " + _("Start first focus"));
+                startBtn.connect('clicked', () => { finish(); this._startTimerFromMenu(); });
+                content.add(startBtn);
             }
             let buttons = [{ label: _("Skip"), action: finish }];
             if (st.step > 0) { buttons.push({ label: _("Back"), action: () => { st.step--; build(); } }); }

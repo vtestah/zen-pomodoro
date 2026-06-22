@@ -489,6 +489,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._populatePresetSubmenu();
 
         this._statsSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Statistics"));
+        let dashItem = new PopupMenu.PopupMenuItem("\ud83d\udcca " + _("Open dashboard\u2026"));
+        dashItem.connect('activate', () => { this.emit('open-stats'); });
+        this._statsSubmenu.menu.addMenuItem(dashItem);
         this._statTodayItem = new PopupMenu.PopupMenuItem(_("Today: %d").format(0));
         this._statTodayItem.setSensitive(false);
         this._statsSubmenu.menu.addMenuItem(this._statTodayItem);

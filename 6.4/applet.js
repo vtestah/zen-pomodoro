@@ -1592,6 +1592,10 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._applyDurationPreset(preset.pomodoro, preset.short_break, preset.long_break, preset.pomodori);
         });
 
+        menu.connect('open-stats', () => {
+            this._showStatsDashboard();
+        });
+
         menu.connect('skip-timer', () => {
             let timer = this._timerQueue.getCurrentTimer();
             this._timerQueue.skip();

@@ -15,6 +15,9 @@ const Mainloop = imports.mainloop;
 const Util = imports.misc.util;
 const ByteArray = imports.byteArray;
 const Gettext = imports.gettext;
+const ModalDialog = imports.ui.modalDialog;
+const Dialog = imports.ui.dialog;
+const CinnamonEntry = imports.ui.cinnamonEntry;
 
 const UUID = "zen-pomodoro@vtestah";
 function _(str) { return Gettext.dgettext(UUID, str); }
@@ -239,6 +242,198 @@ function install(proto) {
             bestDay: best,
             heatmap: heatmap
         };
+    };
+
+    proto._dashFmtMin = function(min) {
+        min = Math.max(0, Math.round(min || 0));
+        if (min < 60) {
+            return _("%d min").format(min);
+        }
+        let hrs = Math.floor(min / 60);
+        let rem = min % 60;
+        return rem ? _("%dh %dm").format(hrs, rem) : _("%dh").format(hrs);
+    };
+
+    proto._dashMilestoneTier = function(value, tiers) {
+        let best = 0;
+        for (let t of tiers) {
+            if (value >= t) {
+                best = t;
+            }
+        }
+        return best;
+    };
+
+    proto._dashStatCard = function(caption, value, sub, accent) {
+        let col = `rgb(${Math.round(accent[0] * 255)},${Math.round(accent[1] * 255)},${Math.round(accent[2] * 255)})`;
+        let card = new St.BoxLayout({
+            vertical: true,
+            x_expand: true,
+            style: 'spacing: 3px; padding: 12px; border-radius: 10px; background-color: rgba(255,255,255,0.06); min-width: 118px;'
+        });
+        card.add(new St.Label({ text: caption, style: 'font-size: 0.82em;' }));
+        card.add(new St.Label({ text: value, style: 'font-size: 1.7em; font-weight: bold; color: ' + col + ';' }));
+        card.add(new St.Label({ text: sub || "", style: 'font-size: 0.82em;' }));
+        return card;
+    };
+
+    proto._paintDashBars = function(area) {
+        let cr = area.get_context();
+        try {
+            let [w, h] = area.get_surface_size();
+            let bars = this._dashBars || [];
+            let n = bars.length || 14;
+            let maxv = 1;
+            for (let b of bars) {
+                if (b.min > maxv) { maxv = b.min; }
+            }
+            let gap = 6;
+            let bottomPad = 4;
+            let bw = Math.max(2, (w - gap * (n - 1)) / n);
+            let chartH = Math.max(4, h - bottomPad);
+            let acc = this._dashAccent || [0.93, 0.42, 0.31];
+            for (let i = 0; i < n; i++) {
+                let b = bars[i] || { min: 0 };
+                let x = Math.round(i * (bw + gap));
+                cr.setSourceRGBA(1, 1, 1, 0.06);
+                cr.rectangle(x, 0, Math.round(bw), chartH);
+                cr.fill();
+                let bh = Math.round((b.min / maxv) * (chartH - 2));
+                if (bh > 0) {
+                    cr.setSourceRGBA(acc[0], acc[1], acc[2], b.today ? 1.0 : 0.62);
+                    cr.rectangle(x, chartH - bh, Math.round(bw), bh);
+                    cr.fill();
+                }
+            }
+        } finally {
+            cr.$dispose();
+        }
+    };
+
+    proto._paintDashHeatmap = function(area) {
+        let cr = area.get_context();
+        try {
+            let [w, h] = area.get_surface_size();
+            let data = this._dashHeatmap || [];
+            let cols = 12;
+            let rows = 7;
+            let maxv = 1;
+            for (let v of data) {
+                if (v > maxv) { maxv = v; }
+            }
+            let gap = 3;
+            let cw = Math.max(3, (w - gap * (cols - 1)) / cols);
+            let ch = Math.max(3, (h - gap * (rows - 1)) / rows);
+            let acc = this._dashAccent || [0.93, 0.42, 0.31];
+            for (let col = 0; col < cols; col++) {
+                for (let row = 0; row < rows; row++) {
+                    let idx = col * rows + row;
+                    let v = (idx < data.length) ? data[idx] : 0;
+                    let x = Math.round(col * (cw + gap));
+                    let y = Math.round(row * (ch + gap));
+                    if (v > 0) {
+                        cr.setSourceRGBA(acc[0], acc[1], acc[2], 0.2 + 0.8 * (v / maxv));
+                    } else {
+                        cr.setSourceRGBA(1, 1, 1, 0.06);
+                    }
+                    cr.rectangle(x, y, Math.round(cw), Math.round(ch));
+                    cr.fill();
+                }
+            }
+        } finally {
+            cr.$dispose();
+        }
+    };
+
+    proto._paintDashLegend = function(area) {
+        let cr = area.get_context();
+        try {
+            let [w, h] = area.get_surface_size();
+            let acc = this._dashAccent || [0.93, 0.42, 0.31];
+            let n = 5;
+            let gap = 3;
+            let cw = Math.max(3, (w - gap * (n - 1)) / n);
+            for (let i = 0; i < n; i++) {
+                let x = Math.round(i * (cw + gap));
+                if (i === 0) {
+                    cr.setSourceRGBA(1, 1, 1, 0.06);
+                } else {
+                    cr.setSourceRGBA(acc[0], acc[1], acc[2], 0.2 + 0.8 * (i / (n - 1)));
+                }
+                cr.rectangle(x, 0, Math.round(cw), h);
+                cr.fill();
+            }
+        } finally {
+            cr.$dispose();
+        }
+    };
+
+    proto._showStatsDashboard = function() {
+        let st = this._computeStats();
+        let accent = [0.93, 0.42, 0.31];
+        let green = [0.36, 0.78, 0.55];
+        this._dashAccent = accent;
+
+        let h = (this._dailyStatsData && this._dailyStatsData.history) ? this._dailyStatsData.history : {};
+        let cellOf = (d) => h[d] || { c: 0, m: 0 };
+        let bars = [];
+        for (let i = 13; i >= 0; i--) {
+            let cell = cellOf(this._todayStr(new Date(Date.now() - i * 86400000)));
+            bars.push({ min: cell.m, count: cell.c, today: (i === 0) });
+        }
+        this._dashBars = bars;
+        this._dashHeatmap = st.heatmap || [];
+
+        let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
+        let root = new St.BoxLayout({ vertical: true, style: 'spacing: 12px; min-width: 560px; padding: 6px 10px;' });
+
+        root.add(new St.Label({ text: _("Focus statistics"), style: 'font-size: 1.5em; font-weight: bold;' }));
+
+        let cards = new St.BoxLayout({ vertical: false, style: 'spacing: 10px;' });
+        let trend = "";
+        if ((st.lastWeek || 0) > 0) {
+            let p = Math.round(((st.week || 0) - st.lastWeek) / st.lastWeek * 100);
+            trend = (p > 0 ? "\u25b2 " : (p < 0 ? "\u25bc " : "")) + Math.abs(p) + "%";
+        }
+        cards.add(this._dashStatCard(_("Today"), (st.today || 0) + " \ud83c\udf45", this._dashFmtMin(st.todayMin || 0), accent));
+        cards.add(this._dashStatCard(_("This week"), (st.week || 0) + " \ud83c\udf45", this._dashFmtMin(st.weekMin || 0) + (trend ? ("   " + trend) : ""), accent));
+        cards.add(this._dashStatCard(_("Streak"), (st.streak || 0) + " \ud83d\udd25", _("best %d").format(st.longestStreak || 0), green));
+        cards.add(this._dashStatCard(_("All time"), (st.total || 0) + " \ud83c\udf45", this._dashFmtMin(st.totalMinutes || 0), accent));
+        root.add(cards);
+
+        root.add(new St.Label({ text: _("Focus time \u2014 last 14 days"), style: 'font-weight: bold; padding-top: 4px;' }));
+        let barArea = new St.DrawingArea({ x_expand: true, style: 'height: 150px;' });
+        barArea.connect('repaint', (a) => this._paintDashBars(a));
+        root.add(barArea);
+
+        root.add(new St.Label({ text: _("Activity \u2014 last 12 weeks"), style: 'font-weight: bold; padding-top: 4px;' }));
+        let heatArea = new St.DrawingArea({ x_expand: true, style: 'height: 92px;' });
+        heatArea.connect('repaint', (a) => this._paintDashHeatmap(a));
+        root.add(heatArea);
+
+        let legend = new St.BoxLayout({ vertical: false, style: 'spacing: 6px;' });
+        legend.add(new St.Label({ text: _("Less"), style: 'font-size: 0.8em;' }));
+        let legendCells = new St.DrawingArea({ style: 'width: 90px; height: 14px;' });
+        legendCells.connect('repaint', (a) => this._paintDashLegend(a));
+        legend.add(legendCells);
+        legend.add(new St.Label({ text: _("More"), style: 'font-size: 0.8em;' }));
+        root.add(legend);
+
+        let tot = this._dashMilestoneTier(st.total || 0, [10, 25, 50, 100, 250, 500, 1000, 2000]);
+        let stk = this._dashMilestoneTier(st.longestStreak || 0, [3, 7, 14, 30, 60, 100, 365]);
+        let badges = [];
+        if (tot > 0) { badges.push("\ud83c\udfc6 " + tot); }
+        if (stk > 0) { badges.push("\ud83d\udd25 " + stk); }
+        if (badges.length) {
+            root.add(new St.Label({ text: _("Milestones: %s").format(badges.join("    ")), style: 'padding-top: 4px; font-weight: bold;' }));
+        }
+
+        dialog.contentLayout.add(root);
+        dialog.setButtons([
+            { label: _("Close"), key: Clutter.KEY_Escape, default: true, action: () => dialog.close() }
+        ]);
+        dialog.open();
+        return dialog;
     };
 
     proto._clearIdleWatches = function() {

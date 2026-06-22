@@ -113,15 +113,15 @@ msgstr ""
 msgid "Pomodoro ended"
 msgstr ""
 
-#: applet.js:1447
+#: applet.js:1451
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
 
-#: applet.js:1517 features.js:710
+#: applet.js:1521 features.js:904
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr ""
 
-#: applet.js:1534
+#: applet.js:1538
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr ""
@@ -138,11 +138,11 @@ msgstr ""
 msgid "Choose or type a focus task"
 msgstr ""
 
-#: dialogs.js:65 features.js:758
+#: dialogs.js:65 features.js:952
 msgid "Cancel"
 msgstr ""
 
-#: dialogs.js:72 features.js:759
+#: dialogs.js:72 features.js:953
 msgid "Start"
 msgstr ""
 
@@ -215,51 +215,116 @@ msgstr ""
 msgid "Pomodoro finished, ready to take a break?"
 msgstr ""
 
-#: features.js:432
+#: features.js:250 menu.js:307
+#, javascript-format
+msgid "%d min"
+msgstr ""
+
+#: features.js:254 menu.js:311
+#, javascript-format
+msgid "%dh %dm"
+msgstr ""
+
+#: features.js:254 menu.js:311
+#, javascript-format
+msgid "%dh"
+msgstr ""
+
+#: features.js:390
+msgid "Focus statistics"
+msgstr ""
+
+#: features.js:398
+msgid "Today"
+msgstr ""
+
+#: features.js:399
+msgid "This week"
+msgstr ""
+
+#: features.js:400
+msgid "Streak"
+msgstr ""
+
+#: features.js:400
+#, javascript-format
+msgid "best %d"
+msgstr ""
+
+#: features.js:401
+msgid "All time"
+msgstr ""
+
+#: features.js:404
+msgid "Focus time — last 14 days"
+msgstr ""
+
+#: features.js:409
+msgid "Activity — last 12 weeks"
+msgstr ""
+
+#: features.js:415
+msgid "Less"
+msgstr ""
+
+#: features.js:419
+msgid "More"
+msgstr ""
+
+#: features.js:428 menu.js:502 menu.js:642
+#, javascript-format
+msgid "Milestones: %s"
+msgstr ""
+
+#: features.js:433
+msgid "Close"
+msgstr ""
+
+#: features.js:626
 msgid "No task"
 msgstr ""
 
-#: features.js:473
+#: features.js:667
 msgid "Could not open the hosts file"
 msgstr ""
 
-#: features.js:522
+#: features.js:716
 msgid "Add some domains to block first."
 msgstr ""
 
-#: features.js:526
+#: features.js:720
 msgid "Distractions blocked."
 msgstr ""
 
-#: features.js:531
+#: features.js:725
 msgid "Distractions unblocked."
 msgstr ""
 
-#: features.js:568
+#: features.js:762
 msgid "Click to exit Zen"
 msgstr ""
 
-#: features.js:603 visual.js:894
+#: features.js:797 visual.js:894
 msgid "Focus"
 msgstr ""
 
-#: features.js:680
+#: features.js:874
 msgid "Breathe in"
 msgstr ""
 
-#: features.js:683 features.js:689
+#: features.js:877 features.js:883
 msgid "Hold"
 msgstr ""
 
-#: features.js:686
+#: features.js:880
 msgid "Breathe out"
 msgstr ""
 
-#: features.js:716
+#: features.js:910
 msgid "Focus until"
 msgstr ""
 
-#: features.js:717
+#: features.js:911
 msgid "Enter a time (HH:MM)"
 msgstr ""
 
@@ -271,27 +336,12 @@ msgstr ""
 msgid "READY"
 msgstr ""
 
-#: menu.js:243 menu.js:660
+#: menu.js:243 menu.js:663
 msgid "Ready to start"
 msgstr ""
 
-#: menu.js:251 menu.js:690
+#: menu.js:251 menu.js:693
 msgid "Task will be selected on start"
-msgstr ""
-
-#: menu.js:307
-#, javascript-format
-msgid "%d min"
-msgstr ""
-
-#: menu.js:311
-#, javascript-format
-msgid "%dh %dm"
-msgstr ""
-
-#: menu.js:311
-#, javascript-format
-msgid "%dh"
 msgstr ""
 
 #: menu.js:377
@@ -299,7 +349,7 @@ msgstr ""
 msgid "Pomodoro %d / %d"
 msgstr ""
 
-#: menu.js:385 menu.js:757
+#: menu.js:385 menu.js:760
 msgid "Start focus"
 msgstr ""
 
@@ -331,7 +381,7 @@ msgstr ""
 msgid "Zen mode"
 msgstr ""
 
-#: menu.js:473 menu.js:702 menu.js:829
+#: menu.js:473 menu.js:705 menu.js:832
 msgid "Preset"
 msgstr ""
 
@@ -339,108 +389,107 @@ msgstr ""
 msgid "Statistics"
 msgstr ""
 
-#: menu.js:478 menu.js:601
+#: menu.js:478
+msgid "Open dashboard…"
+msgstr ""
+
+#: menu.js:481 menu.js:604
 #, javascript-format
 msgid "Today: %d"
 msgstr ""
 
-#: menu.js:481 menu.js:606
+#: menu.js:484 menu.js:609
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr ""
 
-#: menu.js:484 menu.js:615
+#: menu.js:487 menu.js:618
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr ""
 
-#: menu.js:487 menu.js:618
+#: menu.js:490 menu.js:621
 #, javascript-format
 msgid "All time: %d"
 msgstr ""
 
-#: menu.js:490 menu.js:621
+#: menu.js:493 menu.js:624
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr ""
 
-#: menu.js:493 menu.js:624
+#: menu.js:496 menu.js:627
 #, javascript-format
 msgid "Streak: %d days (best %d)"
 msgstr ""
 
-#: menu.js:496 menu.js:627
+#: menu.js:499 menu.js:630
 #, javascript-format
 msgid "Best day: %d"
 msgstr ""
 
-#: menu.js:499 menu.js:639
-#, javascript-format
-msgid "Milestones: %s"
-msgstr ""
-
-#: menu.js:499 menu.js:639
+#: menu.js:502 menu.js:642
 msgid "none yet"
 msgstr ""
 
-#: menu.js:514
+#: menu.js:517
 msgid "SESSION"
 msgstr ""
 
-#: menu.js:531
+#: menu.js:534
 msgid "Session…"
 msgstr ""
 
-#: menu.js:587
+#: menu.js:590
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr ""
 
-#: menu.js:654
+#: menu.js:657
 #, javascript-format
 msgid "% complete"
 msgstr ""
 
-#: menu.js:656
+#: menu.js:659
 #, javascript-format
 msgid "until %s"
 msgstr ""
 
-#: menu.js:660
+#: menu.js:663
 msgid "Break finished"
 msgstr ""
 
-#: menu.js:686 menu.js:688
+#: menu.js:689 menu.js:691
 #, javascript-format
 msgid "Task: %s"
 msgstr ""
 
-#: menu.js:692
+#: menu.js:695
 msgid "Task: none"
 msgstr ""
 
-#: menu.js:714
+#: menu.js:717
 #, javascript-format
 msgid "Hotkey: %s"
 msgstr ""
 
-#: menu.js:744
+#: menu.js:747
 msgid "Resume break"
 msgstr ""
 
-#: menu.js:744
+#: menu.js:747
 msgid "Resume focus"
 msgstr ""
 
-#: menu.js:749
+#: menu.js:752
 msgid "Pause focus"
 msgstr ""
 
-#: menu.js:749
+#: menu.js:752
 msgid "Pause break"
 msgstr ""
 
-#: menu.js:753
+#: menu.js:756
 msgid "Start next focus"
 msgstr ""
 

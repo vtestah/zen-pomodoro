@@ -160,6 +160,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_autoStartNewAfterFinish = null;
         this._opt_displayIconInPanel = null;
         this._opt_showTimerInPanel = null;
+        this._opt_showSeconds = null;
         this._opt_hotkey = null;
         this._opt_playTickerSound = null;
         this._opt_tickerSoundPath = null;
@@ -393,6 +394,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "display_icon", "_opt_displayIconInPanel", this._onAppletIconChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "use_symbolic_icon", "_opt_useSymbolicIconInPanel", this._onAppletIconChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "show_timer", "_opt_showTimerInPanel", this._onShowTimerChanged.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "show_seconds", "_opt_showSeconds", this._onShowTimerChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "timer_sound", "_opt_playTickerSound", this._onPlayTickedSoundChanged.bind(this));
 
         // Binding properties that require updating or recalculating other settings
@@ -461,7 +463,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         let timerText = this._getPanelStateLabel();
     
         if (this._currentState !== 'pomodoro-stop' && this._currentState !== 'break-over' && this._opt_showTimerInPanel) {
-            timerText += ` ${timeLeft}`;
+            let panelTime = (this._opt_showSeconds === false) ? `${Math.max(0, Math.ceil(ticks / 60))}m` : timeLeft;
+            timerText += ` ${panelTime}`;
         }
 
         let progressPercent = this._getTimerProgressPercent(ticks);

@@ -88,6 +88,7 @@
                 "display_icon",
                 "use_symbolic_icon",
                 "show_timer",
+                "show_seconds",
                 "panel_progress_icon",
                 "hotkey"
             ]
@@ -306,6 +307,13 @@
         "type": "switch",
         "description": "Show the pomodoro timer in the applet panel",
         "default": true
+    },
+    "show_seconds": {
+        "type": "switch",
+        "description": "Show seconds in the panel timer",
+        "default": true,
+        "tooltip": "Off shows only the remaining minutes on the panel (less distracting).",
+        "dependency": "show_timer"
     },
     "hotkey": {
         "type": "keybinding",

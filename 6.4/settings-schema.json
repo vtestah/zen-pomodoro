@@ -226,31 +226,34 @@
         }
     },
     "pomodoro_duration": {
-        "type": "scale",
+        "type": "spinbutton",
         "default": 25,
         "min": 1,
         "max": 60,
         "step": 1,
-        "description": "Pomodoro Duration:"
+        "description": "Pomodoro Duration:",
+        "units": "minutes"
     },
     "short_break_duration": {
-        "type": "scale",
+        "type": "spinbutton",
         "default": 5,
         "min": 1,
         "max": 15,
         "step": 1,
-        "description": "Short Break Duration:"
+        "description": "Short Break Duration:",
+        "units": "minutes"
     },
     "long_break_duration": {
-        "type": "scale",
+        "type": "spinbutton",
         "default": 15,
         "min": 1,
         "max": 60,
         "step": 1,
-        "description": "Long Break Duration:"
+        "description": "Long Break Duration:",
+        "units": "minutes"
     },
     "pomodori_number": {
-        "type": "scale",
+        "type": "spinbutton",
         "default": 4,
         "min": 1,
         "max": 10,

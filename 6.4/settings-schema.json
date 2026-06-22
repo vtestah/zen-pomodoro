@@ -21,7 +21,8 @@
             "type": "page",
             "title": "Panel",
             "sections": [
-                "sec_panel"
+                "sec_panel",
+                "sec_shortcuts"
             ]
         },
         "appearance": {
@@ -90,11 +91,7 @@
                 "show_timer",
                 "show_seconds",
                 "panel_progress_icon",
-                "start_on_click",
-                "hdr_shortcuts",
-                "hotkey",
-                "hotkey_toggle",
-                "hotkey_skip"
+                "start_on_click"
             ]
         },
         "sec_hud": {
@@ -234,6 +231,15 @@
                 "custom_short_break_script",
                 "custom_long_break_script"
             ]
+        },
+        "sec_shortcuts": {
+            "type": "section",
+            "title": "Keyboard shortcuts",
+            "keys": [
+                "hotkey",
+                "hotkey_toggle",
+                "hotkey_skip"
+            ]
         }
     },
     "pomodoro_duration": {
@@ -324,10 +330,6 @@
         "default": true,
         "tooltip": "Off shows only the remaining minutes on the panel (less distracting).",
         "dependency": "show_timer"
-    },
-    "hdr_shortcuts": {
-        "type": "header",
-        "description": "Keyboard shortcuts"
     },
     "hotkey": {
         "type": "keybinding",

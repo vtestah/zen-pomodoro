@@ -81,6 +81,12 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._resetAllItem = null;
         this._skipTimerItem = null;
         this._sessionSubmenu = null;
+        this._statsSubmenu = null;
+        this._statTodayItem = null;
+        this._statWeekItem = null;
+        this._statMonthItem = null;
+        this._statTotalItem = null;
+        this._statStreakItem = null;
     }
 
     _getLayoutCategory(state) {
@@ -432,6 +438,24 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._presetSubmenu.menu.addMenuItem(preset50);
         this.addMenuItem(this._presetSubmenu);
 
+        this._statsSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Statistics"));
+        this._statTodayItem = new PopupMenu.PopupMenuItem(_("Today: %d").format(0));
+        this._statTodayItem.setSensitive(false);
+        this._statsSubmenu.menu.addMenuItem(this._statTodayItem);
+        this._statWeekItem = new PopupMenu.PopupMenuItem(_("Last 7 days: %d").format(0));
+        this._statWeekItem.setSensitive(false);
+        this._statsSubmenu.menu.addMenuItem(this._statWeekItem);
+        this._statMonthItem = new PopupMenu.PopupMenuItem(_("Last 30 days: %d").format(0));
+        this._statMonthItem.setSensitive(false);
+        this._statsSubmenu.menu.addMenuItem(this._statMonthItem);
+        this._statTotalItem = new PopupMenu.PopupMenuItem(_("All time: %d").format(0));
+        this._statTotalItem.setSensitive(false);
+        this._statsSubmenu.menu.addMenuItem(this._statTotalItem);
+        this._statStreakItem = new PopupMenu.PopupMenuItem(_("Streak: %d days").format(0));
+        this._statStreakItem.setSensitive(false);
+        this._statsSubmenu.menu.addMenuItem(this._statStreakItem);
+        this.addMenuItem(this._statsSubmenu);
+
         this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         this.addMenuItem(this._makeSectionLabel(_("SESSION")));
 
@@ -518,6 +542,25 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 this._dailyLabel.show();
             } else {
                 this._dailyLabel.hide();
+            }
+        }
+
+        if (this._statsSubmenu && runtime.stats) {
+            let st = runtime.stats;
+            if (this._statTodayItem) {
+                this._statTodayItem.label.set_text(_("Today: %d").format(st.today || 0));
+            }
+            if (this._statWeekItem) {
+                this._statWeekItem.label.set_text(_("Last 7 days: %d").format(st.week || 0));
+            }
+            if (this._statMonthItem) {
+                this._statMonthItem.label.set_text(_("Last 30 days: %d").format(st.month || 0));
+            }
+            if (this._statTotalItem) {
+                this._statTotalItem.label.set_text(_("All time: %d").format(st.total || 0));
+            }
+            if (this._statStreakItem) {
+                this._statStreakItem.label.set_text(_("Streak: %d days").format(st.streak || 0));
             }
         }
 

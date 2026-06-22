@@ -85,12 +85,32 @@ function install(proto) {
 
     proto._loadDailyStatsAsync = function(onDone) {
         this._readJsonAsync(POMODORO_STATS_FILE, (parsed) => {
-            let data = { date: "", count: 0, streak: 0, lastGoalMetDate: "" };
+            let data = { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0 };
             if (parsed && typeof parsed === "object") {
                 data.date = parsed.date || "";
                 data.count = parseInt(parsed.count) || 0;
                 data.streak = parseInt(parsed.streak) || 0;
                 data.lastGoalMetDate = parsed.lastGoalMetDate || "";
+                if (parsed.history && typeof parsed.history === "object") {
+                    for (let k in parsed.history) {
+                        let v = parseInt(parsed.history[k]);
+                        if (!isNaN(v) && v > 0) {
+                            data.history[k] = v;
+                        }
+                    }
+                }
+                data.total = parseInt(parsed.total) || 0;
+                // Migrate stats saved before per-day history existed.
+                if (Object.keys(data.history).length === 0 && data.date && data.count > 0) {
+                    data.history[data.date] = data.count;
+                }
+                if (!data.total) {
+                    let sum = 0;
+                    for (let k in data.history) {
+                        sum += data.history[k];
+                    }
+                    data.total = sum;
+                }
             }
             this._dailyStatsData = data;
             if (onDone) {
@@ -113,12 +133,27 @@ function install(proto) {
     proto._recordPomodoroCompleted = function() {
         let today = this._todayStr();
         let yesterday = this._todayStr(new Date(Date.now() - 86400000));
-        let s = this._dailyStatsData || { date: "", count: 0, streak: 0, lastGoalMetDate: "" };
+        let s = this._dailyStatsData || { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0 };
+        if (!s.history) {
+            s.history = {};
+        }
+        if (typeof s.total !== "number") {
+            s.total = 0;
+        }
         if (s.date !== today) {
             s.date = today;
             s.count = 0;
         }
         s.count += 1;
+        s.history[today] = (s.history[today] || 0) + 1;
+        s.total += 1;
+        // Keep the per-day history bounded (~18 weeks).
+        let cutoff = this._todayStr(new Date(Date.now() - 126 * 86400000));
+        for (let k in s.history) {
+            if (k < cutoff) {
+                delete s.history[k];
+            }
+        }
         let goal = this._opt_dailyGoal || 0;
         if (goal > 0 && s.count === goal) {
             if (s.lastGoalMetDate === yesterday) {
@@ -133,6 +168,30 @@ function install(proto) {
         this._dailyCount = s.count;
         this._dailyStreak = s.streak || 0;
         this._updateMenuRuntime();
+    };
+
+    // Marinara-style breakdown: today / last 7 days / last 30 days / all-time + streak.
+    proto._computeStats = function() {
+        let h = (this._dailyStatsData && this._dailyStatsData.history) ? this._dailyStatsData.history : {};
+        let today = this._todayStr();
+        let week = 0;
+        let month = 0;
+        for (let i = 0; i < 30; i++) {
+            let day = this._todayStr(new Date(Date.now() - i * 86400000));
+            let c = h[day] || 0;
+            month += c;
+            if (i < 7) {
+                week += c;
+            }
+        }
+        let total = (this._dailyStatsData && typeof this._dailyStatsData.total === "number") ? this._dailyStatsData.total : 0;
+        return {
+            today: h[today] || 0,
+            week: week,
+            month: month,
+            total: total,
+            streak: this._dailyStreak || 0
+        };
     };
 
     proto._clearIdleWatches = function() {

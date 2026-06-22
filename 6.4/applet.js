@@ -523,6 +523,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             dailyGoal: this._opt_dailyGoal || 0,
             dailyCount: this._dailyCount || 0,
             streak: this._dailyStreak || 0,
+            stats: this._computeStats(),
             zenEnabled: Boolean(this._opt_zenModeEnabled),
             focusUntilEnabled: Boolean(this._opt_focusUntilEnabled)
         });

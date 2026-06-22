@@ -16,116 +16,116 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: applet.js:653
+#: applet.js:654
 msgid "Focus session restored — resume when ready"
 msgstr ""
 
-#: applet.js:688
+#: applet.js:689
 msgid "FOCUS"
 msgstr ""
 
-#: applet.js:690
+#: applet.js:691
 msgid "PAUSED FOCUS"
 msgstr ""
 
-#: applet.js:693
+#: applet.js:694
 msgid "BREAK"
 msgstr ""
 
-#: applet.js:696
+#: applet.js:697
 msgid "PAUSED BREAK"
 msgstr ""
 
-#: applet.js:698
+#: applet.js:699
 msgid "BREAK OVER"
 msgstr ""
 
-#: applet.js:701
+#: applet.js:702
 msgid "Ready"
 msgstr ""
 
-#: applet.js:719
+#: applet.js:720
 msgid "Short break running"
 msgstr ""
 
-#: applet.js:722
+#: applet.js:723
 msgid "Short break paused"
 msgstr ""
 
-#: applet.js:725
+#: applet.js:726
 msgid "Long break running"
 msgstr ""
 
-#: applet.js:728
+#: applet.js:729
 msgid "Long break paused"
 msgstr ""
 
-#: applet.js:731 applet.js:1080
+#: applet.js:732 applet.js:1081
 msgid "Break ended"
 msgstr ""
 
-#: applet.js:734
+#: applet.js:735
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr ""
 
-#: applet.js:739
+#: applet.js:740
 msgid "Pomodoro paused"
 msgstr ""
 
-#: applet.js:742
+#: applet.js:743
 msgid "Waiting to start"
 msgstr ""
 
-#: applet.js:924
+#: applet.js:925
 msgid "Break's over — back to focus."
 msgstr ""
 
-#: applet.js:1060
+#: applet.js:1061
 msgid "Pomodoro started"
 msgstr ""
 
-#: applet.js:1131
+#: applet.js:1132
 msgid "Let's go to work!"
 msgstr ""
 
-#: applet.js:1156
+#: applet.js:1157
 msgid "Pomodoro done"
 msgstr ""
 
-#: applet.js:1158
+#: applet.js:1159
 msgid "Take a short break"
 msgstr ""
 
-#: applet.js:1160
+#: applet.js:1161
 msgid "Pomodoro done — time for a short break."
 msgstr ""
 
-#: applet.js:1181
+#: applet.js:1182
 msgid "Set complete!"
 msgstr ""
 
-#: applet.js:1186
+#: applet.js:1187
 msgid "Take a long break"
 msgstr ""
 
-#: applet.js:1189
+#: applet.js:1190
 msgid "Set complete — time for a long break."
 msgstr ""
 
-#: applet.js:1228
+#: applet.js:1229
 msgid "Pomodoro ended"
 msgstr ""
 
-#: applet.js:1348
+#: applet.js:1349
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
 
-#: applet.js:1418 features.js:589
+#: applet.js:1419 features.js:648
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr ""
 
-#: applet.js:1435
+#: applet.js:1436
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr ""
@@ -142,11 +142,11 @@ msgstr ""
 msgid "Choose or type a focus task"
 msgstr ""
 
-#: dialogs.js:65 features.js:637
+#: dialogs.js:65 features.js:696
 msgid "Cancel"
 msgstr ""
 
-#: dialogs.js:72 features.js:638
+#: dialogs.js:72 features.js:697
 msgid "Start"
 msgstr ""
 
@@ -219,165 +219,194 @@ msgstr ""
 msgid "Pomodoro finished, ready to take a break?"
 msgstr ""
 
-#: features.js:352
+#: features.js:411
 msgid "Could not open the hosts file"
 msgstr ""
 
-#: features.js:401
+#: features.js:460
 msgid "Add some domains to block first."
 msgstr ""
 
-#: features.js:405
+#: features.js:464
 msgid "Distractions blocked."
 msgstr ""
 
-#: features.js:410
+#: features.js:469
 msgid "Distractions unblocked."
 msgstr ""
 
-#: features.js:447
+#: features.js:506
 msgid "Click to exit Zen"
 msgstr ""
 
-#: features.js:482 visual.js:894
+#: features.js:541 visual.js:894
 msgid "Focus"
 msgstr ""
 
-#: features.js:559
+#: features.js:618
 msgid "Breathe in"
 msgstr ""
 
-#: features.js:562 features.js:568
+#: features.js:621 features.js:627
 msgid "Hold"
 msgstr ""
 
-#: features.js:565
+#: features.js:624
 msgid "Breathe out"
 msgstr ""
 
-#: features.js:595
+#: features.js:654
 msgid "Focus until"
 msgstr ""
 
-#: features.js:596
+#: features.js:655
 msgid "Enter a time (HH:MM)"
 msgstr ""
 
-#: menu.js:104
+#: menu.js:110
 msgid "Error: menu unavailable"
 msgstr ""
 
-#: menu.js:211
+#: menu.js:217
 msgid "READY"
 msgstr ""
 
-#: menu.js:232 menu.js:519
+#: menu.js:238 menu.js:562
 msgid "Ready to start"
 msgstr ""
 
-#: menu.js:240 menu.js:549
+#: menu.js:246 menu.js:592
 msgid "Task will be selected on start"
 msgstr ""
 
-#: menu.js:309
+#: menu.js:315
 #, javascript-format
 msgid "Pomodoro %d / %d"
 msgstr ""
 
-#: menu.js:317 menu.js:616
+#: menu.js:323 menu.js:659
 msgid "Start focus"
 msgstr ""
 
-#: menu.js:330
+#: menu.js:336
 msgid "Skip step"
 msgstr ""
 
-#: menu.js:336
+#: menu.js:342
 msgid "Reset session"
 msgstr ""
 
-#: menu.js:348
+#: menu.js:354
 msgid "Reset all"
 msgstr ""
 
-#: menu.js:349
+#: menu.js:355
 msgid "Confirm reset of everything"
 msgstr ""
 
-#: menu.js:384
+#: menu.js:390
 msgid "Task…"
 msgstr ""
 
-#: menu.js:390
+#: menu.js:396
 msgid "Focus until…"
 msgstr ""
 
-#: menu.js:396
+#: menu.js:402
 msgid "Zen mode"
 msgstr ""
 
-#: menu.js:405 menu.js:561 menu.js:661
+#: menu.js:411 menu.js:604 menu.js:704
 msgid "Preset"
 msgstr ""
 
-#: menu.js:422
+#: menu.js:427
+msgid "Statistics"
+msgstr ""
+
+#: menu.js:428 menu.js:533
+#, javascript-format
+msgid "Today: %d"
+msgstr ""
+
+#: menu.js:431 menu.js:536
+#, javascript-format
+msgid "Last 7 days: %d"
+msgstr ""
+
+#: menu.js:434 menu.js:539
+#, javascript-format
+msgid "Last 30 days: %d"
+msgstr ""
+
+#: menu.js:437 menu.js:542
+#, javascript-format
+msgid "All time: %d"
+msgstr ""
+
+#: menu.js:440 menu.js:545
+#, javascript-format
+msgid "Streak: %d days"
+msgstr ""
+
+#: menu.js:446
 msgid "SESSION"
 msgstr ""
 
-#: menu.js:439
+#: menu.js:463
 msgid "Session…"
 msgstr ""
 
-#: menu.js:495
+#: menu.js:519
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr ""
 
-#: menu.js:513
+#: menu.js:556
 #, javascript-format
 msgid "% complete"
 msgstr ""
 
-#: menu.js:515
+#: menu.js:558
 #, javascript-format
 msgid "until %s"
 msgstr ""
 
-#: menu.js:519
+#: menu.js:562
 msgid "Break finished"
 msgstr ""
 
-#: menu.js:545 menu.js:547
+#: menu.js:588 menu.js:590
 #, javascript-format
 msgid "Task: %s"
 msgstr ""
 
-#: menu.js:551
+#: menu.js:594
 msgid "Task: none"
 msgstr ""
 
-#: menu.js:573
+#: menu.js:616
 #, javascript-format
 msgid "Hotkey: %s"
 msgstr ""
 
-#: menu.js:603
+#: menu.js:646
 msgid "Resume break"
 msgstr ""
 
-#: menu.js:603
+#: menu.js:646
 msgid "Resume focus"
 msgstr ""
 
-#: menu.js:608
+#: menu.js:651
 msgid "Pause focus"
 msgstr ""
 
-#: menu.js:608
+#: menu.js:651
 msgid "Pause break"
 msgstr ""
 
-#: menu.js:612
+#: menu.js:655
 msgid "Start next focus"
 msgstr ""
 

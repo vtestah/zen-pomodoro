@@ -90,7 +90,7 @@ function install(proto) {
 
     proto._loadDailyStatsAsync = function(onDone) {
         this._readJsonAsync(POMODORO_STATS_FILE, (parsed) => {
-            let data = { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0, totalMinutes: 0, totalInterruptions: 0 };
+            let data = { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0, totalMinutes: 0, totalInterruptions: 0, hours: new Array(24).fill(0) };
             if (parsed && typeof parsed === "object") {
                 data.date = parsed.date || "";
                 data.count = parseInt(parsed.count) || 0;
@@ -134,6 +134,9 @@ function install(proto) {
                     for (let k in data.history) { sum += (data.history[k].i || 0); }
                     data.totalInterruptions = sum;
                 }
+                if (Array.isArray(parsed.hours)) {
+                    for (let i = 0; i < 24; i++) { data.hours[i] = parseInt(parsed.hours[i]) || 0; }
+                }
             }
             this._dailyStatsData = data;
             if (onDone) {
@@ -162,17 +165,19 @@ function install(proto) {
     proto._recordPomodoroCompleted = function() {
         let today = this._todayStr();
         let yesterday = this._todayStr(new Date(Date.now() - 86400000));
-        let s = this._dailyStatsData || { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0, totalMinutes: 0, totalInterruptions: 0 };
+        let s = this._dailyStatsData || { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0, totalMinutes: 0, totalInterruptions: 0, hours: new Array(24).fill(0) };
         if (!s.history) { s.history = {}; }
         if (typeof s.total !== "number") { s.total = 0; }
         if (typeof s.totalMinutes !== "number") { s.totalMinutes = 0; }
         if (typeof s.totalInterruptions !== "number") { s.totalInterruptions = 0; }
+        if (!Array.isArray(s.hours) || s.hours.length !== 24) { s.hours = new Array(24).fill(0); }
         if (s.date !== today) {
             s.date = today;
             s.count = 0;
         }
         let dur = this._opt_pomodoroTimeMinutes || 25;
         s.count += 1;
+        s.hours[new Date().getHours()] += 1;
         let cell = s.history[today] || { c: 0, m: 0, i: 0 };
         cell.c += 1;
         cell.m += dur;
@@ -203,7 +208,7 @@ function install(proto) {
 
     proto._recordInterruption = function() {
         let today = this._todayStr();
-        let s = this._dailyStatsData || { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0, totalMinutes: 0, totalInterruptions: 0 };
+        let s = this._dailyStatsData || { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0, totalMinutes: 0, totalInterruptions: 0, hours: new Array(24).fill(0) };
         if (!s.history) { s.history = {}; }
         if (typeof s.totalInterruptions !== "number") { s.totalInterruptions = 0; }
         let cell = s.history[today] || { c: 0, m: 0, i: 0 };
@@ -269,7 +274,8 @@ function install(proto) {
             streak: cur,
             longestStreak: longest,
             bestDay: best,
-            heatmap: heatmap
+            heatmap: heatmap,
+            hours: (this._dailyStatsData && Array.isArray(this._dailyStatsData.hours) && this._dailyStatsData.hours.length === 24) ? this._dailyStatsData.hours : new Array(24).fill(0)
         };
     };
 
@@ -700,6 +706,72 @@ function install(proto) {
         }
     };
 
+    proto._peakFocusHour = function(hours) {
+        if (!Array.isArray(hours)) { return null; }
+        let total = hours.reduce((a, b) => a + (b || 0), 0);
+        if (total < 8) { return null; }
+        let bestStart = 0, bestSum = -1;
+        for (let hh = 0; hh < 24; hh++) {
+            let s = (hours[hh] || 0) + (hours[(hh + 1) % 24] || 0);
+            if (s > bestSum) { bestSum = s; bestStart = hh; }
+        }
+        let fmt = (x) => (x < 10 ? "0" : "") + x + ":00";
+        return { hour: bestStart, label: fmt(bestStart) + "\u2013" + fmt((bestStart + 2) % 24) };
+    };
+
+    proto._statsInsight = function(st) {
+        let goal = this._opt_dailyGoal || 0;
+        if (goal > 0) {
+            let left = goal - (st.today || 0);
+            if (left > 0) {
+                let est = this._estimateFinish();
+                if (est) { return _("%d to go today — at your pace, done by about %s.").format(left, est.time); }
+                return _("%d more to reach today's goal of %d.").format(left, goal);
+            }
+            return _("Daily goal reached — %d done today. Nice.").format(st.today || 0);
+        }
+        if ((st.interruptionsWeek || 0) >= 5) {
+            return _("%d interruptions this week — what keeps pulling you away?").format(st.interruptionsWeek);
+        }
+        let peak = this._peakFocusHour(st.hours);
+        if (peak) { return _("Most focused around %s — good time for deep work.").format(peak.label); }
+        let tasks = this._taskList().slice().sort((a, b) => (b.done || 0) - (a.done || 0));
+        if (tasks.length && (tasks[0].done || 0) > 0) {
+            return _("Most focus went to \u201c%s\u201d.").format(tasks[0].title);
+        }
+        if ((st.week || 0) > 0) { return _("%d pomodoros this week. Keep it going.").format(st.week); }
+        return _("Start a focus session — your insights will appear here.");
+    };
+
+    proto._paintHours = function(area) {
+        let cr = area.get_context();
+        try {
+            let [w, h] = area.get_surface_size();
+            let data = this._dashHours || new Array(24).fill(0);
+            let maxv = 1;
+            for (let v of data) { if (v > maxv) { maxv = v; } }
+            let n = 24, gap = 2;
+            let bw = Math.max(1, (w - gap * (n - 1)) / n);
+            let acc = this._dashAccent || [0.93, 0.42, 0.31];
+            let peak = this._dashPeakHour;
+            for (let i = 0; i < n; i++) {
+                let x = Math.round(i * (bw + gap));
+                cr.setSourceRGBA(1, 1, 1, 0.06);
+                cr.rectangle(x, 0, Math.round(bw), h);
+                cr.fill();
+                let bh = Math.round((data[i] / maxv) * (h - 2));
+                if (bh > 0) {
+                    let isPeak = (peak !== null && (i === peak || i === (peak + 1) % 24));
+                    cr.setSourceRGBA(acc[0], acc[1], acc[2], isPeak ? 1.0 : 0.5);
+                    cr.rectangle(x, h - bh, Math.round(bw), bh);
+                    cr.fill();
+                }
+            }
+        } finally {
+            cr.$dispose();
+        }
+    };
+
     proto._showStatsDashboard = function() {
         let st = this._computeStats();
         let accent = [0.93, 0.42, 0.31];
@@ -715,53 +787,63 @@ function install(proto) {
         }
         this._dashBars = bars;
         this._dashHeatmap = st.heatmap || [];
+        this._dashHours = st.hours || new Array(24).fill(0);
+        let peak = this._peakFocusHour(st.hours);
+        this._dashPeakHour = peak ? peak.hour : null;
 
         let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
-        let root = new St.BoxLayout({ vertical: true, style: 'spacing: 12px; min-width: 560px; padding: 6px 10px;' });
+        let scroll = new St.ScrollView({ style: 'max-height: 600px;' });
+        scroll.set_policy(St.PolicyType.NEVER, St.PolicyType.AUTOMATIC);
+        let root = new St.BoxLayout({ vertical: true, style: 'spacing: 10px; width: 560px; padding: 6px 12px;' });
 
-        root.add(new St.Label({ text: _("Focus statistics"), style: 'font-size: 1.5em; font-weight: bold;' }));
+        root.add(new St.Label({ text: _("Focus statistics"), style: 'font-size: 1.4em; font-weight: bold;' }));
 
+        // Headline insight — the actionable "so what".
+        let insight = new St.Label({ text: this._statsInsight(st), style: 'font-size: 1.05em; padding: 8px 10px; border-radius: 8px; background-color: rgba(227,90,60,0.16);' });
+        insight.clutter_text.line_wrap = true;
+        root.add(insight);
+
+        // Today / week at a glance.
         let cards = new St.BoxLayout({ vertical: false, style: 'spacing: 10px;' });
         let trend = "";
         if ((st.lastWeek || 0) > 0) {
             let p = Math.round(((st.week || 0) - st.lastWeek) / st.lastWeek * 100);
             trend = (p > 0 ? "\u25b2 " : (p < 0 ? "\u25bc " : "")) + Math.abs(p) + "%";
         }
-        cards.add(this._dashStatCard(_("Today"), (st.today || 0) + " \ud83c\udf45", this._dashFmtMin(st.todayMin || 0), accent));
+        let goal = this._opt_dailyGoal || 0;
+        let todaySub = (goal > 0) ? _("%d / %d goal").format(st.today || 0, goal) : this._dashFmtMin(st.todayMin || 0);
+        cards.add(this._dashStatCard(_("Today"), (st.today || 0) + " \ud83c\udf45", todaySub, accent));
         cards.add(this._dashStatCard(_("This week"), (st.week || 0) + " \ud83c\udf45", this._dashFmtMin(st.weekMin || 0) + (trend ? ("   " + trend) : ""), accent));
         cards.add(this._dashStatCard(_("Streak"), (st.streak || 0) + " \ud83d\udd25", _("best %d").format(st.longestStreak || 0), green));
         cards.add(this._dashStatCard(_("All time"), (st.total || 0) + " \ud83c\udf45", this._dashFmtMin(st.totalMinutes || 0), accent));
         root.add(cards);
 
-        root.add(new St.Label({ text: _("Today's harvest"), style: 'font-weight: bold; padding-top: 4px;' }));
         let harvestN = Math.min(st.today || 0, 20);
         let harvestStr = harvestN > 0 ? "\ud83c\udf45".repeat(harvestN) : _("Nothing harvested yet today");
         if ((st.today || 0) > 20) { harvestStr += "  +" + ((st.today || 0) - 20); }
-        root.add(new St.Label({ text: harvestStr, style: 'font-size: 1.15em;' }));
+        root.add(new St.Label({ text: _("Today's harvest") + ":  " + harvestStr }));
 
         let estF = this._estimateFinish();
         let infoBits = [];
         if (estF) { infoBits.push(_("\u2248 finish %s \u00b7 %d \ud83c\udf45 left").format(estF.time, estF.remaining)); }
         infoBits.push(_("Interruptions: %d today \u00b7 %d this week").format(st.interruptionsToday || 0, st.interruptionsWeek || 0));
-        root.add(new St.Label({ text: infoBits.join("        "), style: 'padding-bottom: 2px;' }));
+        root.add(new St.Label({ text: infoBits.join("        ") }));
 
-        root.add(new St.Label({ text: _("Focus time \u2014 last 14 days"), style: 'font-weight: bold; padding-top: 4px;' }));
-        let barArea = new St.DrawingArea({ x_expand: true, style: 'height: 150px;' });
+        // When you focus best — the most actionable insight.
+        root.add(new St.Label({ text: _("When you focus (by hour)"), style: 'font-weight: bold; padding-top: 6px;' }));
+        let hoursArea = new St.DrawingArea({ x_expand: true, style: 'height: 60px;' });
+        hoursArea.connect('repaint', (a) => this._paintHours(a));
+        root.add(hoursArea);
+        root.add(new St.Label({
+            text: peak ? _("Most focused around %s — good time for deep work.").format(peak.label)
+                       : _("Not enough data yet to spot your best focus time."),
+            style: 'font-size: 0.9em;'
+        }));
+
+        root.add(new St.Label({ text: _("Focus time \u2014 last 14 days"), style: 'font-weight: bold; padding-top: 6px;' }));
+        let barArea = new St.DrawingArea({ x_expand: true, style: 'height: 120px;' });
         barArea.connect('repaint', (a) => this._paintDashBars(a));
         root.add(barArea);
-
-        root.add(new St.Label({ text: _("Activity \u2014 last 12 weeks"), style: 'font-weight: bold; padding-top: 4px;' }));
-        let heatArea = new St.DrawingArea({ x_expand: true, style: 'height: 92px;' });
-        heatArea.connect('repaint', (a) => this._paintDashHeatmap(a));
-        root.add(heatArea);
-
-        let legend = new St.BoxLayout({ vertical: false, style: 'spacing: 6px;' });
-        legend.add(new St.Label({ text: _("Less"), style: 'font-size: 0.8em;' }));
-        let legendCells = new St.DrawingArea({ style: 'width: 90px; height: 14px;' });
-        legendCells.connect('repaint', (a) => this._paintDashLegend(a));
-        legend.add(legendCells);
-        legend.add(new St.Label({ text: _("More"), style: 'font-size: 0.8em;' }));
-        root.add(legend);
 
         let tasksByDone = this._taskList().slice()
             .sort((a, b) => (b.done || 0) - (a.done || 0))
@@ -772,15 +854,30 @@ function install(proto) {
             let maxDone = tasksByDone[0].done || 1;
             for (let t of tasksByDone) {
                 let frac = (t.done || 0) / maxDone;
+                let title = (t.title.length > 26) ? (t.title.slice(0, 25) + "\u2026") : t.title;
                 let rowB = new St.BoxLayout({ vertical: false, style: 'spacing: 8px;' });
-                rowB.add(new St.Label({ text: t.title, style: 'min-width: 150px;' }));
+                let nameL = new St.Label({ text: title, style: 'width: 180px;' });
+                rowB.add(nameL);
                 let mb = new St.DrawingArea({ x_expand: true, style: 'height: 14px;' });
                 mb.connect('repaint', (a) => this._paintMiniBar(a, frac));
                 rowB.add(mb);
-                rowB.add(new St.Label({ text: (t.done || 0) + " \ud83c\udf45", style: 'min-width: 44px;' }));
+                rowB.add(new St.Label({ text: (t.done || 0) + " \ud83c\udf45", style: 'width: 46px;' }));
                 root.add(rowB);
             }
         }
+
+        // Consistency + milestones (secondary).
+        root.add(new St.Label({ text: _("Activity \u2014 last 12 weeks"), style: 'font-weight: bold; padding-top: 6px;' }));
+        let heatArea = new St.DrawingArea({ x_expand: true, style: 'height: 78px;' });
+        heatArea.connect('repaint', (a) => this._paintDashHeatmap(a));
+        root.add(heatArea);
+        let legend = new St.BoxLayout({ vertical: false, style: 'spacing: 6px;' });
+        legend.add(new St.Label({ text: _("Less"), style: 'font-size: 0.8em;' }));
+        let legendCells = new St.DrawingArea({ style: 'width: 90px; height: 14px;' });
+        legendCells.connect('repaint', (a) => this._paintDashLegend(a));
+        legend.add(legendCells);
+        legend.add(new St.Label({ text: _("More"), style: 'font-size: 0.8em;' }));
+        root.add(legend);
 
         let tot = this._dashMilestoneTier(st.total || 0, [10, 25, 50, 100, 250, 500, 1000, 2000]);
         let stk = this._dashMilestoneTier(st.longestStreak || 0, [3, 7, 14, 30, 60, 100, 365]);
@@ -788,10 +885,11 @@ function install(proto) {
         if (tot > 0) { badges.push("\ud83c\udfc6 " + tot); }
         if (stk > 0) { badges.push("\ud83d\udd25 " + stk); }
         if (badges.length) {
-            root.add(new St.Label({ text: _("Milestones: %s").format(badges.join("    ")), style: 'padding-top: 4px; font-weight: bold;' }));
+            root.add(new St.Label({ text: _("Milestones: %s").format(badges.join("    ")), style: 'padding-top: 4px;' }));
         }
 
-        dialog.contentLayout.add(root);
+        scroll.add_actor(root);
+        dialog.contentLayout.add(scroll);
         dialog.setButtons([
             { label: _("Export CSV"), action: () => this._exportStats() },
             { label: _("Close"), key: Clutter.KEY_Escape, default: true, action: () => dialog.close() }

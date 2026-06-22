@@ -1908,9 +1908,23 @@ class PomodoroApplet extends Applet.TextIconApplet {
                     cr.arc(cx, cy, radius, start, start + 2 * Math.PI * f);
                     cr.stroke();
                 }
-                cr.setSourceRGBA(ar, ag, ab, 0.95);
-                cr.arc(cx, cy, Math.max(1.5, radius * 0.36), 0, 2 * Math.PI);
+                // Centre: a little tomato (red body + green leaf) — a nod to the Pomodoro.
+                let tr = radius * 0.66;
+                cr.setSourceRGBA(0.91, 0.33, 0.27, 0.98);
+                cr.arc(cx, cy + tr * 0.12, tr, 0, 2 * Math.PI);
                 cr.fill();
+                cr.setSourceRGBA(0.40, 0.80, 0.46, 0.98);
+                cr.setLineWidth(Math.max(1.0, tr * 0.30));
+                let ty = cy - tr * 0.62;
+                cr.moveTo(cx, ty);
+                cr.lineTo(cx, cy - tr * 0.05);
+                cr.stroke();
+                cr.moveTo(cx - tr * 0.5, ty - tr * 0.05);
+                cr.lineTo(cx, cy - tr * 0.15);
+                cr.stroke();
+                cr.moveTo(cx + tr * 0.5, ty - tr * 0.05);
+                cr.lineTo(cx, cy - tr * 0.15);
+                cr.stroke();
                 return;
             }
 

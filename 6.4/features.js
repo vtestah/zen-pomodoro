@@ -89,7 +89,7 @@ function install(proto) {
 
     proto._loadDailyStatsAsync = function(onDone) {
         this._readJsonAsync(POMODORO_STATS_FILE, (parsed) => {
-            let data = { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0, totalMinutes: 0 };
+            let data = { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0, totalMinutes: 0, totalInterruptions: 0 };
             if (parsed && typeof parsed === "object") {
                 data.date = parsed.date || "";
                 data.count = parseInt(parsed.count) || 0;
@@ -100,21 +100,23 @@ function install(proto) {
                         let v = parsed.history[k];
                         if (typeof v === "number") {
                             if (v > 0) {
-                                data.history[k] = { c: parseInt(v) || 0, m: 0 };
+                                data.history[k] = { c: parseInt(v) || 0, m: 0, i: 0 };
                             }
                         } else if (v && typeof v === "object") {
                             let c = parseInt(v.c) || 0;
                             let m = parseInt(v.m) || 0;
-                            if (c > 0 || m > 0) {
-                                data.history[k] = { c: c, m: m };
+                            let ii = parseInt(v.i) || 0;
+                            if (c > 0 || m > 0 || ii > 0) {
+                                data.history[k] = { c: c, m: m, i: ii };
                             }
                         }
                     }
                 }
                 data.total = parseInt(parsed.total) || 0;
                 data.totalMinutes = parseInt(parsed.totalMinutes) || 0;
+                data.totalInterruptions = parseInt(parsed.totalInterruptions) || 0;
                 if (Object.keys(data.history).length === 0 && data.date && data.count > 0) {
-                    data.history[data.date] = { c: data.count, m: 0 };
+                    data.history[data.date] = { c: data.count, m: 0, i: 0 };
                 }
                 if (!data.total) {
                     let sum = 0;
@@ -125,6 +127,11 @@ function install(proto) {
                     let sum = 0;
                     for (let k in data.history) { sum += data.history[k].m; }
                     data.totalMinutes = sum;
+                }
+                if (!data.totalInterruptions) {
+                    let sum = 0;
+                    for (let k in data.history) { sum += (data.history[k].i || 0); }
+                    data.totalInterruptions = sum;
                 }
             }
             this._dailyStatsData = data;
@@ -154,17 +161,18 @@ function install(proto) {
     proto._recordPomodoroCompleted = function() {
         let today = this._todayStr();
         let yesterday = this._todayStr(new Date(Date.now() - 86400000));
-        let s = this._dailyStatsData || { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0, totalMinutes: 0 };
+        let s = this._dailyStatsData || { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0, totalMinutes: 0, totalInterruptions: 0 };
         if (!s.history) { s.history = {}; }
         if (typeof s.total !== "number") { s.total = 0; }
         if (typeof s.totalMinutes !== "number") { s.totalMinutes = 0; }
+        if (typeof s.totalInterruptions !== "number") { s.totalInterruptions = 0; }
         if (s.date !== today) {
             s.date = today;
             s.count = 0;
         }
         let dur = this._opt_pomodoroTimeMinutes || 25;
         s.count += 1;
-        let cell = s.history[today] || { c: 0, m: 0 };
+        let cell = s.history[today] || { c: 0, m: 0, i: 0 };
         cell.c += 1;
         cell.m += dur;
         s.history[today] = cell;
@@ -192,17 +200,32 @@ function install(proto) {
         this._incrementCurrentTaskProgress();
     };
 
+    proto._recordInterruption = function() {
+        let today = this._todayStr();
+        let s = this._dailyStatsData || { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0, totalMinutes: 0, totalInterruptions: 0 };
+        if (!s.history) { s.history = {}; }
+        if (typeof s.totalInterruptions !== "number") { s.totalInterruptions = 0; }
+        let cell = s.history[today] || { c: 0, m: 0, i: 0 };
+        if (typeof cell.i !== "number") { cell.i = 0; }
+        cell.i += 1;
+        s.history[today] = cell;
+        s.totalInterruptions += 1;
+        this._dailyStatsData = s;
+        this._writeJsonAsync(POMODORO_STATS_FILE, s);
+        this._updateMenuRuntime();
+    };
+
     // Rich stats: counts + focus time, current/longest active-day streak, best day,
     // and a 12-week heatmap (84 daily counts, oldest -> newest).
     proto._computeStats = function() {
         let h = (this._dailyStatsData && this._dailyStatsData.history) ? this._dailyStatsData.history : {};
         let cellOf = (d) => h[d] || { c: 0, m: 0 };
         let today = this._todayStr();
-        let weekC = 0, weekM = 0, monthC = 0, monthM = 0;
+        let weekC = 0, weekM = 0, monthC = 0, monthM = 0, weekI = 0;
         for (let i = 0; i < 30; i++) {
             let cl = cellOf(this._todayStr(new Date(Date.now() - i * 86400000)));
             monthC += cl.c; monthM += cl.m;
-            if (i < 7) { weekC += cl.c; weekM += cl.m; }
+            if (i < 7) { weekC += cl.c; weekM += cl.m; weekI += (cl.i || 0); }
         }
         let heatmap = [];
         for (let i = 83; i >= 0; i--) {
@@ -239,6 +262,9 @@ function install(proto) {
             monthMin: monthM,
             total: total,
             totalMinutes: totalMinutes,
+            interruptionsToday: (todayCell.i || 0),
+            interruptionsWeek: weekI,
+            interruptionsTotal: (this._dailyStatsData && this._dailyStatsData.totalInterruptions) || 0,
             streak: cur,
             longestStreak: longest,
             bestDay: best,
@@ -355,7 +381,9 @@ function install(proto) {
 
     proto._refreshTasksMenu = function() {
         if (this._appletMenu && typeof this._appletMenu.setTasks === "function") {
-            this._appletMenu.setTasks(this._taskList(), this._tasksData ? this._tasksData.currentId : "");
+            let est = this._estimateFinish();
+            let finishText = est ? _("\u2248 finish %s \u00b7 %d \ud83c\udf45 left").format(est.time, est.remaining) : "";
+            this._appletMenu.setTasks(this._taskList(), this._tasksData ? this._tasksData.currentId : "", finishText);
         }
     };
 

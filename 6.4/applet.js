@@ -1528,6 +1528,10 @@ class PomodoroApplet extends Applet.TextIconApplet {
             return;
         }
 
+        if (this._currentState === 'pomodoro') {
+            this._recordInterruption();
+        }
+
         this._timerPauseInProgress = true;
         this._pausedState = this._currentState;
         this._timerQueue.stop();

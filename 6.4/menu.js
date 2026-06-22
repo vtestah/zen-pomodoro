@@ -96,6 +96,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._tasks = [];
         this._tasksCurrentId = "";
         this._taskItems = [];
+        this._tasksFinishText = "";
     }
 
     _getLayoutCategory(state) {
@@ -827,9 +828,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         return first.replace(/</g, "").replace(/>/g, "+");
     }
 
-    setTasks(list, currentId) {
+    setTasks(list, currentId, finishText) {
         this._tasks = Array.isArray(list) ? list : [];
         this._tasksCurrentId = currentId || "";
+        this._tasksFinishText = finishText || "";
         this._populateTasksSubmenu();
         if (this._tasksSubmenu && this._tasksSubmenu.label) {
             let cur = this._tasks.find((t) => t.id === this._tasksCurrentId);
@@ -846,6 +848,11 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         let add = new PopupMenu.PopupMenuItem("\u2795 " + _("Add task\u2026"));
         add.connect('activate', () => this.emit('add-task'));
         this._tasksSubmenu.menu.addMenuItem(add);
+        if (this._tasksFinishText) {
+            let fin = new PopupMenu.PopupMenuItem(this._tasksFinishText);
+            fin.setSensitive(false);
+            this._tasksSubmenu.menu.addMenuItem(fin);
+        }
         let list = this._tasks || [];
         if (list.length) {
             this._tasksSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());

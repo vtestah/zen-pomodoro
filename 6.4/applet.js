@@ -293,6 +293,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
         // Recover an in-progress focus session that survived a Cinnamon restart.
         this._refreshDailyStatsCache();
+        this._loadTasksAsync(() => this._refreshTasksMenu());
         this._restoreSessionState();
 
         // start timer automatically
@@ -1594,6 +1595,19 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
         menu.connect('open-stats', () => {
             this._showStatsDashboard();
+        });
+
+        menu.connect('add-task', () => {
+            this._showAddTaskDialog();
+        });
+        menu.connect('select-task', (m, id) => {
+            this._setCurrentTaskId(id);
+        });
+        menu.connect('toggle-task-done', () => {
+            if (this._tasksData) { this._toggleTaskCompleted(this._tasksData.currentId); }
+        });
+        menu.connect('delete-task', () => {
+            if (this._tasksData) { this._deleteTask(this._tasksData.currentId); }
         });
 
         menu.connect('skip-timer', () => {

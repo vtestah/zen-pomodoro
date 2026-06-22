@@ -42,6 +42,7 @@ const {
     POMODORO_STATE_FILE,
     POMODORO_STATE_MAX_AGE_MS,
     POMODORO_STATS_FILE,
+    POMODORO_TASKS_DATA_FILE,
     POMODORO_FOCUS_FRAME_BOTTOM_SAFE,
     POMODORO_FOCUS_FRAME_NORMAL_STYLE,
     POMODORO_FOCUS_FRAME_WARNING_STYLE,
@@ -188,6 +189,7 @@ function install(proto) {
         this._dailyCount = s.count;
         this._dailyStreak = s.streak || 0;
         this._updateMenuRuntime();
+        this._incrementCurrentTaskProgress();
     };
 
     // Rich stats: counts + focus time, current/longest active-day streak, best day,
@@ -242,6 +244,184 @@ function install(proto) {
             bestDay: best,
             heatmap: heatmap
         };
+    };
+
+    // ---- Tasks: estimate in pomodoros, per-task progress ----
+    proto._defaultTasksData = function() {
+        return { tasks: [], currentId: "", date: this._todayStr() };
+    };
+
+    proto._newTaskId = function() {
+        return Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36);
+    };
+
+    proto._loadTasksAsync = function(onDone) {
+        this._readJsonAsync(POMODORO_TASKS_DATA_FILE, (parsed) => {
+            let data = this._defaultTasksData();
+            if (parsed && typeof parsed === "object" && Array.isArray(parsed.tasks)) {
+                data.currentId = (typeof parsed.currentId === "string") ? parsed.currentId : "";
+                data.date = (typeof parsed.date === "string") ? parsed.date : this._todayStr();
+                for (let t of parsed.tasks) {
+                    if (!t || typeof t !== "object") { continue; }
+                    let title = (t.title || "").toString().trim();
+                    if (!title) { continue; }
+                    data.tasks.push({
+                        id: (t.id || this._newTaskId()).toString(),
+                        title: title.slice(0, 120),
+                        est: Math.max(1, Math.min(99, parseInt(t.est) || 1)),
+                        done: Math.max(0, parseInt(t.done) || 0),
+                        doneToday: Math.max(0, parseInt(t.doneToday) || 0),
+                        completed: Boolean(t.completed)
+                    });
+                }
+            }
+            let today = this._todayStr();
+            if (data.date !== today) {
+                for (let t of data.tasks) { t.doneToday = 0; }
+                data.date = today;
+            }
+            this._tasksData = data;
+            if (onDone) { onDone(data); }
+        });
+    };
+
+    proto._saveTasks = function() {
+        if (!this._tasksData) { this._tasksData = this._defaultTasksData(); }
+        this._tasksData.date = this._todayStr();
+        this._writeJsonAsync(POMODORO_TASKS_DATA_FILE, this._tasksData);
+    };
+
+    proto._taskList = function() {
+        return (this._tasksData && Array.isArray(this._tasksData.tasks)) ? this._tasksData.tasks : [];
+    };
+
+    proto._currentTask = function() {
+        if (!this._tasksData || !this._tasksData.currentId) { return null; }
+        return this._taskList().find((t) => t.id === this._tasksData.currentId) || null;
+    };
+
+    proto._addTask = function(title, est) {
+        title = (title || "").toString().trim();
+        if (!title) { return; }
+        if (!this._tasksData) { this._tasksData = this._defaultTasksData(); }
+        let task = {
+            id: this._newTaskId(),
+            title: title.slice(0, 120),
+            est: Math.max(1, Math.min(99, parseInt(est) || 1)),
+            done: 0, doneToday: 0, completed: false
+        };
+        this._tasksData.tasks.push(task);
+        if (!this._tasksData.currentId) {
+            this._tasksData.currentId = task.id;
+            this._setCurrentFocusTask(task.title);
+        }
+        this._saveTasks();
+        this._refreshTasksMenu();
+    };
+
+    proto._setCurrentTaskId = function(id) {
+        if (!this._tasksData) { return; }
+        this._tasksData.currentId = id || "";
+        let t = this._currentTask();
+        if (t) { this._setCurrentFocusTask(t.title); }
+        this._saveTasks();
+        this._refreshTasksMenu();
+    };
+
+    proto._toggleTaskCompleted = function(id) {
+        let t = this._taskList().find((x) => x.id === id);
+        if (!t) { return; }
+        t.completed = !t.completed;
+        this._saveTasks();
+        this._refreshTasksMenu();
+    };
+
+    proto._deleteTask = function(id) {
+        if (!this._tasksData) { return; }
+        this._tasksData.tasks = this._taskList().filter((t) => t.id !== id);
+        if (this._tasksData.currentId === id) { this._tasksData.currentId = ""; }
+        this._saveTasks();
+        this._refreshTasksMenu();
+    };
+
+    proto._incrementCurrentTaskProgress = function() {
+        let t = this._currentTask();
+        if (!t) { return; }
+        t.done = (t.done || 0) + 1;
+        t.doneToday = (t.doneToday || 0) + 1;
+        this._saveTasks();
+        this._refreshTasksMenu();
+    };
+
+    proto._refreshTasksMenu = function() {
+        if (this._appletMenu && typeof this._appletMenu.setTasks === "function") {
+            this._appletMenu.setTasks(this._taskList(), this._tasksData ? this._tasksData.currentId : "");
+        }
+    };
+
+    proto._estimateFinish = function() {
+        let remaining = 0;
+        for (let t of this._taskList()) {
+            if (t.completed) { continue; }
+            let left = (t.est || 0) - (t.doneToday || 0);
+            if (left > 0) { remaining += left; }
+        }
+        if (remaining <= 0) { return null; }
+        let work = this._opt_pomodoroTimeMinutes || 25;
+        let brk = this._opt_shortBreakTimeMinutes || 5;
+        let mins = remaining * work + Math.max(0, remaining - 1) * brk;
+        let end = new Date(Date.now() + mins * 60000);
+        let hh = end.getHours().toString().padStart(2, '0');
+        let mm = end.getMinutes().toString().padStart(2, '0');
+        return { remaining: remaining, mins: mins, time: `${hh}:${mm}` };
+    };
+
+    proto._showAddTaskDialog = function() {
+        let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
+        let content = new Dialog.MessageDialogContent({
+            title: _("New task"),
+            description: _("What do you want to work on?")
+        });
+        let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true });
+        CinnamonEntry.addContextMenu(entry);
+        content.add_child(entry);
+
+        let est = { value: 1 };
+        let estRow = new St.BoxLayout({ vertical: false, style: 'spacing: 6px; padding-top: 10px;' });
+        estRow.add(new St.Label({ text: _("Estimate:") }));
+        let estBtns = [];
+        let restyle = () => {
+            for (let k = 0; k < estBtns.length; k++) {
+                estBtns[k].set_style('padding: 2px 8px;' + ((k + 1 === est.value) ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
+            }
+        };
+        for (let i = 1; i <= 6; i++) {
+            let b = new St.Button({ label: i + " \ud83c\udf45", style_class: 'button' });
+            let val = i;
+            b.connect('clicked', () => { est.value = val; restyle(); });
+            estBtns.push(b);
+            estRow.add(b);
+        }
+        restyle();
+        content.add_child(estRow);
+
+        dialog.contentLayout.add(content);
+        dialog.setInitialKeyFocus(entry.clutter_text);
+        let confirm = () => {
+            let t = entry.clutter_text.get_text().trim();
+            dialog.close();
+            if (t) { this._addTask(t, est.value); }
+        };
+        entry.clutter_text.connect('key-press-event', (actor, ev) => {
+            let s = ev.get_key_symbol();
+            if (s === Clutter.KEY_Return || s === Clutter.KEY_KP_Enter) { confirm(); return true; }
+            return false;
+        });
+        dialog.setButtons([
+            { label: _("Cancel"), key: Clutter.KEY_Escape, action: () => dialog.close() },
+            { label: _("Add"), default: true, action: confirm }
+        ]);
+        dialog.open();
     };
 
     proto._dashFmtMin = function(min) {

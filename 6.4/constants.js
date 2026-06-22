@@ -10,6 +10,7 @@ var POMODORO_DOMAINS_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config"
 var POMODORO_STATE_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "applet-state.json"]);
 var POMODORO_STATE_MAX_AGE_MS = 3 * 60 * 60 * 1000;
 var POMODORO_STATS_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "daily-stats.json"]);
+var POMODORO_TASKS_DATA_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "tasks-data.json"]);
 var POMODORO_FOCUS_FRAME_BOTTOM_SAFE = "border-bottom: 0px;";
 var POMODORO_FOCUS_FRAME_NORMAL_STYLE = `border: 2px solid rgba(214, 152, 48, 0.72); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: transparent;`;
 var POMODORO_FOCUS_FRAME_WARNING_STYLE = `border: 2px solid rgba(235, 132, 35, 0.86); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: transparent;`;

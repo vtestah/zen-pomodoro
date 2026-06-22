@@ -92,6 +92,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._statAchieveItem = null;
         this._statsChart = null;
         this._statsHeatmap = null;
+        this._tasksSubmenu = null;
+        this._tasks = [];
+        this._tasksCurrentId = "";
+        this._taskItems = [];
     }
 
     _getLayoutCategory(state) {
@@ -488,6 +492,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this.addMenuItem(this._presetSubmenu);
         this._populatePresetSubmenu();
 
+        this._tasksSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Tasks"));
+        this.addMenuItem(this._tasksSubmenu);
+        this._populateTasksSubmenu();
+
         this._statsSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Statistics"));
         let dashItem = new PopupMenu.PopupMenuItem("\ud83d\udcca " + _("Open dashboard\u2026"));
         dashItem.connect('activate', () => { this.emit('open-stats'); });
@@ -817,6 +825,53 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
 
         return first.replace(/</g, "").replace(/>/g, "+");
+    }
+
+    setTasks(list, currentId) {
+        this._tasks = Array.isArray(list) ? list : [];
+        this._tasksCurrentId = currentId || "";
+        this._populateTasksSubmenu();
+        if (this._tasksSubmenu && this._tasksSubmenu.label) {
+            let cur = this._tasks.find((t) => t.id === this._tasksCurrentId);
+            this._tasksSubmenu.label.set_text(_("Tasks") + (cur ? (": " + cur.title) : ""));
+        }
+    }
+
+    _populateTasksSubmenu() {
+        if (!this._tasksSubmenu) {
+            return;
+        }
+        this._tasksSubmenu.menu.removeAll();
+        this._taskItems = [];
+        let add = new PopupMenu.PopupMenuItem("\u2795 " + _("Add task\u2026"));
+        add.connect('activate', () => this.emit('add-task'));
+        this._tasksSubmenu.menu.addMenuItem(add);
+        let list = this._tasks || [];
+        if (list.length) {
+            this._tasksSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+        }
+        for (let task of list) {
+            let t = task;
+            let label = t.title + "   " + (t.doneToday || 0) + "/" + (t.est || 1) + " \ud83c\udf45";
+            let item = new PopupMenu.PopupMenuItem(label);
+            if (t.completed) {
+                item.setOrnament(PopupMenu.OrnamentType.CHECK, true);
+            } else {
+                item.setOrnament(PopupMenu.OrnamentType.DOT, t.id === this._tasksCurrentId);
+            }
+            item.connect('activate', () => this.emit('select-task', t.id));
+            this._tasksSubmenu.menu.addMenuItem(item);
+            this._taskItems.push({ item: item, task: t });
+        }
+        if (list.length) {
+            this._tasksSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+            let done = new PopupMenu.PopupMenuItem("\u2713 " + _("Toggle done (current)"));
+            done.connect('activate', () => this.emit('toggle-task-done'));
+            this._tasksSubmenu.menu.addMenuItem(done);
+            let del = new PopupMenu.PopupMenuItem("\ud83d\uddd1 " + _("Delete current"));
+            del.connect('activate', () => this.emit('delete-task'));
+            this._tasksSubmenu.menu.addMenuItem(del);
+        }
     }
 
     setPresets(list, activeName) {

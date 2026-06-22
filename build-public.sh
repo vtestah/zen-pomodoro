@@ -73,8 +73,10 @@ s=s.replace('GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "
             'GLib.build_filenamev([GLib.get_user_state_dir(), "zen-pomodoro", "session.json"])')
 s=s.replace('GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "daily-stats.json"])',
             'GLib.build_filenamev([GLib.get_user_state_dir(), "zen-pomodoro", "daily-stats.json"])')
+s=s.replace('GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "tasks-data.json"])',
+            'GLib.build_filenamev([GLib.get_user_state_dir(), "zen-pomodoro", "tasks-data.json"])')
 # Ensure the state dir exists before writing either file.
-s=re.sub(r'(\n(\s*)GLib\.file_set_contents\((POMODORO_STATE_FILE|POMODORO_STATS_FILE),)',
+s=re.sub(r'(\n(\s*)GLib\.file_set_contents\((POMODORO_STATE_FILE|POMODORO_STATS_FILE|POMODORO_TASKS_DATA_FILE),)',
          r'\n\2GLib.mkdir_with_parents(GLib.path_get_dirname(\3), 0o700);\1', s)
 
 open(f,'w',encoding='utf-8').write(s)

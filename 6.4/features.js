@@ -543,17 +543,17 @@ function install(proto) {
 
         let title = (s) => new St.Label({ text: s, style: 'font-size: 1.35em; font-weight: bold;' });
         let para = (s) => { let l = new St.Label({ text: s }); l.clutter_text.line_wrap = true; return l; };
-        let hint = (s) => new St.Label({ text: s, style: 'font-size: 0.82em; padding-top: 4px;' });
-        let PILL = 'background-color: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.32); border-radius: 14px; padding: 7px 16px; margin: 6px 8px 0 0;';
-        let PILL_ON = 'background-color: rgba(227,90,60,0.7); border: 1px solid rgba(227,90,60,1.0); border-radius: 14px; padding: 7px 16px; margin: 6px 8px 0 0; color: #ffffff;';
+        let hint = (s) => new St.Label({ text: s, style: 'font-weight: bold; padding-top: 8px;' });
+        let BASE = 'margin: 6px 8px 0 0; padding: 8px 16px; border-radius: 8px;';
+        let SEL = BASE + ' background-color: rgba(227,90,60,0.92); color: #ffffff; font-weight: bold; border: 1px solid #e3593c;';
         let rowOf = (arr) => { let r = new St.BoxLayout({ vertical: false }); arr.forEach((x) => r.add(x)); return r; };
         let choice = (defs) => {
             let r = new St.BoxLayout({ vertical: false });
             let btns = [];
             defs.forEach((d) => {
-                let b = new St.Button({ label: d.label });
-                b.set_style(d.active ? PILL_ON : PILL);
-                b.connect('clicked', () => { try { d.fn(); } catch (e) {} btns.forEach((x) => x.set_style(PILL)); b.set_style(PILL_ON); });
+                let b = new St.Button({ label: d.label, style_class: 'button' });
+                b.set_style(d.active ? SEL : BASE);
+                b.connect('clicked', () => { try { d.fn(); } catch (e) {} btns.forEach((x) => x.set_style(BASE)); b.set_style(SEL); });
                 btns.push(b);
                 r.add(b);
             });
@@ -561,15 +561,15 @@ function install(proto) {
         };
         let toggle = (label, initial, setter) => {
             let on = { v: !!initial };
-            let b = new St.Button();
-            let refresh = () => { b.set_label((on.v ? "\u2713  " : "") + label); b.set_style(on.v ? PILL_ON : PILL); };
+            let b = new St.Button({ style_class: 'button' });
+            let refresh = () => { b.set_label((on.v ? "\u2713  " : "") + label); b.set_style(on.v ? SEL : BASE); };
             b.connect('clicked', () => { on.v = !on.v; try { setter(on.v); } catch (e) {} refresh(); });
             refresh();
             return b;
         };
         let actionChip = (label, fn) => {
-            let b = new St.Button({ label: label });
-            b.set_style(PILL);
+            let b = new St.Button({ label: label, style_class: 'button' });
+            b.set_style(BASE);
             b.connect('clicked', () => { try { fn(b); } catch (e) {} });
             return b;
         };
@@ -632,8 +632,8 @@ function install(proto) {
             } else {
                 content.add(title(_("You're all set \ud83c\udf45")));
                 content.add(para(_("Open the menu to start a focus, pick a task, or open Statistics → the dashboard. Set keyboard shortcuts in Settings → Panel. Enjoy calm, focused work!")));
-                let startBtn = new St.Button({ label: "\ud83c\udf45  " + _("Start first focus") });
-                startBtn.set_style(PILL_ON + ' font-weight: bold; padding: 9px 20px;');
+                let startBtn = new St.Button({ label: "\ud83c\udf45  " + _("Start first focus"), style_class: 'button' });
+                startBtn.set_style(SEL + ' padding: 10px 22px;');
                 startBtn.connect('clicked', () => { finish(); this._startTimerFromMenu(); });
                 content.add(rowOf([ startBtn ]));
             }

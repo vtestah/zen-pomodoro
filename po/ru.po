@@ -1100,3 +1100,192 @@ msgid ""
 msgstr ""
 "Если Cinnamon перезапустится во время фокуса, сессия запомнится — её можно "
 "возобновить из меню, сама она не стартует."
+
+msgid "Length of one focus block, in minutes (classic Pomodoro is 25)."
+msgstr "Длительность одного блока фокуса, в минутах (классически — 25)."
+
+msgid "Length of the short break after each focus block (classic is 5)."
+msgstr "Длительность короткого перерыва после блока фокуса (классически — 5)."
+
+msgid ""
+"Length of the longer break after a set of pomodoros (classic is 15–30)."
+msgstr ""
+"Длительность длинного перерыва после серии помидоров (классически 15–30)."
+
+msgid ""
+"How many focus blocks to complete before the long break (classic is 4)."
+msgstr "Сколько блоков фокуса до длинного перерыва (классически — 4)."
+
+msgid ""
+"Begin a focus session as soon as Cinnamon starts or the applet is added."
+msgstr "Начинать фокус сразу при старте Cinnamon или добавлении апплета."
+
+msgid ""
+"Show pop-up dialogs at the end of each phase (off keeps it quiet — only on-"
+"screen cues)."
+msgstr ""
+"Показывать всплывающие диалоги в конце каждой фазы (выкл — тихо, только "
+"экранные подсказки)."
+
+msgid "When a focus block ends, start its break automatically."
+msgstr "Когда блок фокуса завершается, автоматически начинать перерыв."
+
+msgid "When a short break ends, start the next focus block automatically."
+msgstr ""
+"Когда короткий перерыв завершается, автоматически начинать следующий блок "
+"фокуса."
+
+msgid "When the long break ends, start a new pomodoro cycle automatically."
+msgstr "Когда длинный перерыв завершается, автоматически начинать новый цикл."
+
+msgid "Show the Pomodoro icon in the panel next to the timer."
+msgstr "Показывать значок помидора в панели рядом с таймером."
+
+msgid "Show the remaining time as text in the panel."
+msgstr "Показывать оставшееся время текстом в панели."
+
+msgid "Keyboard shortcut to open or close the applet menu."
+msgstr "Горячая клавиша для открытия/закрытия меню апплета."
+
+msgid "Keyboard shortcut to start or pause the timer."
+msgstr "Горячая клавиша для старта/паузы таймера."
+
+msgid "Keyboard shortcut to skip to the next phase (focus ↔ break)."
+msgstr "Горячая клавиша для перехода к следующей фазе (фокус ↔ перерыв)."
+
+msgid "Show the current task in a small on-screen chip while focusing."
+msgstr ""
+"Показывать текущую задачу маленькой плашкой на экране во время фокуса."
+
+msgid "Quick-pick task buttons in the focus-start dialog; one per row."
+msgstr ""
+"Кнопки быстрого выбора задач в диалоге старта фокуса; по одной в строке."
+
+msgid "Accent color during focus (used only when the theme is Custom)."
+msgstr "Цвет акцента во время фокуса (только при теме «Custom»)."
+
+msgid "Accent color during breaks (used only when the theme is Custom)."
+msgstr "Цвет акцента во время перерыва (только при теме «Custom»)."
+
+msgid ""
+"Thickness of the progress line drawn around the screen edge during focus."
+msgstr "Толщина линии прогресса по краю экрана во время фокуса."
+
+msgid "Which screen corner the on-screen task chip appears in."
+msgstr "В каком углу экрана показывать плашку задачи."
+
+msgid "How long the 'Focus: <task>' start ritual stays on screen, in seconds."
+msgstr "Сколько секунд держится заставка «Focus: <задача>» при старте."
+
+msgid "How long you can be away before focus auto-pauses, in minutes."
+msgstr "Сколько минут отсутствия до авто-паузы фокуса."
+
+msgid ""
+"Resume a paused focus session automatically when you return to the computer."
+msgstr "Автоматически возобновлять фокус, когда вернёшься к компьютеру."
+
+msgid "How many extra minutes the 'extend focus' option adds."
+msgstr "Сколько минут добавляет опция «продлить фокус»."
+
+msgid "Volume of the brown-noise ambient sound (0 = silent)."
+msgstr "Громкость фонового шума (0 — тихо)."
+
+msgid ""
+"Command run when a focus block starts (e.g. update your chat status). No "
+"shell pipes or redirects."
+msgstr ""
+"Команда при старте фокуса (например, обновить статус в чате). Без shell-"
+"конвейеров и перенаправлений."
+
+msgid "Command run when a break starts (e.g. clear your status)."
+msgstr "Команда при старте перерыва (например, сбросить статус)."
+
+msgid "Your Pushover user key (from your Pushover account)."
+msgstr "Твой user key из Pushover (в личном кабинете)."
+
+msgid "API token of your Pushover application (create one at pushover.net)."
+msgstr "API-токен приложения Pushover (создаётся на pushover.net)."
+
+msgid "Title shown on the push notifications."
+msgstr "Заголовок push-уведомлений."
+
+msgid "Sound the Pushover app plays for these notifications."
+msgstr "Звук, который проигрывает приложение Pushover для этих уведомлений."
+
+msgid "Delivery priority: Low is quiet, High is more intrusive."
+msgstr "Приоритет доставки: «Низкий» тихо, «Высокий» настойчивее."
+
+msgid ""
+"Domains to block during focus, one per row (e.g. youtube.com, "
+"www.youtube.com)."
+msgstr ""
+"Домены для блокировки во время фокуса, по одному в строке (например, "
+"youtube.com, www.youtube.com)."
+
+msgid "Play a soft ticking sound while focusing."
+msgstr "Тихое тиканье во время фокуса."
+
+msgid "Sound file for the ticking (leave empty for the built-in tone)."
+msgstr "Файл звука тиканья (пусто — встроенный тон)."
+
+msgid "Volume of the ticking sound (0 = silent)."
+msgstr "Громкость тиканья (0 — тихо)."
+
+msgid "Play a sound when a break begins."
+msgstr "Звук в начале перерыва."
+
+msgid "Sound file played when a break begins."
+msgstr "Файл звука начала перерыва."
+
+msgid "Volume of the break sound (0 = silent)."
+msgstr "Громкость звука перерыва (0 — тихо)."
+
+msgid "Play a warning sound shortly before a focus block ends."
+msgstr "Предупреждающий звук незадолго до конца блока фокуса."
+
+msgid "How many seconds before the end the warning sound plays."
+msgstr "За сколько секунд до конца проигрывать предупреждение."
+
+msgid "Sound file used for the warning."
+msgstr "Файл предупреждающего звука."
+
+msgid "Volume of the warning sound (0 = silent)."
+msgstr "Громкость предупреждения (0 — тихо)."
+
+msgid "Play a sound when a focus block starts."
+msgstr "Звук при старте блока фокуса."
+
+msgid "Sound file played when focus starts."
+msgstr "Файл звука старта фокуса."
+
+msgid "Volume of the start sound (0 = silent)."
+msgstr "Громкость звука старта (0 — тихо)."
+
+msgid "Seconds between chimes during focus."
+msgstr "Секунды между сигналами во время фокуса."
+
+msgid "Sound file used for the interval chime."
+msgstr "Файл звука интервального сигнала."
+
+msgid "Volume of the interval chime (0 = silent)."
+msgstr "Громкость интервального сигнала (0 — тихо)."
+
+msgid ""
+"Your timer presets — name + focus / short / long minutes + pomodori. Apply "
+"them from the menu's Preset submenu."
+msgstr ""
+"Твои пресеты: имя + минуты фокус/короткий/длинный + число помидоров. "
+"Применяются из подменю «Preset» в меню."
+
+msgid ""
+"Run your personal ~/.local/bin/pomodoro scripts. Off = built-in features "
+"only."
+msgstr ""
+"Запускать твои личные скрипты из ~/.local/bin/pomodoro. Выкл — только "
+"встроенные функции."
+
+msgid "Script to run when a short break starts."
+msgstr "Скрипт при старте короткого перерыва."
+
+msgid "Script to run when a long break starts."
+msgstr "Скрипт при старте длинного перерыва."

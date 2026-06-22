@@ -257,7 +257,8 @@
         "max": 60,
         "step": 1,
         "description": "Pomodoro Duration:",
-        "units": "minutes"
+        "units": "minutes",
+        "tooltip": "Length of one focus block, in minutes (classic Pomodoro is 25)."
     },
     "short_break_duration": {
         "type": "spinbutton",
@@ -266,7 +267,8 @@
         "max": 15,
         "step": 1,
         "description": "Short Break Duration:",
-        "units": "minutes"
+        "units": "minutes",
+        "tooltip": "Length of the short break after each focus block (classic is 5)."
     },
     "long_break_duration": {
         "type": "spinbutton",
@@ -275,7 +277,8 @@
         "max": 60,
         "step": 1,
         "description": "Long Break Duration:",
-        "units": "minutes"
+        "units": "minutes",
+        "tooltip": "Length of the longer break after a set of pomodoros (classic is 15–30)."
     },
     "pomodori_number": {
         "type": "spinbutton",
@@ -283,12 +286,14 @@
         "min": 1,
         "max": 10,
         "step": 1,
-        "description": "Number of pomodori before long break:"
+        "description": "Number of pomodori before long break:",
+        "tooltip": "How many focus blocks to complete before the long break (classic is 4)."
     },
     "start_automatically_on_load": {
         "type": "switch",
         "description": "Start the pomodoro timer as soon as the applet loads",
-        "default": false
+        "default": false,
+        "tooltip": "Begin a focus session as soon as Cinnamon starts or the applet is added."
     },
     "session_recovery": {
         "type": "switch",
@@ -299,27 +304,32 @@
     "show_dialog_messages": {
         "type": "switch",
         "description": "Show Dialog Messages",
-        "default": true
+        "default": true,
+        "tooltip": "Show pop-up dialogs at the end of each phase (off keeps it quiet — only on-screen cues)."
     },
     "auto_start_after_pomodoro_ends": {
         "type": "switch",
         "description": "Auto start after a pomodoro ends",
-        "default": true
+        "default": true,
+        "tooltip": "When a focus block ends, start its break automatically."
     },
     "auto_start_after_short_break_ends": {
         "type": "switch",
         "description": "Auto start after a short break ends",
-        "default": true
+        "default": true,
+        "tooltip": "When a short break ends, start the next focus block automatically."
     },
     "auto_start_after_break_ends": {
         "type": "switch",
         "description": "Auto start a new pomodoro after a break ends",
-        "default": true
+        "default": true,
+        "tooltip": "When the long break ends, start a new pomodoro cycle automatically."
     },
     "display_icon": {
         "type": "switch",
         "description": "Display the pomodoro icon in the applet panel",
-        "default": true
+        "default": true,
+        "tooltip": "Show the Pomodoro icon in the panel next to the timer."
     },
     "use_symbolic_icon": {
         "type": "switch",
@@ -330,7 +340,8 @@
     "show_timer": {
         "type": "switch",
         "description": "Show the pomodoro timer in the applet panel",
-        "default": true
+        "default": true,
+        "tooltip": "Show the remaining time as text in the panel."
     },
     "show_seconds": {
         "type": "switch",
@@ -342,17 +353,20 @@
     "hotkey": {
         "type": "keybinding",
         "description": "Shortcut: open the applet menu",
-        "default": "<Super><Shift>p"
+        "default": "<Super><Shift>p",
+        "tooltip": "Keyboard shortcut to open or close the applet menu."
     },
     "hotkey_toggle": {
         "type": "keybinding",
         "description": "Shortcut: start / pause the timer",
-        "default": ""
+        "default": "",
+        "tooltip": "Keyboard shortcut to start or pause the timer."
     },
     "hotkey_skip": {
         "type": "keybinding",
         "description": "Shortcut: skip to the next step",
-        "default": ""
+        "default": "",
+        "tooltip": "Keyboard shortcut to skip to the next phase (focus ↔ break)."
     },
     "start_on_click": {
         "type": "switch",
@@ -363,7 +377,8 @@
     "focus_show_task_chip": {
         "type": "switch",
         "description": "Show the current task as an on-screen chip during focus",
-        "default": false
+        "default": false,
+        "tooltip": "Show the current task in a small on-screen chip while focusing."
     },
     "focus_calm_ending": {
         "type": "switch",
@@ -406,7 +421,8 @@
             {
                 "task": "Изучение Pytest"
             }
-        ]
+        ],
+        "tooltip": "Quick-pick task buttons in the focus-start dialog; one per row."
     },
     "require_focus_task": {
         "type": "switch",
@@ -430,13 +446,15 @@
         "type": "colorchooser",
         "description": "Custom focus accent color",
         "default": "rgb(235,175,75)",
-        "dependency": "theme_preset=custom"
+        "dependency": "theme_preset=custom",
+        "tooltip": "Accent color during focus (used only when the theme is Custom)."
     },
     "accent_break_color": {
         "type": "colorchooser",
         "description": "Custom break accent color",
         "default": "rgb(120,205,155)",
-        "dependency": "theme_preset=custom"
+        "dependency": "theme_preset=custom",
+        "tooltip": "Accent color during breaks (used only when the theme is Custom)."
     },
     "frame_style": {
         "type": "combobox",
@@ -465,7 +483,8 @@
         "min": 1,
         "max": 6,
         "step": 1,
-        "description": "Progress line thickness"
+        "description": "Progress line thickness",
+        "tooltip": "Thickness of the progress line drawn around the screen edge during focus."
     },
     "breathing_pattern": {
         "type": "combobox",
@@ -487,7 +506,8 @@
             "Bottom-left": "bl",
             "Top-right": "tr",
             "Top-left": "tl"
-        }
+        },
+        "tooltip": "Which screen corner the on-screen task chip appears in."
     },
     "ritual_seconds": {
         "type": "scale",
@@ -495,7 +515,8 @@
         "min": 1,
         "max": 8,
         "step": 1,
-        "description": "Start ritual duration (seconds)"
+        "description": "Start ritual duration (seconds)",
+        "tooltip": "How long the 'Focus: <task>' start ritual stays on screen, in seconds."
     },
     "reduce_motion": {
         "type": "switch",
@@ -552,13 +573,15 @@
         "max": 30,
         "step": 1,
         "description": "Idle minutes before auto-pause",
-        "dependency": "auto_pause_idle"
+        "dependency": "auto_pause_idle",
+        "tooltip": "How long you can be away before focus auto-pauses, in minutes."
     },
     "auto_resume_on_activity": {
         "type": "switch",
         "description": "Resume automatically when you return",
         "default": false,
-        "dependency": "auto_pause_idle"
+        "dependency": "auto_pause_idle",
+        "tooltip": "Resume a paused focus session automatically when you return to the computer."
     },
     "flow_extend": {
         "type": "switch",
@@ -573,7 +596,8 @@
         "max": 30,
         "step": 1,
         "description": "Extend amount (minutes)",
-        "dependency": "flow_extend"
+        "dependency": "flow_extend",
+        "tooltip": "How many extra minutes the 'extend focus' option adds."
     },
     "focus_ambient_sound": {
         "type": "switch",
@@ -588,7 +612,8 @@
         "max": 100,
         "step": 1,
         "description": "Ambient volume",
-        "dependency": "focus_ambient_sound"
+        "dependency": "focus_ambient_sound",
+        "tooltip": "Volume of the brown-noise ambient sound (0 = silent)."
     },
     "break_breathing": {
         "type": "switch",
@@ -624,13 +649,15 @@
         "type": "entry",
         "description": "Command to run when focus starts",
         "default": "",
-        "dependency": "run_command_enabled"
+        "dependency": "run_command_enabled",
+        "tooltip": "Command run when a focus block starts (e.g. update your chat status). No shell pipes or redirects."
     },
     "break_start_command": {
         "type": "entry",
         "description": "Command to run when a break starts",
         "default": "",
-        "dependency": "run_command_enabled"
+        "dependency": "run_command_enabled",
+        "tooltip": "Command run when a break starts (e.g. clear your status)."
     },
     "pushover_enabled": {
         "type": "switch",
@@ -642,19 +669,22 @@
         "type": "entry",
         "description": "Pushover user key",
         "default": "",
-        "dependency": "pushover_enabled"
+        "dependency": "pushover_enabled",
+        "tooltip": "Your Pushover user key (from your Pushover account)."
     },
     "pushover_app_token": {
         "type": "entry",
         "description": "Pushover application API token",
         "default": "",
-        "dependency": "pushover_enabled"
+        "dependency": "pushover_enabled",
+        "tooltip": "API token of your Pushover application (create one at pushover.net)."
     },
     "pushover_title": {
         "type": "entry",
         "description": "Notification title",
         "default": "Zen Pomodoro",
-        "dependency": "pushover_enabled"
+        "dependency": "pushover_enabled",
+        "tooltip": "Title shown on the push notifications."
     },
     "pushover_msg_focus": {
         "type": "entry",
@@ -691,7 +721,8 @@
             "Intermission": "intermission",
             "None": "none"
         },
-        "dependency": "pushover_enabled"
+        "dependency": "pushover_enabled",
+        "tooltip": "Sound the Pushover app plays for these notifications."
     },
     "pushover_priority": {
         "type": "combobox",
@@ -702,7 +733,8 @@
             "Normal": "0",
             "High": "1"
         },
-        "dependency": "pushover_enabled"
+        "dependency": "pushover_enabled",
+        "tooltip": "Delivery priority: Low is quiet, High is more intrusive."
     },
     "enable_blocking": {
         "type": "switch",
@@ -721,7 +753,8 @@
             }
         ],
         "default": [],
-        "dependency": "enable_blocking"
+        "dependency": "enable_blocking",
+        "tooltip": "Domains to block during focus, one per row (e.g. youtube.com, www.youtube.com)."
     },
     "block_now_button": {
         "type": "button",
@@ -756,14 +789,16 @@
     "timer_sound": {
         "type": "switch",
         "description": "Play Timer Sound",
-        "default": false
+        "default": false,
+        "tooltip": "Play a soft ticking sound while focusing."
     },
     "timer_sound_file": {
         "type": "filechooser",
         "description": "Timer Sound File",
         "default": "tick.ogg",
         "select-dir": false,
-        "dependency": "timer_sound"
+        "dependency": "timer_sound",
+        "tooltip": "Sound file for the ticking (leave empty for the built-in tone)."
     },
     "timer_sound_volume": {
         "type": "scale",
@@ -772,19 +807,22 @@
         "max": 100,
         "step": 1,
         "description": "Sound volume:",
-        "dependency": "timer_sound"
+        "dependency": "timer_sound",
+        "tooltip": "Volume of the ticking sound (0 = silent)."
     },
     "break_sound": {
         "type": "switch",
         "description": "Play Break Sound",
-        "default": true
+        "default": true,
+        "tooltip": "Play a sound when a break begins."
     },
     "break_sound_file": {
         "type": "filechooser",
         "description": "Break Sound File",
         "default": "deskbell.wav",
         "select-dir": false,
-        "dependency": "break_sound"
+        "dependency": "break_sound",
+        "tooltip": "Sound file played when a break begins."
     },
     "break_sound_volume": {
         "type": "scale",
@@ -793,12 +831,14 @@
         "max": 100,
         "step": 1,
         "description": "Sound volume:",
-        "dependency": "break_sound"
+        "dependency": "break_sound",
+        "tooltip": "Volume of the break sound (0 = silent)."
     },
     "warn_sound": {
         "type": "switch",
         "description": "Play Warn Sound",
-        "default": false
+        "default": false,
+        "tooltip": "Play a warning sound shortly before a focus block ends."
     },
     "warn_sound_delay": {
         "type": "scale",
@@ -807,14 +847,16 @@
         "max": 600,
         "step": 5,
         "description": "Warn Delay (in secs):",
-        "dependency": "warn_sound"
+        "dependency": "warn_sound",
+        "tooltip": "How many seconds before the end the warning sound plays."
     },
     "warn_sound_file": {
         "type": "filechooser",
         "description": "Warn Sound File",
         "default": "warn.wav",
         "select-dir": false,
-        "dependency": "warn_sound"
+        "dependency": "warn_sound",
+        "tooltip": "Sound file used for the warning."
     },
     "warn_sound_volume": {
         "type": "scale",
@@ -823,19 +865,22 @@
         "max": 100,
         "step": 1,
         "description": "Sound volume:",
-        "dependency": "warn_sound"
+        "dependency": "warn_sound",
+        "tooltip": "Volume of the warning sound (0 = silent)."
     },
     "start_sound": {
         "type": "switch",
         "description": "Play Start Sound",
-        "default": true
+        "default": true,
+        "tooltip": "Play a sound when a focus block starts."
     },
     "start_sound_file": {
         "type": "filechooser",
         "description": "Start Sound File",
         "default": "deskbell.wav",
         "select-dir": false,
-        "dependency": "start_sound"
+        "dependency": "start_sound",
+        "tooltip": "Sound file played when focus starts."
     },
     "start_sound_volume": {
         "type": "scale",
@@ -844,7 +889,8 @@
         "max": 100,
         "step": 1,
         "description": "Sound volume:",
-        "dependency": "start_sound"
+        "dependency": "start_sound",
+        "tooltip": "Volume of the start sound (0 = silent)."
     },
     "interval_chime": {
         "type": "switch",
@@ -859,14 +905,16 @@
         "max": 600,
         "step": 5,
         "description": "Chime interval (seconds):",
-        "dependency": "interval_chime"
+        "dependency": "interval_chime",
+        "tooltip": "Seconds between chimes during focus."
     },
     "interval_chime_file": {
         "type": "filechooser",
         "description": "Chime sound file",
         "default": "ding.ogg",
         "select-dir": false,
-        "dependency": "interval_chime"
+        "dependency": "interval_chime",
+        "tooltip": "Sound file used for the interval chime."
     },
     "interval_chime_volume": {
         "type": "scale",
@@ -875,26 +923,30 @@
         "max": 100,
         "step": 1,
         "description": "Chime volume:",
-        "dependency": "interval_chime"
+        "dependency": "interval_chime",
+        "tooltip": "Volume of the interval chime (0 = silent)."
     },
     "enable_scripts": {
         "type": "switch",
         "description": "Enable scripts",
-        "default": false
+        "default": false,
+        "tooltip": "Run your personal ~/.local/bin/pomodoro scripts. Off = built-in features only."
     },
     "custom_short_break_script": {
         "type": "filechooser",
         "default": "",
         "description": "Execute this custom script when a short break starts",
         "select-dir": false,
-        "dependency": "enable_scripts"
+        "dependency": "enable_scripts",
+        "tooltip": "Script to run when a short break starts."
     },
     "custom_long_break_script": {
         "type": "filechooser",
         "default": "",
         "description": "Execute this custom script when a long break starts",
         "select-dir": false,
-        "dependency": "enable_scripts"
+        "dependency": "enable_scripts",
+        "tooltip": "Script to run when a long break starts."
     },
     "hdr_tick": {
         "type": "header",
@@ -968,6 +1020,7 @@
                 "long_break": 20,
                 "pomodori": 4
             }
-        ]
+        ],
+        "tooltip": "Your timer presets — name + focus / short / long minutes + pomodori. Apply them from the menu's Preset submenu."
     }
 }

@@ -98,6 +98,9 @@ lay=d.get("layout")
 if lay:
     lay["pages"]=[p for p in lay.get("pages",[]) if p!="scripts"]
     lay.pop("scripts",None); lay.pop("sec_scripts",None)
+    for _pk,_pv in list(lay.items()):
+        if isinstance(_pv,dict) and _pv.get("type")=="page":
+            _pv["sections"]=[_s for _s in _pv.get("sections",[]) if _s!="sec_scripts"]
 json.dump(d,open(f,'w',encoding='utf-8'),ensure_ascii=False,indent=4); open(f,'a').write('\n')
 print("   settings-schema.json cleaned")
 PY

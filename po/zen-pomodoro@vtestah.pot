@@ -117,7 +117,7 @@ msgstr ""
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
 
-#: applet.js:1539 features.js:1113
+#: applet.js:1539 features.js:1163
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr ""
 
@@ -138,11 +138,11 @@ msgstr ""
 msgid "Choose or type a focus task"
 msgstr ""
 
-#: dialogs.js:65 features.js:449 features.js:1161
+#: dialogs.js:65 features.js:449 features.js:1211
 msgid "Cancel"
 msgstr ""
 
-#: dialogs.js:72 features.js:1162
+#: dialogs.js:72 features.js:1212
 msgid "Start"
 msgstr ""
 
@@ -215,7 +215,7 @@ msgstr ""
 msgid "Pomodoro finished, ready to take a break?"
 msgstr ""
 
-#: features.js:385
+#: features.js:385 features.js:639
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr ""
@@ -251,101 +251,118 @@ msgstr ""
 msgid "%dh"
 msgstr ""
 
-#: features.js:598
+#: features.js:617
 msgid "Focus statistics"
 msgstr ""
 
-#: features.js:606
+#: features.js:625
 msgid "Today"
 msgstr ""
 
-#: features.js:607
+#: features.js:626
 msgid "This week"
 msgstr ""
 
-#: features.js:608
+#: features.js:627
 msgid "Streak"
 msgstr ""
 
-#: features.js:608
+#: features.js:627
 #, javascript-format
 msgid "best %d"
 msgstr ""
 
-#: features.js:609
+#: features.js:628
 msgid "All time"
 msgstr ""
 
-#: features.js:612
+#: features.js:631
+msgid "Today's harvest"
+msgstr ""
+
+#: features.js:633
+msgid "Nothing harvested yet today"
+msgstr ""
+
+#: features.js:640
+#, javascript-format
+msgid "Interruptions: %d today · %d this week"
+msgstr ""
+
+#: features.js:643
 msgid "Focus time — last 14 days"
 msgstr ""
 
-#: features.js:617
+#: features.js:648
 msgid "Activity — last 12 weeks"
 msgstr ""
 
-#: features.js:623
+#: features.js:654
 msgid "Less"
 msgstr ""
 
-#: features.js:627
+#: features.js:658
 msgid "More"
 msgstr ""
 
-#: features.js:636 menu.js:511 menu.js:651
+#: features.js:666
+msgid "By task"
+msgstr ""
+
+#: features.js:686 menu.js:511 menu.js:651
 #, javascript-format
 msgid "Milestones: %s"
 msgstr ""
 
-#: features.js:641
+#: features.js:691
 msgid "Close"
 msgstr ""
 
-#: features.js:835
+#: features.js:885
 msgid "No task"
 msgstr ""
 
-#: features.js:876
+#: features.js:926
 msgid "Could not open the hosts file"
 msgstr ""
 
-#: features.js:925
+#: features.js:975
 msgid "Add some domains to block first."
 msgstr ""
 
-#: features.js:929
+#: features.js:979
 msgid "Distractions blocked."
 msgstr ""
 
-#: features.js:934
+#: features.js:984
 msgid "Distractions unblocked."
 msgstr ""
 
-#: features.js:971
+#: features.js:1021
 msgid "Click to exit Zen"
 msgstr ""
 
-#: features.js:1006 visual.js:894
+#: features.js:1056 visual.js:894
 msgid "Focus"
 msgstr ""
 
-#: features.js:1083
+#: features.js:1133
 msgid "Breathe in"
 msgstr ""
 
-#: features.js:1086 features.js:1092
+#: features.js:1136 features.js:1142
 msgid "Hold"
 msgstr ""
 
-#: features.js:1089
+#: features.js:1139
 msgid "Breathe out"
 msgstr ""
 
-#: features.js:1119
+#: features.js:1169
 msgid "Focus until"
 msgstr ""
 
-#: features.js:1120
+#: features.js:1170
 msgid "Enter a time (HH:MM)"
 msgstr ""
 

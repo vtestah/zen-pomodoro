@@ -576,6 +576,25 @@ function install(proto) {
         }
     };
 
+    proto._paintMiniBar = function(area, frac) {
+        let cr = area.get_context();
+        try {
+            let [w, h] = area.get_surface_size();
+            let acc = this._dashAccent || [0.93, 0.42, 0.31];
+            let y = Math.round(h * 0.2);
+            let bh = Math.max(3, Math.round(h * 0.6));
+            cr.setSourceRGBA(1, 1, 1, 0.08);
+            cr.rectangle(0, y, w, bh);
+            cr.fill();
+            let fw = Math.max(0, Math.min(1, frac)) * w;
+            cr.setSourceRGBA(acc[0], acc[1], acc[2], 0.9);
+            cr.rectangle(0, y, fw, bh);
+            cr.fill();
+        } finally {
+            cr.$dispose();
+        }
+    };
+
     proto._showStatsDashboard = function() {
         let st = this._computeStats();
         let accent = [0.93, 0.42, 0.31];
@@ -609,6 +628,18 @@ function install(proto) {
         cards.add(this._dashStatCard(_("All time"), (st.total || 0) + " \ud83c\udf45", this._dashFmtMin(st.totalMinutes || 0), accent));
         root.add(cards);
 
+        root.add(new St.Label({ text: _("Today's harvest"), style: 'font-weight: bold; padding-top: 4px;' }));
+        let harvestN = Math.min(st.today || 0, 20);
+        let harvestStr = harvestN > 0 ? "\ud83c\udf45".repeat(harvestN) : _("Nothing harvested yet today");
+        if ((st.today || 0) > 20) { harvestStr += "  +" + ((st.today || 0) - 20); }
+        root.add(new St.Label({ text: harvestStr, style: 'font-size: 1.15em;' }));
+
+        let estF = this._estimateFinish();
+        let infoBits = [];
+        if (estF) { infoBits.push(_("\u2248 finish %s \u00b7 %d \ud83c\udf45 left").format(estF.time, estF.remaining)); }
+        infoBits.push(_("Interruptions: %d today \u00b7 %d this week").format(st.interruptionsToday || 0, st.interruptionsWeek || 0));
+        root.add(new St.Label({ text: infoBits.join("        "), style: 'padding-bottom: 2px;' }));
+
         root.add(new St.Label({ text: _("Focus time \u2014 last 14 days"), style: 'font-weight: bold; padding-top: 4px;' }));
         let barArea = new St.DrawingArea({ x_expand: true, style: 'height: 150px;' });
         barArea.connect('repaint', (a) => this._paintDashBars(a));
@@ -626,6 +657,25 @@ function install(proto) {
         legend.add(legendCells);
         legend.add(new St.Label({ text: _("More"), style: 'font-size: 0.8em;' }));
         root.add(legend);
+
+        let tasksByDone = this._taskList().slice()
+            .sort((a, b) => (b.done || 0) - (a.done || 0))
+            .filter((t) => (t.done || 0) > 0)
+            .slice(0, 5);
+        if (tasksByDone.length) {
+            root.add(new St.Label({ text: _("By task"), style: 'font-weight: bold; padding-top: 6px;' }));
+            let maxDone = tasksByDone[0].done || 1;
+            for (let t of tasksByDone) {
+                let frac = (t.done || 0) / maxDone;
+                let rowB = new St.BoxLayout({ vertical: false, style: 'spacing: 8px;' });
+                rowB.add(new St.Label({ text: t.title, style: 'min-width: 150px;' }));
+                let mb = new St.DrawingArea({ x_expand: true, style: 'height: 14px;' });
+                mb.connect('repaint', (a) => this._paintMiniBar(a, frac));
+                rowB.add(mb);
+                rowB.add(new St.Label({ text: (t.done || 0) + " \ud83c\udf45", style: 'min-width: 44px;' }));
+                root.add(rowB);
+            }
+        }
 
         let tot = this._dashMilestoneTier(st.total || 0, [10, 25, 50, 100, 250, 500, 1000, 2000]);
         let stk = this._dashMilestoneTier(st.longestStreak || 0, [3, 7, 14, 30, 60, 100, 365]);

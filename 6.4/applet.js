@@ -202,6 +202,13 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_flowExtend = null;
         this._opt_flowExtendMinutes = null;
         this._opt_focusAmbientSound = null;
+        this._opt_focusDnd = null;
+        this._opt_runCommandEnabled = null;
+        this._opt_focusStartCommand = null;
+        this._opt_breakStartCommand = null;
+        this._dndActive = false;
+        this._dndPrevValue = null;
+        this._notificationSettings = null;
         this._opt_focusAmbientVolume = null;
         this._opt_breakBreathing = null;
         this._opt_zenModeEnabled = null;
@@ -209,10 +216,11 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
         this._dailyCount = 0;
         this._dailyStreak = 0;
+        this._dailyStatsData = null;
         this._idleMonitor = null;
         this._idleWatchId = 0;
         this._activeWatchId = 0;
-        this._ambientPid = 0;
+        this._ambientSound = null;
         this._zenOverlay = null;
         this._zenTimeLabel = null;
         this._zenTaskLabel = null;
@@ -225,13 +233,16 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider = new Settings.AppletSettings(this, metadata.uuid, instanceId);
         this._bindSettings();
 
-        this._defaultSoundPath = metadata.path + '/../sounds';
+        // sounds/ lives at the UUID root; depending on whether the applet was
+        // loaded from a versioned subdirectory (e.g. 6.4/) or from a flattened
+        // package, that is either inside metadata.path or one level above it.
+        this._defaultSoundPath = metadata.path + '/sounds';
+        if (!GLib.file_test(this._defaultSoundPath, GLib.FileTest.IS_DIR) &&
+            GLib.file_test(metadata.path + '/../sounds', GLib.FileTest.IS_DIR)) {
+            this._defaultSoundPath = metadata.path + '/../sounds';
+        }
         this._sounds = {};
         this._loadSoundEffects();
-
-        // If cinnamon crashes or restarts, we want to make sure no zombie sounds are still looping
-        let killLoopingSoundCommand = `python3 ${metadata.path}/../bin/kill-looping-sound.py ${this._sounds.tick.getSoundPath()}`;
-        Util.trySpawnCommandLine(killLoopingSoundCommand);
 
         this._timers = {
             pomodoro: new TimerModule.Timer({ timerLimit: convertMinutesToSeconds(this._opt_pomodoroTimeMinutes) }),
@@ -336,6 +347,10 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_extend", "_opt_flowExtend", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_extend_minutes", "_opt_flowExtendMinutes", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_sound", "_opt_focusAmbientSound", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_dnd", "_opt_focusDnd", () => this._updateDnd());
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "run_command_enabled", "_opt_runCommandEnabled", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_start_command", "_opt_focusStartCommand", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_start_command", "_opt_breakStartCommand", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_volume", "_opt_focusAmbientVolume", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_breathing", "_opt_breakBreathing", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "zen_mode_enabled", "_opt_zenModeEnabled", emptyCallback);
@@ -402,11 +417,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "start_sound_file", "_opt_startSoundPath", this._loadSoundEffects.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "start_sound_volume", "_opt_startSoundVolume", () => this._playStartSound(true));
     
-        let showSoxInfo = true;
-        if (Gio.file_new_for_path("/usr/bin/sox").query_exists(null)) {
-            showSoxInfo = false;
-        }
-        this._settingsProvider.setValue('show_sox_info', showSoxInfo);
+        // Show the "no sound backend" hint only when neither GSound nor a
+        // fallback player (paplay / canberra-gtk-play / play) is available.
+        this._settingsProvider.setValue('show_sox_info', !SoundModule.isPlayable());
 
         // Apply initial appearance (accent colours / font scale / frame style).
         this._applyAppearance();
@@ -538,6 +551,46 @@ class PomodoroApplet extends Applet.TextIconApplet {
     }
     // @PUBLIC_STRIP_END
 
+    _writeJsonAsync(path, obj) {
+        let data;
+        try {
+            data = JSON.stringify(obj);
+        } catch (e) {
+            return;
+        }
+        try {
+            GLib.mkdir_with_parents(GLib.path_get_dirname(path), 0o700);
+            let file = Gio.File.new_for_path(path);
+            let bytes = GLib.Bytes.new(ByteArray.fromString(data));
+            file.replace_contents_bytes_async(bytes, null, false,
+                Gio.FileCreateFlags.REPLACE_DESTINATION, null, (f, res) => {
+                    try {
+                        f.replace_contents_finish(res);
+                    } catch (e) {
+                        // Persisting is best-effort; ignore failures.
+                    }
+                });
+        } catch (e) {
+            // best effort
+        }
+    }
+
+    _readJsonAsync(path, onResult) {
+        let file = Gio.File.new_for_path(path);
+        file.load_contents_async(null, (f, res) => {
+            let obj = null;
+            try {
+                let [ok, contents] = f.load_contents_finish(res);
+                if (ok) {
+                    obj = JSON.parse(ByteArray.toString(contents));
+                }
+            } catch (e) {
+                obj = null;
+            }
+            onResult(obj);
+        });
+    }
+
     _persistSessionState(force = false) {
         if (!this._opt_sessionRecovery) {
             return;
@@ -566,11 +619,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             savedAt: Date.now()
         };
 
-        try {
-            GLib.file_set_contents(POMODORO_STATE_FILE, JSON.stringify(data));
-        } catch (e) {
-            // Persisting state is best-effort; ignore failures.
-        }
+        this._writeJsonAsync(POMODORO_STATE_FILE, data);
     }
 
     _clearSessionState() {
@@ -588,21 +637,10 @@ class PomodoroApplet extends Applet.TextIconApplet {
         if (!this._opt_sessionRecovery) {
             return;
         }
+        this._readJsonAsync(POMODORO_STATE_FILE, (data) => this._applyRestoredSessionState(data));
+    }
 
-        let data;
-        try {
-            if (!GLib.file_test(POMODORO_STATE_FILE, GLib.FileTest.EXISTS)) {
-                return;
-            }
-            let [ok, contents] = GLib.file_get_contents(POMODORO_STATE_FILE);
-            if (!ok) {
-                return;
-            }
-            data = JSON.parse(ByteArray.toString(contents));
-        } catch (e) {
-            return;
-        }
-
+    _applyRestoredSessionState(data) {
         if (!data || typeof data !== "object") {
             return;
         }
@@ -900,6 +938,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         }
         this._updateIdleWatch();
         this._updateAmbientSound();
+        this._updateDnd();
         this._updateBreathingGuide();
         this._updateZenOverlay();
     }
@@ -1121,6 +1160,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._playStartSound();
             this._playFocusStartRitual();
             Main.notify(_("Let's go to work!"));
+            this._runEventCommand('focus');
         });
     
         pomodoroTimer.connect('timer-stopped', () => {
@@ -1148,6 +1188,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._playCompletionFlourish(_("Pomodoro done"));
             this._recordPomodoroCompleted();
             Main.notify(_("Take a short break"));
+            this._runEventCommand('break');
             // @PUBLIC_STRIP_BEGIN
             if (this._opt_enableScripts && this._opt_customShortBreakScript) {
                 let breakSecs = convertMinutesToSeconds(this._opt_shortBreakTimeMinutes);
@@ -1182,6 +1223,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             } else {
                 Main.notify(_("Take a long break"));
             }
+            this._runEventCommand('break');
             // @PUBLIC_STRIP_BEGIN
             if (this._opt_enableScripts && this._opt_customLongBreakScript) {
                 let breakSecs = convertMinutesToSeconds(this._opt_longBreakTimeMinutes);
@@ -1792,7 +1834,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._cancelAppearancePreview();
         this._cancelBreathingPreview();
         this._clearIdleWatches();
-        this._stopAmbientSound();
+        this._stopAllSounds();
+        this._disableDnd();
         this._stopBreathing();
         if (this._zenOverlay) {
             this._zenOverlay.destroy();

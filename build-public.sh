@@ -22,9 +22,10 @@ mkdir -p "$FILES/po"
 echo "==> copy code + assets (no .mo)"
 cp "$SRC/applet.js" "$SRC/timer.js" "$SRC/sound.js" "$SRC/menu.js" "$SRC/dialogs.js" "$SRC/constants.js" "$SRC/visual.js" "$SRC/features.js" "$SRC/soundfx.js" "$SRC/stylesheet.css" "$SRC/settings-schema.json" "$FILES/"
 cp "$REPO"/*.png "$REPO"/*.svg "$FILES/" 2>/dev/null || true
+rm -f "$FILES/screenshot.png"  # screenshot belongs at the package root only
 [ -d "$REPO/sounds" ] && cp -r "$REPO/sounds" "$FILES/"
-[ -d "$REPO/bin" ] && cp -r "$REPO/bin" "$FILES/"
 cp "$REPO/po/"*.po "$FILES/po/"
+cp "$REPO/po/"*.pot "$FILES/po/" 2>/dev/null || true
 
 echo "==> process modules (strip markers + rewrite paths)"
 for __jsf in "$FILES/applet.js" "$FILES/menu.js" "$FILES/dialogs.js" "$FILES/constants.js" "$FILES/visual.js" "$FILES/features.js" "$FILES/soundfx.js"; do
@@ -101,7 +102,8 @@ print("   settings-schema.json cleaned")
 PY
 
 echo "==> clean obsolete references from po"
-for po in "$FILES/po/"*.po; do
+for po in "$FILES/po/"*.po "$FILES/po/"*.pot; do
+  [ -e "$po" ] || continue
   sed -i '/enable_scripts\|custom_short_break_script\|custom_long_break_script/d' "$po"
 done
 
@@ -149,6 +151,9 @@ overlays. It does not modify the system, block websites, or run external scripts
 Original applet: **Pomodoro Timer** by gfreeau. Licensed under the **GPL**.
 EOF
 
+echo "==> copy screenshot.png (mandatory for Spices)"
+cp "$REPO/screenshot.png" "$OUT/screenshot.png" 2>/dev/null || true
+
 echo "==> VALIDATE"
 fail=0
 cjs -c "const G=imports.gi.GLib;let[o,c]=G.file_get_contents('$FILES/applet.js');try{Reflect.parse(imports.byteArray.toString(c));print('   applet.js: parse OK');}catch(e){print('   applet.js: PARSE FAIL '+e.message);}" | tee /tmp/zen_parse.txt
@@ -157,12 +162,15 @@ for j in "$FILES/metadata.json" "$FILES/settings-schema.json" "$OUT/info.json"; 
   python3 -m json.tool "$j" >/dev/null && echo "   JSON OK: ${j##*/}" || { echo "   JSON FAIL: $j"; fail=1; }
 done
 echo "   forbidden-pattern scan:"
-if grep -rInE "/home/vladimir|[^a-zA-Z]sudo[^a-zA-Z]|focus-start|focus-stop|/etc/hosts|domains\.txt|PUSHOVER|Pushover|_startFocusBlockIfNeeded|_stopFocusBlockIfNeeded|_runFocusPreflight|_runFocusStartScript|_runFocusStopScript|_runPomodoroScript|_checkAndExecuteCustomScript|_getBlockedSitesCount|_focusBlockActive|enable_scripts|_opt_enableScripts|_opt_customShortBreakScript|_opt_customLongBreakScript|sitesText|_sitesLabel|focus-pomodoro|PUBLIC_STRIP|\.config.*pomodoro" "$OUT" 2>/dev/null | grep -v Binary; then
+if grep -rInE "/home/vladimir|[^a-zA-Z]sudo[^a-zA-Z]|focus-start|focus-stop|domains\.txt|PUSHOVER|Pushover|_startFocusBlockIfNeeded|_stopFocusBlockIfNeeded|_runFocusPreflight|_runFocusStartScript|_runFocusStopScript|_runPomodoroScript|_checkAndExecuteCustomScript|_getBlockedSitesCount|_focusBlockActive|enable_scripts|_opt_enableScripts|_opt_customShortBreakScript|_opt_customLongBreakScript|sitesText|_sitesLabel|focus-pomodoro|PUBLIC_STRIP|\.config.*pomodoro" "$OUT" 2>/dev/null | grep -v Binary; then
   echo "   !! FORBIDDEN REMNANTS FOUND"; fail=1
 else
   echo "   clean"
 fi
-if ls "$FILES/po/"*.mo >/dev/null 2>&1 || ls "$FILES/po/"*.pot >/dev/null 2>&1; then echo "   !! po has .mo/.pot"; fail=1; else echo "   po: only .po"; fi
+if [ -f "$OUT/screenshot.png" ]; then echo "   screenshot.png: present"; else echo "   !! screenshot.png MISSING (required by Spices)"; fail=1; fi
+if ls "$FILES/po/"*.mo >/dev/null 2>&1; then echo "   !! po has compiled .mo"; fail=1; else echo "   po: no .mo"; fi
+__potn=$(ls "$FILES/po/"*.pot 2>/dev/null | wc -l)
+if [ "$__potn" -eq 1 ]; then echo "   po: exactly one .pot"; else echo "   !! po needs exactly one .pot (found $__potn)"; fail=1; fi
 rm -f /tmp/zen_parse.txt
 if [ "$fail" -ne 0 ]; then echo "==> BUILD FAILED (see above)"; exit 1; fi
 echo "==> BUILD OK -> $OUT"

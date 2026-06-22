@@ -1,31 +1,77 @@
-const Util = imports.misc.util;
 const GLib = imports.gi.GLib;
+const Gio = imports.gi.Gio;
 
-/**
- * Spawns a command and returns the process ID (PID) of the spawned process.
- * If the command could not be spawned or no PID is available, null is returned.
+/*
+ * Sound backend.
  *
- * @param {string} command - The command to be spawned.
- * @returns {number|null} The process ID (PID) of the spawned process, or null if no PID is available or the command could not be spawned.
+ * Playback prefers GSound (a GObject-introspected, asynchronous, cancellable
+ * native API). GSound on libcanberra/PulseAudio does not reliably accept a
+ * per-sound volume attribute, so when the user lowers a volume we fall back to
+ * a managed Gio.Subprocess running a player that does support volume
+ * (paplay -> canberra-gtk-play -> play). Nothing uses a shell, kill, or sox as
+ * a hard dependency, and looping is stopped cleanly via Gio.Cancellable /
+ * Gio.Subprocess.force_exit() rather than signalling a PID.
  */
-function spawnCommandAndGetPid(command) {
-    const flags = GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.STDOUT_TO_DEV_NULL | GLib.SpawnFlags.STDERR_TO_DEV_NULL;
-    const argv = GLib.shell_parse_argv(command)[1];
-    let pid = null;
 
-    try {
-        const [success, spawnedPid] = GLib.spawn_async(null, argv, null, flags, null);
-        if (!success) {
-            global.logError("Failed to spawn command: " + command);
-            return null;
-        }
-        pid = spawnedPid;
-    } catch (error) {
-        global.logError("Exception when spawning command: " + command + ", error: " + error.message);
-        return null;
+let GSound = null;
+try {
+    GSound = imports.gi.GSound;
+} catch (e) {
+    GSound = null;
+}
+
+const PREVIEW_MS = 2000;
+const FULL_VOLUME = 0.999;
+
+let _gsoundContext;   // undefined = not initialised yet, null = unavailable
+
+function _getGSoundContext() {
+    if (_gsoundContext !== undefined) {
+        return _gsoundContext;
     }
+    _gsoundContext = null;
+    if (GSound) {
+        try {
+            let ctx = new GSound.Context();
+            ctx.init(null);
+            _gsoundContext = ctx;
+        } catch (e) {
+            global.logError("Zen Pomodoro: GSound init failed, will use a fallback player: " + e.message);
+            _gsoundContext = null;
+        }
+    }
+    return _gsoundContext;
+}
 
-    return pid; // Return the PID of the successfully spawned process.
+// Players that are commonly preinstalled on Cinnamon/Mint, in order of preference.
+const _PLAYERS = ["paplay", "canberra-gtk-play", "play"];
+let _resolvedPlayer;  // undefined = not resolved yet, null = none available
+
+function _getPlayer() {
+    if (_resolvedPlayer !== undefined) {
+        return _resolvedPlayer;
+    }
+    _resolvedPlayer = null;
+    for (let p of _PLAYERS) {
+        if (GLib.find_program_in_path(p)) {
+            _resolvedPlayer = p;
+            break;
+        }
+    }
+    return _resolvedPlayer;
+}
+
+// Build a player argv. volume is a linear gain in [0, 1].
+function _buildPlayerArgv(player, soundPath, volume) {
+    if (player === "paplay") {
+        let v = Math.max(0, Math.min(65536, Math.round(volume * 65536)));
+        return ["paplay", "--volume=" + v, soundPath];
+    }
+    if (player === "play") {
+        return ["play", "-q", "--volume", volume.toFixed(2), soundPath];
+    }
+    // canberra-gtk-play has no per-invocation volume control.
+    return ["canberra-gtk-play", "-f", soundPath];
 }
 
 function addPathIfRelative(soundPath, basePath) {
@@ -40,78 +86,172 @@ function addPathIfRelative(soundPath, basePath) {
     return fullPath;
 }
 
+// True if any backend (GSound or a fallback player) is available.
 function isPlayable() {
-    return GLib.find_program_in_path('play') !== null;
+    return _getGSoundContext() !== null || _getPlayer() !== null;
 }
 
-class SoundEffect {
+var SoundEffect = class SoundEffect {
     constructor(soundPath) {
-        this._pid = null;
+        this._soundPath = "";
+        this._isPlayable = false;
+        this._loop = false;
+        this._cancellable = null;     // active GSound playback
+        this._subprocess = null;      // active fallback playback
+        this._previewTimeoutId = 0;
+        this._generation = 0;         // invalidates stale async callbacks
         this.setSoundPath(soundPath);
     }
 
     setSoundPath(soundPath) {
-        let isPlayable = this._playerExists();
-        if (!GLib.file_test(soundPath, GLib.FileTest.EXISTS)) {
-            isPlayable = false;
-            global.logError(`${soundPath} is not playable`);
+        soundPath = soundPath || "";
+        let exists = soundPath !== "" && GLib.file_test(soundPath, GLib.FileTest.EXISTS);
+        if (soundPath !== "" && !exists) {
+            global.logError(`Zen Pomodoro: sound file not found: ${soundPath}`);
         }
-        this._isPlayable = isPlayable;
         this._soundPath = soundPath;
-    }
-
-    /**
-     * Plays a sound with the given parameters.
-     *
-     * @param {Object} params - An object containing the parameters for the sound.
-     * @param {boolean} params.preview - If true, plays a preview of the sound for 2 seconds. Default is false.
-     * @param {number} params.volume - The volume at which to play the sound between 0 and 1. Default is 1.
-     * @param {boolean} params.loop - If true, loops the sound. Default is false.
-     * @returns {boolean} True if the sound was successfully played, false otherwise.
-     */
-    play(params = { preview: false, volume: 1, loop: false }) {
-        if (!this._isPlayable) {
-            return false;
-        }
-        if (this._pid !== null) {
-            this.stop();
-        }
-        let command = `play --volume ${params.volume.toFixed(2)} -q ${GLib.shell_quote(this._soundPath)}`;
-        if (params.loop) {
-            command += " repeat 9999";
-        }
-        if (params.preview) {
-            command += " trim 0 00:00:02.0";
-        }
-        this._pid = spawnCommandAndGetPid(command);
-        if (this._pid === null) {
-            return false;
-        }
-        return true;
-    }
-
-    playOnce() {
-        return this.play();
-    }
-
-    stop() {
-        if (this._pid === null) {
-            return;
-        }
-        const command = `kill -9 ${this._pid}`;
-        Util.trySpawnCommandLine(command);
-        this._pid = null;
-    }
-
-    isPlaying() {
-        return this._pid !== null;
+        this._isPlayable = Boolean(exists) && isPlayable();
     }
 
     getSoundPath() {
         return this._soundPath;
     }
 
-    _playerExists() {
-        return isPlayable();
+    isPlaying() {
+        return this._cancellable !== null || this._subprocess !== null;
     }
-}
+
+    /**
+     * Plays the sound.
+     * @param {Object} params - { preview:Boolean, volume:Number(0..1), loop:Boolean }
+     * @returns {Boolean} whether playback was started.
+     */
+    play(params = {}) {
+        let preview = params.preview === true;
+        let loop = (params.loop === true) && !preview;
+        let volume = (typeof params.volume === "number") ? params.volume : 1;
+        volume = Math.max(0, Math.min(1, volume));
+
+        if (!this._isPlayable) {
+            return false;
+        }
+
+        this.stop();
+        this._loop = loop;
+        this._generation++;
+        let myGen = this._generation;
+
+        let ctx = _getGSoundContext();
+        let player = _getPlayer();
+        let started = false;
+
+        // GSound cannot attenuate, so use it only at (near) full volume.
+        if (ctx && (volume >= FULL_VOLUME || !player)) {
+            started = this._playGSound(ctx, myGen);
+        } else if (player) {
+            started = this._playSubprocess(player, volume, myGen);
+        } else if (ctx) {
+            started = this._playGSound(ctx, myGen);
+        }
+
+        if (started && preview) {
+            this._previewTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, PREVIEW_MS, () => {
+                this._previewTimeoutId = 0;
+                this.stop();
+                return GLib.SOURCE_REMOVE;
+            });
+        }
+        return started;
+    }
+
+    playOnce() {
+        return this.play();
+    }
+
+    _playGSound(ctx, myGen) {
+        let cancellable = new Gio.Cancellable();
+        this._cancellable = cancellable;
+        let attrs = {};
+        attrs[GSound.ATTR_MEDIA_FILENAME] = this._soundPath;
+        try {
+            ctx.play_full(attrs, cancellable, (src, res) => {
+                let finishedOk = false;
+                try {
+                    finishedOk = src.play_full_finish(res);
+                } catch (e) {
+                    if (this._cancellable === cancellable) {
+                        this._cancellable = null;
+                    }
+                    return;
+                }
+                if (myGen !== this._generation || this._cancellable !== cancellable) {
+                    return; // superseded or stopped
+                }
+                if (this._loop && finishedOk && !cancellable.is_cancelled()) {
+                    this._playGSound(ctx, myGen);
+                } else {
+                    this._cancellable = null;
+                }
+            });
+        } catch (e) {
+            global.logError("Zen Pomodoro: GSound playback failed: " + e.message);
+            this._cancellable = null;
+            return false;
+        }
+        return true;
+    }
+
+    _playSubprocess(player, volume, myGen) {
+        let argv = _buildPlayerArgv(player, this._soundPath, volume);
+        let proc;
+        try {
+            proc = Gio.Subprocess.new(argv,
+                Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE);
+        } catch (e) {
+            global.logError("Zen Pomodoro: failed to start sound player: " + e.message);
+            return false;
+        }
+        this._subprocess = proc;
+        proc.wait_async(null, (p, res) => {
+            try {
+                p.wait_finish(res);
+            } catch (e) {
+                // ignore
+            }
+            if (myGen !== this._generation || this._subprocess !== proc) {
+                return; // superseded or stopped
+            }
+            if (this._loop) {
+                this._playSubprocess(player, volume, myGen);
+            } else {
+                this._subprocess = null;
+            }
+        });
+        return true;
+    }
+
+    stop() {
+        this._loop = false;
+        this._generation++;
+        if (this._previewTimeoutId) {
+            GLib.source_remove(this._previewTimeoutId);
+            this._previewTimeoutId = 0;
+        }
+        if (this._cancellable) {
+            try {
+                this._cancellable.cancel();
+            } catch (e) {
+                // ignore
+            }
+            this._cancellable = null;
+        }
+        if (this._subprocess) {
+            try {
+                this._subprocess.force_exit();
+            } catch (e) {
+                // ignore
+            }
+            this._subprocess = null;
+        }
+    }
+};

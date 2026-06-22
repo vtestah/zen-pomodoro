@@ -1,6 +1,7 @@
 const St = imports.gi.St;
 const Clutter = imports.gi.Clutter;
 const GLib = imports.gi.GLib;
+const Gio = imports.gi.Gio;
 const Meta = imports.gi.Meta;
 const Main = imports.ui.main;
 const Mainloop = imports.mainloop;
@@ -75,38 +76,37 @@ function install(proto) {
         return `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`;
     };
 
-    proto._loadDailyStats = function() {
-        let data = { date: "", count: 0, streak: 0, lastGoalMetDate: "" };
-        try {
-            if (GLib.file_test(POMODORO_STATS_FILE, GLib.FileTest.EXISTS)) {
-                let [ok, contents] = GLib.file_get_contents(POMODORO_STATS_FILE);
-                if (ok) {
-                    let parsed = JSON.parse(ByteArray.toString(contents));
-                    if (parsed && typeof parsed === "object") {
-                        data.date = parsed.date || "";
-                        data.count = parseInt(parsed.count) || 0;
-                        data.streak = parseInt(parsed.streak) || 0;
-                        data.lastGoalMetDate = parsed.lastGoalMetDate || "";
-                    }
-                }
+    proto._loadDailyStatsAsync = function(onDone) {
+        this._readJsonAsync(POMODORO_STATS_FILE, (parsed) => {
+            let data = { date: "", count: 0, streak: 0, lastGoalMetDate: "" };
+            if (parsed && typeof parsed === "object") {
+                data.date = parsed.date || "";
+                data.count = parseInt(parsed.count) || 0;
+                data.streak = parseInt(parsed.streak) || 0;
+                data.lastGoalMetDate = parsed.lastGoalMetDate || "";
             }
-        } catch (e) {
-            // ignore
-        }
-        return data;
+            this._dailyStatsData = data;
+            if (onDone) {
+                onDone(data);
+            }
+        });
     };
 
     proto._refreshDailyStatsCache = function() {
-        let today = this._todayStr();
-        let s = this._loadDailyStats();
-        this._dailyCount = (s.date === today) ? s.count : 0;
-        this._dailyStreak = s.streak || 0;
+        this._loadDailyStatsAsync((s) => {
+            let today = this._todayStr();
+            this._dailyCount = (s.date === today) ? s.count : 0;
+            this._dailyStreak = s.streak || 0;
+            if (typeof this._updateMenuRuntime === "function") {
+                this._updateMenuRuntime();
+            }
+        });
     };
 
     proto._recordPomodoroCompleted = function() {
         let today = this._todayStr();
         let yesterday = this._todayStr(new Date(Date.now() - 86400000));
-        let s = this._loadDailyStats();
+        let s = this._dailyStatsData || { date: "", count: 0, streak: 0, lastGoalMetDate: "" };
         if (s.date !== today) {
             s.date = today;
             s.count = 0;
@@ -121,12 +121,8 @@ function install(proto) {
             }
             s.lastGoalMetDate = today;
         }
-        try {
-            GLib.mkdir_with_parents(GLib.path_get_dirname(POMODORO_STATS_FILE), 0o700);
-            GLib.file_set_contents(POMODORO_STATS_FILE, JSON.stringify(s));
-        } catch (e) {
-            // best effort
-        }
+        this._dailyStatsData = s;
+        this._writeJsonAsync(POMODORO_STATS_FILE, s);
         this._dailyCount = s.count;
         this._dailyStreak = s.streak || 0;
         this._updateMenuRuntime();
@@ -189,49 +185,130 @@ function install(proto) {
     };
 
     proto._startAmbientSound = function() {
-        if (this._ambientPid) {
+        if (this._ambientSound && this._ambientSound.isPlaying()) {
             return;
         }
-        try {
-            if (SoundModule && typeof SoundModule.isPlayable === 'function' && !SoundModule.isPlayable()) {
-                return;
-            }
-        } catch (e) {
-            // assume playable
+        if (!SoundModule || typeof SoundModule.isPlayable !== 'function' || !SoundModule.isPlayable()) {
+            return;
+        }
+        if (!this._ambientSound) {
+            let path = SoundModule.addPathIfRelative('brownnoise.ogg', this._defaultSoundPath);
+            this._ambientSound = new SoundModule.SoundEffect(path);
         }
         let vol = Math.max(0, Math.min(1, (this._opt_focusAmbientVolume || 40) / 100));
-        try {
-            let [ok, pid] = GLib.spawn_async(
-                null,
-                ['play', '-q', '-n', 'synth', '86400', 'brownnoise', 'vol', String(vol)],
-                null,
-                GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.DO_NOT_REAP_CHILD |
-                    GLib.SpawnFlags.STDOUT_TO_DEV_NULL | GLib.SpawnFlags.STDERR_TO_DEV_NULL,
-                null
-            );
-            if (ok) {
-                this._ambientPid = pid;
-                GLib.child_watch_add(GLib.PRIORITY_DEFAULT, pid, (p) => {
-                    GLib.spawn_close_pid(p);
-                    if (this._ambientPid === p) {
-                        this._ambientPid = 0;
-                    }
-                });
-            }
-        } catch (e) {
-            this._ambientPid = 0;
-        }
+        this._ambientSound.play({ loop: true, volume: vol });
     };
 
     proto._stopAmbientSound = function() {
-        if (!this._ambientPid) {
+        if (this._ambientSound) {
+            this._ambientSound.stop();
+        }
+    };
+
+    // Do Not Disturb: mute Cinnamon notifications while focusing, restoring the
+    // previous value afterwards. Uses the native gsettings schema; opt-in.
+    proto._getNotificationSettings = function() {
+        if (this._notificationSettings !== null) {
+            return this._notificationSettings;
+        }
+        this._notificationSettings = false; // sentinel: tried, unavailable
+        try {
+            let src = Gio.SettingsSchemaSource.get_default();
+            if (src && src.lookup('org.cinnamon.desktop.notifications', true)) {
+                this._notificationSettings = new Gio.Settings({ schema_id: 'org.cinnamon.desktop.notifications' });
+            }
+        } catch (e) {
+            this._notificationSettings = false;
+        }
+        return this._notificationSettings;
+    };
+
+    proto._updateDnd = function() {
+        if (this._opt_focusDnd && this._currentState === 'pomodoro') {
+            this._enableDnd();
+        } else {
+            this._disableDnd();
+        }
+    };
+
+    proto._enableDnd = function() {
+        if (this._dndActive) {
             return;
         }
-        let pid = this._ambientPid;
+        let s = this._getNotificationSettings();
+        if (!s) {
+            return;
+        }
         try {
-            Util.trySpawnCommandLine(`kill ${pid}`);
+            this._dndPrevValue = s.get_boolean('display-notifications');
+            s.set_boolean('display-notifications', false);
+            this._dndActive = true;
+        } catch (e) {
+            this._dndActive = false;
+        }
+    };
+
+    proto._disableDnd = function() {
+        if (!this._dndActive) {
+            return;
+        }
+        this._dndActive = false;
+        let s = this._getNotificationSettings();
+        if (!s) {
+            return;
+        }
+        try {
+            s.set_boolean('display-notifications', this._dndPrevValue !== false);
         } catch (e) {
             // ignore
+        }
+    };
+
+    // Run a user-configured command (argv, no shell) when focus or a break
+    // starts. Opt-in and empty by default.
+    proto._runEventCommand = function(which) {
+        if (!this._opt_runCommandEnabled) {
+            return;
+        }
+        let cmd = (which === 'focus') ? this._opt_focusStartCommand : this._opt_breakStartCommand;
+        if (!cmd || !cmd.trim()) {
+            return;
+        }
+        let argv;
+        try {
+            let [ok, parsed] = GLib.shell_parse_argv(cmd);
+            if (!ok || !parsed || parsed.length === 0) {
+                return;
+            }
+            argv = parsed;
+        } catch (e) {
+            global.logError("Zen Pomodoro: cannot parse command '" + cmd + "': " + e.message);
+            return;
+        }
+        try {
+            let proc = Gio.Subprocess.new(argv,
+                Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE);
+            proc.wait_async(null, (p, res) => {
+                try {
+                    p.wait_finish(res);
+                } catch (e) {
+                    // ignore
+                }
+            });
+        } catch (e) {
+            global.logError("Zen Pomodoro: failed to run command: " + e.message);
+        }
+    };
+
+    // Opt-in convenience: open /etc/hosts in the system's admin-capable editor
+    // via the GVfs admin backend (interactive polkit prompt). This does NOT block
+    // anything automatically; the user edits the file themselves.
+    proto._editHostsAsAdmin = function() {
+        try {
+            Gio.AppInfo.launch_default_for_uri('admin:///etc/hosts', null);
+        } catch (e) {
+            global.logError("Zen Pomodoro: could not open the hosts file: " + e.message);
+            Main.notify(_("Could not open the hosts file"));
         }
     };
 

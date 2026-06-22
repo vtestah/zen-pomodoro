@@ -91,7 +91,7 @@ function install(proto) {
 
     proto._loadSoundEffects = function() {
         if (!SoundModule.isPlayable()) {
-            global.logError("Unable to play pomodoro sound, make sure 'play' command is available on your path from the sox package");
+            global.logError("Zen Pomodoro: no usable sound backend (GSound or paplay/canberra-gtk-play/play); sounds disabled");
         }
     
         this._sounds = this._sounds || {};
@@ -99,5 +99,17 @@ function install(proto) {
         this._sounds.break = this._loadSoundEffect(this._sounds.break, this._opt_breakSoundPath);
         this._sounds.warn = this._loadSoundEffect(this._sounds.warn, this._opt_warnSoundPath);
         this._sounds.start = this._loadSoundEffect(this._sounds.start, this._opt_startSoundPath);
+    };
+
+    proto._stopAllSounds = function() {
+        if (this._sounds) {
+            for (let key in this._sounds) {
+                let s = this._sounds[key];
+                if (s && typeof s.stop === 'function') {
+                    s.stop();
+                }
+            }
+        }
+        this._stopAmbientSound();
     };
 }

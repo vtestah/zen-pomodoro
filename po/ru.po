@@ -1,11 +1,17 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: zen-pomodoro@vtestah\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-22 17:27+0700\n"
+"PO-Revision-Date: 2026-06-22 17:27+0700\n"
+"Last-Translator: Zen Pomodoro contributors\n"
+"Language-Team: ru\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 msgid "A new pomodoro begins in %s."
 msgstr "Новый помидор начнётся через %s."
@@ -258,7 +264,6 @@ msgid "Focus session restored — resume when ready"
 msgstr "Сессия фокуса восстановлена — продолжите, когда готовы"
 
 # --- settings-schema.json descriptions ---
-
 msgid "Durations (minutes)"
 msgstr "Длительности (минуты)"
 
@@ -280,8 +285,12 @@ msgstr "Параметры"
 msgid "Start the pomodoro timer as soon as the applet loads"
 msgstr "Запускать таймер сразу при загрузке апплета"
 
-msgid "Recover an in-progress focus session after a Cinnamon restart (resume manually)"
-msgstr "Восстанавливать незавершённую сессию фокуса после перезапуска Cinnamon (продолжить вручную)"
+msgid ""
+"Recover an in-progress focus session after a Cinnamon restart (resume "
+"manually)"
+msgstr ""
+"Восстанавливать незавершённую сессию фокуса после перезапуска Cinnamon "
+"(продолжить вручную)"
 
 msgid "Show Dialog Messages"
 msgstr "Показывать диалоговые сообщения"
@@ -316,11 +325,19 @@ msgstr "Показывать текущую задачу плашкой на э�
 msgid "Calm ending: no anxious pulsing near the end of a timer"
 msgstr "Спокойная концовка: без тревожного мигания в конце таймера"
 
-msgid "Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus begins"
-msgstr "Ритуал старта: короткая надпись «Фокус: <задача>» по центру и плавное появление в начале фокуса"
+msgid ""
+"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus"
+" begins"
+msgstr ""
+"Ритуал старта: короткая надпись «Фокус: <задача>» по центру и плавное "
+"появление в начале фокуса"
 
-msgid "Glow frame: soft edge glow with progress around the screen (off = classic border)"
-msgstr "Свечение-рамка: мягкое свечение по краям с прогрессом (выкл = классическая рамка)"
+msgid ""
+"Glow frame: soft edge glow with progress around the screen (off = classic "
+"border)"
+msgstr ""
+"Свечение-рамка: мягкое свечение по краям с прогрессом (выкл = классическая "
+"рамка)"
 
 msgid "Sounds"
 msgstr "Звуки"
@@ -371,7 +388,6 @@ msgid "Execute this custom script when a long break starts"
 msgstr "Выполнять этот скрипт при начале длинного перерыва"
 
 # --- Distinctive features ---
-
 #, c-format
 msgid "Today: %d / %d"
 msgstr "Сегодня: %d / %d"
@@ -414,13 +430,13 @@ msgid "Show a breathing guide during breaks"
 msgstr "Показывать дыхательный гайд на перерывах"
 
 msgid "Enable Zen mode (full-screen focus overlay, toggled from the menu)"
-msgstr "Включить режим Дзен (полноэкранный оверлей фокуса, переключается из меню)"
+msgstr ""
+"Включить режим Дзен (полноэкранный оверлей фокуса, переключается из меню)"
 
 msgid "Show 'Focus until…' in the menu (focus until a clock time)"
 msgstr "Показывать «Фокус до…» в меню (фокус до времени)"
 
 # --- Zen / Focus until / Breathing ---
-
 msgid "Zen mode"
 msgstr "Режим Дзен"
 
@@ -535,8 +551,12 @@ msgstr "Превью дыхания"
 msgid "Preview"
 msgstr "Превью"
 
-msgid "Briefly show the on-screen focus frame and task chip with the current colors and style (works when no timer is running)."
-msgstr "Кратко показать экранную рамку фокуса и плашку задачи с текущими цветами и стилем (работает, когда таймер не запущен)."
+msgid ""
+"Briefly show the on-screen focus frame and task chip with the current colors"
+" and style (works when no timer is running)."
+msgstr ""
+"Кратко показать экранную рамку фокуса и плашку задачи с текущими цветами и "
+"стилем (работает, когда таймер не запущен)."
 
 msgid "Briefly show the breathing guide with the selected pattern."
 msgstr "Кратко показать подсказку дыхания с выбранным паттерном."

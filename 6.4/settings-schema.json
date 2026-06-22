@@ -8,6 +8,7 @@
             "appearance",
             "features",
             "sounds",
+            "tools",
             "scripts"
         ],
         "timer": {
@@ -54,6 +55,14 @@
             "title": "Sounds",
             "sections": [
                 "sec_sounds"
+            ]
+        },
+        "tools": {
+            "type": "page",
+            "title": "Focus tools",
+            "sections": [
+                "sec_tools",
+                "sec_blocking"
             ]
         },
         "scripts": {
@@ -158,7 +167,8 @@
                 "focus_ambient_volume",
                 "break_breathing",
                 "zen_mode_enabled",
-                "focus_until_enabled"
+                "focus_until_enabled",
+                "focus_dnd"
             ]
         },
         "sec_sounds": {
@@ -180,6 +190,23 @@
                 "start_sound",
                 "start_sound_file",
                 "start_sound_volume"
+            ]
+        },
+        "sec_tools": {
+            "type": "section",
+            "title": "Run a command on focus / break start",
+            "keys": [
+                "run_command_enabled",
+                "focus_start_command",
+                "break_start_command"
+            ]
+        },
+        "sec_blocking": {
+            "type": "section",
+            "title": "Distraction blocking (advanced)",
+            "keys": [
+                "enable_hosts_button",
+                "edit_hosts_button"
             ]
         },
         "sec_scripts": {
@@ -505,9 +532,43 @@
         "description": "Show 'Focus until…' in the menu (focus until a clock time)",
         "default": false
     },
+    "focus_dnd": {
+        "type": "checkbox",
+        "description": "Mute notifications while focusing (Do Not Disturb)",
+        "default": false
+    },
+    "run_command_enabled": {
+        "type": "checkbox",
+        "description": "Run a command when focus or a break starts",
+        "default": false
+    },
+    "focus_start_command": {
+        "type": "entry",
+        "description": "Command to run when focus starts",
+        "default": "",
+        "dependency": "run_command_enabled"
+    },
+    "break_start_command": {
+        "type": "entry",
+        "description": "Command to run when a break starts",
+        "default": "",
+        "dependency": "run_command_enabled"
+    },
+    "enable_hosts_button": {
+        "type": "checkbox",
+        "description": "Show a button to edit the system hosts file (advanced, for manual site blocking)",
+        "default": false
+    },
+    "edit_hosts_button": {
+        "type": "button",
+        "description": "Edit /etc/hosts as administrator",
+        "callback": "_editHostsAsAdmin",
+        "dependency": "enable_hosts_button",
+        "tooltip": "Opens /etc/hosts in your editor with administrator rights (you will be prompted). Zen Pomodoro never edits the file itself and does not block anything automatically."
+    },
     "sox-info": {
         "type": "label",
-        "description": "Please install 'sox' and restart Cinnamon to use the sound feature!",
+        "description": "No sound backend was found. Install GSound or a sound player (e.g. the 'pulseaudio-utils' or 'sox' package) to enable sounds.",
         "dependency": "show_sox_info"
     },
     "show_sox_info": {

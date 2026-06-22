@@ -97,6 +97,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._tasksCurrentId = "";
         this._taskItems = [];
         this._tasksFinishText = "";
+        this._taskTemplates = [];
     }
 
     _getLayoutCategory(state) {
@@ -828,10 +829,11 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         return first.replace(/</g, "").replace(/>/g, "+");
     }
 
-    setTasks(list, currentId, finishText) {
+    setTasks(list, currentId, finishText, templates) {
         this._tasks = Array.isArray(list) ? list : [];
         this._tasksCurrentId = currentId || "";
         this._tasksFinishText = finishText || "";
+        this._taskTemplates = Array.isArray(templates) ? templates : [];
         this._populateTasksSubmenu();
         if (this._tasksSubmenu && this._tasksSubmenu.label) {
             let cur = this._tasks.find((t) => t.id === this._tasksCurrentId);
@@ -878,6 +880,21 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             let del = new PopupMenu.PopupMenuItem("\ud83d\uddd1 " + _("Delete current"));
             del.connect('activate', () => this.emit('delete-task'));
             this._tasksSubmenu.menu.addMenuItem(del);
+        }
+        let templates = this._taskTemplates || [];
+        if (list.length || templates.length) {
+            this._tasksSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+        }
+        if (list.length) {
+            let save = new PopupMenu.PopupMenuItem("\ud83d\udcbe " + _("Save as template\u2026"));
+            save.connect('activate', () => this.emit('save-template'));
+            this._tasksSubmenu.menu.addMenuItem(save);
+        }
+        for (let tpl of templates) {
+            let nm = tpl.name;
+            let it = new PopupMenu.PopupMenuItem("\ud83d\udccb " + _("Apply: %s").format(nm));
+            it.connect('activate', () => this.emit('apply-template', nm));
+            this._tasksSubmenu.menu.addMenuItem(it);
         }
     }
 

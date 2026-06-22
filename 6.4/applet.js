@@ -476,6 +476,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         // Push the loaded presets to the menu now that settings are bound.
         this._updatePresetIndicator();
 
+
         // First-run onboarding wizard.
         if (!this._opt_onboardingDone) {
             imports.gi.GLib.timeout_add(imports.gi.GLib.PRIORITY_DEFAULT, 2500, () => {

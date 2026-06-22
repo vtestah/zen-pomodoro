@@ -543,13 +543,36 @@ function install(proto) {
 
         let title = (s) => new St.Label({ text: s, style: 'font-size: 1.35em; font-weight: bold;' });
         let para = (s) => { let l = new St.Label({ text: s }); l.clutter_text.line_wrap = true; return l; };
-        let setBtn = (label, fn) => {
-            let b = new St.Button({ style_class: 'button', style: 'padding: 5px 12px; margin: 4px 6px 0 0;' });
-            b.set_label(label);
-            b.connect('clicked', () => { try { fn(); } catch (e) {} b.set_label("\u2713 " + label); });
+        let hint = (s) => new St.Label({ text: s, style: 'font-size: 0.82em; padding-top: 4px;' });
+        let PILL = 'background-color: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.32); border-radius: 14px; padding: 7px 16px; margin: 6px 8px 0 0;';
+        let PILL_ON = 'background-color: rgba(227,90,60,0.7); border: 1px solid rgba(227,90,60,1.0); border-radius: 14px; padding: 7px 16px; margin: 6px 8px 0 0; color: #ffffff;';
+        let rowOf = (arr) => { let r = new St.BoxLayout({ vertical: false }); arr.forEach((x) => r.add(x)); return r; };
+        let choice = (defs) => {
+            let r = new St.BoxLayout({ vertical: false });
+            let btns = [];
+            defs.forEach((d) => {
+                let b = new St.Button({ label: d.label });
+                b.set_style(d.active ? PILL_ON : PILL);
+                b.connect('clicked', () => { try { d.fn(); } catch (e) {} btns.forEach((x) => x.set_style(PILL)); b.set_style(PILL_ON); });
+                btns.push(b);
+                r.add(b);
+            });
+            return r;
+        };
+        let toggle = (label, initial, setter) => {
+            let on = { v: !!initial };
+            let b = new St.Button();
+            let refresh = () => { b.set_label((on.v ? "\u2713  " : "") + label); b.set_style(on.v ? PILL_ON : PILL); };
+            b.connect('clicked', () => { on.v = !on.v; try { setter(on.v); } catch (e) {} refresh(); });
+            refresh();
             return b;
         };
-        let row = (arr) => { let r = new St.BoxLayout({ vertical: false, style: 'spacing: 2px;' }); arr.forEach((x) => r.add(x)); return r; };
+        let actionChip = (label, fn) => {
+            let b = new St.Button({ label: label });
+            b.set_style(PILL);
+            b.connect('clicked', () => { try { fn(b); } catch (e) {} });
+            return b;
+        };
 
         let finish = () => { try { sp.setValue('onboarding_done', true); } catch (e) {} dialog.close(); };
 
@@ -570,44 +593,49 @@ function install(proto) {
             } else if (s === 1) {
                 content.add(title(_("Your rhythm")));
                 content.add(para(_("Pick a focus / short break / long break length. The classic Pomodoro is 25 / 5 / 15 minutes.")));
-                content.add(row([
-                    setBtn(_("25 / 5 / 15"), () => { sp.setValue('pomodoro_duration', 25); sp.setValue('short_break_duration', 5); sp.setValue('long_break_duration', 15); sp.setValue('pomodori_number', 4); }),
-                    setBtn(_("50 / 10 / 20"), () => { sp.setValue('pomodoro_duration', 50); sp.setValue('short_break_duration', 10); sp.setValue('long_break_duration', 20); sp.setValue('pomodori_number', 4); })
+                content.add(hint(_("Tap to choose:")));
+                content.add(choice([
+                    { label: _("25 / 5 / 15"), active: (this._opt_pomodoroTimeMinutes === 25), fn: () => { sp.setValue('pomodoro_duration', 25); sp.setValue('short_break_duration', 5); sp.setValue('long_break_duration', 15); sp.setValue('pomodori_number', 4); } },
+                    { label: _("50 / 10 / 20"), active: (this._opt_pomodoroTimeMinutes === 50), fn: () => { sp.setValue('pomodoro_duration', 50); sp.setValue('short_break_duration', 10); sp.setValue('long_break_duration', 20); sp.setValue('pomodori_number', 4); } }
                 ]));
             } else if (s === 2) {
                 content.add(title(_("Daily goal")));
                 content.add(para(_("How many pomodoros do you aim for each day? It powers your streak and the progress ring (you can turn it off).")));
-                content.add(row([
-                    setBtn(_("Off"), () => sp.setValue('daily_goal', 0)),
-                    setBtn("4", () => sp.setValue('daily_goal', 4)),
-                    setBtn("6", () => sp.setValue('daily_goal', 6)),
-                    setBtn("8", () => sp.setValue('daily_goal', 8))
+                content.add(hint(_("Tap to choose:")));
+                let g = this._opt_dailyGoal || 0;
+                content.add(choice([
+                    { label: _("Off"), active: g === 0, fn: () => sp.setValue('daily_goal', 0) },
+                    { label: "4", active: g === 4, fn: () => sp.setValue('daily_goal', 4) },
+                    { label: "6", active: g === 6, fn: () => sp.setValue('daily_goal', 6) },
+                    { label: "8", active: g === 8, fn: () => sp.setValue('daily_goal', 8) }
                 ]));
             } else if (s === 3) {
                 content.add(title(_("Calm focus")));
                 content.add(para(_("Recommended: mute notifications while focusing and play a soft periodic chime. Fine-tune all sounds later in Settings → Sounds.")));
-                content.add(row([
-                    setBtn(_("Mute notifications"), () => sp.setValue('focus_dnd', true)),
-                    setBtn(_("Soft chime"), () => sp.setValue('interval_chime', true))
+                content.add(hint(_("Tap to toggle:")));
+                content.add(rowOf([
+                    toggle(_("Mute notifications"), this._opt_focusDnd, (v) => sp.setValue('focus_dnd', v)),
+                    toggle(_("Soft chime"), this._opt_intervalChime, (v) => sp.setValue('interval_chime', v))
                 ]));
             } else if (s === 4) {
                 content.add(title(_("Block distractions")));
                 content.add(para(_("Optionally block distracting sites during focus (edits /etc/hosts via an admin prompt). Add domains in Settings → Advanced — you can even set it up to ask for your password only once.")));
-                content.add(row([ setBtn(_("Enable blocking"), () => sp.setValue('enable_blocking', true)) ]));
+                content.add(hint(_("Tap to toggle:")));
+                content.add(rowOf([ toggle(_("Block distracting sites"), false, (v) => sp.setValue('enable_blocking', v)) ]));
             } else if (s === 5) {
                 content.add(title(_("Track tasks")));
                 content.add(para(_("Add tasks with an estimate in pomodoros from the menu's Tasks submenu. Your current task links to the focus session, and the dashboard shows where your time goes.")));
                 let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true, hint_text: _("Add your first task (optional)") });
                 CinnamonEntry.addContextMenu(entry);
                 content.add(entry);
-                content.add(row([ setBtn(_("Add task"), () => { let t = entry.clutter_text.get_text().trim(); if (t) { this._addTask(t, 1); } }) ]));
+                content.add(rowOf([ actionChip(_("Add task"), (b) => { let t = entry.clutter_text.get_text().trim(); if (t) { this._addTask(t, 1); entry.clutter_text.set_text(""); b.set_label("\u2713 " + _("Added")); } }) ]));
             } else {
                 content.add(title(_("You're all set \ud83c\udf45")));
                 content.add(para(_("Open the menu to start a focus, pick a task, or open Statistics → the dashboard. Set keyboard shortcuts in Settings → Panel. Enjoy calm, focused work!")));
-                let startBtn = new St.Button({ style_class: 'button', style: 'padding: 6px 14px; margin-top: 8px;' });
-                startBtn.set_label("\ud83c\udf45 " + _("Start first focus"));
+                let startBtn = new St.Button({ label: "\ud83c\udf45  " + _("Start first focus") });
+                startBtn.set_style(PILL_ON + ' font-weight: bold; padding: 9px 20px;');
                 startBtn.connect('clicked', () => { finish(); this._startTimerFromMenu(); });
-                content.add(startBtn);
+                content.add(rowOf([ startBtn ]));
             }
             let buttons = [{ label: _("Skip"), action: finish }];
             if (st.step > 0) { buttons.push({ label: _("Back"), action: () => { st.step--; build(); } }); }

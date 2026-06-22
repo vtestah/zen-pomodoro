@@ -20,8 +20,8 @@ rm -rf "$OUT"
 mkdir -p "$FILES/po"
 
 echo "==> copy code + assets (no .mo)"
-cp "$SRC/applet.js" "$SRC/timer.js" "$SRC/sound.js" "$SRC/menu.js" "$SRC/dialogs.js" "$SRC/constants.js" "$SRC/visual.js" "$SRC/features.js" "$SRC/soundfx.js" "$SRC/hosts-helper.py" "$SRC/stylesheet.css" "$SRC/settings-schema.json" "$FILES/"
-chmod +x "$FILES/hosts-helper.py"
+cp "$SRC/applet.js" "$SRC/timer.js" "$SRC/sound.js" "$SRC/menu.js" "$SRC/dialogs.js" "$SRC/constants.js" "$SRC/visual.js" "$SRC/features.js" "$SRC/soundfx.js" "$SRC/hosts-helper.py" "$SRC/setup-passwordless.py" "$SRC/stylesheet.css" "$SRC/settings-schema.json" "$FILES/"
+chmod +x "$FILES/hosts-helper.py" "$FILES/setup-passwordless.py"
 cp "$REPO"/*.png "$REPO"/*.svg "$FILES/" 2>/dev/null || true
 rm -f "$FILES/screenshot.png"  # screenshot belongs at the package root only
 [ -d "$REPO/sounds" ] && cp -r "$REPO/sounds" "$FILES/"

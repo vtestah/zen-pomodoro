@@ -43,6 +43,7 @@ const {
     POMODORO_STATE_MAX_AGE_MS,
     POMODORO_STATS_FILE,
     POMODORO_TASKS_DATA_FILE,
+    POMODORO_HOSTS_HELPER_INSTALLED,
     POMODORO_FOCUS_FRAME_BOTTOM_SAFE,
     POMODORO_FOCUS_FRAME_NORMAL_STYLE,
     POMODORO_FOCUS_FRAME_WARNING_STYLE,
@@ -1033,6 +1034,11 @@ function install(proto) {
     };
 
     proto._hostsHelperPath = function() {
+        try {
+            if (GLib.file_test(POMODORO_HOSTS_HELPER_INSTALLED, GLib.FileTest.EXISTS)) {
+                return POMODORO_HOSTS_HELPER_INSTALLED;
+            }
+        } catch (e) {}
         let base = (this._metadata && this._metadata.path) ? this._metadata.path : '';
         return base + '/hosts-helper.py';
     };
@@ -1087,6 +1093,23 @@ function install(proto) {
     proto._unblockDistractions = function() {
         let argv = ['pkexec', this._hostsHelperPath(), 'unblock'];
         this._runHostsHelper(argv, _("Distractions unblocked."));
+    };
+
+    proto._setupPasswordlessBlocking = function() {
+        let base = (this._metadata && this._metadata.path) ? this._metadata.path : '';
+        let setup = base + '/setup-passwordless.py';
+        let src = base + '/hosts-helper.py';
+        let mode = this._opt_blockPasswordlessFull ? 'yes' : 'keep';
+        let ok = (mode === 'yes')
+            ? _("Passwordless blocking enabled (no prompt).")
+            : _("Passwordless blocking enabled (asks once per session).");
+        this._runHostsHelper(['pkexec', setup, 'install', mode, src], ok);
+    };
+
+    proto._removePasswordlessBlocking = function() {
+        let base = (this._metadata && this._metadata.path) ? this._metadata.path : '';
+        let setup = base + '/setup-passwordless.py';
+        this._runHostsHelper(['pkexec', setup, 'uninstall'], _("Passwordless blocking removed."));
     };
 
     proto._toggleZenMode = function() {

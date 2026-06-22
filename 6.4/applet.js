@@ -226,6 +226,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_pushoverSound = null;
         this._opt_pushoverPriority = null;
         this._opt_blockDomains = null;
+        this._opt_blockPasswordlessFull = null;
         this._dndActive = false;
         this._dndPrevValue = null;
         this._notificationSettings = null;
@@ -384,6 +385,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_sound", "_opt_pushoverSound", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_priority", "_opt_pushoverPriority", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_domains", "_opt_blockDomains", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_passwordless_full", "_opt_blockPasswordlessFull", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_volume", "_opt_focusAmbientVolume", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_breathing", "_opt_breakBreathing", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "zen_mode_enabled", "_opt_zenModeEnabled", emptyCallback);

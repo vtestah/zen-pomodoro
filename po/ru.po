@@ -1289,3 +1289,46 @@ msgstr "Скрипт при старте короткого перерыва."
 
 msgid "Script to run when a long break starts."
 msgstr "Скрипт при старте длинного перерыва."
+
+msgid "Fully passwordless blocking (no prompt at all)"
+msgstr "Полностью без пароля (не спрашивать вообще)"
+
+msgid ""
+"After setup, never ask for a password. Off (default) asks once per login "
+"session. Convenient but less safe: any local program could then change your "
+"blocklist without asking."
+msgstr ""
+"После настройки не спрашивать пароль никогда. Выкл (по умолчанию) — спросит "
+"один раз за сессию входа. Удобно, но менее безопасно: любой локальный "
+"процесс сможет менять список блокировки без запроса."
+
+msgid "Set up passwordless blocking (one-time)"
+msgstr "Настроить блокировку без пароля (разово)"
+
+msgid ""
+"Asks for your password once and installs a small system policy so blocking "
+"no longer prompts every time. Uses the mode selected above; re-run after "
+"changing the mode."
+msgstr ""
+"Спросит пароль один раз и установит небольшую системную политику, чтобы "
+"блокировка больше не спрашивала каждый раз. Использует режим, выбранный "
+"выше; после смены режима запусти снова."
+
+msgid "Remove passwordless setup"
+msgstr "Убрать беспарольную настройку"
+
+msgid ""
+"Removes the system policy and the root helper, so blocking asks for your "
+"password again each time."
+msgstr ""
+"Удаляет системную политику и root-хелпер — блокировка снова будет спрашивать"
+" пароль каждый раз."
+
+msgid "Passwordless blocking enabled (no prompt)."
+msgstr "Беспарольная блокировка включена (без запроса)."
+
+msgid "Passwordless blocking enabled (asks once per session)."
+msgstr "Беспарольная блокировка включена (спросит один раз за сессию)."
+
+msgid "Passwordless blocking removed."
+msgstr "Беспарольная настройка убрана."

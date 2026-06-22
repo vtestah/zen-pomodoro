@@ -595,6 +595,37 @@ function install(proto) {
         }
     };
 
+    proto._exportStats = function() {
+        let dir = null;
+        try { dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DOWNLOAD); } catch (e) { dir = null; }
+        if (!dir) { dir = GLib.get_home_dir(); }
+        let now = new Date();
+        let stamp = this._todayStr(now) + "-" +
+            now.getHours().toString().padStart(2, '0') +
+            now.getMinutes().toString().padStart(2, '0') +
+            now.getSeconds().toString().padStart(2, '0');
+
+        let h = (this._dailyStatsData && this._dailyStatsData.history) ? this._dailyStatsData.history : {};
+        let rows = ["date,pomodoros,focus_minutes,interruptions"];
+        for (let k of Object.keys(h).sort()) {
+            let c = h[k] || {};
+            rows.push(`${k},${c.c || 0},${c.m || 0},${c.i || 0}`);
+        }
+        let csv = rows.join("\n") + "\n";
+        let csvPath = GLib.build_filenamev([dir, "zen-pomodoro-" + stamp + ".csv"]);
+        let jsonObj = { exportedAt: now.toISOString(), stats: this._dailyStatsData || {}, tasks: this._tasksData || {} };
+        let jsonPath = GLib.build_filenamev([dir, "zen-pomodoro-" + stamp + ".json"]);
+
+        let ok = false;
+        try { GLib.file_set_contents(csvPath, csv); ok = true; } catch (e) { global.logError("Zen Pomodoro export csv: " + e); }
+        try { GLib.file_set_contents(jsonPath, JSON.stringify(jsonObj, null, 2)); ok = true; } catch (e) { global.logError("Zen Pomodoro export json: " + e); }
+        if (ok) {
+            Main.notify(_("Statistics exported"), _("Saved CSV + JSON to %s").format(dir));
+        } else {
+            Main.notify(_("Export failed"));
+        }
+    };
+
     proto._showStatsDashboard = function() {
         let st = this._computeStats();
         let accent = [0.93, 0.42, 0.31];
@@ -688,6 +719,7 @@ function install(proto) {
 
         dialog.contentLayout.add(root);
         dialog.setButtons([
+            { label: _("Export CSV"), action: () => this._exportStats() },
             { label: _("Close"), key: Clutter.KEY_Escape, default: true, action: () => dialog.close() }
         ]);
         dialog.open();

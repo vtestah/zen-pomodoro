@@ -1917,6 +1917,24 @@ class PomodoroApplet extends Applet.TextIconApplet {
         }
     }
 
+    _paintPanelTomato(cr, cx, cy, tr) {
+        cr.setSourceRGBA(0.91, 0.33, 0.27, 0.98);
+        cr.arc(cx, cy + tr * 0.12, tr, 0, 2 * Math.PI);
+        cr.fill();
+        cr.setSourceRGBA(0.40, 0.80, 0.46, 0.98);
+        cr.setLineWidth(Math.max(1.0, tr * 0.30));
+        let ty = cy - tr * 0.62;
+        cr.moveTo(cx, ty);
+        cr.lineTo(cx, cy - tr * 0.05);
+        cr.stroke();
+        cr.moveTo(cx - tr * 0.5, ty - tr * 0.05);
+        cr.lineTo(cx, cy - tr * 0.15);
+        cr.stroke();
+        cr.moveTo(cx + tr * 0.5, ty - tr * 0.05);
+        cr.lineTo(cx, cy - tr * 0.15);
+        cr.stroke();
+    }
+
     _repaintPanelProgress(area) {
         let cr = area.get_context();
         try {
@@ -1948,23 +1966,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
                     cr.arc(cx, cy, radius, start, start + 2 * Math.PI * f);
                     cr.stroke();
                 }
-                // Centre: a little tomato (red body + green leaf) — a nod to the Pomodoro.
-                let tr = radius * 0.66;
-                cr.setSourceRGBA(0.91, 0.33, 0.27, 0.98);
-                cr.arc(cx, cy + tr * 0.12, tr, 0, 2 * Math.PI);
-                cr.fill();
-                cr.setSourceRGBA(0.40, 0.80, 0.46, 0.98);
-                cr.setLineWidth(Math.max(1.0, tr * 0.30));
-                let ty = cy - tr * 0.62;
-                cr.moveTo(cx, ty);
-                cr.lineTo(cx, cy - tr * 0.05);
-                cr.stroke();
-                cr.moveTo(cx - tr * 0.5, ty - tr * 0.05);
-                cr.lineTo(cx, cy - tr * 0.15);
-                cr.stroke();
-                cr.moveTo(cx + tr * 0.5, ty - tr * 0.05);
-                cr.lineTo(cx, cy - tr * 0.15);
-                cr.stroke();
+                // Centre: a little tomato — a nod to the Pomodoro.
+                this._paintPanelTomato(cr, cx, cy, radius * 0.66);
                 return;
             }
 
@@ -1996,6 +1999,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 cr.arc(cx, cy, radius, start, start + 2 * Math.PI * frac);
                 cr.stroke();
             }
+
+            // Centre tomato inside the progress ring (consistent across states).
+            this._paintPanelTomato(cr, cx, cy, radius * 0.6);
         } finally {
             cr.$dispose();
         }

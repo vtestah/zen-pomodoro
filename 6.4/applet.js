@@ -174,6 +174,10 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_playStartSound = null;
         this._opt_startSoundPath = null;
         this._opt_startSoundVolume = null;
+        this._opt_intervalChime = null;
+        this._opt_intervalChimeSeconds = null;
+        this._opt_intervalChimeFile = null;
+        this._opt_intervalChimeVolume = null;
         this._opt_enableScripts = null;
         this._opt_customShortBreakScript = null;
         this._opt_customLongBreakScript = null;
@@ -424,6 +428,10 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "start_sound", "_opt_playStartSound", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "start_sound_file", "_opt_startSoundPath", this._loadSoundEffects.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "start_sound_volume", "_opt_startSoundVolume", () => this._playStartSound(true));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "interval_chime", "_opt_intervalChime", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "interval_chime_seconds", "_opt_intervalChimeSeconds", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "interval_chime_file", "_opt_intervalChimeFile", this._loadSoundEffects.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "interval_chime_volume", "_opt_intervalChimeVolume", () => this._playIntervalChime(true));
     
         // Show the "no sound backend" hint only when neither GSound nor a
         // fallback player (paplay / canberra-gtk-play / play) is available.
@@ -1153,8 +1161,13 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
         pomodoroTimer.connect('timer-tick', (timer) => {
             this._timerTickUpdate(timer);
-            if (timer.getTicksRemaining() === this._opt_warnSoundDelay) {
+            let rem = timer.getTicksRemaining();
+            if (rem === this._opt_warnSoundDelay) {
                 this._playWarnSound();
+            }
+            if (this._opt_intervalChime && this._opt_intervalChimeSeconds > 0 &&
+                rem > 0 && (rem % this._opt_intervalChimeSeconds) === 0) {
+                this._playIntervalChime();
             }
         });
     

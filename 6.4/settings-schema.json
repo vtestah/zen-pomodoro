@@ -190,7 +190,11 @@
                 "warn_sound_volume",
                 "start_sound",
                 "start_sound_file",
-                "start_sound_volume"
+                "start_sound_volume",
+                "interval_chime",
+                "interval_chime_seconds",
+                "interval_chime_file",
+                "interval_chime_volume"
             ]
         },
         "sec_tools": {
@@ -724,6 +728,36 @@
         "step": 1,
         "description": "Sound volume:",
         "dependency": "start_sound"
+    },
+    "interval_chime": {
+        "type": "checkbox",
+        "description": "Play a chime at a regular interval during focus",
+        "default": false
+    },
+    "interval_chime_seconds": {
+        "type": "scale",
+        "default": 60,
+        "min": 10,
+        "max": 600,
+        "step": 5,
+        "description": "Chime interval (seconds):",
+        "dependency": "interval_chime"
+    },
+    "interval_chime_file": {
+        "type": "filechooser",
+        "description": "Chime sound file",
+        "default": "tick.ogg",
+        "select-dir": false,
+        "dependency": "interval_chime"
+    },
+    "interval_chime_volume": {
+        "type": "scale",
+        "default": 80,
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "description": "Chime volume:",
+        "dependency": "interval_chime"
     },
     "enable_scripts": {
         "type": "checkbox",

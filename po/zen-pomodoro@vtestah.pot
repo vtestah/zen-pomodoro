@@ -16,116 +16,116 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: applet.js:654
+#: applet.js:662
 msgid "Focus session restored — resume when ready"
 msgstr ""
 
-#: applet.js:689
+#: applet.js:697
 msgid "FOCUS"
 msgstr ""
 
-#: applet.js:691
+#: applet.js:699
 msgid "PAUSED FOCUS"
 msgstr ""
 
-#: applet.js:694
+#: applet.js:702
 msgid "BREAK"
 msgstr ""
 
-#: applet.js:697
+#: applet.js:705
 msgid "PAUSED BREAK"
 msgstr ""
 
-#: applet.js:699
+#: applet.js:707
 msgid "BREAK OVER"
 msgstr ""
 
-#: applet.js:702
+#: applet.js:710
 msgid "Ready"
 msgstr ""
 
-#: applet.js:720
+#: applet.js:728
 msgid "Short break running"
 msgstr ""
 
-#: applet.js:723
+#: applet.js:731
 msgid "Short break paused"
 msgstr ""
 
-#: applet.js:726
+#: applet.js:734
 msgid "Long break running"
 msgstr ""
 
-#: applet.js:729
+#: applet.js:737
 msgid "Long break paused"
 msgstr ""
 
-#: applet.js:732 applet.js:1081
+#: applet.js:740 applet.js:1089
 msgid "Break ended"
 msgstr ""
 
-#: applet.js:735
+#: applet.js:743
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr ""
 
-#: applet.js:740
+#: applet.js:748
 msgid "Pomodoro paused"
 msgstr ""
 
-#: applet.js:743
+#: applet.js:751
 msgid "Waiting to start"
 msgstr ""
 
-#: applet.js:925
+#: applet.js:933
 msgid "Break's over — back to focus."
 msgstr ""
 
-#: applet.js:1061
+#: applet.js:1069
 msgid "Pomodoro started"
 msgstr ""
 
-#: applet.js:1132
+#: applet.js:1145
 msgid "Let's go to work!"
 msgstr ""
 
-#: applet.js:1157
+#: applet.js:1170
 msgid "Pomodoro done"
 msgstr ""
 
-#: applet.js:1159
+#: applet.js:1172
 msgid "Take a short break"
 msgstr ""
 
-#: applet.js:1161
+#: applet.js:1174
 msgid "Pomodoro done — time for a short break."
 msgstr ""
 
-#: applet.js:1182
+#: applet.js:1195
 msgid "Set complete!"
 msgstr ""
 
-#: applet.js:1187
+#: applet.js:1200
 msgid "Take a long break"
 msgstr ""
 
-#: applet.js:1190
+#: applet.js:1203
 msgid "Set complete — time for a long break."
 msgstr ""
 
-#: applet.js:1229
+#: applet.js:1242
 msgid "Pomodoro ended"
 msgstr ""
 
-#: applet.js:1349
+#: applet.js:1362
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
 
-#: applet.js:1419 features.js:648
+#: applet.js:1432 features.js:648
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr ""
 
-#: applet.js:1436
+#: applet.js:1449
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr ""
@@ -851,6 +851,22 @@ msgstr ""
 
 #. settings-schema.json
 msgid "Start Sound File"
+msgstr ""
+
+#. settings-schema.json
+msgid "Play a chime at a regular interval during focus"
+msgstr ""
+
+#. settings-schema.json
+msgid "Chime interval (seconds):"
+msgstr ""
+
+#. settings-schema.json
+msgid "Chime sound file"
+msgstr ""
+
+#. settings-schema.json
+msgid "Chime volume:"
 msgstr ""
 
 #. metadata.json

@@ -89,6 +89,12 @@ function install(proto) {
         }
     };
 
+    proto._playIntervalChime = function(previewOnly = false) {
+        if (this._opt_intervalChime && this._sounds && this._sounds.chime) {
+            this._sounds.chime.play({ volume: (this._opt_intervalChimeVolume || 80) / 100, preview: previewOnly });
+        }
+    };
+
     proto._loadSoundEffects = function() {
         if (!SoundModule.isPlayable()) {
             global.logError("Zen Pomodoro: no usable sound backend (GSound or paplay/canberra-gtk-play/play); sounds disabled");
@@ -99,6 +105,7 @@ function install(proto) {
         this._sounds.break = this._loadSoundEffect(this._sounds.break, this._opt_breakSoundPath);
         this._sounds.warn = this._loadSoundEffect(this._sounds.warn, this._opt_warnSoundPath);
         this._sounds.start = this._loadSoundEffect(this._sounds.start, this._opt_startSoundPath);
+        this._sounds.chime = this._loadSoundEffect(this._sounds.chime, this._opt_intervalChimeFile);
     };
 
     proto._stopAllSounds = function() {

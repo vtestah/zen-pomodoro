@@ -25,10 +25,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._lastRuntimeState = null;
         // Cache of the preset indicator so a rebuild can restore DOT ornaments.
         this._presetState = {
-            activePreset: "25/5/15 x4",
-            isPreset25Active: true,
-            isPreset50Active: false
+            activePreset: ""
         };
+        this._presets = [];
+        this._presetItems = [];
         // Progress bar state (drawn in the status header during active/paused).
         this._progressBarPercent = 0;
         this._progressBarActive = false;
@@ -485,20 +485,8 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         // Presets collapsed into a submenu to reduce idle clutter.
         this._presetSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Preset"));
-        let preset25 = new PopupMenu.PopupMenuItem("25 / 5 / 15 x4");
-        this._preset25Item = preset25;
-        preset25.connect('activate', () => {
-            this.emit('preset-25-5');
-        });
-        this._presetSubmenu.menu.addMenuItem(preset25);
-
-        let preset50 = new PopupMenu.PopupMenuItem("50 / 10 / 20 x4");
-        this._preset50Item = preset50;
-        preset50.connect('activate', () => {
-            this.emit('preset-50-10');
-        });
-        this._presetSubmenu.menu.addMenuItem(preset50);
         this.addMenuItem(this._presetSubmenu);
+        this._populatePresetSubmenu();
 
         this._statsSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Statistics"));
         this._statTodayItem = new PopupMenu.PopupMenuItem(_("Today: %d").format(0));
@@ -828,13 +816,40 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         return first.replace(/</g, "").replace(/>/g, "+");
     }
 
-    updatePresetIndicator(activePreset, isPreset25Active, isPreset50Active) {
-        this._presetState = {
-            activePreset: activePreset,
-            isPreset25Active: Boolean(isPreset25Active),
-            isPreset50Active: Boolean(isPreset50Active)
-        };
+    setPresets(list, activeName) {
+        this._presets = Array.isArray(list) ? list : [];
+        if (typeof activeName === "string") {
+            this._presetState.activePreset = activeName;
+        }
+        this._populatePresetSubmenu();
         this._applyCachedPreset();
+    }
+
+    _presetItemLabel(p) {
+        return p.name + "   " + p.pomodoro + "/" + p.short_break + "/" + p.long_break + "  \u00d7" + p.pomodori;
+    }
+
+    _populatePresetSubmenu() {
+        if (!this._presetSubmenu) {
+            return;
+        }
+        this._presetSubmenu.menu.removeAll();
+        this._presetItems = [];
+        let active = this._presetState ? this._presetState.activePreset : "";
+        let list = (this._presets && this._presets.length) ? this._presets : [
+            { name: "Classic", pomodoro: 25, short_break: 5, long_break: 15, pomodori: 4 },
+            { name: "Long focus", pomodoro: 50, short_break: 10, long_break: 20, pomodori: 4 }
+        ];
+        for (let i = 0; i < list.length; i++) {
+            let preset = list[i];
+            let item = new PopupMenu.PopupMenuItem(this._presetItemLabel(preset));
+            item.connect('activate', () => {
+                this.emit('apply-preset', preset);
+            });
+            item.setOrnament(PopupMenu.OrnamentType.CHECK, preset.name === active);
+            this._presetSubmenu.menu.addMenuItem(item);
+            this._presetItems.push({ item: item, preset: preset });
+        }
     }
 
     _applyCachedPreset() {
@@ -860,11 +875,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         //     this._compactInfoLabel.set_text(`${preset.activePreset}`);
         // }
         // @PUBLIC_STRIP_END
-        if (this._preset25Item) {
-            this._preset25Item.setOrnament(PopupMenu.OrnamentType.CHECK, Boolean(preset.isPreset25Active));
-        }
-        if (this._preset50Item) {
-            this._preset50Item.setOrnament(PopupMenu.OrnamentType.CHECK, Boolean(preset.isPreset50Active));
+        let active = preset.activePreset || "";
+        for (let entry of (this._presetItems || [])) {
+            entry.item.setOrnament(PopupMenu.OrnamentType.CHECK, entry.preset.name === active);
         }
     }
 

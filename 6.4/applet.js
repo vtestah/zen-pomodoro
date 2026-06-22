@@ -190,6 +190,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_focusCalmEnding = null;
         this._opt_focusStartRitual = null;
         this._opt_presetTasks = null;
+        this._opt_customPresets = null;
         this._opt_requireFocusTask = null;
         this._opt_themePreset = null;
         this._opt_accentFocusColor = null;
@@ -347,6 +348,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
             }
         );
 
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "custom_presets", "_opt_customPresets", () => { this._updatePresetIndicator(); });
+
         this._settingsProvider.bindProperty(
             Settings.BindingDirection.IN,
             "hotkey",
@@ -460,6 +463,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
         // Apply initial appearance (accent colours / font scale / frame style).
         this._applyAppearance();
+
+        // Push the loaded presets to the menu now that settings are bound.
+        this._updatePresetIndicator();
     }
 
     _updateHotkey() {
@@ -952,28 +958,54 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._opt_pomodoriNumber === pomodoriNumber;
     }
 
-    _getActivePresetLabel() {
-        if (this._presetMatches(25, 5, 15, 4)) {
-            return "25/5/15 x4";
+    _presetList() {
+        let out = [];
+        let arr = this._opt_customPresets;
+        if (Array.isArray(arr)) {
+            for (let p of arr) {
+                if (!p) {
+                    continue;
+                }
+                let pom = parseInt(p.pomodoro) || 0;
+                let sb = parseInt(p.short_break) || 0;
+                let lb = parseInt(p.long_break) || 0;
+                let num = parseInt(p.pomodori) || 0;
+                if (pom > 0 && sb > 0 && lb > 0 && num > 0) {
+                    let name = (p.name || "").toString().trim();
+                    out.push({
+                        name: name || `${pom}/${sb}/${lb} x${num}`,
+                        pomodoro: pom,
+                        short_break: sb,
+                        long_break: lb,
+                        pomodori: num
+                    });
+                }
+            }
         }
+        if (out.length === 0) {
+            out.push({ name: _("Classic"), pomodoro: 25, short_break: 5, long_break: 15, pomodori: 4 });
+            out.push({ name: _("Long focus"), pomodoro: 50, short_break: 10, long_break: 20, pomodori: 4 });
+        }
+        return out;
+    }
 
-        if (this._presetMatches(50, 10, 20, 4)) {
-            return "50/10/20 x4";
+    _getActivePresetLabel() {
+        let list = this._presetList();
+        for (let p of list) {
+            if (this._presetMatches(p.pomodoro, p.short_break, p.long_break, p.pomodori)) {
+                return p.name;
+            }
         }
 
         return `${this._opt_pomodoroTimeMinutes}/${this._opt_shortBreakTimeMinutes}/${this._opt_longBreakTimeMinutes} x${this._opt_pomodoriNumber}`;
     }
 
     _updatePresetIndicator() {
-        if (!this._appletMenu || typeof this._appletMenu.updatePresetIndicator !== 'function') {
+        if (!this._appletMenu || typeof this._appletMenu.setPresets !== 'function') {
             return;
         }
 
-        this._appletMenu.updatePresetIndicator(
-            this._getActivePresetLabel(),
-            this._presetMatches(25, 5, 15, 4),
-            this._presetMatches(50, 10, 20, 4)
-        );
+        this._appletMenu.setPresets(this._presetList(), this._getActivePresetLabel());
         this._updateMenuRuntime();
     }
     
@@ -1556,12 +1588,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._focusUntilFromMenu();
         });
 
-        menu.connect('preset-25-5', () => {
-            this._applyDurationPreset(25, 5, 15, 4);
-        });
-
-        menu.connect('preset-50-10', () => {
-            this._applyDurationPreset(50, 10, 20, 4);
+        menu.connect('apply-preset', (m, preset) => {
+            this._applyDurationPreset(preset.pomodoro, preset.short_break, preset.long_break, preset.pomodori);
         });
 
         menu.connect('skip-timer', () => {

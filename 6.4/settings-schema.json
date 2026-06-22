@@ -14,6 +14,7 @@
             "title": "Timer",
             "sections": [
                 "sec_durations",
+                "sec_presets",
                 "sec_behavior"
             ]
         },
@@ -239,6 +240,13 @@
                 "hotkey",
                 "hotkey_toggle",
                 "hotkey_skip"
+            ]
+        },
+        "sec_presets": {
+            "type": "section",
+            "title": "Presets",
+            "keys": [
+                "custom_presets"
             ]
         }
     },
@@ -899,5 +907,67 @@
     "hdr_interval": {
         "type": "header",
         "description": "Interval chime"
+    },
+    "custom_presets": {
+        "type": "list",
+        "description": "Your custom presets. Apply one from the Preset submenu in the applet menu.",
+        "columns": [
+            {
+                "id": "name",
+                "title": "Name",
+                "type": "string"
+            },
+            {
+                "id": "pomodoro",
+                "title": "Focus (min)",
+                "type": "integer",
+                "min": 1,
+                "max": 180,
+                "step": 1,
+                "units": "min"
+            },
+            {
+                "id": "short_break",
+                "title": "Short break (min)",
+                "type": "integer",
+                "min": 1,
+                "max": 120,
+                "step": 1,
+                "units": "min"
+            },
+            {
+                "id": "long_break",
+                "title": "Long break (min)",
+                "type": "integer",
+                "min": 1,
+                "max": 180,
+                "step": 1,
+                "units": "min"
+            },
+            {
+                "id": "pomodori",
+                "title": "Pomodori",
+                "type": "integer",
+                "min": 1,
+                "max": 16,
+                "step": 1
+            }
+        ],
+        "default": [
+            {
+                "name": "Classic",
+                "pomodoro": 25,
+                "short_break": 5,
+                "long_break": 15,
+                "pomodori": 4
+            },
+            {
+                "name": "Long focus",
+                "pomodoro": 50,
+                "short_break": 10,
+                "long_break": 20,
+                "pomodori": 4
+            }
+        ]
     }
 }

@@ -1875,7 +1875,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 this.set_applet_icon_symbolic_path(appletIconPath + "-symbolic.svg");
                 this._applet_icon.set_style_class_name(appletIconStatus);
             } else {
-                this.set_applet_icon_path(appletIconPath + ".png");
+                this.set_applet_icon_path(appletIconPath + ".svg");
             }
         } else if (this._applet_icon_box.child) {
             this._applet_icon_box.hide();

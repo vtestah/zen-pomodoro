@@ -688,7 +688,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 }
                 this._progressLabel.set_text(line);
             } else {
-                this._progressLabel.set_text(state === "break-over" ? _("Break finished") : _("Ready to start"));
+                this._progressLabel.set_text(state === "break-over" ? _("Break finished — press Start for focus") : _("%d min focus — press Start").format(runtime.focusMinutes || 25));
             }
         }
 

@@ -579,6 +579,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._appletMenu.updateRuntimeState({
             state: this._currentState,
             stateLabel: this._getPanelStateLabel(),
+            focusMinutes: this._opt_pomodoroTimeMinutes || 25,
             timeLeft: this._getFormattedTimeLeft(ticks),
             progressPercent: progressPercent,
             endTime: endTime,

@@ -185,12 +185,17 @@ function install(proto) {
             }
         }
         let total = (this._dailyStatsData && typeof this._dailyStatsData.total === "number") ? this._dailyStatsData.total : 0;
+        let last7 = [];
+        for (let i = 6; i >= 0; i--) {
+            last7.push(h[this._todayStr(new Date(Date.now() - i * 86400000))] || 0);
+        }
         return {
             today: h[today] || 0,
             week: week,
             month: month,
             total: total,
-            streak: this._dailyStreak || 0
+            streak: this._dailyStreak || 0,
+            last7: last7
         };
     };
 

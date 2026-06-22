@@ -87,6 +87,8 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._statMonthItem = null;
         this._statTotalItem = null;
         this._statStreakItem = null;
+        this._statsChart = null;
+        this._statsLast7 = null;
     }
 
     _getLayoutCategory(state) {
@@ -295,6 +297,39 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
     }
 
+    _repaintStatsChart(area) {
+        let cr = area.get_context();
+        try {
+            let [w, h] = area.get_surface_size();
+            let data = this._statsLast7 || [0, 0, 0, 0, 0, 0, 0];
+            let n = data.length || 7;
+            let maxv = 1;
+            for (let v of data) {
+                if (v > maxv) {
+                    maxv = v;
+                }
+            }
+            let gap = 4;
+            let bw = Math.max(1, (w - gap * (n - 1)) / n);
+            let c = this._progressBarColor || [0.84, 0.60, 0.19];
+            for (let i = 0; i < n; i++) {
+                let x = Math.round(i * (bw + gap));
+                cr.setSourceRGBA(1, 1, 1, 0.10);
+                cr.rectangle(x, 0, Math.round(bw), h);
+                cr.fill();
+                let bh = Math.round((data[i] / maxv) * (h - 2));
+                if (bh > 0) {
+                    let isToday = (i === n - 1);
+                    cr.setSourceRGBA(c[0], c[1], c[2], isToday ? 0.98 : 0.55);
+                    cr.rectangle(x, h - bh, Math.round(bw), bh);
+                    cr.fill();
+                }
+            }
+        } finally {
+            cr.$dispose();
+        }
+    }
+
     _updateProgressBar(state, progressPercent) {
         let active = (typeof progressPercent === "number");
         this._progressBarActive = active;
@@ -454,6 +489,15 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._statStreakItem = new PopupMenu.PopupMenuItem(_("Streak: %d days").format(0));
         this._statStreakItem.setSensitive(false);
         this._statsSubmenu.menu.addMenuItem(this._statStreakItem);
+        try {
+            let chartItem = new PopupMenu.PopupBaseMenuItem({ reactive: false });
+            this._statsChart = new St.DrawingArea({ x_expand: true, style: "height: 52px; margin: 2px 6px 4px 6px;" });
+            this._statsChart.connect('repaint', (area) => this._repaintStatsChart(area));
+            chartItem.addActor(this._statsChart);
+            this._statsSubmenu.menu.addMenuItem(chartItem);
+        } catch (e) {
+            global.logError("Zen Pomodoro: stats chart unavailable: " + e.message);
+        }
         this.addMenuItem(this._statsSubmenu);
 
         this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
@@ -561,6 +605,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             }
             if (this._statStreakItem) {
                 this._statStreakItem.label.set_text(_("Streak: %d days").format(st.streak || 0));
+            }
+            if (this._statsChart && Array.isArray(st.last7)) {
+                this._statsLast7 = st.last7;
+                this._statsChart.queue_repaint();
             }
         }
 

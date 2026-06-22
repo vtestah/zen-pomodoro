@@ -197,6 +197,7 @@ function install(proto) {
                 s.streak = 1;
             }
             s.lastGoalMetDate = today;
+            this._sendPushover(this._opt_pushoverMsgGoal);
         }
         this._dailyStatsData = s;
         this._writeJsonAsync(POMODORO_STATS_FILE, s);

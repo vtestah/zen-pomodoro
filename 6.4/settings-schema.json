@@ -208,8 +208,10 @@
                 "pushover_app_token",
                 "pushover_title",
                 "pushover_msg_focus",
-                "pushover_msg_break",
+                "pushover_msg_short_break",
+                "pushover_msg_long_break",
                 "pushover_msg_resume",
+                "pushover_msg_goal",
                 "pushover_sound",
                 "pushover_priority"
             ]
@@ -697,13 +699,6 @@
         "tooltip": "Sent when a focus session starts. {task} and {minutes} are substituted. Leave empty to send nothing.",
         "dependency": "pushover_enabled"
     },
-    "pushover_msg_break": {
-        "type": "entry",
-        "description": "Message when a break starts",
-        "default": "Pomodoro done — time for a break.",
-        "tooltip": "Sent on short and long breaks. Leave empty to send no message at break start.",
-        "dependency": "pushover_enabled"
-    },
     "pushover_msg_resume": {
         "type": "entry",
         "description": "Message when a break ends",
@@ -1057,5 +1052,26 @@
         "description": "Run the quick-start guide",
         "tooltip": "Re-open the step-by-step setup guide.",
         "callback": "_showOnboardingWizard"
+    },
+    "pushover_msg_short_break": {
+        "type": "entry",
+        "description": "Message when a short break starts",
+        "default": "Pomodoro done — short break ({minutes} min).",
+        "tooltip": "Sent when a short break begins. {task} and {minutes} are substituted. Leave empty to send nothing.",
+        "dependency": "pushover_enabled"
+    },
+    "pushover_msg_long_break": {
+        "type": "entry",
+        "description": "Message when a long break starts",
+        "default": "Set complete — long break ({minutes} min).",
+        "tooltip": "Sent when a long break begins. {task} and {minutes} are substituted. Leave empty to send nothing.",
+        "dependency": "pushover_enabled"
+    },
+    "pushover_msg_goal": {
+        "type": "entry",
+        "description": "Message when the daily goal is reached",
+        "default": "🏆 Daily goal reached — great work!",
+        "tooltip": "Sent once when you hit your daily pomodoro goal. {task} and {minutes} are substituted. Leave empty to send nothing.",
+        "dependency": "pushover_enabled"
     }
 }

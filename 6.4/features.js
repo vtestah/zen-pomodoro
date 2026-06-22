@@ -909,17 +909,15 @@ function install(proto) {
         this._dashPeakHour = peak ? peak.hour : null;
 
         let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
-        let scroll = new St.ScrollView({ style: 'max-height: 600px;', hscrollbar_policy: St.PolicyType.NEVER, vscrollbar_policy: St.PolicyType.AUTOMATIC });
-        let root = new St.BoxLayout({ vertical: true, style: 'spacing: 9px; width: 544px; padding: 6px 10px;' });
+        let root = new St.BoxLayout({ vertical: true, style: 'spacing: 9px; width: 680px; padding: 8px 16px;' });
 
         root.add(new St.Label({ text: _("Focus statistics"), style: 'font-size: 1.4em; font-weight: bold;' }));
 
-        // Headline insight — the actionable "so what".
-        let insight = new St.Label({ text: this._statsInsight(st), style: 'font-size: 1.05em; padding: 8px 10px; border-radius: 8px; background-color: rgba(227,90,60,0.16);' });
+        let insight = new St.Label({ text: this._statsInsight(st), style: 'font-size: 1.05em; padding: 8px 12px; border-radius: 8px; background-color: rgba(227,90,60,0.16);' });
         insight.clutter_text.line_wrap = true;
         root.add(insight);
 
-        // Today / week at a glance.
+        // Today / week cards (full width).
         let cards = new St.BoxLayout({ vertical: false, style: 'spacing: 10px;' });
         let trend = "";
         if ((st.lastWeek || 0) > 0) {
@@ -934,7 +932,6 @@ function install(proto) {
         cards.add(this._dashStatCard(_("All time"), (st.total || 0) + " \ud83c\udf45", this._dashFmtMin(st.totalMinutes || 0), accent));
         root.add(cards);
 
-        // Weekly review in one line.
         if ((st.total || 0) > 0) {
             let dowSum = [0, 0, 0, 0, 0, 0, 0];
             for (let k in h) { dowSum[new Date(k + "T00:00:00").getDay()] += (h[k].c || 0); }
@@ -954,65 +951,72 @@ function install(proto) {
         root.add(harvestLabel);
 
         let estF = this._estimateFinish();
-        if (estF) {
-            root.add(new St.Label({ text: _("\u2248 finish %s \u00b7 %d \ud83c\udf45 left").format(estF.time, estF.remaining) }));
-        }
-        root.add(new St.Label({ text: _("Interruptions: %d today \u00b7 %d this week").format(st.interruptionsToday || 0, st.interruptionsWeek || 0) }));
+        let infoParts = [];
+        if (estF) { infoParts.push(_("\u2248 finish %s \u00b7 %d \ud83c\udf45 left").format(estF.time, estF.remaining)); }
+        infoParts.push(_("Interruptions: %d today \u00b7 %d this week").format(st.interruptionsToday || 0, st.interruptionsWeek || 0));
+        let infoLabel = new St.Label({ text: infoParts.join("      ") });
+        infoLabel.clutter_text.line_wrap = true;
+        root.add(infoLabel);
 
-        // When you focus best — the most actionable insight.
-        root.add(new St.Label({ text: _("When you focus (by hour)"), style: 'font-weight: bold; padding-top: 6px;' }));
-        let hoursArea = new St.DrawingArea({ x_expand: true, style: 'height: 60px;' });
+        // Two columns keep the dashboard short — no scrolling.
+        let cols = new St.BoxLayout({ vertical: false, style: 'spacing: 18px; padding-top: 4px;' });
+        let colA = new St.BoxLayout({ vertical: true, x_expand: true, style: 'spacing: 5px;' });
+        let colB = new St.BoxLayout({ vertical: true, x_expand: true, style: 'spacing: 5px;' });
+
+        colA.add(new St.Label({ text: _("When you focus (by hour)"), style: 'font-weight: bold;' }));
+        let hoursArea = new St.DrawingArea({ x_expand: true, style: 'height: 56px;' });
         hoursArea.connect('repaint', (a) => this._paintHours(a));
-        root.add(hoursArea);
+        colA.add(hoursArea);
         let axis = new St.BoxLayout({ vertical: false });
         [_("night"), _("morning"), _("afternoon"), _("evening")].forEach((t) => {
-            axis.add(new St.Label({ text: t, x_expand: true, style: 'font-size: 0.72em; opacity: 0.65;' }));
+            axis.add(new St.Label({ text: t, x_expand: true, style: 'font-size: 0.7em; opacity: 0.65;' }));
         });
-        root.add(axis);
-        root.add(new St.Label({
+        colA.add(axis);
+        colA.add(new St.Label({
             text: peak ? _("Most focused around %s — good time for deep work.").format(peak.label)
                        : _("Not enough data yet to spot your best focus time."),
-            style: 'font-size: 0.9em;'
+            style: 'font-size: 0.85em;'
         }));
-
-        root.add(new St.Label({ text: _("Focus time \u2014 last 14 days"), style: 'font-weight: bold; padding-top: 6px;' }));
-        let barArea = new St.DrawingArea({ x_expand: true, style: 'height: 120px;' });
-        barArea.connect('repaint', (a) => this._paintDashBars(a));
-        root.add(barArea);
 
         let tasksByDone = this._taskList().slice()
             .sort((a, b) => (b.done || 0) - (a.done || 0))
             .filter((t) => (t.done || 0) > 0)
             .slice(0, 5);
         if (tasksByDone.length) {
-            root.add(new St.Label({ text: _("By task"), style: 'font-weight: bold; padding-top: 6px;' }));
+            colA.add(new St.Label({ text: _("By task"), style: 'font-weight: bold; padding-top: 6px;' }));
             let maxDone = tasksByDone[0].done || 1;
             for (let t of tasksByDone) {
                 let frac = (t.done || 0) / maxDone;
-                let title = (t.title.length > 26) ? (t.title.slice(0, 25) + "\u2026") : t.title;
-                let rowB = new St.BoxLayout({ vertical: false, style: 'spacing: 8px;' });
-                let nameL = new St.Label({ text: title, style: 'width: 180px;' });
-                rowB.add(nameL);
-                let mb = new St.DrawingArea({ x_expand: true, style: 'height: 14px;' });
+                let title = (t.title.length > 16) ? (t.title.slice(0, 15) + "\u2026") : t.title;
+                let rowB = new St.BoxLayout({ vertical: false, style: 'spacing: 6px;' });
+                rowB.add(new St.Label({ text: title, style: 'width: 104px;' }));
+                let mb = new St.DrawingArea({ x_expand: true, style: 'height: 13px;' });
                 mb.connect('repaint', (a) => this._paintMiniBar(a, frac));
                 rowB.add(mb);
-                rowB.add(new St.Label({ text: (t.done || 0) + " \ud83c\udf45", style: 'width: 46px;' }));
-                root.add(rowB);
+                rowB.add(new St.Label({ text: (t.done || 0) + " \ud83c\udf45", style: 'width: 42px;' }));
+                colA.add(rowB);
             }
         }
 
-        // Consistency + milestones (secondary).
-        root.add(new St.Label({ text: _("Activity \u2014 last 12 weeks"), style: 'font-weight: bold; padding-top: 6px;' }));
-        let heatArea = new St.DrawingArea({ x_expand: true, style: 'height: 78px;' });
+        colB.add(new St.Label({ text: _("Focus time \u2014 last 14 days"), style: 'font-weight: bold;' }));
+        let barArea = new St.DrawingArea({ x_expand: true, style: 'height: 96px;' });
+        barArea.connect('repaint', (a) => this._paintDashBars(a));
+        colB.add(barArea);
+        colB.add(new St.Label({ text: _("Activity \u2014 last 12 weeks"), style: 'font-weight: bold; padding-top: 6px;' }));
+        let heatArea = new St.DrawingArea({ x_expand: true, style: 'height: 74px;' });
         heatArea.connect('repaint', (a) => this._paintDashHeatmap(a));
-        root.add(heatArea);
+        colB.add(heatArea);
         let legend = new St.BoxLayout({ vertical: false, style: 'spacing: 6px;' });
         legend.add(new St.Label({ text: _("Less"), style: 'font-size: 0.8em;' }));
-        let legendCells = new St.DrawingArea({ style: 'width: 90px; height: 14px;' });
+        let legendCells = new St.DrawingArea({ style: 'width: 80px; height: 13px;' });
         legendCells.connect('repaint', (a) => this._paintDashLegend(a));
         legend.add(legendCells);
         legend.add(new St.Label({ text: _("More"), style: 'font-size: 0.8em;' }));
-        root.add(legend);
+        colB.add(legend);
+
+        cols.add(colA);
+        cols.add(colB);
+        root.add(cols);
 
         let tot = this._dashMilestoneTier(st.total || 0, [10, 25, 50, 100, 250, 500, 1000, 2000]);
         let stk = this._dashMilestoneTier(st.longestStreak || 0, [3, 7, 14, 30, 60, 100, 365]);
@@ -1023,8 +1027,7 @@ function install(proto) {
             root.add(new St.Label({ text: _("Milestones: %s").format(badges.join("    ")), style: 'padding-top: 4px;' }));
         }
 
-        scroll.add_actor(root);
-        dialog.contentLayout.add(scroll);
+        dialog.contentLayout.add(root);
         dialog.setButtons([
             { label: _("Export CSV"), action: () => this._exportStats() },
             { label: _("Close"), key: Clutter.KEY_Escape, default: true, action: () => dialog.close() }

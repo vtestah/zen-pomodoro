@@ -90,10 +90,11 @@
                 "show_timer",
                 "show_seconds",
                 "panel_progress_icon",
+                "start_on_click",
+                "hdr_shortcuts",
                 "hotkey",
                 "hotkey_toggle",
-                "hotkey_skip",
-                "start_on_click"
+                "hotkey_skip"
             ]
         },
         "sec_hud": {
@@ -318,9 +319,13 @@
         "tooltip": "Off shows only the remaining minutes on the panel (less distracting).",
         "dependency": "show_timer"
     },
+    "hdr_shortcuts": {
+        "type": "header",
+        "description": "Keyboard shortcuts"
+    },
     "hotkey": {
         "type": "keybinding",
-        "description": "Set the keybinding to open the applet menu",
+        "description": "Shortcut: open the applet menu",
         "default": "<Super><Shift>p"
     },
     "hotkey_toggle": {

@@ -294,7 +294,7 @@
         "type": "switch",
         "description": "Recover an in-progress focus session after a Cinnamon restart (resume manually)",
         "default": true,
-        "tooltip": "Resume an in-progress focus session after a Cinnamon restart."
+        "tooltip": "If Cinnamon restarts mid-focus, the session is remembered so you can resume it from the menu — it won't auto-start."
     },
     "show_dialog_messages": {
         "type": "switch",
@@ -424,7 +424,7 @@
             "Monochrome": "mono",
             "Custom": "custom"
         },
-        "tooltip": "Color theme for the on-screen cues and accents."
+        "tooltip": "Color scheme for accents and on-screen cues. Choose Custom to set your own focus/break colors below."
     },
     "accent_focus_color": {
         "type": "colorchooser",
@@ -448,7 +448,7 @@
             "Corners only": "corners",
             "Off": "off"
         },
-        "tooltip": "How the on-screen focus frame is drawn."
+        "tooltip": "Style of the on-screen frame that traces focus progress: a soft Glow, a Classic border, just the Corners, or Off."
     },
     "glow_intensity": {
         "type": "scale",
@@ -457,7 +457,7 @@
         "max": 60,
         "step": 1,
         "description": "Glow intensity",
-        "tooltip": "Strength of the on-screen edge glow."
+        "tooltip": "How bright the on-screen edge glow is during focus — higher is more visible, lower is subtler."
     },
     "glow_progress_width": {
         "type": "scale",
@@ -476,7 +476,7 @@
             "4-7-8": "478",
             "Relaxing 4-6": "relax"
         },
-        "tooltip": "Breathing rhythm used by the breathing guide."
+        "tooltip": "Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 — seconds per phase."
     },
     "chip_position": {
         "type": "combobox",
@@ -510,7 +510,7 @@
         "max": 140,
         "step": 5,
         "description": "Menu font scale (%)",
-        "tooltip": "Scale the applet menu's text size."
+        "tooltip": "Make the applet menu's text larger or smaller (100% = default size)."
     },
     "preview_appearance_button": {
         "type": "button",
@@ -594,7 +594,7 @@
         "type": "switch",
         "description": "Show a breathing guide during breaks",
         "default": false,
-        "tooltip": "Show a breathing guide during breaks."
+        "tooltip": "During breaks, show an expanding and contracting circle that paces your breathing to help you unwind."
     },
     "zen_mode_enabled": {
         "type": "switch",

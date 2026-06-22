@@ -208,6 +208,7 @@
                 "pushover_user_key",
                 "pushover_app_token",
                 "pushover_title",
+                "pushover_msg_focus",
                 "pushover_msg_break",
                 "pushover_msg_resume"
             ]
@@ -641,6 +642,13 @@
         "type": "entry",
         "description": "Notification title",
         "default": "Zen Pomodoro",
+        "dependency": "pushover_enabled"
+    },
+    "pushover_msg_focus": {
+        "type": "entry",
+        "description": "Message when focus starts",
+        "default": "🎯 Focus: {task} ({minutes} min)",
+        "tooltip": "Sent when a focus session starts. {task} and {minutes} are substituted. Leave empty to send nothing.",
         "dependency": "pushover_enabled"
     },
     "pushover_msg_break": {

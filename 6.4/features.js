@@ -387,6 +387,13 @@ function install(proto) {
             return;
         }
         let title = (this._opt_pushoverTitle || '').trim() || 'Zen Pomodoro';
+        let task = (this._currentFocusTask && this._currentFocusTask.trim()) ? this._currentFocusTask.trim() : _("No task");
+        let mins = "";
+        let curTimer = this._timerQueue ? this._timerQueue.getCurrentTimer() : null;
+        if (curTimer) {
+            mins = String(Math.max(0, Math.ceil(curTimer.getTicksRemaining() / 60)));
+        }
+        message = message.replace(/\{task\}/g, task).replace(/\{minutes\}/g, mins);
         try {
             if (!this._pushoverSession) {
                 this._pushoverSession = new Soup.Session();

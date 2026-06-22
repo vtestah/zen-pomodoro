@@ -16,104 +16,104 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: applet.js:712
+#: applet.js:714
 msgid "Focus session restored — resume when ready"
 msgstr ""
 
-#: applet.js:747
+#: applet.js:749
 msgid "FOCUS"
 msgstr ""
 
-#: applet.js:749
+#: applet.js:751
 msgid "PAUSED FOCUS"
 msgstr ""
 
-#: applet.js:752
+#: applet.js:754
 msgid "BREAK"
 msgstr ""
 
-#: applet.js:755
+#: applet.js:757
 msgid "PAUSED BREAK"
 msgstr ""
 
-#: applet.js:757
+#: applet.js:759
 msgid "BREAK OVER"
 msgstr ""
 
-#: applet.js:760
+#: applet.js:762
 msgid "Ready"
 msgstr ""
 
-#: applet.js:778
+#: applet.js:780
 msgid "Short break running"
 msgstr ""
 
-#: applet.js:781
+#: applet.js:783
 msgid "Short break paused"
 msgstr ""
 
-#: applet.js:784
+#: applet.js:786
 msgid "Long break running"
 msgstr ""
 
-#: applet.js:787
+#: applet.js:789
 msgid "Long break paused"
 msgstr ""
 
-#: applet.js:790 applet.js:1139
+#: applet.js:792 applet.js:1141
 msgid "Break ended"
 msgstr ""
 
-#: applet.js:793
+#: applet.js:795
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr ""
 
-#: applet.js:798
+#: applet.js:800
 msgid "Pomodoro paused"
 msgstr ""
 
-#: applet.js:801
+#: applet.js:803
 msgid "Waiting to start"
 msgstr ""
 
-#: applet.js:1119
+#: applet.js:1121
 msgid "Pomodoro started"
 msgstr ""
 
-#: applet.js:1195
+#: applet.js:1197
 msgid "Let's go to work!"
 msgstr ""
 
-#: applet.js:1220
+#: applet.js:1223
 msgid "Pomodoro done"
 msgstr ""
 
-#: applet.js:1222
+#: applet.js:1225
 msgid "Take a short break"
 msgstr ""
 
-#: applet.js:1245
+#: applet.js:1248
 msgid "Set complete!"
 msgstr ""
 
-#: applet.js:1250
+#: applet.js:1253
 msgid "Take a long break"
 msgstr ""
 
-#: applet.js:1292
+#: applet.js:1295
 msgid "Pomodoro ended"
 msgstr ""
 
-#: applet.js:1412
+#: applet.js:1415
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
 
-#: applet.js:1482 features.js:658
+#: applet.js:1485 features.js:665
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr ""
 
-#: applet.js:1499
+#: applet.js:1502
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr ""
@@ -130,11 +130,11 @@ msgstr ""
 msgid "Choose or type a focus task"
 msgstr ""
 
-#: dialogs.js:65 features.js:706
+#: dialogs.js:65 features.js:713
 msgid "Cancel"
 msgstr ""
 
-#: dialogs.js:72 features.js:707
+#: dialogs.js:72 features.js:714
 msgid "Start"
 msgstr ""
 
@@ -207,47 +207,51 @@ msgstr ""
 msgid "Pomodoro finished, ready to take a break?"
 msgstr ""
 
-#: features.js:421
+#: features.js:390
+msgid "No task"
+msgstr ""
+
+#: features.js:428
 msgid "Could not open the hosts file"
 msgstr ""
 
-#: features.js:470
+#: features.js:477
 msgid "Add some domains to block first."
 msgstr ""
 
-#: features.js:474
+#: features.js:481
 msgid "Distractions blocked."
 msgstr ""
 
-#: features.js:479
+#: features.js:486
 msgid "Distractions unblocked."
 msgstr ""
 
-#: features.js:516
+#: features.js:523
 msgid "Click to exit Zen"
 msgstr ""
 
-#: features.js:551 visual.js:894
+#: features.js:558 visual.js:894
 msgid "Focus"
 msgstr ""
 
-#: features.js:628
+#: features.js:635
 msgid "Breathe in"
 msgstr ""
 
-#: features.js:631 features.js:637
+#: features.js:638 features.js:644
 msgid "Hold"
 msgstr ""
 
-#: features.js:634
+#: features.js:641
 msgid "Breathe out"
 msgstr ""
 
-#: features.js:664
+#: features.js:671
 msgid "Focus until"
 msgstr ""
 
-#: features.js:665
+#: features.js:672
 msgid "Enter a time (HH:MM)"
 msgstr ""
 
@@ -873,6 +877,16 @@ msgstr ""
 
 #. settings-schema.json
 msgid "Notification title"
+msgstr ""
+
+#. settings-schema.json
+msgid "Message when focus starts"
+msgstr ""
+
+#. settings-schema.json
+msgid ""
+"Sent when a focus session starts. {task} and {minutes} are substituted. "
+"Leave empty to send nothing."
 msgstr ""
 
 #. settings-schema.json

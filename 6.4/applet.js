@@ -221,6 +221,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_pushoverTitle = null;
         this._opt_pushoverMsgBreak = null;
         this._opt_pushoverMsgResume = null;
+        this._opt_pushoverMsgFocus = null;
         this._opt_blockDomains = null;
         this._dndActive = false;
         this._dndPrevValue = null;
@@ -373,6 +374,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_title", "_opt_pushoverTitle", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_msg_break", "_opt_pushoverMsgBreak", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_msg_resume", "_opt_pushoverMsgResume", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_msg_focus", "_opt_pushoverMsgFocus", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_domains", "_opt_blockDomains", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_volume", "_opt_focusAmbientVolume", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_breathing", "_opt_breakBreathing", emptyCallback);
@@ -1234,6 +1236,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._playFocusStartRitual();
             Main.notify(_("Let's go to work!"));
             this._runEventCommand('focus');
+            this._sendPushover(this._opt_pushoverMsgFocus);
         });
     
         pomodoroTimer.connect('timer-stopped', () => {

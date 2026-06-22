@@ -16,104 +16,104 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: applet.js:714
+#: applet.js:718
 msgid "Focus session restored — resume when ready"
 msgstr ""
 
-#: applet.js:749
+#: applet.js:753
 msgid "FOCUS"
 msgstr ""
 
-#: applet.js:751
+#: applet.js:755
 msgid "PAUSED FOCUS"
 msgstr ""
 
-#: applet.js:754
+#: applet.js:758
 msgid "BREAK"
 msgstr ""
 
-#: applet.js:757
+#: applet.js:761
 msgid "PAUSED BREAK"
 msgstr ""
 
-#: applet.js:759
+#: applet.js:763
 msgid "BREAK OVER"
 msgstr ""
 
-#: applet.js:762
+#: applet.js:766
 msgid "Ready"
 msgstr ""
 
-#: applet.js:780
+#: applet.js:784
 msgid "Short break running"
 msgstr ""
 
-#: applet.js:783
+#: applet.js:787
 msgid "Short break paused"
 msgstr ""
 
-#: applet.js:786
+#: applet.js:790
 msgid "Long break running"
 msgstr ""
 
-#: applet.js:789
+#: applet.js:793
 msgid "Long break paused"
 msgstr ""
 
-#: applet.js:792 applet.js:1141
+#: applet.js:796 applet.js:1145
 msgid "Break ended"
 msgstr ""
 
-#: applet.js:795
+#: applet.js:799
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr ""
 
-#: applet.js:800
+#: applet.js:804
 msgid "Pomodoro paused"
 msgstr ""
 
-#: applet.js:803
+#: applet.js:807
 msgid "Waiting to start"
 msgstr ""
 
-#: applet.js:1121
+#: applet.js:1125
 msgid "Pomodoro started"
 msgstr ""
 
-#: applet.js:1197
+#: applet.js:1201
 msgid "Let's go to work!"
 msgstr ""
 
-#: applet.js:1223
+#: applet.js:1227
 msgid "Pomodoro done"
 msgstr ""
 
-#: applet.js:1225
+#: applet.js:1229
 msgid "Take a short break"
 msgstr ""
 
-#: applet.js:1248
+#: applet.js:1252
 msgid "Set complete!"
 msgstr ""
 
-#: applet.js:1253
+#: applet.js:1257
 msgid "Take a long break"
 msgstr ""
 
-#: applet.js:1295
+#: applet.js:1299
 msgid "Pomodoro ended"
 msgstr ""
 
-#: applet.js:1415
+#: applet.js:1419
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
 
-#: applet.js:1485 features.js:665
+#: applet.js:1489 features.js:668
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr ""
 
-#: applet.js:1502
+#: applet.js:1506
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr ""
@@ -130,11 +130,11 @@ msgstr ""
 msgid "Choose or type a focus task"
 msgstr ""
 
-#: dialogs.js:65 features.js:713
+#: dialogs.js:65 features.js:716
 msgid "Cancel"
 msgstr ""
 
-#: dialogs.js:72 features.js:714
+#: dialogs.js:72 features.js:717
 msgid "Start"
 msgstr ""
 
@@ -211,47 +211,47 @@ msgstr ""
 msgid "No task"
 msgstr ""
 
-#: features.js:428
+#: features.js:431
 msgid "Could not open the hosts file"
 msgstr ""
 
-#: features.js:477
+#: features.js:480
 msgid "Add some domains to block first."
 msgstr ""
 
-#: features.js:481
+#: features.js:484
 msgid "Distractions blocked."
 msgstr ""
 
-#: features.js:486
+#: features.js:489
 msgid "Distractions unblocked."
 msgstr ""
 
-#: features.js:523
+#: features.js:526
 msgid "Click to exit Zen"
 msgstr ""
 
-#: features.js:558 visual.js:894
+#: features.js:561 visual.js:894
 msgid "Focus"
 msgstr ""
 
-#: features.js:635
+#: features.js:638
 msgid "Breathe in"
 msgstr ""
 
-#: features.js:638 features.js:644
+#: features.js:641 features.js:647
 msgid "Hold"
 msgstr ""
 
-#: features.js:641
+#: features.js:644
 msgid "Breathe out"
 msgstr ""
 
-#: features.js:671
+#: features.js:674
 msgid "Focus until"
 msgstr ""
 
-#: features.js:672
+#: features.js:675
 msgid "Enter a time (HH:MM)"
 msgstr ""
 
@@ -905,6 +905,58 @@ msgstr ""
 
 #. settings-schema.json
 msgid "Sent when a break finishes. Leave empty to send no message."
+msgstr ""
+
+#. settings-schema.json
+msgid "Notification sound"
+msgstr ""
+
+#. settings-schema.json
+msgid "Default"
+msgstr ""
+
+#. settings-schema.json
+msgid "Magic"
+msgstr ""
+
+#. settings-schema.json
+msgid "Bike"
+msgstr ""
+
+#. settings-schema.json
+msgid "Cosmic"
+msgstr ""
+
+#. settings-schema.json
+msgid "Gamelan"
+msgstr ""
+
+#. settings-schema.json
+msgid "Incoming"
+msgstr ""
+
+#. settings-schema.json
+msgid "Intermission"
+msgstr ""
+
+#. settings-schema.json
+msgid "None"
+msgstr ""
+
+#. settings-schema.json
+msgid "Priority"
+msgstr ""
+
+#. settings-schema.json
+msgid "Low"
+msgstr ""
+
+#. settings-schema.json
+msgid "Normal"
+msgstr ""
+
+#. settings-schema.json
+msgid "High"
 msgstr ""
 
 #. settings-schema.json

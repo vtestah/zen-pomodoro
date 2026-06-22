@@ -210,7 +210,9 @@
                 "pushover_title",
                 "pushover_msg_focus",
                 "pushover_msg_break",
-                "pushover_msg_resume"
+                "pushover_msg_resume",
+                "pushover_sound",
+                "pushover_priority"
             ]
         },
         "sec_blocking": {
@@ -663,6 +665,33 @@
         "description": "Message when a break ends",
         "default": "Break's over — back to focus.",
         "tooltip": "Sent when a break finishes. Leave empty to send no message.",
+        "dependency": "pushover_enabled"
+    },
+    "pushover_sound": {
+        "type": "combobox",
+        "description": "Notification sound",
+        "default": "pushover",
+        "options": {
+            "Default": "pushover",
+            "Magic": "magic",
+            "Bike": "bike",
+            "Cosmic": "cosmic",
+            "Gamelan": "gamelan",
+            "Incoming": "incoming",
+            "Intermission": "intermission",
+            "None": "none"
+        },
+        "dependency": "pushover_enabled"
+    },
+    "pushover_priority": {
+        "type": "combobox",
+        "description": "Priority",
+        "default": "0",
+        "options": {
+            "Low": "-1",
+            "Normal": "0",
+            "High": "1"
+        },
         "dependency": "pushover_enabled"
     },
     "enable_blocking": {

@@ -402,7 +402,10 @@ function install(proto) {
             let body = 'token=' + encodeURIComponent(token) +
                 '&user=' + encodeURIComponent(user) +
                 '&title=' + encodeURIComponent(title) +
-                '&message=' + encodeURIComponent(message);
+                '&message=' + encodeURIComponent(message) +
+                '&html=1' +
+                '&priority=' + encodeURIComponent(this._opt_pushoverPriority || '0') +
+                '&sound=' + encodeURIComponent(this._opt_pushoverSound || 'pushover');
             msg.set_request_body_from_bytes('application/x-www-form-urlencoded',
                 new GLib.Bytes(ByteArray.fromString(body)));
             this._pushoverSession.send_and_read_async(msg, GLib.PRIORITY_DEFAULT, null, (s, res) => {

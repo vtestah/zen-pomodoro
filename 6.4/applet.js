@@ -222,6 +222,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_pushoverMsgBreak = null;
         this._opt_pushoverMsgResume = null;
         this._opt_pushoverMsgFocus = null;
+        this._opt_pushoverSound = null;
+        this._opt_pushoverPriority = null;
         this._opt_blockDomains = null;
         this._dndActive = false;
         this._dndPrevValue = null;
@@ -375,6 +377,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_msg_break", "_opt_pushoverMsgBreak", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_msg_resume", "_opt_pushoverMsgResume", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_msg_focus", "_opt_pushoverMsgFocus", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_sound", "_opt_pushoverSound", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_priority", "_opt_pushoverPriority", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_domains", "_opt_blockDomains", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_volume", "_opt_focusAmbientVolume", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_breathing", "_opt_breakBreathing", emptyCallback);

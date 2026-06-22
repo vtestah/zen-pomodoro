@@ -537,6 +537,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
         this.addMenuItem(this._statsSubmenu);
 
+        let quickStart = new PopupMenu.PopupMenuItem("\u2728 " + _("Quick start"));
+        quickStart.connect('activate', () => this.emit('open-onboarding'));
+        this.addMenuItem(quickStart);
+
         this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         this.addMenuItem(this._makeSectionLabel(_("SESSION")));
 

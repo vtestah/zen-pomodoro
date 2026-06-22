@@ -532,6 +532,82 @@ function install(proto) {
         dialog.open();
     };
 
+    proto._showOnboardingWizard = function() {
+        let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
+        let TOTAL = 7;
+        let st = { step: 0 };
+        let sp = this._settingsProvider;
+        let content = new St.BoxLayout({ vertical: true, style: 'spacing: 10px; width: 520px; padding: 6px 14px;' });
+        dialog.contentLayout.add(content);
+
+        let title = (s) => new St.Label({ text: s, style: 'font-size: 1.35em; font-weight: bold;' });
+        let para = (s) => { let l = new St.Label({ text: s }); l.clutter_text.line_wrap = true; return l; };
+        let setBtn = (label, fn) => {
+            let b = new St.Button({ style_class: 'button', style: 'padding: 5px 12px; margin: 4px 6px 0 0;' });
+            b.set_label(label);
+            b.connect('clicked', () => { try { fn(); } catch (e) {} b.set_label("\u2713 " + label); });
+            return b;
+        };
+        let row = (arr) => { let r = new St.BoxLayout({ vertical: false, style: 'spacing: 2px;' }); arr.forEach((x) => r.add(x)); return r; };
+
+        let finish = () => { try { sp.setValue('onboarding_done', true); } catch (e) {} dialog.close(); };
+
+        let build = () => {
+            content.destroy_all_children();
+            content.add(new St.Label({ text: _("Quick start") + "   " + (st.step + 1) + " / " + TOTAL, style: 'font-size: 0.8em; opacity: 0.6;' }));
+            let s = st.step;
+            if (s === 0) {
+                content.add(title(_("Welcome to Zen Pomodoro \ud83c\udf45")));
+                content.add(para(_("Work in calm focus intervals with gentle on-screen cues instead of alarms. Let's set it up in a few quick steps — you can change everything later in Settings.")));
+            } else if (s === 1) {
+                content.add(title(_("Your rhythm")));
+                content.add(para(_("Pick a focus / short break / long break length. The classic Pomodoro is 25 / 5 / 15 minutes.")));
+                content.add(row([
+                    setBtn(_("25 / 5 / 15"), () => { sp.setValue('pomodoro_duration', 25); sp.setValue('short_break_duration', 5); sp.setValue('long_break_duration', 15); sp.setValue('pomodori_number', 4); }),
+                    setBtn(_("50 / 10 / 20"), () => { sp.setValue('pomodoro_duration', 50); sp.setValue('short_break_duration', 10); sp.setValue('long_break_duration', 20); sp.setValue('pomodori_number', 4); })
+                ]));
+            } else if (s === 2) {
+                content.add(title(_("Daily goal")));
+                content.add(para(_("How many pomodoros do you aim for each day? It powers your streak and the progress ring (you can turn it off).")));
+                content.add(row([
+                    setBtn(_("Off"), () => sp.setValue('daily_goal', 0)),
+                    setBtn("4", () => sp.setValue('daily_goal', 4)),
+                    setBtn("6", () => sp.setValue('daily_goal', 6)),
+                    setBtn("8", () => sp.setValue('daily_goal', 8))
+                ]));
+            } else if (s === 3) {
+                content.add(title(_("Calm focus")));
+                content.add(para(_("Recommended: mute notifications while focusing and play a soft periodic chime. Fine-tune all sounds later in Settings → Sounds.")));
+                content.add(row([
+                    setBtn(_("Mute notifications"), () => sp.setValue('focus_dnd', true)),
+                    setBtn(_("Soft chime"), () => sp.setValue('interval_chime', true))
+                ]));
+            } else if (s === 4) {
+                content.add(title(_("Block distractions")));
+                content.add(para(_("Optionally block distracting sites during focus (edits /etc/hosts via an admin prompt). Add domains in Settings → Advanced — you can even set it up to ask for your password only once.")));
+                content.add(row([ setBtn(_("Enable blocking"), () => sp.setValue('enable_blocking', true)) ]));
+            } else if (s === 5) {
+                content.add(title(_("Track tasks")));
+                content.add(para(_("Add tasks with an estimate in pomodoros from the menu's Tasks submenu. Your current task links to the focus session, and the dashboard shows where your time goes.")));
+                let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true, hint_text: _("Add your first task (optional)") });
+                CinnamonEntry.addContextMenu(entry);
+                content.add(entry);
+                content.add(row([ setBtn(_("Add task"), () => { let t = entry.clutter_text.get_text().trim(); if (t) { this._addTask(t, 1); } }) ]));
+            } else {
+                content.add(title(_("You're all set \ud83c\udf45")));
+                content.add(para(_("Open the menu to start a focus, pick a task, or open Statistics → the dashboard. Set keyboard shortcuts in Settings → Panel. Enjoy calm, focused work!")));
+            }
+            let buttons = [{ label: _("Skip"), action: finish }];
+            if (st.step > 0) { buttons.push({ label: _("Back"), action: () => { st.step--; build(); } }); }
+            if (st.step < TOTAL - 1) { buttons.push({ label: _("Next"), default: true, action: () => { st.step++; build(); } }); }
+            else { buttons.push({ label: _("Done"), default: true, action: finish }); }
+            dialog.setButtons(buttons);
+        };
+        build();
+        dialog.open();
+        return dialog;
+    };
+
     proto._dashFmtMin = function(min) {
         min = Math.max(0, Math.round(min || 0));
         if (min < 60) {

@@ -227,6 +227,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_pushoverPriority = null;
         this._opt_blockDomains = null;
         this._opt_blockPasswordlessFull = null;
+        this._opt_onboardingDone = null;
         this._dndActive = false;
         this._dndPrevValue = null;
         this._notificationSettings = null;
@@ -386,6 +387,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_priority", "_opt_pushoverPriority", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_domains", "_opt_blockDomains", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_passwordless_full", "_opt_blockPasswordlessFull", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "onboarding_done", "_opt_onboardingDone", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_volume", "_opt_focusAmbientVolume", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_breathing", "_opt_breakBreathing", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "zen_mode_enabled", "_opt_zenModeEnabled", emptyCallback);
@@ -469,6 +471,14 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
         // Push the loaded presets to the menu now that settings are bound.
         this._updatePresetIndicator();
+
+        // First-run onboarding wizard.
+        if (!this._opt_onboardingDone) {
+            imports.gi.GLib.timeout_add(imports.gi.GLib.PRIORITY_DEFAULT, 2500, () => {
+                try { this._showOnboardingWizard(); } catch (e) { global.logError("Zen Pomodoro onboarding: " + e); }
+                return false;
+            });
+        }
     }
 
     _updateHotkey() {
@@ -1602,6 +1612,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
         menu.connect('open-stats', () => {
             this._showStatsDashboard();
+        });
+        menu.connect('open-onboarding', () => {
+            this._showOnboardingWizard();
         });
 
         menu.connect('add-task', () => {

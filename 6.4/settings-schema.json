@@ -80,7 +80,8 @@
                 "show_dialog_messages",
                 "auto_start_after_pomodoro_ends",
                 "auto_start_after_short_break_ends",
-                "auto_start_after_break_ends"
+                "auto_start_after_break_ends",
+                "onboarding_button"
             ]
         },
         "sec_panel": {
@@ -1046,5 +1047,15 @@
         "tooltip": "Removes the system policy and the root helper, so blocking asks for your password again each time.",
         "callback": "_removePasswordlessBlocking",
         "dependency": "enable_blocking"
+    },
+    "onboarding_done": {
+        "type": "generic",
+        "default": false
+    },
+    "onboarding_button": {
+        "type": "button",
+        "description": "Run the quick-start guide",
+        "tooltip": "Re-open the step-by-step setup guide.",
+        "callback": "_showOnboardingWizard"
     }
 }

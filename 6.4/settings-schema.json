@@ -265,49 +265,49 @@
         "description": "Number of pomodori before long break:"
     },
     "start_automatically_on_load": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Start the pomodoro timer as soon as the applet loads",
         "default": false
     },
     "session_recovery": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Recover an in-progress focus session after a Cinnamon restart (resume manually)",
         "default": true,
         "tooltip": "Resume an in-progress focus session after a Cinnamon restart."
     },
     "show_dialog_messages": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Show Dialog Messages",
         "default": true
     },
     "auto_start_after_pomodoro_ends": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Auto start after a pomodoro ends",
         "default": true
     },
     "auto_start_after_short_break_ends": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Auto start after a short break ends",
         "default": true
     },
     "auto_start_after_break_ends": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Auto start a new pomodoro after a break ends",
         "default": true
     },
     "display_icon": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Display the pomodoro icon in the applet panel",
         "default": true
     },
     "use_symbolic_icon": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Use a symbolic icon in the applet panel",
         "default": true,
         "tooltip": "Use a monochrome symbolic icon that follows your panel theme."
     },
     "show_timer": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Show the pomodoro timer in the applet panel",
         "default": true
     },
@@ -317,18 +317,18 @@
         "default": "<Super><Shift>p"
     },
     "focus_show_task_chip": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Show the current task as an on-screen chip during focus",
         "default": false
     },
     "focus_calm_ending": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Calm ending: no anxious pulsing near the end of a timer",
         "default": true,
         "tooltip": "No anxious blinking near the end — a calm, steady cue instead."
     },
     "focus_start_ritual": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus begins",
         "default": true,
         "tooltip": "Briefly show 'Focus: <task>' with a smooth fade-in when focus begins."
@@ -365,7 +365,7 @@
         ]
     },
     "require_focus_task": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Require a focus task before starting",
         "default": false,
         "tooltip": "Ask for a task name before a focus session can start."
@@ -454,7 +454,7 @@
         "description": "Start ritual duration (seconds)"
     },
     "reduce_motion": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Reduce motion (disable focus animations)",
         "default": false,
         "tooltip": "Disable focus animations (fades, pulsing, breathing)."
@@ -481,7 +481,7 @@
         "tooltip": "Briefly show the breathing guide with the selected pattern."
     },
     "panel_progress_icon": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Show timer progress as a ring on the panel icon",
         "default": true,
         "tooltip": "Draw remaining time as a ring around the panel icon."
@@ -496,7 +496,7 @@
         "tooltip": "Target pomodoros per day (0 turns off the goal and streak)."
     },
     "auto_pause_idle": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Auto-pause focus when you are away (idle)",
         "default": false,
         "tooltip": "Pause focus automatically when you step away from the computer."
@@ -511,13 +511,13 @@
         "dependency": "auto_pause_idle"
     },
     "auto_resume_on_activity": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Resume automatically when you return",
         "default": false,
         "dependency": "auto_pause_idle"
     },
     "flow_extend": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Offer to extend focus when a pomodoro ends (stay in flow)",
         "default": true,
         "tooltip": "When a pomodoro ends, offer to extend it to stay in flow."
@@ -532,7 +532,7 @@
         "dependency": "flow_extend"
     },
     "focus_ambient_sound": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Play soft ambient (brown noise) during focus",
         "default": false,
         "tooltip": "Play soft brown noise during focus."
@@ -547,31 +547,31 @@
         "dependency": "focus_ambient_sound"
     },
     "break_breathing": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Show a breathing guide during breaks",
         "default": false,
         "tooltip": "Show a breathing guide during breaks."
     },
     "zen_mode_enabled": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Enable Zen mode (full-screen focus overlay, toggled from the menu)",
         "default": false,
         "tooltip": "Allow a full-screen Zen overlay, toggled from the menu."
     },
     "focus_until_enabled": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Show 'Focus until…' in the menu (focus until a clock time)",
         "default": false,
         "tooltip": "Add a 'Focus until…' option (focus until a clock time)."
     },
     "focus_dnd": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Mute notifications while focusing (Do Not Disturb)",
         "default": false,
         "tooltip": "Mute Cinnamon notifications while focusing; restored afterwards."
     },
     "run_command_enabled": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Run a command when focus or a break starts",
         "default": false,
         "tooltip": "Run a command of your choice when focus or a break starts."
@@ -589,7 +589,7 @@
         "dependency": "run_command_enabled"
     },
     "pushover_enabled": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Send a push notification (Pushover) on breaks",
         "default": false,
         "tooltip": "Send a push notification to your devices via Pushover."
@@ -607,7 +607,7 @@
         "dependency": "pushover_enabled"
     },
     "enable_blocking": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Enable distraction blocking (edits /etc/hosts via an admin prompt)",
         "default": false,
         "tooltip": "Block distracting sites by editing /etc/hosts (asks for your password)."
@@ -656,7 +656,7 @@
         "default": false
     },
     "timer_sound": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Play Timer Sound",
         "default": false
     },
@@ -677,7 +677,7 @@
         "dependency": "timer_sound"
     },
     "break_sound": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Play Break Sound",
         "default": true
     },
@@ -698,7 +698,7 @@
         "dependency": "break_sound"
     },
     "warn_sound": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Play Warn Sound",
         "default": false
     },
@@ -728,7 +728,7 @@
         "dependency": "warn_sound"
     },
     "start_sound": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Play Start Sound",
         "default": true
     },
@@ -749,7 +749,7 @@
         "dependency": "start_sound"
     },
     "interval_chime": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Play a chime at a regular interval during focus",
         "default": false,
         "tooltip": "Play a sound at a fixed interval during focus to mark time passing."
@@ -780,7 +780,7 @@
         "dependency": "interval_chime"
     },
     "enable_scripts": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Enable scripts",
         "default": false
     },

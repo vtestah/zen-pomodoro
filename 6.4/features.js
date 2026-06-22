@@ -2,6 +2,13 @@ const St = imports.gi.St;
 const Clutter = imports.gi.Clutter;
 const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
+let Soup = null;
+try {
+    imports.gi.versions.Soup = '3.0';
+    Soup = imports.gi.Soup;
+} catch (e) {
+    try { Soup = imports.gi.Soup; } catch (e2) { Soup = null; }
+}
 const Meta = imports.gi.Meta;
 const Main = imports.ui.main;
 const Mainloop = imports.mainloop;
@@ -300,6 +307,40 @@ function install(proto) {
         }
     };
 
+    // Optional push notification (Pushover) on key events, opt-in. Uses the
+    // user's own credentials and posts only to the official Pushover API.
+    proto._sendPushover = function(message) {
+        if (!this._opt_pushoverEnabled || !Soup) {
+            return;
+        }
+        let user = (this._opt_pushoverUserKey || '').trim();
+        let token = (this._opt_pushoverAppToken || '').trim();
+        if (!user || !token) {
+            return;
+        }
+        try {
+            if (!this._pushoverSession) {
+                this._pushoverSession = new Soup.Session();
+            }
+            let msg = Soup.Message.new('POST', 'https://api.pushover.net/1/messages.json');
+            let body = 'token=' + encodeURIComponent(token) +
+                '&user=' + encodeURIComponent(user) +
+                '&title=' + encodeURIComponent('Zen Pomodoro') +
+                '&message=' + encodeURIComponent(message);
+            msg.set_request_body_from_bytes('application/x-www-form-urlencoded',
+                new GLib.Bytes(ByteArray.fromString(body)));
+            this._pushoverSession.send_and_read_async(msg, GLib.PRIORITY_DEFAULT, null, (s, res) => {
+                try {
+                    s.send_and_read_finish(res);
+                } catch (e) {
+                    global.logError("Zen Pomodoro: Pushover request failed: " + e.message);
+                }
+            });
+        } catch (e) {
+            global.logError("Zen Pomodoro: Pushover error: " + e.message);
+        }
+    };
+
     // Opt-in convenience: open /etc/hosts in the system's admin-capable editor
     // via the GVfs admin backend (interactive polkit prompt). This does NOT block
     // anything automatically; the user edits the file themselves.
@@ -310,6 +351,63 @@ function install(proto) {
             global.logError("Zen Pomodoro: could not open the hosts file: " + e.message);
             Main.notify(_("Could not open the hosts file"));
         }
+    };
+
+    proto._hostsHelperPath = function() {
+        let base = (this._metadata && this._metadata.path) ? this._metadata.path : '';
+        return base + '/hosts-helper.py';
+    };
+
+    proto._collectBlockDomains = function() {
+        let domains = [];
+        let list = this._opt_blockDomains || [];
+        for (let row of list) {
+            let d = (row && row.domain ? String(row.domain) : '').trim();
+            if (d) {
+                domains.push(d);
+            }
+        }
+        return domains;
+    };
+
+    // Block/unblock via a bundled helper run with pkexec (interactive admin
+    // prompt). The helper only manages its own marked section of /etc/hosts.
+    proto._runHostsHelper = function(argv, okMessage) {
+        try {
+            let proc = Gio.Subprocess.new(argv,
+                Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE);
+            proc.wait_async(null, (p, res) => {
+                let ok = false;
+                try {
+                    p.wait_finish(res);
+                    ok = (p.get_exit_status() === 0);
+                } catch (e) {
+                    global.logError("Zen Pomodoro: hosts update failed: " + e.message);
+                    return;
+                }
+                if (ok) {
+                    Main.notify(okMessage);
+                }
+                // non-zero (e.g. the user dismissed the password prompt): stay silent
+            });
+        } catch (e) {
+            global.logError("Zen Pomodoro: could not run pkexec: " + e.message);
+        }
+    };
+
+    proto._blockDistractions = function() {
+        let domains = this._collectBlockDomains();
+        if (domains.length === 0) {
+            Main.notify(_("Add some domains to block first."));
+            return;
+        }
+        let argv = ['pkexec', this._hostsHelperPath(), 'block'].concat(domains);
+        this._runHostsHelper(argv, _("Distractions blocked."));
+    };
+
+    proto._unblockDistractions = function() {
+        let argv = ['pkexec', this._hostsHelperPath(), 'unblock'];
+        this._runHostsHelper(argv, _("Distractions unblocked."));
     };
 
     proto._toggleZenMode = function() {

@@ -20,7 +20,8 @@ rm -rf "$OUT"
 mkdir -p "$FILES/po"
 
 echo "==> copy code + assets (no .mo)"
-cp "$SRC/applet.js" "$SRC/timer.js" "$SRC/sound.js" "$SRC/menu.js" "$SRC/dialogs.js" "$SRC/constants.js" "$SRC/visual.js" "$SRC/features.js" "$SRC/soundfx.js" "$SRC/stylesheet.css" "$SRC/settings-schema.json" "$FILES/"
+cp "$SRC/applet.js" "$SRC/timer.js" "$SRC/sound.js" "$SRC/menu.js" "$SRC/dialogs.js" "$SRC/constants.js" "$SRC/visual.js" "$SRC/features.js" "$SRC/soundfx.js" "$SRC/hosts-helper.py" "$SRC/stylesheet.css" "$SRC/settings-schema.json" "$FILES/"
+chmod +x "$FILES/hosts-helper.py"
 cp "$REPO"/*.png "$REPO"/*.svg "$FILES/" 2>/dev/null || true
 rm -f "$FILES/screenshot.png"  # screenshot belongs at the package root only
 [ -d "$REPO/sounds" ] && cp -r "$REPO/sounds" "$FILES/"
@@ -162,7 +163,7 @@ for j in "$FILES/metadata.json" "$FILES/settings-schema.json" "$OUT/info.json"; 
   python3 -m json.tool "$j" >/dev/null && echo "   JSON OK: ${j##*/}" || { echo "   JSON FAIL: $j"; fail=1; }
 done
 echo "   forbidden-pattern scan:"
-if grep -rInE "/home/vladimir|[^a-zA-Z]sudo[^a-zA-Z]|focus-start|focus-stop|domains\.txt|PUSHOVER|Pushover|_startFocusBlockIfNeeded|_stopFocusBlockIfNeeded|_runFocusPreflight|_runFocusStartScript|_runFocusStopScript|_runPomodoroScript|_checkAndExecuteCustomScript|_getBlockedSitesCount|_focusBlockActive|enable_scripts|_opt_enableScripts|_opt_customShortBreakScript|_opt_customLongBreakScript|sitesText|_sitesLabel|focus-pomodoro|PUBLIC_STRIP|\.config.*pomodoro" "$OUT" 2>/dev/null | grep -v Binary; then
+if grep -rInE "/home/vladimir|[^a-zA-Z]sudo[^a-zA-Z]|focus-start|focus-stop|domains\.txt|_startFocusBlockIfNeeded|_stopFocusBlockIfNeeded|_runFocusPreflight|_runFocusStartScript|_runFocusStopScript|_runPomodoroScript|_checkAndExecuteCustomScript|_getBlockedSitesCount|_focusBlockActive|enable_scripts|_opt_enableScripts|_opt_customShortBreakScript|_opt_customLongBreakScript|sitesText|_sitesLabel|focus-pomodoro|PUBLIC_STRIP|\.config.*pomodoro" "$OUT" 2>/dev/null | grep -v Binary; then
   echo "   !! FORBIDDEN REMNANTS FOUND"; fail=1
 else
   echo "   clean"

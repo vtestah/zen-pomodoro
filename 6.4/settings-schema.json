@@ -62,6 +62,7 @@
             "title": "Focus tools",
             "sections": [
                 "sec_tools",
+                "sec_notify",
                 "sec_blocking"
             ]
         },
@@ -201,11 +202,23 @@
                 "break_start_command"
             ]
         },
+        "sec_notify": {
+            "type": "section",
+            "title": "Push notifications (Pushover)",
+            "keys": [
+                "pushover_enabled",
+                "pushover_user_key",
+                "pushover_app_token"
+            ]
+        },
         "sec_blocking": {
             "type": "section",
             "title": "Distraction blocking (advanced)",
             "keys": [
-                "enable_hosts_button",
+                "enable_blocking",
+                "block_domains",
+                "block_now_button",
+                "unblock_button",
                 "edit_hosts_button"
             ]
         },
@@ -554,17 +567,61 @@
         "default": "",
         "dependency": "run_command_enabled"
     },
-    "enable_hosts_button": {
+    "pushover_enabled": {
         "type": "checkbox",
-        "description": "Show a button to edit the system hosts file (advanced, for manual site blocking)",
+        "description": "Send a push notification (Pushover) on breaks",
         "default": false
+    },
+    "pushover_user_key": {
+        "type": "entry",
+        "description": "Pushover user key",
+        "default": "",
+        "dependency": "pushover_enabled"
+    },
+    "pushover_app_token": {
+        "type": "entry",
+        "description": "Pushover application API token",
+        "default": "",
+        "dependency": "pushover_enabled"
+    },
+    "enable_blocking": {
+        "type": "checkbox",
+        "description": "Enable distraction blocking (edits /etc/hosts via an admin prompt)",
+        "default": false
+    },
+    "block_domains": {
+        "type": "list",
+        "description": "Domains to block (e.g. youtube.com)",
+        "columns": [
+            {
+                "id": "domain",
+                "title": "Domain",
+                "type": "string"
+            }
+        ],
+        "default": [],
+        "dependency": "enable_blocking"
+    },
+    "block_now_button": {
+        "type": "button",
+        "description": "Block these domains now",
+        "callback": "_blockDistractions",
+        "dependency": "enable_blocking",
+        "tooltip": "Adds the domains above to /etc/hosts (you'll be asked for your password once). They stay blocked until you click Unblock."
+    },
+    "unblock_button": {
+        "type": "button",
+        "description": "Unblock",
+        "callback": "_unblockDistractions",
+        "dependency": "enable_blocking",
+        "tooltip": "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password once)."
     },
     "edit_hosts_button": {
         "type": "button",
-        "description": "Edit /etc/hosts as administrator",
+        "description": "Edit /etc/hosts manually (admin)",
         "callback": "_editHostsAsAdmin",
-        "dependency": "enable_hosts_button",
-        "tooltip": "Opens /etc/hosts in your editor with administrator rights (you will be prompted). Zen Pomodoro never edits the file itself and does not block anything automatically."
+        "dependency": "enable_blocking",
+        "tooltip": "Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only manages its own clearly-marked section."
     },
     "sox-info": {
         "type": "label",

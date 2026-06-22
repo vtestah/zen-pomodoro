@@ -1921,6 +1921,17 @@ class PomodoroApplet extends Applet.TextIconApplet {
         }
     }
 
+    _paintPauseBars(cr, cx, cy, r, rgb) {
+        let bw = Math.max(1.5, r * 0.42);
+        let bh = r * 1.6;
+        let gap = r * 0.5;
+        cr.setSourceRGBA(rgb[0], rgb[1], rgb[2], 0.98);
+        cr.rectangle(Math.round(cx - gap / 2 - bw), Math.round(cy - bh / 2), Math.round(bw), Math.round(bh));
+        cr.fill();
+        cr.rectangle(Math.round(cx + gap / 2), Math.round(cy - bh / 2), Math.round(bw), Math.round(bh));
+        cr.fill();
+    }
+
     _paintPanelTomato(cr, cx, cy, tr) {
         cr.setSourceRGBA(0.91, 0.33, 0.27, 0.98);
         cr.arc(cx, cy + tr * 0.12, tr, 0, 2 * Math.PI);
@@ -1978,6 +1989,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             let breakish = (this._currentState === 'short-break' || this._currentState === 'long-break' ||
                 this._currentState === 'short-break-paused' || this._currentState === 'long-break-paused' ||
                 this._currentState === 'break-over');
+            let paused = (this._currentState.indexOf('-paused') !== -1);
             let r, g, b;
             if (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused') {
                 r = 1.0; g = 0.69; b = 0.32;
@@ -1993,19 +2005,23 @@ class PomodoroApplet extends Applet.TextIconApplet {
             let frac = (typeof pct === "number") ? Math.max(0, Math.min(1, pct / 100)) : 0;
 
             cr.setLineWidth(2.5);
-            cr.setSourceRGBA(r, g, b, 0.25);
+            cr.setSourceRGBA(r, g, b, paused ? 0.14 : 0.25);
             cr.arc(cx, cy, radius, 0, 2 * Math.PI);
             cr.stroke();
 
             if (frac > 0) {
                 let start = -Math.PI / 2;
-                cr.setSourceRGBA(r, g, b, 0.95);
+                cr.setSourceRGBA(r, g, b, paused ? 0.5 : 0.95);
                 cr.arc(cx, cy, radius, start, start + 2 * Math.PI * frac);
                 cr.stroke();
             }
 
-            // Centre tomato inside the progress ring (consistent across states).
-            this._paintPanelTomato(cr, cx, cy, radius * 0.6);
+            // Centre: a pause glyph while paused, the tomato while running.
+            if (paused) {
+                this._paintPauseBars(cr, cx, cy, radius * 0.5, [r, g, b]);
+            } else {
+                this._paintPanelTomato(cr, cx, cy, radius * 0.6);
+            }
         } finally {
             cr.$dispose();
         }

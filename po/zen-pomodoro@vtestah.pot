@@ -16,112 +16,112 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: applet.js:725
+#: applet.js:727
 msgid "Focus session restored — resume when ready"
 msgstr ""
 
-#: applet.js:760
+#: applet.js:762
 msgid "FOCUS"
 msgstr ""
 
-#: applet.js:762
+#: applet.js:764
 msgid "PAUSED FOCUS"
 msgstr ""
 
-#: applet.js:765
+#: applet.js:767
 msgid "BREAK"
 msgstr ""
 
-#: applet.js:768
+#: applet.js:770
 msgid "PAUSED BREAK"
 msgstr ""
 
-#: applet.js:770
+#: applet.js:772
 msgid "BREAK OVER"
 msgstr ""
 
-#: applet.js:773
+#: applet.js:775
 msgid "Ready"
 msgstr ""
 
-#: applet.js:791
+#: applet.js:793
 msgid "Short break running"
 msgstr ""
 
-#: applet.js:794
+#: applet.js:796
 msgid "Short break paused"
 msgstr ""
 
-#: applet.js:797
+#: applet.js:799
 msgid "Long break running"
 msgstr ""
 
-#: applet.js:800
+#: applet.js:802
 msgid "Long break paused"
 msgstr ""
 
-#: applet.js:803 applet.js:1178
+#: applet.js:805 applet.js:1180
 msgid "Break ended"
 msgstr ""
 
-#: applet.js:806
+#: applet.js:808
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr ""
 
-#: applet.js:811
+#: applet.js:813
 msgid "Pomodoro paused"
 msgstr ""
 
-#: applet.js:814
+#: applet.js:816
 msgid "Waiting to start"
 msgstr ""
 
-#: applet.js:948
+#: applet.js:950
 msgid "Classic"
 msgstr ""
 
-#: applet.js:949
+#: applet.js:951
 msgid "Long focus"
 msgstr ""
 
-#: applet.js:1158
+#: applet.js:1160
 msgid "Pomodoro started"
 msgstr ""
 
-#: applet.js:1234
+#: applet.js:1236
 msgid "Let's go to work!"
 msgstr ""
 
-#: applet.js:1260
+#: applet.js:1262
 msgid "Pomodoro done"
 msgstr ""
 
-#: applet.js:1262
+#: applet.js:1264
 msgid "Take a short break"
 msgstr ""
 
-#: applet.js:1285
+#: applet.js:1287
 msgid "Set complete!"
 msgstr ""
 
-#: applet.js:1290
+#: applet.js:1292
 msgid "Take a long break"
 msgstr ""
 
-#: applet.js:1332
+#: applet.js:1334
 msgid "Pomodoro ended"
 msgstr ""
 
-#: applet.js:1475
+#: applet.js:1477
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
 
-#: applet.js:1545 features.js:1268
+#: applet.js:1547 features.js:1389
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr ""
 
-#: applet.js:1562
+#: applet.js:1564
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr ""
@@ -138,11 +138,11 @@ msgstr ""
 msgid "Choose or type a focus task"
 msgstr ""
 
-#: dialogs.js:65 features.js:462 features.js:522 features.js:1316
+#: dialogs.js:65 features.js:469 features.js:529 features.js:1437
 msgid "Cancel"
 msgstr ""
 
-#: dialogs.js:72 features.js:1317
+#: dialogs.js:72 features.js:1438
 msgid "Start"
 msgstr ""
 
@@ -215,192 +215,256 @@ msgstr ""
 msgid "Pomodoro finished, ready to take a break?"
 msgstr ""
 
-#: features.js:398 features.js:743
+#: features.js:405 features.js:828
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr ""
 
-#: features.js:423
+#: features.js:430
 msgid "New task"
 msgstr ""
 
-#: features.js:424
+#: features.js:431
 msgid "What do you want to work on?"
 msgstr ""
 
-#: features.js:432
+#: features.js:439
 msgid "Estimate:"
 msgstr ""
 
-#: features.js:463
+#: features.js:470
 msgid "Add"
 msgstr ""
 
-#: features.js:472 features.js:500
+#: features.js:479 features.js:507
 msgid "No tasks to save"
 msgstr ""
 
-#: features.js:479
+#: features.js:486
 #, javascript-format
 msgid "Template saved: %s"
 msgstr ""
 
-#: features.js:503
+#: features.js:510
 msgid "Save as template"
 msgstr ""
 
-#: features.js:504
+#: features.js:511
 msgid "Template name"
 msgstr ""
 
-#: features.js:523
+#: features.js:530
 msgid "Save"
 msgstr ""
 
-#: features.js:531 menu.js:313
+#: features.js:538 menu.js:313
 #, javascript-format
 msgid "%d min"
 msgstr ""
 
-#: features.js:535 menu.js:317
+#: features.js:542 menu.js:317
 #, javascript-format
 msgid "%dh %dm"
 msgstr ""
 
-#: features.js:535 menu.js:317
+#: features.js:542 menu.js:317
 #, javascript-format
 msgid "%dh"
 msgstr ""
 
-#: features.js:696
+#: features.js:703
 msgid "Statistics exported"
 msgstr ""
 
-#: features.js:696
+#: features.js:703
 #, javascript-format
 msgid "Saved CSV + JSON to %s"
 msgstr ""
 
-#: features.js:698
+#: features.js:705
 msgid "Export failed"
 msgstr ""
 
-#: features.js:721
-msgid "Focus statistics"
+#: features.js:728
+#, javascript-format
+msgid "%d to go today — at your pace, done by about %s."
 msgstr ""
 
 #: features.js:729
+#, javascript-format
+msgid "%d more to reach today's goal of %d."
+msgstr ""
+
+#: features.js:731
+#, javascript-format
+msgid "Daily goal reached — %d done today. Nice."
+msgstr ""
+
+#: features.js:734
+#, javascript-format
+msgid "%d interruptions this week — what keeps pulling you away?"
+msgstr ""
+
+#: features.js:737 features.js:838
+#, javascript-format
+msgid "Most focused around %s — good time for deep work."
+msgstr ""
+
+#: features.js:740
+#, javascript-format
+msgid "Most focus went to “%s”."
+msgstr ""
+
+#: features.js:742
+#, javascript-format
+msgid "%d pomodoros this week. Keep it going."
+msgstr ""
+
+#: features.js:743
+msgid "Start a focus session — your insights will appear here."
+msgstr ""
+
+#: features.js:799
+msgid "Focus statistics"
+msgstr ""
+
+#: features.js:814
+#, javascript-format
+msgid "%d / %d goal"
+msgstr ""
+
+#: features.js:815
 msgid "Today"
 msgstr ""
 
-#: features.js:730
+#: features.js:816
 msgid "This week"
 msgstr ""
 
-#: features.js:731
+#: features.js:817
 msgid "Streak"
 msgstr ""
 
-#: features.js:731
+#: features.js:817
 #, javascript-format
 msgid "best %d"
 msgstr ""
 
-#: features.js:732
+#: features.js:818
 msgid "All time"
 msgstr ""
 
-#: features.js:735
-msgid "Today's harvest"
-msgstr ""
-
-#: features.js:737
+#: features.js:822
 msgid "Nothing harvested yet today"
 msgstr ""
 
-#: features.js:744
+#: features.js:824
+msgid "Today's harvest"
+msgstr ""
+
+#: features.js:829
 #, javascript-format
 msgid "Interruptions: %d today · %d this week"
 msgstr ""
 
-#: features.js:747
+#: features.js:833
+msgid "When you focus (by hour)"
+msgstr ""
+
+#: features.js:839
+msgid "Not enough data yet to spot your best focus time."
+msgstr ""
+
+#: features.js:843
 msgid "Focus time — last 14 days"
 msgstr ""
 
-#: features.js:752
-msgid "Activity — last 12 weeks"
-msgstr ""
-
-#: features.js:758
-msgid "Less"
-msgstr ""
-
-#: features.js:762
-msgid "More"
-msgstr ""
-
-#: features.js:770
+#: features.js:853
 msgid "By task"
 msgstr ""
 
-#: features.js:790 menu.js:512 menu.js:652
+#: features.js:870
+msgid "Activity — last 12 weeks"
+msgstr ""
+
+#: features.js:875
+msgid "Less"
+msgstr ""
+
+#: features.js:879
+msgid "More"
+msgstr ""
+
+#: features.js:888 menu.js:512 menu.js:652
 #, javascript-format
 msgid "Milestones: %s"
 msgstr ""
 
-#: features.js:795
+#: features.js:894
 msgid "Export CSV"
 msgstr ""
 
-#: features.js:796
+#: features.js:895
 msgid "Close"
 msgstr ""
 
-#: features.js:990
+#: features.js:1089
 msgid "No task"
 msgstr ""
 
-#: features.js:1031
+#: features.js:1130
 msgid "Could not open the hosts file"
 msgstr ""
 
-#: features.js:1080
+#: features.js:1184
 msgid "Add some domains to block first."
 msgstr ""
 
-#: features.js:1084
+#: features.js:1188
 msgid "Distractions blocked."
 msgstr ""
 
-#: features.js:1089
+#: features.js:1193
 msgid "Distractions unblocked."
 msgstr ""
 
-#: features.js:1126
+#: features.js:1202
+msgid "Passwordless blocking enabled (no prompt)."
+msgstr ""
+
+#: features.js:1203
+msgid "Passwordless blocking enabled (asks once per session)."
+msgstr ""
+
+#: features.js:1210
+msgid "Passwordless blocking removed."
+msgstr ""
+
+#: features.js:1247
 msgid "Click to exit Zen"
 msgstr ""
 
-#: features.js:1161 visual.js:894
+#: features.js:1282 visual.js:894
 msgid "Focus"
 msgstr ""
 
-#: features.js:1238
+#: features.js:1359
 msgid "Breathe in"
 msgstr ""
 
-#: features.js:1241 features.js:1247
+#: features.js:1362 features.js:1368
 msgid "Hold"
 msgstr ""
 
-#: features.js:1244
+#: features.js:1365
 msgid "Breathe out"
 msgstr ""
 
-#: features.js:1274
+#: features.js:1395
 msgid "Focus until"
 msgstr ""
 
-#: features.js:1275
+#: features.js:1396
 msgid "Enter a time (HH:MM)"
 msgstr ""
 
@@ -680,7 +744,15 @@ msgid "minutes"
 msgstr ""
 
 #. settings-schema.json
+msgid "Length of one focus block, in minutes (classic Pomodoro is 25)."
+msgstr ""
+
+#. settings-schema.json
 msgid "Short Break Duration:"
+msgstr ""
+
+#. settings-schema.json
+msgid "Length of the short break after each focus block (classic is 5)."
 msgstr ""
 
 #. settings-schema.json
@@ -688,11 +760,26 @@ msgid "Long Break Duration:"
 msgstr ""
 
 #. settings-schema.json
+msgid ""
+"Length of the longer break after a set of pomodoros (classic is 15–30)."
+msgstr ""
+
+#. settings-schema.json
 msgid "Number of pomodori before long break:"
 msgstr ""
 
 #. settings-schema.json
+msgid ""
+"How many focus blocks to complete before the long break (classic is 4)."
+msgstr ""
+
+#. settings-schema.json
 msgid "Start the pomodoro timer as soon as the applet loads"
+msgstr ""
+
+#. settings-schema.json
+msgid ""
+"Begin a focus session as soon as Cinnamon starts or the applet is added."
 msgstr ""
 
 #. settings-schema.json
@@ -712,7 +799,17 @@ msgid "Show Dialog Messages"
 msgstr ""
 
 #. settings-schema.json
+msgid ""
+"Show pop-up dialogs at the end of each phase (off keeps it quiet — only on-"
+"screen cues)."
+msgstr ""
+
+#. settings-schema.json
 msgid "Auto start after a pomodoro ends"
+msgstr ""
+
+#. settings-schema.json
+msgid "When a focus block ends, start its break automatically."
 msgstr ""
 
 #. settings-schema.json
@@ -720,11 +817,23 @@ msgid "Auto start after a short break ends"
 msgstr ""
 
 #. settings-schema.json
+msgid "When a short break ends, start the next focus block automatically."
+msgstr ""
+
+#. settings-schema.json
 msgid "Auto start a new pomodoro after a break ends"
 msgstr ""
 
 #. settings-schema.json
+msgid "When the long break ends, start a new pomodoro cycle automatically."
+msgstr ""
+
+#. settings-schema.json
 msgid "Display the pomodoro icon in the applet panel"
+msgstr ""
+
+#. settings-schema.json
+msgid "Show the Pomodoro icon in the panel next to the timer."
 msgstr ""
 
 #. settings-schema.json
@@ -740,6 +849,10 @@ msgid "Show the pomodoro timer in the applet panel"
 msgstr ""
 
 #. settings-schema.json
+msgid "Show the remaining time as text in the panel."
+msgstr ""
+
+#. settings-schema.json
 msgid "Show seconds in the panel timer"
 msgstr ""
 
@@ -752,11 +865,23 @@ msgid "Shortcut: open the applet menu"
 msgstr ""
 
 #. settings-schema.json
+msgid "Keyboard shortcut to open or close the applet menu."
+msgstr ""
+
+#. settings-schema.json
 msgid "Shortcut: start / pause the timer"
 msgstr ""
 
 #. settings-schema.json
+msgid "Keyboard shortcut to start or pause the timer."
+msgstr ""
+
+#. settings-schema.json
 msgid "Shortcut: skip to the next step"
+msgstr ""
+
+#. settings-schema.json
+msgid "Keyboard shortcut to skip to the next phase (focus ↔ break)."
 msgstr ""
 
 #. settings-schema.json
@@ -771,6 +896,10 @@ msgstr ""
 
 #. settings-schema.json
 msgid "Show the current task as an on-screen chip during focus"
+msgstr ""
+
+#. settings-schema.json
+msgid "Show the current task in a small on-screen chip while focusing."
 msgstr ""
 
 #. settings-schema.json
@@ -797,6 +926,10 @@ msgstr ""
 
 #. settings-schema.json
 msgid "Task"
+msgstr ""
+
+#. settings-schema.json
+msgid "Quick-pick task buttons in the focus-start dialog; one per row."
 msgstr ""
 
 #. settings-schema.json
@@ -838,7 +971,15 @@ msgid "Custom focus accent color"
 msgstr ""
 
 #. settings-schema.json
+msgid "Accent color during focus (used only when the theme is Custom)."
+msgstr ""
+
+#. settings-schema.json
 msgid "Custom break accent color"
+msgstr ""
+
+#. settings-schema.json
+msgid "Accent color during breaks (used only when the theme is Custom)."
 msgstr ""
 
 #. settings-schema.json
@@ -879,6 +1020,11 @@ msgstr ""
 
 #. settings-schema.json
 msgid "Progress line thickness"
+msgstr ""
+
+#. settings-schema.json
+msgid ""
+"Thickness of the progress line drawn around the screen edge during focus."
 msgstr ""
 
 #. settings-schema.json
@@ -924,7 +1070,15 @@ msgid "Top-left"
 msgstr ""
 
 #. settings-schema.json
+msgid "Which screen corner the on-screen task chip appears in."
+msgstr ""
+
+#. settings-schema.json
 msgid "Start ritual duration (seconds)"
+msgstr ""
+
+#. settings-schema.json
+msgid "How long the 'Focus: <task>' start ritual stays on screen, in seconds."
 msgstr ""
 
 #. settings-schema.json
@@ -990,7 +1144,16 @@ msgid "Idle minutes before auto-pause"
 msgstr ""
 
 #. settings-schema.json
+msgid "How long you can be away before focus auto-pauses, in minutes."
+msgstr ""
+
+#. settings-schema.json
 msgid "Resume automatically when you return"
+msgstr ""
+
+#. settings-schema.json
+msgid ""
+"Resume a paused focus session automatically when you return to the computer."
 msgstr ""
 
 #. settings-schema.json
@@ -1006,6 +1169,10 @@ msgid "Extend amount (minutes)"
 msgstr ""
 
 #. settings-schema.json
+msgid "How many extra minutes the 'extend focus' option adds."
+msgstr ""
+
+#. settings-schema.json
 msgid "Play soft ambient (brown noise) during focus"
 msgstr ""
 
@@ -1015,6 +1182,10 @@ msgstr ""
 
 #. settings-schema.json
 msgid "Ambient volume"
+msgstr ""
+
+#. settings-schema.json
+msgid "Volume of the brown-noise ambient sound (0 = silent)."
 msgstr ""
 
 #. settings-schema.json
@@ -1064,7 +1235,17 @@ msgid "Command to run when focus starts"
 msgstr ""
 
 #. settings-schema.json
+msgid ""
+"Command run when a focus block starts (e.g. update your chat status). No "
+"shell pipes or redirects."
+msgstr ""
+
+#. settings-schema.json
 msgid "Command to run when a break starts"
+msgstr ""
+
+#. settings-schema.json
+msgid "Command run when a break starts (e.g. clear your status)."
 msgstr ""
 
 #. settings-schema.json
@@ -1080,11 +1261,23 @@ msgid "Pushover user key"
 msgstr ""
 
 #. settings-schema.json
+msgid "Your Pushover user key (from your Pushover account)."
+msgstr ""
+
+#. settings-schema.json
 msgid "Pushover application API token"
 msgstr ""
 
 #. settings-schema.json
+msgid "API token of your Pushover application (create one at pushover.net)."
+msgstr ""
+
+#. settings-schema.json
 msgid "Notification title"
+msgstr ""
+
+#. settings-schema.json
+msgid "Title shown on the push notifications."
 msgstr ""
 
 #. settings-schema.json
@@ -1152,6 +1345,10 @@ msgid "None"
 msgstr ""
 
 #. settings-schema.json
+msgid "Sound the Pushover app plays for these notifications."
+msgstr ""
+
+#. settings-schema.json
 msgid "Priority"
 msgstr ""
 
@@ -1165,6 +1362,10 @@ msgstr ""
 
 #. settings-schema.json
 msgid "High"
+msgstr ""
+
+#. settings-schema.json
+msgid "Delivery priority: Low is quiet, High is more intrusive."
 msgstr ""
 
 #. settings-schema.json
@@ -1182,6 +1383,12 @@ msgstr ""
 
 #. settings-schema.json
 msgid "Domain"
+msgstr ""
+
+#. settings-schema.json
+msgid ""
+"Domains to block during focus, one per row (e.g. youtube.com, "
+"www.youtube.com)."
 msgstr ""
 
 #. settings-schema.json
@@ -1225,7 +1432,15 @@ msgid "Play Timer Sound"
 msgstr ""
 
 #. settings-schema.json
+msgid "Play a soft ticking sound while focusing."
+msgstr ""
+
+#. settings-schema.json
 msgid "Timer Sound File"
+msgstr ""
+
+#. settings-schema.json
+msgid "Sound file for the ticking (leave empty for the built-in tone)."
 msgstr ""
 
 #. settings-schema.json
@@ -1233,7 +1448,15 @@ msgid "Sound volume:"
 msgstr ""
 
 #. settings-schema.json
+msgid "Volume of the ticking sound (0 = silent)."
+msgstr ""
+
+#. settings-schema.json
 msgid "Play Break Sound"
+msgstr ""
+
+#. settings-schema.json
+msgid "Play a sound when a break begins."
 msgstr ""
 
 #. settings-schema.json
@@ -1241,7 +1464,19 @@ msgid "Break Sound File"
 msgstr ""
 
 #. settings-schema.json
+msgid "Sound file played when a break begins."
+msgstr ""
+
+#. settings-schema.json
+msgid "Volume of the break sound (0 = silent)."
+msgstr ""
+
+#. settings-schema.json
 msgid "Play Warn Sound"
+msgstr ""
+
+#. settings-schema.json
+msgid "Play a warning sound shortly before a focus block ends."
 msgstr ""
 
 #. settings-schema.json
@@ -1249,7 +1484,19 @@ msgid "Warn Delay (in secs):"
 msgstr ""
 
 #. settings-schema.json
+msgid "How many seconds before the end the warning sound plays."
+msgstr ""
+
+#. settings-schema.json
 msgid "Warn Sound File"
+msgstr ""
+
+#. settings-schema.json
+msgid "Sound file used for the warning."
+msgstr ""
+
+#. settings-schema.json
+msgid "Volume of the warning sound (0 = silent)."
 msgstr ""
 
 #. settings-schema.json
@@ -1257,7 +1504,19 @@ msgid "Play Start Sound"
 msgstr ""
 
 #. settings-schema.json
+msgid "Play a sound when a focus block starts."
+msgstr ""
+
+#. settings-schema.json
 msgid "Start Sound File"
+msgstr ""
+
+#. settings-schema.json
+msgid "Sound file played when focus starts."
+msgstr ""
+
+#. settings-schema.json
+msgid "Volume of the start sound (0 = silent)."
 msgstr ""
 
 #. settings-schema.json
@@ -1273,11 +1532,23 @@ msgid "Chime interval (seconds):"
 msgstr ""
 
 #. settings-schema.json
+msgid "Seconds between chimes during focus."
+msgstr ""
+
+#. settings-schema.json
 msgid "Chime sound file"
 msgstr ""
 
 #. settings-schema.json
+msgid "Sound file used for the interval chime."
+msgstr ""
+
+#. settings-schema.json
 msgid "Chime volume:"
+msgstr ""
+
+#. settings-schema.json
+msgid "Volume of the interval chime (0 = silent)."
 msgstr ""
 
 #. settings-schema.json
@@ -1319,6 +1590,44 @@ msgstr ""
 
 #. settings-schema.json
 msgid "Pomodori"
+msgstr ""
+
+#. settings-schema.json
+msgid ""
+"Your timer presets — name + focus / short / long minutes + pomodori. Apply "
+"them from the menu's Preset submenu."
+msgstr ""
+
+#. settings-schema.json
+msgid "Fully passwordless blocking (no prompt at all)"
+msgstr ""
+
+#. settings-schema.json
+msgid ""
+"After setup, never ask for a password. Off (default) asks once per login "
+"session. Convenient but less safe: any local program could then change your "
+"blocklist without asking."
+msgstr ""
+
+#. settings-schema.json
+msgid "Set up passwordless blocking (one-time)"
+msgstr ""
+
+#. settings-schema.json
+msgid ""
+"Asks for your password once and installs a small system policy so blocking "
+"no longer prompts every time. Uses the mode selected above; re-run after "
+"changing the mode."
+msgstr ""
+
+#. settings-schema.json
+msgid "Remove passwordless setup"
+msgstr ""
+
+#. settings-schema.json
+msgid ""
+"Removes the system policy and the root helper, so blocking asks for your "
+"password again each time."
 msgstr ""
 
 #. metadata.json

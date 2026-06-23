@@ -1281,7 +1281,7 @@
     "focus_ambient_file": {
         "type": "filechooser",
         "description": "Ambient sound file",
-        "default": "",
+        "default": "brownnoise.ogg",
         "dependency": "focus_ambient_sound",
         "tooltip": "Pick your own looping ambient sound. Leave empty for the built-in soft brown noise."
     }

@@ -1212,7 +1212,8 @@ function install(proto) {
     // brown noise when none is set.
     proto._ambientPath = function() {
         let f = (this._opt_focusAmbientFile || "").trim();
-        return f ? f : SoundModule.addPathIfRelative('brownnoise.ogg', this._defaultSoundPath);
+        if (!f) { f = 'brownnoise.ogg'; }
+        return SoundModule.addPathIfRelative(f, this._defaultSoundPath);
     };
 
     proto._ensureAmbientSound = function() {

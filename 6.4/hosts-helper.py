@@ -81,6 +81,15 @@ def main():
         seen = set()
         for raw in sys.argv[2:]:
             d = raw.strip().lower()
+            # Accept pasted URLs/paths: reduce to a bare hostname before
+            # validating (e.g. "https://ya.ru/path" -> "ya.ru").
+            d = re.sub(r"^[a-z][a-z0-9+.\-]*://", "", d)  # drop scheme://
+            d = d.split("/", 1)[0].split("?", 1)[0]        # drop path/query
+            if "@" in d:
+                d = d.split("@", 1)[1]                      # drop userinfo
+            d = d.split(":", 1)[0]                          # drop port
+            if d.startswith("www."):
+                d = d[4:]
             if d and d not in seen and HOST_RE.match(d):
                 seen.add(d)
                 domains.append(d)

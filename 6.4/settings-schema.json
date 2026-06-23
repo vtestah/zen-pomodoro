@@ -264,7 +264,6 @@
             "keys": [
                 "enable_blocking",
                 "block_domains",
-                "block_passwordless_full",
                 "setup_passwordless_button",
                 "remove_passwordless_button"
             ]
@@ -1095,17 +1094,10 @@
         ],
         "tooltip": "Your timer presets — name + focus / short / long minutes + pomodori. Apply them from the menu's Preset submenu."
     },
-    "block_passwordless_full": {
-        "type": "switch",
-        "default": false,
-        "description": "Fully passwordless blocking (no prompt at all)",
-        "tooltip": "After setup, never ask for a password. Off (default) asks once per login session. Convenient but less safe: any local program could then change your blocklist without asking.",
-        "dependency": "enable_blocking"
-    },
     "setup_passwordless_button": {
         "type": "button",
         "description": "Set up passwordless blocking (one-time)",
-        "tooltip": "Asks for your password once and installs a small system policy so blocking no longer prompts every time. Uses the mode selected above; re-run after changing the mode.",
+        "tooltip": "Asks for your password once and installs a small system policy so blocking no longer prompts during focus.",
         "callback": "_setupPasswordlessBlocking",
         "dependency": "enable_blocking"
     },

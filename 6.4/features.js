@@ -1646,11 +1646,8 @@ function install(proto) {
         let base = (this._metadata && this._metadata.path) ? this._metadata.path : '';
         let setup = base + '/setup-passwordless.py';
         let src = base + '/hosts-helper.py';
-        let mode = this._opt_blockPasswordlessFull ? 'yes' : 'keep';
-        let ok = (mode === 'yes')
-            ? _("Passwordless blocking enabled (no prompt).")
-            : _("Passwordless blocking enabled (asks once per session).");
-        this._runHostsHelper(['pkexec', setup, 'install', mode, src], ok);
+        this._runHostsHelper(['pkexec', setup, 'install', 'yes', src],
+            _("Passwordless blocking enabled (no prompt)."));
     };
 
     proto._removePasswordlessBlocking = function() {

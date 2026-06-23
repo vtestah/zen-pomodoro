@@ -70,8 +70,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._presetSummaryLabel = null;
         this._presetSubmenu = null;
         this._compactInfoLabel = null;
-        this._hotkeyItem = null;
-        this._hotkeyLabel = null;
         this._chooseTaskItem = null;
         this._zenItem = null;
         this._focusUntilItem = null;
@@ -418,19 +416,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         return submenu;
     }
 
-    _buildHotkeyHint() {
-        this._hotkeyItem = new PopupMenu.PopupBaseMenuItem({ reactive: false });
-        this._hotkeyLabel = new St.Label({
-            text: "",
-            style_class: "pomodoro-hotkey"
-        });
-        this._hotkeyItem.addActor(this._hotkeyLabel);
-        if (this._hotkeyItem.actor) {
-            this._hotkeyItem.actor.hide();
-        }
-        this.addMenuItem(this._hotkeyItem);
-    }
-
     _buildIdleLayout() {
         this._buildStatusHeader();
 
@@ -439,8 +424,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._sitesLabel = sitesRow.value;
         this.addMenuItem(sitesRow.item);
         // @PUBLIC_STRIP_END
-
-        this._buildHotkeyHint();
 
         this._buildPrimaryAction();
 
@@ -483,7 +466,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._populateTasksSubmenu();
 
         this._statsSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Statistics"));
-        let dashItem = new PopupMenu.PopupMenuItem("\ud83d\udcca " + _("Open dashboard\u2026"));
+        let dashItem = new PopupMenu.PopupMenuItem(_("Open dashboard\u2026"));
         dashItem.connect('activate', () => { this.emit('open-stats'); });
         this._statsSubmenu.menu.addMenuItem(dashItem);
         this._statTodayItem = new PopupMenu.PopupMenuItem(_("Today: %d").format(0));
@@ -512,7 +495,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._statsSubmenu.menu.addMenuItem(this._statAchieveItem);
         this.addMenuItem(this._statsSubmenu);
 
-        let quickStart = new PopupMenu.PopupMenuItem("\u2728 " + _("Quick start"));
+        let quickStart = new PopupMenu.PopupMenuItem(_("Quick start"));
         quickStart.connect('activate', () => this.emit('open-onboarding'));
         this.addMenuItem(quickStart);
 
@@ -760,18 +743,8 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             // @PUBLIC_STRIP_END
         }
 
-        // Hotkey hint (idle only; shown when a hotkey is configured).
-        if (this._hotkeyItem && this._hotkeyLabel) {
-            let hk = this._prettyHotkey(runtime.hotkey);
-            if (hk) {
-                this._hotkeyLabel.set_text(_("Hotkey: %s").format(hk));
-                if (this._hotkeyItem.actor) {
-                    this._hotkeyItem.actor.show();
-                }
-            } else if (this._hotkeyItem.actor) {
-                this._hotkeyItem.actor.hide();
-            }
-        }
+
+
 
         if (this._chooseTaskItem) {
             this._chooseTaskItem.setSensitive(state === "pomodoro-stop");
@@ -836,19 +809,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
     }
 
-    _prettyHotkey(hk) {
-        if (!hk || typeof hk !== "string") {
-            return "";
-        }
-
-        let first = hk.split("::")[0].trim();
-        if (!first) {
-            return "";
-        }
-
-        return first.replace(/</g, "").replace(/>/g, "+");
-    }
-
     setTasks(list, currentId, finishText, templates) {
         this._tasks = Array.isArray(list) ? list : [];
         this._tasksCurrentId = currentId || "";
@@ -867,7 +827,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
         this._tasksSubmenu.menu.removeAll();
         this._taskItems = [];
-        let add = new PopupMenu.PopupMenuItem("\u2795 " + _("Add task\u2026"));
+        let add = new PopupMenu.PopupMenuItem(_("Add task\u2026"));
         add.connect('activate', () => this.emit('add-task'));
         this._tasksSubmenu.menu.addMenuItem(add);
         if (this._tasksFinishText) {
@@ -903,10 +863,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
         if (list.length) {
             this._tasksSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-            let done = new PopupMenu.PopupMenuItem("\u2713 " + _("Toggle done (current)"));
+            let done = new PopupMenu.PopupMenuItem(_("Toggle done (current)"));
             done.connect('activate', () => this.emit('toggle-task-done'));
             this._tasksSubmenu.menu.addMenuItem(done);
-            let del = new PopupMenu.PopupMenuItem("\ud83d\uddd1 " + _("Delete current"));
+            let del = new PopupMenu.PopupMenuItem(_("Delete current"));
             del.connect('activate', () => this.emit('delete-task'));
             this._tasksSubmenu.menu.addMenuItem(del);
         }
@@ -915,13 +875,13 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             this._tasksSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         }
         if (list.length) {
-            let save = new PopupMenu.PopupMenuItem("\ud83d\udcbe " + _("Save as template\u2026"));
+            let save = new PopupMenu.PopupMenuItem(_("Save as template\u2026"));
             save.connect('activate', () => this.emit('save-template'));
             this._tasksSubmenu.menu.addMenuItem(save);
         }
         for (let tpl of templates) {
             let nm = tpl.name;
-            let it = new PopupMenu.PopupMenuItem("\ud83d\udccb " + _("Apply: %s").format(nm));
+            let it = new PopupMenu.PopupMenuItem(_("Apply: %s").format(nm));
             it.connect('activate', () => this.emit('apply-template', nm));
             this._tasksSubmenu.menu.addMenuItem(it);
         }

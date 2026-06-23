@@ -25,7 +25,7 @@
     font-weight: bold;
 }
 .pomodoro-time-idle {
-    color: rgba(150, 150, 150, 0.55);
+    color: rgba(150, 150, 150, 0.72);
 }
 
 /* Secondary status lines. */
@@ -65,13 +65,6 @@
 .pomodoro-compact {
     color: rgba(150, 150, 150, 0.95);
     padding: 2px 0;
-}
-
-/* Hotkey hint. */
-.pomodoro-hotkey {
-    font-size: 0.85em;
-    color: rgba(150, 150, 150, 0.7);
-    padding: 1px 0;
 }
 
 /* Primary action — flat, accented by colour only. */

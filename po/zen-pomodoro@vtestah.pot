@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 20:08+0700\n"
+"POT-Creation-Date: 2026-06-23 20:19+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -150,7 +150,7 @@ msgstr ""
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
 
-#: applet.js:1949 features.js:1857
+#: applet.js:1949 features.js:1838
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr ""
 
@@ -181,11 +181,11 @@ msgid "Choose or type a focus task"
 msgstr ""
 
 #: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1905
+#: features.js:1886
 msgid "Cancel"
 msgstr ""
 
-#: dialogs.js:72 features.js:1906
+#: dialogs.js:72 features.js:1887
 msgid "Start"
 msgstr ""
 
@@ -812,54 +812,50 @@ msgstr ""
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr ""
 
-#: features.js:1561
-msgid "Could not open the hosts file"
-msgstr ""
-
-#: features.js:1611
+#: features.js:1592
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
 msgstr ""
 
-#: features.js:1670
+#: features.js:1651
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr ""
 
-#: features.js:1671
+#: features.js:1652
 msgid "Passwordless blocking enabled (asks once per session)."
 msgstr ""
 
-#: features.js:1678
+#: features.js:1659
 msgid "Passwordless blocking removed."
 msgstr ""
 
-#: features.js:1715
+#: features.js:1696
 msgid "Click to exit Zen"
 msgstr ""
 
 #. settings-schema.json->focus->title
-#: features.js:1750 visual.js:894
+#: features.js:1731 visual.js:894
 msgid "Focus"
 msgstr ""
 
-#: features.js:1827
+#: features.js:1808
 msgid "Breathe in"
 msgstr ""
 
-#: features.js:1830 features.js:1836
+#: features.js:1811 features.js:1817
 msgid "Hold"
 msgstr ""
 
-#: features.js:1833
+#: features.js:1814
 msgid "Breathe out"
 msgstr ""
 
-#: features.js:1863
+#: features.js:1844
 msgid "Focus until"
 msgstr ""
 
-#: features.js:1864
+#: features.js:1845
 msgid "Enter a time (HH:MM)"
 msgstr ""
 
@@ -1869,16 +1865,6 @@ msgstr ""
 msgid ""
 "Domains to block during focus, one per row (e.g. youtube.com, "
 "www.youtube.com)."
-msgstr ""
-
-#. settings-schema.json->edit_hosts_button->description
-msgid "Edit /etc/hosts manually (admin)"
-msgstr ""
-
-#. settings-schema.json->edit_hosts_button->tooltip
-msgid ""
-"Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only"
-" manages its own clearly-marked section."
 msgstr ""
 
 #. settings-schema.json->sox-info->description

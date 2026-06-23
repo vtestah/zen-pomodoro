@@ -1553,25 +1553,6 @@ function install(proto) {
     // Opt-in convenience: open /etc/hosts in the system's admin-capable editor
     // via the GVfs admin backend (interactive polkit prompt). This does NOT block
     // anything automatically; the user edits the file themselves.
-    proto._editHostsAsAdmin = function() {
-        try {
-            Gio.AppInfo.launch_default_for_uri('admin:///etc/hosts', null);
-        } catch (e) {
-            global.logError("Zen Pomodoro: could not open the hosts file: " + e.message);
-            Main.notify(_("Could not open the hosts file"));
-        }
-    };
-
-    proto._hostsHelperPath = function() {
-        try {
-            if (GLib.file_test(POMODORO_HOSTS_HELPER_INSTALLED, GLib.FileTest.EXISTS)) {
-                return POMODORO_HOSTS_HELPER_INSTALLED;
-            }
-        } catch (e) {}
-        let base = (this._metadata && this._metadata.path) ? this._metadata.path : '';
-        return base + '/hosts-helper.py';
-    };
-
     proto._collectBlockDomains = function() {
         let domains = [];
         let list = this._opt_blockDomains || [];
@@ -1595,7 +1576,7 @@ function install(proto) {
     // (with a polkit policy so pkexec runs it without a prompt). Used for
     // automatic blocking during focus.
     proto._passwordlessHelperPath = function() {
-        return '/usr/local/sbin/zen-pomodoro-hosts-helper';
+        return POMODORO_HOSTS_HELPER_INSTALLED;
     };
 
     // Auto-block the configured domains for the duration of a focus. Returns

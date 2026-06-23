@@ -264,7 +264,6 @@
             "keys": [
                 "enable_blocking",
                 "block_domains",
-                "edit_hosts_button",
                 "block_passwordless_full",
                 "setup_passwordless_button",
                 "remove_passwordless_button"
@@ -819,13 +818,6 @@
         "default": [],
         "dependency": "enable_blocking",
         "tooltip": "Domains to block during focus, one per row (e.g. youtube.com, www.youtube.com)."
-    },
-    "edit_hosts_button": {
-        "type": "button",
-        "description": "Edit /etc/hosts manually (admin)",
-        "callback": "_editHostsAsAdmin",
-        "dependency": "enable_blocking",
-        "tooltip": "Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only manages its own clearly-marked section."
     },
     "sox-info": {
         "type": "label",

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 20:08+0700\n"
+"POT-Creation-Date: 2026-06-23 20:19+0700\n"
 "PO-Revision-Date: 2024-07-24 10:14+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: nl\n"
@@ -149,7 +149,7 @@ msgstr "Pomodoro-controle vooraf mislukt"
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://nl.wikipedia.org/wiki/Pomodorotechniek"
 
-#: applet.js:1949 features.js:1857
+#: applet.js:1949 features.js:1838
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Stop de timer voordat je de Pomodoro-voorinstelling wijzigt"
 
@@ -180,11 +180,11 @@ msgid "Choose or type a focus task"
 msgstr "Kies of typ een focustaak"
 
 #: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1905
+#: features.js:1886
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: dialogs.js:72 features.js:1906
+#: dialogs.js:72 features.js:1887
 msgid "Start"
 msgstr "Start"
 
@@ -564,9 +564,9 @@ msgid ""
 "work — your rhythm, sounds, breaks and the help you need. You can fine-tune "
 "everything later in Settings."
 msgstr ""
-"Beantwoord vijf korte vragen en ik stel een focusconfiguratie samen die past"
-" bij hoe jij werkt — je ritme, geluiden, pauzes en de hulp die je nodig "
-"hebt. Je kunt later alles bijstellen in Instellingen."
+"Beantwoord vijf korte vragen en ik stel een focusconfiguratie samen die past "
+"bij hoe jij werkt — je ritme, geluiden, pauzes en de hulp die je nodig hebt. "
+"Je kunt later alles bijstellen in Instellingen."
 
 #: features.js:770
 msgid "Let's go"
@@ -819,11 +819,7 @@ msgstr "Pushover-test verstuurd ✓ — controleer je apparaat."
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr "Pushover-test mislukt. Controleer je gebruikerssleutel en app-token."
 
-#: features.js:1561
-msgid "Could not open the hosts file"
-msgstr "Kon het hosts-bestand niet openen"
-
-#: features.js:1611
+#: features.js:1592
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -831,44 +827,44 @@ msgstr ""
 "Om sites automatisch te blokkeren tijdens focus, schakel wachtwoordloos "
 "blokkeren in bij de instellingen."
 
-#: features.js:1670
+#: features.js:1651
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Wachtwoordloos blokkeren ingeschakeld (geen prompt)."
 
-#: features.js:1671
+#: features.js:1652
 msgid "Passwordless blocking enabled (asks once per session)."
 msgstr "Wachtwoordloos blokkeren ingeschakeld (vraagt één keer per sessie)."
 
-#: features.js:1678
+#: features.js:1659
 msgid "Passwordless blocking removed."
 msgstr "Wachtwoordloos blokkeren verwijderd."
 
-#: features.js:1715
+#: features.js:1696
 msgid "Click to exit Zen"
 msgstr "Klik om Zen te verlaten"
 
 #. settings-schema.json->focus->title
-#: features.js:1750 visual.js:894
+#: features.js:1731 visual.js:894
 msgid "Focus"
 msgstr "Focus"
 
-#: features.js:1827
+#: features.js:1808
 msgid "Breathe in"
 msgstr "Adem in"
 
-#: features.js:1830 features.js:1836
+#: features.js:1811 features.js:1817
 msgid "Hold"
 msgstr "Vasthouden"
 
-#: features.js:1833
+#: features.js:1814
 msgid "Breathe out"
 msgstr "Adem uit"
 
-#: features.js:1863
+#: features.js:1844
 msgid "Focus until"
 msgstr "Focus tot"
 
-#: features.js:1864
+#: features.js:1845
 msgid "Enter a time (HH:MM)"
 msgstr "Voer een tijd in (UU:MM)"
 
@@ -1232,18 +1228,15 @@ msgid "Long Break Duration:"
 msgstr "Duur van lange pauze:"
 
 #. settings-schema.json->long_break_duration->tooltip
-msgid ""
-"Length of the longer break after a set of pomodoros (classic is 15–30)."
-msgstr ""
-"Lengte van de langere pauze na een set pomodoro's (klassiek is 15–30)."
+msgid "Length of the longer break after a set of pomodoros (classic is 15–30)."
+msgstr "Lengte van de langere pauze na een set pomodoro's (klassiek is 15–30)."
 
 #. settings-schema.json->pomodori_number->description
 msgid "Number of pomodori before long break:"
 msgstr "Aantal pomodori voor lange pauze:"
 
 #. settings-schema.json->pomodori_number->tooltip
-msgid ""
-"How many focus blocks to complete before the long break (classic is 4)."
+msgid "How many focus blocks to complete before the long break (classic is 4)."
 msgstr ""
 "Hoeveel focusblokken voltooid worden voor de lange pauze (klassiek is 4)."
 
@@ -1304,8 +1297,7 @@ msgstr ""
 
 #. settings-schema.json->auto_start_after_break_ends->description
 msgid "Auto start a new pomodoro after a break ends"
-msgstr ""
-"Automatisch starten van een nieuwe pomodoro na het einde van een pauze"
+msgstr "Automatisch starten van een nieuwe pomodoro na het einde van een pauze"
 
 #. settings-schema.json->auto_start_after_break_ends->tooltip
 msgid "When the long break ends, start a new pomodoro cycle automatically."
@@ -1339,8 +1331,8 @@ msgid ""
 "all. The timer text is a separate option below."
 msgstr ""
 "Wat in het paneel wordt getoond: een voortgangsring met het statuspictogram "
-"erin (aanbevolen), een symbolisch pictogram, je eigen pictogram, of helemaal"
-" geen pictogram. De timertekst wordt hieronder apart ingesteld."
+"erin (aanbevolen), een symbolisch pictogram, je eigen pictogram, of helemaal "
+"geen pictogram. De timertekst wordt hieronder apart ingesteld."
 
 #. settings-schema.json->panel_custom_icon->description
 msgid "Custom panel icon"
@@ -1414,9 +1406,9 @@ msgstr "Bedien de timer met de muis op het paneel"
 
 #. settings-schema.json->panel_scroll_control->tooltip
 msgid ""
-"Scroll up on the applet to start or resume, scroll down to pause, and "
-"middle-click to skip the phase. Turn this off if you sometimes scroll over "
-"the panel by accident."
+"Scroll up on the applet to start or resume, scroll down to pause, and middle-"
+"click to skip the phase. Turn this off if you sometimes scroll over the "
+"panel by accident."
 msgstr ""
 "Scroll omhoog op de applet om te starten of hervatten, omlaag om te "
 "pauzeren, en middelklik om de fase over te slaan. Zet dit uit als je soms "
@@ -1463,8 +1455,8 @@ msgstr ""
 
 #. settings-schema.json->focus_start_ritual->description
 msgid ""
-"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus"
-" begins"
+"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus "
+"begins"
 msgstr ""
 "Startritueel: kort gecentreerd 'Focus: <taak>' en een soepele fade-in "
 "wanneer focus begint"
@@ -1560,8 +1552,8 @@ msgid ""
 "Style of the on-screen frame that traces focus progress: a soft Glow, a "
 "Classic border, just the Corners, or Off."
 msgstr ""
-"Stijl van het schermkader dat de focusvoortgang volgt: een zachte Gloed, een"
-" Klassieke rand, alleen de Hoeken, of Uit."
+"Stijl van het schermkader dat de focusvoortgang volgt: een zachte Gloed, een "
+"Klassieke rand, alleen de Hoeken, of Uit."
 
 #. settings-schema.json->glow_intensity->description
 msgid "Glow intensity"
@@ -1569,8 +1561,8 @@ msgstr "Gloedintensiteit"
 
 #. settings-schema.json->glow_intensity->tooltip
 msgid ""
-"How bright the on-screen edge glow is during focus — higher is more visible,"
-" lower is subtler."
+"How bright the on-screen edge glow is during focus — higher is more visible, "
+"lower is subtler."
 msgstr ""
 "Hoe fel de schermrandgloed is tijdens focus — hoger is zichtbaarder, lager "
 "is subtieler."
@@ -1602,8 +1594,8 @@ msgstr "Ontspannend 4-6"
 
 #. settings-schema.json->breathing_pattern->tooltip
 msgid ""
-"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6"
-" — seconds per phase."
+"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 "
+"— seconds per phase."
 msgstr ""
 "Ademritme voor de gids: Box (4-4-4-4), kalmerend 4-7-8, of ontspannen 4-6 — "
 "seconden per fase."
@@ -1656,8 +1648,7 @@ msgstr "Lettergrootte menu (%)"
 #. settings-schema.json->menu_font_scale->tooltip
 msgid "Make the applet menu's text larger or smaller (100% = default size)."
 msgstr ""
-"Maak de tekst van het appletmenu groter of kleiner (100% = "
-"standaardgrootte)."
+"Maak de tekst van het appletmenu groter of kleiner (100% = standaardgrootte)."
 
 #. settings-schema.json->preview_appearance_button->description
 msgid "Preview focus frame"
@@ -1665,11 +1656,11 @@ msgstr "Voorbeeld van focuskader"
 
 #. settings-schema.json->preview_appearance_button->tooltip
 msgid ""
-"Briefly show the on-screen focus frame and task chip with the current colors"
-" and style (works when no timer is running)."
+"Briefly show the on-screen focus frame and task chip with the current colors "
+"and style (works when no timer is running)."
 msgstr ""
-"Toon kort het focuskader en taaklabel met de huidige kleuren en stijl (werkt"
-" wanneer er geen timer loopt)."
+"Toon kort het focuskader en taaklabel met de huidige kleuren en stijl (werkt "
+"wanneer er geen timer loopt)."
 
 #. settings-schema.json->preview_breathing_button->description
 msgid "Preview breathing guide"
@@ -1777,11 +1768,11 @@ msgstr "Strikte focus: geen pauze of overslaan tijdens een focusblok"
 
 #. settings-schema.json->strict_focus->tooltip
 msgid ""
-"While a focus block is running, hide pause and skip so you commit to it. You"
-" can still Reset to abandon the session — it's never a hard lock."
+"While a focus block is running, hide pause and skip so you commit to it. You "
+"can still Reset to abandon the session — it's never a hard lock."
 msgstr ""
-"Terwijl een focusblok loopt, worden pauze en overslaan verborgen zodat je je"
-" eraan houdt. Je kunt nog steeds Resetten om de sessie te stoppen — het is "
+"Terwijl een focusblok loopt, worden pauze en overslaan verborgen zodat je je "
+"eraan houdt. Je kunt nog steeds Resetten om de sessie te stoppen — het is "
 "nooit een harde vergrendeling."
 
 #. settings-schema.json->focus_until_enabled->description
@@ -1852,18 +1843,18 @@ msgid ""
 "Send a push notification to your devices via Pushover when focus or breaks "
 "start."
 msgstr ""
-"Stuur een pushmelding naar je apparaten via Pushover wanneer focus of pauzes"
-" starten."
+"Stuur een pushmelding naar je apparaten via Pushover wanneer focus of pauzes "
+"starten."
 
 #. settings-schema.json->pushover_help->description
 msgid ""
 "Pushover sends alerts to your phone or desktop. Create a free account at "
-"pushover.net, copy your User Key, then create an Application there to get an"
-" API Token."
+"pushover.net, copy your User Key, then create an Application there to get an "
+"API Token."
 msgstr ""
 "Pushover stuurt meldingen naar je telefoon of desktop. Maak een gratis "
-"account op pushover.net, kopieer je User Key en maak daar een Application om"
-" een API Token te krijgen."
+"account op pushover.net, kopieer je User Key en maak daar een Application om "
+"een API Token te krijgen."
 
 #. settings-schema.json->pushover_user_key->description
 msgid "Pushover user key"
@@ -1897,8 +1888,8 @@ msgstr "Berichten, geluiden en prioriteit aanpassen"
 
 #. settings-schema.json->pushover_customize->tooltip
 msgid ""
-"Show options to change the text, sound and priority for each event. Off uses"
-" sensible defaults."
+"Show options to change the text, sound and priority for each event. Off uses "
+"sensible defaults."
 msgstr ""
 "Toon opties om tekst, geluid en prioriteit per gebeurtenis te wijzigen. Uit "
 "gebruikt verstandige standaardwaarden."
@@ -1938,13 +1929,13 @@ msgstr "Afleidende sites blokkeren tijdens focus"
 
 #. settings-schema.json->enable_blocking->tooltip
 msgid ""
-"When on, the sites below are blocked automatically during each focus session"
-" and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
+"When on, the sites below are blocked automatically during each focus session "
+"and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
 "doesn't ask for a password each time."
 msgstr ""
 "Indien aan worden de sites hieronder automatisch geblokkeerd tijdens elke "
-"focussessie en daarna gedeblokkeerd. Voer eenmaal \"Wachtwoordloos blokkeren"
-" instellen\" uit zodat er niet elke keer om een wachtwoord wordt gevraagd."
+"focussessie en daarna gedeblokkeerd. Voer eenmaal \"Wachtwoordloos blokkeren "
+"instellen\" uit zodat er niet elke keer om een wachtwoord wordt gevraagd."
 
 #. settings-schema.json->block_domains->description
 msgid "Domains to block (e.g. youtube.com)"
@@ -1956,23 +1947,11 @@ msgstr "Domein"
 
 #. settings-schema.json->block_domains->tooltip
 msgid ""
-"Domains to block during focus, one per row (e.g. youtube.com, "
-"www.youtube.com)."
+"Domains to block during focus, one per row (e.g. youtube.com, www.youtube."
+"com)."
 msgstr ""
-"Domeinen om te blokkeren tijdens focus, één per rij (bijv. youtube.com, "
-"www.youtube.com)."
-
-#. settings-schema.json->edit_hosts_button->description
-msgid "Edit /etc/hosts manually (admin)"
-msgstr "/etc/hosts handmatig bewerken (beheerder)"
-
-#. settings-schema.json->edit_hosts_button->tooltip
-msgid ""
-"Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only"
-" manages its own clearly-marked section."
-msgstr ""
-"Opent /etc/hosts in je editor met beheerdersrechten. Zen Pomodoro beheert "
-"alleen zijn eigen duidelijk gemarkeerde sectie."
+"Domeinen om te blokkeren tijdens focus, één per rij (bijv. youtube.com, www."
+"youtube.com)."
 
 #. settings-schema.json->sox-info->description
 msgid ""
@@ -2418,6 +2397,19 @@ msgstr "Dagdoel — geluid"
 msgid "Daily goal — priority"
 msgstr "Dagdoel — prioriteit"
 
+#~ msgid "Could not open the hosts file"
+#~ msgstr "Kon het hosts-bestand niet openen"
+
+#~ msgid "Edit /etc/hosts manually (admin)"
+#~ msgstr "/etc/hosts handmatig bewerken (beheerder)"
+
+#~ msgid ""
+#~ "Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro "
+#~ "only manages its own clearly-marked section."
+#~ msgstr ""
+#~ "Opent /etc/hosts in je editor met beheerdersrechten. Zen Pomodoro beheert "
+#~ "alleen zijn eigen duidelijk gemarkeerde sectie."
+
 #~ msgid "Add some domains to block first."
 #~ msgstr "Voeg eerst domeinen toe om te blokkeren."
 
@@ -2445,15 +2437,16 @@ msgstr "Dagdoel — prioriteit"
 #~ "Adds the domains above to /etc/hosts (you'll be asked for your password "
 #~ "once). They stay blocked until you click Unblock."
 #~ msgstr ""
-#~ "Voegt de bovenstaande domeinen toe aan /etc/hosts (je wordt één keer om je "
-#~ "wachtwoord gevraagd). Ze blijven geblokkeerd tot je op Deblokkeren klikt."
+#~ "Voegt de bovenstaande domeinen toe aan /etc/hosts (je wordt één keer om "
+#~ "je wachtwoord gevraagd). Ze blijven geblokkeerd tot je op Deblokkeren "
+#~ "klikt."
 
 #~ msgid "Unblock"
 #~ msgstr "Deblokkeren"
 
 #~ msgid ""
-#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
-#~ " once)."
+#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your "
+#~ "password once)."
 #~ msgstr ""
 #~ "Verwijdert de blokkeerregels van Zen Pomodoro uit /etc/hosts (vraagt één "
 #~ "keer om je wachtwoord)."
@@ -2497,9 +2490,10 @@ msgstr "Dagdoel — prioriteit"
 #~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
 #~ "timer text is a separate option below."
 #~ msgstr ""
-#~ "Wat in het paneel wordt getoond: een voortgangsring met het statuspictogram "
-#~ "erin (aanbevolen), een eenvoudig symbolisch of gekleurd pictogram, of "
-#~ "helemaal geen pictogram. De timertekst wordt hieronder apart ingesteld."
+#~ "Wat in het paneel wordt getoond: een voortgangsring met het "
+#~ "statuspictogram erin (aanbevolen), een eenvoudig symbolisch of gekleurd "
+#~ "pictogram, of helemaal geen pictogram. De timertekst wordt hieronder "
+#~ "apart ingesteld."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Het pomodoro-pictogram weergeven in het appletpaneel"
@@ -2511,7 +2505,8 @@ msgstr "Dagdoel — prioriteit"
 #~ msgstr "Een symbolisch pictogram gebruiken in het appletpaneel"
 
 #~ msgid "Use a monochrome symbolic icon that follows your panel theme."
-#~ msgstr "Gebruik een monochroom symbolisch pictogram dat je paneelthema volgt."
+#~ msgstr ""
+#~ "Gebruik een monochroom symbolisch pictogram dat je paneelthema volgt."
 
 #~ msgid "Show timer progress as a ring on the panel icon"
 #~ msgstr "Toon timervoortgang als een ring op het paneelpictogram"

@@ -1263,9 +1263,32 @@ function install(proto) {
     };
 
     proto._stopAmbientSound = function() {
+        if (this._ambientVolTimeout) {
+            Mainloop.source_remove(this._ambientVolTimeout);
+            this._ambientVolTimeout = 0;
+        }
         if (this._ambientSound) {
             this._ambientSound.stop();
         }
+    };
+
+    // Live volume: replay the ambient loop at the new level while focusing.
+    // Debounced so dragging the slider doesn't stutter the audio.
+    proto._onAmbientVolumeChanged = function() {
+        if (this._ambientVolTimeout) {
+            Mainloop.source_remove(this._ambientVolTimeout);
+        }
+        this._ambientVolTimeout = Mainloop.timeout_add(220, () => {
+            this._ambientVolTimeout = 0;
+            try {
+                if (this._opt_focusAmbientSound && this._currentState === 'pomodoro' &&
+                    this._ambientSound && this._ambientSound.isPlaying()) {
+                    let vol = Math.max(0, Math.min(1, (this._opt_focusAmbientVolume || 40) / 100));
+                    this._ambientSound.play({ loop: true, volume: vol });
+                }
+            } catch (e) {}
+            return false;
+        });
     };
 
     // Do Not Disturb: mute Cinnamon notifications while focusing, restoring the

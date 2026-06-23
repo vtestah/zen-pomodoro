@@ -263,6 +263,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._idleWatchId = 0;
         this._activeWatchId = 0;
         this._ambientSound = null;
+        this._ambientVolTimeout = 0;
         this._zenOverlay = null;
         this._zenTimeLabel = null;
         this._zenTaskLabel = null;
@@ -393,7 +394,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_resume_on_activity", "_opt_autoResumeOnActivity", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_extend", "_opt_flowExtend", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_extend_minutes", "_opt_flowExtendMinutes", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_sound", "_opt_focusAmbientSound", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_sound", "_opt_focusAmbientSound", this._updateAmbientSound.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_dnd", "_opt_focusDnd", () => this._updateDnd());
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pause_media", "_opt_pauseMedia", () => this._updateMediaPause());
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "run_command_enabled", "_opt_runCommandEnabled", emptyCallback);
@@ -428,7 +429,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_domains", "_opt_blockDomains", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "enable_blocking", "_opt_enableBlocking", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "onboarding_done", "_opt_onboardingDone", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_volume", "_opt_focusAmbientVolume", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_volume", "_opt_focusAmbientVolume", this._onAmbientVolumeChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_breathing", "_opt_breakBreathing", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "zen_mode_enabled", "_opt_zenModeEnabled", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_until_enabled", "_opt_focusUntilEnabled", emptyCallback);
@@ -2189,6 +2190,19 @@ class PomodoroApplet extends Applet.TextIconApplet {
         cr.stroke();
     }
 
+    _panelIsDark() {
+        // On a light panel the warm/light ring colours wash out. Detect the
+        // panel brightness from the applet's foreground (text) colour: light
+        // text implies a dark panel, dark text implies a light panel.
+        try {
+            let c = this.actor.get_theme_node().get_foreground_color();
+            let lum = (0.2126 * c.red + 0.7152 * c.green + 0.0722 * c.blue) / 255;
+            return lum > 0.5;
+        } catch (e) {
+            return true;
+        }
+    }
+
     _repaintPanelProgress(area) {
         let cr = area.get_context();
         try {
@@ -2206,11 +2220,12 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 let goal = this._opt_dailyGoal || 0;
                 let done = this._dailyCount || 0;
                 let met = (goal > 0 && done >= goal);
-                let ar = met ? 0.42 : 1.0;
-                let ag = met ? 0.88 : 0.69;
-                let ab = met ? 0.58 : 0.32;
+                let darkP = this._panelIsDark();
+                let ar, ag, ab;
+                if (met) { ar = darkP ? 0.42 : 0.16; ag = darkP ? 0.88 : 0.60; ab = darkP ? 0.58 : 0.36; }
+                else { ar = darkP ? 1.0 : 0.80; ag = darkP ? 0.69 : 0.47; ab = darkP ? 0.32 : 0.08; }
                 cr.setLineWidth(2.5);
-                cr.setSourceRGBA(ar, ag, ab, 0.22);
+                cr.setSourceRGBA(ar, ag, ab, darkP ? 0.22 : 0.34);
                 cr.arc(cx, cy, radius, 0, 2 * Math.PI);
                 cr.stroke();
                 if (goal > 0 && done > 0) {
@@ -2229,13 +2244,14 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 this._currentState === 'short-break-paused' || this._currentState === 'long-break-paused' ||
                 this._currentState === 'break-over');
             let paused = (this._currentState.indexOf('-paused') !== -1);
+            let darkP = this._panelIsDark();
             let r, g, b;
             if (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused') {
-                r = 1.0; g = 0.69; b = 0.32;
+                r = darkP ? 1.0 : 0.80; g = darkP ? 0.69 : 0.47; b = darkP ? 0.32 : 0.08;
             } else if (breakish) {
-                r = 0.42; g = 0.88; b = 0.58;
+                r = darkP ? 0.42 : 0.16; g = darkP ? 0.88 : 0.60; b = darkP ? 0.58 : 0.36;
             } else {
-                r = 0.6; g = 0.6; b = 0.6;
+                r = darkP ? 0.6 : 0.38; g = darkP ? 0.6 : 0.38; b = darkP ? 0.6 : 0.38;
             }
 
             let timer = this._timerQueue ? this._timerQueue.getCurrentTimer() : null;
@@ -2244,7 +2260,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             let frac = (typeof pct === "number") ? Math.max(0, Math.min(1, pct / 100)) : 0;
 
             cr.setLineWidth(2.5);
-            cr.setSourceRGBA(r, g, b, paused ? 0.14 : 0.25);
+            cr.setSourceRGBA(r, g, b, darkP ? (paused ? 0.14 : 0.25) : (paused ? 0.24 : 0.36));
             cr.arc(cx, cy, radius, 0, 2 * Math.PI);
             cr.stroke();
 

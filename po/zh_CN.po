@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 22:59+0700\n"
+"POT-Creation-Date: 2026-06-23 23:16+0700\n"
 "PO-Revision-Date: 2017-03-14 22:17+0800\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: zh_CN\n"
@@ -55,7 +55,7 @@ msgstr "休息已暂停"
 msgid "BREAK OVER"
 msgstr "休息结束"
 
-#: applet.js:1008 applet.js:1068 menu.js:236 menu.js:625
+#: applet.js:1008 applet.js:1068 menu.js:236 menu.js:630
 msgid "Ready to focus"
 msgstr "准备专注"
 
@@ -84,7 +84,7 @@ msgstr "休息结束"
 msgid "Pomodori %d, set %d running"
 msgstr "番茄钟%d，设置%d正在运行"
 
-#: applet.js:1046 features.js:412 features.js:1097 menu.js:647
+#: applet.js:1046 features.js:412 features.js:1097 menu.js:652
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ %s 完成 · 还剩 %d 🍅"
@@ -594,7 +594,7 @@ msgstr "应用"
 msgid "Apply & start"
 msgstr "应用并开始"
 
-#: features.js:806 menu.js:317 menu.js:872 menu.js:878
+#: features.js:806 menu.js:317 menu.js:878 menu.js:884
 #, javascript-format
 msgid "%d min"
 msgstr "%d 分钟"
@@ -772,7 +772,7 @@ msgstr "较多"
 msgid "By task"
 msgstr "按任务"
 
-#: features.js:1172 menu.js:621
+#: features.js:1172 menu.js:626
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "里程碑：%s"
@@ -864,7 +864,7 @@ msgstr "错误：菜单不可用"
 msgid "Ready to start"
 msgstr "准备开始"
 
-#: menu.js:261 menu.js:687
+#: menu.js:261 menu.js:693
 msgid "Task will be selected on start"
 msgstr "将在开始时选择任务"
 
@@ -873,7 +873,7 @@ msgstr "将在开始时选择任务"
 msgid "Pomodoro %d / %d"
 msgstr "番茄钟 %d / %d"
 
-#: menu.js:365 menu.js:767
+#: menu.js:365 menu.js:773
 msgid "Start focus"
 msgstr "开始专注"
 
@@ -897,7 +897,7 @@ msgstr "重置计时器和计数"
 msgid "Site blocking"
 msgstr "网站屏蔽"
 
-#: menu.js:418 menu.js:695 menu.js:930
+#: menu.js:418 menu.js:701 menu.js:936
 msgid "off"
 msgstr "关闭"
 
@@ -917,15 +917,15 @@ msgstr "禅模式"
 msgid "Ambient sound"
 msgstr "环境音"
 
-#: menu.js:448 menu.js:878
+#: menu.js:448 menu.js:884
 msgid "Focus length"
 msgstr "专注时长"
 
-#: menu.js:455 menu.js:709 menu.js:925
+#: menu.js:455 menu.js:715 menu.js:931
 msgid "Preset"
 msgstr "预设"
 
-#: menu.js:459 menu.js:795
+#: menu.js:459 menu.js:801
 msgid "Task list"
 msgstr "任务列表"
 
@@ -933,12 +933,12 @@ msgstr "任务列表"
 msgid "Statistics"
 msgstr "统计"
 
-#: menu.js:464 menu.js:583
+#: menu.js:464 menu.js:588
 #, javascript-format
 msgid "Today: %d"
 msgstr "今天：%d"
 
-#: menu.js:467 menu.js:606
+#: menu.js:467 menu.js:611
 #, javascript-format
 msgid "Streak: %d days (best %d)"
 msgstr "连续天数：%d 天（最佳 %d）"
@@ -955,140 +955,136 @@ msgstr "设置向导…"
 msgid "SESSION"
 msgstr "会话"
 
-#: menu.js:500
-msgid "Session…"
-msgstr "会话…"
-
-#: menu.js:556
+#: menu.js:561
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr "今天：%d / %d"
 
-#: menu.js:588
+#: menu.js:593
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "最近 7 天：%d"
 
-#: menu.js:597
+#: menu.js:602
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "最近 30 天：%d"
 
-#: menu.js:600
+#: menu.js:605
 #, javascript-format
 msgid "All time: %d"
 msgstr "总计：%d"
 
-#: menu.js:603
+#: menu.js:608
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "专注时间：今天 %s · 总计 %s"
 
-#: menu.js:609
+#: menu.js:614
 #, javascript-format
 msgid "Best day: %d"
 msgstr "最佳单日：%d"
 
-#: menu.js:621
+#: menu.js:626
 msgid "none yet"
 msgstr "暂无"
 
-#: menu.js:637
+#: menu.js:642
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "番茄钟 %d / %d"
 
-#: menu.js:639
+#: menu.js:644
 msgid "Long break"
 msgstr "长时休息"
 
-#: menu.js:641
+#: menu.js:646
 msgid "Short break"
 msgstr "短时休息"
 
-#: menu.js:644
+#: menu.js:649
 #, javascript-format
 msgid "until %s"
 msgstr "至 %s"
 
-#: menu.js:652
+#: menu.js:657
 msgid "Break finished — press Start for focus"
 msgstr "休息结束 — 按开始进入专注"
 
-#: menu.js:654
+#: menu.js:659
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "在约 %s 前完成你的任务"
 
-#: menu.js:656
+#: menu.js:661
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "%d 分钟专注 — 按开始"
 
-#: menu.js:683 menu.js:685
+#: menu.js:689 menu.js:691
 #, javascript-format
 msgid "Task: %s"
 msgstr "任务：%s"
 
-#: menu.js:689
+#: menu.js:695
 msgid "Task: none"
 msgstr "任务：无"
 
-#: menu.js:696 menu.js:931
+#: menu.js:702 menu.js:937
 #, javascript-format
 msgid "blocking %d"
 msgstr "正在屏蔽 %d"
 
-#: menu.js:696 menu.js:931
+#: menu.js:702 menu.js:937
 #, javascript-format
 msgid "%d in list"
 msgstr "列表中 %d 个"
 
-#: menu.js:746
+#: menu.js:752
 msgid "Resume break"
 msgstr "继续休息"
 
-#: menu.js:746
+#: menu.js:752
 msgid "Resume focus"
 msgstr "继续专注"
 
-#: menu.js:753
+#: menu.js:759
 msgid "Focusing — stay with it"
 msgstr "专注中 — 坚持住"
 
-#: menu.js:758
+#: menu.js:764
 msgid "Pause focus"
 msgstr "暂停专注"
 
-#: menu.js:758
+#: menu.js:764
 msgid "Pause break"
 msgstr "暂停休息"
 
-#: menu.js:763
+#: menu.js:769
 msgid "Start next focus"
 msgstr "开始下一次专注"
 
-#: menu.js:805
+#: menu.js:811
 msgid "Add task…"
 msgstr "添加任务…"
 
-#: menu.js:815
+#: menu.js:821
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr "还没有任务 — 添加你要专注的内容，并附上 🍅 预估。"
 
-#: menu.js:841
+#: menu.js:847
 msgid "Toggle done (current)"
 msgstr "切换完成状态（当前）"
 
-#: menu.js:844
+#: menu.js:850
 msgid "Delete current"
 msgstr "删除当前"
 
-#: menu.js:853
+#: menu.js:859
 msgid "Save as template…"
 msgstr "保存为模板…"
 
-#: menu.js:859
+#: menu.js:865
 #, javascript-format
 msgid "Apply: %s"
 msgstr "应用：%s"
@@ -2306,6 +2302,9 @@ msgid ""
 "Pick your own looping ambient sound. Leave empty for the built-in soft brown "
 "noise."
 msgstr "选择你自己的循环背景音。留空则使用内置的柔和棕噪音。"
+
+#~ msgid "Session…"
+#~ msgstr "会话…"
 
 #~ msgid "Play soft ambient (brown noise) during focus"
 #~ msgstr "专注期间播放柔和的环境音（棕噪声）"

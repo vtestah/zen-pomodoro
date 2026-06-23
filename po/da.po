@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 22:59+0700\n"
+"POT-Creation-Date: 2026-06-23 23:16+0700\n"
 "PO-Revision-Date: 2020-12-21 17:23+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: da\n"
@@ -55,7 +55,7 @@ msgstr "PAUSE PÅ HOLD"
 msgid "BREAK OVER"
 msgstr "PAUSE SLUT"
 
-#: applet.js:1008 applet.js:1068 menu.js:236 menu.js:625
+#: applet.js:1008 applet.js:1068 menu.js:236 menu.js:630
 msgid "Ready to focus"
 msgstr "Klar til fokus"
 
@@ -84,7 +84,7 @@ msgstr "Pause slut"
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodori %d, sæt %d kører"
 
-#: applet.js:1046 features.js:412 features.js:1097 menu.js:647
+#: applet.js:1046 features.js:412 features.js:1097 menu.js:652
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ slut %s · %d 🍅 tilbage"
@@ -602,7 +602,7 @@ msgstr "Anvend"
 msgid "Apply & start"
 msgstr "Anvend & start"
 
-#: features.js:806 menu.js:317 menu.js:872 menu.js:878
+#: features.js:806 menu.js:317 menu.js:878 menu.js:884
 #, javascript-format
 msgid "%d min"
 msgstr "%d min"
@@ -780,7 +780,7 @@ msgstr "Mere"
 msgid "By task"
 msgstr "Efter opgave"
 
-#: features.js:1172 menu.js:621
+#: features.js:1172 menu.js:626
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Milepæle: %s"
@@ -874,7 +874,7 @@ msgstr "Fejl: menu utilgængelig"
 msgid "Ready to start"
 msgstr "Klar til start"
 
-#: menu.js:261 menu.js:687
+#: menu.js:261 menu.js:693
 msgid "Task will be selected on start"
 msgstr "Opgaven vælges ved start"
 
@@ -883,7 +883,7 @@ msgstr "Opgaven vælges ved start"
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:365 menu.js:767
+#: menu.js:365 menu.js:773
 msgid "Start focus"
 msgstr "Start fokus"
 
@@ -907,7 +907,7 @@ msgstr "Nulstil timer og tællere"
 msgid "Site blocking"
 msgstr "Webstedsblokering"
 
-#: menu.js:418 menu.js:695 menu.js:930
+#: menu.js:418 menu.js:701 menu.js:936
 msgid "off"
 msgstr "fra"
 
@@ -927,15 +927,15 @@ msgstr "Zen-tilstand"
 msgid "Ambient sound"
 msgstr "Baggrundslyd"
 
-#: menu.js:448 menu.js:878
+#: menu.js:448 menu.js:884
 msgid "Focus length"
 msgstr "Fokuslængde"
 
-#: menu.js:455 menu.js:709 menu.js:925
+#: menu.js:455 menu.js:715 menu.js:931
 msgid "Preset"
 msgstr "Forindstilling"
 
-#: menu.js:459 menu.js:795
+#: menu.js:459 menu.js:801
 msgid "Task list"
 msgstr "Opgaveliste"
 
@@ -943,12 +943,12 @@ msgstr "Opgaveliste"
 msgid "Statistics"
 msgstr "Statistik"
 
-#: menu.js:464 menu.js:583
+#: menu.js:464 menu.js:588
 #, javascript-format
 msgid "Today: %d"
 msgstr "I dag: %d"
 
-#: menu.js:467 menu.js:606
+#: menu.js:467 menu.js:611
 #, javascript-format
 msgid "Streak: %d days (best %d)"
 msgstr "Stime: %d dage (bedste %d)"
@@ -965,141 +965,137 @@ msgstr "Opsætningsguide…"
 msgid "SESSION"
 msgstr "SESSION"
 
-#: menu.js:500
-msgid "Session…"
-msgstr "Session…"
-
-#: menu.js:556
+#: menu.js:561
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr "I dag: %d / %d"
 
-#: menu.js:588
+#: menu.js:593
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "Sidste 7 dage: %d"
 
-#: menu.js:597
+#: menu.js:602
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "Sidste 30 dage: %d"
 
-#: menu.js:600
+#: menu.js:605
 #, javascript-format
 msgid "All time: %d"
 msgstr "Alle tider: %d"
 
-#: menu.js:603
+#: menu.js:608
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Fokustid: %s i dag · %s i alt"
 
-#: menu.js:609
+#: menu.js:614
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Bedste dag: %d"
 
-#: menu.js:621
+#: menu.js:626
 msgid "none yet"
 msgstr "ingen endnu"
 
-#: menu.js:637
+#: menu.js:642
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d af %d"
 
-#: menu.js:639
+#: menu.js:644
 msgid "Long break"
 msgstr "Lang pause"
 
-#: menu.js:641
+#: menu.js:646
 msgid "Short break"
 msgstr "Kort pause"
 
-#: menu.js:644
+#: menu.js:649
 #, javascript-format
 msgid "until %s"
 msgstr "indtil %s"
 
-#: menu.js:652
+#: menu.js:657
 msgid "Break finished — press Start for focus"
 msgstr "Pause slut — tryk Start for fokus"
 
-#: menu.js:654
+#: menu.js:659
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Bliv færdig med opgaverne omkring ~%s"
 
-#: menu.js:656
+#: menu.js:661
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "%d min fokus — tryk Start"
 
-#: menu.js:683 menu.js:685
+#: menu.js:689 menu.js:691
 #, javascript-format
 msgid "Task: %s"
 msgstr "Opgave: %s"
 
-#: menu.js:689
+#: menu.js:695
 msgid "Task: none"
 msgstr "Opgave: ingen"
 
-#: menu.js:696 menu.js:931
+#: menu.js:702 menu.js:937
 #, javascript-format
 msgid "blocking %d"
 msgstr "blokerer %d"
 
-#: menu.js:696 menu.js:931
+#: menu.js:702 menu.js:937
 #, javascript-format
 msgid "%d in list"
 msgstr "%d på listen"
 
-#: menu.js:746
+#: menu.js:752
 msgid "Resume break"
 msgstr "Fortsæt pause"
 
-#: menu.js:746
+#: menu.js:752
 msgid "Resume focus"
 msgstr "Fortsæt fokus"
 
-#: menu.js:753
+#: menu.js:759
 msgid "Focusing — stay with it"
 msgstr "Fokuserer — bliv ved"
 
-#: menu.js:758
+#: menu.js:764
 msgid "Pause focus"
 msgstr "Sæt fokus på pause"
 
-#: menu.js:758
+#: menu.js:764
 msgid "Pause break"
 msgstr "Sæt pausen på hold"
 
-#: menu.js:763
+#: menu.js:769
 msgid "Start next focus"
 msgstr "Start næste fokus"
 
-#: menu.js:805
+#: menu.js:811
 msgid "Add task…"
 msgstr "Tilføj opgave…"
 
-#: menu.js:815
+#: menu.js:821
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Ingen opgaver endnu — tilføj det, du vil fokusere på, med et 🍅-estimat."
 
-#: menu.js:841
+#: menu.js:847
 msgid "Toggle done (current)"
 msgstr "Skift udført (nuværende)"
 
-#: menu.js:844
+#: menu.js:850
 msgid "Delete current"
 msgstr "Slet nuværende"
 
-#: menu.js:853
+#: menu.js:859
 msgid "Save as template…"
 msgstr "Gem som skabelon…"
 
-#: menu.js:859
+#: menu.js:865
 #, javascript-format
 msgid "Apply: %s"
 msgstr "Anvend: %s"
@@ -2385,6 +2381,9 @@ msgid ""
 msgstr ""
 "Vælg din egen gentagne omgivelseslyd. Lad stå tom for den indbyggede bløde "
 "brune støj."
+
+#~ msgid "Session…"
+#~ msgstr "Session…"
 
 #~ msgid "Play soft ambient (brown noise) during focus"
 #~ msgstr "Afspil blød baggrund (brun støj) under fokus"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 22:59+0700\n"
+"POT-Creation-Date: 2026-06-23 23:16+0700\n"
 "PO-Revision-Date: 2024-11-18 14:34+0200\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: fi\n"
@@ -55,7 +55,7 @@ msgstr "TAUKO PYSÄYTETTY"
 msgid "BREAK OVER"
 msgstr "TAUKO OHI"
 
-#: applet.js:1008 applet.js:1068 menu.js:236 menu.js:625
+#: applet.js:1008 applet.js:1068 menu.js:236 menu.js:630
 msgid "Ready to focus"
 msgstr "Valmis keskittymään"
 
@@ -84,7 +84,7 @@ msgstr "Tauko päättyi"
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodori %d, erä %d käynnissä"
 
-#: applet.js:1046 features.js:412 features.js:1097 menu.js:647
+#: applet.js:1046 features.js:412 features.js:1097 menu.js:652
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ valmis %s · %d 🍅 jäljellä"
@@ -603,7 +603,7 @@ msgstr "Käytä"
 msgid "Apply & start"
 msgstr "Käytä ja aloita"
 
-#: features.js:806 menu.js:317 menu.js:872 menu.js:878
+#: features.js:806 menu.js:317 menu.js:878 menu.js:884
 #, javascript-format
 msgid "%d min"
 msgstr "%d min"
@@ -781,7 +781,7 @@ msgstr "Enemmän"
 msgid "By task"
 msgstr "Tehtävittäin"
 
-#: features.js:1172 menu.js:621
+#: features.js:1172 menu.js:626
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Virstanpylväät: %s"
@@ -875,7 +875,7 @@ msgstr "Virhe: valikko ei käytettävissä"
 msgid "Ready to start"
 msgstr "Valmis aloittamaan"
 
-#: menu.js:261 menu.js:687
+#: menu.js:261 menu.js:693
 msgid "Task will be selected on start"
 msgstr "Tehtävä valitaan aloitettaessa"
 
@@ -884,7 +884,7 @@ msgstr "Tehtävä valitaan aloitettaessa"
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:365 menu.js:767
+#: menu.js:365 menu.js:773
 msgid "Start focus"
 msgstr "Aloita fokus"
 
@@ -908,7 +908,7 @@ msgstr "Nollaa ajastin ja laskurit"
 msgid "Site blocking"
 msgstr "Sivustojen esto"
 
-#: menu.js:418 menu.js:695 menu.js:930
+#: menu.js:418 menu.js:701 menu.js:936
 msgid "off"
 msgstr "pois"
 
@@ -928,15 +928,15 @@ msgstr "Zen-tila"
 msgid "Ambient sound"
 msgstr "Taustaääni"
 
-#: menu.js:448 menu.js:878
+#: menu.js:448 menu.js:884
 msgid "Focus length"
 msgstr "Fokuksen kesto"
 
-#: menu.js:455 menu.js:709 menu.js:925
+#: menu.js:455 menu.js:715 menu.js:931
 msgid "Preset"
 msgstr "Esiasetus"
 
-#: menu.js:459 menu.js:795
+#: menu.js:459 menu.js:801
 msgid "Task list"
 msgstr "Tehtävälista"
 
@@ -944,12 +944,12 @@ msgstr "Tehtävälista"
 msgid "Statistics"
 msgstr "Tilastot"
 
-#: menu.js:464 menu.js:583
+#: menu.js:464 menu.js:588
 #, javascript-format
 msgid "Today: %d"
 msgstr "Tänään: %d"
 
-#: menu.js:467 menu.js:606
+#: menu.js:467 menu.js:611
 #, javascript-format
 msgid "Streak: %d days (best %d)"
 msgstr "Putki: %d päivää (paras %d)"
@@ -966,140 +966,136 @@ msgstr "Ohjattu asennus…"
 msgid "SESSION"
 msgstr "ISTUNTO"
 
-#: menu.js:500
-msgid "Session…"
-msgstr "Istunto…"
-
-#: menu.js:556
+#: menu.js:561
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr "Tänään: %d / %d"
 
-#: menu.js:588
+#: menu.js:593
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "Viimeiset 7 päivää: %d"
 
-#: menu.js:597
+#: menu.js:602
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "Viimeiset 30 päivää: %d"
 
-#: menu.js:600
+#: menu.js:605
 #, javascript-format
 msgid "All time: %d"
 msgstr "Kaikkiaan: %d"
 
-#: menu.js:603
+#: menu.js:608
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Fokusaika: %s tänään · %s yhteensä"
 
-#: menu.js:609
+#: menu.js:614
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Paras päivä: %d"
 
-#: menu.js:621
+#: menu.js:626
 msgid "none yet"
 msgstr "ei vielä"
 
-#: menu.js:637
+#: menu.js:642
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:639
+#: menu.js:644
 msgid "Long break"
 msgstr "Pitkä tauko"
 
-#: menu.js:641
+#: menu.js:646
 msgid "Short break"
 msgstr "Lyhyt tauko"
 
-#: menu.js:644
+#: menu.js:649
 #, javascript-format
 msgid "until %s"
 msgstr "klo %s asti"
 
-#: menu.js:652
+#: menu.js:657
 msgid "Break finished — press Start for focus"
 msgstr "Tauko päättyi — paina Aloita keskittyäksesi"
 
-#: menu.js:654
+#: menu.js:659
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Saat tehtävät valmiiksi ~%s"
 
-#: menu.js:656
+#: menu.js:661
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "%d min fokus — paina Aloita"
 
-#: menu.js:683 menu.js:685
+#: menu.js:689 menu.js:691
 #, javascript-format
 msgid "Task: %s"
 msgstr "Tehtävä: %s"
 
-#: menu.js:689
+#: menu.js:695
 msgid "Task: none"
 msgstr "Tehtävä: ei mitään"
 
-#: menu.js:696 menu.js:931
+#: menu.js:702 menu.js:937
 #, javascript-format
 msgid "blocking %d"
 msgstr "estää %d"
 
-#: menu.js:696 menu.js:931
+#: menu.js:702 menu.js:937
 #, javascript-format
 msgid "%d in list"
 msgstr "%d luettelossa"
 
-#: menu.js:746
+#: menu.js:752
 msgid "Resume break"
 msgstr "Jatka taukoa"
 
-#: menu.js:746
+#: menu.js:752
 msgid "Resume focus"
 msgstr "Jatka fokusta"
 
-#: menu.js:753
+#: menu.js:759
 msgid "Focusing — stay with it"
 msgstr "Keskitytään — pysy mukana"
 
-#: menu.js:758
+#: menu.js:764
 msgid "Pause focus"
 msgstr "Pysäytä fokus"
 
-#: menu.js:758
+#: menu.js:764
 msgid "Pause break"
 msgstr "Pysäytä tauko"
 
-#: menu.js:763
+#: menu.js:769
 msgid "Start next focus"
 msgstr "Aloita seuraava fokus"
 
-#: menu.js:805
+#: menu.js:811
 msgid "Add task…"
 msgstr "Lisää tehtävä…"
 
-#: menu.js:815
+#: menu.js:821
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr "Ei vielä tehtäviä — lisää se, mihin keskityt, ja 🍅-arvio."
 
-#: menu.js:841
+#: menu.js:847
 msgid "Toggle done (current)"
 msgstr "Vaihda valmis-tila (nykyinen)"
 
-#: menu.js:844
+#: menu.js:850
 msgid "Delete current"
 msgstr "Poista nykyinen"
 
-#: menu.js:853
+#: menu.js:859
 msgid "Save as template…"
 msgstr "Tallenna mallina…"
 
-#: menu.js:859
+#: menu.js:865
 #, javascript-format
 msgid "Apply: %s"
 msgstr "Käytä: %s"
@@ -2379,6 +2375,9 @@ msgid ""
 msgstr ""
 "Valitse oma silmukoitu taustaääni. Jätä tyhjäksi sisäänrakennetulle "
 "pehmeälle ruskealle kohinalle."
+
+#~ msgid "Session…"
+#~ msgstr "Istunto…"
 
 #~ msgid "Play soft ambient (brown noise) during focus"
 #~ msgstr "Soita pehmeää taustaääntä (ruskea kohina) fokuksen aikana"

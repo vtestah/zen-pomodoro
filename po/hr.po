@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pomodoro Timer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 22:59+0700\n"
+"POT-Creation-Date: 2026-06-23 23:16+0700\n"
 "PO-Revision-Date: 2017-02-24 23:32+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -56,7 +56,7 @@ msgstr "PREDAH PAUZIRAN"
 msgid "BREAK OVER"
 msgstr "PREDAH ZAVRŠEN"
 
-#: applet.js:1008 applet.js:1068 menu.js:236 menu.js:625
+#: applet.js:1008 applet.js:1068 menu.js:236 menu.js:630
 msgid "Ready to focus"
 msgstr "Spremni za fokus"
 
@@ -85,7 +85,7 @@ msgstr "Predah završen"
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodoro %d, zadatak %d je pokrenut"
 
-#: applet.js:1046 features.js:412 features.js:1097 menu.js:647
+#: applet.js:1046 features.js:412 features.js:1097 menu.js:652
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ kraj %s · preostalo %d 🍅"
@@ -602,7 +602,7 @@ msgstr "Primijeni"
 msgid "Apply & start"
 msgstr "Primijeni i pokreni"
 
-#: features.js:806 menu.js:317 menu.js:872 menu.js:878
+#: features.js:806 menu.js:317 menu.js:878 menu.js:884
 #, javascript-format
 msgid "%d min"
 msgstr "%d min"
@@ -780,7 +780,7 @@ msgstr "Više"
 msgid "By task"
 msgstr "Po zadatku"
 
-#: features.js:1172 menu.js:621
+#: features.js:1172 menu.js:626
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Prekretnice: %s"
@@ -875,7 +875,7 @@ msgstr "Greška: izbornik nedostupan"
 msgid "Ready to start"
 msgstr "Spremni za početak"
 
-#: menu.js:261 menu.js:687
+#: menu.js:261 menu.js:693
 msgid "Task will be selected on start"
 msgstr "Zadatak će biti odabran pri pokretanju"
 
@@ -884,7 +884,7 @@ msgstr "Zadatak će biti odabran pri pokretanju"
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:365 menu.js:767
+#: menu.js:365 menu.js:773
 msgid "Start focus"
 msgstr "Pokreni fokus"
 
@@ -908,7 +908,7 @@ msgstr "Poništi mjerač i brojače"
 msgid "Site blocking"
 msgstr "Blokiranje stranica"
 
-#: menu.js:418 menu.js:695 menu.js:930
+#: menu.js:418 menu.js:701 menu.js:936
 msgid "off"
 msgstr "isključeno"
 
@@ -928,15 +928,15 @@ msgstr "Zen način"
 msgid "Ambient sound"
 msgstr "Pozadinski zvuk"
 
-#: menu.js:448 menu.js:878
+#: menu.js:448 menu.js:884
 msgid "Focus length"
 msgstr "Trajanje fokusa"
 
-#: menu.js:455 menu.js:709 menu.js:925
+#: menu.js:455 menu.js:715 menu.js:931
 msgid "Preset"
 msgstr "Predložak"
 
-#: menu.js:459 menu.js:795
+#: menu.js:459 menu.js:801
 msgid "Task list"
 msgstr "Popis zadataka"
 
@@ -944,12 +944,12 @@ msgstr "Popis zadataka"
 msgid "Statistics"
 msgstr "Statistika"
 
-#: menu.js:464 menu.js:583
+#: menu.js:464 menu.js:588
 #, javascript-format
 msgid "Today: %d"
 msgstr "Danas: %d"
 
-#: menu.js:467 menu.js:606
+#: menu.js:467 menu.js:611
 #, javascript-format
 msgid "Streak: %d days (best %d)"
 msgstr "Niz: %d dana (rekord %d)"
@@ -966,141 +966,137 @@ msgstr "Čarobnjak za postavljanje…"
 msgid "SESSION"
 msgstr "SESIJA"
 
-#: menu.js:500
-msgid "Session…"
-msgstr "Sesija…"
-
-#: menu.js:556
+#: menu.js:561
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr "Danas: %d / %d"
 
-#: menu.js:588
+#: menu.js:593
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "Posljednjih 7 dana: %d"
 
-#: menu.js:597
+#: menu.js:602
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "Posljednjih 30 dana: %d"
 
-#: menu.js:600
+#: menu.js:605
 #, javascript-format
 msgid "All time: %d"
 msgstr "Sveukupno: %d"
 
-#: menu.js:603
+#: menu.js:608
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Vrijeme fokusa: %s danas · %s ukupno"
 
-#: menu.js:609
+#: menu.js:614
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Najbolji dan: %d"
 
-#: menu.js:621
+#: menu.js:626
 msgid "none yet"
 msgstr "još nijedan"
 
-#: menu.js:637
+#: menu.js:642
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d od %d"
 
-#: menu.js:639
+#: menu.js:644
 msgid "Long break"
 msgstr "Duži predah"
 
-#: menu.js:641
+#: menu.js:646
 msgid "Short break"
 msgstr "Kratki predah"
 
-#: menu.js:644
+#: menu.js:649
 #, javascript-format
 msgid "until %s"
 msgstr "do %s"
 
-#: menu.js:652
+#: menu.js:657
 msgid "Break finished — press Start for focus"
 msgstr "Predah završen — pritisnite Pokreni za fokus"
 
-#: menu.js:654
+#: menu.js:659
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Završite zadatke do ~%s"
 
-#: menu.js:656
+#: menu.js:661
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "%d min fokusa — pritisnite Pokreni"
 
-#: menu.js:683 menu.js:685
+#: menu.js:689 menu.js:691
 #, javascript-format
 msgid "Task: %s"
 msgstr "Zadatak: %s"
 
-#: menu.js:689
+#: menu.js:695
 msgid "Task: none"
 msgstr "Zadatak: nijedan"
 
-#: menu.js:696 menu.js:931
+#: menu.js:702 menu.js:937
 #, javascript-format
 msgid "blocking %d"
 msgstr "blokira %d"
 
-#: menu.js:696 menu.js:931
+#: menu.js:702 menu.js:937
 #, javascript-format
 msgid "%d in list"
 msgstr "%d na popisu"
 
-#: menu.js:746
+#: menu.js:752
 msgid "Resume break"
 msgstr "Nastavi predah"
 
-#: menu.js:746
+#: menu.js:752
 msgid "Resume focus"
 msgstr "Nastavi fokus"
 
-#: menu.js:753
+#: menu.js:759
 msgid "Focusing — stay with it"
 msgstr "Fokusiranje — ostanite uz to"
 
-#: menu.js:758
+#: menu.js:764
 msgid "Pause focus"
 msgstr "Pauziraj fokus"
 
-#: menu.js:758
+#: menu.js:764
 msgid "Pause break"
 msgstr "Pauziraj predah"
 
-#: menu.js:763
+#: menu.js:769
 msgid "Start next focus"
 msgstr "Pokreni sljedeći fokus"
 
-#: menu.js:805
+#: menu.js:811
 msgid "Add task…"
 msgstr "Dodaj zadatak…"
 
-#: menu.js:815
+#: menu.js:821
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Još nema zadataka — dodajte ono na što ćete se fokusirati, uz 🍅 procjenu."
 
-#: menu.js:841
+#: menu.js:847
 msgid "Toggle done (current)"
 msgstr "Uključi/isključi gotovo (trenutni)"
 
-#: menu.js:844
+#: menu.js:850
 msgid "Delete current"
 msgstr "Izbriši trenutni"
 
-#: menu.js:853
+#: menu.js:859
 msgid "Save as template…"
 msgstr "Spremi kao predložak…"
 
-#: menu.js:859
+#: menu.js:865
 #, javascript-format
 msgid "Apply: %s"
 msgstr "Primijeni: %s"
@@ -2378,6 +2374,9 @@ msgid ""
 msgstr ""
 "Odaberite vlastiti ponavljajući zvuk okoline. Ostavite prazno za ugrađeni "
 "meki smeđi šum."
+
+#~ msgid "Session…"
+#~ msgstr "Sesija…"
 
 #~ msgid "Play soft ambient (brown noise) during focus"
 #~ msgstr "Puštaj mekanu pozadinu (smeđi šum) tijekom fokusa"

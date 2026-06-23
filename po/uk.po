@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 22:59+0700\n"
+"POT-Creation-Date: 2026-06-23 23:16+0700\n"
 "PO-Revision-Date: 2022-01-05 13:55+0200\n"
 "Last-Translator: Rutar <RutarAndriy@gmail.com>\n"
 "Language-Team: Ukrainian\n"
@@ -56,7 +56,7 @@ msgstr "ПЕРЕРВА НА ПАУЗІ"
 msgid "BREAK OVER"
 msgstr "ПЕРЕРВУ ЗАКІНЧЕНО"
 
-#: applet.js:1008 applet.js:1068 menu.js:236 menu.js:625
+#: applet.js:1008 applet.js:1068 menu.js:236 menu.js:630
 msgid "Ready to focus"
 msgstr "Готові до фокусу"
 
@@ -85,7 +85,7 @@ msgstr "Перерву закінчено"
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodoro %d, set %d працює"
 
-#: applet.js:1046 features.js:412 features.js:1097 menu.js:647
+#: applet.js:1046 features.js:412 features.js:1097 menu.js:652
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ фініш %s · залишилось %d 🍅"
@@ -602,7 +602,7 @@ msgstr "Застосувати"
 msgid "Apply & start"
 msgstr "Застосувати й почати"
 
-#: features.js:806 menu.js:317 menu.js:872 menu.js:878
+#: features.js:806 menu.js:317 menu.js:878 menu.js:884
 #, javascript-format
 msgid "%d min"
 msgstr "%d хв"
@@ -780,7 +780,7 @@ msgstr "Більше"
 msgid "By task"
 msgstr "За завданнями"
 
-#: features.js:1172 menu.js:621
+#: features.js:1172 menu.js:626
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Досягнення: %s"
@@ -876,7 +876,7 @@ msgstr "Помилка: меню недоступне"
 msgid "Ready to start"
 msgstr "Готові почати"
 
-#: menu.js:261 menu.js:687
+#: menu.js:261 menu.js:693
 msgid "Task will be selected on start"
 msgstr "Завдання буде вибрано на старті"
 
@@ -885,7 +885,7 @@ msgstr "Завдання буде вибрано на старті"
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:365 menu.js:767
+#: menu.js:365 menu.js:773
 msgid "Start focus"
 msgstr "Почати фокус"
 
@@ -909,7 +909,7 @@ msgstr "Скинути таймер і лічильники"
 msgid "Site blocking"
 msgstr "Блокування сайтів"
 
-#: menu.js:418 menu.js:695 menu.js:930
+#: menu.js:418 menu.js:701 menu.js:936
 msgid "off"
 msgstr "вимк"
 
@@ -929,15 +929,15 @@ msgstr "Режим Дзен"
 msgid "Ambient sound"
 msgstr "Фоновий звук"
 
-#: menu.js:448 menu.js:878
+#: menu.js:448 menu.js:884
 msgid "Focus length"
 msgstr "Довжина фокусу"
 
-#: menu.js:455 menu.js:709 menu.js:925
+#: menu.js:455 menu.js:715 menu.js:931
 msgid "Preset"
 msgstr "Пресет"
 
-#: menu.js:459 menu.js:795
+#: menu.js:459 menu.js:801
 msgid "Task list"
 msgstr "Список завдань"
 
@@ -945,12 +945,12 @@ msgstr "Список завдань"
 msgid "Statistics"
 msgstr "Статистика"
 
-#: menu.js:464 menu.js:583
+#: menu.js:464 menu.js:588
 #, javascript-format
 msgid "Today: %d"
 msgstr "Сьогодні: %d"
 
-#: menu.js:467 menu.js:606
+#: menu.js:467 menu.js:611
 #, javascript-format
 msgid "Streak: %d days (best %d)"
 msgstr "Серія: %d дн. (рекорд %d)"
@@ -967,141 +967,137 @@ msgstr "Майстер налаштування…"
 msgid "SESSION"
 msgstr "СЕСІЯ"
 
-#: menu.js:500
-msgid "Session…"
-msgstr "Сесія…"
-
-#: menu.js:556
+#: menu.js:561
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr "Сьогодні: %d / %d"
 
-#: menu.js:588
+#: menu.js:593
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "Останні 7 днів: %d"
 
-#: menu.js:597
+#: menu.js:602
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "Останні 30 днів: %d"
 
-#: menu.js:600
+#: menu.js:605
 #, javascript-format
 msgid "All time: %d"
 msgstr "За весь час: %d"
 
-#: menu.js:603
+#: menu.js:608
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Час фокусу: %s сьогодні · %s загалом"
 
-#: menu.js:609
+#: menu.js:614
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Найкращий день: %d"
 
-#: menu.js:621
+#: menu.js:626
 msgid "none yet"
 msgstr "поки немає"
 
-#: menu.js:637
+#: menu.js:642
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d з %d"
 
-#: menu.js:639
+#: menu.js:644
 msgid "Long break"
 msgstr "Довга перерва"
 
-#: menu.js:641
+#: menu.js:646
 msgid "Short break"
 msgstr "Коротка перерва"
 
-#: menu.js:644
+#: menu.js:649
 #, javascript-format
 msgid "until %s"
 msgstr "до %s"
 
-#: menu.js:652
+#: menu.js:657
 msgid "Break finished — press Start for focus"
 msgstr "Перерву закінчено — натисніть Старт для фокусу"
 
-#: menu.js:654
+#: menu.js:659
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Завершите завдання до ~%s"
 
-#: menu.js:656
+#: menu.js:661
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "Фокус %d хв — натисніть Старт"
 
-#: menu.js:683 menu.js:685
+#: menu.js:689 menu.js:691
 #, javascript-format
 msgid "Task: %s"
 msgstr "Завдання: %s"
 
-#: menu.js:689
+#: menu.js:695
 msgid "Task: none"
 msgstr "Завдання: немає"
 
-#: menu.js:696 menu.js:931
+#: menu.js:702 menu.js:937
 #, javascript-format
 msgid "blocking %d"
 msgstr "блокує %d"
 
-#: menu.js:696 menu.js:931
+#: menu.js:702 menu.js:937
 #, javascript-format
 msgid "%d in list"
 msgstr "%d у списку"
 
-#: menu.js:746
+#: menu.js:752
 msgid "Resume break"
 msgstr "Продовжити перерву"
 
-#: menu.js:746
+#: menu.js:752
 msgid "Resume focus"
 msgstr "Продовжити фокус"
 
-#: menu.js:753
+#: menu.js:759
 msgid "Focusing — stay with it"
 msgstr "Триває фокус — не відволікайтеся"
 
-#: menu.js:758
+#: menu.js:764
 msgid "Pause focus"
 msgstr "Пауза фокусу"
 
-#: menu.js:758
+#: menu.js:764
 msgid "Pause break"
 msgstr "Пауза перерви"
 
-#: menu.js:763
+#: menu.js:769
 msgid "Start next focus"
 msgstr "Почати наступний фокус"
 
-#: menu.js:805
+#: menu.js:811
 msgid "Add task…"
 msgstr "Додати завдання…"
 
-#: menu.js:815
+#: menu.js:821
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Поки немає завдань — додайте те, над чим працюватимете, з оцінкою в 🍅."
 
-#: menu.js:841
+#: menu.js:847
 msgid "Toggle done (current)"
 msgstr "Позначити виконаним (поточне)"
 
-#: menu.js:844
+#: menu.js:850
 msgid "Delete current"
 msgstr "Видалити поточне"
 
-#: menu.js:853
+#: menu.js:859
 msgid "Save as template…"
 msgstr "Зберегти як шаблон…"
 
-#: menu.js:859
+#: menu.js:865
 #, javascript-format
 msgid "Apply: %s"
 msgstr "Застосувати: %s"
@@ -2378,6 +2374,9 @@ msgid ""
 msgstr ""
 "Виберіть власний зациклений фоновий звук. Залиште порожнім для вбудованого "
 "коричневого шуму."
+
+#~ msgid "Session…"
+#~ msgstr "Сесія…"
 
 #~ msgid "Play soft ambient (brown noise) during focus"
 #~ msgstr "Тихий фон (коричневий шум) під час фокусу"

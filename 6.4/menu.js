@@ -487,22 +487,13 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
     _buildActiveLayout() {
         this._buildStatusHeader();
 
-        // @PUBLIC_STRIP_BEGIN
-        let compact = this._makeCompactInfoRow(this._presetState.activePreset || "unknown", false);
-        // @PUBLIC_STRIP_ELSE
-        // let compact = this._makeCompactInfoRow(this._presetState.activePreset || "unknown");
-        // @PUBLIC_STRIP_END
-        this._compactInfoLabel = compact.label;
-        this.addMenuItem(compact.item);
-
         this._buildPrimaryAction();
 
-        this._sessionSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Session\u2026"));
+        this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         let sr = this._makeSkipResetItems();
-        this._sessionSubmenu.menu.addMenuItem(sr.skipItem);
-        this._sessionSubmenu.menu.addMenuItem(sr.resetItem);
-        this._sessionSubmenu.menu.addMenuItem(this._makeResetAllSubmenu());
-        this.addMenuItem(this._sessionSubmenu);
+        this.addMenuItem(sr.skipItem);
+        this.addMenuItem(sr.resetItem);
+        this.addMenuItem(this._makeResetAllSubmenu());
     }
 
     toggleTimerState(state) {
@@ -526,6 +517,20 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         // Same category: update labels and styles in-place.
         this._applyRuntimeToWidgets(runtime);
+    }
+
+    // Brightest contrasting colour for the popup: near-white on a dark menu,
+    // near-black on a light one. Keeps the big time prominent (like the mock)
+    // without breaking light themes.
+    _brightTextColor() {
+        try {
+            let c = this.box.get_theme_node().get_background_color();
+            if (c.alpha > 20) {
+                let lum = (0.2126 * c.red + 0.7152 * c.green + 0.0722 * c.blue) / 255;
+                return lum < 0.5 ? "rgba(255, 255, 255, 0.96)" : "rgba(20, 20, 20, 0.95)";
+            }
+        } catch (e) {}
+        return "rgba(255, 255, 255, 0.96)";
     }
 
     _applyRuntimeToWidgets(runtime) {
@@ -675,7 +680,8 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
         if (this._timeLeftLabel) {
             this._timeLeftLabel.set_text(timeLeft || "--:--");
-            this._timeLeftLabel.set_style_class_name(isIdle ? "pomodoro-time pomodoro-time-idle" : "pomodoro-time");
+            this._timeLeftLabel.set_style_class_name("pomodoro-time");
+            this._timeLeftLabel.set_style("color: " + this._brightTextColor() + ";");
         }
 
         if (this._taskLabel) {

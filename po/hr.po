@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pomodoro Timer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 23:16+0700\n"
+"POT-Creation-Date: 2026-06-23 23:53+0700\n"
 "PO-Revision-Date: 2017-02-24 23:32+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -27,7 +27,7 @@ msgstr "Strogi fokus je uključen"
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Ostanite uz njega — završite blok ili poništite za novi početak."
 
-#: applet.js:652 applet.js:1990
+#: applet.js:652 applet.js:2006
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Trajanje fokusa: %d min"
@@ -76,7 +76,7 @@ msgstr "Duži predah u tijeku"
 msgid "Long break paused"
 msgstr "Duži predah pauziran"
 
-#: applet.js:1038 applet.js:1430
+#: applet.js:1038 applet.js:1452
 msgid "Break ended"
 msgstr "Predah završen"
 
@@ -98,73 +98,73 @@ msgstr "Pomodoro pauziran"
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Spremni za fokus — kotačićem ili srednjim klikom za početak"
 
-#: applet.js:1199
+#: applet.js:1221
 msgid "Classic"
 msgstr "Klasični"
 
-#: applet.js:1200
+#: applet.js:1222
 msgid "Long focus"
 msgstr "Dugi fokus"
 
-#: applet.js:1410
+#: applet.js:1432
 msgid "Pomodoro started"
 msgstr "Pomodoro je pokrenut"
 
-#: applet.js:1488
+#: applet.js:1510
 msgid "Let's go to work!"
 msgstr "Idemo raditi!"
 
-#: applet.js:1515
+#: applet.js:1537
 msgid "Pomodoro done"
 msgstr "Pomodoro gotov"
 
-#: applet.js:1517
+#: applet.js:1539
 msgid "Take a short break"
 msgstr "Uzmite kratki predah"
 
-#: applet.js:1518 applet.js:1556
+#: applet.js:1540 applet.js:1578
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d min"
 
-#: applet.js:1519 applet.js:1557
+#: applet.js:1541 applet.js:1579
 msgid "Skip break"
 msgstr "Preskoči predah"
 
-#: applet.js:1550
+#: applet.js:1572
 msgid "Set complete!"
 msgstr "Set završen!"
 
-#: applet.js:1555
+#: applet.js:1577
 msgid "Take a long break"
 msgstr "Uzmite duži predah"
 
-#: applet.js:1608
+#: applet.js:1630
 msgid "Pomodoro ended"
 msgstr "Pomodoro je završio"
 
-#: applet.js:1683 applet.js:1707 applet.js:1710
+#: applet.js:1705 applet.js:1729 applet.js:1732
 msgid "Pomodoro preflight failed"
 msgstr "Provjera prije pokretanja Pomodora nije uspjela"
 
-#: applet.js:1879
+#: applet.js:1895
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://hr.wikipedia.org/wiki/Pomodoro_tehnika"
 
-#: applet.js:1956 features.js:1875
+#: applet.js:1972 features.js:1875
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Zaustavite mjerač prije promjene Pomodoro predloška"
 
-#: applet.js:1973
+#: applet.js:1989
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Pomodoro predložak %s primijenjen"
 
-#: applet.js:1985
+#: applet.js:2001
 msgid "Stop the timer before changing the focus length"
 msgstr "Zaustavite mjerač prije promjene trajanja fokusa"
 
-#: applet.js:2002
+#: applet.js:2018
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Predah produžen za %d min"
@@ -602,7 +602,7 @@ msgstr "Primijeni"
 msgid "Apply & start"
 msgstr "Primijeni i pokreni"
 
-#: features.js:806 menu.js:317 menu.js:878 menu.js:884
+#: features.js:806 menu.js:317 menu.js:871 menu.js:877
 #, javascript-format
 msgid "%d min"
 msgstr "%d min"
@@ -908,7 +908,7 @@ msgstr "Poništi mjerač i brojače"
 msgid "Site blocking"
 msgstr "Blokiranje stranica"
 
-#: menu.js:418 menu.js:701 menu.js:936
+#: menu.js:418 menu.js:701 menu.js:929
 msgid "off"
 msgstr "isključeno"
 
@@ -928,11 +928,11 @@ msgstr "Zen način"
 msgid "Ambient sound"
 msgstr "Pozadinski zvuk"
 
-#: menu.js:448 menu.js:884
+#: menu.js:448 menu.js:877
 msgid "Focus length"
 msgstr "Trajanje fokusa"
 
-#: menu.js:455 menu.js:715 menu.js:931
+#: menu.js:455 menu.js:715 menu.js:924
 msgid "Preset"
 msgstr "Predložak"
 
@@ -1041,12 +1041,12 @@ msgstr "Zadatak: %s"
 msgid "Task: none"
 msgstr "Zadatak: nijedan"
 
-#: menu.js:702 menu.js:937
+#: menu.js:702 menu.js:930
 #, javascript-format
 msgid "blocking %d"
 msgstr "blokira %d"
 
-#: menu.js:702 menu.js:937
+#: menu.js:702 menu.js:930
 #, javascript-format
 msgid "%d in list"
 msgstr "%d na popisu"
@@ -1083,23 +1083,6 @@ msgstr "Dodaj zadatak…"
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Još nema zadataka — dodajte ono na što ćete se fokusirati, uz 🍅 procjenu."
-
-#: menu.js:847
-msgid "Toggle done (current)"
-msgstr "Uključi/isključi gotovo (trenutni)"
-
-#: menu.js:850
-msgid "Delete current"
-msgstr "Izbriši trenutni"
-
-#: menu.js:859
-msgid "Save as template…"
-msgstr "Spremi kao predložak…"
-
-#: menu.js:865
-#, javascript-format
-msgid "Apply: %s"
-msgstr "Primijeni: %s"
 
 #. settings-schema.json->sec_preview->title
 #: visual.js:572
@@ -2374,6 +2357,19 @@ msgid ""
 msgstr ""
 "Odaberite vlastiti ponavljajući zvuk okoline. Ostavite prazno za ugrađeni "
 "meki smeđi šum."
+
+#~ msgid "Toggle done (current)"
+#~ msgstr "Uključi/isključi gotovo (trenutni)"
+
+#~ msgid "Delete current"
+#~ msgstr "Izbriši trenutni"
+
+#~ msgid "Save as template…"
+#~ msgstr "Spremi kao predložak…"
+
+#, javascript-format
+#~ msgid "Apply: %s"
+#~ msgstr "Primijeni: %s"
 
 #~ msgid "Session…"
 #~ msgstr "Sesija…"

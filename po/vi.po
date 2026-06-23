@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 23:16+0700\n"
+"POT-Creation-Date: 2026-06-23 23:53+0700\n"
 "PO-Revision-Date: 2025-10-12 13:07+0700\n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: vi\n"
@@ -26,7 +26,7 @@ msgstr "Đã bật tập trung nghiêm ngặt"
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Cứ kiên trì — hoàn thành khối, hoặc đặt lại để làm lại từ đầu."
 
-#: applet.js:652 applet.js:1990
+#: applet.js:652 applet.js:2006
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Độ dài tập trung: %d phút"
@@ -75,7 +75,7 @@ msgstr "Đang nghỉ dài"
 msgid "Long break paused"
 msgstr "Đã tạm dừng nghỉ dài"
 
-#: applet.js:1038 applet.js:1430
+#: applet.js:1038 applet.js:1452
 msgid "Break ended"
 msgstr "Đã hết giờ nghỉ"
 
@@ -97,73 +97,73 @@ msgstr "Đã tạm dừng Pomodoro"
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Sẵn sàng tập trung — cuộn chuột hoặc nhấn nút giữa để bắt đầu"
 
-#: applet.js:1199
+#: applet.js:1221
 msgid "Classic"
 msgstr "Cổ điển"
 
-#: applet.js:1200
+#: applet.js:1222
 msgid "Long focus"
 msgstr "Tập trung dài"
 
-#: applet.js:1410
+#: applet.js:1432
 msgid "Pomodoro started"
 msgstr "Pomodoro đã bắt đầu"
 
-#: applet.js:1488
+#: applet.js:1510
 msgid "Let's go to work!"
 msgstr "Bắt đầu làm việc!"
 
-#: applet.js:1515
+#: applet.js:1537
 msgid "Pomodoro done"
 msgstr "Xong Pomodoro"
 
-#: applet.js:1517
+#: applet.js:1539
 msgid "Take a short break"
 msgstr "Nghỉ ngắn"
 
-#: applet.js:1518 applet.js:1556
+#: applet.js:1540 applet.js:1578
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d phút"
 
-#: applet.js:1519 applet.js:1557
+#: applet.js:1541 applet.js:1579
 msgid "Skip break"
 msgstr "Bỏ qua nghỉ"
 
-#: applet.js:1550
+#: applet.js:1572
 msgid "Set complete!"
 msgstr "Hoàn thành set!"
 
-#: applet.js:1555
+#: applet.js:1577
 msgid "Take a long break"
 msgstr "Nghỉ dài"
 
-#: applet.js:1608
+#: applet.js:1630
 msgid "Pomodoro ended"
 msgstr "Pomodoro kết thúc"
 
-#: applet.js:1683 applet.js:1707 applet.js:1710
+#: applet.js:1705 applet.js:1729 applet.js:1732
 msgid "Pomodoro preflight failed"
 msgstr "Kiểm tra trước khi chạy Pomodoro thất bại"
 
-#: applet.js:1879
+#: applet.js:1895
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "http://vi.wikipedia.org/wiki/Kỹ_thuật_Pomodoro"
 
-#: applet.js:1956 features.js:1875
+#: applet.js:1972 features.js:1875
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Hãy dừng bộ đếm trước khi đổi cấu hình Pomodoro"
 
-#: applet.js:1973
+#: applet.js:1989
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Đã áp dụng cấu hình Pomodoro %s"
 
-#: applet.js:1985
+#: applet.js:2001
 msgid "Stop the timer before changing the focus length"
 msgstr "Hãy dừng bộ đếm trước khi đổi độ dài tập trung"
 
-#: applet.js:2002
+#: applet.js:2018
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Đã kéo dài nghỉ thêm %d phút"
@@ -598,7 +598,7 @@ msgstr "Áp dụng"
 msgid "Apply & start"
 msgstr "Áp dụng và bắt đầu"
 
-#: features.js:806 menu.js:317 menu.js:878 menu.js:884
+#: features.js:806 menu.js:317 menu.js:871 menu.js:877
 #, javascript-format
 msgid "%d min"
 msgstr "%d phút"
@@ -903,7 +903,7 @@ msgstr "Đặt lại bộ đếm giờ và bộ đếm"
 msgid "Site blocking"
 msgstr "Chặn trang web"
 
-#: menu.js:418 menu.js:701 menu.js:936
+#: menu.js:418 menu.js:701 menu.js:929
 msgid "off"
 msgstr "tắt"
 
@@ -923,11 +923,11 @@ msgstr "Chế độ Zen"
 msgid "Ambient sound"
 msgstr "Âm thanh nền"
 
-#: menu.js:448 menu.js:884
+#: menu.js:448 menu.js:877
 msgid "Focus length"
 msgstr "Độ dài tập trung"
 
-#: menu.js:455 menu.js:715 menu.js:931
+#: menu.js:455 menu.js:715 menu.js:924
 msgid "Preset"
 msgstr "Cấu hình sẵn"
 
@@ -1036,12 +1036,12 @@ msgstr "Việc: %s"
 msgid "Task: none"
 msgstr "Việc: không có"
 
-#: menu.js:702 menu.js:937
+#: menu.js:702 menu.js:930
 #, javascript-format
 msgid "blocking %d"
 msgstr "đang chặn %d"
 
-#: menu.js:702 menu.js:937
+#: menu.js:702 menu.js:930
 #, javascript-format
 msgid "%d in list"
 msgstr "%d trong danh sách"
@@ -1077,23 +1077,6 @@ msgstr "Thêm việc…"
 #: menu.js:821
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr "Chưa có việc nào — thêm điều bạn sẽ tập trung, kèm ước lượng 🍅."
-
-#: menu.js:847
-msgid "Toggle done (current)"
-msgstr "Đánh dấu hoàn thành (việc hiện tại)"
-
-#: menu.js:850
-msgid "Delete current"
-msgstr "Xoá việc hiện tại"
-
-#: menu.js:859
-msgid "Save as template…"
-msgstr "Lưu thành mẫu…"
-
-#: menu.js:865
-#, javascript-format
-msgid "Apply: %s"
-msgstr "Áp dụng: %s"
 
 #. settings-schema.json->sec_preview->title
 #: visual.js:572
@@ -2367,6 +2350,19 @@ msgid ""
 msgstr ""
 "Chọn âm thanh nền lặp của riêng bạn. Để trống để dùng tiếng ồn nâu nhẹ tích "
 "hợp."
+
+#~ msgid "Toggle done (current)"
+#~ msgstr "Đánh dấu hoàn thành (việc hiện tại)"
+
+#~ msgid "Delete current"
+#~ msgstr "Xoá việc hiện tại"
+
+#~ msgid "Save as template…"
+#~ msgstr "Lưu thành mẫu…"
+
+#, javascript-format
+#~ msgid "Apply: %s"
+#~ msgstr "Áp dụng: %s"
 
 #~ msgid "Session…"
 #~ msgstr "Phiên…"

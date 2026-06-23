@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 23:16+0700\n"
+"POT-Creation-Date: 2026-06-23 23:53+0700\n"
 "PO-Revision-Date: 2017-06-07 06:28+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -26,7 +26,7 @@ msgstr "Strikt fokus är på"
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Håll ut — slutför passet, eller återställ för att börja om."
 
-#: applet.js:652 applet.js:1990
+#: applet.js:652 applet.js:2006
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Fokuslängd: %d min"
@@ -75,7 +75,7 @@ msgstr "Lång rast pågår"
 msgid "Long break paused"
 msgstr "Lång rast pausad"
 
-#: applet.js:1038 applet.js:1430
+#: applet.js:1038 applet.js:1452
 msgid "Break ended"
 msgstr "Rasten är slut"
 
@@ -97,73 +97,73 @@ msgstr "Pomodoro pausad"
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Redo att fokusera — skrolla eller mittklicka för att starta"
 
-#: applet.js:1199
+#: applet.js:1221
 msgid "Classic"
 msgstr "Klassisk"
 
-#: applet.js:1200
+#: applet.js:1222
 msgid "Long focus"
 msgstr "Långt fokus"
 
-#: applet.js:1410
+#: applet.js:1432
 msgid "Pomodoro started"
 msgstr "Pomodoro startad"
 
-#: applet.js:1488
+#: applet.js:1510
 msgid "Let's go to work!"
 msgstr "Dags att jobba!"
 
-#: applet.js:1515
+#: applet.js:1537
 msgid "Pomodoro done"
 msgstr "Pomodoro klar"
 
-#: applet.js:1517
+#: applet.js:1539
 msgid "Take a short break"
 msgstr "Ta en kort rast"
 
-#: applet.js:1518 applet.js:1556
+#: applet.js:1540 applet.js:1578
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d min"
 
-#: applet.js:1519 applet.js:1557
+#: applet.js:1541 applet.js:1579
 msgid "Skip break"
 msgstr "Hoppa över rast"
 
-#: applet.js:1550
+#: applet.js:1572
 msgid "Set complete!"
 msgstr "Set klart!"
 
-#: applet.js:1555
+#: applet.js:1577
 msgid "Take a long break"
 msgstr "Ta en lång rast"
 
-#: applet.js:1608
+#: applet.js:1630
 msgid "Pomodoro ended"
 msgstr "Pomodoro avslutad"
 
-#: applet.js:1683 applet.js:1707 applet.js:1710
+#: applet.js:1705 applet.js:1729 applet.js:1732
 msgid "Pomodoro preflight failed"
 msgstr "Pomodoros förkontroll misslyckades"
 
-#: applet.js:1879
+#: applet.js:1895
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://sv.wikipedia.org/wiki/Pomodorotekniken"
 
-#: applet.js:1956 features.js:1875
+#: applet.js:1972 features.js:1875
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Stoppa timern innan du byter Pomodoro-förinställning"
 
-#: applet.js:1973
+#: applet.js:1989
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Pomodoro-förinställning %s tillämpad"
 
-#: applet.js:1985
+#: applet.js:2001
 msgid "Stop the timer before changing the focus length"
 msgstr "Stoppa timern innan du ändrar fokuslängden"
 
-#: applet.js:2002
+#: applet.js:2018
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Rast förlängd med %d min"
@@ -600,7 +600,7 @@ msgstr "Tillämpa"
 msgid "Apply & start"
 msgstr "Tillämpa och starta"
 
-#: features.js:806 menu.js:317 menu.js:878 menu.js:884
+#: features.js:806 menu.js:317 menu.js:871 menu.js:877
 #, javascript-format
 msgid "%d min"
 msgstr "%d min"
@@ -906,7 +906,7 @@ msgstr "Återställ timer och räknare"
 msgid "Site blocking"
 msgstr "Webbplatsblockering"
 
-#: menu.js:418 menu.js:701 menu.js:936
+#: menu.js:418 menu.js:701 menu.js:929
 msgid "off"
 msgstr "av"
 
@@ -926,11 +926,11 @@ msgstr "Zen-läge"
 msgid "Ambient sound"
 msgstr "Bakgrundsljud"
 
-#: menu.js:448 menu.js:884
+#: menu.js:448 menu.js:877
 msgid "Focus length"
 msgstr "Fokuslängd"
 
-#: menu.js:455 menu.js:715 menu.js:931
+#: menu.js:455 menu.js:715 menu.js:924
 msgid "Preset"
 msgstr "Förinställning"
 
@@ -1039,12 +1039,12 @@ msgstr "Uppgift: %s"
 msgid "Task: none"
 msgstr "Uppgift: ingen"
 
-#: menu.js:702 menu.js:937
+#: menu.js:702 menu.js:930
 #, javascript-format
 msgid "blocking %d"
 msgstr "blockerar %d"
 
-#: menu.js:702 menu.js:937
+#: menu.js:702 menu.js:930
 #, javascript-format
 msgid "%d in list"
 msgstr "%d i listan"
@@ -1081,23 +1081,6 @@ msgstr "Lägg till uppgift…"
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Inga uppgifter än — lägg till det du ska fokusera på, med en 🍅-uppskattning."
-
-#: menu.js:847
-msgid "Toggle done (current)"
-msgstr "Växla klar (aktuell)"
-
-#: menu.js:850
-msgid "Delete current"
-msgstr "Radera aktuell"
-
-#: menu.js:859
-msgid "Save as template…"
-msgstr "Spara som mall…"
-
-#: menu.js:865
-#, javascript-format
-msgid "Apply: %s"
-msgstr "Tillämpa: %s"
 
 #. settings-schema.json->sec_preview->title
 #: visual.js:572
@@ -2369,6 +2352,19 @@ msgid ""
 msgstr ""
 "Välj ett eget loopande omgivningsljud. Lämna tomt för det inbyggda mjuka "
 "bruna bruset."
+
+#~ msgid "Toggle done (current)"
+#~ msgstr "Växla klar (aktuell)"
+
+#~ msgid "Delete current"
+#~ msgstr "Radera aktuell"
+
+#~ msgid "Save as template…"
+#~ msgstr "Spara som mall…"
+
+#, javascript-format
+#~ msgid "Apply: %s"
+#~ msgstr "Tillämpa: %s"
 
 #~ msgid "Session…"
 #~ msgstr "Session…"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zen-pomodoro@vtestah\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 23:16+0700\n"
+"POT-Creation-Date: 2026-06-23 23:53+0700\n"
 "PO-Revision-Date: 2026-06-22 17:27+0700\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: ru\n"
@@ -22,7 +22,7 @@ msgstr "Строгий фокус включён"
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Не отвлекайтесь — завершите блок или сбросьте, чтобы начать заново."
 
-#: applet.js:652 applet.js:1990
+#: applet.js:652 applet.js:2006
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Длина фокуса: %d мин"
@@ -71,7 +71,7 @@ msgstr "Идёт длинный перерыв"
 msgid "Long break paused"
 msgstr "Длинный перерыв на паузе"
 
-#: applet.js:1038 applet.js:1430
+#: applet.js:1038 applet.js:1452
 msgid "Break ended"
 msgstr "Перерыв окончен"
 
@@ -93,73 +93,73 @@ msgstr "Помидор на паузе"
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Готов к фокусу — прокрутите колесо или средний клик, чтобы начать"
 
-#: applet.js:1199
+#: applet.js:1221
 msgid "Classic"
 msgstr "Классический"
 
-#: applet.js:1200
+#: applet.js:1222
 msgid "Long focus"
 msgstr "Длинный фокус"
 
-#: applet.js:1410
+#: applet.js:1432
 msgid "Pomodoro started"
 msgstr "Помидор запущен"
 
-#: applet.js:1488
+#: applet.js:1510
 msgid "Let's go to work!"
 msgstr "За работу!"
 
-#: applet.js:1515
+#: applet.js:1537
 msgid "Pomodoro done"
 msgstr "Помидор готов"
 
-#: applet.js:1517
+#: applet.js:1539
 msgid "Take a short break"
 msgstr "Сделайте короткий перерыв"
 
-#: applet.js:1518 applet.js:1556
+#: applet.js:1540 applet.js:1578
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d мин"
 
-#: applet.js:1519 applet.js:1557
+#: applet.js:1541 applet.js:1579
 msgid "Skip break"
 msgstr "Пропустить перерыв"
 
-#: applet.js:1550
+#: applet.js:1572
 msgid "Set complete!"
 msgstr "Подход завершён!"
 
-#: applet.js:1555
+#: applet.js:1577
 msgid "Take a long break"
 msgstr "Сделайте длинный перерыв"
 
-#: applet.js:1608
+#: applet.js:1630
 msgid "Pomodoro ended"
 msgstr "Помидор завершён"
 
-#: applet.js:1683 applet.js:1707 applet.js:1710
+#: applet.js:1705 applet.js:1729 applet.js:1732
 msgid "Pomodoro preflight failed"
 msgstr "Предстартовая проверка Pomodoro не пройдена"
 
-#: applet.js:1879
+#: applet.js:1895
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://ru.wikipedia.org/wiki/Метод_помидора"
 
-#: applet.js:1956 features.js:1875
+#: applet.js:1972 features.js:1875
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Остановите таймер перед сменой пресета Pomodoro"
 
-#: applet.js:1973
+#: applet.js:1989
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Применён пресет Pomodoro %s"
 
-#: applet.js:1985
+#: applet.js:2001
 msgid "Stop the timer before changing the focus length"
 msgstr "Остановите таймер, прежде чем менять длину фокуса"
 
-#: applet.js:2002
+#: applet.js:2018
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Перерыв продлён на %d мин"
@@ -599,7 +599,7 @@ msgstr "Применить"
 msgid "Apply & start"
 msgstr "Применить и начать"
 
-#: features.js:806 menu.js:317 menu.js:878 menu.js:884
+#: features.js:806 menu.js:317 menu.js:871 menu.js:877
 #, javascript-format
 msgid "%d min"
 msgstr "%d мин"
@@ -906,7 +906,7 @@ msgstr "Сбросить таймер и счётчики"
 msgid "Site blocking"
 msgstr "Блокировка сайтов"
 
-#: menu.js:418 menu.js:701 menu.js:936
+#: menu.js:418 menu.js:701 menu.js:929
 msgid "off"
 msgstr "выкл"
 
@@ -927,11 +927,11 @@ msgstr "Режим Дзен"
 msgid "Ambient sound"
 msgstr "Фоновый звук"
 
-#: menu.js:448 menu.js:884
+#: menu.js:448 menu.js:877
 msgid "Focus length"
 msgstr "Длина фокуса"
 
-#: menu.js:455 menu.js:715 menu.js:931
+#: menu.js:455 menu.js:715 menu.js:924
 msgid "Preset"
 msgstr "Пресет"
 
@@ -1041,12 +1041,12 @@ msgstr "Задача: %s"
 msgid "Task: none"
 msgstr "Задача: нет"
 
-#: menu.js:702 menu.js:937
+#: menu.js:702 menu.js:930
 #, javascript-format
 msgid "blocking %d"
 msgstr "блокирует %d"
 
-#: menu.js:702 menu.js:937
+#: menu.js:702 menu.js:930
 #, javascript-format
 msgid "%d in list"
 msgstr "%d в списке"
@@ -1082,23 +1082,6 @@ msgstr "Добавить задачу…"
 #: menu.js:821
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr "Пока нет задач — добавьте то, над чем будете работать, с оценкой в 🍅."
-
-#: menu.js:847
-msgid "Toggle done (current)"
-msgstr "Отметить выполнено (текущую)"
-
-#: menu.js:850
-msgid "Delete current"
-msgstr "Удалить текущую"
-
-#: menu.js:859
-msgid "Save as template…"
-msgstr "Сохранить как шаблон…"
-
-#: menu.js:865
-#, javascript-format
-msgid "Apply: %s"
-msgstr "Применить: %s"
 
 #. settings-schema.json->sec_preview->title
 #: visual.js:572
@@ -2367,6 +2350,19 @@ msgid ""
 msgstr ""
 "Выберите свой зацикленный фоновый звук. Оставьте пустым для встроенного "
 "коричневого шума."
+
+#~ msgid "Toggle done (current)"
+#~ msgstr "Отметить выполнено (текущую)"
+
+#~ msgid "Delete current"
+#~ msgstr "Удалить текущую"
+
+#~ msgid "Save as template…"
+#~ msgstr "Сохранить как шаблон…"
+
+#, javascript-format
+#~ msgid "Apply: %s"
+#~ msgstr "Применить: %s"
 
 #~ msgid "Session…"
 #~ msgstr "Сессия…"

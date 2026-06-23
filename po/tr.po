@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 23:16+0700\n"
+"POT-Creation-Date: 2026-06-23 23:53+0700\n"
 "PO-Revision-Date: 2018-11-06 02:05+0300\n"
 "Last-Translator: Gökhan GÖKKAYA <gokhanlnx@gmail.com>\n"
 "Language-Team: Linux Mint Türkiye <gokhanlnx@gmail.com>\n"
@@ -26,7 +26,7 @@ msgstr "Sıkı odak açık"
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Devam et — bloğu bitir ya da baştan başlamak için sıfırla."
 
-#: applet.js:652 applet.js:1990
+#: applet.js:652 applet.js:2006
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Odak uzunluğu: %d dk"
@@ -75,7 +75,7 @@ msgstr "Uzun mola yürütülüyor"
 msgid "Long break paused"
 msgstr "Uzun mola duraklatıldı"
 
-#: applet.js:1038 applet.js:1430
+#: applet.js:1038 applet.js:1452
 msgid "Break ended"
 msgstr "Mola bitti"
 
@@ -97,73 +97,73 @@ msgstr "Pomodoro duraklatıldı"
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Odaklanmaya hazır — başlamak için kaydır ya da orta tıkla"
 
-#: applet.js:1199
+#: applet.js:1221
 msgid "Classic"
 msgstr "Klasik"
 
-#: applet.js:1200
+#: applet.js:1222
 msgid "Long focus"
 msgstr "Uzun odak"
 
-#: applet.js:1410
+#: applet.js:1432
 msgid "Pomodoro started"
 msgstr "Pomodoro başlatıldı"
 
-#: applet.js:1488
+#: applet.js:1510
 msgid "Let's go to work!"
 msgstr "Haydi çalışma başlayalım!"
 
-#: applet.js:1515
+#: applet.js:1537
 msgid "Pomodoro done"
 msgstr "Pomodoro tamamlandı"
 
-#: applet.js:1517
+#: applet.js:1539
 msgid "Take a short break"
 msgstr "Kısa bir mola ver"
 
-#: applet.js:1518 applet.js:1556
+#: applet.js:1540 applet.js:1578
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d dk"
 
-#: applet.js:1519 applet.js:1557
+#: applet.js:1541 applet.js:1579
 msgid "Skip break"
 msgstr "Molayı atla"
 
-#: applet.js:1550
+#: applet.js:1572
 msgid "Set complete!"
 msgstr "Set tamamlandı!"
 
-#: applet.js:1555
+#: applet.js:1577
 msgid "Take a long break"
 msgstr "Uzun bir mola ver"
 
-#: applet.js:1608
+#: applet.js:1630
 msgid "Pomodoro ended"
 msgstr "Pomodoro sona erdi"
 
-#: applet.js:1683 applet.js:1707 applet.js:1710
+#: applet.js:1705 applet.js:1729 applet.js:1732
 msgid "Pomodoro preflight failed"
 msgstr "Pomodoro ön kontrolü başarısız"
 
-#: applet.js:1879
+#: applet.js:1895
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://tr.wikipedia.org/wiki/Pomodoro_Tekniği"
 
-#: applet.js:1956 features.js:1875
+#: applet.js:1972 features.js:1875
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Pomodoro hazır ayarını değiştirmeden önce zamanlayıcıyı durdur"
 
-#: applet.js:1973
+#: applet.js:1989
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Pomodoro hazır ayarı %s uygulandı"
 
-#: applet.js:1985
+#: applet.js:2001
 msgid "Stop the timer before changing the focus length"
 msgstr "Odak uzunluğunu değiştirmeden önce zamanlayıcıyı durdur"
 
-#: applet.js:2002
+#: applet.js:2018
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Mola %d dk uzatıldı"
@@ -600,7 +600,7 @@ msgstr "Uygula"
 msgid "Apply & start"
 msgstr "Uygula ve başla"
 
-#: features.js:806 menu.js:317 menu.js:878 menu.js:884
+#: features.js:806 menu.js:317 menu.js:871 menu.js:877
 #, javascript-format
 msgid "%d min"
 msgstr "%d dk"
@@ -907,7 +907,7 @@ msgstr "Zamanlayıcıyı ve sayaçları sıfırla"
 msgid "Site blocking"
 msgstr "Site engelleme"
 
-#: menu.js:418 menu.js:701 menu.js:936
+#: menu.js:418 menu.js:701 menu.js:929
 msgid "off"
 msgstr "kapalı"
 
@@ -927,11 +927,11 @@ msgstr "Zen modu"
 msgid "Ambient sound"
 msgstr "Ortam sesi"
 
-#: menu.js:448 menu.js:884
+#: menu.js:448 menu.js:877
 msgid "Focus length"
 msgstr "Odak uzunluğu"
 
-#: menu.js:455 menu.js:715 menu.js:931
+#: menu.js:455 menu.js:715 menu.js:924
 msgid "Preset"
 msgstr "Hazır ayar"
 
@@ -1040,12 +1040,12 @@ msgstr "Görev: %s"
 msgid "Task: none"
 msgstr "Görev: yok"
 
-#: menu.js:702 menu.js:937
+#: menu.js:702 menu.js:930
 #, javascript-format
 msgid "blocking %d"
 msgstr "%d engelleniyor"
 
-#: menu.js:702 menu.js:937
+#: menu.js:702 menu.js:930
 #, javascript-format
 msgid "%d in list"
 msgstr "listede %d"
@@ -1081,23 +1081,6 @@ msgstr "Görev ekle…"
 #: menu.js:821
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr "Henüz görev yok — odaklanacağın şeyi 🍅 tahminiyle ekle."
-
-#: menu.js:847
-msgid "Toggle done (current)"
-msgstr "Tamamlandı işaretle (mevcut)"
-
-#: menu.js:850
-msgid "Delete current"
-msgstr "Mevcudu sil"
-
-#: menu.js:859
-msgid "Save as template…"
-msgstr "Şablon olarak kaydet…"
-
-#: menu.js:865
-#, javascript-format
-msgid "Apply: %s"
-msgstr "Uygula: %s"
 
 #. settings-schema.json->sec_preview->title
 #: visual.js:572
@@ -2381,6 +2364,19 @@ msgid ""
 msgstr ""
 "Kendi döngülü ortam sesini seç. Yerleşik yumuşak kahverengi gürültü için boş "
 "bırak."
+
+#~ msgid "Toggle done (current)"
+#~ msgstr "Tamamlandı işaretle (mevcut)"
+
+#~ msgid "Delete current"
+#~ msgstr "Mevcudu sil"
+
+#~ msgid "Save as template…"
+#~ msgstr "Şablon olarak kaydet…"
+
+#, javascript-format
+#~ msgid "Apply: %s"
+#~ msgstr "Uygula: %s"
 
 #~ msgid "Session…"
 #~ msgstr "Oturum…"

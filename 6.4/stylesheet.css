@@ -86,3 +86,13 @@
     color: rgb(220, 120, 120);
     font-weight: bold;
 }
+
+/* Per-task action buttons (complete / delete) in the Task list. */
+.pomodoro-task-btn {
+    padding: 0 5px;
+    color: rgba(150, 150, 150, 0.9);
+}
+.pomodoro-task-btn:hover {
+    background-color: rgba(150, 150, 150, 0.22);
+    border-radius: 5px;
+}

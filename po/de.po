@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 23:16+0700\n"
+"POT-Creation-Date: 2026-06-23 23:53+0700\n"
 "PO-Revision-Date: 2020-11-25 22:30+0100\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: de\n"
@@ -26,7 +26,7 @@ msgstr "Strenger Fokus ist aktiv"
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Dranbleiben — den Block beenden oder zurücksetzen und neu starten."
 
-#: applet.js:652 applet.js:1990
+#: applet.js:652 applet.js:2006
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Fokuslänge: %d Min."
@@ -75,7 +75,7 @@ msgstr "Lange Pause läuft"
 msgid "Long break paused"
 msgstr "Lange Pause angehalten"
 
-#: applet.js:1038 applet.js:1430
+#: applet.js:1038 applet.js:1452
 msgid "Break ended"
 msgstr "Pause beendet"
 
@@ -97,73 +97,73 @@ msgstr "Pomodoro angehalten"
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Bereit für den Fokus — scrollen oder Mittelklick zum Starten"
 
-#: applet.js:1199
+#: applet.js:1221
 msgid "Classic"
 msgstr "Klassisch"
 
-#: applet.js:1200
+#: applet.js:1222
 msgid "Long focus"
 msgstr "Langer Fokus"
 
-#: applet.js:1410
+#: applet.js:1432
 msgid "Pomodoro started"
 msgstr "Pomodoro gestartet"
 
-#: applet.js:1488
+#: applet.js:1510
 msgid "Let's go to work!"
 msgstr "Auf zur Arbeit!"
 
-#: applet.js:1515
+#: applet.js:1537
 msgid "Pomodoro done"
 msgstr "Pomodoro fertig"
 
-#: applet.js:1517
+#: applet.js:1539
 msgid "Take a short break"
 msgstr "Machen sie eine kurze Pause"
 
-#: applet.js:1518 applet.js:1556
+#: applet.js:1540 applet.js:1578
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d Min."
 
-#: applet.js:1519 applet.js:1557
+#: applet.js:1541 applet.js:1579
 msgid "Skip break"
 msgstr "Pause überspringen"
 
-#: applet.js:1550
+#: applet.js:1572
 msgid "Set complete!"
 msgstr "Durchgang abgeschlossen!"
 
-#: applet.js:1555
+#: applet.js:1577
 msgid "Take a long break"
 msgstr "Machen sie eine lange Pause"
 
-#: applet.js:1608
+#: applet.js:1630
 msgid "Pomodoro ended"
 msgstr "Pomodoro beendet"
 
-#: applet.js:1683 applet.js:1707 applet.js:1710
+#: applet.js:1705 applet.js:1729 applet.js:1732
 msgid "Pomodoro preflight failed"
 msgstr "Pomodoro-Vorabprüfung fehlgeschlagen"
 
-#: applet.js:1879
+#: applet.js:1895
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://de.wikipedia.org/wiki/Pomodoro-Technik"
 
-#: applet.js:1956 features.js:1875
+#: applet.js:1972 features.js:1875
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Timer stoppen, bevor die Pomodoro-Voreinstellung gewechselt wird"
 
-#: applet.js:1973
+#: applet.js:1989
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Pomodoro-Voreinstellung %s angewendet"
 
-#: applet.js:1985
+#: applet.js:2001
 msgid "Stop the timer before changing the focus length"
 msgstr "Timer stoppen, bevor die Fokuslänge geändert wird"
 
-#: applet.js:2002
+#: applet.js:2018
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Pause um %d Min. verlängert"
@@ -601,7 +601,7 @@ msgstr "Anwenden"
 msgid "Apply & start"
 msgstr "Anwenden & starten"
 
-#: features.js:806 menu.js:317 menu.js:878 menu.js:884
+#: features.js:806 menu.js:317 menu.js:871 menu.js:877
 #, javascript-format
 msgid "%d min"
 msgstr "%d Min."
@@ -907,7 +907,7 @@ msgstr "Timer und Zähler zurücksetzen"
 msgid "Site blocking"
 msgstr "Website-Blockierung"
 
-#: menu.js:418 menu.js:701 menu.js:936
+#: menu.js:418 menu.js:701 menu.js:929
 msgid "off"
 msgstr "aus"
 
@@ -927,11 +927,11 @@ msgstr "Zen-Modus"
 msgid "Ambient sound"
 msgstr "Hintergrundklang"
 
-#: menu.js:448 menu.js:884
+#: menu.js:448 menu.js:877
 msgid "Focus length"
 msgstr "Fokuslänge"
 
-#: menu.js:455 menu.js:715 menu.js:931
+#: menu.js:455 menu.js:715 menu.js:924
 msgid "Preset"
 msgstr "Voreinstellung"
 
@@ -1040,12 +1040,12 @@ msgstr "Aufgabe: %s"
 msgid "Task: none"
 msgstr "Aufgabe: keine"
 
-#: menu.js:702 menu.js:937
+#: menu.js:702 menu.js:930
 #, javascript-format
 msgid "blocking %d"
 msgstr "blockiert %d"
 
-#: menu.js:702 menu.js:937
+#: menu.js:702 menu.js:930
 #, javascript-format
 msgid "%d in list"
 msgstr "%d in der Liste"
@@ -1082,23 +1082,6 @@ msgstr "Aufgabe hinzufügen…"
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Noch keine Aufgaben — füge hinzu, woran du arbeitest, mit einer 🍅-Schätzung."
-
-#: menu.js:847
-msgid "Toggle done (current)"
-msgstr "Erledigt umschalten (aktuelle)"
-
-#: menu.js:850
-msgid "Delete current"
-msgstr "Aktuelle löschen"
-
-#: menu.js:859
-msgid "Save as template…"
-msgstr "Als Vorlage speichern…"
-
-#: menu.js:865
-#, javascript-format
-msgid "Apply: %s"
-msgstr "Anwenden: %s"
 
 #. settings-schema.json->sec_preview->title
 #: visual.js:572
@@ -2391,6 +2374,19 @@ msgid ""
 msgstr ""
 "Wähle deinen eigenen Endlos-Umgebungsklang. Leer lassen für das eingebaute "
 "sanfte braune Rauschen."
+
+#~ msgid "Toggle done (current)"
+#~ msgstr "Erledigt umschalten (aktuelle)"
+
+#~ msgid "Delete current"
+#~ msgstr "Aktuelle löschen"
+
+#~ msgid "Save as template…"
+#~ msgstr "Als Vorlage speichern…"
+
+#, javascript-format
+#~ msgid "Apply: %s"
+#~ msgstr "Anwenden: %s"
 
 #~ msgid "Session…"
 #~ msgstr "Sitzung…"

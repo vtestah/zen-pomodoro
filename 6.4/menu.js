@@ -808,7 +808,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
         this._tasksSubmenu.menu.removeAll();
         this._taskItems = [];
-        let add = new PopupMenu.PopupMenuItem(_("Add task\u2026"));
+        let add = new PopupMenu.PopupMenuItem(_("Add task…"));
         add.connect('activate', () => this.emit('add-task'));
         this._tasksSubmenu.menu.addMenuItem(add);
         if (this._tasksFinishText) {
@@ -818,55 +818,48 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
         let list = this._tasks || [];
         if (!list.length) {
-            let hint = new PopupMenu.PopupMenuItem(_("No tasks yet — add what you'll focus on, with a \ud83c\udf45 estimate."));
+            let hint = new PopupMenu.PopupMenuItem(_("No tasks yet — add what you'll focus on, with a 🍅 estimate."));
             hint.setSensitive(false);
             hint.label.clutter_text.line_wrap = true;
             hint.label.clutter_text.line_wrap_mode = Pango.WrapMode.WORD_CHAR;
             hint.label.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
             hint.label.set_style("max-width: 25em;");
             this._tasksSubmenu.menu.addMenuItem(hint);
+            return;
         }
-        if (list.length) {
-            this._tasksSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        }
+        this._tasksSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         for (let task of list) {
             let t = task;
-            let label = t.title + "   " + (t.doneToday || 0) + "/" + (t.est || 1) + " \ud83c\udf45";
-            let item = new PopupMenu.PopupMenuItem(label);
+            let item = new PopupMenu.PopupBaseMenuItem();
+            let row = new St.BoxLayout({ vertical: false, x_expand: true });
+            let mark = new St.Label({ text: t.completed ? "✓" : (t.id === this._tasksCurrentId ? "●" : "  ") });
             if (t.completed) {
-                item.setOrnament(PopupMenu.OrnamentType.CHECK, true);
-            } else {
-                item.setOrnament(PopupMenu.OrnamentType.DOT, t.id === this._tasksCurrentId);
+                mark.set_style("color: rgb(120, 205, 155);");
+            } else if (t.id === this._tasksCurrentId) {
+                mark.set_style("color: rgb(235, 175, 75);");
             }
+            row.add_child(mark);
+            let label = new St.Label({ x_expand: true, text: " " + t.title + "   " + (t.doneToday || 0) + "/" + (t.est || 1) + " 🍅" });
+            row.add_child(label);
+            let doneBtn = new St.Button({
+                style_class: "pomodoro-task-btn", can_focus: false,
+                child: new St.Icon({ icon_name: t.completed ? "edit-undo-symbolic" : "object-select-symbolic", icon_size: 14 })
+            });
+            doneBtn.connect('clicked', () => { this.emit('task-complete', t.id); return true; });
+            row.add_child(doneBtn);
+            let delBtn = new St.Button({
+                style_class: "pomodoro-task-btn", can_focus: false,
+                child: new St.Icon({ icon_name: "edit-delete-symbolic", icon_size: 14 })
+            });
+            delBtn.connect('clicked', () => { this.emit('task-delete', t.id); return true; });
+            row.add_child(delBtn);
+            item.addActor(row, { expand: true, span: -1 });
             item.connect('activate', () => this.emit('select-task', t.id));
             this._tasksSubmenu.menu.addMenuItem(item);
             this._taskItems.push({ item: item, task: t });
         }
-        if (list.length) {
-            this._tasksSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-            let done = new PopupMenu.PopupMenuItem(_("Toggle done (current)"));
-            done.connect('activate', () => this.emit('toggle-task-done'));
-            this._tasksSubmenu.menu.addMenuItem(done);
-            let del = new PopupMenu.PopupMenuItem(_("Delete current"));
-            del.connect('activate', () => this.emit('delete-task'));
-            this._tasksSubmenu.menu.addMenuItem(del);
-        }
-        let templates = this._taskTemplates || [];
-        if (list.length || templates.length) {
-            this._tasksSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        }
-        if (list.length) {
-            let save = new PopupMenu.PopupMenuItem(_("Save as template\u2026"));
-            save.connect('activate', () => this.emit('save-template'));
-            this._tasksSubmenu.menu.addMenuItem(save);
-        }
-        for (let tpl of templates) {
-            let nm = tpl.name;
-            let it = new PopupMenu.PopupMenuItem(_("Apply: %s").format(nm));
-            it.connect('activate', () => this.emit('apply-template', nm));
-            this._tasksSubmenu.menu.addMenuItem(it);
-        }
     }
+
 
     _populateFocusLenSubmenu() {
         if (!this._focusLenSubmenu) {

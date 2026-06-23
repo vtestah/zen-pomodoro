@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 23:16+0700\n"
+"POT-Creation-Date: 2026-06-23 23:53+0700\n"
 "PO-Revision-Date: 2024-07-13 03:43+0200\n"
 "Last-Translator: carlos <c.carrizosa@gmx.com>\n"
 "Language-Team: ca\n"
@@ -26,7 +26,7 @@ msgstr "El focus estricte està activat"
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Mantén-t'hi — acaba el bloc o reinicia per començar de nou."
 
-#: applet.js:652 applet.js:1990
+#: applet.js:652 applet.js:2006
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Durada del focus: %d min"
@@ -75,7 +75,7 @@ msgstr "Descans llarg en marxa"
 msgid "Long break paused"
 msgstr "Descans llarg en pausa"
 
-#: applet.js:1038 applet.js:1430
+#: applet.js:1038 applet.js:1452
 msgid "Break ended"
 msgstr "Descans acabat"
 
@@ -97,74 +97,74 @@ msgstr "Pomodoro en pausa"
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "A punt per concentrar-te — desplaça o fes clic central per començar"
 
-#: applet.js:1199
+#: applet.js:1221
 msgid "Classic"
 msgstr "Clàssic"
 
-#: applet.js:1200
+#: applet.js:1222
 msgid "Long focus"
 msgstr "Focus llarg"
 
 # notifications
-#: applet.js:1410
+#: applet.js:1432
 msgid "Pomodoro started"
 msgstr "Inici del pomodoro"
 
-#: applet.js:1488
+#: applet.js:1510
 msgid "Let's go to work!"
 msgstr "A treballar!"
 
-#: applet.js:1515
+#: applet.js:1537
 msgid "Pomodoro done"
 msgstr "Pomodoro fet"
 
-#: applet.js:1517
+#: applet.js:1539
 msgid "Take a short break"
 msgstr "Pren un descans curt"
 
-#: applet.js:1518 applet.js:1556
+#: applet.js:1540 applet.js:1578
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d min"
 
-#: applet.js:1519 applet.js:1557
+#: applet.js:1541 applet.js:1579
 msgid "Skip break"
 msgstr "Omet el descans"
 
-#: applet.js:1550
+#: applet.js:1572
 msgid "Set complete!"
 msgstr "Cicle completat!"
 
-#: applet.js:1555
+#: applet.js:1577
 msgid "Take a long break"
 msgstr "Pren un descans llarg"
 
-#: applet.js:1608
+#: applet.js:1630
 msgid "Pomodoro ended"
 msgstr "Fi del pomodoro"
 
-#: applet.js:1683 applet.js:1707 applet.js:1710
+#: applet.js:1705 applet.js:1729 applet.js:1732
 msgid "Pomodoro preflight failed"
 msgstr "La comprovació prèvia del Pomodoro ha fallat"
 
-#: applet.js:1879
+#: applet.js:1895
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 
-#: applet.js:1956 features.js:1875
+#: applet.js:1972 features.js:1875
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Atura el temporitzador abans de canviar el perfil del Pomodoro"
 
-#: applet.js:1973
+#: applet.js:1989
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Perfil de Pomodoro %s aplicat"
 
-#: applet.js:1985
+#: applet.js:2001
 msgid "Stop the timer before changing the focus length"
 msgstr "Atura el temporitzador abans de canviar la durada del focus"
 
-#: applet.js:2002
+#: applet.js:2018
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Descans ampliat %d min"
@@ -605,7 +605,7 @@ msgstr "Aplica"
 msgid "Apply & start"
 msgstr "Aplica i comença"
 
-#: features.js:806 menu.js:317 menu.js:878 menu.js:884
+#: features.js:806 menu.js:317 menu.js:871 menu.js:877
 #, javascript-format
 msgid "%d min"
 msgstr "%d min"
@@ -915,7 +915,7 @@ msgstr "Reinicia el temporitzador i els comptadors"
 msgid "Site blocking"
 msgstr "Bloqueig de llocs"
 
-#: menu.js:418 menu.js:701 menu.js:936
+#: menu.js:418 menu.js:701 menu.js:929
 msgid "off"
 msgstr "desactivat"
 
@@ -935,11 +935,11 @@ msgstr "Mode Zen"
 msgid "Ambient sound"
 msgstr "So ambient"
 
-#: menu.js:448 menu.js:884
+#: menu.js:448 menu.js:877
 msgid "Focus length"
 msgstr "Durada del focus"
 
-#: menu.js:455 menu.js:715 menu.js:931
+#: menu.js:455 menu.js:715 menu.js:924
 msgid "Preset"
 msgstr "Perfil"
 
@@ -1048,12 +1048,12 @@ msgstr "Tasca: %s"
 msgid "Task: none"
 msgstr "Tasca: cap"
 
-#: menu.js:702 menu.js:937
+#: menu.js:702 menu.js:930
 #, javascript-format
 msgid "blocking %d"
 msgstr "bloquejant %d"
 
-#: menu.js:702 menu.js:937
+#: menu.js:702 menu.js:930
 #, javascript-format
 msgid "%d in list"
 msgstr "%d a la llista"
@@ -1091,23 +1091,6 @@ msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Encara no hi ha tasques — afegeix allò en què et concentraràs, amb una "
 "estimació en 🍅."
-
-#: menu.js:847
-msgid "Toggle done (current)"
-msgstr "Marca com a fet (l'actual)"
-
-#: menu.js:850
-msgid "Delete current"
-msgstr "Suprimeix l'actual"
-
-#: menu.js:859
-msgid "Save as template…"
-msgstr "Desa com a plantilla…"
-
-#: menu.js:865
-#, javascript-format
-msgid "Apply: %s"
-msgstr "Aplica: %s"
 
 #. settings-schema.json->sec_preview->title
 #: visual.js:572
@@ -2409,6 +2392,19 @@ msgid ""
 msgstr ""
 "Tria el teu propi so ambient en bucle. Deixa-ho buit per al soroll marró "
 "integrat."
+
+#~ msgid "Toggle done (current)"
+#~ msgstr "Marca com a fet (l'actual)"
+
+#~ msgid "Delete current"
+#~ msgstr "Suprimeix l'actual"
+
+#~ msgid "Save as template…"
+#~ msgstr "Desa com a plantilla…"
+
+#, javascript-format
+#~ msgid "Apply: %s"
+#~ msgstr "Aplica: %s"
 
 #~ msgid "Session…"
 #~ msgstr "Sessió…"

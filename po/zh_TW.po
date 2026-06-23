@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 23:16+0700\n"
+"POT-Creation-Date: 2026-06-23 23:53+0700\n"
 "PO-Revision-Date: 2025-07-27 02:35+08:00\n"
 "Last-Translator: Peter Dave Hello <hsu@peterdavehello.org>\n"
 "Language-Team: zh_TW\n"
@@ -24,7 +24,7 @@ msgstr "嚴格專注已開啟"
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "堅持下去 — 完成這個區塊，或重設以重新開始。"
 
-#: applet.js:652 applet.js:1990
+#: applet.js:652 applet.js:2006
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "專注時長：%d 分鐘"
@@ -73,7 +73,7 @@ msgstr "長時間休息進行中"
 msgid "Long break paused"
 msgstr "長時間休息已暫停"
 
-#: applet.js:1038 applet.js:1430
+#: applet.js:1038 applet.js:1452
 msgid "Break ended"
 msgstr "休息結束"
 
@@ -95,73 +95,73 @@ msgstr "番茄鐘已暫停"
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "準備專注 — 捲動或按中鍵開始"
 
-#: applet.js:1199
+#: applet.js:1221
 msgid "Classic"
 msgstr "經典"
 
-#: applet.js:1200
+#: applet.js:1222
 msgid "Long focus"
 msgstr "長時間專注"
 
-#: applet.js:1410
+#: applet.js:1432
 msgid "Pomodoro started"
 msgstr "番茄鐘已開始"
 
-#: applet.js:1488
+#: applet.js:1510
 msgid "Let's go to work!"
 msgstr "開始工作吧！"
 
-#: applet.js:1515
+#: applet.js:1537
 msgid "Pomodoro done"
 msgstr "番茄鐘完成"
 
-#: applet.js:1517
+#: applet.js:1539
 msgid "Take a short break"
 msgstr "來個短暫休息"
 
-#: applet.js:1518 applet.js:1556
+#: applet.js:1540 applet.js:1578
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d 分鐘"
 
-#: applet.js:1519 applet.js:1557
+#: applet.js:1541 applet.js:1579
 msgid "Skip break"
 msgstr "跳過休息"
 
-#: applet.js:1550
+#: applet.js:1572
 msgid "Set complete!"
 msgstr "這組完成了！"
 
-#: applet.js:1555
+#: applet.js:1577
 msgid "Take a long break"
 msgstr "來個長時間休息"
 
-#: applet.js:1608
+#: applet.js:1630
 msgid "Pomodoro ended"
 msgstr "番茄鐘已結束"
 
-#: applet.js:1683 applet.js:1707 applet.js:1710
+#: applet.js:1705 applet.js:1729 applet.js:1732
 msgid "Pomodoro preflight failed"
 msgstr "番茄鐘啟動前檢查失敗"
 
-#: applet.js:1879
+#: applet.js:1895
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://zh.wikipedia.org/zh-tw/番茄工作法"
 
-#: applet.js:1956 features.js:1875
+#: applet.js:1972 features.js:1875
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "變更番茄鐘預設組合前請先停止計時器"
 
-#: applet.js:1973
+#: applet.js:1989
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "已套用番茄鐘預設組合 %s"
 
-#: applet.js:1985
+#: applet.js:2001
 msgid "Stop the timer before changing the focus length"
 msgstr "變更專注時長前請先停止計時器"
 
-#: applet.js:2002
+#: applet.js:2018
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "休息已延長 %d 分鐘"
@@ -593,7 +593,7 @@ msgstr "套用"
 msgid "Apply & start"
 msgstr "套用並開始"
 
-#: features.js:806 menu.js:317 menu.js:878 menu.js:884
+#: features.js:806 menu.js:317 menu.js:871 menu.js:877
 #, javascript-format
 msgid "%d min"
 msgstr "%d 分鐘"
@@ -896,7 +896,7 @@ msgstr "重設計時器與計數"
 msgid "Site blocking"
 msgstr "網站封鎖"
 
-#: menu.js:418 menu.js:701 menu.js:936
+#: menu.js:418 menu.js:701 menu.js:929
 msgid "off"
 msgstr "關閉"
 
@@ -916,11 +916,11 @@ msgstr "禪模式"
 msgid "Ambient sound"
 msgstr "背景音效"
 
-#: menu.js:448 menu.js:884
+#: menu.js:448 menu.js:877
 msgid "Focus length"
 msgstr "專注時長"
 
-#: menu.js:455 menu.js:715 menu.js:931
+#: menu.js:455 menu.js:715 menu.js:924
 msgid "Preset"
 msgstr "預設組合"
 
@@ -1029,12 +1029,12 @@ msgstr "任務：%s"
 msgid "Task: none"
 msgstr "任務：無"
 
-#: menu.js:702 menu.js:937
+#: menu.js:702 menu.js:930
 #, javascript-format
 msgid "blocking %d"
 msgstr "正在封鎖 %d"
 
-#: menu.js:702 menu.js:937
+#: menu.js:702 menu.js:930
 #, javascript-format
 msgid "%d in list"
 msgstr "清單中 %d 個"
@@ -1070,23 +1070,6 @@ msgstr "新增任務…"
 #: menu.js:821
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr "尚無任務 — 新增你要專注的項目，並以 🍅 預估。"
-
-#: menu.js:847
-msgid "Toggle done (current)"
-msgstr "切換完成（目前）"
-
-#: menu.js:850
-msgid "Delete current"
-msgstr "刪除目前"
-
-#: menu.js:859
-msgid "Save as template…"
-msgstr "儲存為範本…"
-
-#: menu.js:865
-#, javascript-format
-msgid "Apply: %s"
-msgstr "套用：%s"
 
 #. settings-schema.json->sec_preview->title
 #: visual.js:572
@@ -2299,6 +2282,19 @@ msgid ""
 "Pick your own looping ambient sound. Leave empty for the built-in soft brown "
 "noise."
 msgstr "選擇你自己的循環背景音。留空則使用內建的柔和棕噪音。"
+
+#~ msgid "Toggle done (current)"
+#~ msgstr "切換完成（目前）"
+
+#~ msgid "Delete current"
+#~ msgstr "刪除目前"
+
+#~ msgid "Save as template…"
+#~ msgstr "儲存為範本…"
+
+#, javascript-format
+#~ msgid "Apply: %s"
+#~ msgstr "套用：%s"
 
 #~ msgid "Session…"
 #~ msgstr "工作階段…"

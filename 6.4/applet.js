@@ -1872,17 +1872,11 @@ class PomodoroApplet extends Applet.TextIconApplet {
         menu.connect('select-task', (m, id) => {
             this._setCurrentTaskId(id);
         });
-        menu.connect('toggle-task-done', () => {
-            if (this._tasksData) { this._toggleTaskCompleted(this._tasksData.currentId); }
+        menu.connect('task-complete', (m, id) => {
+            this._toggleTaskCompleted(id);
         });
-        menu.connect('delete-task', () => {
-            if (this._tasksData) { this._deleteTask(this._tasksData.currentId); }
-        });
-        menu.connect('save-template', () => {
-            this._showSaveTemplateDialog();
-        });
-        menu.connect('apply-template', (m, name) => {
-            this._applyTaskTemplate(name);
+        menu.connect('task-delete', (m, id) => {
+            this._deleteTask(id);
         });
 
         menu.connect('skip-timer', () => {

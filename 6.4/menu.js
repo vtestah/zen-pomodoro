@@ -170,7 +170,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         let item = new PopupMenu.PopupBaseMenuItem({ reactive: false });
         let label = new St.Label({
             // @PUBLIC_STRIP_BEGIN
-            text: `${presetLabel} \u00B7 ${sitesBlocked ? _("blocked") : _("ready")}`,
+            text: `${presetLabel}`,
             // @PUBLIC_STRIP_ELSE
             // text: `${presetLabel}`,
             // @PUBLIC_STRIP_END
@@ -383,13 +383,13 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
     }
 
     _makeSkipResetItems() {
-        let skipItem = new PopupMenu.PopupMenuItem(_("Skip step"));
+        let skipItem = new PopupMenu.PopupMenuItem(_("Skip phase"));
         this._skipTimerItem = skipItem;
         skipItem.connect('activate', () => {
             this.emit('skip-timer');
         });
 
-        let resetItem = new PopupMenu.PopupMenuItem(_("Reset session"));
+        let resetItem = new PopupMenu.PopupMenuItem(_("Reset timer"));
         this._resetTimerItem = resetItem;
         resetItem.connect('activate', () => {
             this.toggleTimerState(false);
@@ -401,8 +401,8 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
     _makeResetAllSubmenu() {
         // Confirmation submenu to prevent accidental loss of completed counts.
-        let submenu = new PopupMenu.PopupSubMenuMenuItem(_("Reset all"));
-        let confirm = new PopupMenu.PopupMenuItem(_("Confirm reset of everything"));
+        let submenu = new PopupMenu.PopupSubMenuMenuItem(_("Reset counters"));
+        let confirm = new PopupMenu.PopupMenuItem(_("Reset timer and counters"));
         if (confirm.label) {
             confirm.label.set_style_class_name("pomodoro-reset-confirm");
         }
@@ -420,7 +420,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._buildStatusHeader();
 
         // @PUBLIC_STRIP_BEGIN
-        let sitesRow = this._makeInfoRow(_("Sites"), _("ready"));
+        let sitesRow = this._makeInfoRow(_("Site blocking"), _("off"));
         this._sitesLabel = sitesRow.value;
         this.addMenuItem(sitesRow.item);
         // @PUBLIC_STRIP_END
@@ -466,7 +466,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._populateTasksSubmenu();
 
         this._statsSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Statistics"));
-        let dashItem = new PopupMenu.PopupMenuItem(_("Open dashboard\u2026"));
+        let dashItem = new PopupMenu.PopupMenuItem(_("Details\u2026"));
         dashItem.connect('activate', () => { this.emit('open-stats'); });
         this._statsSubmenu.menu.addMenuItem(dashItem);
         this._statTodayItem = new PopupMenu.PopupMenuItem(_("Today: %d").format(0));
@@ -495,7 +495,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._statsSubmenu.menu.addMenuItem(this._statAchieveItem);
         this.addMenuItem(this._statsSubmenu);
 
-        let quickStart = new PopupMenu.PopupMenuItem(_("Quick start"));
+        let quickStart = new PopupMenu.PopupMenuItem(_("Setup wizard\u2026"));
         quickStart.connect('activate', () => this.emit('open-onboarding'));
         this.addMenuItem(quickStart);
 
@@ -715,10 +715,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
 
         // @PUBLIC_STRIP_BEGIN
-        let sitesText = runtime.focusBlockActive ? _("blocked") : _("ready");
-        if (typeof runtime.blockedSitesCount === "number" && runtime.blockedSitesCount > 0) {
-            sitesText += ` (${runtime.blockedSitesCount})`;
-        }
+        let siteN = (typeof runtime.blockedSitesCount === "number") ? runtime.blockedSitesCount : 0;
+        let sitesText = (siteN <= 0) ? _("off")
+            : (runtime.focusBlockActive ? _("blocking %d").format(siteN) : _("%d in list").format(siteN));
         // @PUBLIC_STRIP_END
 
         // Idle layout: separate Sites and Preset info rows.
@@ -951,11 +950,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
         // @PUBLIC_STRIP_BEGIN
         if (this._compactInfoLabel && preset.activePreset && this._lastRuntimeState) {
-            let blocked = Boolean(this._lastRuntimeState.focusBlockActive);
-            let t = blocked ? _("blocked") : _("ready");
-            if (typeof this._lastRuntimeState.blockedSitesCount === "number" && this._lastRuntimeState.blockedSitesCount > 0) {
-                t += ` (${this._lastRuntimeState.blockedSitesCount})`;
-            }
+            let siteN = (typeof this._lastRuntimeState.blockedSitesCount === "number") ? this._lastRuntimeState.blockedSitesCount : 0;
+            let t = (siteN <= 0) ? _("off")
+                : (this._lastRuntimeState.focusBlockActive ? _("blocking %d").format(siteN) : _("%d in list").format(siteN));
             this._compactInfoLabel.set_text(`${preset.activePreset} \u00B7 ${t}`);
         }
         // @PUBLIC_STRIP_ELSE

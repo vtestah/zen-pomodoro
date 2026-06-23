@@ -7,6 +7,7 @@
             "appearance",
             "focus",
             "sounds",
+            "notifications",
             "advanced"
         ],
         "timer": {
@@ -51,14 +52,20 @@
                 "sec_sounds"
             ]
         },
+        "notifications": {
+            "type": "page",
+            "title": "Push notifications",
+            "sections": [
+                "sec_po",
+                "sec_po_messages",
+                "sec_po_alerts"
+            ]
+        },
         "advanced": {
             "type": "page",
             "title": "Advanced",
             "sections": [
                 "sec_tools",
-                "sec_po",
-                "sec_po_messages",
-                "sec_po_alerts",
                 "sec_blocking",
                 "sec_scripts"
             ]

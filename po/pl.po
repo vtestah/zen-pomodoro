@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 15:47+0700\n"
+"POT-Creation-Date: 2026-06-23 16:16+0700\n"
 "PO-Revision-Date: 2024-04-27 23:12+0200\n"
 "Last-Translator: Krzysztof Kucharski <krzysztof85@gmail.com>\n"
 "Language-Team: Polish\n"
@@ -19,153 +19,153 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: applet.js:575
+#: applet.js:572
 msgid "Strict focus is on"
 msgstr "Ścisłe skupienie włączone"
 
-#: applet.js:575
+#: applet.js:572
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Nie poddawaj się — dokończ blok albo zresetuj, by zacząć od nowa."
 
-#: applet.js:641 applet.js:1966
+#: applet.js:638 applet.js:1963
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Długość skupienia: %d min"
 
-#: applet.js:948
+#: applet.js:945
 msgid "Focus session restored — resume when ready"
 msgstr "Sesja skupienia przywrócona — wznów, gdy będziesz gotów"
 
-#: applet.js:983
+#: applet.js:980
 msgid "FOCUS"
 msgstr "SKUPIENIE"
 
-#: applet.js:985
+#: applet.js:982
 msgid "PAUSED FOCUS"
 msgstr "SKUPIENIE WSTRZYMANE"
 
-#: applet.js:988
+#: applet.js:985
 msgid "BREAK"
 msgstr "PRZERWA"
 
-#: applet.js:991
+#: applet.js:988
 msgid "PAUSED BREAK"
 msgstr "PRZERWA WSTRZYMANA"
 
-#: applet.js:993
+#: applet.js:990
 msgid "BREAK OVER"
 msgstr "KONIEC PRZERWY"
 
-#: applet.js:996 applet.js:1056 menu.js:238 menu.js:658
+#: applet.js:993 applet.js:1053 menu.js:238 menu.js:658
 msgid "Ready to focus"
 msgstr "Gotowy do skupienia"
 
-#: applet.js:1014
+#: applet.js:1011
 msgid "Short break running"
 msgstr "Krótka przerwa"
 
-#: applet.js:1017
+#: applet.js:1014
 msgid "Short break paused"
 msgstr "Krótka przerwa wstrzymana"
 
-#: applet.js:1020
+#: applet.js:1017
 msgid "Long break running"
 msgstr "Długa przerwa"
 
-#: applet.js:1023
+#: applet.js:1020
 msgid "Long break paused"
 msgstr "Długa przerwa wstrzymana"
 
-#: applet.js:1026 applet.js:1418
+#: applet.js:1023 applet.js:1415
 msgid "Break ended"
 msgstr "Przerwa zakończona"
 
-#: applet.js:1029
+#: applet.js:1026
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodoro %d, cykl %d uruchomiony"
 
-#: applet.js:1034 features.js:412 features.js:1097 menu.js:676
+#: applet.js:1031 features.js:412 features.js:1097 menu.js:676
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ koniec %s · zostało %d 🍅"
 
-#: applet.js:1039
+#: applet.js:1036
 msgid "Pomodoro paused"
 msgstr "Pomodoro wstrzymane"
 
-#: applet.js:1042
+#: applet.js:1039
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Gotowy do skupienia — przewiń lub kliknij środkowym, by zacząć"
 
-#: applet.js:1187
+#: applet.js:1184
 msgid "Classic"
 msgstr "Klasyczny"
 
-#: applet.js:1188
+#: applet.js:1185
 msgid "Long focus"
 msgstr "Długie skupienie"
 
 # notifications
-#: applet.js:1398
+#: applet.js:1395
 msgid "Pomodoro started"
 msgstr "Pomodoro rozpoczęte"
 
-#: applet.js:1476
+#: applet.js:1473
 msgid "Let's go to work!"
 msgstr "Do dzieła!"
 
-#: applet.js:1503
+#: applet.js:1500
 msgid "Pomodoro done"
 msgstr "Pomodoro ukończone"
 
-#: applet.js:1505
+#: applet.js:1502
 msgid "Take a short break"
 msgstr "Czas na krótką przerwę"
 
-#: applet.js:1506 applet.js:1544
+#: applet.js:1503 applet.js:1541
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d min"
 
-#: applet.js:1507 applet.js:1545
+#: applet.js:1504 applet.js:1542
 msgid "Skip break"
 msgstr "Pomiń przerwę"
 
-#: applet.js:1538
+#: applet.js:1535
 msgid "Set complete!"
 msgstr "Cykl ukończony!"
 
-#: applet.js:1543
+#: applet.js:1540
 msgid "Take a long break"
 msgstr "Czas na długą przerwę"
 
-#: applet.js:1596
+#: applet.js:1593
 msgid "Pomodoro ended"
 msgstr "Pomodoro zakończone"
 
-#: applet.js:1671 applet.js:1695 applet.js:1698
+#: applet.js:1668 applet.js:1692 applet.js:1695
 msgid "Pomodoro preflight failed"
 msgstr "Kontrola wstępna Pomodoro nie powiodła się"
 
-#: applet.js:1855
+#: applet.js:1852
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://pl.wikipedia.org/wiki/Technika_Pomodoro"
 
-#: applet.js:1932 features.js:1820
+#: applet.js:1929 features.js:1820
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Zatrzymaj minutnik przed zmianą presetu Pomodoro"
 
-#: applet.js:1949
+#: applet.js:1946
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Zastosowano preset Pomodoro %s"
 
-#: applet.js:1961
+#: applet.js:1958
 msgid "Stop the timer before changing the focus length"
 msgstr "Zatrzymaj minutnik przed zmianą długości skupienia"
 
-#: applet.js:1978
+#: applet.js:1975
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Przerwa wydłużona o %d min"
@@ -1315,21 +1315,35 @@ msgstr "Automatyczny start nowego Pomodoro po zakończeniu przerwy"
 msgid "When the long break ends, start a new pomodoro cycle automatically."
 msgstr "Gdy długa przerwa się kończy, automatycznie rozpocznij nowy cykl."
 
-#. settings-schema.json->display_icon->description
-msgid "Display the pomodoro icon in the applet panel"
-msgstr "Wyświetl ikonę Pomodoro w panelu apletów"
+#. settings-schema.json->panel_icon_style->description
+msgid "Panel icon"
+msgstr "Ikona panelu"
 
-#. settings-schema.json->display_icon->tooltip
-msgid "Show the Pomodoro icon in the panel next to the timer."
-msgstr "Pokazuj ikonę Pomodoro na panelu obok minutnika."
+#. settings-schema.json->panel_icon_style->options
+msgid "Progress ring with icon"
+msgstr "Pierścień postępu z ikoną"
 
-#. settings-schema.json->use_symbolic_icon->description
-msgid "Use a symbolic icon in the applet panel"
-msgstr "Użyj symbolicznej ikony w panelu apletów"
+#. settings-schema.json->panel_icon_style->options
+msgid "Symbolic icon"
+msgstr "Ikona symboliczna"
 
-#. settings-schema.json->use_symbolic_icon->tooltip
-msgid "Use a monochrome symbolic icon that follows your panel theme."
-msgstr "Używaj monochromatycznej ikony symbolicznej zgodnej z motywem panelu."
+#. settings-schema.json->panel_icon_style->options
+msgid "Colored icon"
+msgstr "Ikona kolorowa"
+
+#. settings-schema.json->panel_icon_style->options
+msgid "No icon (timer only)"
+msgstr "Bez ikony (tylko czas)"
+
+#. settings-schema.json->panel_icon_style->tooltip
+msgid ""
+"What to show in the panel: a progress ring with the state icon inside "
+"(recommended), a plain symbolic or colored icon, or no icon at all. The "
+"timer text is a separate option below."
+msgstr ""
+"Co pokazywać na panelu: pierścień postępu z ikoną stanu w środku (zalecane),"
+" zwykłą ikonę symboliczną lub kolorową, albo brak ikony. Tekst czasu ustawia"
+" się osobno poniżej."
 
 #. settings-schema.json->show_timer->description
 msgid "Show the pomodoro timer in the applet panel"
@@ -1656,14 +1670,6 @@ msgstr "Podgląd przewodnika oddychania"
 #. settings-schema.json->preview_breathing_button->tooltip
 msgid "Briefly show the breathing guide with the selected pattern."
 msgstr "Krótko pokaż przewodnik oddychania z wybranym wzorcem."
-
-#. settings-schema.json->panel_progress_icon->description
-msgid "Show timer progress as a ring on the panel icon"
-msgstr "Pokazuj postęp minutnika jako pierścień na ikonie panelu"
-
-#. settings-schema.json->panel_progress_icon->tooltip
-msgid "Draw remaining time as a ring around the panel icon."
-msgstr "Rysuj pozostały czas jako pierścień wokół ikony na panelu."
 
 #. settings-schema.json->daily_goal->description
 msgid "Daily focus goal (pomodori, 0 = off)"
@@ -2397,6 +2403,24 @@ msgstr "Cel dzienny — dźwięk"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Cel dzienny — priorytet"
+
+#~ msgid "Display the pomodoro icon in the applet panel"
+#~ msgstr "Wyświetl ikonę Pomodoro w panelu apletów"
+
+#~ msgid "Show the Pomodoro icon in the panel next to the timer."
+#~ msgstr "Pokazuj ikonę Pomodoro na panelu obok minutnika."
+
+#~ msgid "Use a symbolic icon in the applet panel"
+#~ msgstr "Użyj symbolicznej ikony w panelu apletów"
+
+#~ msgid "Use a monochrome symbolic icon that follows your panel theme."
+#~ msgstr "Używaj monochromatycznej ikony symbolicznej zgodnej z motywem panelu."
+
+#~ msgid "Show timer progress as a ring on the panel icon"
+#~ msgstr "Pokazuj postęp minutnika jako pierścień na ikonie panelu"
+
+#~ msgid "Draw remaining time as a ring around the panel icon."
+#~ msgstr "Rysuj pozostały czas jako pierścień wokół ikony na panelu."
 
 #~ msgid "Waiting to start"
 #~ msgstr "Oczekiwanie na rozpoczęcie"

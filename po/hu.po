@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 15:47+0700\n"
+"POT-Creation-Date: 2026-06-23 16:16+0700\n"
 "PO-Revision-Date: 2025-08-07 20:11+0200\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: hu\n"
@@ -17,154 +17,154 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: applet.js:575
+#: applet.js:572
 msgid "Strict focus is on"
 msgstr "Szigorú fókusz bekapcsolva"
 
-#: applet.js:575
+#: applet.js:572
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Tarts ki — fejezd be a blokkot, vagy indítsd újra a nullázással."
 
-#: applet.js:641 applet.js:1966
+#: applet.js:638 applet.js:1963
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Fókusz hossza: %d perc"
 
-#: applet.js:948
+#: applet.js:945
 msgid "Focus session restored — resume when ready"
 msgstr "Fókuszmenet visszaállítva — folytasd, ha készen állsz"
 
-#: applet.js:983
+#: applet.js:980
 msgid "FOCUS"
 msgstr "FÓKUSZ"
 
-#: applet.js:985
+#: applet.js:982
 msgid "PAUSED FOCUS"
 msgstr "FÓKUSZ SZÜNETELTETVE"
 
-#: applet.js:988
+#: applet.js:985
 msgid "BREAK"
 msgstr "SZÜNET"
 
-#: applet.js:991
+#: applet.js:988
 msgid "PAUSED BREAK"
 msgstr "SZÜNET MEGÁLLÍTVA"
 
-#: applet.js:993
+#: applet.js:990
 msgid "BREAK OVER"
 msgstr "SZÜNET VÉGE"
 
-#: applet.js:996 applet.js:1056 menu.js:238 menu.js:658
+#: applet.js:993 applet.js:1053 menu.js:238 menu.js:658
 msgid "Ready to focus"
 msgstr "Készen a fókuszra"
 
-#: applet.js:1014
+#: applet.js:1011
 msgid "Short break running"
 msgstr "Rövid szünet folyamatban"
 
-#: applet.js:1017
+#: applet.js:1014
 msgid "Short break paused"
 msgstr "Rövid szünet szüneteltetve"
 
-#: applet.js:1020
+#: applet.js:1017
 msgid "Long break running"
 msgstr "Hosszú szünet folyamatban"
 
-#: applet.js:1023
+#: applet.js:1020
 msgid "Long break paused"
 msgstr "Hosszú szünet szüneteltetve"
 
-#: applet.js:1026 applet.js:1418
+#: applet.js:1023 applet.js:1415
 msgid "Break ended"
 msgstr "Szünet véget ért"
 
-#: applet.js:1029
+#: applet.js:1026
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodorók %d, állítsa be %d fut"
 
-#: applet.js:1034 features.js:412 features.js:1097 menu.js:676
+#: applet.js:1031 features.js:412 features.js:1097 menu.js:676
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ befejezés %s · %d 🍅 van hátra"
 
-#: applet.js:1039
+#: applet.js:1036
 msgid "Pomodoro paused"
 msgstr "Pomodoro szüneteltetve"
 
-#: applet.js:1042
+#: applet.js:1039
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Készen a fókuszra — görgess vagy középső kattintás az indításhoz"
 
-#: applet.js:1187
+#: applet.js:1184
 msgid "Classic"
 msgstr "Klasszikus"
 
-#: applet.js:1188
+#: applet.js:1185
 msgid "Long focus"
 msgstr "Hosszú fókusz"
 
-#: applet.js:1398
+#: applet.js:1395
 msgid "Pomodoro started"
 msgstr "Pomodoro elindult"
 
-#: applet.js:1476
+#: applet.js:1473
 msgid "Let's go to work!"
 msgstr "Lássunk munkához!"
 
-#: applet.js:1503
+#: applet.js:1500
 msgid "Pomodoro done"
 msgstr "Pomodoro kész"
 
-#: applet.js:1505
+#: applet.js:1502
 msgid "Take a short break"
 msgstr "Tarts egy rövid szünetet"
 
-#: applet.js:1506 applet.js:1544
+#: applet.js:1503 applet.js:1541
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d perc"
 
-#: applet.js:1507 applet.js:1545
+#: applet.js:1504 applet.js:1542
 msgid "Skip break"
 msgstr "Szünet kihagyása"
 
-#: applet.js:1538
+#: applet.js:1535
 msgid "Set complete!"
 msgstr "Sorozat kész!"
 
-#: applet.js:1543
+#: applet.js:1540
 msgid "Take a long break"
 msgstr "Tarts egy hosszú szünetet"
 
-#: applet.js:1596
+#: applet.js:1593
 msgid "Pomodoro ended"
 msgstr "Pomodoro véget ért"
 
-#: applet.js:1671 applet.js:1695 applet.js:1698
+#: applet.js:1668 applet.js:1692 applet.js:1695
 msgid "Pomodoro preflight failed"
 msgstr "A Pomodoro indítás előtti ellenőrzése sikertelen"
 
-#: applet.js:1855
+#: applet.js:1852
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
 "https://en.wikipedia.org/wiki/Pomodoro_Technique Magyar leírás: "
 "https://www.mindenmegtanulhato.hu/a-pomodoro-technika/"
 
-#: applet.js:1932 features.js:1820
+#: applet.js:1929 features.js:1820
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Állítsd le az időzítőt a Pomodoro előbeállítás módosítása előtt"
 
-#: applet.js:1949
+#: applet.js:1946
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "%s Pomodoro előbeállítás alkalmazva"
 
-#: applet.js:1961
+#: applet.js:1958
 msgid "Stop the timer before changing the focus length"
 msgstr "Állítsd le az időzítőt a fókusz hosszának módosítása előtt"
 
-#: applet.js:1978
+#: applet.js:1975
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Szünet meghosszabbítva %d perccel"
@@ -1318,21 +1318,35 @@ msgid "When the long break ends, start a new pomodoro cycle automatically."
 msgstr ""
 "Amikor a hosszú szünet véget ér, automatikusan induljon új pomodoro-ciklus."
 
-#. settings-schema.json->display_icon->description
-msgid "Display the pomodoro icon in the applet panel"
-msgstr "Jelenítse meg a pomodoro ikont a kisalkalmazás panelen"
+#. settings-schema.json->panel_icon_style->description
+msgid "Panel icon"
+msgstr "Panel ikon"
 
-#. settings-schema.json->display_icon->tooltip
-msgid "Show the Pomodoro icon in the panel next to the timer."
-msgstr "A Pomodoro ikon megjelenítése a panelen az időzítő mellett."
+#. settings-schema.json->panel_icon_style->options
+msgid "Progress ring with icon"
+msgstr "Folyamatgyűrű ikonnal"
 
-#. settings-schema.json->use_symbolic_icon->description
-msgid "Use a symbolic icon in the applet panel"
-msgstr "Használjon egy szimbolikus ikont a kisalkalmazás panelen"
+#. settings-schema.json->panel_icon_style->options
+msgid "Symbolic icon"
+msgstr "Szimbolikus ikon"
 
-#. settings-schema.json->use_symbolic_icon->tooltip
-msgid "Use a monochrome symbolic icon that follows your panel theme."
-msgstr "Monokróm szimbolikus ikon használata, amely követi a paneltémát."
+#. settings-schema.json->panel_icon_style->options
+msgid "Colored icon"
+msgstr "Színes ikon"
+
+#. settings-schema.json->panel_icon_style->options
+msgid "No icon (timer only)"
+msgstr "Nincs ikon (csak időzítő)"
+
+#. settings-schema.json->panel_icon_style->tooltip
+msgid ""
+"What to show in the panel: a progress ring with the state icon inside "
+"(recommended), a plain symbolic or colored icon, or no icon at all. The "
+"timer text is a separate option below."
+msgstr ""
+"Mi jelenjen meg a panelen: egy folyamatgyűrű az állapotikonnal a belsejében "
+"(ajánlott), egyszerű szimbolikus vagy színes ikon, vagy egyáltalán nincs "
+"ikon. Az időzítő szövege külön állítható be alább."
 
 #. settings-schema.json->show_timer->description
 msgid "Show the pomodoro timer in the applet panel"
@@ -1659,14 +1673,6 @@ msgstr "Légzésvezető előnézete"
 #. settings-schema.json->preview_breathing_button->tooltip
 msgid "Briefly show the breathing guide with the selected pattern."
 msgstr "Röviden megjeleníti a légzésvezetőt a kiválasztott mintával."
-
-#. settings-schema.json->panel_progress_icon->description
-msgid "Show timer progress as a ring on the panel icon"
-msgstr "Időzítő-folyamat megjelenítése gyűrűként a panelikonon"
-
-#. settings-schema.json->panel_progress_icon->tooltip
-msgid "Draw remaining time as a ring around the panel icon."
-msgstr "A hátralévő idő gyűrűként való rajzolása a panelikon köré."
 
 #. settings-schema.json->daily_goal->description
 msgid "Daily focus goal (pomodori, 0 = off)"
@@ -2417,6 +2423,24 @@ msgstr "Napi cél — hang"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Napi cél — prioritás"
+
+#~ msgid "Display the pomodoro icon in the applet panel"
+#~ msgstr "Jelenítse meg a pomodoro ikont a kisalkalmazás panelen"
+
+#~ msgid "Show the Pomodoro icon in the panel next to the timer."
+#~ msgstr "A Pomodoro ikon megjelenítése a panelen az időzítő mellett."
+
+#~ msgid "Use a symbolic icon in the applet panel"
+#~ msgstr "Használjon egy szimbolikus ikont a kisalkalmazás panelen"
+
+#~ msgid "Use a monochrome symbolic icon that follows your panel theme."
+#~ msgstr "Monokróm szimbolikus ikon használata, amely követi a paneltémát."
+
+#~ msgid "Show timer progress as a ring on the panel icon"
+#~ msgstr "Időzítő-folyamat megjelenítése gyűrűként a panelikonon"
+
+#~ msgid "Draw remaining time as a ring around the panel icon."
+#~ msgstr "A hátralévő idő gyűrűként való rajzolása a panelikon köré."
 
 #~ msgid "Waiting to start"
 #~ msgstr "Várakozás az indításra"

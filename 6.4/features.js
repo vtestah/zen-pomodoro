@@ -1327,6 +1327,96 @@ function install(proto) {
         }
     };
 
+    // Pause external media players (browser tab, music app) during breaks and
+    // pauses, then resume only the ones we paused when focus continues. Uses
+    // the standard MPRIS D-Bus interface, so there is no external dependency.
+    proto._mediaShouldBePaused = function() {
+        if (!this._opt_pauseMedia) {
+            return false;
+        }
+        let s = this._currentState;
+        return (s === 'short-break' || s === 'long-break' ||
+                s === 'pomodoro-paused' || s === 'short-break-paused' ||
+                s === 'long-break-paused');
+    };
+
+    proto._updateMediaPause = function() {
+        if (this._mediaShouldBePaused()) {
+            this._pausePlayingMedia();
+        } else {
+            this._resumePausedMedia();
+        }
+    };
+
+    proto._mprisPlayerCall = function(busName, method) {
+        try {
+            Gio.DBus.session.call(
+                busName, '/org/mpris/MediaPlayer2',
+                'org.mpris.MediaPlayer2.Player', method, null, null,
+                Gio.DBusCallFlags.NONE, 1500, null,
+                (conn, res) => { try { conn.call_finish(res); } catch (e) {} });
+        } catch (e) {}
+    };
+
+    proto._pausePlayingMedia = function() {
+        if (this._mediaPauseInFlight) {
+            return;
+        }
+        this._mediaPauseInFlight = true;
+        try {
+            Gio.DBus.session.call(
+                'org.freedesktop.DBus', '/org/freedesktop/DBus',
+                'org.freedesktop.DBus', 'ListNames', null,
+                GLib.VariantType.new('(as)'), Gio.DBusCallFlags.NONE, 1500, null,
+                (conn, res) => {
+                    this._mediaPauseInFlight = false;
+                    let names;
+                    try { names = conn.call_finish(res).get_child_value(0).deep_unpack(); }
+                    catch (e) { return; }
+                    for (let name of names) {
+                        if (typeof name === 'string' && name.indexOf('org.mpris.MediaPlayer2.') === 0) {
+                            this._pauseIfPlaying(name);
+                        }
+                    }
+                });
+        } catch (e) {
+            this._mediaPauseInFlight = false;
+        }
+    };
+
+    proto._pauseIfPlaying = function(busName) {
+        try {
+            Gio.DBus.session.call(
+                busName, '/org/mpris/MediaPlayer2',
+                'org.freedesktop.DBus.Properties', 'Get',
+                GLib.Variant.new('(ss)', ['org.mpris.MediaPlayer2.Player', 'PlaybackStatus']),
+                GLib.VariantType.new('(v)'), Gio.DBusCallFlags.NONE, 1500, null,
+                (conn, res) => {
+                    let status = '';
+                    try { status = conn.call_finish(res).get_child_value(0).get_variant().get_string()[0]; }
+                    catch (e) { return; }
+                    // Re-check state: a short break may have ended before this returned.
+                    if (status === 'Playing' && this._mediaShouldBePaused()) {
+                        if (this._pausedMediaPlayers.indexOf(busName) === -1) {
+                            this._pausedMediaPlayers.push(busName);
+                        }
+                        this._mprisPlayerCall(busName, 'Pause');
+                    }
+                });
+        } catch (e) {}
+    };
+
+    proto._resumePausedMedia = function() {
+        if (!this._pausedMediaPlayers || this._pausedMediaPlayers.length === 0) {
+            return;
+        }
+        let players = this._pausedMediaPlayers.slice();
+        this._pausedMediaPlayers = [];
+        for (let name of players) {
+            this._mprisPlayerCall(name, 'Play');
+        }
+    };
+
     // Run a user-configured command (argv, no shell) when focus or a break
     // starts. Opt-in and empty by default.
     proto._runEventCommand = function(which) {

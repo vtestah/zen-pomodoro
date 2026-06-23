@@ -217,6 +217,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_flowExtendMinutes = null;
         this._opt_focusAmbientSound = null;
         this._opt_focusDnd = null;
+        this._opt_pauseMedia = null;
+        this._pausedMediaPlayers = [];
+        this._mediaPauseInFlight = false;
         this._opt_runCommandEnabled = null;
         this._opt_focusStartCommand = null;
         this._opt_breakStartCommand = null;
@@ -391,6 +394,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_extend_minutes", "_opt_flowExtendMinutes", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_sound", "_opt_focusAmbientSound", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_dnd", "_opt_focusDnd", () => this._updateDnd());
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pause_media", "_opt_pauseMedia", () => this._updateMediaPause());
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "run_command_enabled", "_opt_runCommandEnabled", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_start_command", "_opt_focusStartCommand", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_start_command", "_opt_breakStartCommand", emptyCallback);
@@ -1241,6 +1245,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._updateIdleWatch();
         this._updateAmbientSound();
         this._updateDnd();
+        this._updateMediaPause();
         this._updateBreathingGuide();
         this._updateZenOverlay();
     }
@@ -2292,6 +2297,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._clearIdleWatches();
         this._stopAllSounds();
         this._disableDnd();
+        this._resumePausedMedia();
         this._stopBreathing();
         if (this._zenOverlay) {
             this._zenOverlay.destroy();

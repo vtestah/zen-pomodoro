@@ -164,6 +164,7 @@
                 "zen_mode_enabled",
                 "focus_until_enabled",
                 "focus_dnd",
+                "pause_media",
                 "strict_focus"
             ]
         },
@@ -697,6 +698,12 @@
         "description": "Mute notifications while focusing (Do Not Disturb)",
         "default": false,
         "tooltip": "Mute Cinnamon notifications while focusing; restored afterwards."
+    },
+    "pause_media": {
+        "type": "switch",
+        "description": "Pause music & video on breaks and pauses",
+        "default": true,
+        "tooltip": "Pauses any playing media (browser tab, music app via MPRIS) when a break or pause starts, and resumes the same players when focus continues."
     },
     "run_command_enabled": {
         "type": "switch",

@@ -165,6 +165,7 @@
             "title": "Ambient & modes",
             "keys": [
                 "focus_ambient_sound",
+                "focus_ambient_file",
                 "focus_ambient_volume",
                 "break_breathing",
                 "zen_mode_enabled",
@@ -664,9 +665,9 @@
     },
     "focus_ambient_sound": {
         "type": "switch",
-        "description": "Play soft ambient (brown noise) during focus",
+        "description": "Play an ambient sound during focus",
         "default": false,
-        "tooltip": "Play soft brown noise during focus."
+        "tooltip": "Loop a soft ambient sound during focus — the built-in brown noise, or your own file below."
     },
     "focus_ambient_volume": {
         "type": "scale",
@@ -676,7 +677,7 @@
         "step": 1,
         "description": "Ambient volume",
         "dependency": "focus_ambient_sound",
-        "tooltip": "Volume of the brown-noise ambient sound (0 = silent)."
+        "tooltip": "Volume of the ambient sound (0 = silent)."
     },
     "break_breathing": {
         "type": "switch",
@@ -1276,5 +1277,12 @@
             "High": "1"
         },
         "dependency": "pushover_enabled"
+    },
+    "focus_ambient_file": {
+        "type": "filechooser",
+        "description": "Ambient sound file",
+        "default": "",
+        "dependency": "focus_ambient_sound",
+        "tooltip": "Pick your own looping ambient sound. Leave empty for the built-in soft brown noise."
     }
 }

@@ -1247,19 +1247,33 @@ function install(proto) {
         }
     };
 
-    proto._startAmbientSound = function() {
-        if (this._ambientSound && this._ambientSound.isPlaying()) {
-            return;
+    // Resolve the ambient sound path: the user's chosen file, or the bundled
+    // brown noise when none is set.
+    proto._ambientPath = function() {
+        let f = (this._opt_focusAmbientFile || "").trim();
+        return f ? f : SoundModule.addPathIfRelative('brownnoise.ogg', this._defaultSoundPath);
+    };
+
+    proto._ensureAmbientSound = function() {
+        let path = this._ambientPath();
+        if (!this._ambientSound || this._ambientSoundPath !== path) {
+            if (this._ambientSound) { this._ambientSound.stop(); }
+            this._ambientSound = new SoundModule.SoundEffect(path);
+            this._ambientSoundPath = path;
         }
+        return this._ambientSound;
+    };
+
+    proto._startAmbientSound = function() {
         if (!SoundModule || typeof SoundModule.isPlayable !== 'function' || !SoundModule.isPlayable()) {
             return;
         }
-        if (!this._ambientSound) {
-            let path = SoundModule.addPathIfRelative('brownnoise.ogg', this._defaultSoundPath);
-            this._ambientSound = new SoundModule.SoundEffect(path);
+        let snd = this._ensureAmbientSound();
+        if (snd.isPlaying()) {
+            return;
         }
         let vol = Math.max(0, Math.min(1, (this._opt_focusAmbientVolume || 40) / 100));
-        this._ambientSound.play({ loop: true, volume: vol });
+        snd.play({ loop: true, volume: vol });
     };
 
     proto._stopAmbientSound = function() {
@@ -1274,7 +1288,9 @@ function install(proto) {
 
     // Live volume: replay the ambient loop at the new level while focusing.
     // Debounced so dragging the slider doesn't stutter the audio.
-    proto._onAmbientVolumeChanged = function() {
+    // Live update while focusing: apply a new volume or a newly chosen sound by
+    // replaying the loop. Debounced so dragging the slider doesn't stutter.
+    proto._restartAmbientLive = function() {
         if (this._ambientVolTimeout) {
             Mainloop.source_remove(this._ambientVolTimeout);
         }
@@ -1283,8 +1299,9 @@ function install(proto) {
             try {
                 if (this._opt_focusAmbientSound && this._currentState === 'pomodoro' &&
                     this._ambientSound && this._ambientSound.isPlaying()) {
+                    let snd = this._ensureAmbientSound();
                     let vol = Math.max(0, Math.min(1, (this._opt_focusAmbientVolume || 40) / 100));
-                    this._ambientSound.play({ loop: true, volume: vol });
+                    snd.play({ loop: true, volume: vol });
                 }
             } catch (e) {}
             return false;

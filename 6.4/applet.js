@@ -256,6 +256,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._dndPrevValue = null;
         this._notificationSettings = null;
         this._opt_focusAmbientVolume = null;
+        this._opt_focusAmbientFile = null;
         this._opt_breakBreathing = null;
         this._opt_zenModeEnabled = null;
         this._opt_focusUntilEnabled = null;
@@ -267,6 +268,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._idleWatchId = 0;
         this._activeWatchId = 0;
         this._ambientSound = null;
+        this._ambientSoundPath = null;
         this._ambientVolTimeout = 0;
         this._zenOverlay = null;
         this._zenTimeLabel = null;
@@ -433,7 +435,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_domains", "_opt_blockDomains", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "enable_blocking", "_opt_enableBlocking", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "onboarding_done", "_opt_onboardingDone", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_volume", "_opt_focusAmbientVolume", this._onAmbientVolumeChanged.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_volume", "_opt_focusAmbientVolume", this._restartAmbientLive.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_file", "_opt_focusAmbientFile", this._restartAmbientLive.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_breathing", "_opt_breakBreathing", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "zen_mode_enabled", "_opt_zenModeEnabled", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_until_enabled", "_opt_focusUntilEnabled", emptyCallback);

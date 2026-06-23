@@ -702,7 +702,7 @@
     "pause_media": {
         "type": "switch",
         "description": "Pause music & video on breaks and pauses",
-        "default": false,
+        "default": true,
         "tooltip": "Pauses any playing media (browser tab, music app via MPRIS) when a break or pause starts, and resumes the same players when focus continues."
     },
     "run_command_enabled": {

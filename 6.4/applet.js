@@ -160,7 +160,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_autoContinueAfterPomodoro = null;
         this._opt_autoContinueAfterShortBreak = null;
         this._opt_autoStartNewAfterFinish = null;
-        this._opt_displayIconInPanel = null;
+        this._opt_panelIconStyle = null;
         this._opt_showTimerInPanel = null;
         this._opt_showSeconds = null;
         this._opt_hotkey = null;
@@ -208,7 +208,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_reduceMotion = null;
         this._opt_menuFontScale = null;
         this._opt_sessionRecovery = null;
-        this._opt_panelProgressIcon = null;
         this._opt_dailyGoal = null;
         this._opt_autoPauseIdle = null;
         this._opt_autoPauseIdleMinutes = null;
@@ -385,7 +384,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
     
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "start_automatically_on_load", "_opt_startAutomaticallyOnLoad", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "session_recovery", "_opt_sessionRecovery", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "panel_progress_icon", "_opt_panelProgressIcon", this._onAppletIconChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "daily_goal", "_opt_dailyGoal", () => { this._updateMenuRuntime(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_pause_idle", "_opt_autoPauseIdle", this._updateIdleWatch.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_pause_idle_minutes", "_opt_autoPauseIdleMinutes", this._updateIdleWatch.bind(this));
@@ -454,8 +452,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "ritual_seconds", "_opt_ritualSeconds", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "reduce_motion", "_opt_reduceMotion", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "menu_font_scale", "_opt_menuFontScale", () => { this._applyAppearance(); });
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "display_icon", "_opt_displayIconInPanel", this._onAppletIconChanged.bind(this));
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "use_symbolic_icon", "_opt_useSymbolicIconInPanel", this._onAppletIconChanged.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "panel_icon_style", "_opt_panelIconStyle", this._onAppletIconChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "show_timer", "_opt_showTimerInPanel", this._onShowTimerChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "show_seconds", "_opt_showSeconds", this._onShowTimerChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "hotkey_toggle", "_opt_hotkeyToggle", this._updateHotkey.bind(this));
@@ -716,7 +713,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this.set_applet_label(timerText);
         }
         this._updateMenuRuntime(ticks);
-        if (this._panelProgressArea && this._opt_panelProgressIcon && this._panelProgressArea.visible) {
+        if (this._panelProgressArea && this._panelProgressArea.visible) {
             this._panelProgressArea.queue_repaint();
         }
     }
@@ -2093,7 +2090,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
     }
 
     _onAppletIconChanged() {
-        if (this._opt_displayIconInPanel) {
+        let style = this._opt_panelIconStyle || "ring";
+        if (style === "symbolic" || style === "colored") {
             this._applet_icon_box.show();
             let appletIconPath = '';
             let appletIconStatus = '';
@@ -2116,7 +2114,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 appletIconStatus = 'system-status-icon error';
                 break;
             }
-            if (this._opt_useSymbolicIconInPanel) {
+            if (style === "symbolic") {
                 this.set_applet_icon_symbolic_path(appletIconPath + "-symbolic.svg");
                 this._applet_icon.set_style_class_name(appletIconStatus);
             } else {
@@ -2130,7 +2128,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
     }
 
     _updatePanelProgressIcon() {
-        if (this._opt_panelProgressIcon) {
+        if ((this._opt_panelIconStyle || "ring") === "ring") {
             if (!this._panelProgressArea) {
                 let size = Math.max(16, Math.min(28, this._panelHeight || 22));
                 this._panelProgressArea = new St.DrawingArea({ reactive: false });

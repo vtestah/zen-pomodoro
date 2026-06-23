@@ -1081,7 +1081,29 @@ class PomodoroApplet extends Applet.TextIconApplet {
     }
 
     _setCurrentFocusTask(task) {
-        this._currentFocusTask = this._normalizeFocusTask(task);
+        let norm = this._normalizeFocusTask(task);
+        this._currentFocusTask = norm;
+        // Unify with the task list: the focus task IS the list's current task,
+        // so each pomodoro's progress tracks exactly what's shown. Find it by
+        // title or add it, then make it the current task.
+        if (!this._tasksData) { return; }
+        if (!norm) {
+            this._tasksData.currentId = "";
+        } else {
+            let existing = this._tasksData.tasks.find((t) => t.title === norm);
+            if (existing) {
+                this._tasksData.currentId = existing.id;
+            } else {
+                let t = {
+                    id: this._newTaskId(), title: norm.slice(0, 120),
+                    est: 1, done: 0, doneToday: 0, completed: false
+                };
+                this._tasksData.tasks.push(t);
+                this._tasksData.currentId = t.id;
+            }
+        }
+        this._saveTasks();
+        this._refreshTasksMenu();
     }
 
     _clearCurrentFocusTask() {

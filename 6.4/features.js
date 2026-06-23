@@ -366,17 +366,17 @@ function install(proto) {
         this._tasksData.tasks.push(task);
         if (!this._tasksData.currentId) {
             this._tasksData.currentId = task.id;
-            this._setCurrentFocusTask(task.title);
+            this._currentFocusTask = task.title;
         }
         this._saveTasks();
         this._refreshTasksMenu();
     };
 
     proto._setCurrentTaskId = function(id) {
-        if (!this._tasksData) { return; }
+        if (!this._tasksData) { this._tasksData = this._defaultTasksData(); }
         this._tasksData.currentId = id || "";
         let t = this._currentTask();
-        if (t) { this._setCurrentFocusTask(t.title); }
+        this._currentFocusTask = t ? t.title : "";
         this._saveTasks();
         this._refreshTasksMenu();
     };

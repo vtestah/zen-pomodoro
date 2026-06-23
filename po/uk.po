@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 22:34+0700\n"
+"POT-Creation-Date: 2026-06-23 22:59+0700\n"
 "PO-Revision-Date: 2022-01-05 13:55+0200\n"
 "Last-Translator: Rutar <RutarAndriy@gmail.com>\n"
 "Language-Team: Ukrainian\n"
@@ -15,7 +15,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.0\n"
 
 #: applet.js:586
@@ -55,7 +56,7 @@ msgstr "ПЕРЕРВА НА ПАУЗІ"
 msgid "BREAK OVER"
 msgstr "ПЕРЕРВУ ЗАКІНЧЕНО"
 
-#: applet.js:1008 applet.js:1068 menu.js:237 menu.js:649
+#: applet.js:1008 applet.js:1068 menu.js:236 menu.js:625
 msgid "Ready to focus"
 msgstr "Готові до фокусу"
 
@@ -84,7 +85,7 @@ msgstr "Перерву закінчено"
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodoro %d, set %d працює"
 
-#: applet.js:1046 features.js:412 features.js:1097 menu.js:671
+#: applet.js:1046 features.js:412 features.js:1097 menu.js:647
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ фініш %s · залишилось %d 🍅"
@@ -590,8 +591,8 @@ msgid ""
 "Based on your answers, here's what I'll set up. Apply it now, then tweak "
 "anything in Settings."
 msgstr ""
-"За вашими відповідями ось що я налаштую. Застосуйте зараз, а пізніше змініть"
-" будь-що в Налаштуваннях."
+"За вашими відповідями ось що я налаштую. Застосуйте зараз, а пізніше змініть "
+"будь-що в Налаштуваннях."
 
 #: features.js:793
 msgid "Apply"
@@ -601,17 +602,17 @@ msgstr "Застосувати"
 msgid "Apply & start"
 msgstr "Застосувати й почати"
 
-#: features.js:806 menu.js:322 menu.js:896 menu.js:902
+#: features.js:806 menu.js:317 menu.js:872 menu.js:878
 #, javascript-format
 msgid "%d min"
 msgstr "%d хв"
 
-#: features.js:810 menu.js:326
+#: features.js:810 menu.js:321
 #, javascript-format
 msgid "%dh %dm"
 msgstr "%d год %d хв"
 
-#: features.js:810 menu.js:326
+#: features.js:810 menu.js:321
 #, javascript-format
 msgid "%dh"
 msgstr "%d год"
@@ -779,7 +780,7 @@ msgstr "Більше"
 msgid "By task"
 msgstr "За завданнями"
 
-#: features.js:1172 menu.js:493 menu.js:645
+#: features.js:1172 menu.js:621
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Досягнення: %s"
@@ -871,236 +872,236 @@ msgstr "Введіть час (ГГ:ХХ)"
 msgid "Error: menu unavailable"
 msgstr "Помилка: меню недоступне"
 
-#: menu.js:258
+#: menu.js:253
 msgid "Ready to start"
 msgstr "Готові почати"
 
-#: menu.js:266 menu.js:711
+#: menu.js:261 menu.js:687
 msgid "Task will be selected on start"
 msgstr "Завдання буде вибрано на старті"
 
-#: menu.js:362
+#: menu.js:357
 #, javascript-format
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:370 menu.js:791
+#: menu.js:365 menu.js:767
 msgid "Start focus"
 msgstr "Почати фокус"
 
-#: menu.js:386
+#: menu.js:381
 msgid "Skip phase"
 msgstr "Пропустити етап"
 
-#: menu.js:392
+#: menu.js:387
 msgid "Reset timer"
 msgstr "Скинути таймер"
 
-#: menu.js:404
+#: menu.js:399
 msgid "Reset counters"
 msgstr "Скинути лічильники"
 
-#: menu.js:405
+#: menu.js:400
 msgid "Reset timer and counters"
 msgstr "Скинути таймер і лічильники"
 
-#: menu.js:423
+#: menu.js:418
 msgid "Site blocking"
 msgstr "Блокування сайтів"
 
-#: menu.js:423 menu.js:719 menu.js:954
+#: menu.js:418 menu.js:695 menu.js:930
 msgid "off"
 msgstr "вимк"
 
-#: menu.js:430
+#: menu.js:425
 msgid "Current task…"
 msgstr "Поточне завдання…"
 
-#: menu.js:436
+#: menu.js:431
 msgid "Focus until…"
 msgstr "Фокус до…"
 
-#: menu.js:442
+#: menu.js:437
 msgid "Zen mode"
 msgstr "Режим Дзен"
 
-#: menu.js:449
+#: menu.js:444
 msgid "Ambient sound"
 msgstr "Фоновий звук"
 
-#: menu.js:453 menu.js:902
+#: menu.js:448 menu.js:878
 msgid "Focus length"
 msgstr "Довжина фокусу"
 
-#: menu.js:460 menu.js:733 menu.js:949
+#: menu.js:455 menu.js:709 menu.js:925
 msgid "Preset"
 msgstr "Пресет"
 
-#: menu.js:464 menu.js:819
+#: menu.js:459 menu.js:795
 msgid "Task list"
 msgstr "Список завдань"
 
-#: menu.js:468
+#: menu.js:463
 msgid "Statistics"
 msgstr "Статистика"
 
-#: menu.js:469
-msgid "Details…"
-msgstr "Детальніше…"
-
-#: menu.js:472 menu.js:607
+#: menu.js:464 menu.js:583
 #, javascript-format
 msgid "Today: %d"
 msgstr "Сьогодні: %d"
 
-#: menu.js:475 menu.js:612
-#, javascript-format
-msgid "Last 7 days: %d"
-msgstr "Останні 7 днів: %d"
-
-#: menu.js:478 menu.js:621
-#, javascript-format
-msgid "Last 30 days: %d"
-msgstr "Останні 30 днів: %d"
-
-#: menu.js:481 menu.js:624
-#, javascript-format
-msgid "All time: %d"
-msgstr "За весь час: %d"
-
-#: menu.js:484 menu.js:627
-#, javascript-format
-msgid "Focus time: %s today · %s total"
-msgstr "Час фокусу: %s сьогодні · %s загалом"
-
-#: menu.js:487 menu.js:630
+#: menu.js:467 menu.js:606
 #, javascript-format
 msgid "Streak: %d days (best %d)"
 msgstr "Серія: %d дн. (рекорд %d)"
 
-#: menu.js:490 menu.js:633
-#, javascript-format
-msgid "Best day: %d"
-msgstr "Найкращий день: %d"
+#: menu.js:470
+msgid "Details…"
+msgstr "Детальніше…"
 
-#: menu.js:493 menu.js:645
-msgid "none yet"
-msgstr "поки немає"
-
-#: menu.js:498
+#: menu.js:474
 msgid "Setup wizard…"
 msgstr "Майстер налаштування…"
 
-#: menu.js:503
+#: menu.js:479
 msgid "SESSION"
 msgstr "СЕСІЯ"
 
-#: menu.js:524
+#: menu.js:500
 msgid "Session…"
 msgstr "Сесія…"
 
-#: menu.js:580
+#: menu.js:556
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr "Сьогодні: %d / %d"
 
-#: menu.js:661
+#: menu.js:588
+#, javascript-format
+msgid "Last 7 days: %d"
+msgstr "Останні 7 днів: %d"
+
+#: menu.js:597
+#, javascript-format
+msgid "Last 30 days: %d"
+msgstr "Останні 30 днів: %d"
+
+#: menu.js:600
+#, javascript-format
+msgid "All time: %d"
+msgstr "За весь час: %d"
+
+#: menu.js:603
+#, javascript-format
+msgid "Focus time: %s today · %s total"
+msgstr "Час фокусу: %s сьогодні · %s загалом"
+
+#: menu.js:609
+#, javascript-format
+msgid "Best day: %d"
+msgstr "Найкращий день: %d"
+
+#: menu.js:621
+msgid "none yet"
+msgstr "поки немає"
+
+#: menu.js:637
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d з %d"
 
-#: menu.js:663
+#: menu.js:639
 msgid "Long break"
 msgstr "Довга перерва"
 
-#: menu.js:665
+#: menu.js:641
 msgid "Short break"
 msgstr "Коротка перерва"
 
-#: menu.js:668
+#: menu.js:644
 #, javascript-format
 msgid "until %s"
 msgstr "до %s"
 
-#: menu.js:676
+#: menu.js:652
 msgid "Break finished — press Start for focus"
 msgstr "Перерву закінчено — натисніть Старт для фокусу"
 
-#: menu.js:678
+#: menu.js:654
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Завершите завдання до ~%s"
 
-#: menu.js:680
+#: menu.js:656
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "Фокус %d хв — натисніть Старт"
 
-#: menu.js:707 menu.js:709
+#: menu.js:683 menu.js:685
 #, javascript-format
 msgid "Task: %s"
 msgstr "Завдання: %s"
 
-#: menu.js:713
+#: menu.js:689
 msgid "Task: none"
 msgstr "Завдання: немає"
 
-#: menu.js:720 menu.js:955
+#: menu.js:696 menu.js:931
 #, javascript-format
 msgid "blocking %d"
 msgstr "блокує %d"
 
-#: menu.js:720 menu.js:955
+#: menu.js:696 menu.js:931
 #, javascript-format
 msgid "%d in list"
 msgstr "%d у списку"
 
-#: menu.js:770
+#: menu.js:746
 msgid "Resume break"
 msgstr "Продовжити перерву"
 
-#: menu.js:770
+#: menu.js:746
 msgid "Resume focus"
 msgstr "Продовжити фокус"
 
-#: menu.js:777
+#: menu.js:753
 msgid "Focusing — stay with it"
 msgstr "Триває фокус — не відволікайтеся"
 
-#: menu.js:782
+#: menu.js:758
 msgid "Pause focus"
 msgstr "Пауза фокусу"
 
-#: menu.js:782
+#: menu.js:758
 msgid "Pause break"
 msgstr "Пауза перерви"
 
-#: menu.js:787
+#: menu.js:763
 msgid "Start next focus"
 msgstr "Почати наступний фокус"
 
-#: menu.js:829
+#: menu.js:805
 msgid "Add task…"
 msgstr "Додати завдання…"
 
-#: menu.js:839
+#: menu.js:815
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Поки немає завдань — додайте те, над чим працюватимете, з оцінкою в 🍅."
 
-#: menu.js:865
+#: menu.js:841
 msgid "Toggle done (current)"
 msgstr "Позначити виконаним (поточне)"
 
-#: menu.js:868
+#: menu.js:844
 msgid "Delete current"
 msgstr "Видалити поточне"
 
-#: menu.js:877
+#: menu.js:853
 msgid "Save as template…"
 msgstr "Зберегти як шаблон…"
 
-#: menu.js:883
+#: menu.js:859
 #, javascript-format
 msgid "Apply: %s"
 msgstr "Застосувати: %s"
@@ -1228,8 +1229,7 @@ msgid "Long Break Duration:"
 msgstr "Тривалість довгої перерви:"
 
 #. settings-schema.json->long_break_duration->tooltip
-msgid ""
-"Length of the longer break after a set of pomodoros (classic is 15–30)."
+msgid "Length of the longer break after a set of pomodoros (classic is 15–30)."
 msgstr "Довжина довгої перерви після серії Pomodoro (класично 15–30)."
 
 #. settings-schema.json->pomodori_number->description
@@ -1237,8 +1237,7 @@ msgid "Number of pomodori before long break:"
 msgstr "Кількість Pomodoro перед великою перервою:"
 
 #. settings-schema.json->pomodori_number->tooltip
-msgid ""
-"How many focus blocks to complete before the long break (classic is 4)."
+msgid "How many focus blocks to complete before the long break (classic is 4)."
 msgstr "Скільки блоків фокусу завершити до довгої перерви (класично — 4)."
 
 #. settings-schema.json->start_automatically_on_load->description
@@ -1255,8 +1254,8 @@ msgid ""
 "Recover an in-progress focus session after a Cinnamon restart (resume "
 "manually)"
 msgstr ""
-"Відновлювати незавершену сесію фокусу після перезапуску Cinnamon (продовжити"
-" вручну)"
+"Відновлювати незавершену сесію фокусу після перезапуску Cinnamon (продовжити "
+"вручну)"
 
 #. settings-schema.json->session_recovery->tooltip
 msgid ""
@@ -1331,8 +1330,8 @@ msgid ""
 "all. The timer text is a separate option below."
 msgstr ""
 "Що показувати на панелі: кільце прогресу з піктограмою стану всередині "
-"(рекомендовано), символічну піктограму, власну піктограму, або нічого. Текст"
-" таймера налаштовується окремо нижче."
+"(рекомендовано), символічну піктограму, власну піктограму, або нічого. Текст "
+"таймера налаштовується окремо нижче."
 
 #. settings-schema.json->panel_custom_icon->description
 msgid "Custom panel icon"
@@ -1405,9 +1404,9 @@ msgstr "Керувати таймером мишею на панелі"
 
 #. settings-schema.json->panel_scroll_control->tooltip
 msgid ""
-"Scroll up on the applet to start or resume, scroll down to pause, and "
-"middle-click to skip the phase. Turn this off if you sometimes scroll over "
-"the panel by accident."
+"Scroll up on the applet to start or resume, scroll down to pause, and middle-"
+"click to skip the phase. Turn this off if you sometimes scroll over the "
+"panel by accident."
 msgstr ""
 "Прокрутка вгору по аплету — старт або продовження, вниз — пауза, середній "
 "клік — пропустити фазу. Вимкніть, якщо іноді випадково прокручуєте над "
@@ -1453,8 +1452,8 @@ msgstr ""
 
 #. settings-schema.json->focus_start_ritual->description
 msgid ""
-"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus"
-" begins"
+"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus "
+"begins"
 msgstr ""
 "Ритуал старту: коротка надпис «Фокус: <завдання>» по центру та плавна поява "
 "на початку фокусу"
@@ -1505,8 +1504,8 @@ msgid ""
 "Color scheme for accents and on-screen cues. Choose Custom to set your own "
 "focus/break colors below."
 msgstr ""
-"Кольорова схема акцентів та екранних підказок. Виберіть «Custom», щоб задати"
-" власні кольори фокусу/перерви нижче."
+"Кольорова схема акцентів та екранних підказок. Виберіть «Custom», щоб задати "
+"власні кольори фокусу/перерви нижче."
 
 #. settings-schema.json->accent_focus_color->description
 msgid "Custom focus accent color"
@@ -1558,8 +1557,8 @@ msgstr "Інтенсивність сяйва"
 
 #. settings-schema.json->glow_intensity->tooltip
 msgid ""
-"How bright the on-screen edge glow is during focus — higher is more visible,"
-" lower is subtler."
+"How bright the on-screen edge glow is during focus — higher is more visible, "
+"lower is subtler."
 msgstr ""
 "Наскільки яскраво світиться край екрана під час фокусу — вище помітніше, "
 "нижче м’якше."
@@ -1591,8 +1590,8 @@ msgstr "Розслаблення 4-6"
 
 #. settings-schema.json->breathing_pattern->tooltip
 msgid ""
-"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6"
-" — seconds per phase."
+"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 "
+"— seconds per phase."
 msgstr ""
 "Ритм дихання для гіда: Box (4-4-4-4), заспокійливий 4-7-8 або розслаблений "
 "4-6 — секунди на фазу."
@@ -1652,8 +1651,8 @@ msgstr "Перегляд рамки фокусу"
 
 #. settings-schema.json->preview_appearance_button->tooltip
 msgid ""
-"Briefly show the on-screen focus frame and task chip with the current colors"
-" and style (works when no timer is running)."
+"Briefly show the on-screen focus frame and task chip with the current colors "
+"and style (works when no timer is running)."
 msgstr ""
 "Стисло показати екранну рамку фокусу та плашку завдання з поточними "
 "кольорами та стилем (працює, коли таймер не запущено)."
@@ -1764,8 +1763,8 @@ msgstr "Суворий фокус: без паузи та пропуску пі�
 
 #. settings-schema.json->strict_focus->tooltip
 msgid ""
-"While a focus block is running, hide pause and skip so you commit to it. You"
-" can still Reset to abandon the session — it's never a hard lock."
+"While a focus block is running, hide pause and skip so you commit to it. You "
+"can still Reset to abandon the session — it's never a hard lock."
 msgstr ""
 "Поки триває блок фокусу, паузу та пропуск приховано, щоб ви не "
 "відволікалися. Сесію все одно можна скинути — це не жорстке блокування."
@@ -1816,8 +1815,8 @@ msgid ""
 "Command run when a focus block starts (e.g. update your chat status). No "
 "shell pipes or redirects."
 msgstr ""
-"Команда, що виконується на старті фокусу (наприклад, оновити статус у чаті)."
-" Без shell-конвеєрів і перенаправлень."
+"Команда, що виконується на старті фокусу (наприклад, оновити статус у чаті). "
+"Без shell-конвеєрів і перенаправлень."
 
 #. settings-schema.json->break_start_command->description
 msgid "Command to run when a break starts"
@@ -1841,8 +1840,7 @@ msgstr ""
 
 #. settings-schema.json->pushover_help->description
 msgid ""
-"Free phone/desktop alerts. Sign up at pushover.net and paste your keys "
-"below."
+"Free phone/desktop alerts. Sign up at pushover.net and paste your keys below."
 msgstr ""
 "Безкоштовні сповіщення на телефон/ПК. Зареєструйтесь на pushover.net і "
 "вставте ключі нижче."
@@ -1879,8 +1877,8 @@ msgstr "Налаштувати тексти, звуки та пріоритет"
 
 #. settings-schema.json->pushover_customize->tooltip
 msgid ""
-"Show options to change the text, sound and priority for each event. Off uses"
-" sensible defaults."
+"Show options to change the text, sound and priority for each event. Off uses "
+"sensible defaults."
 msgstr ""
 "Показати параметри зміни тексту, звуку та пріоритету для кожної події. Якщо "
 "вимкнено — використовуються розумні значення за замовчуванням."
@@ -1920,8 +1918,8 @@ msgstr "Блокувати відволікаючі сайти під час ф�
 
 #. settings-schema.json->enable_blocking->tooltip
 msgid ""
-"When on, the sites below are blocked automatically during each focus session"
-" and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
+"When on, the sites below are blocked automatically during each focus session "
+"and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
 "doesn't ask for a password each time."
 msgstr ""
 "Коли увімкнено, сайти нижче автоматично блокуються протягом кожної сесії "
@@ -1938,11 +1936,11 @@ msgstr "Домен"
 
 #. settings-schema.json->block_domains->tooltip
 msgid ""
-"Domains to block during focus, one per row (e.g. youtube.com, "
-"www.youtube.com)."
+"Domains to block during focus, one per row (e.g. youtube.com, www.youtube."
+"com)."
 msgstr ""
-"Домени для блокування під час фокусу, по одному в рядку (наприклад, "
-"youtube.com, www.youtube.com)."
+"Домени для блокування під час фокусу, по одному в рядку (наприклад, youtube."
+"com, www.youtube.com)."
 
 #. settings-schema.json->sox-info->description
 msgid ""
@@ -2214,8 +2212,8 @@ msgid ""
 "Sent when a short break begins. {task} and {minutes} are substituted. Leave "
 "empty to send nothing."
 msgstr ""
-"Надсилається на старті короткої перерви. {task} та {minutes} підставляються."
-" Залиште порожнім — нічого не надсилати."
+"Надсилається на старті короткої перерви. {task} та {minutes} підставляються. "
+"Залиште порожнім — нічого не надсилати."
 
 #. settings-schema.json->pushover_msg_long_break->description
 msgid "Message when a long break starts"
@@ -2375,8 +2373,8 @@ msgstr "Файл фонового звуку"
 
 #. settings-schema.json->focus_ambient_file->tooltip
 msgid ""
-"Pick your own looping ambient sound. Leave empty for the built-in soft brown"
-" noise."
+"Pick your own looping ambient sound. Leave empty for the built-in soft brown "
+"noise."
 msgstr ""
 "Виберіть власний зациклений фоновий звук. Залиште порожнім для вбудованого "
 "коричневого шуму."
@@ -2392,19 +2390,19 @@ msgstr ""
 
 #~ msgid ""
 #~ "Pushover sends alerts to your phone or desktop. Create a free account at "
-#~ "pushover.net, copy your User Key, then create an Application there to get an"
-#~ " API Token."
+#~ "pushover.net, copy your User Key, then create an Application there to get "
+#~ "an API Token."
 #~ msgstr ""
-#~ "Pushover надсилає сповіщення на телефон або комп’ютер. Створіть безкоштовний"
-#~ " акаунт на pushover.net, скопіюйте свій User Key, а потім створіть "
-#~ "Application, щоб отримати API Token."
+#~ "Pushover надсилає сповіщення на телефон або комп’ютер. Створіть "
+#~ "безкоштовний акаунт на pushover.net, скопіюйте свій User Key, а потім "
+#~ "створіть Application, щоб отримати API Token."
 
 #~ msgid ""
 #~ "No sound backend was found. Install GSound or a sound player (e.g. the "
 #~ "'pulseaudio-utils' or 'sox' package) to enable sounds."
 #~ msgstr ""
-#~ "Звуковий backend не знайдено. Встановіть GSound або програвач (напр. пакет "
-#~ "«pulseaudio-utils» чи «sox»), щоб увімкнути звук."
+#~ "Звуковий backend не знайдено. Встановіть GSound або програвач (напр. "
+#~ "пакет «pulseaudio-utils» чи «sox»), щоб увімкнути звук."
 
 #~ msgid "Passwordless blocking enabled (asks once per session)."
 #~ msgstr "Безпарольне блокування увімкнено (запитає один раз за сесію)."
@@ -2414,21 +2412,21 @@ msgstr ""
 
 #~ msgid ""
 #~ "After setup, never ask for a password. Off (default) asks once per login "
-#~ "session. Convenient but less safe: any local program could then change your "
-#~ "blocklist without asking."
+#~ "session. Convenient but less safe: any local program could then change "
+#~ "your blocklist without asking."
 #~ msgstr ""
 #~ "Після налаштування ніколи не запитувати пароль. Вимк (за замовчуванням) — "
 #~ "запитає один раз за сеанс входу. Зручно, але менш безпечно: будь-яка "
 #~ "локальна програма зможе змінювати список блокування без запиту."
 
 #~ msgid ""
-#~ "Asks for your password once and installs a small system policy so blocking "
-#~ "no longer prompts every time. Uses the mode selected above; re-run after "
-#~ "changing the mode."
+#~ "Asks for your password once and installs a small system policy so "
+#~ "blocking no longer prompts every time. Uses the mode selected above; re-"
+#~ "run after changing the mode."
 #~ msgstr ""
 #~ "Один раз запитає пароль і встановить невелику системну політику, щоб "
-#~ "блокування більше не запитувало щоразу. Використовує режим, вибраний вище; "
-#~ "після зміни режиму запустіть знову."
+#~ "блокування більше не запитувало щоразу. Використовує режим, вибраний "
+#~ "вище; після зміни режиму запустіть знову."
 
 #~ msgid "Could not open the hosts file"
 #~ msgstr "Не вдалося відкрити файл hosts"
@@ -2437,8 +2435,8 @@ msgstr ""
 #~ msgstr "Редагувати /etc/hosts вручну (адмін)"
 
 #~ msgid ""
-#~ "Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only"
-#~ " manages its own clearly-marked section."
+#~ "Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro "
+#~ "only manages its own clearly-marked section."
 #~ msgstr ""
 #~ "Відкриває /etc/hosts у редакторі з правами адміністратора. Zen Pomodoro "
 #~ "керує лише власною позначеною секцією."
@@ -2453,7 +2451,8 @@ msgstr ""
 #~ msgstr "Відволікання розблоковано."
 
 #~ msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
-#~ msgstr "Увімкнути блокування відволікань (редагує /etc/hosts із запитом прав)"
+#~ msgstr ""
+#~ "Увімкнути блокування відволікань (редагує /etc/hosts із запитом прав)"
 
 #~ msgid ""
 #~ "Block distracting sites by editing /etc/hosts (asks for your password)."
@@ -2474,8 +2473,8 @@ msgstr ""
 #~ msgstr "Розблокувати"
 
 #~ msgid ""
-#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
-#~ " once)."
+#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your "
+#~ "password once)."
 #~ msgstr ""
 #~ "Вилучає записи блокування Zen Pomodoro з /etc/hosts (один раз запитає "
 #~ "пароль)."

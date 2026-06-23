@@ -460,35 +460,16 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this.addMenuItem(this._tasksSubmenu);
         this._populateTasksSubmenu();
 
-        this._statsSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Statistics"));
-        let dashItem = new PopupMenu.PopupMenuItem(_("Details\u2026"));
-        dashItem.connect('activate', () => { this.emit('open-stats'); });
-        this._statsSubmenu.menu.addMenuItem(dashItem);
+        this.addMenuItem(this._makeSectionLabel(_("Statistics")));
         this._statTodayItem = new PopupMenu.PopupMenuItem(_("Today: %d").format(0));
         this._statTodayItem.setSensitive(false);
-        this._statsSubmenu.menu.addMenuItem(this._statTodayItem);
-        this._statWeekItem = new PopupMenu.PopupMenuItem(_("Last 7 days: %d").format(0));
-        this._statWeekItem.setSensitive(false);
-        this._statsSubmenu.menu.addMenuItem(this._statWeekItem);
-        this._statMonthItem = new PopupMenu.PopupMenuItem(_("Last 30 days: %d").format(0));
-        this._statMonthItem.setSensitive(false);
-        this._statsSubmenu.menu.addMenuItem(this._statMonthItem);
-        this._statTotalItem = new PopupMenu.PopupMenuItem(_("All time: %d").format(0));
-        this._statTotalItem.setSensitive(false);
-        this._statsSubmenu.menu.addMenuItem(this._statTotalItem);
-        this._statTimeItem = new PopupMenu.PopupMenuItem(_("Focus time: %s today · %s total").format(this._fmtDuration(0), this._fmtDuration(0)));
-        this._statTimeItem.setSensitive(false);
-        this._statsSubmenu.menu.addMenuItem(this._statTimeItem);
+        this.addMenuItem(this._statTodayItem);
         this._statStreakItem = new PopupMenu.PopupMenuItem(_("Streak: %d days (best %d)").format(0, 0));
         this._statStreakItem.setSensitive(false);
-        this._statsSubmenu.menu.addMenuItem(this._statStreakItem);
-        this._statBestItem = new PopupMenu.PopupMenuItem(_("Best day: %d").format(0));
-        this._statBestItem.setSensitive(false);
-        this._statsSubmenu.menu.addMenuItem(this._statBestItem);
-        this._statAchieveItem = new PopupMenu.PopupMenuItem(_("Milestones: %s").format(_("none yet")));
-        this._statAchieveItem.setSensitive(false);
-        this._statsSubmenu.menu.addMenuItem(this._statAchieveItem);
-        this.addMenuItem(this._statsSubmenu);
+        this.addMenuItem(this._statStreakItem);
+        let dashItem = new PopupMenu.PopupMenuItem(_("Details\u2026"));
+        dashItem.connect('activate', () => { this.emit('open-stats'); });
+        this.addMenuItem(dashItem);
 
         let quickStart = new PopupMenu.PopupMenuItem(_("Setup wizard\u2026"));
         quickStart.connect('activate', () => this.emit('open-onboarding'));
@@ -596,7 +577,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             this._populateFocusLenSubmenu();
         }
 
-        if (this._statsSubmenu && runtime.stats) {
+        if (this._statTodayItem && runtime.stats) {
             let st = runtime.stats;
             if (this._statTodayItem) {
                 this._statTodayItem.label.set_text(_("Today: %d").format(st.today || 0));

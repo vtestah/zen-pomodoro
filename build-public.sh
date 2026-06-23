@@ -8,10 +8,14 @@ set -euo pipefail
 
 UUID="zen-pomodoro@vtestah"
 NAME="Zen Pomodoro"
-VERSION="1.0.0"
 
 REPO="$(cd "$(dirname "$0")" && pwd)"
 SRC="$REPO/6.4"
+# Single source of truth for the version is the live metadata.json (release.sh
+# bumps it there). The public package must NOT carry last-edited/icon/dangerous,
+# so below we read only the version and regenerate a clean metadata.json.
+VERSION="$(jq -r '.version // empty' "$REPO/metadata.json")"
+[ -n "$VERSION" ] || { echo "ERROR: could not read .version from $REPO/metadata.json (is jq installed?)"; exit 1; }
 OUT="$REPO/dist/$UUID"
 FILES="$OUT/files/$UUID"
 
@@ -167,6 +171,9 @@ grep -q "PARSE FAIL" /tmp/zen_parse.txt && fail=1
 for j in "$FILES/metadata.json" "$FILES/settings-schema.json" "$OUT/info.json"; do
   python3 -m json.tool "$j" >/dev/null && echo "   JSON OK: ${j##*/}" || { echo "   JSON FAIL: $j"; fail=1; }
 done
+echo "   metadata forbidden-field scan:"
+__mbad=$(python3 -c "import json;d=json.load(open('$FILES/metadata.json'));print(','.join(k for k in ('last-edited','icon','dangerous') if k in d))")
+if [ -n "$__mbad" ]; then echo "   !! metadata.json has Spices-forbidden fields: $__mbad"; fail=1; else echo "   metadata.json: no forbidden fields (last-edited/icon/dangerous)"; fi
 echo "   forbidden-pattern scan:"
 if grep -rInE "/home/vladimir|[^a-zA-Z]sudo[^a-zA-Z]|focus-start|focus-stop|domains\.txt|_startFocusBlockIfNeeded|_stopFocusBlockIfNeeded|_runFocusPreflight|_runFocusStartScript|_runFocusStopScript|_runPomodoroScript|_checkAndExecuteCustomScript|_getBlockedSitesCount|_focusBlockActive|enable_scripts|_opt_enableScripts|_opt_customShortBreakScript|_opt_customLongBreakScript|sitesText|_sitesLabel|focus-pomodoro|PUBLIC_STRIP|\.config.*pomodoro" "$OUT" 2>/dev/null | grep -v Binary; then
   echo "   !! FORBIDDEN REMNANTS FOUND"; fail=1

@@ -882,7 +882,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             hint.label.clutter_text.line_wrap = true;
             hint.label.clutter_text.line_wrap_mode = Pango.WrapMode.WORD_CHAR;
             hint.label.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
-            hint.label.set_style("max-width: 17em;");
+            hint.label.set_style("max-width: 25em;");
             this._tasksSubmenu.menu.addMenuItem(hint);
         }
         if (list.length) {

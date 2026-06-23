@@ -279,7 +279,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         statusBox.add_actor(this._cycleLabel);
         statusBox.add_actor(this._taskLabel);
         statusBox.add_actor(this._dailyLabel);
-        this._statusItem.addActor(statusBox);
+        this._statusItem.addActor(statusBox, { expand: true, span: -1, align: St.Align.START });
         this.addMenuItem(this._statusItem);
     }
 
@@ -351,6 +351,13 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (!this._cycleLabel) {
             return;
         }
+
+        let st = this._lastRuntimeState && this._lastRuntimeState.state;
+        if (st === "pomodoro-stop") {
+            this._cycleLabel.hide();
+            return;
+        }
+        this._cycleLabel.show();
 
         let total = this._pomodoriTotal > 0 ? this._pomodoriTotal : 4;
         let current = Math.min(this._pomodoroCount + 1, total);
@@ -659,31 +666,36 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         let badge = runtime.stateLabel || _("Ready to focus");
 
         if (this._progressLabel) {
-            if (typeof progressPercent === "number") {
-                let line;
-                if (state === "pomodoro" || state === "pomodoro-paused") {
-                    let total = runtime.pomodoriTotal || 4;
-                    let cur = Math.min(total, (runtime.pomodoriDone || 0) + 1);
-                    line = _("Pomodoro %d of %d").format(cur, total);
-                } else if (state === "long-break" || state === "long-break-paused") {
-                    line = _("Long break");
-                } else {
-                    line = _("Short break");
-                }
-                if (runtime.endTime) {
-                    line += ` \u00B7 ` + _("until %s").format(runtime.endTime);
-                }
-                if ((state === "pomodoro" || state === "pomodoro-paused") && runtime.finishEstimate) {
-                    line += ` \u00B7 ` + _("\u2248 finish %s \u00b7 %d \ud83c\udf45 left").format(
-                        runtime.finishEstimate.time, runtime.finishEstimate.remaining);
-                }
-                this._progressLabel.set_text(line);
-            } else if (state === "break-over") {
-                this._progressLabel.set_text(_("Break finished — press Start for focus"));
-            } else if (runtime.finishEstimate) {
-                this._progressLabel.set_text(_("Finish your tasks by ~%s").format(runtime.finishEstimate.time));
+            if (state === "pomodoro-stop") {
+                this._progressLabel.hide();
             } else {
-                this._progressLabel.set_text(_("%d min focus — press Start").format(runtime.focusMinutes || 25));
+                this._progressLabel.show();
+                if (typeof progressPercent === "number") {
+                    let line;
+                    if (state === "pomodoro" || state === "pomodoro-paused") {
+                        let total = runtime.pomodoriTotal || 4;
+                        let cur = Math.min(total, (runtime.pomodoriDone || 0) + 1);
+                        line = _("Pomodoro %d of %d").format(cur, total);
+                    } else if (state === "long-break" || state === "long-break-paused") {
+                        line = _("Long break");
+                    } else {
+                        line = _("Short break");
+                    }
+                    if (runtime.endTime) {
+                        line += ` \u00B7 ` + _("until %s").format(runtime.endTime);
+                    }
+                    if ((state === "pomodoro" || state === "pomodoro-paused") && runtime.finishEstimate) {
+                        line += ` \u00B7 ` + _("\u2248 finish %s \u00b7 %d \ud83c\udf45 left").format(
+                            runtime.finishEstimate.time, runtime.finishEstimate.remaining);
+                    }
+                    this._progressLabel.set_text(line);
+                } else if (state === "break-over") {
+                    this._progressLabel.set_text(_("Break finished — press Start for focus"));
+                } else if (runtime.finishEstimate) {
+                    this._progressLabel.set_text(_("Finish your tasks by ~%s").format(runtime.finishEstimate.time));
+                } else {
+                    this._progressLabel.set_text(_("%d min focus — press Start").format(runtime.focusMinutes || 25));
+                }
             }
         }
 

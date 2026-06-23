@@ -136,29 +136,40 @@ EOF
 cat > "$OUT/README.md" <<'EOF'
 # Zen Pomodoro
 
-A calm, Zen-style Pomodoro timer for the Cinnamon panel. Gentle on-screen cues
+A calm, Zen‑style Pomodoro timer for the Cinnamon panel — gentle on‑screen cues
 instead of anxious alarms. Based on **Pomodoro Timer** by *gfreeau*.
 
 ![screenshot](screenshot.png)
 
-## Features
-- Context-aware menu: compact while running, expanded when idle.
-- Soft focus frame: an unobtrusive edge glow with progress drawn around the
-  screen; the bottom edge stays open so it never covers a panel.
-- Calm by design: no anxious blinking near the end; a single gentle breath in
-  the last minute and a brief completion flourish.
-- Optional Zen full-screen mode, breathing guide on breaks, ambient sound.
-- Daily goal + streak, flow extend, idle auto-pause, "Focus until…",
-  panel progress ring.
-- Appearance: theme presets + custom accent colors, frame style, glow
-  intensity, font scale, with a live preview button.
-- Full localization (gettext). Persistent data under `$XDG_STATE_HOME/zen-pomodoro/`.
+## Highlights
+- **Calm focus cues:** a soft edge‑glow frame traces your progress (the bottom
+  edge stays clear for the panel), a quiet start ritual, and a calm ending with
+  no last‑minute blinking. Optional full‑screen Zen mode and a breathing guide
+  on breaks.
+- **Smart start:** a short onboarding wizard tailors your rhythm, sounds and
+  breaks — or just press Start.
+- **Tasks & focus:** a task list with pomodoro estimates and progress,
+  templates, and a current‑task picker.
+- **Statistics dashboard:** today / week / streak / all‑time, when you focus by
+  hour, a 14‑day chart and a 12‑week heatmap, a by‑task breakdown and milestones.
+- **Meaningful breaks:** gentle rest reminders, with “+5 min” and “Skip break”
+  actions right in the notification.
+- **Goals & flow:** daily goal and streak, flow‑extend, idle auto‑pause,
+  “Focus until…”, and an optional strict‑focus mode.
+- **Sounds:** ticking, alerts, an interval chime and soft brown‑noise ambience;
+  Do‑Not‑Disturb while focusing.
+- **Quick control:** scroll on the applet to start/pause or change the focus
+  length, middle‑click to skip, plus keyboard shortcuts.
+- **Your look:** theme presets and custom accent colours, frame style, glow
+  intensity, breathing pattern and menu font scale — with a live preview.
+- **Localized** into 20 languages.
 
 This applet only draws on the panel, its own menu and its own transparent focus
-overlays. It does not modify the system, block websites, or run external scripts.
+overlays. It does **not** modify the system, block websites, or run external
+scripts. Your stats and tasks live under `$XDG_STATE_HOME/zen-pomodoro/`.
 
 ## Credits & License
-Original applet: **Pomodoro Timer** by gfreeau. Licensed under the **GPL**.
+Based on **Pomodoro Timer** by *gfreeau*. Licensed under the **GPL**.
 EOF
 
 echo "==> copy screenshot.png (mandatory for Spices)"

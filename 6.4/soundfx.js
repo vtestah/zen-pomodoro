@@ -95,12 +95,19 @@ function install(proto) {
         }
     };
 
-    // Preview helpers for the settings "Preview" buttons (play a short sample).
-    proto._previewTimerSound = function() { this._playTickerSound(true); };
-    proto._previewBreakSound = function() { this._playBreakSound(true); };
-    proto._previewWarnSound  = function() { this._playWarnSound(true); };
-    proto._previewStartSound = function() { this._playStartSound(true); };
-    proto._previewChime      = function() { this._playIntervalChime(true); };
+    // Preview helpers for the settings "Listen" buttons: play a short sample of
+    // the chosen sound regardless of whether that sound is currently enabled,
+    // so you can audition it before turning it on.
+    proto._previewSound = function(key, volPct) {
+        if (this._sounds && this._sounds[key]) {
+            this._sounds[key].play({ volume: Math.max(0, Math.min(1, (volPct || 100) / 100)), preview: true });
+        }
+    };
+    proto._previewTimerSound = function() { this._previewSound('tick',  this._opt_tickerSoundVolume); };
+    proto._previewBreakSound = function() { this._previewSound('break', this._opt_breakSoundVolume); };
+    proto._previewWarnSound  = function() { this._previewSound('warn',  this._opt_warnSoundVolume); };
+    proto._previewStartSound = function() { this._previewSound('start', this._opt_startSoundVolume); };
+    proto._previewChime      = function() { this._previewSound('chime', this._opt_intervalChimeVolume || 80); };
 
     proto._loadSoundEffects = function() {
         if (!SoundModule.isPlayable()) {

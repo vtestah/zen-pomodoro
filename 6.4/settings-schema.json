@@ -991,35 +991,30 @@
         "type": "button",
         "description": "Listen",
         "callback": "_previewTimerSound",
-        "dependency": "timer_sound",
         "tooltip": "Play the selected sound now."
     },
     "break_sound_test": {
         "type": "button",
         "description": "Listen",
         "callback": "_previewBreakSound",
-        "dependency": "break_sound",
         "tooltip": "Play the selected sound now."
     },
     "warn_sound_test": {
         "type": "button",
         "description": "Listen",
         "callback": "_previewWarnSound",
-        "dependency": "warn_sound",
         "tooltip": "Play the selected sound now."
     },
     "start_sound_test": {
         "type": "button",
         "description": "Listen",
         "callback": "_previewStartSound",
-        "dependency": "start_sound",
         "tooltip": "Play the selected sound now."
     },
     "interval_chime_test": {
         "type": "button",
         "description": "Listen",
         "callback": "_previewChime",
-        "dependency": "interval_chime",
         "tooltip": "Play the selected sound now."
     },
     "enable_scripts": {

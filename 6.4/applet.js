@@ -161,6 +161,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_autoContinueAfterShortBreak = null;
         this._opt_autoStartNewAfterFinish = null;
         this._opt_panelIconStyle = null;
+        this._opt_panelCustomIcon = null;
         this._opt_showTimerInPanel = null;
         this._opt_showSeconds = null;
         this._opt_hotkey = null;
@@ -453,6 +454,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "reduce_motion", "_opt_reduceMotion", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "menu_font_scale", "_opt_menuFontScale", () => { this._applyAppearance(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "panel_icon_style", "_opt_panelIconStyle", this._onAppletIconChanged.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "panel_custom_icon", "_opt_panelCustomIcon", this._onAppletIconChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "show_timer", "_opt_showTimerInPanel", this._onShowTimerChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "show_seconds", "_opt_showSeconds", this._onShowTimerChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "hotkey_toggle", "_opt_hotkeyToggle", this._updateHotkey.bind(this));
@@ -2115,10 +2117,23 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 break;
             }
             if (style === "symbolic") {
-                this.set_applet_icon_symbolic_path(appletIconPath + "-symbolic.svg");
+                // One symbolic glyph for every state; the status class recolours it.
+                this.set_applet_icon_symbolic_path(`${this._metadata.path}/../pomodoro-symbolic.svg`);
                 this._applet_icon.set_style_class_name(appletIconStatus);
             } else {
                 this.set_applet_icon_path(appletIconPath + ".svg");
+            }
+        } else if (style === "own") {
+            this._applet_icon_box.show();
+            let ic = (this._opt_panelCustomIcon || "").trim();
+            if (!ic) {
+                // No icon picked yet — fall back to the symbolic tomato.
+                this.set_applet_icon_symbolic_path(`${this._metadata.path}/../pomodoro-symbolic.svg`);
+                this._applet_icon.set_style_class_name('system-status-icon');
+            } else if (ic.charAt(0) === '/') {
+                this.set_applet_icon_path(ic);
+            } else {
+                this.set_applet_icon_name(ic);
             }
         } else if (this._applet_icon_box.child) {
             this._applet_icon_box.hide();

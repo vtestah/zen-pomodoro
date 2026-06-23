@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 00:05+0700\n"
+"POT-Creation-Date: 2026-06-24 00:30+0700\n"
 "PO-Revision-Date: 2017-06-07 06:28+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -150,7 +150,7 @@ msgstr "Pomodoros förkontroll misslyckades"
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://sv.wikipedia.org/wiki/Pomodorotekniken"
 
-#: applet.js:1976 features.js:1836
+#: applet.js:1976 features.js:1837
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Stoppa timern innan du byter Pomodoro-förinställning"
 
@@ -180,80 +180,80 @@ msgstr "Vad fokuserar du på?"
 msgid "Choose or type a focus task"
 msgstr "Välj eller skriv en fokusuppgift"
 
-#: dialogs.js:65 features.js:520 features.js:1140 features.js:1884
+#: dialogs.js:72 features.js:520 features.js:1140 features.js:1885
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: dialogs.js:72 features.js:1885
+#: dialogs.js:79 features.js:1886
 msgid "Start"
 msgstr "Starta"
 
-#: dialogs.js:190
+#: dialogs.js:220
 msgid "Hide"
 msgstr "Dölj"
 
-#: dialogs.js:197
+#: dialogs.js:227
 msgid "Switch Off Pomodoro"
 msgstr "Stäng av Pomodoro"
 
-#: dialogs.js:203
+#: dialogs.js:233
 msgid "Start a new Pomodoro"
 msgstr "Starta en ny Pomodoro"
 
-#: dialogs.js:214
+#: dialogs.js:244
 msgid "Pomodoro set finished, you deserve a break!"
 msgstr "Pomodoro-set slutfört, du förtjänar en rast!"
 
-#: dialogs.js:223
+#: dialogs.js:253
 msgid "Your break is over, start another pomodoro!"
 msgstr "Din rast är över, starta en ny Pomodoro!"
 
-#: dialogs.js:229
+#: dialogs.js:259
 #, javascript-format
 msgid "A new pomodoro begins in %s."
 msgstr "En ny Pomodoro börjar om %s."
 
-#: dialogs.js:241
+#: dialogs.js:271
 #, javascript-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minut"
 msgstr[1] "%d minuter"
 
-#: dialogs.js:242
+#: dialogs.js:272
 #, javascript-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d sekund"
 msgstr[1] "%d sekunder"
 
-#: dialogs.js:244
+#: dialogs.js:274
 #, javascript-format
 msgid "%s and %s"
 msgstr "%s och %s"
 
-#: dialogs.js:265 dialogs.js:317
+#: dialogs.js:295 dialogs.js:347
 msgid "Pause Pomodoro"
 msgstr "Pausa Pomodoro"
 
-#: dialogs.js:271
+#: dialogs.js:301
 msgid "Continue Current Pomodoro"
 msgstr "Fortsätt aktuell Pomodoro"
 
-#: dialogs.js:283
+#: dialogs.js:313
 msgid "Short break finished, ready to continue?"
 msgstr "Den korta rasten är slut, vill du fortsätta?"
 
-#: dialogs.js:325
+#: dialogs.js:355
 #, javascript-format
 msgid "Extend +%d min"
 msgstr "Förläng +%d min"
 
-#: dialogs.js:332
+#: dialogs.js:362
 msgid "Start break"
 msgstr "Starta rast"
 
-#: dialogs.js:342
+#: dialogs.js:372
 msgid "Pomodoro finished, ready to take a break?"
 msgstr "Pomodoro klar, redo att ta en rast?"
 
@@ -404,8 +404,7 @@ msgstr ""
 
 #: features.js:614
 msgid "One-click start and a calm start ritual make it easier to begin."
-msgstr ""
-"Start med ett klick och en lugn startritual gör det lättare att börja."
+msgstr "Start med ett klick och en lugn startritual gör det lättare att börja."
 
 #: features.js:618
 msgid "Breaks start on their own so you don't overwork."
@@ -788,32 +787,32 @@ msgstr "Återställ statistik…"
 msgid "Close"
 msgstr "Stäng"
 
-#: features.js:1473
+#: features.js:1474
 msgid "No task"
 msgstr "Ingen uppgift"
 
-#: features.js:1510
+#: features.js:1511
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "Push-aviseringar kräver libsoup, som inte finns här."
 
-#: features.js:1516
+#: features.js:1517
 msgid "Enter your Pushover user key and app token first."
 msgstr "Ange din Pushover-användarnyckel och app-token först."
 
-#: features.js:1523
+#: features.js:1524
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Testavisering från Zen Pomodoro 🍅"
 
-#: features.js:1545
+#: features.js:1546
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Pushover-test skickat ✓ — kolla din enhet."
 
-#: features.js:1546 features.js:1550
+#: features.js:1547 features.js:1551
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr ""
 "Pushover-testet misslyckades. Kontrollera din användarnyckel och app-token."
 
-#: features.js:1593
+#: features.js:1594
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -821,40 +820,40 @@ msgstr ""
 "För att blockera webbplatser automatiskt under fokus, aktivera lösenordsfri "
 "blockering i inställningarna."
 
-#: features.js:1651
+#: features.js:1652
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Lösenordsfri blockering aktiverad (ingen fråga)."
 
-#: features.js:1657
+#: features.js:1658
 msgid "Passwordless blocking removed."
 msgstr "Lösenordsfri blockering borttagen."
 
-#: features.js:1694
+#: features.js:1695
 msgid "Click to exit Zen"
 msgstr "Klicka för att lämna Zen"
 
 #. settings-schema.json->focus->title
-#: features.js:1729 visual.js:894
+#: features.js:1730 visual.js:894
 msgid "Focus"
 msgstr "Fokus"
 
-#: features.js:1806
+#: features.js:1807
 msgid "Breathe in"
 msgstr "Andas in"
 
-#: features.js:1809 features.js:1815
+#: features.js:1810 features.js:1816
 msgid "Hold"
 msgstr "Håll andan"
 
-#: features.js:1812
+#: features.js:1813
 msgid "Breathe out"
 msgstr "Andas ut"
 
-#: features.js:1842
+#: features.js:1843
 msgid "Focus until"
 msgstr "Fokus till"
 
-#: features.js:1843
+#: features.js:1844
 msgid "Enter a time (HH:MM)"
 msgstr "Ange en tid (TT:MM)"
 
@@ -1198,8 +1197,7 @@ msgid "Long Break Duration:"
 msgstr "Längd på lång rast:"
 
 #. settings-schema.json->long_break_duration->tooltip
-msgid ""
-"Length of the longer break after a set of pomodoros (classic is 15–30)."
+msgid "Length of the longer break after a set of pomodoros (classic is 15–30)."
 msgstr "Längd på den långa rasten efter ett set Pomodoro (klassiskt 15–30)."
 
 #. settings-schema.json->pomodori_number->description
@@ -1207,8 +1205,7 @@ msgid "Number of pomodori before long break:"
 msgstr "Antal Pomodoro före lång rast:"
 
 #. settings-schema.json->pomodori_number->tooltip
-msgid ""
-"How many focus blocks to complete before the long break (classic is 4)."
+msgid "How many focus blocks to complete before the long break (classic is 4)."
 msgstr "Hur många fokuspass innan den långa rasten (klassiskt 4)."
 
 #. settings-schema.json->start_automatically_on_load->description
@@ -1234,8 +1231,8 @@ msgid ""
 "If Cinnamon restarts mid-focus, the session is remembered so you can resume "
 "it from the menu — it won't auto-start."
 msgstr ""
-"Om Cinnamon startar om mitt i fokus sparas sessionen så att du kan återuppta"
-" den från menyn — den startar inte av sig själv."
+"Om Cinnamon startar om mitt i fokus sparas sessionen så att du kan återuppta "
+"den från menyn — den startar inte av sig själv."
 
 #. settings-schema.json->show_dialog_messages->description
 msgid "Show Dialog Messages"
@@ -1374,9 +1371,9 @@ msgstr "Styr timern med musen på panelen"
 
 #. settings-schema.json->panel_scroll_control->tooltip
 msgid ""
-"Scroll up on the applet to start or resume, scroll down to pause, and "
-"middle-click to skip the phase. Turn this off if you sometimes scroll over "
-"the panel by accident."
+"Scroll up on the applet to start or resume, scroll down to pause, and middle-"
+"click to skip the phase. Turn this off if you sometimes scroll over the "
+"panel by accident."
 msgstr ""
 "Skrolla upp på appleten för att starta eller återuppta, skrolla ner för att "
 "pausa och mittklicka för att hoppa över fasen. Stäng av detta om du ibland "
@@ -1421,8 +1418,8 @@ msgstr ""
 
 #. settings-schema.json->focus_start_ritual->description
 msgid ""
-"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus"
-" begins"
+"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus "
+"begins"
 msgstr ""
 "Startritual: kort centrerad 'Fokus: <uppgift>' och en mjuk intoning när "
 "fokus börjar"
@@ -1525,8 +1522,8 @@ msgstr "Skenintensitet"
 
 #. settings-schema.json->glow_intensity->tooltip
 msgid ""
-"How bright the on-screen edge glow is during focus — higher is more visible,"
-" lower is subtler."
+"How bright the on-screen edge glow is during focus — higher is more visible, "
+"lower is subtler."
 msgstr ""
 "Hur starkt skenet vid skärmkanten lyser under fokus — högre syns mer, lägre "
 "är subtilare."
@@ -1558,8 +1555,8 @@ msgstr "Avslappnande 4-6"
 
 #. settings-schema.json->breathing_pattern->tooltip
 msgid ""
-"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6"
-" — seconds per phase."
+"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 "
+"— seconds per phase."
 msgstr ""
 "Andningsrytm för guiden: Box (4-4-4-4), lugnande 4-7-8 eller avslappnad 4-6 "
 "— sekunder per fas."
@@ -1619,8 +1616,8 @@ msgstr "Förhandsvisa fokusram"
 
 #. settings-schema.json->preview_appearance_button->tooltip
 msgid ""
-"Briefly show the on-screen focus frame and task chip with the current colors"
-" and style (works when no timer is running)."
+"Briefly show the on-screen focus frame and task chip with the current colors "
+"and style (works when no timer is running)."
 msgstr ""
 "Visa kort fokusramen och uppgiftsbrickan med aktuella färger och stil "
 "(fungerar när ingen timer körs)."
@@ -1655,8 +1652,7 @@ msgstr "Inaktiva minuter före autopaus"
 
 #. settings-schema.json->auto_pause_idle_minutes->tooltip
 msgid "How long you can be away before focus auto-pauses, in minutes."
-msgstr ""
-"Hur länge du kan vara borta innan fokus pausas automatiskt, i minuter."
+msgstr "Hur länge du kan vara borta innan fokus pausas automatiskt, i minuter."
 
 #. settings-schema.json->auto_resume_on_activity->description
 msgid "Resume automatically when you return"
@@ -1695,8 +1691,8 @@ msgid ""
 "Loop a soft ambient sound during focus — the built-in brown noise, or your "
 "own file below."
 msgstr ""
-"Loopa ett mjukt omgivningsljud under fokus — det inbyggda bruna bruset eller"
-" din egen fil nedan."
+"Loopa ett mjukt omgivningsljud under fokus — det inbyggda bruna bruset eller "
+"din egen fil nedan."
 
 #. settings-schema.json->focus_ambient_volume->description
 msgid "Ambient volume"
@@ -1715,8 +1711,8 @@ msgid ""
 "During breaks, show an expanding and contracting circle that paces your "
 "breathing to help you unwind."
 msgstr ""
-"Under raster visas en cirkel som växer och krymper och sätter takten för din"
-" andning så att du varvar ner."
+"Under raster visas en cirkel som växer och krymper och sätter takten för din "
+"andning så att du varvar ner."
 
 #. settings-schema.json->zen_mode_enabled->description
 msgid "Enable Zen mode (full-screen focus overlay, toggled from the menu)"
@@ -1732,8 +1728,8 @@ msgstr "Strikt fokus: ingen paus eller överhoppning under ett fokuspass"
 
 #. settings-schema.json->strict_focus->tooltip
 msgid ""
-"While a focus block is running, hide pause and skip so you commit to it. You"
-" can still Reset to abandon the session — it's never a hard lock."
+"While a focus block is running, hide pause and skip so you commit to it. You "
+"can still Reset to abandon the session — it's never a hard lock."
 msgstr ""
 "Medan ett fokuspass pågår döljs paus och hoppa över så att du håller fast "
 "vid det. Du kan fortfarande Återställa för att avbryta sessionen — det är "
@@ -1764,8 +1760,8 @@ msgid ""
 "Pauses any playing media (browser tab, music app via MPRIS) when a break or "
 "pause starts, and resumes the same players when focus continues."
 msgstr ""
-"Pausar alla medier som spelas upp (webbläsarflik, musikapp via MPRIS) när en"
-" rast eller paus börjar och återupptar samma spelare när fokus fortsätter."
+"Pausar alla medier som spelas upp (webbläsarflik, musikapp via MPRIS) när en "
+"rast eller paus börjar och återupptar samma spelare när fokus fortsätter."
 
 #. settings-schema.json->run_command_enabled->description
 msgid "Run a command when focus or a break starts"
@@ -1809,8 +1805,7 @@ msgstr ""
 
 #. settings-schema.json->pushover_help->description
 msgid ""
-"Free phone/desktop alerts. Sign up at pushover.net and paste your keys "
-"below."
+"Free phone/desktop alerts. Sign up at pushover.net and paste your keys below."
 msgstr ""
 "Gratis aviseringar på telefon/dator. Registrera dig på pushover.net och "
 "klistra in dina nycklar nedan."
@@ -1838,8 +1833,8 @@ msgstr "Skicka en testavisering"
 #. settings-schema.json->pushover_test_button->tooltip
 msgid "Send a test message now to confirm your user key and app token work."
 msgstr ""
-"Skicka ett testmeddelande nu för att bekräfta att din användarnyckel och "
-"app-token fungerar."
+"Skicka ett testmeddelande nu för att bekräfta att din användarnyckel och app-"
+"token fungerar."
 
 #. settings-schema.json->pushover_customize->description
 msgid "Customize messages, sounds and priority"
@@ -1847,8 +1842,8 @@ msgstr "Anpassa meddelanden, ljud och prioritet"
 
 #. settings-schema.json->pushover_customize->tooltip
 msgid ""
-"Show options to change the text, sound and priority for each event. Off uses"
-" sensible defaults."
+"Show options to change the text, sound and priority for each event. Off uses "
+"sensible defaults."
 msgstr ""
 "Visa alternativ för att ändra text, ljud och prioritet för varje händelse. "
 "Av använder rimliga standardvärden."
@@ -1889,8 +1884,8 @@ msgstr "Blockera distraherande webbplatser under fokus"
 
 #. settings-schema.json->enable_blocking->tooltip
 msgid ""
-"When on, the sites below are blocked automatically during each focus session"
-" and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
+"When on, the sites below are blocked automatically during each focus session "
+"and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
 "doesn't ask for a password each time."
 msgstr ""
 "När det är på blockeras webbplatserna nedan automatiskt under varje "
@@ -1907,11 +1902,11 @@ msgstr "Domän"
 
 #. settings-schema.json->block_domains->tooltip
 msgid ""
-"Domains to block during focus, one per row (e.g. youtube.com, "
-"www.youtube.com)."
+"Domains to block during focus, one per row (e.g. youtube.com, www.youtube."
+"com)."
 msgstr ""
-"Domäner att blockera under fokus, en per rad (t.ex. youtube.com, "
-"www.youtube.com)."
+"Domäner att blockera under fokus, en per rad (t.ex. youtube.com, www.youtube."
+"com)."
 
 #. settings-schema.json->sox-info->description
 msgid ""
@@ -2344,8 +2339,8 @@ msgstr "Omgivningsljudfil"
 
 #. settings-schema.json->focus_ambient_file->tooltip
 msgid ""
-"Pick your own looping ambient sound. Leave empty for the built-in soft brown"
-" noise."
+"Pick your own looping ambient sound. Leave empty for the built-in soft brown "
+"noise."
 msgstr ""
 "Välj ett eget loopande omgivningsljud. Lämna tomt för det inbyggda mjuka "
 "bruna bruset."
@@ -2390,8 +2385,8 @@ msgstr ""
 
 #~ msgid ""
 #~ "Pushover sends alerts to your phone or desktop. Create a free account at "
-#~ "pushover.net, copy your User Key, then create an Application there to get an"
-#~ " API Token."
+#~ "pushover.net, copy your User Key, then create an Application there to get "
+#~ "an API Token."
 #~ msgstr ""
 #~ "Pushover skickar aviseringar till din telefon eller dator. Skapa ett "
 #~ "gratiskonto på pushover.net, kopiera din User Key och skapa sedan en "
@@ -2412,21 +2407,21 @@ msgstr ""
 
 #~ msgid ""
 #~ "After setup, never ask for a password. Off (default) asks once per login "
-#~ "session. Convenient but less safe: any local program could then change your "
-#~ "blocklist without asking."
+#~ "session. Convenient but less safe: any local program could then change "
+#~ "your blocklist without asking."
 #~ msgstr ""
-#~ "Efter installationen, fråga aldrig efter lösenord. Av (standard) frågar en "
-#~ "gång per inloggningssession. Bekvämt men mindre säkert: vilket lokalt "
+#~ "Efter installationen, fråga aldrig efter lösenord. Av (standard) frågar "
+#~ "en gång per inloggningssession. Bekvämt men mindre säkert: vilket lokalt "
 #~ "program som helst kan då ändra din blockeringslista utan att fråga."
 
 #~ msgid ""
-#~ "Asks for your password once and installs a small system policy so blocking "
-#~ "no longer prompts every time. Uses the mode selected above; re-run after "
-#~ "changing the mode."
+#~ "Asks for your password once and installs a small system policy so "
+#~ "blocking no longer prompts every time. Uses the mode selected above; re-"
+#~ "run after changing the mode."
 #~ msgstr ""
-#~ "Frågar efter ditt lösenord en gång och installerar en liten systempolicy så "
-#~ "att blockering inte längre frågar varje gång. Använder läget som valts ovan;"
-#~ " kör igen efter att du ändrat läget."
+#~ "Frågar efter ditt lösenord en gång och installerar en liten systempolicy "
+#~ "så att blockering inte längre frågar varje gång. Använder läget som valts "
+#~ "ovan; kör igen efter att du ändrat läget."
 
 #~ msgid "Could not open the hosts file"
 #~ msgstr "Det gick inte att öppna hosts-filen"
@@ -2435,8 +2430,8 @@ msgstr ""
 #~ msgstr "Redigera /etc/hosts manuellt (admin)"
 
 #~ msgid ""
-#~ "Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only"
-#~ " manages its own clearly-marked section."
+#~ "Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro "
+#~ "only manages its own clearly-marked section."
 #~ msgstr ""
 #~ "Öppnar /etc/hosts i din redigerare med administratörsrättigheter. Zen "
 #~ "Pomodoro hanterar bara sin egen tydligt markerade del."
@@ -2467,18 +2462,18 @@ msgstr ""
 #~ "Adds the domains above to /etc/hosts (you'll be asked for your password "
 #~ "once). They stay blocked until you click Unblock."
 #~ msgstr ""
-#~ "Lägger till domänerna ovan i /etc/hosts (du tillfrågas om ditt lösenord en "
-#~ "gång). De förblir blockerade tills du klickar Avblockera."
+#~ "Lägger till domänerna ovan i /etc/hosts (du tillfrågas om ditt lösenord "
+#~ "en gång). De förblir blockerade tills du klickar Avblockera."
 
 #~ msgid "Unblock"
 #~ msgstr "Avblockera"
 
 #~ msgid ""
-#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
-#~ " once)."
+#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your "
+#~ "password once)."
 #~ msgstr ""
-#~ "Tar bort Zen Pomodoros blockeringsposter från /etc/hosts (frågar efter ditt "
-#~ "lösenord en gång)."
+#~ "Tar bort Zen Pomodoros blockeringsposter från /etc/hosts (frågar efter "
+#~ "ditt lösenord en gång)."
 
 #~ msgid "blocked"
 #~ msgstr "blockerad"

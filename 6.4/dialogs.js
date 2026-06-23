@@ -41,6 +41,13 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         this._hintLabel.hide();
         content.add_child(this._hintLabel);
 
+        this._taskListBox = new St.BoxLayout({
+            vertical: true,
+            x_expand: true,
+            style: 'spacing: 4px; padding-top: 8px;'
+        });
+        content.add_child(this._taskListBox);
+
         this._presetTaskBox = new St.BoxLayout({
             vertical: true,
             x_expand: true,
@@ -78,14 +85,36 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         ]);
     }
 
-    setDefaultTask(task, presets, requireTask) {
+    setTaskList(tasks, currentTitle, presets, requireTask) {
+        this._taskItems = Array.isArray(tasks) ? tasks : [];
+        this._currentTitle = currentTitle || "";
         this._presets = Array.isArray(presets) ? presets : [];
         this._requireTask = Boolean(requireTask);
+        this._reloadTaskList();
         this._reloadPresetTasks();
         this._hideTaskRequiredHint();
-        this._entryText.set_text(task || "");
-        this._entryText.set_cursor_position(-1);
-        this._entryText.set_selection(0, -1);
+        this._entryText.set_text("");
+    }
+
+    _reloadTaskList() {
+        if (!this._taskListBox) { return; }
+        for (let child of this._taskListBox.get_children()) { child.destroy(); }
+        let tasks = Array.isArray(this._taskItems) ? this._taskItems : [];
+        let active = tasks.filter((t) => !t.completed);
+        if (!active.length) { this._taskListBox.hide(); return; }
+        this._taskListBox.show();
+        for (let t of active) {
+            let mark = (t.title === this._currentTitle) ? "\u25cf " : "";
+            let label = mark + t.title + "   " + (t.doneToday || 0) + "/" + (t.est || 1) + " \ud83c\udf45";
+            let button = new St.Button({
+                style_class: 'dialog-button',
+                label: this._getPresetButtonLabel(label),
+                can_focus: true, x_expand: true, reactive: true
+            });
+            let title = t.title;
+            button.connect('clicked', () => { this.close(); this.emit('focus-task-confirmed', title); });
+            this._taskListBox.add_child(button);
+        }
     }
 
     _isTaskRequired() {
@@ -154,6 +183,7 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
 
     _confirm() {
         let task = this._getTask();
+        if (!task) { task = this._currentTitle || ""; }
         if (!task && this._isTaskRequired()) {
             this._showTaskRequiredHint();
             return;

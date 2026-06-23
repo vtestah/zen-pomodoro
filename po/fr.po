@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-applets/issues\n"
-"POT-Creation-Date: 2024-04-25 20:30+1000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-23 12:59+0700\n"
 "PO-Revision-Date: 2024-10-02 21:47+0200\n"
 "Last-Translator: Claudiux <claude.clerc@gmail.com>\n"
 "Language-Team: French\n"
@@ -19,225 +19,1886 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: applet.js:278
+#: applet.js:571
+msgid "Strict focus is on"
+msgstr ""
+
+#: applet.js:571
+msgid "Stay with it — finish the block, or reset to start over."
+msgstr ""
+
+#: applet.js:637 applet.js:1961
+#, javascript-format
+msgid "Focus length: %d min"
+msgstr ""
+
+#: applet.js:944
+msgid "Focus session restored — resume when ready"
+msgstr ""
+
+#: applet.js:979
+msgid "FOCUS"
+msgstr ""
+
+#: applet.js:981
+msgid "PAUSED FOCUS"
+msgstr ""
+
+#: applet.js:984
+msgid "BREAK"
+msgstr ""
+
+#: applet.js:987
+msgid "PAUSED BREAK"
+msgstr ""
+
+#: applet.js:989
+msgid "BREAK OVER"
+msgstr ""
+
+#: applet.js:992 applet.js:1052 menu.js:240 menu.js:710
+msgid "Ready to focus"
+msgstr ""
+
+#: applet.js:1010
 msgid "Short break running"
 msgstr "Courte pose en cours"
 
-#: applet.js:281
+#: applet.js:1013
+msgid "Short break paused"
+msgstr ""
+
+#: applet.js:1016
 msgid "Long break running"
 msgstr "Longue pause en cours"
 
-#: applet.js:284
+#: applet.js:1019
+msgid "Long break paused"
+msgstr ""
+
+#: applet.js:1022 applet.js:1413
+msgid "Break ended"
+msgstr ""
+
+#: applet.js:1025
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodoro %d, set %d en cours"
 
-#: applet.js:289
-msgid "Waiting to start"
-msgstr "En attente pour démarrer"
+#: applet.js:1030 features.js:412 features.js:1097 menu.js:728
+#, javascript-format
+msgid "≈ finish %s · %d 🍅 left"
+msgstr ""
+
+#: applet.js:1035
+msgid "Pomodoro paused"
+msgstr ""
+
+#: applet.js:1038
+msgid "Ready to focus — scroll or middle-click to start"
+msgstr ""
+
+#: applet.js:1183
+msgid "Classic"
+msgstr ""
+
+#: applet.js:1184
+msgid "Long focus"
+msgstr ""
 
 # notifications
-#: applet.js:342
+#: applet.js:1393
 msgid "Pomodoro started"
 msgstr "Pomodoro démarré"
 
-#: applet.js:407
+#: applet.js:1471
 msgid "Let's go to work!"
 msgstr "Au travail!"
 
-#: applet.js:425
+#: applet.js:1498
+msgid "Pomodoro done"
+msgstr ""
+
+#: applet.js:1500
 msgid "Take a short break"
 msgstr "Prenez une courte pause"
 
-#: applet.js:448
+#: applet.js:1501 applet.js:1539
+#, javascript-format
+msgid "+%d min"
+msgstr ""
+
+#: applet.js:1502 applet.js:1540
+msgid "Skip break"
+msgstr ""
+
+#: applet.js:1533
+msgid "Set complete!"
+msgstr ""
+
+#: applet.js:1538
 msgid "Take a long break"
 msgstr "Prenez une longue pause"
 
-#: applet.js:484
+#: applet.js:1591
 msgid "Pomodoro ended"
 msgstr "Pomodoro terminé"
 
-#: applet.js:607
+#: applet.js:1666 applet.js:1690 applet.js:1693
+msgid "Pomodoro preflight failed"
+msgstr ""
+
+#: applet.js:1850
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://fr.wikipedia.org/wiki/Technique_Pomodoro"
 
-# applet menu
-#. metadata.json->name
-#: applet.js:753
-msgid "Pomodoro Timer"
-msgstr "Minuteur Pomodoro"
+#: applet.js:1927 features.js:1727
+msgid "Stop the timer before changing Pomodoro preset"
+msgstr ""
 
-#: applet.js:762
-msgid "Completed"
-msgstr "Terminé"
+#: applet.js:1944
+#, javascript-format
+msgid "Pomodoro preset %s applied"
+msgstr ""
 
-#: applet.js:770
-msgid "Reset Timer"
-msgstr "Remise à zéro du minuteur"
+#: applet.js:1956
+msgid "Stop the timer before changing the focus length"
+msgstr ""
 
-#: applet.js:778
-msgid "Reset Counts and Timer"
-msgstr "Remise à zéro des comptes et du minuteur"
+#: applet.js:1973
+#, javascript-format
+msgid "Break extended by %d min"
+msgstr ""
 
-#: applet.js:787
-msgid "Skip To Next Timer"
-msgstr "Passer à la minuterie suivante"
+#: dialogs.js:28
+msgid "Focus task"
+msgstr ""
 
-#: applet.js:794
-msgid "What is this?"
-msgstr "Qu'est cela ?"
+#: dialogs.js:29
+msgid "What are you focusing on?"
+msgstr ""
 
-#: applet.js:834
-msgid "None"
-msgstr "Aucun"
+#: dialogs.js:38
+msgid "Choose or type a focus task"
+msgstr ""
 
-# dialog
-#: applet.js:851
-msgid "Switch Off Pomodoro"
-msgstr "Désactiver Pomodoro"
+#: dialogs.js:65 features.js:499 features.js:559 features.js:1176
+#: features.js:1775
+msgid "Cancel"
+msgstr ""
 
-#: applet.js:857
-msgid "Start a new Pomodoro"
-msgstr "Démarrer un nouveau Pomodoro"
+#: dialogs.js:72 features.js:1776
+msgid "Start"
+msgstr ""
 
-#: applet.js:863
+#: dialogs.js:190
 msgid "Hide"
 msgstr "Masquer"
 
-#: applet.js:875
+# dialog
+#: dialogs.js:197
+msgid "Switch Off Pomodoro"
+msgstr "Désactiver Pomodoro"
+
+#: dialogs.js:203
+msgid "Start a new Pomodoro"
+msgstr "Démarrer un nouveau Pomodoro"
+
+#: dialogs.js:214
 msgid "Pomodoro set finished, you deserve a break!"
 msgstr "Pomodoro terminé, vous méritez un break !"
 
-#: applet.js:884
+#: dialogs.js:223
 msgid "Your break is over, start another pomodoro!"
 msgstr "Votre pause est terminée, démarrez un nouveau Pomodoro !"
 
-#: applet.js:890
+#: dialogs.js:229
 #, javascript-format
 msgid "A new pomodoro begins in %s."
 msgstr "Un nouveau Pomodoro débute dans %s."
 
-#: applet.js:902
+#: dialogs.js:241
 #, javascript-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minute"
 msgstr[1] "%d minutes"
 
-#: applet.js:903
+#: dialogs.js:242
 #, javascript-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d seconde"
 msgstr[1] "%d secondes"
 
-#: applet.js:905
+#: dialogs.js:244
 #, javascript-format
 msgid "%s and %s"
 msgstr "%s et %s"
 
-#: applet.js:920
-msgid "Continue Current Pomodoro"
-msgstr "Poursuivre avec le Pomodoro actuel"
-
-#: applet.js:926 applet.js:959
+#: dialogs.js:265 dialogs.js:317
 msgid "Pause Pomodoro"
 msgstr "Pause Pomodoro"
 
-#: applet.js:937
+#: dialogs.js:271
+msgid "Continue Current Pomodoro"
+msgstr "Poursuivre avec le Pomodoro actuel"
+
+#: dialogs.js:283
 msgid "Short break finished, ready to continue?"
 msgstr "Petite pause terminée, prêt à continuer ?"
 
-#: applet.js:953
+#: dialogs.js:325
+#, javascript-format
+msgid "Extend +%d min"
+msgstr ""
+
+#: dialogs.js:332
 msgid "Start break"
 msgstr "Début de la pause"
 
-#: applet.js:970
+#: dialogs.js:342
 msgid "Pomodoro finished, ready to take a break?"
 msgstr "Pomodoro terminé, prêt à faire une pause ?"
 
-#. metadata.json->description
-msgid "Great tool for boosted productivity!"
-msgstr "Un excellent outil pour améliorer sa productivité !"
+#: features.js:201
+#, javascript-format
+msgid "%d focus blocks today — great work!"
+msgstr ""
 
-#. settings-schema.json->head_durations->description
-msgid "Durations (minutes)"
-msgstr "Durées (en minutes)"
+#: features.js:203
+#, javascript-format
+msgid "🔥 %d-day streak"
+msgstr ""
+
+#: features.js:205
+msgid "Daily goal reached 🍅"
+msgstr ""
+
+#: features.js:438
+msgid "Look ~20 ft away for 20 seconds — rest your eyes."
+msgstr ""
+
+#: features.js:439
+msgid "Stand up and stretch."
+msgstr ""
+
+#: features.js:440
+msgid "Drink some water."
+msgstr ""
+
+#: features.js:441
+msgid "Look out a window and relax your shoulders."
+msgstr ""
+
+#: features.js:442
+msgid "Close your eyes and take a few slow breaths."
+msgstr ""
+
+#: features.js:445
+msgid "Take a short walk."
+msgstr ""
+
+#: features.js:446
+msgid "Step outside for some fresh air."
+msgstr ""
+
+#: features.js:447
+msgid "Stretch and move around a little."
+msgstr ""
+
+#: features.js:448
+msgid "Grab a snack and some water."
+msgstr ""
+
+#: features.js:449
+msgid "Rest your eyes and look into the distance."
+msgstr ""
+
+#: features.js:460
+msgid "New task"
+msgstr ""
+
+#: features.js:461
+msgid "What do you want to work on?"
+msgstr ""
+
+#: features.js:469
+msgid "Estimate:"
+msgstr ""
+
+#: features.js:500
+msgid "Add"
+msgstr ""
+
+#: features.js:509 features.js:537
+msgid "No tasks to save"
+msgstr ""
+
+#: features.js:516
+#, javascript-format
+msgid "Template saved: %s"
+msgstr ""
+
+#: features.js:540
+msgid "Save as template"
+msgstr ""
+
+#: features.js:541
+msgid "Template name"
+msgstr ""
+
+#: features.js:560
+msgid "Save"
+msgstr ""
+
+#: features.js:604
+msgid "longer focus blocks suit deep work"
+msgstr ""
+
+#: features.js:605
+msgid "the classic rhythm suits studying"
+msgstr ""
+
+#: features.js:606
+msgid "a little more break time lets ideas settle"
+msgstr ""
+
+#: features.js:607
+msgid "shorter cycles keep small tasks moving"
+msgstr ""
+
+#: features.js:608
+msgid "a balanced rhythm"
+msgstr ""
+
+#: features.js:609
+#, javascript-format
+msgid "Focus rhythm %d / %d / %d min — %s."
+msgstr ""
+
+#: features.js:615
+#, javascript-format
+msgid "Daily goal: %d focus blocks."
+msgstr ""
+
+#: features.js:616
+msgid "No daily goal yet — just getting a feel for it."
+msgstr ""
+
+#: features.js:627
+msgid "Silent focus — no ticking or chimes."
+msgstr ""
+
+#: features.js:631
+msgid "Soft brown-noise ambience while you focus."
+msgstr ""
+
+#: features.js:636
+#, javascript-format
+msgid "A gentle chime every %d min to mark time."
+msgstr ""
+
+#: features.js:641
+msgid "Quiet, visual-only cues for a shared space."
+msgstr ""
+
+#: features.js:647
+msgid "Notifications are muted while you focus."
+msgstr ""
+
+#: features.js:650
+msgid "Distraction blocking is ready — add sites in Settings → Advanced."
+msgstr ""
+
+#: features.js:653
+msgid "One-click start and a calm start ritual make it easier to begin."
+msgstr ""
+
+#: features.js:657
+msgid "Breaks start on their own so you don't overwork."
+msgstr ""
+
+#: features.js:661
+msgid "A calm theme, no ticking seconds and no end-of-timer rush."
+msgstr ""
+
+#: features.js:701
+msgid "What will you mainly focus on?"
+msgstr ""
+
+#: features.js:702
+msgid "This shapes how long each focus block should be."
+msgstr ""
+
+#: features.js:704
+msgid "Deep work or coding"
+msgstr ""
+
+#: features.js:705
+msgid "Studying or reading"
+msgstr ""
+
+#: features.js:706
+msgid "Writing or creative work"
+msgstr ""
+
+#: features.js:707
+msgid "Lots of small tasks"
+msgstr ""
+
+#: features.js:709
+msgid "How long can you usually concentrate?"
+msgstr ""
+
+#: features.js:710
+msgid "Pick a length you can actually keep — it beats an ideal one."
+msgstr ""
+
+#: features.js:712
+msgid "About 15 minutes"
+msgstr ""
+
+#: features.js:713
+msgid "About 25 minutes"
+msgstr ""
+
+#: features.js:714
+msgid "45 minutes or more"
+msgstr ""
+
+#: features.js:715
+msgid "I lose track of time when I'm in flow"
+msgstr ""
+
+#: features.js:717
+msgid "What gets in your way most?"
+msgstr ""
+
+#: features.js:718
+msgid "I'll switch on the right help for this."
+msgstr ""
+
+#: features.js:720
+msgid "Notifications and pings"
+msgstr ""
+
+#: features.js:721
+msgid "Distracting websites"
+msgstr ""
+
+#: features.js:722
+msgid "It's hard to get started"
+msgstr ""
+
+#: features.js:723
+msgid "I forget to take breaks"
+msgstr ""
+
+#: features.js:724
+msgid "Timers make me anxious"
+msgstr ""
+
+#: features.js:726
+msgid "What helps you concentrate?"
+msgstr ""
+
+#: features.js:727
+msgid "Sets the focus soundscape — change it anytime in Sounds."
+msgstr ""
+
+#: features.js:729
+msgid "Silence"
+msgstr ""
+
+#: features.js:730
+msgid "Soft background noise"
+msgstr ""
+
+#: features.js:731
+msgid "A gentle chime to mark time"
+msgstr ""
+
+#: features.js:732
+msgid "I share my space — keep it quiet"
+msgstr ""
+
+#: features.js:734
+msgid "How much do you want to get done today?"
+msgstr ""
+
+#: features.js:735
+msgid "Sets your daily goal — no pressure, you can change it."
+msgstr ""
+
+#: features.js:737
+msgid "Just trying it out"
+msgstr ""
+
+#: features.js:738
+msgid "A light day (about 4)"
+msgstr ""
+
+#: features.js:739
+msgid "A full day (about 6)"
+msgstr ""
+
+#: features.js:740
+msgid "A big push (about 8)"
+msgstr ""
+
+#: features.js:756
+msgid "Smart setup"
+msgstr ""
+
+#: features.js:765
+msgid "Skip"
+msgstr ""
+
+#: features.js:768
+msgid "Let's tune Zen Pomodoro to you 🍅"
+msgstr ""
+
+#: features.js:769
+msgid ""
+"Answer five quick questions and I'll build a focus setup that fits how you "
+"work — your rhythm, sounds, breaks and the help you need. You can fine-tune "
+"everything later in Settings."
+msgstr ""
+
+#: features.js:770
+msgid "Let's go"
+msgstr ""
+
+#: features.js:776 features.js:792
+msgid "Back"
+msgstr ""
+
+#: features.js:777
+msgid "Next"
+msgstr ""
+
+#: features.js:780
+msgid "Your tailored setup 🍅"
+msgstr ""
+
+#: features.js:781
+msgid ""
+"Based on your answers, here's what I'll set up. Apply it now, then tweak "
+"anything in Settings."
+msgstr ""
+
+#: features.js:793
+msgid "Apply"
+msgstr ""
+
+#: features.js:794
+msgid "Apply & start"
+msgstr ""
+
+#: features.js:806 menu.js:325 menu.js:972 menu.js:978
+#, javascript-format
+msgid "%d min"
+msgstr ""
+
+#: features.js:810 menu.js:329
+#, javascript-format
+msgid "%dh %dm"
+msgstr ""
+
+#: features.js:810 menu.js:329
+#, javascript-format
+msgid "%dh"
+msgstr ""
+
+#: features.js:965
+msgid "Statistics reset."
+msgstr ""
+
+#: features.js:987
+#, javascript-format
+msgid "%d to go today — at your pace, done by about %s."
+msgstr ""
+
+#: features.js:988
+#, javascript-format
+msgid "%d more to reach today's goal of %d."
+msgstr ""
+
+#: features.js:990
+#, javascript-format
+msgid "Daily goal reached — %d done today. Nice."
+msgstr ""
+
+#: features.js:993
+#, javascript-format
+msgid "%d interruptions this week — what keeps pulling you away?"
+msgstr ""
+
+#: features.js:996 features.js:1118
+#, javascript-format
+msgid "Most focused around %s — good time for deep work."
+msgstr ""
+
+#: features.js:999
+#, javascript-format
+msgid "Most focus went to “%s”."
+msgstr ""
+
+#: features.js:1001
+#, javascript-format
+msgid "%d pomodoros this week. Keep it going."
+msgstr ""
+
+#: features.js:1002
+msgid "Start a focus session — your insights will appear here."
+msgstr ""
+
+#: features.js:1056
+msgid "Focus statistics"
+msgstr ""
+
+#: features.js:1070
+#, javascript-format
+msgid "%d / %d goal"
+msgstr ""
+
+#: features.js:1071
+msgid "Today"
+msgstr ""
+
+#: features.js:1072
+msgid "This week"
+msgstr ""
+
+#: features.js:1073
+msgid "Streak"
+msgstr ""
+
+#: features.js:1073
+#, javascript-format
+msgid "best %d"
+msgstr ""
+
+#: features.js:1074
+msgid "All time"
+msgstr ""
+
+#: features.js:1082
+msgid "Sun"
+msgstr ""
+
+#: features.js:1082
+msgid "Mon"
+msgstr ""
+
+#: features.js:1082
+msgid "Tue"
+msgstr ""
+
+#: features.js:1082
+msgid "Wed"
+msgstr ""
+
+#: features.js:1082
+msgid "Thu"
+msgstr ""
+
+#: features.js:1082
+msgid "Fri"
+msgstr ""
+
+#: features.js:1082
+msgid "Sat"
+msgstr ""
+
+#: features.js:1083
+#, javascript-format
+msgid "This week: %d 🍅 · %s · best day %s"
+msgstr ""
+
+#: features.js:1089
+msgid "Nothing harvested yet today"
+msgstr ""
+
+#: features.js:1091
+msgid "Today's harvest"
+msgstr ""
+
+#: features.js:1098
+#, javascript-format
+msgid "Interruptions: %d today · %d this week"
+msgstr ""
+
+#: features.js:1108
+msgid "When you focus (by hour)"
+msgstr ""
+
+#: features.js:1113
+msgid "night"
+msgstr ""
+
+#: features.js:1113
+msgid "morning"
+msgstr ""
+
+#: features.js:1113
+msgid "afternoon"
+msgstr ""
+
+#: features.js:1113
+msgid "evening"
+msgstr ""
+
+#: features.js:1119
+msgid "Not enough data yet to spot your best focus time."
+msgstr ""
+
+#: features.js:1128
+msgid "By task"
+msgstr ""
+
+#: features.js:1143
+msgid "Focus time — last 14 days"
+msgstr ""
+
+#: features.js:1147
+msgid "Activity — last 12 weeks"
+msgstr ""
+
+#: features.js:1152
+msgid "Less"
+msgstr ""
+
+#: features.js:1156
+msgid "More"
+msgstr ""
+
+#: features.js:1169 menu.js:541 menu.js:702
+#, javascript-format
+msgid "Milestones: %s"
+msgstr ""
+
+#: features.js:1177
+msgid "Delete all statistics"
+msgstr ""
+
+#: features.js:1182
+msgid "Reset statistics…"
+msgstr ""
+
+#: features.js:1183
+msgid "Close"
+msgstr ""
+
+#: features.js:1379
+msgid "No task"
+msgstr ""
+
+#: features.js:1416
+msgid "Push notifications need libsoup, which isn't available here."
+msgstr ""
+
+#: features.js:1422
+msgid "Enter your Pushover user key and app token first."
+msgstr ""
+
+#: features.js:1429
+msgid "Test notification from Zen Pomodoro 🍅"
+msgstr ""
+
+#: features.js:1451
+msgid "Pushover test sent ✓ — check your device."
+msgstr ""
+
+#: features.js:1452 features.js:1456
+msgid "Pushover test failed. Double-check your user key and app token."
+msgstr ""
+
+#: features.js:1468
+msgid "Could not open the hosts file"
+msgstr ""
+
+#: features.js:1522
+msgid "Add some domains to block first."
+msgstr ""
+
+#: features.js:1526
+msgid "Distractions blocked."
+msgstr "Distractions bloquées."
+
+#: features.js:1531
+msgid "Distractions unblocked."
+msgstr "Distractions débloquées."
+
+#: features.js:1540
+msgid "Passwordless blocking enabled (no prompt)."
+msgstr ""
+
+#: features.js:1541
+msgid "Passwordless blocking enabled (asks once per session)."
+msgstr ""
+
+#: features.js:1548
+msgid "Passwordless blocking removed."
+msgstr ""
+
+#: features.js:1585
+msgid "Click to exit Zen"
+msgstr ""
+
+#. settings-schema.json->focus->title
+#: features.js:1620 visual.js:894
+msgid "Focus"
+msgstr "Focus"
+
+#: features.js:1697
+msgid "Breathe in"
+msgstr ""
+
+#: features.js:1700 features.js:1706
+msgid "Hold"
+msgstr ""
+
+#: features.js:1703
+msgid "Breathe out"
+msgstr ""
+
+#: features.js:1733
+msgid "Focus until"
+msgstr ""
+
+#: features.js:1734
+msgid "Enter a time (HH:MM)"
+msgstr ""
+
+#: menu.js:125
+msgid "Error: menu unavailable"
+msgstr ""
+
+#: menu.js:176 menu.js:774 menu.js:1030
+msgid "blocked"
+msgstr ""
+
+#: menu.js:176 menu.js:469 menu.js:774 menu.js:1030
+msgid "ready"
+msgstr ""
+
+#: menu.js:261
+msgid "Ready to start"
+msgstr ""
+
+#: menu.js:269 menu.js:767
+msgid "Task will be selected on start"
+msgstr ""
+
+#: menu.js:395
+#, javascript-format
+msgid "Pomodoro %d / %d"
+msgstr ""
+
+#: menu.js:403 menu.js:858
+msgid "Start focus"
+msgstr ""
+
+#: menu.js:419
+msgid "Skip step"
+msgstr ""
+
+#: menu.js:425
+msgid "Reset session"
+msgstr ""
+
+#: menu.js:437
+msgid "Reset all"
+msgstr ""
+
+#: menu.js:438
+msgid "Confirm reset of everything"
+msgstr ""
+
+#: menu.js:469
+msgid "Sites"
+msgstr ""
+
+#: menu.js:478
+msgid "Current task…"
+msgstr ""
+
+#: menu.js:484
+msgid "Focus until…"
+msgstr ""
+
+#: menu.js:490
+msgid "Zen mode"
+msgstr ""
+
+#: menu.js:497
+msgid "Ambient sound"
+msgstr ""
+
+#: menu.js:501 menu.js:978
+msgid "Focus length"
+msgstr ""
+
+#: menu.js:508 menu.js:790 menu.js:1025
+msgid "Preset"
+msgstr ""
+
+#: menu.js:512 menu.js:899
+msgid "Task list"
+msgstr ""
+
+#: menu.js:516
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: menu.js:517
+msgid "Open dashboard…"
+msgstr ""
+
+#: menu.js:520 menu.js:664
+#, javascript-format
+msgid "Today: %d"
+msgstr "Aujourd'hui : %d"
+
+#: menu.js:523 menu.js:669
+#, javascript-format
+msgid "Last 7 days: %d"
+msgstr "7 derniers jours : %d"
+
+#: menu.js:526 menu.js:678
+#, javascript-format
+msgid "Last 30 days: %d"
+msgstr "30 derniers jours : %d"
+
+#: menu.js:529 menu.js:681
+#, javascript-format
+msgid "All time: %d"
+msgstr "Total : %d"
+
+#: menu.js:532 menu.js:684
+#, javascript-format
+msgid "Focus time: %s today · %s total"
+msgstr ""
+
+#: menu.js:535 menu.js:687
+#, javascript-format
+msgid "Streak: %d days (best %d)"
+msgstr ""
+
+#: menu.js:538 menu.js:690
+#, javascript-format
+msgid "Best day: %d"
+msgstr ""
+
+#: menu.js:541 menu.js:702
+msgid "none yet"
+msgstr ""
+
+#: menu.js:555
+msgid "Quick start"
+msgstr ""
+
+#: menu.js:560
+msgid "SESSION"
+msgstr ""
+
+#: menu.js:581
+msgid "Session…"
+msgstr ""
+
+#: menu.js:637
+#, javascript-format
+msgid "Today: %d / %d"
+msgstr ""
+
+#: menu.js:718
+#, javascript-format
+msgid "Pomodoro %d of %d"
+msgstr ""
+
+#: menu.js:720
+msgid "Long break"
+msgstr ""
+
+#: menu.js:722
+msgid "Short break"
+msgstr ""
+
+#: menu.js:725
+#, javascript-format
+msgid "until %s"
+msgstr ""
+
+#: menu.js:733
+msgid "Break finished — press Start for focus"
+msgstr ""
+
+#: menu.js:735
+#, javascript-format
+msgid "Finish your tasks by ~%s"
+msgstr ""
+
+#: menu.js:737
+#, javascript-format
+msgid "%d min focus — press Start"
+msgstr ""
+
+#: menu.js:763 menu.js:765
+#, javascript-format
+msgid "Task: %s"
+msgstr ""
+
+#: menu.js:769
+msgid "Task: none"
+msgstr ""
+
+#: menu.js:806
+#, javascript-format
+msgid "Hotkey: %s"
+msgstr ""
+
+#: menu.js:837
+msgid "Resume break"
+msgstr ""
+
+#: menu.js:837
+msgid "Resume focus"
+msgstr ""
+
+#: menu.js:844
+msgid "Focusing — stay with it"
+msgstr ""
+
+#: menu.js:849
+msgid "Pause focus"
+msgstr ""
+
+#: menu.js:849
+msgid "Pause break"
+msgstr ""
+
+#: menu.js:854
+msgid "Start next focus"
+msgstr ""
+
+#: menu.js:909
+msgid "Add task…"
+msgstr ""
+
+#: menu.js:919
+msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
+msgstr ""
+
+#: menu.js:941
+msgid "Toggle done (current)"
+msgstr ""
+
+#: menu.js:944
+msgid "Delete current"
+msgstr ""
+
+#: menu.js:953
+msgid "Save as template…"
+msgstr ""
+
+#: menu.js:959
+#, javascript-format
+msgid "Apply: %s"
+msgstr ""
+
+#. settings-schema.json->sec_preview->title
+#: visual.js:572
+msgid "Preview"
+msgstr ""
+
+#: visual.js:893
+#, javascript-format
+msgid "Focus: %s"
+msgstr ""
+
+#. settings-schema.json->timer->title
+msgid "Timer"
+msgstr ""
+
+#. settings-schema.json->panel->title
+#. settings-schema.json->sec_panel->title
+msgid "Panel"
+msgstr ""
+
+#. settings-schema.json->appearance->title
+msgid "Appearance"
+msgstr ""
+
+#. settings-schema.json->sounds->title
+#. settings-schema.json->sec_sounds->title
+msgid "Sounds"
+msgstr "Sons"
+
+#. settings-schema.json->advanced->title
+msgid "Advanced"
+msgstr "Avancé"
+
+#. settings-schema.json->sec_durations->title
+msgid "Durations"
+msgstr ""
+
+#. settings-schema.json->sec_behavior->title
+msgid "Behavior"
+msgstr ""
+
+#. settings-schema.json->sec_hud->title
+msgid "On-screen focus cues"
+msgstr "Repères de focus à l'écran"
+
+#. settings-schema.json->sec_theme->title
+msgid "Theme & frame"
+msgstr ""
+
+#. settings-schema.json->sec_motion->title
+msgid "Motion & menu"
+msgstr ""
+
+#. settings-schema.json->sec_goals->title
+msgid "Goals & flow"
+msgstr ""
+
+#. settings-schema.json->sec_modes->title
+msgid "Ambient & modes"
+msgstr ""
+
+#. settings-schema.json->sec_tools->title
+msgid "Run a command"
+msgstr "Exécuter une commande"
+
+#. settings-schema.json->sec_po->title
+msgid "Push notifications (Pushover)"
+msgstr ""
+
+#. settings-schema.json->sec_po_messages->title
+msgid "Notification text"
+msgstr ""
+
+#. settings-schema.json->sec_po_alerts->title
+msgid "Sound & priority per event"
+msgstr ""
+
+#. settings-schema.json->sec_blocking->title
+msgid "Distraction blocking (advanced)"
+msgstr "Blocage des distractions (avancé)"
+
+#. settings-schema.json->sec_scripts->title
+msgid "Scripts"
+msgstr "Scripts"
+
+#. settings-schema.json->sec_shortcuts->title
+msgid "Keyboard shortcuts"
+msgstr ""
+
+#. settings-schema.json->sec_presets->title
+msgid "Presets"
+msgstr ""
 
 #. settings-schema.json->pomodoro_duration->description
 msgid "Pomodoro Duration:"
 msgstr "Durée du Pomodoro :"
 
+#. settings-schema.json->pomodoro_duration->units
+#. settings-schema.json->short_break_duration->units
+#. settings-schema.json->long_break_duration->units
+msgid "minutes"
+msgstr "minutes"
+
+#. settings-schema.json->pomodoro_duration->tooltip
+msgid "Length of one focus block, in minutes (classic Pomodoro is 25)."
+msgstr ""
+
 #. settings-schema.json->short_break_duration->description
 msgid "Short Break Duration:"
 msgstr "Durée d'une courte pause :"
+
+#. settings-schema.json->short_break_duration->tooltip
+msgid "Length of the short break after each focus block (classic is 5)."
+msgstr ""
 
 #. settings-schema.json->long_break_duration->description
 msgid "Long Break Duration:"
 msgstr "Durée d'une longue pause :"
 
+#. settings-schema.json->long_break_duration->tooltip
+msgid "Length of the longer break after a set of pomodoros (classic is 15–30)."
+msgstr ""
+
 #. settings-schema.json->pomodori_number->description
 msgid "Number of pomodori before long break:"
 msgstr "Nombre de Pomodoro avant une longue pause :"
 
-#. settings-schema.json->head_options->description
-msgid "Options"
-msgstr "Options"
+#. settings-schema.json->pomodori_number->tooltip
+msgid "How many focus blocks to complete before the long break (classic is 4)."
+msgstr ""
 
 #. settings-schema.json->start_automatically_on_load->description
 msgid "Start the pomodoro timer as soon as the applet loads"
 msgstr "Lancer le minuteur pomodoro dès le chargement de l'applet"
 
+#. settings-schema.json->start_automatically_on_load->tooltip
+msgid ""
+"Begin a focus session as soon as Cinnamon starts or the applet is added."
+msgstr ""
+
+#. settings-schema.json->session_recovery->description
+msgid ""
+"Recover an in-progress focus session after a Cinnamon restart (resume "
+"manually)"
+msgstr ""
+
+#. settings-schema.json->session_recovery->tooltip
+msgid ""
+"If Cinnamon restarts mid-focus, the session is remembered so you can resume "
+"it from the menu — it won't auto-start."
+msgstr ""
+
 #. settings-schema.json->show_dialog_messages->description
 msgid "Show Dialog Messages"
 msgstr "Voir les messages de dialogue"
+
+#. settings-schema.json->show_dialog_messages->tooltip
+msgid ""
+"Show pop-up dialogs at the end of each phase (off keeps it quiet — only on-"
+"screen cues)."
+msgstr ""
 
 #. settings-schema.json->auto_start_after_pomodoro_ends->description
 msgid "Auto start after a pomodoro ends"
 msgstr "Démarrage automatique à la fin d'un pomodoro"
 
+#. settings-schema.json->auto_start_after_pomodoro_ends->tooltip
+msgid "When a focus block ends, start its break automatically."
+msgstr ""
+
 #. settings-schema.json->auto_start_after_short_break_ends->description
 msgid "Auto start after a short break ends"
 msgstr "Démarrer automatiquement lorsque la pause est terminée"
+
+#. settings-schema.json->auto_start_after_short_break_ends->tooltip
+msgid "When a short break ends, start the next focus block automatically."
+msgstr ""
 
 #. settings-schema.json->auto_start_after_break_ends->description
 msgid "Auto start a new pomodoro after a break ends"
 msgstr ""
 "Démarrer automatiquement un nouveau Pomodoro lorsque la pause est terminée"
 
+#. settings-schema.json->auto_start_after_break_ends->tooltip
+msgid "When the long break ends, start a new pomodoro cycle automatically."
+msgstr ""
+
 #. settings-schema.json->display_icon->description
 msgid "Display the pomodoro icon in the applet panel"
 msgstr "Afficher l'icône du Pomodoro dans le panneau d'applet"
+
+#. settings-schema.json->display_icon->tooltip
+msgid "Show the Pomodoro icon in the panel next to the timer."
+msgstr ""
 
 #. settings-schema.json->use_symbolic_icon->description
 msgid "Use a symbolic icon in the applet panel"
 msgstr "Utiliser une icône symbolique dans le panneau"
 
+#. settings-schema.json->use_symbolic_icon->tooltip
+msgid "Use a monochrome symbolic icon that follows your panel theme."
+msgstr ""
+
 #. settings-schema.json->show_timer->description
 msgid "Show the pomodoro timer in the applet panel"
 msgstr "Afficher le minuteur du Pomodoro dans le panneau d'applet"
 
-#. settings-schema.json->hotkey->description
-msgid "Set the keybinding to open the applet menu"
-msgstr "Définir le raccourci clavier pour ouvrir le menu de l'applet"
+#. settings-schema.json->show_timer->tooltip
+msgid "Show the remaining time as text in the panel."
+msgstr ""
 
-#. settings-schema.json->head_sounds->description
-msgid "Sounds"
-msgstr "Sons"
+#. settings-schema.json->show_seconds->description
+msgid "Show seconds in the panel timer"
+msgstr ""
+
+#. settings-schema.json->show_seconds->tooltip
+msgid "Off shows only the remaining minutes on the panel (less distracting)."
+msgstr ""
+
+#. settings-schema.json->hotkey->description
+msgid "Shortcut: open the applet menu"
+msgstr ""
+
+#. settings-schema.json->hotkey->tooltip
+msgid "Keyboard shortcut to open or close the applet menu."
+msgstr ""
+
+#. settings-schema.json->hotkey_toggle->description
+msgid "Shortcut: start / pause the timer"
+msgstr ""
+
+#. settings-schema.json->hotkey_toggle->tooltip
+msgid "Keyboard shortcut to start or pause the timer."
+msgstr ""
+
+#. settings-schema.json->hotkey_skip->description
+msgid "Shortcut: skip to the next step"
+msgstr ""
+
+#. settings-schema.json->hotkey_skip->tooltip
+msgid "Keyboard shortcut to skip to the next phase (focus ↔ break)."
+msgstr ""
+
+#. settings-schema.json->start_on_click->description
+msgid "Start the timer with a single click when idle"
+msgstr ""
+
+#. settings-schema.json->start_on_click->tooltip
+msgid ""
+"When no timer is running, left-clicking the applet starts a focus session "
+"directly instead of opening the menu."
+msgstr ""
+
+#. settings-schema.json->panel_scroll_control->description
+msgid "Control the timer with the mouse on the panel"
+msgstr ""
+
+#. settings-schema.json->panel_scroll_control->tooltip
+msgid ""
+"Scroll up on the applet to start or resume, scroll down to pause, and middle-"
+"click to skip the phase. Turn this off if you sometimes scroll over the "
+"panel by accident."
+msgstr ""
+
+#. settings-schema.json->scroll_action->description
+msgid "Mouse-wheel action on the panel"
+msgstr ""
+
+#. settings-schema.json->scroll_action->options
+msgid "Start / pause the timer"
+msgstr ""
+
+#. settings-schema.json->scroll_action->options
+msgid "Adjust the focus length"
+msgstr ""
+
+#. settings-schema.json->scroll_action->tooltip
+msgid ""
+"What the mouse wheel does on the applet: start/pause the timer, or change "
+"the focus length (when idle). Middle-click always skips to the next phase."
+msgstr ""
+
+#. settings-schema.json->focus_show_task_chip->description
+msgid "Show the current task as an on-screen chip during focus"
+msgstr ""
+
+#. settings-schema.json->focus_show_task_chip->tooltip
+msgid "Show the current task in a small on-screen chip while focusing."
+msgstr ""
+
+#. settings-schema.json->focus_calm_ending->description
+msgid "Calm ending: no anxious pulsing near the end of a timer"
+msgstr ""
+
+#. settings-schema.json->focus_calm_ending->tooltip
+msgid "No anxious blinking near the end — a calm, steady cue instead."
+msgstr ""
+
+#. settings-schema.json->focus_start_ritual->description
+msgid ""
+"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus "
+"begins"
+msgstr ""
+
+#. settings-schema.json->focus_start_ritual->tooltip
+msgid "Briefly show 'Focus: <task>' with a smooth fade-in when focus begins."
+msgstr ""
+
+#. settings-schema.json->preset_tasks->description
+msgid "Preset focus tasks (quick-pick buttons in the focus dialog)"
+msgstr ""
+
+#. settings-schema.json->preset_tasks->columns->title
+msgid "Task"
+msgstr ""
+
+#. settings-schema.json->preset_tasks->tooltip
+msgid "Quick-pick task buttons shown in the focus task dialog; one per row."
+msgstr ""
+
+#. settings-schema.json->require_focus_task->description
+msgid "Require a focus task before starting"
+msgstr ""
+
+#. settings-schema.json->require_focus_task->tooltip
+msgid "Ask for a task name before a focus session can start."
+msgstr ""
+
+#. settings-schema.json->theme_preset->description
+msgid "Color theme"
+msgstr ""
+
+#. settings-schema.json->theme_preset->options
+msgid "Warm (amber / green)"
+msgstr ""
+
+#. settings-schema.json->theme_preset->options
+msgid "Cool (teal)"
+msgstr ""
+
+#. settings-schema.json->theme_preset->options
+msgid "Monochrome"
+msgstr ""
+
+#. settings-schema.json->theme_preset->tooltip
+msgid ""
+"Color scheme for accents and on-screen cues. Choose Custom to set your own "
+"focus/break colors below."
+msgstr ""
+
+#. settings-schema.json->accent_focus_color->description
+msgid "Custom focus accent color"
+msgstr ""
+
+#. settings-schema.json->accent_focus_color->tooltip
+msgid "Accent color during focus (used only when the theme is Custom)."
+msgstr ""
+
+#. settings-schema.json->accent_break_color->description
+msgid "Custom break accent color"
+msgstr ""
+
+#. settings-schema.json->accent_break_color->tooltip
+msgid "Accent color during breaks (used only when the theme is Custom)."
+msgstr ""
+
+#. settings-schema.json->frame_style->description
+msgid "On-screen focus frame style"
+msgstr ""
+
+#. settings-schema.json->frame_style->options
+msgid "Glow"
+msgstr ""
+
+#. settings-schema.json->frame_style->options
+msgid "Classic border"
+msgstr ""
+
+#. settings-schema.json->frame_style->options
+msgid "Corners only"
+msgstr ""
+
+#. settings-schema.json->frame_style->options
+msgid "Off"
+msgstr ""
+
+#. settings-schema.json->frame_style->tooltip
+msgid ""
+"Style of the on-screen frame that traces focus progress: a soft Glow, a "
+"Classic border, just the Corners, or Off."
+msgstr ""
+
+#. settings-schema.json->glow_intensity->description
+msgid "Glow intensity"
+msgstr ""
+
+#. settings-schema.json->glow_intensity->tooltip
+msgid ""
+"How bright the on-screen edge glow is during focus — higher is more visible, "
+"lower is subtler."
+msgstr ""
+
+#. settings-schema.json->glow_progress_width->description
+msgid "Progress line thickness"
+msgstr ""
+
+#. settings-schema.json->glow_progress_width->tooltip
+msgid ""
+"Thickness of the progress line drawn around the screen edge during focus."
+msgstr ""
+
+#. settings-schema.json->breathing_pattern->description
+msgid "Breathing pattern"
+msgstr ""
+
+#. settings-schema.json->breathing_pattern->options
+msgid "Box 4-4-4-4"
+msgstr ""
+
+#. settings-schema.json->breathing_pattern->options
+msgid "4-7-8"
+msgstr ""
+
+#. settings-schema.json->breathing_pattern->options
+msgid "Relaxing 4-6"
+msgstr ""
+
+#. settings-schema.json->breathing_pattern->tooltip
+msgid ""
+"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 "
+"— seconds per phase."
+msgstr ""
+
+#. settings-schema.json->chip_position->description
+msgid "Task chip position"
+msgstr ""
+
+#. settings-schema.json->chip_position->options
+msgid "Bottom-right"
+msgstr ""
+
+#. settings-schema.json->chip_position->options
+msgid "Bottom-left"
+msgstr ""
+
+#. settings-schema.json->chip_position->options
+msgid "Top-right"
+msgstr ""
+
+#. settings-schema.json->chip_position->options
+msgid "Top-left"
+msgstr ""
+
+#. settings-schema.json->chip_position->tooltip
+msgid "Which screen corner the on-screen task chip appears in."
+msgstr ""
+
+#. settings-schema.json->ritual_seconds->description
+msgid "Start ritual duration (seconds)"
+msgstr ""
+
+#. settings-schema.json->ritual_seconds->tooltip
+msgid "How long the 'Focus: <task>' start ritual stays on screen, in seconds."
+msgstr ""
+
+#. settings-schema.json->reduce_motion->description
+msgid "Reduce motion (disable focus animations)"
+msgstr ""
+
+#. settings-schema.json->reduce_motion->tooltip
+msgid "Disable focus animations (fades, pulsing, breathing)."
+msgstr ""
+
+#. settings-schema.json->menu_font_scale->description
+msgid "Menu font scale (%)"
+msgstr ""
+
+#. settings-schema.json->menu_font_scale->tooltip
+msgid "Make the applet menu's text larger or smaller (100% = default size)."
+msgstr ""
+
+#. settings-schema.json->preview_appearance_button->description
+msgid "Preview focus frame"
+msgstr ""
+
+#. settings-schema.json->preview_appearance_button->tooltip
+msgid ""
+"Briefly show the on-screen focus frame and task chip with the current colors "
+"and style (works when no timer is running)."
+msgstr ""
+
+#. settings-schema.json->preview_breathing_button->description
+msgid "Preview breathing guide"
+msgstr ""
+
+#. settings-schema.json->preview_breathing_button->tooltip
+msgid "Briefly show the breathing guide with the selected pattern."
+msgstr ""
+
+#. settings-schema.json->panel_progress_icon->description
+msgid "Show timer progress as a ring on the panel icon"
+msgstr ""
+
+#. settings-schema.json->panel_progress_icon->tooltip
+msgid "Draw remaining time as a ring around the panel icon."
+msgstr ""
+
+#. settings-schema.json->daily_goal->description
+msgid "Daily focus goal (pomodori, 0 = off)"
+msgstr ""
+
+#. settings-schema.json->daily_goal->tooltip
+msgid "Target pomodoros per day (0 turns off the goal and streak)."
+msgstr ""
+
+#. settings-schema.json->auto_pause_idle->description
+msgid "Auto-pause focus when you are away (idle)"
+msgstr ""
+
+#. settings-schema.json->auto_pause_idle->tooltip
+msgid "Pause focus automatically when you step away from the computer."
+msgstr ""
+
+#. settings-schema.json->auto_pause_idle_minutes->description
+msgid "Idle minutes before auto-pause"
+msgstr ""
+
+#. settings-schema.json->auto_pause_idle_minutes->tooltip
+msgid "How long you can be away before focus auto-pauses, in minutes."
+msgstr ""
+
+#. settings-schema.json->auto_resume_on_activity->description
+msgid "Resume automatically when you return"
+msgstr ""
+
+#. settings-schema.json->auto_resume_on_activity->tooltip
+msgid ""
+"Resume a paused focus session automatically when you return to the computer."
+msgstr ""
+
+#. settings-schema.json->flow_extend->description
+msgid "Offer to extend focus when a pomodoro ends (stay in flow)"
+msgstr ""
+
+#. settings-schema.json->flow_extend->tooltip
+msgid "When a pomodoro ends, offer to extend it to stay in flow."
+msgstr ""
+
+#. settings-schema.json->flow_extend_minutes->description
+msgid "Extend amount (minutes)"
+msgstr ""
+
+#. settings-schema.json->flow_extend_minutes->tooltip
+msgid "How many extra minutes the 'extend focus' option adds."
+msgstr ""
+
+#. settings-schema.json->focus_ambient_sound->description
+msgid "Play soft ambient (brown noise) during focus"
+msgstr ""
+
+#. settings-schema.json->focus_ambient_sound->tooltip
+msgid "Play soft brown noise during focus."
+msgstr ""
+
+#. settings-schema.json->focus_ambient_volume->description
+msgid "Ambient volume"
+msgstr ""
+
+#. settings-schema.json->focus_ambient_volume->tooltip
+msgid "Volume of the brown-noise ambient sound (0 = silent)."
+msgstr ""
+
+#. settings-schema.json->break_breathing->description
+msgid "Show a breathing guide during breaks"
+msgstr ""
+
+#. settings-schema.json->break_breathing->tooltip
+msgid ""
+"During breaks, show an expanding and contracting circle that paces your "
+"breathing to help you unwind."
+msgstr ""
+
+#. settings-schema.json->zen_mode_enabled->description
+msgid "Enable Zen mode (full-screen focus overlay, toggled from the menu)"
+msgstr ""
+
+#. settings-schema.json->zen_mode_enabled->tooltip
+msgid "Allow a full-screen Zen overlay, toggled from the menu."
+msgstr ""
+
+#. settings-schema.json->strict_focus->description
+msgid "Strict focus: no pause or skip during a focus block"
+msgstr ""
+
+#. settings-schema.json->strict_focus->tooltip
+msgid ""
+"While a focus block is running, hide pause and skip so you commit to it. You "
+"can still Reset to abandon the session — it's never a hard lock."
+msgstr ""
+
+#. settings-schema.json->focus_until_enabled->description
+msgid "Show 'Focus until…' in the menu (focus until a clock time)"
+msgstr ""
+
+#. settings-schema.json->focus_until_enabled->tooltip
+msgid "Add a 'Focus until…' option (focus until a clock time)."
+msgstr ""
+
+#. settings-schema.json->focus_dnd->description
+msgid "Mute notifications while focusing (Do Not Disturb)"
+msgstr "Couper les notifications pendant le focus (Ne pas déranger)"
+
+#. settings-schema.json->focus_dnd->tooltip
+msgid "Mute Cinnamon notifications while focusing; restored afterwards."
+msgstr ""
+
+#. settings-schema.json->run_command_enabled->description
+msgid "Run a command when focus or a break starts"
+msgstr ""
+
+#. settings-schema.json->run_command_enabled->tooltip
+msgid "Run a command of your choice when focus or a break starts."
+msgstr ""
+
+#. settings-schema.json->focus_start_command->description
+msgid "Command to run when focus starts"
+msgstr ""
+
+#. settings-schema.json->focus_start_command->tooltip
+msgid ""
+"Command run when a focus block starts (e.g. update your chat status). No "
+"shell pipes or redirects."
+msgstr ""
+
+#. settings-schema.json->break_start_command->description
+msgid "Command to run when a break starts"
+msgstr ""
+
+#. settings-schema.json->break_start_command->tooltip
+msgid "Command run when a break starts (e.g. clear your status)."
+msgstr ""
+
+#. settings-schema.json->pushover_enabled->description
+msgid "Send push notifications to your phone (Pushover)"
+msgstr ""
+
+#. settings-schema.json->pushover_enabled->tooltip
+msgid ""
+"Send a push notification to your devices via Pushover when focus or breaks "
+"start."
+msgstr ""
+
+#. settings-schema.json->pushover_help->description
+msgid ""
+"Pushover sends alerts to your phone or desktop. Create a free account at "
+"pushover.net, copy your User Key, then create an Application there to get an "
+"API Token."
+msgstr ""
+
+#. settings-schema.json->pushover_user_key->description
+msgid "Pushover user key"
+msgstr ""
+
+#. settings-schema.json->pushover_user_key->tooltip
+msgid "Your Pushover user key (from your Pushover account)."
+msgstr ""
+
+#. settings-schema.json->pushover_app_token->description
+msgid "Pushover application API token"
+msgstr ""
+
+#. settings-schema.json->pushover_app_token->tooltip
+msgid "API token of your Pushover application (create one at pushover.net)."
+msgstr ""
+
+#. settings-schema.json->pushover_test_button->description
+msgid "Send a test notification"
+msgstr ""
+
+#. settings-schema.json->pushover_test_button->tooltip
+msgid "Send a test message now to confirm your user key and app token work."
+msgstr ""
+
+#. settings-schema.json->pushover_customize->description
+msgid "Customize messages, sounds and priority"
+msgstr ""
+
+#. settings-schema.json->pushover_customize->tooltip
+msgid ""
+"Show options to change the text, sound and priority for each event. Off uses "
+"sensible defaults."
+msgstr ""
+
+#. settings-schema.json->pushover_title->description
+msgid "Notification title"
+msgstr ""
+
+#. settings-schema.json->pushover_title->tooltip
+msgid "Title shown on the push notifications."
+msgstr ""
+
+#. settings-schema.json->pushover_msg_focus->description
+msgid "Message when focus starts"
+msgstr ""
+
+#. settings-schema.json->pushover_msg_focus->tooltip
+msgid ""
+"Sent when a focus session starts. {task} and {minutes} are substituted. "
+"Leave empty to send nothing."
+msgstr ""
+
+#. settings-schema.json->pushover_msg_resume->description
+msgid "Message when a break ends"
+msgstr ""
+
+#. settings-schema.json->pushover_msg_resume->tooltip
+msgid "Sent when a break finishes. Leave empty to send no message."
+msgstr ""
+
+#. settings-schema.json->enable_blocking->description
+msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
+msgstr ""
+
+#. settings-schema.json->enable_blocking->tooltip
+msgid "Block distracting sites by editing /etc/hosts (asks for your password)."
+msgstr ""
+
+#. settings-schema.json->block_domains->description
+msgid "Domains to block (e.g. youtube.com)"
+msgstr ""
+
+#. settings-schema.json->block_domains->columns->title
+msgid "Domain"
+msgstr ""
+
+#. settings-schema.json->block_domains->tooltip
+msgid ""
+"Domains to block during focus, one per row (e.g. youtube.com, www.youtube."
+"com)."
+msgstr ""
+
+#. settings-schema.json->block_now_button->description
+msgid "Block these domains now"
+msgstr "Bloquer ces domaines maintenant"
+
+#. settings-schema.json->block_now_button->tooltip
+msgid ""
+"Adds the domains above to /etc/hosts (you'll be asked for your password "
+"once). They stay blocked until you click Unblock."
+msgstr ""
+
+#. settings-schema.json->unblock_button->description
+msgid "Unblock"
+msgstr "Débloquer"
+
+#. settings-schema.json->unblock_button->tooltip
+msgid ""
+"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password "
+"once)."
+msgstr ""
+
+#. settings-schema.json->edit_hosts_button->description
+msgid "Edit /etc/hosts manually (admin)"
+msgstr ""
+
+#. settings-schema.json->edit_hosts_button->tooltip
+msgid ""
+"Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only "
+"manages its own clearly-marked section."
+msgstr ""
 
 #. settings-schema.json->sox-info->description
-msgid "Please install 'sox' and restart Cinnamon to use the sound feature!"
+msgid ""
+"No sound backend was found. Install GSound or a sound player (e.g. the "
+"'pulseaudio-utils' or 'sox' package) to enable sounds."
 msgstr ""
-"Veuillez installer \"sox\" puis redémarrer Cinnamon pour utiliser les "
-"fonctionnalités sonores !"
 
 #. settings-schema.json->timer_sound->description
 msgid "Play Timer Sound"
 msgstr "Jouer le son du minuteur"
 
+#. settings-schema.json->timer_sound->tooltip
+msgid "Play a soft ticking sound while focusing."
+msgstr ""
+
 #. settings-schema.json->timer_sound_file->description
 msgid "Timer Sound File"
 msgstr "Fichier son du minuteur"
+
+#. settings-schema.json->timer_sound_file->tooltip
+msgid "Sound file for the ticking (leave empty for the built-in tone)."
+msgstr ""
 
 #. settings-schema.json->timer_sound_volume->description
 #. settings-schema.json->break_sound_volume->description
@@ -246,100 +1907,419 @@ msgstr "Fichier son du minuteur"
 msgid "Sound volume:"
 msgstr "Volume du son :"
 
+#. settings-schema.json->timer_sound_volume->tooltip
+msgid "Volume of the ticking sound (0 = silent)."
+msgstr ""
+
 #. settings-schema.json->break_sound->description
 msgid "Play Break Sound"
 msgstr "Jouer un son de pause"
+
+#. settings-schema.json->break_sound->tooltip
+msgid "Play a sound when a break begins."
+msgstr ""
 
 #. settings-schema.json->break_sound_file->description
 msgid "Break Sound File"
 msgstr "Fichier son de pause"
 
+#. settings-schema.json->break_sound_file->tooltip
+msgid "Sound file played when a break begins."
+msgstr ""
+
+#. settings-schema.json->break_sound_volume->tooltip
+msgid "Volume of the break sound (0 = silent)."
+msgstr ""
+
 #. settings-schema.json->warn_sound->description
 msgid "Play Warn Sound"
 msgstr "Jouer un son d'avertissement"
+
+#. settings-schema.json->warn_sound->tooltip
+msgid "Play a warning sound shortly before a focus block ends."
+msgstr ""
 
 #. settings-schema.json->warn_sound_delay->description
 msgid "Warn Delay (in secs):"
 msgstr "Délai d'avertissement (en secondes) :"
 
+#. settings-schema.json->warn_sound_delay->tooltip
+msgid "How many seconds before the end the warning sound plays."
+msgstr ""
+
 #. settings-schema.json->warn_sound_file->description
 msgid "Warn Sound File"
 msgstr "Fichier son d'avertissement"
+
+#. settings-schema.json->warn_sound_file->tooltip
+msgid "Sound file used for the warning."
+msgstr ""
+
+#. settings-schema.json->warn_sound_volume->tooltip
+msgid "Volume of the warning sound (0 = silent)."
+msgstr ""
 
 #. settings-schema.json->start_sound->description
 msgid "Play Start Sound"
 msgstr "Jouer un son de début"
 
+#. settings-schema.json->start_sound->tooltip
+msgid "Play a sound when a focus block starts."
+msgstr ""
+
 #. settings-schema.json->start_sound_file->description
 msgid "Start Sound File"
 msgstr "Fichier son de début"
 
-#. settings-schema.json->head_scripts->description
-msgid "Scripts"
-msgstr "Scripts"
+#. settings-schema.json->start_sound_file->tooltip
+msgid "Sound file played when focus starts."
+msgstr ""
+
+#. settings-schema.json->start_sound_volume->tooltip
+msgid "Volume of the start sound (0 = silent)."
+msgstr ""
+
+#. settings-schema.json->interval_chime->description
+msgid "Play a chime at a regular interval during focus"
+msgstr "Jouer un signal sonore à intervalle régulier pendant le focus"
+
+#. settings-schema.json->interval_chime->tooltip
+msgid "Play a sound at a fixed interval during focus to mark time passing."
+msgstr ""
+
+#. settings-schema.json->interval_chime_seconds->description
+msgid "Chime interval (seconds):"
+msgstr ""
+
+#. settings-schema.json->interval_chime_seconds->tooltip
+msgid "Seconds between chimes during focus."
+msgstr ""
+
+#. settings-schema.json->interval_chime_file->description
+msgid "Chime sound file"
+msgstr ""
+
+#. settings-schema.json->interval_chime_file->tooltip
+msgid "Sound file used for the interval chime."
+msgstr ""
+
+#. settings-schema.json->interval_chime_volume->description
+msgid "Chime volume:"
+msgstr ""
+
+#. settings-schema.json->interval_chime_volume->tooltip
+msgid "Volume of the interval chime (0 = silent)."
+msgstr ""
 
 #. settings-schema.json->enable_scripts->description
 msgid "Enable scripts"
 msgstr "Activer les scripts"
 
+#. settings-schema.json->enable_scripts->tooltip
+msgid ""
+"Run your personal ~/.local/bin/pomodoro scripts. Off = built-in features "
+"only."
+msgstr ""
+
 #. settings-schema.json->custom_short_break_script->description
 msgid "Execute this custom script when a short break starts"
 msgstr "Exécuter ce script personnalisé lorsqu'une pause courte commence"
+
+#. settings-schema.json->custom_short_break_script->tooltip
+msgid "Script to run when a short break starts."
+msgstr ""
 
 #. settings-schema.json->custom_long_break_script->description
 msgid "Execute this custom script when a long break starts"
 msgstr "Exécuter ce script personnalisé lorsqu'une pause longue commence"
 
-msgid "Statistics"
-msgstr "Statistiques"
+#. settings-schema.json->custom_long_break_script->tooltip
+msgid "Script to run when a long break starts."
+msgstr ""
 
-msgid "Today: %d"
-msgstr "Aujourd'hui : %d"
+#. settings-schema.json->hdr_tick->description
+msgid "Ticking sound (during focus)"
+msgstr ""
 
-msgid "Last 7 days: %d"
-msgstr "7 derniers jours : %d"
+#. settings-schema.json->hdr_alerts->description
+msgid "Alert sounds"
+msgstr ""
 
-msgid "Last 30 days: %d"
-msgstr "30 derniers jours : %d"
+#. settings-schema.json->hdr_interval->description
+msgid "Interval chime"
+msgstr ""
 
-msgid "All time: %d"
-msgstr "Total : %d"
+#. settings-schema.json->custom_presets->description
+msgid ""
+"Your custom presets. Apply one from the Preset submenu in the applet menu."
+msgstr ""
 
-msgid "Streak: %d days"
-msgstr "Série : %d jours"
+#. settings-schema.json->custom_presets->columns->title
+msgid "Name"
+msgstr ""
 
-msgid "Advanced"
-msgstr "Avancé"
+#. settings-schema.json->custom_presets->columns->title
+msgid "Focus (min)"
+msgstr ""
 
-msgid "Focus"
-msgstr "Focus"
+#. settings-schema.json->custom_presets->columns->units
+msgid "min"
+msgstr ""
 
-msgid "Unblock"
-msgstr "Débloquer"
+#. settings-schema.json->custom_presets->columns->title
+msgid "Short break (min)"
+msgstr ""
 
-msgid "Block these domains now"
-msgstr "Bloquer ces domaines maintenant"
+#. settings-schema.json->custom_presets->columns->title
+msgid "Long break (min)"
+msgstr ""
 
-msgid "Distractions blocked."
-msgstr "Distractions bloquées."
+#. settings-schema.json->custom_presets->columns->title
+msgid "Pomodori"
+msgstr ""
 
-msgid "Distractions unblocked."
-msgstr "Distractions débloquées."
+#. settings-schema.json->custom_presets->tooltip
+msgid ""
+"Your timer presets — name + focus / short / long minutes + pomodori. Apply "
+"them from the menu's Preset submenu."
+msgstr ""
 
-msgid "Mute notifications while focusing (Do Not Disturb)"
-msgstr "Couper les notifications pendant le focus (Ne pas déranger)"
+#. settings-schema.json->block_passwordless_full->description
+msgid "Fully passwordless blocking (no prompt at all)"
+msgstr ""
 
-msgid "Play a chime at a regular interval during focus"
-msgstr "Jouer un signal sonore à intervalle régulier pendant le focus"
+#. settings-schema.json->block_passwordless_full->tooltip
+msgid ""
+"After setup, never ask for a password. Off (default) asks once per login "
+"session. Convenient but less safe: any local program could then change your "
+"blocklist without asking."
+msgstr ""
 
-msgid "minutes"
-msgstr "minutes"
+#. settings-schema.json->setup_passwordless_button->description
+msgid "Set up passwordless blocking (one-time)"
+msgstr ""
 
-msgid "On-screen focus cues"
-msgstr "Repères de focus à l'écran"
+#. settings-schema.json->setup_passwordless_button->tooltip
+msgid ""
+"Asks for your password once and installs a small system policy so blocking "
+"no longer prompts every time. Uses the mode selected above; re-run after "
+"changing the mode."
+msgstr ""
 
-msgid "Distraction blocking (advanced)"
-msgstr "Blocage des distractions (avancé)"
+#. settings-schema.json->remove_passwordless_button->description
+msgid "Remove passwordless setup"
+msgstr ""
 
-msgid "Run a command"
-msgstr "Exécuter une commande"
+#. settings-schema.json->remove_passwordless_button->tooltip
+msgid ""
+"Removes the system policy and the root helper, so blocking asks for your "
+"password again each time."
+msgstr ""
+
+#. settings-schema.json->onboarding_button->description
+msgid "Run the quick-start guide"
+msgstr ""
+
+#. settings-schema.json->onboarding_button->tooltip
+msgid "Re-open the step-by-step setup guide."
+msgstr ""
+
+#. settings-schema.json->pushover_msg_short_break->description
+msgid "Message when a short break starts"
+msgstr ""
+
+#. settings-schema.json->pushover_msg_short_break->tooltip
+msgid ""
+"Sent when a short break begins. {task} and {minutes} are substituted. Leave "
+"empty to send nothing."
+msgstr ""
+
+#. settings-schema.json->pushover_msg_long_break->description
+msgid "Message when a long break starts"
+msgstr ""
+
+#. settings-schema.json->pushover_msg_long_break->tooltip
+msgid ""
+"Sent when a long break begins. {task} and {minutes} are substituted. Leave "
+"empty to send nothing."
+msgstr ""
+
+#. settings-schema.json->pushover_msg_goal->description
+msgid "Message when the daily goal is reached"
+msgstr ""
+
+#. settings-schema.json->pushover_msg_goal->tooltip
+msgid ""
+"Sent once when you hit your daily pomodoro goal. {task} and {minutes} are "
+"substituted. Leave empty to send nothing."
+msgstr ""
+
+#. settings-schema.json->pushover_snd_focus->description
+msgid "Focus start — sound"
+msgstr ""
+
+#. settings-schema.json->pushover_snd_focus->options
+#. settings-schema.json->pushover_snd_short_break->options
+#. settings-schema.json->pushover_snd_long_break->options
+#. settings-schema.json->pushover_snd_resume->options
+#. settings-schema.json->pushover_snd_goal->options
+msgid "Default"
+msgstr ""
+
+#. settings-schema.json->pushover_snd_focus->options
+#. settings-schema.json->pushover_snd_short_break->options
+#. settings-schema.json->pushover_snd_long_break->options
+#. settings-schema.json->pushover_snd_resume->options
+#. settings-schema.json->pushover_snd_goal->options
+msgid "Magic"
+msgstr ""
+
+#. settings-schema.json->pushover_snd_focus->options
+#. settings-schema.json->pushover_snd_short_break->options
+#. settings-schema.json->pushover_snd_long_break->options
+#. settings-schema.json->pushover_snd_resume->options
+#. settings-schema.json->pushover_snd_goal->options
+msgid "Bike"
+msgstr ""
+
+#. settings-schema.json->pushover_snd_focus->options
+#. settings-schema.json->pushover_snd_short_break->options
+#. settings-schema.json->pushover_snd_long_break->options
+#. settings-schema.json->pushover_snd_resume->options
+#. settings-schema.json->pushover_snd_goal->options
+msgid "Cosmic"
+msgstr ""
+
+#. settings-schema.json->pushover_snd_focus->options
+#. settings-schema.json->pushover_snd_short_break->options
+#. settings-schema.json->pushover_snd_long_break->options
+#. settings-schema.json->pushover_snd_resume->options
+#. settings-schema.json->pushover_snd_goal->options
+msgid "Gamelan"
+msgstr ""
+
+#. settings-schema.json->pushover_snd_focus->options
+#. settings-schema.json->pushover_snd_short_break->options
+#. settings-schema.json->pushover_snd_long_break->options
+#. settings-schema.json->pushover_snd_resume->options
+#. settings-schema.json->pushover_snd_goal->options
+msgid "Incoming"
+msgstr ""
+
+#. settings-schema.json->pushover_snd_focus->options
+#. settings-schema.json->pushover_snd_short_break->options
+#. settings-schema.json->pushover_snd_long_break->options
+#. settings-schema.json->pushover_snd_resume->options
+#. settings-schema.json->pushover_snd_goal->options
+msgid "Intermission"
+msgstr ""
+
+#. settings-schema.json->pushover_snd_focus->options
+#. settings-schema.json->pushover_snd_short_break->options
+#. settings-schema.json->pushover_snd_long_break->options
+#. settings-schema.json->pushover_snd_resume->options
+#. settings-schema.json->pushover_snd_goal->options
+msgid "None"
+msgstr "Aucun"
+
+#. settings-schema.json->pushover_pri_focus->description
+msgid "Focus start — priority"
+msgstr ""
+
+#. settings-schema.json->pushover_pri_focus->options
+#. settings-schema.json->pushover_pri_short_break->options
+#. settings-schema.json->pushover_pri_long_break->options
+#. settings-schema.json->pushover_pri_resume->options
+#. settings-schema.json->pushover_pri_goal->options
+msgid "Low"
+msgstr ""
+
+#. settings-schema.json->pushover_pri_focus->options
+#. settings-schema.json->pushover_pri_short_break->options
+#. settings-schema.json->pushover_pri_long_break->options
+#. settings-schema.json->pushover_pri_resume->options
+#. settings-schema.json->pushover_pri_goal->options
+msgid "Normal"
+msgstr ""
+
+#. settings-schema.json->pushover_pri_focus->options
+#. settings-schema.json->pushover_pri_short_break->options
+#. settings-schema.json->pushover_pri_long_break->options
+#. settings-schema.json->pushover_pri_resume->options
+#. settings-schema.json->pushover_pri_goal->options
+msgid "High"
+msgstr ""
+
+#. settings-schema.json->pushover_snd_short_break->description
+msgid "Short break — sound"
+msgstr ""
+
+#. settings-schema.json->pushover_pri_short_break->description
+msgid "Short break — priority"
+msgstr ""
+
+#. settings-schema.json->pushover_snd_long_break->description
+msgid "Long break — sound"
+msgstr ""
+
+#. settings-schema.json->pushover_pri_long_break->description
+msgid "Long break — priority"
+msgstr ""
+
+#. settings-schema.json->pushover_snd_resume->description
+msgid "Back to focus — sound"
+msgstr ""
+
+#. settings-schema.json->pushover_pri_resume->description
+msgid "Back to focus — priority"
+msgstr ""
+
+#. settings-schema.json->pushover_snd_goal->description
+msgid "Daily goal — sound"
+msgstr ""
+
+#. settings-schema.json->pushover_pri_goal->description
+msgid "Daily goal — priority"
+msgstr ""
+
+#~ msgid "Waiting to start"
+#~ msgstr "En attente pour démarrer"
+
+# applet menu
+#~ msgid "Pomodoro Timer"
+#~ msgstr "Minuteur Pomodoro"
+
+#~ msgid "Completed"
+#~ msgstr "Terminé"
+
+#~ msgid "Reset Timer"
+#~ msgstr "Remise à zéro du minuteur"
+
+#~ msgid "Reset Counts and Timer"
+#~ msgstr "Remise à zéro des comptes et du minuteur"
+
+#~ msgid "Skip To Next Timer"
+#~ msgstr "Passer à la minuterie suivante"
+
+#~ msgid "What is this?"
+#~ msgstr "Qu'est cela ?"
+
+#~ msgid "Great tool for boosted productivity!"
+#~ msgstr "Un excellent outil pour améliorer sa productivité !"
+
+#~ msgid "Durations (minutes)"
+#~ msgstr "Durées (en minutes)"
+
+#~ msgid "Options"
+#~ msgstr "Options"
+
+#~ msgid "Set the keybinding to open the applet menu"
+#~ msgstr "Définir le raccourci clavier pour ouvrir le menu de l'applet"
+
+#~ msgid "Please install 'sox' and restart Cinnamon to use the sound feature!"
+#~ msgstr ""
+#~ "Veuillez installer \"sox\" puis redémarrer Cinnamon pour utiliser les "
+#~ "fonctionnalités sonores !"
+
+#~ msgid "Streak: %d days"
+#~ msgstr "Série : %d jours"

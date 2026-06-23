@@ -117,6 +117,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         // 'pomodoro', 'pomodoro-stop', 'short-break', 'long-break', 'break-over', '*-paused'
         this._currentState = 'pomodoro-stop';
         this._focusBlockActive = false;
+        this._focusBlockMode = '';
         this._focusFrame = null;
         this._focusFrames = [];
         this._focusTaskChip = null;
@@ -244,6 +245,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_pushoverSndGoal = null;
         this._opt_pushoverPriGoal = null;
         this._opt_blockDomains = null;
+        this._opt_enableBlocking = null;
+        this._blockSetupHintShown = false;
         this._opt_blockPasswordlessFull = null;
         this._opt_onboardingDone = null;
         this._dndActive = false;
@@ -424,6 +427,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_snd_goal", "_opt_pushoverSndGoal", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_pri_goal", "_opt_pushoverPriGoal", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_domains", "_opt_blockDomains", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "enable_blocking", "_opt_enableBlocking", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_passwordless_full", "_opt_blockPasswordlessFull", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "onboarding_done", "_opt_onboardingDone", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_volume", "_opt_focusAmbientVolume", emptyCallback);
@@ -1466,7 +1470,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         pomodoroTimer.connect('timer-running', () => {
             this._setCurrentState('pomodoro');
             this._playTickerSound();
-            if (this._opt_enableScripts) this._startFocusBlockIfNeeded(pomodoroTimer.getTicksRemaining());
+            if (this._opt_enableScripts || this._opt_enableBlocking) this._startFocusBlockIfNeeded(pomodoroTimer.getTicksRemaining());
         });
     
         pomodoroTimer.connect('timer-started', () => {
@@ -1714,7 +1718,14 @@ class PomodoroApplet extends Applet.TextIconApplet {
             return false;
         }
 
-        let started = this._runFocusStartScript(remainingSeconds);
+        let started = false;
+        if (this._opt_enableScripts) {
+            started = this._runFocusStartScript(remainingSeconds);
+            if (started) { this._focusBlockMode = 'script'; }
+        } else if (this._opt_enableBlocking) {
+            started = this._applyBuiltinBlock();
+            if (started) { this._focusBlockMode = 'builtin'; }
+        }
         if (started) {
             this._focusBlockActive = true;
         }
@@ -1727,6 +1738,11 @@ class PomodoroApplet extends Applet.TextIconApplet {
         }
 
         this._focusBlockActive = false;
+        let mode = this._focusBlockMode;
+        this._focusBlockMode = '';
+        if (mode === 'builtin') {
+            return this._removeBuiltinBlock();
+        }
         return this._runFocusStopScript();
     }
     // @PUBLIC_STRIP_END

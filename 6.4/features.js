@@ -1576,13 +1576,65 @@ function install(proto) {
         let domains = [];
         let list = this._opt_blockDomains || [];
         for (let row of list) {
-            let d = (row && row.domain ? String(row.domain) : '').trim();
-            if (d) {
-                domains.push(d);
-            }
+            let d = (row && row.domain ? String(row.domain) : '').trim().toLowerCase();
+            if (!d) { continue; }
+            // Accept pasted URLs: reduce to a bare hostname (e.g.
+            // "https://ya.ru/path" -> "ya.ru"). The helper validates again.
+            d = d.replace(/^[a-z][a-z0-9+.\-]*:\/\//, '');
+            d = d.split('/')[0].split('?')[0];
+            if (d.indexOf('@') >= 0) { d = d.split('@').pop(); }
+            d = d.split(':')[0];
+            d = d.replace(/^www\./, '');
+            if (d) { domains.push(d); }
         }
         return domains;
     };
+
+    // @PUBLIC_STRIP_BEGIN
+    // Path of the root-owned helper that "Set up passwordless blocking" installs
+    // (with a polkit policy so pkexec runs it without a prompt). Used for
+    // automatic blocking during focus.
+    proto._passwordlessHelperPath = function() {
+        return '/usr/local/sbin/zen-pomodoro-hosts-helper';
+    };
+
+    // Auto-block the configured domains for the duration of a focus. Returns
+    // true if a block was launched. Requires the passwordless helper so it does
+    // not prompt on every pomodoro; otherwise it hints once and does nothing.
+    proto._applyBuiltinBlock = function() {
+        let domains = this._collectBlockDomains();
+        if (!domains.length) { return false; }
+        let helper = this._passwordlessHelperPath();
+        if (!GLib.file_test(helper, GLib.FileTest.EXISTS)) {
+            if (!this._blockSetupHintShown) {
+                this._blockSetupHintShown = true;
+                Main.notify(_("To block sites automatically during focus, turn on passwordless blocking in settings."));
+            }
+            return false;
+        }
+        try {
+            Gio.Subprocess.new(['pkexec', helper, 'block'].concat(domains),
+                Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE);
+            return true;
+        } catch (e) {
+            global.logError('Zen Pomodoro: automatic block failed: ' + e.message);
+            return false;
+        }
+    };
+
+    proto._removeBuiltinBlock = function() {
+        let helper = this._passwordlessHelperPath();
+        if (!GLib.file_test(helper, GLib.FileTest.EXISTS)) { return false; }
+        try {
+            Gio.Subprocess.new(['pkexec', helper, 'unblock'],
+                Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE);
+            return true;
+        } catch (e) {
+            global.logError('Zen Pomodoro: automatic unblock failed: ' + e.message);
+            return false;
+        }
+    };
+    // @PUBLIC_STRIP_END
 
     // Block/unblock via a bundled helper run with pkexec (interactive admin
     // prompt). The helper only manages its own marked section of /etc/hosts.

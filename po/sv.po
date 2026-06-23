@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 19:55+0700\n"
+"POT-Creation-Date: 2026-06-23 20:08+0700\n"
 "PO-Revision-Date: 2017-06-07 06:28+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -150,7 +150,7 @@ msgstr "Pomodoros förkontroll misslyckades"
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://sv.wikipedia.org/wiki/Pomodorotekniken"
 
-#: applet.js:1949 features.js:1872
+#: applet.js:1949 features.js:1857
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Stoppa timern innan du byter Pomodoro-förinställning"
 
@@ -181,11 +181,11 @@ msgid "Choose or type a focus task"
 msgstr "Välj eller skriv en fokusuppgift"
 
 #: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1920
+#: features.js:1905
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: dialogs.js:72 features.js:1921
+#: dialogs.js:72 features.js:1906
 msgid "Start"
 msgstr "Starta"
 
@@ -833,56 +833,44 @@ msgstr ""
 "För att blockera webbplatser automatiskt under fokus, aktivera lösenordsfri "
 "blockering i inställningarna."
 
-#: features.js:1667
-msgid "Add some domains to block first."
-msgstr "Lägg till några domäner att blockera först."
-
-#: features.js:1671
-msgid "Distractions blocked."
-msgstr "Distraktioner blockerade."
-
-#: features.js:1676
-msgid "Distractions unblocked."
-msgstr "Distraktioner avblockerade."
-
-#: features.js:1685
+#: features.js:1670
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Lösenordsfri blockering aktiverad (ingen fråga)."
 
-#: features.js:1686
+#: features.js:1671
 msgid "Passwordless blocking enabled (asks once per session)."
 msgstr "Lösenordsfri blockering aktiverad (frågar en gång per session)."
 
-#: features.js:1693
+#: features.js:1678
 msgid "Passwordless blocking removed."
 msgstr "Lösenordsfri blockering borttagen."
 
-#: features.js:1730
+#: features.js:1715
 msgid "Click to exit Zen"
 msgstr "Klicka för att lämna Zen"
 
 #. settings-schema.json->focus->title
-#: features.js:1765 visual.js:894
+#: features.js:1750 visual.js:894
 msgid "Focus"
 msgstr "Fokus"
 
-#: features.js:1842
+#: features.js:1827
 msgid "Breathe in"
 msgstr "Andas in"
 
-#: features.js:1845 features.js:1851
+#: features.js:1830 features.js:1836
 msgid "Hold"
 msgstr "Håll andan"
 
-#: features.js:1848
+#: features.js:1833
 msgid "Breathe out"
 msgstr "Andas ut"
 
-#: features.js:1878
+#: features.js:1863
 msgid "Focus until"
 msgstr "Fokus till"
 
-#: features.js:1879
+#: features.js:1864
 msgid "Enter a time (HH:MM)"
 msgstr "Ange en tid (TT:MM)"
 
@@ -1931,16 +1919,18 @@ msgstr ""
 "meddelande."
 
 #. settings-schema.json->enable_blocking->description
-msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
-msgstr ""
-"Aktivera distraktionsblockering (redigerar /etc/hosts via en adminfråga)"
+msgid "Block distracting sites during focus"
+msgstr "Blockera distraherande webbplatser under fokus"
 
 #. settings-schema.json->enable_blocking->tooltip
 msgid ""
-"Block distracting sites by editing /etc/hosts (asks for your password)."
+"When on, the sites below are blocked automatically during each focus session"
+" and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
+"doesn't ask for a password each time."
 msgstr ""
-"Blockera distraherande sajter genom att redigera /etc/hosts (frågar efter "
-"ditt lösenord)."
+"När det är på blockeras webbplatserna nedan automatiskt under varje "
+"fokuspass och avblockeras efteråt. Kör \"Ställ in lösenordsfri blockering\" "
+"en gång så att den inte frågar efter lösenord varje gång."
 
 #. settings-schema.json->block_domains->description
 msgid "Domains to block (e.g. youtube.com)"
@@ -1957,30 +1947,6 @@ msgid ""
 msgstr ""
 "Domäner att blockera under fokus, en per rad (t.ex. youtube.com, "
 "www.youtube.com)."
-
-#. settings-schema.json->block_now_button->description
-msgid "Block these domains now"
-msgstr "Blockera dessa domäner nu"
-
-#. settings-schema.json->block_now_button->tooltip
-msgid ""
-"Adds the domains above to /etc/hosts (you'll be asked for your password "
-"once). They stay blocked until you click Unblock."
-msgstr ""
-"Lägger till domänerna ovan i /etc/hosts (du tillfrågas om ditt lösenord en "
-"gång). De förblir blockerade tills du klickar Avblockera."
-
-#. settings-schema.json->unblock_button->description
-msgid "Unblock"
-msgstr "Avblockera"
-
-#. settings-schema.json->unblock_button->tooltip
-msgid ""
-"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
-" once)."
-msgstr ""
-"Tar bort Zen Pomodoros blockeringsposter från /etc/hosts (frågar efter ditt "
-"lösenord en gång)."
 
 #. settings-schema.json->edit_hosts_button->description
 msgid "Edit /etc/hosts manually (admin)"
@@ -2435,6 +2401,45 @@ msgstr "Dagligt mål — ljud"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Dagligt mål — prioritet"
+
+#~ msgid "Add some domains to block first."
+#~ msgstr "Lägg till några domäner att blockera först."
+
+#~ msgid "Distractions blocked."
+#~ msgstr "Distraktioner blockerade."
+
+#~ msgid "Distractions unblocked."
+#~ msgstr "Distraktioner avblockerade."
+
+#~ msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
+#~ msgstr ""
+#~ "Aktivera distraktionsblockering (redigerar /etc/hosts via en adminfråga)"
+
+#~ msgid ""
+#~ "Block distracting sites by editing /etc/hosts (asks for your password)."
+#~ msgstr ""
+#~ "Blockera distraherande sajter genom att redigera /etc/hosts (frågar efter "
+#~ "ditt lösenord)."
+
+#~ msgid "Block these domains now"
+#~ msgstr "Blockera dessa domäner nu"
+
+#~ msgid ""
+#~ "Adds the domains above to /etc/hosts (you'll be asked for your password "
+#~ "once). They stay blocked until you click Unblock."
+#~ msgstr ""
+#~ "Lägger till domänerna ovan i /etc/hosts (du tillfrågas om ditt lösenord en "
+#~ "gång). De förblir blockerade tills du klickar Avblockera."
+
+#~ msgid "Unblock"
+#~ msgstr "Avblockera"
+
+#~ msgid ""
+#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
+#~ " once)."
+#~ msgstr ""
+#~ "Tar bort Zen Pomodoros blockeringsposter från /etc/hosts (frågar efter ditt "
+#~ "lösenord en gång)."
 
 #~ msgid "blocked"
 #~ msgstr "blockerad"

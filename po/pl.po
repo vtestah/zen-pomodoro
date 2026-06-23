@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 19:55+0700\n"
+"POT-Creation-Date: 2026-06-23 20:08+0700\n"
 "PO-Revision-Date: 2024-04-27 23:12+0200\n"
 "Last-Translator: Krzysztof Kucharski <krzysztof85@gmail.com>\n"
 "Language-Team: Polish\n"
@@ -152,7 +152,7 @@ msgstr "Kontrola wstępna Pomodoro nie powiodła się"
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://pl.wikipedia.org/wiki/Technika_Pomodoro"
 
-#: applet.js:1949 features.js:1872
+#: applet.js:1949 features.js:1857
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Zatrzymaj minutnik przed zmianą presetu Pomodoro"
 
@@ -183,11 +183,11 @@ msgid "Choose or type a focus task"
 msgstr "Wybierz lub wpisz zadanie skupienia"
 
 #: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1920
+#: features.js:1905
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: dialogs.js:72 features.js:1921
+#: dialogs.js:72 features.js:1906
 msgid "Start"
 msgstr "Start"
 
@@ -838,56 +838,44 @@ msgstr ""
 "Aby automatycznie blokować strony podczas skupienia, włącz blokowanie bez "
 "hasła w ustawieniach."
 
-#: features.js:1667
-msgid "Add some domains to block first."
-msgstr "Najpierw dodaj domeny do zablokowania."
-
-#: features.js:1671
-msgid "Distractions blocked."
-msgstr "Rozpraszacze zablokowane."
-
-#: features.js:1676
-msgid "Distractions unblocked."
-msgstr "Rozpraszacze odblokowane."
-
-#: features.js:1685
+#: features.js:1670
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Blokowanie bez hasła włączone (bez pytania)."
 
-#: features.js:1686
+#: features.js:1671
 msgid "Passwordless blocking enabled (asks once per session)."
 msgstr "Blokowanie bez hasła włączone (pyta raz na sesję)."
 
-#: features.js:1693
+#: features.js:1678
 msgid "Passwordless blocking removed."
 msgstr "Usunięto blokowanie bez hasła."
 
-#: features.js:1730
+#: features.js:1715
 msgid "Click to exit Zen"
 msgstr "Kliknij, by wyjść z trybu Zen"
 
 #. settings-schema.json->focus->title
-#: features.js:1765 visual.js:894
+#: features.js:1750 visual.js:894
 msgid "Focus"
 msgstr "Skupienie"
 
-#: features.js:1842
+#: features.js:1827
 msgid "Breathe in"
 msgstr "Wdech"
 
-#: features.js:1845 features.js:1851
+#: features.js:1830 features.js:1836
 msgid "Hold"
 msgstr "Wstrzymaj"
 
-#: features.js:1848
+#: features.js:1833
 msgid "Breathe out"
 msgstr "Wydech"
 
-#: features.js:1878
+#: features.js:1863
 msgid "Focus until"
 msgstr "Skupienie do"
 
-#: features.js:1879
+#: features.js:1864
 msgid "Enter a time (HH:MM)"
 msgstr "Wpisz godzinę (GG:MM)"
 
@@ -1943,15 +1931,18 @@ msgid "Sent when a break finishes. Leave empty to send no message."
 msgstr "Wysyłane po zakończeniu przerwy. Puste = nie wysyłaj wiadomości."
 
 #. settings-schema.json->enable_blocking->description
-msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
-msgstr ""
-"Włącz blokowanie rozpraszaczy (edytuje /etc/hosts z pytaniem o uprawnienia)"
+msgid "Block distracting sites during focus"
+msgstr "Blokuj rozpraszające strony podczas skupienia"
 
 #. settings-schema.json->enable_blocking->tooltip
 msgid ""
-"Block distracting sites by editing /etc/hosts (asks for your password)."
+"When on, the sites below are blocked automatically during each focus session"
+" and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
+"doesn't ask for a password each time."
 msgstr ""
-"Blokuj rozpraszające witryny przez edycję /etc/hosts (zapyta o hasło)."
+"Po włączeniu strony poniżej są automatycznie blokowane podczas każdej sesji "
+"skupienia i odblokowywane po niej. Uruchom raz \"Skonfiguruj blokowanie bez "
+"hasła\", aby nie pytało o hasło za każdym razem."
 
 #. settings-schema.json->block_domains->description
 msgid "Domains to block (e.g. youtube.com)"
@@ -1968,28 +1959,6 @@ msgid ""
 msgstr ""
 "Domeny blokowane podczas skupienia, po jednej w wierszu (np. youtube.com, "
 "www.youtube.com)."
-
-#. settings-schema.json->block_now_button->description
-msgid "Block these domains now"
-msgstr "Zablokuj te domeny teraz"
-
-#. settings-schema.json->block_now_button->tooltip
-msgid ""
-"Adds the domains above to /etc/hosts (you'll be asked for your password "
-"once). They stay blocked until you click Unblock."
-msgstr ""
-"Dodaje powyższe domeny do /etc/hosts (raz zapyta o hasło). Pozostaną "
-"zablokowane, aż klikniesz Odblokuj."
-
-#. settings-schema.json->unblock_button->description
-msgid "Unblock"
-msgstr "Odblokuj"
-
-#. settings-schema.json->unblock_button->tooltip
-msgid ""
-"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
-" once)."
-msgstr "Usuwa wpisy blokad Zen Pomodoro z /etc/hosts (raz zapyta o hasło)."
 
 #. settings-schema.json->edit_hosts_button->description
 msgid "Edit /etc/hosts manually (admin)"
@@ -2444,6 +2413,42 @@ msgstr "Cel dzienny — dźwięk"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Cel dzienny — priorytet"
+
+#~ msgid "Add some domains to block first."
+#~ msgstr "Najpierw dodaj domeny do zablokowania."
+
+#~ msgid "Distractions blocked."
+#~ msgstr "Rozpraszacze zablokowane."
+
+#~ msgid "Distractions unblocked."
+#~ msgstr "Rozpraszacze odblokowane."
+
+#~ msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
+#~ msgstr ""
+#~ "Włącz blokowanie rozpraszaczy (edytuje /etc/hosts z pytaniem o uprawnienia)"
+
+#~ msgid ""
+#~ "Block distracting sites by editing /etc/hosts (asks for your password)."
+#~ msgstr ""
+#~ "Blokuj rozpraszające witryny przez edycję /etc/hosts (zapyta o hasło)."
+
+#~ msgid "Block these domains now"
+#~ msgstr "Zablokuj te domeny teraz"
+
+#~ msgid ""
+#~ "Adds the domains above to /etc/hosts (you'll be asked for your password "
+#~ "once). They stay blocked until you click Unblock."
+#~ msgstr ""
+#~ "Dodaje powyższe domeny do /etc/hosts (raz zapyta o hasło). Pozostaną "
+#~ "zablokowane, aż klikniesz Odblokuj."
+
+#~ msgid "Unblock"
+#~ msgstr "Odblokuj"
+
+#~ msgid ""
+#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
+#~ " once)."
+#~ msgstr "Usuwa wpisy blokad Zen Pomodoro z /etc/hosts (raz zapyta o hasło)."
 
 #~ msgid "blocked"
 #~ msgstr "zablokowano"

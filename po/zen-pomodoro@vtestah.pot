@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 19:55+0700\n"
+"POT-Creation-Date: 2026-06-23 20:08+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -150,7 +150,7 @@ msgstr ""
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
 
-#: applet.js:1949 features.js:1872
+#: applet.js:1949 features.js:1857
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr ""
 
@@ -181,11 +181,11 @@ msgid "Choose or type a focus task"
 msgstr ""
 
 #: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1920
+#: features.js:1905
 msgid "Cancel"
 msgstr ""
 
-#: dialogs.js:72 features.js:1921
+#: dialogs.js:72 features.js:1906
 msgid "Start"
 msgstr ""
 
@@ -822,56 +822,44 @@ msgid ""
 "settings."
 msgstr ""
 
-#: features.js:1667
-msgid "Add some domains to block first."
-msgstr ""
-
-#: features.js:1671
-msgid "Distractions blocked."
-msgstr ""
-
-#: features.js:1676
-msgid "Distractions unblocked."
-msgstr ""
-
-#: features.js:1685
+#: features.js:1670
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr ""
 
-#: features.js:1686
+#: features.js:1671
 msgid "Passwordless blocking enabled (asks once per session)."
 msgstr ""
 
-#: features.js:1693
+#: features.js:1678
 msgid "Passwordless blocking removed."
 msgstr ""
 
-#: features.js:1730
+#: features.js:1715
 msgid "Click to exit Zen"
 msgstr ""
 
 #. settings-schema.json->focus->title
-#: features.js:1765 visual.js:894
+#: features.js:1750 visual.js:894
 msgid "Focus"
 msgstr ""
 
-#: features.js:1842
+#: features.js:1827
 msgid "Breathe in"
 msgstr ""
 
-#: features.js:1845 features.js:1851
+#: features.js:1830 features.js:1836
 msgid "Hold"
 msgstr ""
 
-#: features.js:1848
+#: features.js:1833
 msgid "Breathe out"
 msgstr ""
 
-#: features.js:1878
+#: features.js:1863
 msgid "Focus until"
 msgstr ""
 
-#: features.js:1879
+#: features.js:1864
 msgid "Enter a time (HH:MM)"
 msgstr ""
 
@@ -1859,12 +1847,14 @@ msgid "Sent when a break finishes. Leave empty to send no message."
 msgstr ""
 
 #. settings-schema.json->enable_blocking->description
-msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
+msgid "Block distracting sites during focus"
 msgstr ""
 
 #. settings-schema.json->enable_blocking->tooltip
 msgid ""
-"Block distracting sites by editing /etc/hosts (asks for your password)."
+"When on, the sites below are blocked automatically during each focus session"
+" and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
+"doesn't ask for a password each time."
 msgstr ""
 
 #. settings-schema.json->block_domains->description
@@ -1879,26 +1869,6 @@ msgstr ""
 msgid ""
 "Domains to block during focus, one per row (e.g. youtube.com, "
 "www.youtube.com)."
-msgstr ""
-
-#. settings-schema.json->block_now_button->description
-msgid "Block these domains now"
-msgstr ""
-
-#. settings-schema.json->block_now_button->tooltip
-msgid ""
-"Adds the domains above to /etc/hosts (you'll be asked for your password "
-"once). They stay blocked until you click Unblock."
-msgstr ""
-
-#. settings-schema.json->unblock_button->description
-msgid "Unblock"
-msgstr ""
-
-#. settings-schema.json->unblock_button->tooltip
-msgid ""
-"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
-" once)."
 msgstr ""
 
 #. settings-schema.json->edit_hosts_button->description

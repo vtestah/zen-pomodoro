@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 19:55+0700\n"
+"POT-Creation-Date: 2026-06-23 20:08+0700\n"
 "PO-Revision-Date: 2025-07-27 02:35+08:00\n"
 "Last-Translator: Peter Dave Hello <hsu@peterdavehello.org>\n"
 "Language-Team: zh_TW\n"
@@ -148,7 +148,7 @@ msgstr "番茄鐘啟動前檢查失敗"
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://zh.wikipedia.org/zh-tw/番茄工作法"
 
-#: applet.js:1949 features.js:1872
+#: applet.js:1949 features.js:1857
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "變更番茄鐘預設組合前請先停止計時器"
 
@@ -179,11 +179,11 @@ msgid "Choose or type a focus task"
 msgstr "選擇或輸入專注任務"
 
 #: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1920
+#: features.js:1905
 msgid "Cancel"
 msgstr "取消"
 
-#: dialogs.js:72 features.js:1921
+#: dialogs.js:72 features.js:1906
 msgid "Start"
 msgstr "開始"
 
@@ -818,56 +818,44 @@ msgid ""
 "settings."
 msgstr "若要在專注期間自動封鎖網站，請在設定中開啟免密碼封鎖。"
 
-#: features.js:1667
-msgid "Add some domains to block first."
-msgstr "請先新增要封鎖的網域。"
-
-#: features.js:1671
-msgid "Distractions blocked."
-msgstr "干擾已封鎖。"
-
-#: features.js:1676
-msgid "Distractions unblocked."
-msgstr "已解除干擾封鎖。"
-
-#: features.js:1685
+#: features.js:1670
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "免密碼封鎖已啟用（不會詢問）。"
 
-#: features.js:1686
+#: features.js:1671
 msgid "Passwordless blocking enabled (asks once per session)."
 msgstr "免密碼封鎖已啟用（每個工作階段詢問一次）。"
 
-#: features.js:1693
+#: features.js:1678
 msgid "Passwordless blocking removed."
 msgstr "免密碼封鎖已移除。"
 
-#: features.js:1730
+#: features.js:1715
 msgid "Click to exit Zen"
 msgstr "點擊離開禪模式"
 
 #. settings-schema.json->focus->title
-#: features.js:1765 visual.js:894
+#: features.js:1750 visual.js:894
 msgid "Focus"
 msgstr "專注"
 
-#: features.js:1842
+#: features.js:1827
 msgid "Breathe in"
 msgstr "吸氣"
 
-#: features.js:1845 features.js:1851
+#: features.js:1830 features.js:1836
 msgid "Hold"
 msgstr "屏息"
 
-#: features.js:1848
+#: features.js:1833
 msgid "Breathe out"
 msgstr "吐氣"
 
-#: features.js:1878
+#: features.js:1863
 msgid "Focus until"
 msgstr "專注至"
 
-#: features.js:1879
+#: features.js:1864
 msgid "Enter a time (HH:MM)"
 msgstr "輸入時間（HH:MM）"
 
@@ -1857,13 +1845,15 @@ msgid "Sent when a break finishes. Leave empty to send no message."
 msgstr "在休息結束時送出。留空則不傳送訊息。"
 
 #. settings-schema.json->enable_blocking->description
-msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
-msgstr "啟用干擾封鎖（透過管理員提示編輯 /etc/hosts）"
+msgid "Block distracting sites during focus"
+msgstr "專注期間封鎖使人分心的網站"
 
 #. settings-schema.json->enable_blocking->tooltip
 msgid ""
-"Block distracting sites by editing /etc/hosts (asks for your password)."
-msgstr "藉由編輯 /etc/hosts 封鎖讓人分心的網站（會詢問你的密碼）。"
+"When on, the sites below are blocked automatically during each focus session"
+" and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
+"doesn't ask for a password each time."
+msgstr "開啟後，下面的網站會在每個專注時段自動封鎖，結束後解除。執行一次「設定免密碼封鎖」，這樣就不會每次都要求輸入密碼。"
 
 #. settings-schema.json->block_domains->description
 msgid "Domains to block (e.g. youtube.com)"
@@ -1878,26 +1868,6 @@ msgid ""
 "Domains to block during focus, one per row (e.g. youtube.com, "
 "www.youtube.com)."
 msgstr "專注期間要封鎖的網域，每列一個（例如 youtube.com、www.youtube.com）。"
-
-#. settings-schema.json->block_now_button->description
-msgid "Block these domains now"
-msgstr "立即封鎖這些網域"
-
-#. settings-schema.json->block_now_button->tooltip
-msgid ""
-"Adds the domains above to /etc/hosts (you'll be asked for your password "
-"once). They stay blocked until you click Unblock."
-msgstr "將上方網域加入 /etc/hosts（會詢問你的密碼一次）。在你按「解除封鎖」前會持續封鎖。"
-
-#. settings-schema.json->unblock_button->description
-msgid "Unblock"
-msgstr "解除封鎖"
-
-#. settings-schema.json->unblock_button->tooltip
-msgid ""
-"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
-" once)."
-msgstr "從 /etc/hosts 移除 Zen Pomodoro 的封鎖項目（會詢問你的密碼一次）。"
 
 #. settings-schema.json->edit_hosts_button->description
 msgid "Edit /etc/hosts manually (admin)"
@@ -2328,6 +2298,38 @@ msgstr "每日目標 — 音效"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "每日目標 — 優先順序"
+
+#~ msgid "Add some domains to block first."
+#~ msgstr "請先新增要封鎖的網域。"
+
+#~ msgid "Distractions blocked."
+#~ msgstr "干擾已封鎖。"
+
+#~ msgid "Distractions unblocked."
+#~ msgstr "已解除干擾封鎖。"
+
+#~ msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
+#~ msgstr "啟用干擾封鎖（透過管理員提示編輯 /etc/hosts）"
+
+#~ msgid ""
+#~ "Block distracting sites by editing /etc/hosts (asks for your password)."
+#~ msgstr "藉由編輯 /etc/hosts 封鎖讓人分心的網站（會詢問你的密碼）。"
+
+#~ msgid "Block these domains now"
+#~ msgstr "立即封鎖這些網域"
+
+#~ msgid ""
+#~ "Adds the domains above to /etc/hosts (you'll be asked for your password "
+#~ "once). They stay blocked until you click Unblock."
+#~ msgstr "將上方網域加入 /etc/hosts（會詢問你的密碼一次）。在你按「解除封鎖」前會持續封鎖。"
+
+#~ msgid "Unblock"
+#~ msgstr "解除封鎖"
+
+#~ msgid ""
+#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
+#~ " once)."
+#~ msgstr "從 /etc/hosts 移除 Zen Pomodoro 的封鎖項目（會詢問你的密碼一次）。"
 
 #~ msgid "blocked"
 #~ msgstr "已封鎖"

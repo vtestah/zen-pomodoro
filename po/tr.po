@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 19:55+0700\n"
+"POT-Creation-Date: 2026-06-23 20:08+0700\n"
 "PO-Revision-Date: 2018-11-06 02:05+0300\n"
 "Last-Translator: Gökhan GÖKKAYA <gokhanlnx@gmail.com>\n"
 "Language-Team: Linux Mint Türkiye <gokhanlnx@gmail.com>\n"
@@ -150,7 +150,7 @@ msgstr "Pomodoro ön kontrolü başarısız"
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://tr.wikipedia.org/wiki/Pomodoro_Tekniği"
 
-#: applet.js:1949 features.js:1872
+#: applet.js:1949 features.js:1857
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Pomodoro hazır ayarını değiştirmeden önce zamanlayıcıyı durdur"
 
@@ -181,11 +181,11 @@ msgid "Choose or type a focus task"
 msgstr "Bir odak görevi seç ya da yaz"
 
 #: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1920
+#: features.js:1905
 msgid "Cancel"
 msgstr "İptal"
 
-#: dialogs.js:72 features.js:1921
+#: dialogs.js:72 features.js:1906
 msgid "Start"
 msgstr "Başlat"
 
@@ -834,56 +834,44 @@ msgstr ""
 "Odak sırasında siteleri otomatik engellemek için ayarlardan parolasız "
 "engellemeyi açın."
 
-#: features.js:1667
-msgid "Add some domains to block first."
-msgstr "Önce engellenecek birkaç alan adı ekle."
-
-#: features.js:1671
-msgid "Distractions blocked."
-msgstr "Dikkat dağıtıcılar engellendi."
-
-#: features.js:1676
-msgid "Distractions unblocked."
-msgstr "Engelleme kaldırıldı."
-
-#: features.js:1685
+#: features.js:1670
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Parolasız engelleme etkin (hiç sormaz)."
 
-#: features.js:1686
+#: features.js:1671
 msgid "Passwordless blocking enabled (asks once per session)."
 msgstr "Parolasız engelleme etkin (oturum başına bir kez sorar)."
 
-#: features.js:1693
+#: features.js:1678
 msgid "Passwordless blocking removed."
 msgstr "Parolasız engelleme kaldırıldı."
 
-#: features.js:1730
+#: features.js:1715
 msgid "Click to exit Zen"
 msgstr "Zen'den çıkmak için tıkla"
 
 #. settings-schema.json->focus->title
-#: features.js:1765 visual.js:894
+#: features.js:1750 visual.js:894
 msgid "Focus"
 msgstr "Odak"
 
-#: features.js:1842
+#: features.js:1827
 msgid "Breathe in"
 msgstr "Nefes al"
 
-#: features.js:1845 features.js:1851
+#: features.js:1830 features.js:1836
 msgid "Hold"
 msgstr "Tut"
 
-#: features.js:1848
+#: features.js:1833
 msgid "Breathe out"
 msgstr "Nefes ver"
 
-#: features.js:1878
+#: features.js:1863
 msgid "Focus until"
 msgstr "Şu saate kadar odak"
 
-#: features.js:1879
+#: features.js:1864
 msgid "Enter a time (HH:MM)"
 msgstr "Bir saat gir (SS:DD)"
 
@@ -1942,17 +1930,18 @@ msgid "Sent when a break finishes. Leave empty to send no message."
 msgstr "Mola bitince gönderilir. Mesaj göndermemek için boş bırak."
 
 #. settings-schema.json->enable_blocking->description
-msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
-msgstr ""
-"Dikkat dağıtıcı engellemeyi etkinleştir (yönetici istemiyle /etc/hosts "
-"dosyasını düzenler)"
+msgid "Block distracting sites during focus"
+msgstr "Odak sırasında dikkat dağıtan siteleri engelle"
 
 #. settings-schema.json->enable_blocking->tooltip
 msgid ""
-"Block distracting sites by editing /etc/hosts (asks for your password)."
+"When on, the sites below are blocked automatically during each focus session"
+" and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
+"doesn't ask for a password each time."
 msgstr ""
-"Dikkat dağıtıcı siteleri /etc/hosts dosyasını düzenleyerek engelle (parolanı"
-" sorar)."
+"Açık olduğunda, aşağıdaki siteler her odak oturumu boyunca otomatik olarak "
+"engellenir ve sonrasında engeli kaldırılır. Her seferinde parola sormaması "
+"için \"Parolasız engellemeyi ayarla\"yı bir kez çalıştırın."
 
 #. settings-schema.json->block_domains->description
 msgid "Domains to block (e.g. youtube.com)"
@@ -1969,30 +1958,6 @@ msgid ""
 msgstr ""
 "Odak sırasında engellenecek alan adları, her satırda bir tane (örn. "
 "youtube.com, www.youtube.com)."
-
-#. settings-schema.json->block_now_button->description
-msgid "Block these domains now"
-msgstr "Bu alan adlarını şimdi engelle"
-
-#. settings-schema.json->block_now_button->tooltip
-msgid ""
-"Adds the domains above to /etc/hosts (you'll be asked for your password "
-"once). They stay blocked until you click Unblock."
-msgstr ""
-"Yukarıdaki alan adlarını /etc/hosts dosyasına ekler (bir kez parolan "
-"sorulur). Engellemeyi Kaldır'a tıklayana kadar engelli kalırlar."
-
-#. settings-schema.json->unblock_button->description
-msgid "Unblock"
-msgstr "Engellemeyi kaldır"
-
-#. settings-schema.json->unblock_button->tooltip
-msgid ""
-"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
-" once)."
-msgstr ""
-"Zen Pomodoro'nun engelleme kayıtlarını /etc/hosts dosyasından kaldırır (bir "
-"kez parolanı sorar)."
 
 #. settings-schema.json->edit_hosts_button->description
 msgid "Edit /etc/hosts manually (admin)"
@@ -2449,6 +2414,46 @@ msgstr "Günlük hedef — ses"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Günlük hedef — öncelik"
+
+#~ msgid "Add some domains to block first."
+#~ msgstr "Önce engellenecek birkaç alan adı ekle."
+
+#~ msgid "Distractions blocked."
+#~ msgstr "Dikkat dağıtıcılar engellendi."
+
+#~ msgid "Distractions unblocked."
+#~ msgstr "Engelleme kaldırıldı."
+
+#~ msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
+#~ msgstr ""
+#~ "Dikkat dağıtıcı engellemeyi etkinleştir (yönetici istemiyle /etc/hosts "
+#~ "dosyasını düzenler)"
+
+#~ msgid ""
+#~ "Block distracting sites by editing /etc/hosts (asks for your password)."
+#~ msgstr ""
+#~ "Dikkat dağıtıcı siteleri /etc/hosts dosyasını düzenleyerek engelle (parolanı"
+#~ " sorar)."
+
+#~ msgid "Block these domains now"
+#~ msgstr "Bu alan adlarını şimdi engelle"
+
+#~ msgid ""
+#~ "Adds the domains above to /etc/hosts (you'll be asked for your password "
+#~ "once). They stay blocked until you click Unblock."
+#~ msgstr ""
+#~ "Yukarıdaki alan adlarını /etc/hosts dosyasına ekler (bir kez parolan "
+#~ "sorulur). Engellemeyi Kaldır'a tıklayana kadar engelli kalırlar."
+
+#~ msgid "Unblock"
+#~ msgstr "Engellemeyi kaldır"
+
+#~ msgid ""
+#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
+#~ " once)."
+#~ msgstr ""
+#~ "Zen Pomodoro'nun engelleme kayıtlarını /etc/hosts dosyasından kaldırır (bir "
+#~ "kez parolanı sorar)."
 
 #~ msgid "blocked"
 #~ msgstr "engellendi"

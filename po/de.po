@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 19:55+0700\n"
+"POT-Creation-Date: 2026-06-23 20:08+0700\n"
 "PO-Revision-Date: 2020-11-25 22:30+0100\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: de\n"
@@ -150,7 +150,7 @@ msgstr "Pomodoro-Vorabprüfung fehlgeschlagen"
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://de.wikipedia.org/wiki/Pomodoro-Technik"
 
-#: applet.js:1949 features.js:1872
+#: applet.js:1949 features.js:1857
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Timer stoppen, bevor die Pomodoro-Voreinstellung gewechselt wird"
 
@@ -181,11 +181,11 @@ msgid "Choose or type a focus task"
 msgstr "Aufgabe wählen oder eingeben"
 
 #: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1920
+#: features.js:1905
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: dialogs.js:72 features.js:1921
+#: dialogs.js:72 features.js:1906
 msgid "Start"
 msgstr "Starten"
 
@@ -833,56 +833,44 @@ msgstr ""
 "Um Websites während des Fokus automatisch zu blockieren, aktiviere die "
 "passwortlose Blockierung in den Einstellungen."
 
-#: features.js:1667
-msgid "Add some domains to block first."
-msgstr "Zuerst ein paar Domains zum Blockieren hinzufügen."
-
-#: features.js:1671
-msgid "Distractions blocked."
-msgstr "Ablenkungen blockiert."
-
-#: features.js:1676
-msgid "Distractions unblocked."
-msgstr "Ablenkungen freigegeben."
-
-#: features.js:1685
+#: features.js:1670
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Passwortloses Blockieren aktiviert (keine Abfrage)."
 
-#: features.js:1686
+#: features.js:1671
 msgid "Passwordless blocking enabled (asks once per session)."
 msgstr "Passwortloses Blockieren aktiviert (fragt einmal pro Sitzung)."
 
-#: features.js:1693
+#: features.js:1678
 msgid "Passwordless blocking removed."
 msgstr "Passwortloses Blockieren entfernt."
 
-#: features.js:1730
+#: features.js:1715
 msgid "Click to exit Zen"
 msgstr "Klicken zum Verlassen von Zen"
 
 #. settings-schema.json->focus->title
-#: features.js:1765 visual.js:894
+#: features.js:1750 visual.js:894
 msgid "Focus"
 msgstr "Fokus"
 
-#: features.js:1842
+#: features.js:1827
 msgid "Breathe in"
 msgstr "Einatmen"
 
-#: features.js:1845 features.js:1851
+#: features.js:1830 features.js:1836
 msgid "Hold"
 msgstr "Halten"
 
-#: features.js:1848
+#: features.js:1833
 msgid "Breathe out"
 msgstr "Ausatmen"
 
-#: features.js:1878
+#: features.js:1863
 msgid "Focus until"
 msgstr "Fokus bis"
 
-#: features.js:1879
+#: features.js:1864
 msgid "Enter a time (HH:MM)"
 msgstr "Uhrzeit eingeben (HH:MM)"
 
@@ -1947,16 +1935,19 @@ msgid "Sent when a break finishes. Leave empty to send no message."
 msgstr "Wird am Ende einer Pause gesendet. Leer lassen, um nichts zu senden."
 
 #. settings-schema.json->enable_blocking->description
-msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
-msgstr ""
-"Ablenkungsblockierung aktivieren (bearbeitet /etc/hosts per Admin-Abfrage)"
+msgid "Block distracting sites during focus"
+msgstr "Ablenkende Websites während des Fokus blockieren"
 
 #. settings-schema.json->enable_blocking->tooltip
 msgid ""
-"Block distracting sites by editing /etc/hosts (asks for your password)."
+"When on, the sites below are blocked automatically during each focus session"
+" and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
+"doesn't ask for a password each time."
 msgstr ""
-"Ablenkende Seiten durch Bearbeiten von /etc/hosts blockieren (fragt nach dem"
-" Passwort)."
+"Wenn aktiviert, werden die Websites unten während jeder Fokussitzung "
+"automatisch blockiert und danach freigegeben. Führe einmal \"Passwortlose "
+"Blockierung einrichten\" aus, damit nicht jedes Mal ein Passwort verlangt "
+"wird."
 
 #. settings-schema.json->block_domains->description
 msgid "Domains to block (e.g. youtube.com)"
@@ -1973,30 +1964,6 @@ msgid ""
 msgstr ""
 "Während des Fokus zu blockierende Domains, eine pro Zeile (z. B. "
 "youtube.com, www.youtube.com)."
-
-#. settings-schema.json->block_now_button->description
-msgid "Block these domains now"
-msgstr "Diese Domains jetzt blockieren"
-
-#. settings-schema.json->block_now_button->tooltip
-msgid ""
-"Adds the domains above to /etc/hosts (you'll be asked for your password "
-"once). They stay blocked until you click Unblock."
-msgstr ""
-"Fügt die obigen Domains zu /etc/hosts hinzu (das Passwort wird einmal "
-"abgefragt). Sie bleiben blockiert, bis du auf „Freigeben“ klickst."
-
-#. settings-schema.json->unblock_button->description
-msgid "Unblock"
-msgstr "Freigeben"
-
-#. settings-schema.json->unblock_button->tooltip
-msgid ""
-"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
-" once)."
-msgstr ""
-"Entfernt die Blockiereinträge von Zen Pomodoro aus /etc/hosts (fragt einmal "
-"nach dem Passwort)."
 
 #. settings-schema.json->edit_hosts_button->description
 msgid "Edit /etc/hosts manually (admin)"
@@ -2453,6 +2420,45 @@ msgstr "Tagesziel — Klang"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Tagesziel — Priorität"
+
+#~ msgid "Add some domains to block first."
+#~ msgstr "Zuerst ein paar Domains zum Blockieren hinzufügen."
+
+#~ msgid "Distractions blocked."
+#~ msgstr "Ablenkungen blockiert."
+
+#~ msgid "Distractions unblocked."
+#~ msgstr "Ablenkungen freigegeben."
+
+#~ msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
+#~ msgstr ""
+#~ "Ablenkungsblockierung aktivieren (bearbeitet /etc/hosts per Admin-Abfrage)"
+
+#~ msgid ""
+#~ "Block distracting sites by editing /etc/hosts (asks for your password)."
+#~ msgstr ""
+#~ "Ablenkende Seiten durch Bearbeiten von /etc/hosts blockieren (fragt nach dem"
+#~ " Passwort)."
+
+#~ msgid "Block these domains now"
+#~ msgstr "Diese Domains jetzt blockieren"
+
+#~ msgid ""
+#~ "Adds the domains above to /etc/hosts (you'll be asked for your password "
+#~ "once). They stay blocked until you click Unblock."
+#~ msgstr ""
+#~ "Fügt die obigen Domains zu /etc/hosts hinzu (das Passwort wird einmal "
+#~ "abgefragt). Sie bleiben blockiert, bis du auf „Freigeben“ klickst."
+
+#~ msgid "Unblock"
+#~ msgstr "Freigeben"
+
+#~ msgid ""
+#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
+#~ " once)."
+#~ msgstr ""
+#~ "Entfernt die Blockiereinträge von Zen Pomodoro aus /etc/hosts (fragt einmal "
+#~ "nach dem Passwort)."
 
 #~ msgid "blocked"
 #~ msgstr "blockiert"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 19:55+0700\n"
+"POT-Creation-Date: 2026-06-23 20:08+0700\n"
 "PO-Revision-Date: 2025-10-12 13:07+0700\n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: vi\n"
@@ -150,7 +150,7 @@ msgstr "Kiểm tra trước khi chạy Pomodoro thất bại"
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "http://vi.wikipedia.org/wiki/Kỹ_thuật_Pomodoro"
 
-#: applet.js:1949 features.js:1872
+#: applet.js:1949 features.js:1857
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Hãy dừng bộ đếm trước khi đổi cấu hình Pomodoro"
 
@@ -181,11 +181,11 @@ msgid "Choose or type a focus task"
 msgstr "Chọn hoặc nhập việc cần tập trung"
 
 #: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1920
+#: features.js:1905
 msgid "Cancel"
 msgstr "Huỷ"
 
-#: dialogs.js:72 features.js:1921
+#: dialogs.js:72 features.js:1906
 msgid "Start"
 msgstr "Bắt đầu"
 
@@ -830,56 +830,44 @@ msgstr ""
 "Để tự động chặn trang web trong khi tập trung, hãy bật chặn không cần mật "
 "khẩu trong cài đặt."
 
-#: features.js:1667
-msgid "Add some domains to block first."
-msgstr "Hãy thêm vài tên miền để chặn trước."
-
-#: features.js:1671
-msgid "Distractions blocked."
-msgstr "Đã chặn xao nhãng."
-
-#: features.js:1676
-msgid "Distractions unblocked."
-msgstr "Đã bỏ chặn xao nhãng."
-
-#: features.js:1685
+#: features.js:1670
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Đã bật chặn không cần mật khẩu (không hỏi)."
 
-#: features.js:1686
+#: features.js:1671
 msgid "Passwordless blocking enabled (asks once per session)."
 msgstr "Đã bật chặn không cần mật khẩu (hỏi một lần mỗi phiên)."
 
-#: features.js:1693
+#: features.js:1678
 msgid "Passwordless blocking removed."
 msgstr "Đã gỡ chặn không cần mật khẩu."
 
-#: features.js:1730
+#: features.js:1715
 msgid "Click to exit Zen"
 msgstr "Nhấn để thoát Zen"
 
 #. settings-schema.json->focus->title
-#: features.js:1765 visual.js:894
+#: features.js:1750 visual.js:894
 msgid "Focus"
 msgstr "Tập trung"
 
-#: features.js:1842
+#: features.js:1827
 msgid "Breathe in"
 msgstr "Hít vào"
 
-#: features.js:1845 features.js:1851
+#: features.js:1830 features.js:1836
 msgid "Hold"
 msgstr "Giữ"
 
-#: features.js:1848
+#: features.js:1833
 msgid "Breathe out"
 msgstr "Thở ra"
 
-#: features.js:1878
+#: features.js:1863
 msgid "Focus until"
 msgstr "Tập trung đến"
 
-#: features.js:1879
+#: features.js:1864
 msgid "Enter a time (HH:MM)"
 msgstr "Nhập thời gian (HH:MM)"
 
@@ -1926,15 +1914,18 @@ msgid "Sent when a break finishes. Leave empty to send no message."
 msgstr "Gửi khi một giờ nghỉ kết thúc. Để trống để không gửi tin nhắn."
 
 #. settings-schema.json->enable_blocking->description
-msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
-msgstr "Bật chặn xao nhãng (sửa /etc/hosts qua lời nhắc quản trị)"
+msgid "Block distracting sites during focus"
+msgstr "Chặn các trang web gây xao nhãng khi tập trung"
 
 #. settings-schema.json->enable_blocking->tooltip
 msgid ""
-"Block distracting sites by editing /etc/hosts (asks for your password)."
+"When on, the sites below are blocked automatically during each focus session"
+" and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
+"doesn't ask for a password each time."
 msgstr ""
-"Chặn các trang gây xao nhãng bằng cách sửa /etc/hosts (sẽ hỏi mật khẩu của "
-"bạn)."
+"Khi bật, các trang bên dưới sẽ tự động bị chặn trong mỗi phiên tập trung và "
+"bỏ chặn sau đó. Chạy \"Thiết lập chặn không cần mật khẩu\" một lần để không "
+"phải nhập mật khẩu mỗi lần."
 
 #. settings-schema.json->block_domains->description
 msgid "Domains to block (e.g. youtube.com)"
@@ -1951,29 +1942,6 @@ msgid ""
 msgstr ""
 "Tên miền cần chặn khi tập trung, mỗi dòng một tên (vd. youtube.com, "
 "www.youtube.com)."
-
-#. settings-schema.json->block_now_button->description
-msgid "Block these domains now"
-msgstr "Chặn các tên miền này ngay"
-
-#. settings-schema.json->block_now_button->tooltip
-msgid ""
-"Adds the domains above to /etc/hosts (you'll be asked for your password "
-"once). They stay blocked until you click Unblock."
-msgstr ""
-"Thêm các tên miền trên vào /etc/hosts (bạn sẽ được hỏi mật khẩu một lần). "
-"Chúng bị chặn cho đến khi bạn nhấn Bỏ chặn."
-
-#. settings-schema.json->unblock_button->description
-msgid "Unblock"
-msgstr "Bỏ chặn"
-
-#. settings-schema.json->unblock_button->tooltip
-msgid ""
-"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
-" once)."
-msgstr ""
-"Gỡ các mục chặn của Zen Pomodoro khỏi /etc/hosts (hỏi mật khẩu một lần)."
 
 #. settings-schema.json->edit_hosts_button->description
 msgid "Edit /etc/hosts manually (admin)"
@@ -2429,6 +2397,43 @@ msgstr "Mục tiêu ngày — âm thanh"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Mục tiêu ngày — độ ưu tiên"
+
+#~ msgid "Add some domains to block first."
+#~ msgstr "Hãy thêm vài tên miền để chặn trước."
+
+#~ msgid "Distractions blocked."
+#~ msgstr "Đã chặn xao nhãng."
+
+#~ msgid "Distractions unblocked."
+#~ msgstr "Đã bỏ chặn xao nhãng."
+
+#~ msgid "Enable distraction blocking (edits /etc/hosts via an admin prompt)"
+#~ msgstr "Bật chặn xao nhãng (sửa /etc/hosts qua lời nhắc quản trị)"
+
+#~ msgid ""
+#~ "Block distracting sites by editing /etc/hosts (asks for your password)."
+#~ msgstr ""
+#~ "Chặn các trang gây xao nhãng bằng cách sửa /etc/hosts (sẽ hỏi mật khẩu của "
+#~ "bạn)."
+
+#~ msgid "Block these domains now"
+#~ msgstr "Chặn các tên miền này ngay"
+
+#~ msgid ""
+#~ "Adds the domains above to /etc/hosts (you'll be asked for your password "
+#~ "once). They stay blocked until you click Unblock."
+#~ msgstr ""
+#~ "Thêm các tên miền trên vào /etc/hosts (bạn sẽ được hỏi mật khẩu một lần). "
+#~ "Chúng bị chặn cho đến khi bạn nhấn Bỏ chặn."
+
+#~ msgid "Unblock"
+#~ msgstr "Bỏ chặn"
+
+#~ msgid ""
+#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
+#~ " once)."
+#~ msgstr ""
+#~ "Gỡ các mục chặn của Zen Pomodoro khỏi /etc/hosts (hỏi mật khẩu một lần)."
 
 #~ msgid "blocked"
 #~ msgstr "đã chặn"

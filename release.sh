@@ -57,9 +57,12 @@ case "$ans" in
     *) echo "Aborted."; exit 1 ;;
 esac
 
-# Bump the single source of truth.
+# Bump the single source of truth: version + last-edited date (the latter is
+# what the "About" dialog shows next to the version). The public package drops
+# last-edited in build-public.sh, since validate-spice forbids it there.
 tmp="$(mktemp)"
-jq --arg v "$VER" '.version = $v' metadata.json > "$tmp" && mv "$tmp" metadata.json
+jq --arg v "$VER" --argjson t "$(date +%s)" \
+   '.version = $v | ."last-edited" = $t' metadata.json > "$tmp" && mv "$tmp" metadata.json
 
 # Regenerate the changelog through the new tag.
 git-cliff --tag "$NEXT" -o CHANGELOG.md

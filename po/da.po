@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:31+0700\n"
+"POT-Creation-Date: 2026-06-23 17:53+0700\n"
 "PO-Revision-Date: 2020-12-21 17:23+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: da\n"
@@ -55,7 +55,7 @@ msgstr "PAUSE PÅ HOLD"
 msgid "BREAK OVER"
 msgstr "PAUSE SLUT"
 
-#: applet.js:995 applet.js:1055 menu.js:239 menu.js:666
+#: applet.js:995 applet.js:1055 menu.js:237 menu.js:649
 msgid "Ready to focus"
 msgstr "Klar til fokus"
 
@@ -84,7 +84,7 @@ msgstr "Pause slut"
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodori %d, sæt %d kører"
 
-#: applet.js:1033 features.js:412 features.js:1097 menu.js:688
+#: applet.js:1033 features.js:412 features.js:1097 menu.js:671
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ slut %s · %d 🍅 tilbage"
@@ -422,8 +422,7 @@ msgstr "Pauser starter af sig selv, så du ikke overanstrenger dig."
 #: features.js:661
 msgid "A calm theme, no ticking seconds and no end-of-timer rush."
 msgstr ""
-"Et roligt tema, ingen tikkende sekunder og intet stress, når timeren "
-"slutter."
+"Et roligt tema, ingen tikkende sekunder og intet stress, når timeren slutter."
 
 #: features.js:701
 msgid "What will you mainly focus on?"
@@ -568,8 +567,8 @@ msgid ""
 "everything later in Settings."
 msgstr ""
 "Besvar fem hurtige spørgsmål, så bygger jeg en fokusopsætning, der passer "
-"til, hvordan du arbejder — din rytme, lyde, pauser og den hjælp, du har brug"
-" for. Du kan finjustere alt senere i Indstillinger."
+"til, hvordan du arbejder — din rytme, lyde, pauser og den hjælp, du har brug "
+"for. Du kan finjustere alt senere i Indstillinger."
 
 #: features.js:770
 msgid "Let's go"
@@ -603,17 +602,17 @@ msgstr "Anvend"
 msgid "Apply & start"
 msgstr "Anvend & start"
 
-#: features.js:806 menu.js:324 menu.js:937 menu.js:943
+#: features.js:806 menu.js:322 menu.js:897 menu.js:903
 #, javascript-format
 msgid "%d min"
 msgstr "%d min"
 
-#: features.js:810 menu.js:328
+#: features.js:810 menu.js:326
 #, javascript-format
 msgid "%dh %dm"
 msgstr "%d t %d m"
 
-#: features.js:810 menu.js:328
+#: features.js:810 menu.js:326
 #, javascript-format
 msgid "%dh"
 msgstr "%d t"
@@ -781,7 +780,7 @@ msgstr "Mere"
 msgid "By task"
 msgstr "Efter opgave"
 
-#: features.js:1172 menu.js:510 menu.js:662
+#: features.js:1172 menu.js:493 menu.js:645
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Milepæle: %s"
@@ -879,239 +878,234 @@ msgstr "Fokus indtil"
 msgid "Enter a time (HH:MM)"
 msgstr "Indtast et tidspunkt (TT:MM)"
 
-#: menu.js:124
+#: menu.js:122
 msgid "Error: menu unavailable"
 msgstr "Fejl: menu utilgængelig"
 
-#: menu.js:175 menu.js:735 menu.js:995
+#: menu.js:173 menu.js:718 menu.js:955
 msgid "blocked"
 msgstr "blokeret"
 
-#: menu.js:175 menu.js:438 menu.js:735 menu.js:995
+#: menu.js:173 menu.js:423 menu.js:718 menu.js:955
 msgid "ready"
 msgstr "klar"
 
-#: menu.js:260
+#: menu.js:258
 msgid "Ready to start"
 msgstr "Klar til start"
 
-#: menu.js:268 menu.js:728
+#: menu.js:266 menu.js:711
 msgid "Task will be selected on start"
 msgstr "Opgaven vælges ved start"
 
-#: menu.js:364
+#: menu.js:362
 #, javascript-format
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:372 menu.js:819
+#: menu.js:370 menu.js:792
 msgid "Start focus"
 msgstr "Start fokus"
 
-#: menu.js:388
+#: menu.js:386
 msgid "Skip step"
 msgstr "Spring trin over"
 
-#: menu.js:394
+#: menu.js:392
 msgid "Reset session"
 msgstr "Nulstil session"
 
-#: menu.js:406
+#: menu.js:404
 msgid "Reset all"
 msgstr "Nulstil alt"
 
-#: menu.js:407
+#: menu.js:405
 msgid "Confirm reset of everything"
 msgstr "Bekræft nulstilling af alt"
 
-#: menu.js:438
+#: menu.js:423
 msgid "Sites"
 msgstr "Websteder"
 
-#: menu.js:447
+#: menu.js:430
 msgid "Current task…"
 msgstr "Nuværende opgave…"
 
-#: menu.js:453
+#: menu.js:436
 msgid "Focus until…"
 msgstr "Fokus indtil…"
 
-#: menu.js:459
+#: menu.js:442
 msgid "Zen mode"
 msgstr "Zen-tilstand"
 
-#: menu.js:466
+#: menu.js:449
 msgid "Ambient sound"
 msgstr "Baggrundslyd"
 
-#: menu.js:470 menu.js:943
+#: menu.js:453 menu.js:903
 msgid "Focus length"
 msgstr "Fokuslængde"
 
-#: menu.js:477 menu.js:751 menu.js:990
+#: menu.js:460 menu.js:734 menu.js:950
 msgid "Preset"
 msgstr "Forindstilling"
 
-#: menu.js:481 menu.js:860
+#: menu.js:464 menu.js:820
 msgid "Task list"
 msgstr "Opgaveliste"
 
-#: menu.js:485
+#: menu.js:468
 msgid "Statistics"
 msgstr "Statistik"
 
-#: menu.js:486
+#: menu.js:469
 msgid "Open dashboard…"
 msgstr "Åbn oversigt…"
 
-#: menu.js:489 menu.js:624
+#: menu.js:472 menu.js:607
 #, javascript-format
 msgid "Today: %d"
 msgstr "I dag: %d"
 
-#: menu.js:492 menu.js:629
+#: menu.js:475 menu.js:612
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "Sidste 7 dage: %d"
 
-#: menu.js:495 menu.js:638
+#: menu.js:478 menu.js:621
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "Sidste 30 dage: %d"
 
-#: menu.js:498 menu.js:641
+#: menu.js:481 menu.js:624
 #, javascript-format
 msgid "All time: %d"
 msgstr "Alle tider: %d"
 
-#: menu.js:501 menu.js:644
+#: menu.js:484 menu.js:627
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Fokustid: %s i dag · %s i alt"
 
-#: menu.js:504 menu.js:647
+#: menu.js:487 menu.js:630
 #, javascript-format
 msgid "Streak: %d days (best %d)"
 msgstr "Stime: %d dage (bedste %d)"
 
-#: menu.js:507 menu.js:650
+#: menu.js:490 menu.js:633
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Bedste dag: %d"
 
-#: menu.js:510 menu.js:662
+#: menu.js:493 menu.js:645
 msgid "none yet"
 msgstr "ingen endnu"
 
-#: menu.js:515
+#: menu.js:498
 msgid "Quick start"
 msgstr "Hurtig start"
 
-#: menu.js:520
+#: menu.js:503
 msgid "SESSION"
 msgstr "SESSION"
 
-#: menu.js:541
+#: menu.js:524
 msgid "Session…"
 msgstr "Session…"
 
-#: menu.js:597
+#: menu.js:580
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr "I dag: %d / %d"
 
-#: menu.js:678
+#: menu.js:661
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d af %d"
 
-#: menu.js:680
+#: menu.js:663
 msgid "Long break"
 msgstr "Lang pause"
 
-#: menu.js:682
+#: menu.js:665
 msgid "Short break"
 msgstr "Kort pause"
 
-#: menu.js:685
+#: menu.js:668
 #, javascript-format
 msgid "until %s"
 msgstr "indtil %s"
 
-#: menu.js:693
+#: menu.js:676
 msgid "Break finished — press Start for focus"
 msgstr "Pause slut — tryk Start for fokus"
 
-#: menu.js:695
+#: menu.js:678
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Bliv færdig med opgaverne omkring ~%s"
 
-#: menu.js:697
+#: menu.js:680
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "%d min fokus — tryk Start"
 
-#: menu.js:724 menu.js:726
+#: menu.js:707 menu.js:709
 #, javascript-format
 msgid "Task: %s"
 msgstr "Opgave: %s"
 
-#: menu.js:730
+#: menu.js:713
 msgid "Task: none"
 msgstr "Opgave: ingen"
 
-#: menu.js:767
-#, javascript-format
-msgid "Hotkey: %s"
-msgstr "Genvejstast: %s"
-
-#: menu.js:798
+#: menu.js:771
 msgid "Resume break"
 msgstr "Fortsæt pause"
 
-#: menu.js:798
+#: menu.js:771
 msgid "Resume focus"
 msgstr "Fortsæt fokus"
 
-#: menu.js:805
+#: menu.js:778
 msgid "Focusing — stay with it"
 msgstr "Fokuserer — bliv ved"
 
-#: menu.js:810
+#: menu.js:783
 msgid "Pause focus"
 msgstr "Sæt fokus på pause"
 
-#: menu.js:810
+#: menu.js:783
 msgid "Pause break"
 msgstr "Sæt pausen på hold"
 
-#: menu.js:815
+#: menu.js:788
 msgid "Start next focus"
 msgstr "Start næste fokus"
 
-#: menu.js:870
+#: menu.js:830
 msgid "Add task…"
 msgstr "Tilføj opgave…"
 
-#: menu.js:880
+#: menu.js:840
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Ingen opgaver endnu — tilføj det, du vil fokusere på, med et 🍅-estimat."
 
-#: menu.js:906
+#: menu.js:866
 msgid "Toggle done (current)"
 msgstr "Skift udført (nuværende)"
 
-#: menu.js:909
+#: menu.js:869
 msgid "Delete current"
 msgstr "Slet nuværende"
 
-#: menu.js:918
+#: menu.js:878
 msgid "Save as template…"
 msgstr "Gem som skabelon…"
 
-#: menu.js:924
+#: menu.js:884
 #, javascript-format
 msgid "Apply: %s"
 msgstr "Anvend: %s"
@@ -1235,8 +1229,7 @@ msgid "Long Break Duration:"
 msgstr "Varighed af lang pause:"
 
 #. settings-schema.json->long_break_duration->tooltip
-msgid ""
-"Length of the longer break after a set of pomodoros (classic is 15–30)."
+msgid "Length of the longer break after a set of pomodoros (classic is 15–30)."
 msgstr ""
 "Længden af den lange pause efter et sæt pomodoroer (klassisk er 15–30)."
 
@@ -1245,8 +1238,7 @@ msgid "Number of pomodori before long break:"
 msgstr "Antal Pomodori før en lang pause:"
 
 #. settings-schema.json->pomodori_number->tooltip
-msgid ""
-"How many focus blocks to complete before the long break (classic is 4)."
+msgid "How many focus blocks to complete before the long break (classic is 4)."
 msgstr ""
 "Hvor mange fokusblokke der gennemføres før den lange pause (klassisk er 4)."
 
@@ -1273,8 +1265,8 @@ msgid ""
 "If Cinnamon restarts mid-focus, the session is remembered so you can resume "
 "it from the menu — it won't auto-start."
 msgstr ""
-"Hvis Cinnamon genstarter midt i fokus, huskes sessionen, så du kan fortsætte"
-" den fra menuen — den starter ikke af sig selv."
+"Hvis Cinnamon genstarter midt i fokus, huskes sessionen, så du kan fortsætte "
+"den fra menuen — den starter ikke af sig selv."
 
 #. settings-schema.json->show_dialog_messages->description
 msgid "Show Dialog Messages"
@@ -1285,8 +1277,8 @@ msgid ""
 "Show pop-up dialogs at the end of each phase (off keeps it quiet — only on-"
 "screen cues)."
 msgstr ""
-"Vis pop op-dialoger ved slutningen af hver fase (slået fra holder det stille"
-" — kun signaler på skærmen)."
+"Vis pop op-dialoger ved slutningen af hver fase (slået fra holder det stille "
+"— kun signaler på skærmen)."
 
 #. settings-schema.json->auto_start_after_pomodoro_ends->description
 msgid "Auto start after a pomodoro ends"
@@ -1310,8 +1302,7 @@ msgstr "Start automatisk en ny Pomodoro efter afslutning af en pause"
 
 #. settings-schema.json->auto_start_after_break_ends->tooltip
 msgid "When the long break ends, start a new pomodoro cycle automatically."
-msgstr ""
-"Når den lange pause slutter, startes en ny Pomodoro-cyklus automatisk."
+msgstr "Når den lange pause slutter, startes en ny Pomodoro-cyklus automatisk."
 
 #. settings-schema.json->panel_icon_style->description
 msgid "Panel icon"
@@ -1340,8 +1331,8 @@ msgid ""
 "all. The timer text is a separate option below."
 msgstr ""
 "Hvad der vises i panelet: en statusring med tilstandsikonet indeni "
-"(anbefales), et symbolsk ikon, dit eget ikon, eller intet ikon. Timerteksten"
-" indstilles separat nedenfor."
+"(anbefales), et symbolsk ikon, dit eget ikon, eller intet ikon. Timerteksten "
+"indstilles separat nedenfor."
 
 #. settings-schema.json->panel_custom_icon->description
 msgid "Custom panel icon"
@@ -1414,13 +1405,13 @@ msgstr "Styr timeren med musen på panelet"
 
 #. settings-schema.json->panel_scroll_control->tooltip
 msgid ""
-"Scroll up on the applet to start or resume, scroll down to pause, and "
-"middle-click to skip the phase. Turn this off if you sometimes scroll over "
-"the panel by accident."
+"Scroll up on the applet to start or resume, scroll down to pause, and middle-"
+"click to skip the phase. Turn this off if you sometimes scroll over the "
+"panel by accident."
 msgstr ""
 "Rul op på appletten for at starte eller fortsætte, rul ned for at sætte på "
-"pause, og midterklik for at springe fasen over. Slå dette fra, hvis du nogle"
-" gange ruller hen over panelet ved et uheld."
+"pause, og midterklik for at springe fasen over. Slå dette fra, hvis du nogle "
+"gange ruller hen over panelet ved et uheld."
 
 #. settings-schema.json->scroll_action->description
 msgid "Mouse-wheel action on the panel"
@@ -1463,8 +1454,8 @@ msgstr ""
 
 #. settings-schema.json->focus_start_ritual->description
 msgid ""
-"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus"
-" begins"
+"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus "
+"begins"
 msgstr ""
 "Startritual: kortvarigt centreret 'Fokus: <opgave>' og en blød indtoning, "
 "når fokus begynder"
@@ -1569,8 +1560,8 @@ msgstr "Glødintensitet"
 
 #. settings-schema.json->glow_intensity->tooltip
 msgid ""
-"How bright the on-screen edge glow is during focus — higher is more visible,"
-" lower is subtler."
+"How bright the on-screen edge glow is during focus — higher is more visible, "
+"lower is subtler."
 msgstr ""
 "Hvor kraftigt kantglødet på skærmen lyser under fokus — højere er mere "
 "synligt, lavere er mere diskret."
@@ -1603,8 +1594,8 @@ msgstr "Afslappende 4-6"
 
 #. settings-schema.json->breathing_pattern->tooltip
 msgid ""
-"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6"
-" — seconds per phase."
+"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 "
+"— seconds per phase."
 msgstr ""
 "Vejrtrækningsrytme til guiden: Boks (4-4-4-4), beroligende 4-7-8 eller "
 "afslappet 4-6 — sekunder pr. fase."
@@ -1665,8 +1656,8 @@ msgstr "Forhåndsvis fokusramme"
 
 #. settings-schema.json->preview_appearance_button->tooltip
 msgid ""
-"Briefly show the on-screen focus frame and task chip with the current colors"
-" and style (works when no timer is running)."
+"Briefly show the on-screen focus frame and task chip with the current colors "
+"and style (works when no timer is running)."
 msgstr ""
 "Vis kortvarigt fokusrammen og opgavemærkaten på skærmen med de aktuelle "
 "farver og stil (virker, når ingen timer kører)."
@@ -1702,8 +1693,7 @@ msgstr "Inaktive minutter før auto-pause"
 #. settings-schema.json->auto_pause_idle_minutes->tooltip
 msgid "How long you can be away before focus auto-pauses, in minutes."
 msgstr ""
-"Hvor længe du kan være væk, før fokus automatisk sættes på pause, i "
-"minutter."
+"Hvor længe du kan være væk, før fokus automatisk sættes på pause, i minutter."
 
 #. settings-schema.json->auto_resume_on_activity->description
 msgid "Resume automatically when you return"
@@ -1776,12 +1766,12 @@ msgstr "Strengt fokus: ingen pause eller overspringning under en fokusblok"
 
 #. settings-schema.json->strict_focus->tooltip
 msgid ""
-"While a focus block is running, hide pause and skip so you commit to it. You"
-" can still Reset to abandon the session — it's never a hard lock."
+"While a focus block is running, hide pause and skip so you commit to it. You "
+"can still Reset to abandon the session — it's never a hard lock."
 msgstr ""
 "Mens en fokusblok kører, skjules pause og overspringning, så du forpligter "
-"dig. Du kan stadig nulstille for at opgive sessionen — det er aldrig en hård"
-" lås."
+"dig. Du kan stadig nulstille for at opgive sessionen — det er aldrig en hård "
+"lås."
 
 #. settings-schema.json->focus_until_enabled->description
 msgid "Show 'Focus until…' in the menu (focus until a clock time)"
@@ -1855,12 +1845,12 @@ msgstr ""
 #. settings-schema.json->pushover_help->description
 msgid ""
 "Pushover sends alerts to your phone or desktop. Create a free account at "
-"pushover.net, copy your User Key, then create an Application there to get an"
-" API Token."
+"pushover.net, copy your User Key, then create an Application there to get an "
+"API Token."
 msgstr ""
 "Pushover sender beskeder til din telefon eller computer. Opret en gratis "
-"konto på pushover.net, kopiér din User Key, og opret derefter en Application"
-" der for at få en API Token."
+"konto på pushover.net, kopiér din User Key, og opret derefter en Application "
+"der for at få en API Token."
 
 #. settings-schema.json->pushover_user_key->description
 msgid "Pushover user key"
@@ -1894,11 +1884,11 @@ msgstr "Tilpas beskeder, lyde og prioritet"
 
 #. settings-schema.json->pushover_customize->tooltip
 msgid ""
-"Show options to change the text, sound and priority for each event. Off uses"
-" sensible defaults."
+"Show options to change the text, sound and priority for each event. Off uses "
+"sensible defaults."
 msgstr ""
-"Vis muligheder for at ændre tekst, lyd og prioritet for hver hændelse. Slået"
-" fra bruger fornuftige standardværdier."
+"Vis muligheder for at ændre tekst, lyd og prioritet for hver hændelse. Slået "
+"fra bruger fornuftige standardværdier."
 
 #. settings-schema.json->pushover_title->description
 msgid "Notification title"
@@ -1936,8 +1926,7 @@ msgstr ""
 "forespørgsel)"
 
 #. settings-schema.json->enable_blocking->tooltip
-msgid ""
-"Block distracting sites by editing /etc/hosts (asks for your password)."
+msgid "Block distracting sites by editing /etc/hosts (asks for your password)."
 msgstr ""
 "Blokér forstyrrende websteder ved at redigere /etc/hosts (beder om din "
 "adgangskode)."
@@ -1952,11 +1941,11 @@ msgstr "Domæne"
 
 #. settings-schema.json->block_domains->tooltip
 msgid ""
-"Domains to block during focus, one per row (e.g. youtube.com, "
-"www.youtube.com)."
+"Domains to block during focus, one per row (e.g. youtube.com, www.youtube."
+"com)."
 msgstr ""
-"Domæner der skal blokeres under fokus, ét pr. række (f.eks. youtube.com, "
-"www.youtube.com)."
+"Domæner der skal blokeres under fokus, ét pr. række (f.eks. youtube.com, www."
+"youtube.com)."
 
 #. settings-schema.json->block_now_button->description
 msgid "Block these domains now"
@@ -1967,8 +1956,8 @@ msgid ""
 "Adds the domains above to /etc/hosts (you'll be asked for your password "
 "once). They stay blocked until you click Unblock."
 msgstr ""
-"Tilføjer domænerne ovenfor til /etc/hosts (du bliver bedt om din adgangskode"
-" én gang). De forbliver blokeret, indtil du klikker Ophæv blokering."
+"Tilføjer domænerne ovenfor til /etc/hosts (du bliver bedt om din adgangskode "
+"én gang). De forbliver blokeret, indtil du klikker Ophæv blokering."
 
 #. settings-schema.json->unblock_button->description
 msgid "Unblock"
@@ -1976,8 +1965,8 @@ msgstr "Ophæv blokering"
 
 #. settings-schema.json->unblock_button->tooltip
 msgid ""
-"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
-" once)."
+"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password "
+"once)."
 msgstr ""
 "Fjerner Zen Pomodoros blokeringsposter fra /etc/hosts (beder om din "
 "adgangskode én gang)."
@@ -1988,8 +1977,8 @@ msgstr "Redigér /etc/hosts manuelt (admin)"
 
 #. settings-schema.json->edit_hosts_button->tooltip
 msgid ""
-"Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only"
-" manages its own clearly-marked section."
+"Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only "
+"manages its own clearly-marked section."
 msgstr ""
 "Åbner /etc/hosts i din editor med administratorrettigheder. Zen Pomodoro "
 "håndterer kun sin egen tydeligt markerede sektion."
@@ -2220,8 +2209,8 @@ msgid ""
 "session. Convenient but less safe: any local program could then change your "
 "blocklist without asking."
 msgstr ""
-"Bed aldrig om en adgangskode efter opsætning. Fra (standard) spørger én gang"
-" pr. login-session. Bekvemt, men mindre sikkert: ethvert lokalt program kan "
+"Bed aldrig om en adgangskode efter opsætning. Fra (standard) spørger én gang "
+"pr. login-session. Bekvemt, men mindre sikkert: ethvert lokalt program kan "
 "så ændre din blokeringsliste uden at spørge."
 
 #. settings-schema.json->setup_passwordless_button->description
@@ -2422,6 +2411,10 @@ msgstr "Dagligt mål — lyd"
 msgid "Daily goal — priority"
 msgstr "Dagligt mål — prioritet"
 
+#, javascript-format
+#~ msgid "Hotkey: %s"
+#~ msgstr "Genvejstast: %s"
+
 #~ msgid "Colored icon"
 #~ msgstr "Farvet ikon"
 
@@ -2431,8 +2424,8 @@ msgstr "Dagligt mål — prioritet"
 #~ "timer text is a separate option below."
 #~ msgstr ""
 #~ "Hvad der vises i panelet: en statusring med tilstandsikonet indeni "
-#~ "(anbefales), et symbolsk eller farvet ikon, eller intet ikon. Timerteksten "
-#~ "indstilles separat nedenfor."
+#~ "(anbefales), et symbolsk eller farvet ikon, eller intet ikon. "
+#~ "Timerteksten indstilles separat nedenfor."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Vis Pomodoro-ikonet i statusfeltet"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:31+0700\n"
+"POT-Creation-Date: 2026-06-23 17:53+0700\n"
 "PO-Revision-Date: 2017-06-07 06:28+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -55,7 +55,7 @@ msgstr "PAUS PAUSAD"
 msgid "BREAK OVER"
 msgstr "PAUS SLUT"
 
-#: applet.js:995 applet.js:1055 menu.js:239 menu.js:666
+#: applet.js:995 applet.js:1055 menu.js:237 menu.js:649
 msgid "Ready to focus"
 msgstr "Redo att fokusera"
 
@@ -84,7 +84,7 @@ msgstr "Rasten är slut"
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodoro %d, set %d pågår"
 
-#: applet.js:1033 features.js:412 features.js:1097 menu.js:688
+#: applet.js:1033 features.js:412 features.js:1097 menu.js:671
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ klar %s · %d 🍅 kvar"
@@ -412,8 +412,7 @@ msgstr ""
 
 #: features.js:653
 msgid "One-click start and a calm start ritual make it easier to begin."
-msgstr ""
-"Start med ett klick och en lugn startritual gör det lättare att börja."
+msgstr "Start med ett klick och en lugn startritual gör det lättare att börja."
 
 #: features.js:657
 msgid "Breaks start on their own so you don't overwork."
@@ -601,17 +600,17 @@ msgstr "Tillämpa"
 msgid "Apply & start"
 msgstr "Tillämpa och starta"
 
-#: features.js:806 menu.js:324 menu.js:937 menu.js:943
+#: features.js:806 menu.js:322 menu.js:897 menu.js:903
 #, javascript-format
 msgid "%d min"
 msgstr "%d min"
 
-#: features.js:810 menu.js:328
+#: features.js:810 menu.js:326
 #, javascript-format
 msgid "%dh %dm"
 msgstr "%d h %d m"
 
-#: features.js:810 menu.js:328
+#: features.js:810 menu.js:326
 #, javascript-format
 msgid "%dh"
 msgstr "%d h"
@@ -779,7 +778,7 @@ msgstr "Mer"
 msgid "By task"
 msgstr "Per uppgift"
 
-#: features.js:1172 menu.js:510 menu.js:662
+#: features.js:1172 menu.js:493 menu.js:645
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Milstolpar: %s"
@@ -878,239 +877,234 @@ msgstr "Fokus till"
 msgid "Enter a time (HH:MM)"
 msgstr "Ange en tid (TT:MM)"
 
-#: menu.js:124
+#: menu.js:122
 msgid "Error: menu unavailable"
 msgstr "Fel: menyn är inte tillgänglig"
 
-#: menu.js:175 menu.js:735 menu.js:995
+#: menu.js:173 menu.js:718 menu.js:955
 msgid "blocked"
 msgstr "blockerad"
 
-#: menu.js:175 menu.js:438 menu.js:735 menu.js:995
+#: menu.js:173 menu.js:423 menu.js:718 menu.js:955
 msgid "ready"
 msgstr "redo"
 
-#: menu.js:260
+#: menu.js:258
 msgid "Ready to start"
 msgstr "Redo att starta"
 
-#: menu.js:268 menu.js:728
+#: menu.js:266 menu.js:711
 msgid "Task will be selected on start"
 msgstr "Uppgift väljs vid start"
 
-#: menu.js:364
+#: menu.js:362
 #, javascript-format
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:372 menu.js:819
+#: menu.js:370 menu.js:792
 msgid "Start focus"
 msgstr "Starta fokus"
 
-#: menu.js:388
+#: menu.js:386
 msgid "Skip step"
 msgstr "Hoppa över steg"
 
-#: menu.js:394
+#: menu.js:392
 msgid "Reset session"
 msgstr "Återställ session"
 
-#: menu.js:406
+#: menu.js:404
 msgid "Reset all"
 msgstr "Återställ allt"
 
-#: menu.js:407
+#: menu.js:405
 msgid "Confirm reset of everything"
 msgstr "Bekräfta fullständig återställning"
 
-#: menu.js:438
+#: menu.js:423
 msgid "Sites"
 msgstr "Sajter"
 
-#: menu.js:447
+#: menu.js:430
 msgid "Current task…"
 msgstr "Aktuell uppgift…"
 
-#: menu.js:453
+#: menu.js:436
 msgid "Focus until…"
 msgstr "Fokus till…"
 
-#: menu.js:459
+#: menu.js:442
 msgid "Zen mode"
 msgstr "Zen-läge"
 
-#: menu.js:466
+#: menu.js:449
 msgid "Ambient sound"
 msgstr "Bakgrundsljud"
 
-#: menu.js:470 menu.js:943
+#: menu.js:453 menu.js:903
 msgid "Focus length"
 msgstr "Fokuslängd"
 
-#: menu.js:477 menu.js:751 menu.js:990
+#: menu.js:460 menu.js:734 menu.js:950
 msgid "Preset"
 msgstr "Förinställning"
 
-#: menu.js:481 menu.js:860
+#: menu.js:464 menu.js:820
 msgid "Task list"
 msgstr "Uppgiftslista"
 
-#: menu.js:485
+#: menu.js:468
 msgid "Statistics"
 msgstr "Statistik"
 
-#: menu.js:486
+#: menu.js:469
 msgid "Open dashboard…"
 msgstr "Öppna översikt…"
 
-#: menu.js:489 menu.js:624
+#: menu.js:472 menu.js:607
 #, javascript-format
 msgid "Today: %d"
 msgstr "Idag: %d"
 
-#: menu.js:492 menu.js:629
+#: menu.js:475 menu.js:612
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "Senaste 7 dagarna: %d"
 
-#: menu.js:495 menu.js:638
+#: menu.js:478 menu.js:621
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "Senaste 30 dagarna: %d"
 
-#: menu.js:498 menu.js:641
+#: menu.js:481 menu.js:624
 #, javascript-format
 msgid "All time: %d"
 msgstr "Totalt: %d"
 
-#: menu.js:501 menu.js:644
+#: menu.js:484 menu.js:627
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Fokustid: %s idag · %s totalt"
 
-#: menu.js:504 menu.js:647
+#: menu.js:487 menu.js:630
 #, javascript-format
 msgid "Streak: %d days (best %d)"
 msgstr "Serie: %d dagar (rekord %d)"
 
-#: menu.js:507 menu.js:650
+#: menu.js:490 menu.js:633
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Bästa dag: %d"
 
-#: menu.js:510 menu.js:662
+#: menu.js:493 menu.js:645
 msgid "none yet"
 msgstr "ingen än"
 
-#: menu.js:515
+#: menu.js:498
 msgid "Quick start"
 msgstr "Snabbstart"
 
-#: menu.js:520
+#: menu.js:503
 msgid "SESSION"
 msgstr "SESSION"
 
-#: menu.js:541
+#: menu.js:524
 msgid "Session…"
 msgstr "Session…"
 
-#: menu.js:597
+#: menu.js:580
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr "Idag: %d / %d"
 
-#: menu.js:678
+#: menu.js:661
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d av %d"
 
-#: menu.js:680
+#: menu.js:663
 msgid "Long break"
 msgstr "Lång rast"
 
-#: menu.js:682
+#: menu.js:665
 msgid "Short break"
 msgstr "Kort rast"
 
-#: menu.js:685
+#: menu.js:668
 #, javascript-format
 msgid "until %s"
 msgstr "till %s"
 
-#: menu.js:693
+#: menu.js:676
 msgid "Break finished — press Start for focus"
 msgstr "Rasten är slut — tryck Starta för fokus"
 
-#: menu.js:695
+#: menu.js:678
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Uppgifterna klara ~%s"
 
-#: menu.js:697
+#: menu.js:680
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "%d min fokus — tryck Starta"
 
-#: menu.js:724 menu.js:726
+#: menu.js:707 menu.js:709
 #, javascript-format
 msgid "Task: %s"
 msgstr "Uppgift: %s"
 
-#: menu.js:730
+#: menu.js:713
 msgid "Task: none"
 msgstr "Uppgift: ingen"
 
-#: menu.js:767
-#, javascript-format
-msgid "Hotkey: %s"
-msgstr "Snabbtangent: %s"
-
-#: menu.js:798
+#: menu.js:771
 msgid "Resume break"
 msgstr "Återuppta rast"
 
-#: menu.js:798
+#: menu.js:771
 msgid "Resume focus"
 msgstr "Återuppta fokus"
 
-#: menu.js:805
+#: menu.js:778
 msgid "Focusing — stay with it"
 msgstr "Fokuserar — håll ut"
 
-#: menu.js:810
+#: menu.js:783
 msgid "Pause focus"
 msgstr "Pausa fokus"
 
-#: menu.js:810
+#: menu.js:783
 msgid "Pause break"
 msgstr "Pausa rast"
 
-#: menu.js:815
+#: menu.js:788
 msgid "Start next focus"
 msgstr "Starta nästa fokus"
 
-#: menu.js:870
+#: menu.js:830
 msgid "Add task…"
 msgstr "Lägg till uppgift…"
 
-#: menu.js:880
+#: menu.js:840
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Inga uppgifter än — lägg till det du ska fokusera på, med en 🍅-uppskattning."
 
-#: menu.js:906
+#: menu.js:866
 msgid "Toggle done (current)"
 msgstr "Växla klar (aktuell)"
 
-#: menu.js:909
+#: menu.js:869
 msgid "Delete current"
 msgstr "Radera aktuell"
 
-#: menu.js:918
+#: menu.js:878
 msgid "Save as template…"
 msgstr "Spara som mall…"
 
-#: menu.js:924
+#: menu.js:884
 #, javascript-format
 msgid "Apply: %s"
 msgstr "Tillämpa: %s"
@@ -1234,8 +1228,7 @@ msgid "Long Break Duration:"
 msgstr "Längd på lång rast:"
 
 #. settings-schema.json->long_break_duration->tooltip
-msgid ""
-"Length of the longer break after a set of pomodoros (classic is 15–30)."
+msgid "Length of the longer break after a set of pomodoros (classic is 15–30)."
 msgstr "Längd på den långa rasten efter ett set Pomodoro (klassiskt 15–30)."
 
 #. settings-schema.json->pomodori_number->description
@@ -1243,8 +1236,7 @@ msgid "Number of pomodori before long break:"
 msgstr "Antal Pomodoro före lång rast:"
 
 #. settings-schema.json->pomodori_number->tooltip
-msgid ""
-"How many focus blocks to complete before the long break (classic is 4)."
+msgid "How many focus blocks to complete before the long break (classic is 4)."
 msgstr "Hur många fokuspass innan den långa rasten (klassiskt 4)."
 
 #. settings-schema.json->start_automatically_on_load->description
@@ -1270,8 +1262,8 @@ msgid ""
 "If Cinnamon restarts mid-focus, the session is remembered so you can resume "
 "it from the menu — it won't auto-start."
 msgstr ""
-"Om Cinnamon startar om mitt i fokus sparas sessionen så att du kan återuppta"
-" den från menyn — den startar inte av sig själv."
+"Om Cinnamon startar om mitt i fokus sparas sessionen så att du kan återuppta "
+"den från menyn — den startar inte av sig själv."
 
 #. settings-schema.json->show_dialog_messages->description
 msgid "Show Dialog Messages"
@@ -1410,9 +1402,9 @@ msgstr "Styr timern med musen på panelen"
 
 #. settings-schema.json->panel_scroll_control->tooltip
 msgid ""
-"Scroll up on the applet to start or resume, scroll down to pause, and "
-"middle-click to skip the phase. Turn this off if you sometimes scroll over "
-"the panel by accident."
+"Scroll up on the applet to start or resume, scroll down to pause, and middle-"
+"click to skip the phase. Turn this off if you sometimes scroll over the "
+"panel by accident."
 msgstr ""
 "Skrolla upp på appleten för att starta eller återuppta, skrolla ner för att "
 "pausa och mittklicka för att hoppa över fasen. Stäng av detta om du ibland "
@@ -1457,8 +1449,8 @@ msgstr ""
 
 #. settings-schema.json->focus_start_ritual->description
 msgid ""
-"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus"
-" begins"
+"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus "
+"begins"
 msgstr ""
 "Startritual: kort centrerad 'Fokus: <uppgift>' och en mjuk intoning när "
 "fokus börjar"
@@ -1561,8 +1553,8 @@ msgstr "Skenintensitet"
 
 #. settings-schema.json->glow_intensity->tooltip
 msgid ""
-"How bright the on-screen edge glow is during focus — higher is more visible,"
-" lower is subtler."
+"How bright the on-screen edge glow is during focus — higher is more visible, "
+"lower is subtler."
 msgstr ""
 "Hur starkt skenet vid skärmkanten lyser under fokus — högre syns mer, lägre "
 "är subtilare."
@@ -1594,8 +1586,8 @@ msgstr "Avslappnande 4-6"
 
 #. settings-schema.json->breathing_pattern->tooltip
 msgid ""
-"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6"
-" — seconds per phase."
+"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 "
+"— seconds per phase."
 msgstr ""
 "Andningsrytm för guiden: Box (4-4-4-4), lugnande 4-7-8 eller avslappnad 4-6 "
 "— sekunder per fas."
@@ -1655,8 +1647,8 @@ msgstr "Förhandsvisa fokusram"
 
 #. settings-schema.json->preview_appearance_button->tooltip
 msgid ""
-"Briefly show the on-screen focus frame and task chip with the current colors"
-" and style (works when no timer is running)."
+"Briefly show the on-screen focus frame and task chip with the current colors "
+"and style (works when no timer is running)."
 msgstr ""
 "Visa kort fokusramen och uppgiftsbrickan med aktuella färger och stil "
 "(fungerar när ingen timer körs)."
@@ -1691,8 +1683,7 @@ msgstr "Inaktiva minuter före autopaus"
 
 #. settings-schema.json->auto_pause_idle_minutes->tooltip
 msgid "How long you can be away before focus auto-pauses, in minutes."
-msgstr ""
-"Hur länge du kan vara borta innan fokus pausas automatiskt, i minuter."
+msgstr "Hur länge du kan vara borta innan fokus pausas automatiskt, i minuter."
 
 #. settings-schema.json->auto_resume_on_activity->description
 msgid "Resume automatically when you return"
@@ -1747,8 +1738,8 @@ msgid ""
 "During breaks, show an expanding and contracting circle that paces your "
 "breathing to help you unwind."
 msgstr ""
-"Under raster visas en cirkel som växer och krymper och sätter takten för din"
-" andning så att du varvar ner."
+"Under raster visas en cirkel som växer och krymper och sätter takten för din "
+"andning så att du varvar ner."
 
 #. settings-schema.json->zen_mode_enabled->description
 msgid "Enable Zen mode (full-screen focus overlay, toggled from the menu)"
@@ -1764,8 +1755,8 @@ msgstr "Strikt fokus: ingen paus eller överhoppning under ett fokuspass"
 
 #. settings-schema.json->strict_focus->tooltip
 msgid ""
-"While a focus block is running, hide pause and skip so you commit to it. You"
-" can still Reset to abandon the session — it's never a hard lock."
+"While a focus block is running, hide pause and skip so you commit to it. You "
+"can still Reset to abandon the session — it's never a hard lock."
 msgstr ""
 "Medan ett fokuspass pågår döljs paus och hoppa över så att du håller fast "
 "vid det. Du kan fortfarande Återställa för att avbryta sessionen — det är "
@@ -1796,8 +1787,8 @@ msgid ""
 "Pauses any playing media (browser tab, music app via MPRIS) when a break or "
 "pause starts, and resumes the same players when focus continues."
 msgstr ""
-"Pausar alla medier som spelas upp (webbläsarflik, musikapp via MPRIS) när en"
-" rast eller paus börjar och återupptar samma spelare när fokus fortsätter."
+"Pausar alla medier som spelas upp (webbläsarflik, musikapp via MPRIS) när en "
+"rast eller paus börjar och återupptar samma spelare när fokus fortsätter."
 
 #. settings-schema.json->run_command_enabled->description
 msgid "Run a command when focus or a break starts"
@@ -1842,8 +1833,8 @@ msgstr ""
 #. settings-schema.json->pushover_help->description
 msgid ""
 "Pushover sends alerts to your phone or desktop. Create a free account at "
-"pushover.net, copy your User Key, then create an Application there to get an"
-" API Token."
+"pushover.net, copy your User Key, then create an Application there to get an "
+"API Token."
 msgstr ""
 "Pushover skickar aviseringar till din telefon eller dator. Skapa ett "
 "gratiskonto på pushover.net, kopiera din User Key och skapa sedan en "
@@ -1872,8 +1863,8 @@ msgstr "Skicka en testavisering"
 #. settings-schema.json->pushover_test_button->tooltip
 msgid "Send a test message now to confirm your user key and app token work."
 msgstr ""
-"Skicka ett testmeddelande nu för att bekräfta att din användarnyckel och "
-"app-token fungerar."
+"Skicka ett testmeddelande nu för att bekräfta att din användarnyckel och app-"
+"token fungerar."
 
 #. settings-schema.json->pushover_customize->description
 msgid "Customize messages, sounds and priority"
@@ -1881,8 +1872,8 @@ msgstr "Anpassa meddelanden, ljud och prioritet"
 
 #. settings-schema.json->pushover_customize->tooltip
 msgid ""
-"Show options to change the text, sound and priority for each event. Off uses"
-" sensible defaults."
+"Show options to change the text, sound and priority for each event. Off uses "
+"sensible defaults."
 msgstr ""
 "Visa alternativ för att ändra text, ljud och prioritet för varje händelse. "
 "Av använder rimliga standardvärden."
@@ -1923,8 +1914,7 @@ msgstr ""
 "Aktivera distraktionsblockering (redigerar /etc/hosts via en adminfråga)"
 
 #. settings-schema.json->enable_blocking->tooltip
-msgid ""
-"Block distracting sites by editing /etc/hosts (asks for your password)."
+msgid "Block distracting sites by editing /etc/hosts (asks for your password)."
 msgstr ""
 "Blockera distraherande sajter genom att redigera /etc/hosts (frågar efter "
 "ditt lösenord)."
@@ -1939,11 +1929,11 @@ msgstr "Domän"
 
 #. settings-schema.json->block_domains->tooltip
 msgid ""
-"Domains to block during focus, one per row (e.g. youtube.com, "
-"www.youtube.com)."
+"Domains to block during focus, one per row (e.g. youtube.com, www.youtube."
+"com)."
 msgstr ""
-"Domäner att blockera under fokus, en per rad (t.ex. youtube.com, "
-"www.youtube.com)."
+"Domäner att blockera under fokus, en per rad (t.ex. youtube.com, www.youtube."
+"com)."
 
 #. settings-schema.json->block_now_button->description
 msgid "Block these domains now"
@@ -1963,8 +1953,8 @@ msgstr "Avblockera"
 
 #. settings-schema.json->unblock_button->tooltip
 msgid ""
-"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
-" once)."
+"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password "
+"once)."
 msgstr ""
 "Tar bort Zen Pomodoros blockeringsposter från /etc/hosts (frågar efter ditt "
 "lösenord en gång)."
@@ -1975,8 +1965,8 @@ msgstr "Redigera /etc/hosts manuellt (admin)"
 
 #. settings-schema.json->edit_hosts_button->tooltip
 msgid ""
-"Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only"
-" manages its own clearly-marked section."
+"Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only "
+"manages its own clearly-marked section."
 msgstr ""
 "Öppnar /etc/hosts i din redigerare med administratörsrättigheter. Zen "
 "Pomodoro hanterar bara sin egen tydligt markerade del."
@@ -2220,8 +2210,8 @@ msgid ""
 "changing the mode."
 msgstr ""
 "Frågar efter ditt lösenord en gång och installerar en liten systempolicy så "
-"att blockering inte längre frågar varje gång. Använder läget som valts ovan;"
-" kör igen efter att du ändrat läget."
+"att blockering inte längre frågar varje gång. Använder läget som valts ovan; "
+"kör igen efter att du ändrat läget."
 
 #. settings-schema.json->remove_passwordless_button->description
 msgid "Remove passwordless setup"
@@ -2406,6 +2396,10 @@ msgstr "Dagligt mål — ljud"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Dagligt mål — prioritet"
+
+#, javascript-format
+#~ msgid "Hotkey: %s"
+#~ msgstr "Snabbtangent: %s"
 
 #~ msgid "Colored icon"
 #~ msgstr "Färgad ikon"

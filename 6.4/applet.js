@@ -168,6 +168,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_hotkeySkip = null;
         this._opt_startOnClick = null;
         this._opt_panelScrollControl = null;
+        this._opt_scrollAction = null;
         this._opt_strictFocus = null;
         this._opt_playTickerSound = null;
         this._opt_tickerSoundPath = null;
@@ -457,6 +458,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "hotkey_skip", "_opt_hotkeySkip", this._updateHotkey.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "start_on_click", "_opt_startOnClick", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "panel_scroll_control", "_opt_panelScrollControl", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "scroll_action", "_opt_scrollAction", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "strict_focus", "_opt_strictFocus", () => { this._updateMenuRuntime(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "timer_sound", "_opt_playTickerSound", this._onPlayTickedSoundChanged.bind(this));
 
@@ -620,6 +622,26 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 if (dy < -0.01) { up = true; }
                 else if (dy > 0.01) { down = true; }
             }
+            if (!up && !down) {
+                return Clutter.EVENT_PROPAGATE;
+            }
+
+            if (this._opt_scrollAction === 'focus_length') {
+                // Adjust the focus length — only when idle (no running/paused timer).
+                if (this._currentState === 'pomodoro-stop' || this._currentState === 'break-over') {
+                    let cur = this._opt_pomodoroTimeMinutes || 25;
+                    let next = Math.max(1, Math.min(60, cur + (up ? 5 : -5)));
+                    if (next !== cur) {
+                        this._settingsProvider.setValue('pomodoro_duration', next);
+                        this._updateMenuRuntime();
+                        Main.notify(_("Focus length: %d min").format(next));
+                    }
+                    return Clutter.EVENT_STOP;
+                }
+                return Clutter.EVENT_PROPAGATE;
+            }
+
+            // Default: start / pause.
             let timer = this._timerQueue ? this._timerQueue.getCurrentTimer() : null;
             let running = Boolean(timer && timer.isRunning());
             if (up && !running) {
@@ -736,6 +758,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
             endTime: endTime,
             finishEstimate: finishEstimate,
             strictFocus: Boolean(this._opt_strictFocus),
+            focusLength: this._opt_pomodoroTimeMinutes || 25,
+            ambientOn: Boolean(this._opt_focusAmbientSound),
             task: this._getPanelFocusTask(),
             selectedTask: this._currentFocusTask || "",
             activePreset: activePreset,
@@ -1474,6 +1498,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._playCompletionFlourish(_("Pomodoro done"));
             this._recordPomodoroCompleted();
             this._notifyWithActions(_("Take a short break"), this._restTip(false), [
+                { id: 'extend', label: _("+%d min").format(5), fn: () => this._extendBreak(5) },
                 { id: 'skip', label: _("Skip break"), fn: () => this._appletMenu.emit('skip-timer') }
             ]);
             this._runEventCommand('break');
@@ -1511,6 +1536,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 this._longBreakdialog.open();
             } else {
                 this._notifyWithActions(_("Take a long break"), this._restTip(true), [
+                    { id: 'extend', label: _("+%d min").format(5), fn: () => this._extendBreak(5) },
                     { id: 'skip', label: _("Skip break"), fn: () => this._appletMenu.emit('skip-timer') }
                 ]);
             }
@@ -1775,6 +1801,13 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._applyDurationPreset(preset.pomodoro, preset.short_break, preset.long_break, preset.pomodori);
         });
 
+        menu.connect('set-ambient', (m, state) => {
+            try { this._settingsProvider.setValue('focus_ambient_sound', !!state); } catch (e) {}
+        });
+        menu.connect('set-focus-length', (m, mins) => {
+            this._setFocusLengthFromMenu(mins);
+        });
+
         menu.connect('open-stats', () => {
             this._showStatsDashboard();
         });
@@ -1910,6 +1943,34 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._updatePresetIndicator();
         Main.notify(_("Pomodoro preset %s applied").format(this._getActivePresetLabel()));
         return true;
+    }
+
+    // Quick focus-length change from the menu (sets only the focus duration).
+    _setFocusLengthFromMenu(mins) {
+        mins = parseInt(mins, 10);
+        if (!Number.isFinite(mins)) {
+            return;
+        }
+        mins = Math.max(1, Math.min(60, mins));
+        if (this._timerQueue.isRunning() || this._isPausedState()) {
+            Main.notify(_("Stop the timer before changing the focus length"));
+            return;
+        }
+        this._settingsProvider.setValue("pomodoro_duration", mins);
+        this._updateMenuRuntime();
+        Main.notify(_("Focus length: %d min").format(mins));
+    }
+
+    // Extend the current break by N minutes (from the break notification).
+    _extendBreak(mins) {
+        mins = parseInt(mins, 10) || 5;
+        let timer = this._timerQueue ? this._timerQueue.getCurrentTimer() : null;
+        let isBreak = (this._currentState === "short-break" || this._currentState === "long-break");
+        if (!timer || !isBreak || !timer.isRunning()) {
+            return;
+        }
+        timer.addTime(mins * 60);
+        Main.notify(_("Break extended by %d min").format(mins));
     }
     
     _createLongBreakDialog() {

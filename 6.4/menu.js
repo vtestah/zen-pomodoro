@@ -74,6 +74,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._chooseTaskItem = null;
         this._zenItem = null;
         this._focusUntilItem = null;
+        this._ambientItem = null;
+        this._focusLenSubmenu = null;
+        this._focusLength = 0;
         this._primaryActionItem = null;
         this._preset25Item = null;
         this._preset50Item = null;
@@ -490,6 +493,15 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         });
         this.addMenuItem(this._zenItem);
 
+        // Quick access: ambient sound toggle + focus length picker.
+        this._ambientItem = new PopupMenu.PopupSwitchMenuItem(_("Ambient sound"), false);
+        this._ambientItem.connect('toggled', (item, state) => this.emit('set-ambient', state));
+        this.addMenuItem(this._ambientItem);
+
+        this._focusLenSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Focus length"));
+        this.addMenuItem(this._focusLenSubmenu);
+        this._populateFocusLenSubmenu();
+
         this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
 
         // Presets collapsed into a submenu to reduce idle clutter.
@@ -634,6 +646,16 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             } else {
                 this._dailyLabel.hide();
             }
+        }
+
+        // Reflect quick-access state (idle-layout widgets only).
+        if (this._ambientItem && typeof runtime.ambientOn === "boolean") {
+            this._ambientItem.setToggleState(runtime.ambientOn);
+        }
+        if (this._focusLenSubmenu && typeof runtime.focusLength === "number" &&
+            runtime.focusLength !== this._focusLength) {
+            this._focusLength = runtime.focusLength;
+            this._populateFocusLenSubmenu();
         }
 
         if (this._statsSubmenu && runtime.stats) {
@@ -937,6 +959,23 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             let it = new PopupMenu.PopupMenuItem("\ud83d\udccb " + _("Apply: %s").format(nm));
             it.connect('activate', () => this.emit('apply-template', nm));
             this._tasksSubmenu.menu.addMenuItem(it);
+        }
+    }
+
+    _populateFocusLenSubmenu() {
+        if (!this._focusLenSubmenu) {
+            return;
+        }
+        this._focusLenSubmenu.menu.removeAll();
+        let cur = this._focusLength || 0;
+        [15, 25, 30, 45, 50].forEach((min) => {
+            let it = new PopupMenu.PopupMenuItem(_("%d min").format(min));
+            it.setOrnament(PopupMenu.OrnamentType.DOT, min === cur);
+            it.connect('activate', () => this.emit('set-focus-length', min));
+            this._focusLenSubmenu.menu.addMenuItem(it);
+        });
+        if (cur > 0) {
+            this._focusLenSubmenu.label.set_text(_("Focus length") + ": " + _("%d min").format(cur));
         }
     }
 

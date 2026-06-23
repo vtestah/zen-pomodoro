@@ -96,7 +96,8 @@
                 "show_seconds",
                 "panel_progress_icon",
                 "start_on_click",
-                "panel_scroll_control"
+                "panel_scroll_control",
+                "scroll_action"
             ]
         },
         "sec_hud": {
@@ -414,6 +415,17 @@
         "description": "Control the timer with the mouse on the panel",
         "default": true,
         "tooltip": "Scroll up on the applet to start or resume, scroll down to pause, and middle-click to skip the phase. Turn this off if you sometimes scroll over the panel by accident."
+    },
+    "scroll_action": {
+        "type": "combobox",
+        "description": "Mouse-wheel action on the panel",
+        "default": "start_pause",
+        "dependency": "panel_scroll_control",
+        "options": {
+            "Start / pause the timer": "start_pause",
+            "Adjust the focus length": "focus_length"
+        },
+        "tooltip": "What the mouse wheel does on the applet: start/pause the timer, or change the focus length (when idle). Middle-click always skips to the next phase."
     },
     "focus_show_task_chip": {
         "type": "switch",

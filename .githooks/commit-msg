@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Conventional Commits check — dependency-free (no Node/commitlint needed).
+# Enabled via:  git config core.hooksPath .githooks
+# Runs on every commit, including from GUIs (VS Code, etc.).
+
+msg_file="${1:?commit message file expected}"
+
+# First non-empty, non-comment line is the subject.
+subject="$(grep -vE '^[[:space:]]*#' "$msg_file" 2>/dev/null | sed '/^[[:space:]]*$/d' | head -n 1)"
+
+# Let git's own housekeeping commits through untouched.
+case "$subject" in
+    "Merge "*|"Revert "*|"fixup! "*|"squash! "*|"amend! "*|"Reapply "*)
+        exit 0 ;;
+esac
+
+types='feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert'
+
+# <type>[(scope)][!]: <subject>
+if printf '%s' "$subject" | grep -qE "^(${types})(\([a-z0-9._/-]+\))?(!)?: .+"; then
+    # Non-blocking nudge for very long subjects.
+    if [ "${#subject}" -gt 72 ]; then
+        printf 'note: commit subject is %d chars (>72) — consider shortening.\n' "${#subject}" >&2
+    fi
+    exit 0
+fi
+
+cat >&2 <<EOF
+
+✖  Commit message is not in Conventional Commits format / не в формате Conventional Commits.
+
+   <type>[(scope)][!]: short description
+   types: feat fix docs style refactor perf test build ci chore revert
+   (scope is optional; "!" marks a breaking change)
+
+   Examples / Примеры:
+     feat: add strict focus mode
+     fix(menu): correct the idle label
+     refactor: extract visual.js mixin
+     chore(i18n): update Russian translation
+     feat!: drop the legacy 3.6 layout
+
+   Your subject / Ваш заголовок:
+     ${subject:-(empty)}
+
+   Tip: this check lives in .githooks/commit-msg. To bypass once (not recommended):
+     git commit --no-verify
+EOF
+exit 1

@@ -39,6 +39,12 @@ var POMODORO_PANEL_FOCUS_CUE_STYLE = "background-color: rgba(214, 152, 48, 0.22)
 var POMODORO_PANEL_BREAK_CUE_STYLE = "background-color: rgba(62, 180, 111, 0.18); border-radius: 4px; padding-left: 6px; padding-right: 6px;";
 var POMODORO_PANEL_FOCUS_LABEL_STYLE = "font-weight: bold; color: rgb(255, 224, 153);";
 var POMODORO_PANEL_BREAK_LABEL_STYLE = "font-weight: bold; color: rgb(172, 245, 198);";
+// Light-panel variants: a touch more tint + dark text so the cue stays
+// readable on light themes (the colours above are tuned for dark panels).
+var POMODORO_PANEL_FOCUS_CUE_STYLE_LIGHT = "background-color: rgba(214, 152, 48, 0.30); border-radius: 4px; padding-left: 6px; padding-right: 6px;";
+var POMODORO_PANEL_BREAK_CUE_STYLE_LIGHT = "background-color: rgba(62, 180, 111, 0.30); border-radius: 4px; padding-left: 6px; padding-right: 6px;";
+var POMODORO_PANEL_FOCUS_LABEL_STYLE_LIGHT = "font-weight: bold; color: rgb(150, 92, 8);";
+var POMODORO_PANEL_BREAK_LABEL_STYLE_LIGHT = "font-weight: bold; color: rgb(18, 110, 60);";
 var POMODORO_FOCUS_TASK_CHIP_STYLE = "background-color: rgba(18, 18, 18, 0.55); color: rgba(255, 224, 153, 0.92); border: 1px solid rgba(214, 152, 48, 0.4); border-radius: 9px; padding: 6px 12px; font-weight: bold;";
 var POMODORO_FOCUS_TASK_CHIP_PAUSED_STYLE = "background-color: rgba(18, 18, 18, 0.5); color: rgba(210, 210, 210, 0.82); border: 1px solid rgba(150, 150, 150, 0.35); border-radius: 9px; padding: 6px 12px; font-weight: bold;";
 var POMODORO_FOCUS_CHIP_MARGIN = 28;

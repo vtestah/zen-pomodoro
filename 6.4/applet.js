@@ -66,6 +66,10 @@ const {
     POMODORO_PANEL_BREAK_CUE_STYLE,
     POMODORO_PANEL_FOCUS_LABEL_STYLE,
     POMODORO_PANEL_BREAK_LABEL_STYLE,
+    POMODORO_PANEL_FOCUS_CUE_STYLE_LIGHT,
+    POMODORO_PANEL_BREAK_CUE_STYLE_LIGHT,
+    POMODORO_PANEL_FOCUS_LABEL_STYLE_LIGHT,
+    POMODORO_PANEL_BREAK_LABEL_STYLE_LIGHT,
     POMODORO_FOCUS_TASK_CHIP_STYLE,
     POMODORO_FOCUS_TASK_CHIP_PAUSED_STYLE,
     POMODORO_FOCUS_CHIP_MARGIN,
@@ -961,15 +965,16 @@ class PomodoroApplet extends Applet.TextIconApplet {
     _updatePanelFocusCue() {
         let actorStyle = "";
         let labelStyle = "";
+        let dark = this._panelIsDark();
 
         if (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused') {
-            actorStyle = POMODORO_PANEL_FOCUS_CUE_STYLE;
-            labelStyle = POMODORO_PANEL_FOCUS_LABEL_STYLE;
+            actorStyle = dark ? POMODORO_PANEL_FOCUS_CUE_STYLE : POMODORO_PANEL_FOCUS_CUE_STYLE_LIGHT;
+            labelStyle = dark ? POMODORO_PANEL_FOCUS_LABEL_STYLE : POMODORO_PANEL_FOCUS_LABEL_STYLE_LIGHT;
         } else if (this._currentState === 'short-break' || this._currentState === 'long-break' ||
             this._currentState === 'short-break-paused' || this._currentState === 'long-break-paused' ||
             this._currentState === 'break-over') {
-            actorStyle = POMODORO_PANEL_BREAK_CUE_STYLE;
-            labelStyle = POMODORO_PANEL_BREAK_LABEL_STYLE;
+            actorStyle = dark ? POMODORO_PANEL_BREAK_CUE_STYLE : POMODORO_PANEL_BREAK_CUE_STYLE_LIGHT;
+            labelStyle = dark ? POMODORO_PANEL_BREAK_LABEL_STYLE : POMODORO_PANEL_BREAK_LABEL_STYLE_LIGHT;
         }
 
         if (this.actor && typeof this.actor.set_style === 'function') {

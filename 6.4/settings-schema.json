@@ -368,11 +368,10 @@
         "options": {
             "Progress ring with icon": "ring",
             "Symbolic icon": "symbolic",
-            "Colored icon": "colored",
             "Custom icon": "own",
             "No icon (timer only)": "none"
         },
-        "tooltip": "What to show in the panel: a progress ring with the state icon inside (recommended), a plain symbolic or colored icon, or no icon at all. The timer text is a separate option below."
+        "tooltip": "What to show in the panel: a progress ring with the state icon inside (recommended), a plain symbolic icon, your own custom icon, or no icon at all. The timer text is a separate option below."
     },
     "panel_custom_icon": {
         "type": "iconfilechooser",

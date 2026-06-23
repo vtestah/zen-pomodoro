@@ -2093,36 +2093,18 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
     _onAppletIconChanged() {
         let style = this._opt_panelIconStyle || "ring";
-        if (style === "symbolic" || style === "colored") {
+        if (style === "symbolic") {
             this._applet_icon_box.show();
-            let appletIconPath = '';
-            let appletIconStatus = '';
-            switch (this._currentState) {
-            case 'pomodoro-stop':
-                appletIconPath = `${this._metadata.path}/../pomodoro-stop`;
-                appletIconStatus = 'system-status-icon';
-                break;
-            case 'short-break':
-            case 'long-break':
-            case 'short-break-paused':
-            case 'long-break-paused':
-                appletIconPath = `${this._metadata.path}/../pomodoro-break`;
+            // One symbolic glyph for every state; the status class recolours it.
+            let appletIconStatus = 'system-status-icon';
+            if (this._currentState === 'short-break' || this._currentState === 'long-break' ||
+                this._currentState === 'short-break-paused' || this._currentState === 'long-break-paused') {
                 appletIconStatus = 'system-status-icon success';
-                break;
-            case 'pomodoro':
-            case 'pomodoro-paused':
-            default:
-                appletIconPath = `${this._metadata.path}/../pomodoro`;
+            } else if (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused') {
                 appletIconStatus = 'system-status-icon error';
-                break;
             }
-            if (style === "symbolic") {
-                // One symbolic glyph for every state; the status class recolours it.
-                this.set_applet_icon_symbolic_path(`${this._metadata.path}/../pomodoro-symbolic.svg`);
-                this._applet_icon.set_style_class_name(appletIconStatus);
-            } else {
-                this.set_applet_icon_path(appletIconPath + ".svg");
-            }
+            this.set_applet_icon_symbolic_path(`${this._metadata.path}/../pomodoro-symbolic.svg`);
+            this._applet_icon.set_style_class_name(appletIconStatus);
         } else if (style === "own") {
             this._applet_icon_box.show();
             let ic = (this._opt_panelCustomIcon || "").trim();

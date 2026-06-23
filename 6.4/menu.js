@@ -243,7 +243,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         this._progressBar = new St.DrawingArea({
             x_expand: true,
-            style: "height: 6px; margin: 1px 0 2px 0;"
+            style: "height: 4px; margin: 0 0 2px 0;"
         });
         this._progressBar.connect('repaint', (area) => {
             this._repaintProgressBar(area);
@@ -645,7 +645,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                     } else {
                         line = _("Short break");
                     }
-                    if (runtime.endTime) {
+                    if (runtime.endTime && state !== "pomodoro" && state !== "pomodoro-paused") {
                         line += ` \u00B7 ` + _("until %s").format(runtime.endTime);
                     }
                     if ((state === "pomodoro" || state === "pomodoro-paused") && runtime.finishEstimate) {

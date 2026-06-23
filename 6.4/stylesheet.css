@@ -7,8 +7,8 @@
  */
 
 .pomodoro-status {
-    spacing: 4px;
-    padding: 4px 0 5px 0;
+    spacing: 2px;
+    padding: 1px 0 2px 0;
 }
 
 /* State badge — flat coloured text, no background. */
@@ -16,7 +16,6 @@
     font-weight: bold;
     font-size: 0.82em;
     letter-spacing: 1.5px;
-    padding-bottom: 1px;
 }
 .pomodoro-badge-focus { color: rgb(235, 175, 75); }
 .pomodoro-badge-break { color: rgb(120, 205, 155); }
@@ -26,7 +25,6 @@
 .pomodoro-time {
     font-size: 2.1em;
     font-weight: bold;
-    padding: 1px 0 2px 0;
 }
 .pomodoro-time-idle {
     color: rgba(150, 150, 150, 0.72);
@@ -34,7 +32,7 @@
 
 /* Secondary status lines. */
 .pomodoro-progress {
-    padding: 1px 0;
+    padding: 0;
     color: rgba(150, 150, 150, 0.95);
 }
 .pomodoro-cycle {
@@ -43,7 +41,7 @@
     color: rgba(150, 150, 150, 0.9);
 }
 .pomodoro-task {
-    padding: 1px 0;
+    padding: 0;
     color: rgba(150, 150, 150, 0.95);
 }
 

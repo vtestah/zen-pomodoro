@@ -1100,51 +1100,33 @@ function install(proto) {
         infoLabel.clutter_text.line_wrap = true;
         root.add(infoLabel);
 
-        // Two columns keep the dashboard short — no scrolling.
-        let cols = new St.BoxLayout({ vertical: false, style: 'spacing: 18px; padding-top: 4px;' });
-        let colA = new St.BoxLayout({ vertical: true, x_expand: true, style: 'spacing: 5px;' });
-        let colB = new St.BoxLayout({ vertical: true, x_expand: true, style: 'spacing: 5px;' });
-
-        colA.add(new St.Label({ text: _("When you focus (by hour)"), style: 'font-weight: bold;' }));
-        let hoursArea = new St.DrawingArea({ x_expand: true, style: 'height: 56px;' });
+        // The hourly histogram reads best full-width across the dialog.
+        root.add(new St.Label({ text: _("When you focus (by hour)"), style: 'font-weight: bold; padding-top: 2px;' }));
+        let hoursArea = new St.DrawingArea({ x_expand: true, style: 'height: 70px;' });
         hoursArea.connect('repaint', (a) => this._paintHours(a));
-        colA.add(hoursArea);
+        root.add(hoursArea);
         let axis = new St.BoxLayout({ vertical: false });
         [_("night"), _("morning"), _("afternoon"), _("evening")].forEach((t) => {
             axis.add(new St.Label({ text: t, x_expand: true, style: 'font-size: 0.7em; opacity: 0.65;' }));
         });
-        colA.add(axis);
-        colA.add(new St.Label({
+        root.add(axis);
+        root.add(new St.Label({
             text: peak ? _("Most focused around %s — good time for deep work.").format(peak.label)
                        : _("Not enough data yet to spot your best focus time."),
             style: 'font-size: 0.85em;'
         }));
 
-        let tasksByDone = this._taskList().slice()
-            .sort((a, b) => (b.done || 0) - (a.done || 0))
-            .filter((t) => (t.done || 0) > 0)
-            .slice(0, 5);
-        if (tasksByDone.length) {
-            colA.add(new St.Label({ text: _("By task"), style: 'font-weight: bold; padding-top: 6px;' }));
-            let maxDone = tasksByDone[0].done || 1;
-            for (let t of tasksByDone) {
-                let frac = (t.done || 0) / maxDone;
-                let title = (t.title.length > 16) ? (t.title.slice(0, 15) + "\u2026") : t.title;
-                let rowB = new St.BoxLayout({ vertical: false, style: 'spacing: 6px;' });
-                rowB.add(new St.Label({ text: title, style: 'width: 104px;' }));
-                let mb = new St.DrawingArea({ x_expand: true, style: 'height: 13px;' });
-                mb.connect('repaint', (a) => this._paintMiniBar(a, frac));
-                rowB.add(mb);
-                rowB.add(new St.Label({ text: (t.done || 0) + " \ud83c\udf45", style: 'width: 42px;' }));
-                colA.add(rowB);
-            }
-        }
+        // Two balanced charts side by side keep the dialog compact.
+        let cols = new St.BoxLayout({ vertical: false, style: 'spacing: 18px; padding-top: 8px;' });
+        let colA = new St.BoxLayout({ vertical: true, x_expand: true, style: 'spacing: 5px;' });
+        let colB = new St.BoxLayout({ vertical: true, x_expand: true, style: 'spacing: 5px;' });
 
-        colB.add(new St.Label({ text: _("Focus time \u2014 last 14 days"), style: 'font-weight: bold;' }));
-        let barArea = new St.DrawingArea({ x_expand: true, style: 'height: 96px;' });
+        colA.add(new St.Label({ text: _("Focus time \u2014 last 14 days"), style: 'font-weight: bold;' }));
+        let barArea = new St.DrawingArea({ x_expand: true, style: 'height: 92px;' });
         barArea.connect('repaint', (a) => this._paintDashBars(a));
-        colB.add(barArea);
-        colB.add(new St.Label({ text: _("Activity \u2014 last 12 weeks"), style: 'font-weight: bold; padding-top: 6px;' }));
+        colA.add(barArea);
+
+        colB.add(new St.Label({ text: _("Activity \u2014 last 12 weeks"), style: 'font-weight: bold;' }));
         let heatArea = new St.DrawingArea({ x_expand: true, style: 'height: 74px;' });
         heatArea.connect('repaint', (a) => this._paintDashHeatmap(a));
         colB.add(heatArea);
@@ -1159,6 +1141,27 @@ function install(proto) {
         cols.add(colA);
         cols.add(colB);
         root.add(cols);
+
+        // By task spans the full width so an empty list never leaves a side gap.
+        let tasksByDone = this._taskList().slice()
+            .sort((a, b) => (b.done || 0) - (a.done || 0))
+            .filter((t) => (t.done || 0) > 0)
+            .slice(0, 5);
+        if (tasksByDone.length) {
+            root.add(new St.Label({ text: _("By task"), style: 'font-weight: bold; padding-top: 10px;' }));
+            let maxDone = tasksByDone[0].done || 1;
+            for (let t of tasksByDone) {
+                let frac = (t.done || 0) / maxDone;
+                let title = (t.title.length > 28) ? (t.title.slice(0, 27) + "\u2026") : t.title;
+                let rowB = new St.BoxLayout({ vertical: false, style: 'spacing: 8px;' });
+                rowB.add(new St.Label({ text: title, style: 'width: 240px;' }));
+                let mb = new St.DrawingArea({ x_expand: true, style: 'height: 13px;' });
+                mb.connect('repaint', (a) => this._paintMiniBar(a, frac));
+                rowB.add(mb);
+                rowB.add(new St.Label({ text: (t.done || 0) + " \ud83c\udf45", style: 'width: 48px;' }));
+                root.add(rowB);
+            }
+        }
 
         let tot = this._dashMilestoneTier(st.total || 0, [10, 25, 50, 100, 250, 500, 1000, 2000]);
         let stk = this._dashMilestoneTier(st.longestStreak || 0, [3, 7, 14, 30, 60, 100, 365]);

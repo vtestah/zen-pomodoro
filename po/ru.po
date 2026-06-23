@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zen-pomodoro@vtestah\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 12:46+0700\n"
+"POT-Creation-Date: 2026-06-23 12:59+0700\n"
 "PO-Revision-Date: 2026-06-22 17:27+0700\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: ru\n"
@@ -79,7 +79,7 @@ msgstr "Перерыв окончен"
 msgid "Pomodori %d, set %d running"
 msgstr "Помидор %d, подход %d идёт"
 
-#: applet.js:1030 features.js:412 features.js:1101 menu.js:728
+#: applet.js:1030 features.js:412 features.js:1097 menu.js:728
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ финиш %s · осталось %d 🍅"
@@ -145,7 +145,7 @@ msgstr "Предстартовая проверка Pomodoro не пройден
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://ru.wikipedia.org/wiki/Метод_помидора"
 
-#: applet.js:1927 features.js:1721
+#: applet.js:1927 features.js:1727
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Остановите таймер перед сменой пресета Pomodoro"
 
@@ -175,11 +175,12 @@ msgstr "На чём вы фокусируетесь?"
 msgid "Choose or type a focus task"
 msgstr "Выберите или введите задачу фокуса"
 
-#: dialogs.js:65 features.js:499 features.js:559 features.js:1769
+#: dialogs.js:65 features.js:499 features.js:559 features.js:1176
+#: features.js:1775
 msgid "Cancel"
 msgstr "Отмена"
 
-#: dialogs.js:72 features.js:1770
+#: dialogs.js:72 features.js:1776
 msgid "Start"
 msgstr "Старт"
 
@@ -612,272 +613,266 @@ msgstr "%d ч %d м"
 msgid "%dh"
 msgstr "%d ч"
 
-#: features.js:956 features.js:1060
-msgid "Focus statistics"
-msgstr "Статистика фокуса"
+#: features.js:965
+msgid "Statistics reset."
+msgstr "Статистика сброшена."
 
-#: features.js:957 features.js:1075
-msgid "Today"
-msgstr "Сегодня"
-
-#: features.js:958 features.js:1076
-msgid "This week"
-msgstr "Эта неделя"
-
-#: features.js:959 menu.js:526 menu.js:678
-#, javascript-format
-msgid "Last 30 days: %d"
-msgstr "За 30 дней: %d"
-
-#: features.js:960 features.js:1078
-msgid "All time"
-msgstr "За всё время"
-
-#: features.js:961 menu.js:535 menu.js:687
-#, javascript-format
-msgid "Streak: %d days (best %d)"
-msgstr "Серия: %d дн. (рекорд %d)"
-
-#: features.js:966
-msgid "Summary copied to clipboard"
-msgstr "Сводка скопирована в буфер обмена"
-
-#: features.js:991
+#: features.js:987
 #, javascript-format
 msgid "%d to go today — at your pace, done by about %s."
 msgstr "Ещё %d до цели — при твоём темпе закончишь к ~%s."
 
-#: features.js:992
+#: features.js:988
 #, javascript-format
 msgid "%d more to reach today's goal of %d."
 msgstr "Ещё %d до дневной цели %d."
 
-#: features.js:994
+#: features.js:990
 #, javascript-format
 msgid "Daily goal reached — %d done today. Nice."
 msgstr "Дневная цель достигнута — %d за сегодня. Отлично."
 
-#: features.js:997
+#: features.js:993
 #, javascript-format
 msgid "%d interruptions this week — what keeps pulling you away?"
 msgstr "%d прерываний за неделю — что тебя отвлекает?"
 
-#: features.js:1000 features.js:1122
+#: features.js:996 features.js:1118
 #, javascript-format
 msgid "Most focused around %s — good time for deep work."
 msgstr "Пик фокуса около %s — хорошее время для сложного."
 
-#: features.js:1003
+#: features.js:999
 #, javascript-format
 msgid "Most focus went to “%s”."
 msgstr "Больше всего фокуса — на «%s»."
 
-#: features.js:1005
+#: features.js:1001
 #, javascript-format
 msgid "%d pomodoros this week. Keep it going."
 msgstr "%d помидоров за неделю. Так держать."
 
-#: features.js:1006
+#: features.js:1002
 msgid "Start a focus session — your insights will appear here."
 msgstr "Запусти фокус — здесь появятся инсайты."
 
-#: features.js:1074
+#: features.js:1056
+msgid "Focus statistics"
+msgstr "Статистика фокуса"
+
+#: features.js:1070
 #, javascript-format
 msgid "%d / %d goal"
 msgstr "%d / %d цель"
 
-#: features.js:1077
+#: features.js:1071
+msgid "Today"
+msgstr "Сегодня"
+
+#: features.js:1072
+msgid "This week"
+msgstr "Эта неделя"
+
+#: features.js:1073
 msgid "Streak"
 msgstr "Серия"
 
-#: features.js:1077
+#: features.js:1073
 #, javascript-format
 msgid "best %d"
 msgstr "рекорд %d"
 
-#: features.js:1086
+#: features.js:1074
+msgid "All time"
+msgstr "За всё время"
+
+#: features.js:1082
 msgid "Sun"
 msgstr "Вс"
 
-#: features.js:1086
+#: features.js:1082
 msgid "Mon"
 msgstr "Пн"
 
-#: features.js:1086
+#: features.js:1082
 msgid "Tue"
 msgstr "Вт"
 
-#: features.js:1086
+#: features.js:1082
 msgid "Wed"
 msgstr "Ср"
 
-#: features.js:1086
+#: features.js:1082
 msgid "Thu"
 msgstr "Чт"
 
-#: features.js:1086
+#: features.js:1082
 msgid "Fri"
 msgstr "Пт"
 
-#: features.js:1086
+#: features.js:1082
 msgid "Sat"
 msgstr "Сб"
 
-#: features.js:1087
+#: features.js:1083
 #, javascript-format
 msgid "This week: %d 🍅 · %s · best day %s"
 msgstr "За неделю: %d 🍅 · %s · лучший день %s"
 
-#: features.js:1093
+#: features.js:1089
 msgid "Nothing harvested yet today"
 msgstr "Сегодня пока пусто"
 
-#: features.js:1095
+#: features.js:1091
 msgid "Today's harvest"
 msgstr "Урожай за сегодня"
 
-#: features.js:1102
+#: features.js:1098
 #, javascript-format
 msgid "Interruptions: %d today · %d this week"
 msgstr "Прерывания: %d сегодня · %d за неделю"
 
-#: features.js:1112
+#: features.js:1108
 msgid "When you focus (by hour)"
 msgstr "Когда ты фокусируешься (по часам)"
 
-#: features.js:1117
+#: features.js:1113
 msgid "night"
 msgstr "ночь"
 
-#: features.js:1117
+#: features.js:1113
 msgid "morning"
 msgstr "утро"
 
-#: features.js:1117
+#: features.js:1113
 msgid "afternoon"
 msgstr "день"
 
-#: features.js:1117
+#: features.js:1113
 msgid "evening"
 msgstr "вечер"
 
-#: features.js:1123
+#: features.js:1119
 msgid "Not enough data yet to spot your best focus time."
 msgstr "Пока мало данных для определения лучшего времени фокуса."
 
-#: features.js:1132
+#: features.js:1128
 msgid "By task"
 msgstr "По задачам"
 
-#: features.js:1147
+#: features.js:1143
 msgid "Focus time — last 14 days"
 msgstr "Время фокуса — последние 14 дней"
 
-#: features.js:1151
+#: features.js:1147
 msgid "Activity — last 12 weeks"
 msgstr "Активность — последние 12 недель"
 
-#: features.js:1156
+#: features.js:1152
 msgid "Less"
 msgstr "Меньше"
 
-#: features.js:1160
+#: features.js:1156
 msgid "More"
 msgstr "Больше"
 
-#: features.js:1173 menu.js:541 menu.js:702
+#: features.js:1169 menu.js:541 menu.js:702
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Достижения: %s"
 
-#: features.js:1178
-msgid "Copy summary"
-msgstr "Скопировать сводку"
+#: features.js:1177
+msgid "Delete all statistics"
+msgstr "Удалить всю статистику"
 
-#: features.js:1179
+#: features.js:1182
+msgid "Reset statistics…"
+msgstr "Сбросить статистику…"
+
+#: features.js:1183
 msgid "Close"
 msgstr "Закрыть"
 
-#: features.js:1373
+#: features.js:1379
 msgid "No task"
 msgstr "Без задачи"
 
-#: features.js:1410
+#: features.js:1416
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "Для push-уведомлений нужен libsoup, который здесь недоступен."
 
-#: features.js:1416
+#: features.js:1422
 msgid "Enter your Pushover user key and app token first."
 msgstr "Сначала введите ключ пользователя и токен приложения Pushover."
 
-#: features.js:1423
+#: features.js:1429
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Тестовое уведомление от Zen Pomodoro 🍅"
 
-#: features.js:1445
+#: features.js:1451
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Тест Pushover отправлен ✓ — проверьте устройство."
 
-#: features.js:1446 features.js:1450
+#: features.js:1452 features.js:1456
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr ""
 "Не удалось отправить тест Pushover. Проверьте ключ пользователя и токен "
 "приложения."
 
-#: features.js:1462
+#: features.js:1468
 msgid "Could not open the hosts file"
 msgstr "Не удалось открыть файл hosts"
 
-#: features.js:1516
+#: features.js:1522
 msgid "Add some domains to block first."
 msgstr "Сначала добавьте домены для блокировки."
 
-#: features.js:1520
+#: features.js:1526
 msgid "Distractions blocked."
 msgstr "Отвлечения заблокированы."
 
-#: features.js:1525
+#: features.js:1531
 msgid "Distractions unblocked."
 msgstr "Блокировка снята."
 
-#: features.js:1534
+#: features.js:1540
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Беспарольная блокировка включена (без запроса)."
 
-#: features.js:1535
+#: features.js:1541
 msgid "Passwordless blocking enabled (asks once per session)."
 msgstr "Беспарольная блокировка включена (спросит один раз за сессию)."
 
-#: features.js:1542
+#: features.js:1548
 msgid "Passwordless blocking removed."
 msgstr "Беспарольная настройка убрана."
 
-#: features.js:1579
+#: features.js:1585
 msgid "Click to exit Zen"
 msgstr "Нажмите, чтобы выйти из Дзен"
 
 #. settings-schema.json->focus->title
-#: features.js:1614 visual.js:894
+#: features.js:1620 visual.js:894
 msgid "Focus"
 msgstr "Фокус"
 
-#: features.js:1691
+#: features.js:1697
 msgid "Breathe in"
 msgstr "Вдох"
 
-#: features.js:1694 features.js:1700
+#: features.js:1700 features.js:1706
 msgid "Hold"
 msgstr "Задержка"
 
-#: features.js:1697
+#: features.js:1703
 msgid "Breathe out"
 msgstr "Выдох"
 
-#: features.js:1727
+#: features.js:1733
 msgid "Focus until"
 msgstr "Фокус до"
 
-#: features.js:1728
+#: features.js:1734
 msgid "Enter a time (HH:MM)"
 msgstr "Введите время (ЧЧ:ММ)"
 
@@ -977,6 +972,11 @@ msgstr "Сегодня: %d"
 msgid "Last 7 days: %d"
 msgstr "За 7 дней: %d"
 
+#: menu.js:526 menu.js:678
+#, javascript-format
+msgid "Last 30 days: %d"
+msgstr "За 30 дней: %d"
+
 #: menu.js:529 menu.js:681
 #, javascript-format
 msgid "All time: %d"
@@ -986,6 +986,11 @@ msgstr "За всё время: %d"
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Время фокуса: %s сегодня · %s всего"
+
+#: menu.js:535 menu.js:687
+#, javascript-format
+msgid "Streak: %d days (best %d)"
+msgstr "Серия: %d дн. (рекорд %d)"
 
 #: menu.js:538 menu.js:690
 #, javascript-format

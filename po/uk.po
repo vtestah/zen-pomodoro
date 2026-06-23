@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 16:16+0700\n"
+"POT-Creation-Date: 2026-06-23 17:23+0700\n"
 "PO-Revision-Date: 2022-01-05 13:55+0200\n"
 "Last-Translator: Rutar <RutarAndriy@gmail.com>\n"
 "Language-Team: Ukrainian\n"
@@ -18,152 +18,152 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.0\n"
 
-#: applet.js:572
+#: applet.js:574
 msgid "Strict focus is on"
 msgstr "Суворий фокус увімкнено"
 
-#: applet.js:572
+#: applet.js:574
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Тримайтеся — завершіть блок або скиньте, щоб почати заново."
 
-#: applet.js:638 applet.js:1963
+#: applet.js:640 applet.js:1965
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Довжина фокусу: %d хв"
 
-#: applet.js:945
+#: applet.js:947
 msgid "Focus session restored — resume when ready"
 msgstr "Сесію фокусу відновлено — продовжте, коли будете готові"
 
-#: applet.js:980
+#: applet.js:982
 msgid "FOCUS"
 msgstr "ФОКУС"
 
-#: applet.js:982
+#: applet.js:984
 msgid "PAUSED FOCUS"
 msgstr "ФОКУС НА ПАУЗІ"
 
-#: applet.js:985
+#: applet.js:987
 msgid "BREAK"
 msgstr "ПЕРЕРВА"
 
-#: applet.js:988
+#: applet.js:990
 msgid "PAUSED BREAK"
 msgstr "ПЕРЕРВА НА ПАУЗІ"
 
-#: applet.js:990
+#: applet.js:992
 msgid "BREAK OVER"
 msgstr "ПЕРЕРВУ ЗАКІНЧЕНО"
 
-#: applet.js:993 applet.js:1053 menu.js:238 menu.js:658
+#: applet.js:995 applet.js:1055 menu.js:239 menu.js:666
 msgid "Ready to focus"
 msgstr "Готові до фокусу"
 
-#: applet.js:1011
+#: applet.js:1013
 msgid "Short break running"
 msgstr "Коротка перерва почалася"
 
-#: applet.js:1014
+#: applet.js:1016
 msgid "Short break paused"
 msgstr "Коротку перерву призупинено"
 
-#: applet.js:1017
+#: applet.js:1019
 msgid "Long break running"
 msgstr "Довга перерва почалася"
 
-#: applet.js:1020
+#: applet.js:1022
 msgid "Long break paused"
 msgstr "Довгу перерву призупинено"
 
-#: applet.js:1023 applet.js:1415
+#: applet.js:1025 applet.js:1417
 msgid "Break ended"
 msgstr "Перерву закінчено"
 
-#: applet.js:1026
+#: applet.js:1028
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodoro %d, set %d працює"
 
-#: applet.js:1031 features.js:412 features.js:1097 menu.js:676
+#: applet.js:1033 features.js:412 features.js:1097 menu.js:688
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ фініш %s · залишилось %d 🍅"
 
-#: applet.js:1036
+#: applet.js:1038
 msgid "Pomodoro paused"
 msgstr "Pomodoro призупинено"
 
-#: applet.js:1039
+#: applet.js:1041
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Готові до фокусу — прокрутіть або клацніть середньою, щоб почати"
 
-#: applet.js:1184
+#: applet.js:1186
 msgid "Classic"
 msgstr "Класичний"
 
-#: applet.js:1185
+#: applet.js:1187
 msgid "Long focus"
 msgstr "Довгий фокус"
 
-#: applet.js:1395
+#: applet.js:1397
 msgid "Pomodoro started"
 msgstr "Pomodoro запущено"
 
-#: applet.js:1473
+#: applet.js:1475
 msgid "Let's go to work!"
 msgstr "Давай працювати!"
 
-#: applet.js:1500
+#: applet.js:1502
 msgid "Pomodoro done"
 msgstr "Pomodoro готово"
 
-#: applet.js:1502
+#: applet.js:1504
 msgid "Take a short break"
 msgstr "Зробіть коротку перерву"
 
-#: applet.js:1503 applet.js:1541
+#: applet.js:1505 applet.js:1543
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d хв"
 
-#: applet.js:1504 applet.js:1542
+#: applet.js:1506 applet.js:1544
 msgid "Skip break"
 msgstr "Пропустити перерву"
 
-#: applet.js:1535
+#: applet.js:1537
 msgid "Set complete!"
 msgstr "Підхід завершено!"
 
-#: applet.js:1540
+#: applet.js:1542
 msgid "Take a long break"
 msgstr "Зробіть довгу перерву"
 
-#: applet.js:1593
+#: applet.js:1595
 msgid "Pomodoro ended"
 msgstr "Pomodoro завершено"
 
-#: applet.js:1668 applet.js:1692 applet.js:1695
+#: applet.js:1670 applet.js:1694 applet.js:1697
 msgid "Pomodoro preflight failed"
 msgstr "Передстартову перевірку Pomodoro не пройдено"
 
-#: applet.js:1852
+#: applet.js:1854
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://uk.wikipedia.org/wiki/Метод_Pomodoro"
 
-#: applet.js:1929 features.js:1820
+#: applet.js:1931 features.js:1820
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Зупиніть таймер перед зміною пресету Pomodoro"
 
-#: applet.js:1946
+#: applet.js:1948
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Застосовано пресет Pomodoro %s"
 
-#: applet.js:1958
+#: applet.js:1960
 msgid "Stop the timer before changing the focus length"
 msgstr "Зупиніть таймер, перш ніж змінювати довжину фокусу"
 
-#: applet.js:1975
+#: applet.js:1977
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Перерву продовжено на %d хв"
@@ -601,17 +601,17 @@ msgstr "Застосувати"
 msgid "Apply & start"
 msgstr "Застосувати й почати"
 
-#: features.js:806 menu.js:323 menu.js:920 menu.js:926
+#: features.js:806 menu.js:324 menu.js:937 menu.js:943
 #, javascript-format
 msgid "%d min"
 msgstr "%d хв"
 
-#: features.js:810 menu.js:327
+#: features.js:810 menu.js:328
 #, javascript-format
 msgid "%dh %dm"
 msgstr "%d год %d хв"
 
-#: features.js:810 menu.js:327
+#: features.js:810 menu.js:328
 #, javascript-format
 msgid "%dh"
 msgstr "%d год"
@@ -779,7 +779,7 @@ msgstr "Більше"
 msgid "By task"
 msgstr "За завданнями"
 
-#: features.js:1172 menu.js:502 menu.js:654
+#: features.js:1172 menu.js:510 menu.js:662
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Досягнення: %s"
@@ -879,239 +879,239 @@ msgstr "Фокус до"
 msgid "Enter a time (HH:MM)"
 msgstr "Введіть час (ГГ:ХХ)"
 
-#: menu.js:123
+#: menu.js:124
 msgid "Error: menu unavailable"
 msgstr "Помилка: меню недоступне"
 
-#: menu.js:174 menu.js:722 menu.js:978
+#: menu.js:175 menu.js:735 menu.js:995
 msgid "blocked"
 msgstr "заблоковано"
 
-#: menu.js:174 menu.js:430 menu.js:722 menu.js:978
+#: menu.js:175 menu.js:438 menu.js:735 menu.js:995
 msgid "ready"
 msgstr "готово"
 
-#: menu.js:259
+#: menu.js:260
 msgid "Ready to start"
 msgstr "Готові почати"
 
-#: menu.js:267 menu.js:715
+#: menu.js:268 menu.js:728
 msgid "Task will be selected on start"
 msgstr "Завдання буде вибрано на старті"
 
-#: menu.js:356
+#: menu.js:364
 #, javascript-format
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:364 menu.js:806
+#: menu.js:372 menu.js:819
 msgid "Start focus"
 msgstr "Почати фокус"
 
-#: menu.js:380
+#: menu.js:388
 msgid "Skip step"
 msgstr "Пропустити крок"
 
-#: menu.js:386
+#: menu.js:394
 msgid "Reset session"
 msgstr "Скинути сесію"
 
-#: menu.js:398
+#: menu.js:406
 msgid "Reset all"
 msgstr "Скинути все"
 
-#: menu.js:399
+#: menu.js:407
 msgid "Confirm reset of everything"
 msgstr "Підтвердити повне скидання"
 
-#: menu.js:430
+#: menu.js:438
 msgid "Sites"
 msgstr "Сайти"
 
-#: menu.js:439
+#: menu.js:447
 msgid "Current task…"
 msgstr "Поточне завдання…"
 
-#: menu.js:445
+#: menu.js:453
 msgid "Focus until…"
 msgstr "Фокус до…"
 
-#: menu.js:451
+#: menu.js:459
 msgid "Zen mode"
 msgstr "Режим Дзен"
 
-#: menu.js:458
+#: menu.js:466
 msgid "Ambient sound"
 msgstr "Фоновий звук"
 
-#: menu.js:462 menu.js:926
+#: menu.js:470 menu.js:943
 msgid "Focus length"
 msgstr "Довжина фокусу"
 
-#: menu.js:469 menu.js:738 menu.js:973
+#: menu.js:477 menu.js:751 menu.js:990
 msgid "Preset"
 msgstr "Пресет"
 
-#: menu.js:473 menu.js:847
+#: menu.js:481 menu.js:860
 msgid "Task list"
 msgstr "Список завдань"
 
-#: menu.js:477
+#: menu.js:485
 msgid "Statistics"
 msgstr "Статистика"
 
-#: menu.js:478
+#: menu.js:486
 msgid "Open dashboard…"
 msgstr "Відкрити панель…"
 
-#: menu.js:481 menu.js:616
+#: menu.js:489 menu.js:624
 #, javascript-format
 msgid "Today: %d"
 msgstr "Сьогодні: %d"
 
-#: menu.js:484 menu.js:621
+#: menu.js:492 menu.js:629
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "Останні 7 днів: %d"
 
-#: menu.js:487 menu.js:630
+#: menu.js:495 menu.js:638
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "Останні 30 днів: %d"
 
-#: menu.js:490 menu.js:633
+#: menu.js:498 menu.js:641
 #, javascript-format
 msgid "All time: %d"
 msgstr "За весь час: %d"
 
-#: menu.js:493 menu.js:636
+#: menu.js:501 menu.js:644
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Час фокусу: %s сьогодні · %s загалом"
 
-#: menu.js:496 menu.js:639
+#: menu.js:504 menu.js:647
 #, javascript-format
 msgid "Streak: %d days (best %d)"
 msgstr "Серія: %d дн. (рекорд %d)"
 
-#: menu.js:499 menu.js:642
+#: menu.js:507 menu.js:650
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Найкращий день: %d"
 
-#: menu.js:502 menu.js:654
+#: menu.js:510 menu.js:662
 msgid "none yet"
 msgstr "поки немає"
 
-#: menu.js:507
+#: menu.js:515
 msgid "Quick start"
 msgstr "Швидкий старт"
 
-#: menu.js:512
+#: menu.js:520
 msgid "SESSION"
 msgstr "СЕСІЯ"
 
-#: menu.js:533
+#: menu.js:541
 msgid "Session…"
 msgstr "Сесія…"
 
-#: menu.js:589
+#: menu.js:597
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr "Сьогодні: %d / %d"
 
-#: menu.js:666
+#: menu.js:678
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d з %d"
 
-#: menu.js:668
+#: menu.js:680
 msgid "Long break"
 msgstr "Довга перерва"
 
-#: menu.js:670
+#: menu.js:682
 msgid "Short break"
 msgstr "Коротка перерва"
 
-#: menu.js:673
+#: menu.js:685
 #, javascript-format
 msgid "until %s"
 msgstr "до %s"
 
-#: menu.js:681
+#: menu.js:693
 msgid "Break finished — press Start for focus"
 msgstr "Перерву закінчено — натисніть Старт для фокусу"
 
-#: menu.js:683
+#: menu.js:695
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Завершите завдання до ~%s"
 
-#: menu.js:685
+#: menu.js:697
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "Фокус %d хв — натисніть Старт"
 
-#: menu.js:711 menu.js:713
+#: menu.js:724 menu.js:726
 #, javascript-format
 msgid "Task: %s"
 msgstr "Завдання: %s"
 
-#: menu.js:717
+#: menu.js:730
 msgid "Task: none"
 msgstr "Завдання: немає"
 
-#: menu.js:754
+#: menu.js:767
 #, javascript-format
 msgid "Hotkey: %s"
 msgstr "Гаряча клавіша: %s"
 
-#: menu.js:785
+#: menu.js:798
 msgid "Resume break"
 msgstr "Продовжити перерву"
 
-#: menu.js:785
+#: menu.js:798
 msgid "Resume focus"
 msgstr "Продовжити фокус"
 
-#: menu.js:792
+#: menu.js:805
 msgid "Focusing — stay with it"
 msgstr "Триває фокус — не відволікайтеся"
 
-#: menu.js:797
+#: menu.js:810
 msgid "Pause focus"
 msgstr "Пауза фокусу"
 
-#: menu.js:797
+#: menu.js:810
 msgid "Pause break"
 msgstr "Пауза перерви"
 
-#: menu.js:802
+#: menu.js:815
 msgid "Start next focus"
 msgstr "Почати наступний фокус"
 
-#: menu.js:857
+#: menu.js:870
 msgid "Add task…"
 msgstr "Додати завдання…"
 
-#: menu.js:867
+#: menu.js:880
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Поки немає завдань — додайте те, над чим працюватимете, з оцінкою в 🍅."
 
-#: menu.js:889
+#: menu.js:906
 msgid "Toggle done (current)"
 msgstr "Позначити виконаним (поточне)"
 
-#: menu.js:892
+#: menu.js:909
 msgid "Delete current"
 msgstr "Видалити поточне"
 
-#: menu.js:901
+#: menu.js:918
 msgid "Save as template…"
 msgstr "Зберегти як шаблон…"
 
-#: menu.js:907
+#: menu.js:924
 #, javascript-format
 msgid "Apply: %s"
 msgstr "Застосувати: %s"
@@ -1328,6 +1328,10 @@ msgid "Colored icon"
 msgstr "Кольорова піктограма"
 
 #. settings-schema.json->panel_icon_style->options
+msgid "Custom icon"
+msgstr "Власна піктограма"
+
+#. settings-schema.json->panel_icon_style->options
 msgid "No icon (timer only)"
 msgstr "Без піктограми (лише таймер)"
 
@@ -1340,6 +1344,19 @@ msgstr ""
 "Що показувати на панелі: кільце прогресу з піктограмою стану всередині "
 "(рекомендовано), просту символічну чи кольорову піктограму, або нічого. "
 "Текст таймера налаштовується окремо нижче."
+
+#. settings-schema.json->panel_custom_icon->description
+msgid "Custom panel icon"
+msgstr "Власна піктограма на панелі"
+
+#. settings-schema.json->panel_custom_icon->tooltip
+msgid ""
+"Pick your own panel icon — a theme icon name or an image file. Used when "
+"Panel icon is set to Custom icon."
+msgstr ""
+"Виберіть власну піктограму на панелі — назву піктограми з теми або файл "
+"зображення. Використовується, коли «Піктограма на панелі» встановлена на "
+"«Власна піктограма»."
 
 #. settings-schema.json->show_timer->description
 msgid "Show the pomodoro timer in the applet panel"

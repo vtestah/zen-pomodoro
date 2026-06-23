@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 18:35+0700\n"
+"POT-Creation-Date: 2026-06-23 18:52+0700\n"
 "PO-Revision-Date: 2024-10-02 21:47+0200\n"
 "Last-Translator: Claudiux <claude.clerc@gmail.com>\n"
 "Language-Team: French\n"
@@ -19,154 +19,154 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: applet.js:574
+#: applet.js:576
 msgid "Strict focus is on"
 msgstr "Concentration stricte activée"
 
-#: applet.js:574
+#: applet.js:576
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr ""
 "Restez concentré — terminez le bloc, ou réinitialisez pour recommencer."
 
-#: applet.js:640 applet.js:1965
+#: applet.js:642 applet.js:1967
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Durée de focus : %d min"
 
-#: applet.js:947
+#: applet.js:949
 msgid "Focus session restored — resume when ready"
 msgstr "Session de focus restaurée — reprenez quand vous voulez"
 
-#: applet.js:982
+#: applet.js:984
 msgid "FOCUS"
 msgstr "FOCUS"
 
-#: applet.js:984
+#: applet.js:986
 msgid "PAUSED FOCUS"
 msgstr "FOCUS EN PAUSE"
 
-#: applet.js:987
+#: applet.js:989
 msgid "BREAK"
 msgstr "PAUSE"
 
-#: applet.js:990
+#: applet.js:992
 msgid "PAUSED BREAK"
 msgstr "PAUSE SUSPENDUE"
 
-#: applet.js:992
+#: applet.js:994
 msgid "BREAK OVER"
 msgstr "PAUSE TERMINÉE"
 
-#: applet.js:995 applet.js:1055 menu.js:237 menu.js:649
+#: applet.js:997 applet.js:1057 menu.js:237 menu.js:649
 msgid "Ready to focus"
 msgstr "Prêt à se concentrer"
 
-#: applet.js:1013
+#: applet.js:1015
 msgid "Short break running"
 msgstr "Courte pose en cours"
 
-#: applet.js:1016
+#: applet.js:1018
 msgid "Short break paused"
 msgstr "Courte pause suspendue"
 
-#: applet.js:1019
+#: applet.js:1021
 msgid "Long break running"
 msgstr "Longue pause en cours"
 
-#: applet.js:1022
+#: applet.js:1024
 msgid "Long break paused"
 msgstr "Longue pause suspendue"
 
-#: applet.js:1025 applet.js:1417
+#: applet.js:1027 applet.js:1419
 msgid "Break ended"
 msgstr "Pause terminée"
 
-#: applet.js:1028
+#: applet.js:1030
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodoro %d, set %d en cours"
 
-#: applet.js:1033 features.js:412 features.js:1097 menu.js:671
+#: applet.js:1035 features.js:412 features.js:1097 menu.js:671
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ fin %s · %d 🍅 restant"
 
-#: applet.js:1038
+#: applet.js:1040
 msgid "Pomodoro paused"
 msgstr "Pomodoro en pause"
 
-#: applet.js:1041
+#: applet.js:1043
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Prêt à se concentrer — molette ou clic du milieu pour démarrer"
 
-#: applet.js:1186
+#: applet.js:1188
 msgid "Classic"
 msgstr "Classique"
 
-#: applet.js:1187
+#: applet.js:1189
 msgid "Long focus"
 msgstr "Focus long"
 
 # notifications
-#: applet.js:1397
+#: applet.js:1399
 msgid "Pomodoro started"
 msgstr "Pomodoro démarré"
 
-#: applet.js:1475
+#: applet.js:1477
 msgid "Let's go to work!"
 msgstr "Au travail!"
 
-#: applet.js:1502
+#: applet.js:1504
 msgid "Pomodoro done"
 msgstr "Pomodoro terminé"
 
-#: applet.js:1504
+#: applet.js:1506
 msgid "Take a short break"
 msgstr "Prenez une courte pause"
 
-#: applet.js:1505 applet.js:1543
+#: applet.js:1507 applet.js:1545
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d min"
 
-#: applet.js:1506 applet.js:1544
+#: applet.js:1508 applet.js:1546
 msgid "Skip break"
 msgstr "Passer la pause"
 
-#: applet.js:1537
+#: applet.js:1539
 msgid "Set complete!"
 msgstr "Série terminée !"
 
-#: applet.js:1542
+#: applet.js:1544
 msgid "Take a long break"
 msgstr "Prenez une longue pause"
 
-#: applet.js:1595
+#: applet.js:1597
 msgid "Pomodoro ended"
 msgstr "Pomodoro terminé"
 
-#: applet.js:1670 applet.js:1694 applet.js:1697
+#: applet.js:1672 applet.js:1696 applet.js:1699
 msgid "Pomodoro preflight failed"
 msgstr "Échec de la vérification préalable du Pomodoro"
 
-#: applet.js:1854
+#: applet.js:1856
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://fr.wikipedia.org/wiki/Technique_Pomodoro"
 
-#: applet.js:1931 features.js:1820
+#: applet.js:1933 features.js:1820
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Arrêtez le minuteur avant de changer de préréglage Pomodoro"
 
-#: applet.js:1948
+#: applet.js:1950
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Préréglage Pomodoro %s appliqué"
 
-#: applet.js:1960
+#: applet.js:1962
 msgid "Stop the timer before changing the focus length"
 msgstr "Arrêtez le minuteur avant de changer la durée de focus"
 
-#: applet.js:1977
+#: applet.js:1979
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Pause prolongée de %d min"
@@ -2169,6 +2169,22 @@ msgstr "Volume du signal :"
 #. settings-schema.json->interval_chime_volume->tooltip
 msgid "Volume of the interval chime (0 = silent)."
 msgstr "Volume du signal d'intervalle (0 = silence)."
+
+#. settings-schema.json->timer_sound_test->description
+#. settings-schema.json->break_sound_test->description
+#. settings-schema.json->warn_sound_test->description
+#. settings-schema.json->start_sound_test->description
+#. settings-schema.json->interval_chime_test->description
+msgid "Listen"
+msgstr "Écouter"
+
+#. settings-schema.json->timer_sound_test->tooltip
+#. settings-schema.json->break_sound_test->tooltip
+#. settings-schema.json->warn_sound_test->tooltip
+#. settings-schema.json->start_sound_test->tooltip
+#. settings-schema.json->interval_chime_test->tooltip
+msgid "Play the selected sound now."
+msgstr "Lire le son sélectionné maintenant."
 
 #. settings-schema.json->enable_scripts->description
 msgid "Enable scripts"

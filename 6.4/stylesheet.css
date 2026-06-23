@@ -14,6 +14,9 @@
 /* State badge — flat coloured text, no background. */
 .pomodoro-badge {
     font-weight: bold;
+    font-size: 0.82em;
+    letter-spacing: 1.5px;
+    padding-bottom: 1px;
 }
 .pomodoro-badge-focus { color: rgb(235, 175, 75); }
 .pomodoro-badge-break { color: rgb(120, 205, 155); }
@@ -21,8 +24,9 @@
 
 /* Remaining time. */
 .pomodoro-time {
-    font-size: 1.34em;
+    font-size: 2.1em;
     font-weight: bold;
+    padding: 1px 0 2px 0;
 }
 .pomodoro-time-idle {
     color: rgba(150, 150, 150, 0.72);

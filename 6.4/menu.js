@@ -232,7 +232,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             style_class: "pomodoro-status"
         });
 
-        let topRow = new St.BoxLayout({ vertical: false, x_expand: true });
         this._stateBadgeLabel = new St.Label({
             text: _("Ready to focus"),
             style_class: "pomodoro-badge pomodoro-badge-idle"
@@ -241,10 +240,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             text: "--:--",
             style_class: "pomodoro-time"
         });
-        let timeBin = new St.Bin({ x_align: St.Align.END, x_expand: true });
-        timeBin.add_actor(this._timeLeftLabel);
-        topRow.add_actor(this._stateBadgeLabel);
-        topRow.add_actor(timeBin);
 
         this._progressBar = new St.DrawingArea({
             x_expand: true,
@@ -271,10 +266,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             style_class: "pomodoro-cycle"
         });
 
-        statusBox.add_actor(topRow);
+        statusBox.add_actor(this._stateBadgeLabel);
+        statusBox.add_actor(this._timeLeftLabel);
         statusBox.add_actor(this._progressBar);
         statusBox.add_actor(this._progressLabel);
-        statusBox.add_actor(this._cycleLabel);
         statusBox.add_actor(this._taskLabel);
         statusBox.add_actor(this._dailyLabel);
         this._statusItem.addActor(statusBox, { expand: true, span: -1, align: St.Align.START });

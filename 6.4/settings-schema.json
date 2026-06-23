@@ -264,8 +264,6 @@
             "keys": [
                 "enable_blocking",
                 "block_domains",
-                "block_now_button",
-                "unblock_button",
                 "edit_hosts_button",
                 "block_passwordless_full",
                 "setup_passwordless_button",
@@ -804,9 +802,9 @@
     },
     "enable_blocking": {
         "type": "switch",
-        "description": "Enable distraction blocking (edits /etc/hosts via an admin prompt)",
+        "description": "Block distracting sites during focus",
         "default": false,
-        "tooltip": "Block distracting sites by editing /etc/hosts (asks for your password)."
+        "tooltip": "When on, the sites below are blocked automatically during each focus session and unblocked afterwards. Run \"Set up passwordless blocking\" once so it doesn't ask for a password each time."
     },
     "block_domains": {
         "type": "list",
@@ -821,20 +819,6 @@
         "default": [],
         "dependency": "enable_blocking",
         "tooltip": "Domains to block during focus, one per row (e.g. youtube.com, www.youtube.com)."
-    },
-    "block_now_button": {
-        "type": "button",
-        "description": "Block these domains now",
-        "callback": "_blockDistractions",
-        "dependency": "enable_blocking",
-        "tooltip": "Adds the domains above to /etc/hosts (you'll be asked for your password once). They stay blocked until you click Unblock."
-    },
-    "unblock_button": {
-        "type": "button",
-        "description": "Unblock",
-        "callback": "_unblockDistractions",
-        "dependency": "enable_blocking",
-        "tooltip": "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password once)."
     },
     "edit_hosts_button": {
         "type": "button",

@@ -1661,21 +1661,6 @@ function install(proto) {
         }
     };
 
-    proto._blockDistractions = function() {
-        let domains = this._collectBlockDomains();
-        if (domains.length === 0) {
-            Main.notify(_("Add some domains to block first."));
-            return;
-        }
-        let argv = ['pkexec', this._hostsHelperPath(), 'block'].concat(domains);
-        this._runHostsHelper(argv, _("Distractions blocked."));
-    };
-
-    proto._unblockDistractions = function() {
-        let argv = ['pkexec', this._hostsHelperPath(), 'unblock'];
-        this._runHostsHelper(argv, _("Distractions unblocked."));
-    };
-
     proto._setupPasswordlessBlocking = function() {
         let base = (this._metadata && this._metadata.path) ? this._metadata.path : '';
         let setup = base + '/setup-passwordless.py';

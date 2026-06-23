@@ -1927,7 +1927,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             return;
         }
 
-        this._focusTaskDialog.setTaskList(this._taskList(), this._currentFocusTask, this._presetTaskStrings(), Boolean(this._opt_requireFocusTask));
+        this._focusTaskDialog.setTaskList(this._taskList(), this._currentFocusTask, this._presetTaskStrings(), Boolean(this._opt_requireFocusTask), false, false);
         this._focusTaskDialog.open();
     }
 
@@ -1937,7 +1937,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         }
 
         this._taskSelectOnly = true;
-        this._focusTaskDialog.setTaskList(this._taskList(), this._currentFocusTask, this._presetTaskStrings(), Boolean(this._opt_requireFocusTask));
+        let cur = this._timerQueue ? this._timerQueue.getCurrentTimer() : null;
+        let focusRunning = Boolean(cur && cur === this._timers.pomodoro && cur.isRunning());
+        this._focusTaskDialog.setTaskList(this._taskList(), this._currentFocusTask, this._presetTaskStrings(), Boolean(this._opt_requireFocusTask), true, focusRunning);
         this._focusTaskDialog.open();
     }
 

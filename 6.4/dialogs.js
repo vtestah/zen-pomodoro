@@ -55,6 +55,7 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         });
         content.add_child(this._presetTaskBox);
 
+        this._content = content;
         this.contentLayout.add(content);
         this.setInitialKeyFocus(this._entryText);
 
@@ -67,29 +68,30 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
             return false;
         });
 
+        this._setDialogButtons(_("Start"));
+    }
+
+    _setDialogButtons(confirmLabel) {
         this.setButtons([
-            {
-                label: _("Cancel"),
-                action: () => {
-                    this._cancel();
-                },
-                key: Clutter.KEY_Escape,
-            },
-            {
-                label: _("Start"),
-                action: () => {
-                    this._confirm();
-                },
-                default: true,
-            },
+            { label: _("Cancel"), action: () => { this._cancel(); }, key: Clutter.KEY_Escape },
+            { label: confirmLabel, action: () => { this._confirm(); }, default: true }
         ]);
     }
 
-    setTaskList(tasks, currentTitle, presets, requireTask) {
+    _applyMode(selectOnly, running) {
+        if (this._content) {
+            this._content.title = selectOnly ? _("Current task") : _("Focus task");
+            this._content.description = selectOnly ? _("Choose a task to focus on") : _("What are you focusing on?");
+        }
+        this._setDialogButtons(selectOnly ? (running ? _("Switch") : _("Select")) : _("Start"));
+    }
+
+    setTaskList(tasks, currentTitle, presets, requireTask, selectOnly, running) {
         this._taskItems = Array.isArray(tasks) ? tasks : [];
         this._currentTitle = currentTitle || "";
         this._presets = Array.isArray(presets) ? presets : [];
         this._requireTask = Boolean(requireTask);
+        this._applyMode(Boolean(selectOnly), Boolean(running));
         this._reloadTaskList();
         this._reloadPresetTasks();
         this._hideTaskRequiredHint();

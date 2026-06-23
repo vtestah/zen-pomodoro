@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 00:30+0700\n"
+"POT-Creation-Date: 2026-06-24 00:57+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr ""
 
-#: applet.js:652 applet.js:2010
+#: applet.js:652 applet.js:2012
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr ""
@@ -150,29 +150,29 @@ msgstr ""
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
 
-#: applet.js:1976 features.js:1837
+#: applet.js:1978 features.js:1837
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr ""
 
-#: applet.js:1993
+#: applet.js:1995
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr ""
 
-#: applet.js:2005
+#: applet.js:2007
 msgid "Stop the timer before changing the focus length"
 msgstr ""
 
-#: applet.js:2022
+#: applet.js:2024
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr ""
 
-#: dialogs.js:28
+#: dialogs.js:28 dialogs.js:83
 msgid "Focus task"
 msgstr ""
 
-#: dialogs.js:29
+#: dialogs.js:29 dialogs.js:84
 msgid "What are you focusing on?"
 msgstr ""
 
@@ -180,80 +180,96 @@ msgstr ""
 msgid "Choose or type a focus task"
 msgstr ""
 
-#: dialogs.js:72 features.js:520 features.js:1140 features.js:1885
-msgid "Cancel"
-msgstr ""
-
-#: dialogs.js:79 features.js:1886
+#: dialogs.js:71 dialogs.js:86 features.js:1886
 msgid "Start"
 msgstr ""
 
-#: dialogs.js:220
+#: dialogs.js:76 features.js:520 features.js:1140 features.js:1885
+msgid "Cancel"
+msgstr ""
+
+#: dialogs.js:83
+msgid "Current task"
+msgstr ""
+
+#: dialogs.js:84
+msgid "Choose a task to focus on"
+msgstr ""
+
+#: dialogs.js:86
+msgid "Switch"
+msgstr ""
+
+#: dialogs.js:86
+msgid "Select"
+msgstr ""
+
+#: dialogs.js:222
 msgid "Hide"
 msgstr ""
 
-#: dialogs.js:227
+#: dialogs.js:229
 msgid "Switch Off Pomodoro"
 msgstr ""
 
-#: dialogs.js:233
+#: dialogs.js:235
 msgid "Start a new Pomodoro"
 msgstr ""
 
-#: dialogs.js:244
+#: dialogs.js:246
 msgid "Pomodoro set finished, you deserve a break!"
 msgstr ""
 
-#: dialogs.js:253
+#: dialogs.js:255
 msgid "Your break is over, start another pomodoro!"
 msgstr ""
 
-#: dialogs.js:259
+#: dialogs.js:261
 #, javascript-format
 msgid "A new pomodoro begins in %s."
 msgstr ""
 
-#: dialogs.js:271
+#: dialogs.js:273
 #, javascript-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: dialogs.js:272
+#: dialogs.js:274
 #, javascript-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] ""
 msgstr[1] ""
 
-#: dialogs.js:274
+#: dialogs.js:276
 #, javascript-format
 msgid "%s and %s"
 msgstr ""
 
-#: dialogs.js:295 dialogs.js:347
+#: dialogs.js:297 dialogs.js:349
 msgid "Pause Pomodoro"
 msgstr ""
 
-#: dialogs.js:301
+#: dialogs.js:303
 msgid "Continue Current Pomodoro"
 msgstr ""
 
-#: dialogs.js:313
+#: dialogs.js:315
 msgid "Short break finished, ready to continue?"
 msgstr ""
 
-#: dialogs.js:355
+#: dialogs.js:357
 #, javascript-format
 msgid "Extend +%d min"
 msgstr ""
 
-#: dialogs.js:362
+#: dialogs.js:364
 msgid "Start break"
 msgstr ""
 
-#: dialogs.js:372
+#: dialogs.js:374
 msgid "Pomodoro finished, ready to take a break?"
 msgstr ""
 

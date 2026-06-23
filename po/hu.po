@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 20:23+0700\n"
+"POT-Creation-Date: 2026-06-23 21:56+0700\n"
 "PO-Revision-Date: 2025-08-07 20:11+0200\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: hu\n"
@@ -17,154 +17,154 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: applet.js:578
+#: applet.js:579
 msgid "Strict focus is on"
 msgstr "Szigorú fókusz bekapcsolva"
 
-#: applet.js:578
+#: applet.js:579
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Tarts ki — fejezd be a blokkot, vagy indítsd újra a nullázással."
 
-#: applet.js:644 applet.js:1981
+#: applet.js:645 applet.js:1982
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Fókusz hossza: %d perc"
 
-#: applet.js:951
+#: applet.js:952
 msgid "Focus session restored — resume when ready"
 msgstr "Fókuszmenet visszaállítva — folytasd, ha készen állsz"
 
-#: applet.js:986
+#: applet.js:987
 msgid "FOCUS"
 msgstr "FÓKUSZ"
 
-#: applet.js:988
+#: applet.js:989
 msgid "PAUSED FOCUS"
 msgstr "FÓKUSZ SZÜNETELTETVE"
 
-#: applet.js:991
+#: applet.js:992
 msgid "BREAK"
 msgstr "SZÜNET"
 
-#: applet.js:994
+#: applet.js:995
 msgid "PAUSED BREAK"
 msgstr "SZÜNET MEGÁLLÍTVA"
 
-#: applet.js:996
+#: applet.js:997
 msgid "BREAK OVER"
 msgstr "SZÜNET VÉGE"
 
-#: applet.js:999 applet.js:1059 menu.js:237 menu.js:649
+#: applet.js:1000 applet.js:1060 menu.js:237 menu.js:649
 msgid "Ready to focus"
 msgstr "Készen a fókuszra"
 
-#: applet.js:1017
+#: applet.js:1018
 msgid "Short break running"
 msgstr "Rövid szünet folyamatban"
 
-#: applet.js:1020
+#: applet.js:1021
 msgid "Short break paused"
 msgstr "Rövid szünet szüneteltetve"
 
-#: applet.js:1023
+#: applet.js:1024
 msgid "Long break running"
 msgstr "Hosszú szünet folyamatban"
 
-#: applet.js:1026
+#: applet.js:1027
 msgid "Long break paused"
 msgstr "Hosszú szünet szüneteltetve"
 
-#: applet.js:1029 applet.js:1421
+#: applet.js:1030 applet.js:1422
 msgid "Break ended"
 msgstr "Szünet véget ért"
 
-#: applet.js:1032
+#: applet.js:1033
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodorók %d, állítsa be %d fut"
 
-#: applet.js:1037 features.js:412 features.js:1097 menu.js:671
+#: applet.js:1038 features.js:412 features.js:1097 menu.js:671
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ befejezés %s · %d 🍅 van hátra"
 
-#: applet.js:1042
+#: applet.js:1043
 msgid "Pomodoro paused"
 msgstr "Pomodoro szüneteltetve"
 
-#: applet.js:1045
+#: applet.js:1046
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Készen a fókuszra — görgess vagy középső kattintás az indításhoz"
 
-#: applet.js:1190
+#: applet.js:1191
 msgid "Classic"
 msgstr "Klasszikus"
 
-#: applet.js:1191
+#: applet.js:1192
 msgid "Long focus"
 msgstr "Hosszú fókusz"
 
-#: applet.js:1401
+#: applet.js:1402
 msgid "Pomodoro started"
 msgstr "Pomodoro elindult"
 
-#: applet.js:1479
+#: applet.js:1480
 msgid "Let's go to work!"
 msgstr "Lássunk munkához!"
 
-#: applet.js:1506
+#: applet.js:1507
 msgid "Pomodoro done"
 msgstr "Pomodoro kész"
 
-#: applet.js:1508
+#: applet.js:1509
 msgid "Take a short break"
 msgstr "Tarts egy rövid szünetet"
 
-#: applet.js:1509 applet.js:1547
+#: applet.js:1510 applet.js:1548
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d perc"
 
-#: applet.js:1510 applet.js:1548
+#: applet.js:1511 applet.js:1549
 msgid "Skip break"
 msgstr "Szünet kihagyása"
 
-#: applet.js:1541
+#: applet.js:1542
 msgid "Set complete!"
 msgstr "Sorozat kész!"
 
-#: applet.js:1546
+#: applet.js:1547
 msgid "Take a long break"
 msgstr "Tarts egy hosszú szünetet"
 
-#: applet.js:1599
+#: applet.js:1600
 msgid "Pomodoro ended"
 msgstr "Pomodoro véget ért"
 
-#: applet.js:1674 applet.js:1698 applet.js:1701
+#: applet.js:1675 applet.js:1699 applet.js:1702
 msgid "Pomodoro preflight failed"
 msgstr "A Pomodoro indítás előtti ellenőrzése sikertelen"
 
-#: applet.js:1870
+#: applet.js:1871
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
 "https://en.wikipedia.org/wiki/Pomodoro_Technique Magyar leírás: "
 "https://www.mindenmegtanulhato.hu/a-pomodoro-technika/"
 
-#: applet.js:1947 features.js:1835
+#: applet.js:1948 features.js:1858
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Állítsd le az időzítőt a Pomodoro előbeállítás módosítása előtt"
 
-#: applet.js:1964
+#: applet.js:1965
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "%s Pomodoro előbeállítás alkalmazva"
 
-#: applet.js:1976
+#: applet.js:1977
 msgid "Stop the timer before changing the focus length"
 msgstr "Állítsd le az időzítőt a fókusz hosszának módosítása előtt"
 
-#: applet.js:1993
+#: applet.js:1994
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Szünet meghosszabbítva %d perccel"
@@ -182,11 +182,11 @@ msgid "Choose or type a focus task"
 msgstr "Válassz vagy írj be egy fókuszfeladatot"
 
 #: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1883
+#: features.js:1906
 msgid "Cancel"
 msgstr "Mégse"
 
-#: dialogs.js:72 features.js:1884
+#: dialogs.js:72 features.js:1907
 msgid "Start"
 msgstr "Indítás"
 
@@ -799,34 +799,34 @@ msgstr "Statisztika nullázása…"
 msgid "Close"
 msgstr "Bezárás"
 
-#: features.js:1472
+#: features.js:1495
 msgid "No task"
 msgstr "Nincs feladat"
 
-#: features.js:1509
+#: features.js:1532
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "A push-értesítésekhez libsoup szükséges, amely itt nem érhető el."
 
-#: features.js:1515
+#: features.js:1538
 msgid "Enter your Pushover user key and app token first."
 msgstr ""
 "Előbb add meg a Pushover felhasználói kulcsodat és alkalmazás-tokenedet."
 
-#: features.js:1522
+#: features.js:1545
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Tesztértesítés a Zen Pomodorótól 🍅"
 
-#: features.js:1544
+#: features.js:1567
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Pushover teszt elküldve ✓ — ellenőrizd az eszközöd."
 
-#: features.js:1545 features.js:1549
+#: features.js:1568 features.js:1572
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr ""
 "A Pushover teszt sikertelen. Ellenőrizd a felhasználói kulcsot és az "
 "alkalmazás-tokent."
 
-#: features.js:1592
+#: features.js:1615
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -834,40 +834,40 @@ msgstr ""
 "A webhelyek automatikus blokkolásához fókusz közben kapcsold be a jelszó "
 "nélküli blokkolást a beállításokban."
 
-#: features.js:1650
+#: features.js:1673
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Jelszó nélküli blokkolás bekapcsolva (kérdés nélkül)."
 
-#: features.js:1656
+#: features.js:1679
 msgid "Passwordless blocking removed."
 msgstr "Jelszó nélküli blokkolás eltávolítva."
 
-#: features.js:1693
+#: features.js:1716
 msgid "Click to exit Zen"
 msgstr "Kattints a Zen elhagyásához"
 
 #. settings-schema.json->focus->title
-#: features.js:1728 visual.js:894
+#: features.js:1751 visual.js:894
 msgid "Focus"
 msgstr "Fókusz"
 
-#: features.js:1805
+#: features.js:1828
 msgid "Breathe in"
 msgstr "Belégzés"
 
-#: features.js:1808 features.js:1814
+#: features.js:1831 features.js:1837
 msgid "Hold"
 msgstr "Tartás"
 
-#: features.js:1811
+#: features.js:1834
 msgid "Breathe out"
 msgstr "Kilégzés"
 
-#: features.js:1841
+#: features.js:1864
 msgid "Focus until"
 msgstr "Fókusz eddig"
 
-#: features.js:1842
+#: features.js:1865
 msgid "Enter a time (HH:MM)"
 msgstr "Adj meg egy időpontot (ÓÓ:PP)"
 
@@ -1854,13 +1854,11 @@ msgstr ""
 
 #. settings-schema.json->pushover_help->description
 msgid ""
-"Pushover sends alerts to your phone or desktop. Create a free account at "
-"pushover.net, copy your User Key, then create an Application there to get an"
-" API Token."
+"Free phone/desktop alerts. Sign up at pushover.net and paste your keys "
+"below."
 msgstr ""
-"A Pushover riasztásokat küld a telefonodra vagy az asztali géped. Hozz létre"
-" ingyenes fiókot a pushover.net oldalon, másold ki a User Key kulcsodat, "
-"majd hozz létre ott egy Application alkalmazást az API Token megszerzéséhez."
+"Ingyenes értesítések telefonra/asztalra. Regisztrálj a pushover.net oldalon,"
+" és illeszd be a kulcsokat alább."
 
 #. settings-schema.json->pushover_user_key->description
 msgid "Pushover user key"
@@ -1964,12 +1962,10 @@ msgstr ""
 
 #. settings-schema.json->sox-info->description
 msgid ""
-"No sound backend was found. Install GSound or a sound player (e.g. the "
-"'pulseaudio-utils' or 'sox' package) to enable sounds."
+"No sound backend found — install GSound or a player like pulseaudio-utils."
 msgstr ""
-"Nem található hang-háttérrendszer. A hangok engedélyezéséhez telepítsd a "
-"GSoundot vagy egy hanglejátszót (pl. a „pulseaudio-utils” vagy „sox” "
-"csomagot)."
+"Nem található hangmotor – telepítsd a GSoundot vagy egy lejátszót, pl. "
+"pulseaudio-utils."
 
 #. settings-schema.json->timer_sound->description
 msgid "Play Timer Sound"
@@ -2391,6 +2387,23 @@ msgstr "Napi cél — hang"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Napi cél — prioritás"
+
+#~ msgid ""
+#~ "Pushover sends alerts to your phone or desktop. Create a free account at "
+#~ "pushover.net, copy your User Key, then create an Application there to get an"
+#~ " API Token."
+#~ msgstr ""
+#~ "A Pushover riasztásokat küld a telefonodra vagy az asztali géped. Hozz létre"
+#~ " ingyenes fiókot a pushover.net oldalon, másold ki a User Key kulcsodat, "
+#~ "majd hozz létre ott egy Application alkalmazást az API Token megszerzéséhez."
+
+#~ msgid ""
+#~ "No sound backend was found. Install GSound or a sound player (e.g. the "
+#~ "'pulseaudio-utils' or 'sox' package) to enable sounds."
+#~ msgstr ""
+#~ "Nem található hang-háttérrendszer. A hangok engedélyezéséhez telepítsd a "
+#~ "GSoundot vagy egy hanglejátszót (pl. a „pulseaudio-utils” vagy „sox” "
+#~ "csomagot)."
 
 #~ msgid "Passwordless blocking enabled (asks once per session)."
 #~ msgstr ""

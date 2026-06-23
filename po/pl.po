@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 20:23+0700\n"
+"POT-Creation-Date: 2026-06-23 21:56+0700\n"
 "PO-Revision-Date: 2024-04-27 23:12+0200\n"
 "Last-Translator: Krzysztof Kucharski <krzysztof85@gmail.com>\n"
 "Language-Team: Polish\n"
@@ -19,153 +19,153 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: applet.js:578
+#: applet.js:579
 msgid "Strict focus is on"
 msgstr "Ścisłe skupienie włączone"
 
-#: applet.js:578
+#: applet.js:579
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Nie poddawaj się — dokończ blok albo zresetuj, by zacząć od nowa."
 
-#: applet.js:644 applet.js:1981
+#: applet.js:645 applet.js:1982
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Długość skupienia: %d min"
 
-#: applet.js:951
+#: applet.js:952
 msgid "Focus session restored — resume when ready"
 msgstr "Sesja skupienia przywrócona — wznów, gdy będziesz gotów"
 
-#: applet.js:986
+#: applet.js:987
 msgid "FOCUS"
 msgstr "SKUPIENIE"
 
-#: applet.js:988
+#: applet.js:989
 msgid "PAUSED FOCUS"
 msgstr "SKUPIENIE WSTRZYMANE"
 
-#: applet.js:991
+#: applet.js:992
 msgid "BREAK"
 msgstr "PRZERWA"
 
-#: applet.js:994
+#: applet.js:995
 msgid "PAUSED BREAK"
 msgstr "PRZERWA WSTRZYMANA"
 
-#: applet.js:996
+#: applet.js:997
 msgid "BREAK OVER"
 msgstr "KONIEC PRZERWY"
 
-#: applet.js:999 applet.js:1059 menu.js:237 menu.js:649
+#: applet.js:1000 applet.js:1060 menu.js:237 menu.js:649
 msgid "Ready to focus"
 msgstr "Gotowy do skupienia"
 
-#: applet.js:1017
+#: applet.js:1018
 msgid "Short break running"
 msgstr "Krótka przerwa"
 
-#: applet.js:1020
+#: applet.js:1021
 msgid "Short break paused"
 msgstr "Krótka przerwa wstrzymana"
 
-#: applet.js:1023
+#: applet.js:1024
 msgid "Long break running"
 msgstr "Długa przerwa"
 
-#: applet.js:1026
+#: applet.js:1027
 msgid "Long break paused"
 msgstr "Długa przerwa wstrzymana"
 
-#: applet.js:1029 applet.js:1421
+#: applet.js:1030 applet.js:1422
 msgid "Break ended"
 msgstr "Przerwa zakończona"
 
-#: applet.js:1032
+#: applet.js:1033
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodoro %d, cykl %d uruchomiony"
 
-#: applet.js:1037 features.js:412 features.js:1097 menu.js:671
+#: applet.js:1038 features.js:412 features.js:1097 menu.js:671
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ koniec %s · zostało %d 🍅"
 
-#: applet.js:1042
+#: applet.js:1043
 msgid "Pomodoro paused"
 msgstr "Pomodoro wstrzymane"
 
-#: applet.js:1045
+#: applet.js:1046
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Gotowy do skupienia — przewiń lub kliknij środkowym, by zacząć"
 
-#: applet.js:1190
+#: applet.js:1191
 msgid "Classic"
 msgstr "Klasyczny"
 
-#: applet.js:1191
+#: applet.js:1192
 msgid "Long focus"
 msgstr "Długie skupienie"
 
 # notifications
-#: applet.js:1401
+#: applet.js:1402
 msgid "Pomodoro started"
 msgstr "Pomodoro rozpoczęte"
 
-#: applet.js:1479
+#: applet.js:1480
 msgid "Let's go to work!"
 msgstr "Do dzieła!"
 
-#: applet.js:1506
+#: applet.js:1507
 msgid "Pomodoro done"
 msgstr "Pomodoro ukończone"
 
-#: applet.js:1508
+#: applet.js:1509
 msgid "Take a short break"
 msgstr "Czas na krótką przerwę"
 
-#: applet.js:1509 applet.js:1547
+#: applet.js:1510 applet.js:1548
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d min"
 
-#: applet.js:1510 applet.js:1548
+#: applet.js:1511 applet.js:1549
 msgid "Skip break"
 msgstr "Pomiń przerwę"
 
-#: applet.js:1541
+#: applet.js:1542
 msgid "Set complete!"
 msgstr "Cykl ukończony!"
 
-#: applet.js:1546
+#: applet.js:1547
 msgid "Take a long break"
 msgstr "Czas na długą przerwę"
 
-#: applet.js:1599
+#: applet.js:1600
 msgid "Pomodoro ended"
 msgstr "Pomodoro zakończone"
 
-#: applet.js:1674 applet.js:1698 applet.js:1701
+#: applet.js:1675 applet.js:1699 applet.js:1702
 msgid "Pomodoro preflight failed"
 msgstr "Kontrola wstępna Pomodoro nie powiodła się"
 
-#: applet.js:1870
+#: applet.js:1871
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://pl.wikipedia.org/wiki/Technika_Pomodoro"
 
-#: applet.js:1947 features.js:1835
+#: applet.js:1948 features.js:1858
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Zatrzymaj minutnik przed zmianą presetu Pomodoro"
 
-#: applet.js:1964
+#: applet.js:1965
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Zastosowano preset Pomodoro %s"
 
-#: applet.js:1976
+#: applet.js:1977
 msgid "Stop the timer before changing the focus length"
 msgstr "Zatrzymaj minutnik przed zmianą długości skupienia"
 
-#: applet.js:1993
+#: applet.js:1994
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Przerwa wydłużona o %d min"
@@ -183,11 +183,11 @@ msgid "Choose or type a focus task"
 msgstr "Wybierz lub wpisz zadanie skupienia"
 
 #: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1883
+#: features.js:1906
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: dialogs.js:72 features.js:1884
+#: dialogs.js:72 features.js:1907
 msgid "Start"
 msgstr "Start"
 
@@ -800,33 +800,33 @@ msgstr "Zresetuj statystyki…"
 msgid "Close"
 msgstr "Zamknij"
 
-#: features.js:1472
+#: features.js:1495
 msgid "No task"
 msgstr "Bez zadania"
 
-#: features.js:1509
+#: features.js:1532
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr ""
 "Powiadomienia push wymagają biblioteki libsoup, która jest tu niedostępna."
 
-#: features.js:1515
+#: features.js:1538
 msgid "Enter your Pushover user key and app token first."
 msgstr "Najpierw wprowadź klucz użytkownika i token aplikacji Pushover."
 
-#: features.js:1522
+#: features.js:1545
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Testowe powiadomienie z Zen Pomodoro 🍅"
 
-#: features.js:1544
+#: features.js:1567
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Test Pushover wysłany ✓ — sprawdź urządzenie."
 
-#: features.js:1545 features.js:1549
+#: features.js:1568 features.js:1572
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr ""
 "Test Pushover nie powiódł się. Sprawdź klucz użytkownika i token aplikacji."
 
-#: features.js:1592
+#: features.js:1615
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -834,40 +834,40 @@ msgstr ""
 "Aby automatycznie blokować strony podczas skupienia, włącz blokowanie bez "
 "hasła w ustawieniach."
 
-#: features.js:1650
+#: features.js:1673
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Blokowanie bez hasła włączone (bez pytania)."
 
-#: features.js:1656
+#: features.js:1679
 msgid "Passwordless blocking removed."
 msgstr "Usunięto blokowanie bez hasła."
 
-#: features.js:1693
+#: features.js:1716
 msgid "Click to exit Zen"
 msgstr "Kliknij, by wyjść z trybu Zen"
 
 #. settings-schema.json->focus->title
-#: features.js:1728 visual.js:894
+#: features.js:1751 visual.js:894
 msgid "Focus"
 msgstr "Skupienie"
 
-#: features.js:1805
+#: features.js:1828
 msgid "Breathe in"
 msgstr "Wdech"
 
-#: features.js:1808 features.js:1814
+#: features.js:1831 features.js:1837
 msgid "Hold"
 msgstr "Wstrzymaj"
 
-#: features.js:1811
+#: features.js:1834
 msgid "Breathe out"
 msgstr "Wydech"
 
-#: features.js:1841
+#: features.js:1864
 msgid "Focus until"
 msgstr "Skupienie do"
 
-#: features.js:1842
+#: features.js:1865
 msgid "Enter a time (HH:MM)"
 msgstr "Wpisz godzinę (GG:MM)"
 
@@ -1848,13 +1848,11 @@ msgstr ""
 
 #. settings-schema.json->pushover_help->description
 msgid ""
-"Pushover sends alerts to your phone or desktop. Create a free account at "
-"pushover.net, copy your User Key, then create an Application there to get an"
-" API Token."
+"Free phone/desktop alerts. Sign up at pushover.net and paste your keys "
+"below."
 msgstr ""
-"Pushover wysyła powiadomienia na telefon lub komputer. Załóż darmowe konto "
-"na pushover.net, skopiuj swój User Key, a następnie utwórz tam Application, "
-"by otrzymać API Token."
+"Darmowe powiadomienia na telefon/pulpit. Zarejestruj się na pushover.net i "
+"wklej klucze poniżej."
 
 #. settings-schema.json->pushover_user_key->description
 msgid "Pushover user key"
@@ -1954,11 +1952,10 @@ msgstr ""
 
 #. settings-schema.json->sox-info->description
 msgid ""
-"No sound backend was found. Install GSound or a sound player (e.g. the "
-"'pulseaudio-utils' or 'sox' package) to enable sounds."
+"No sound backend found — install GSound or a player like pulseaudio-utils."
 msgstr ""
-"Nie znaleziono backendu dźwięku. Zainstaluj GSound lub odtwarzacz (np. "
-"pakiet „pulseaudio-utils” lub „sox”), by włączyć dźwięki."
+"Nie znaleziono backendu dźwięku — zainstaluj GSound lub odtwarzacz, np. "
+"pulseaudio-utils."
 
 #. settings-schema.json->timer_sound->description
 msgid "Play Timer Sound"
@@ -2377,6 +2374,22 @@ msgstr "Cel dzienny — dźwięk"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Cel dzienny — priorytet"
+
+#~ msgid ""
+#~ "Pushover sends alerts to your phone or desktop. Create a free account at "
+#~ "pushover.net, copy your User Key, then create an Application there to get an"
+#~ " API Token."
+#~ msgstr ""
+#~ "Pushover wysyła powiadomienia na telefon lub komputer. Załóż darmowe konto "
+#~ "na pushover.net, skopiuj swój User Key, a następnie utwórz tam Application, "
+#~ "by otrzymać API Token."
+
+#~ msgid ""
+#~ "No sound backend was found. Install GSound or a sound player (e.g. the "
+#~ "'pulseaudio-utils' or 'sox' package) to enable sounds."
+#~ msgstr ""
+#~ "Nie znaleziono backendu dźwięku. Zainstaluj GSound lub odtwarzacz (np. "
+#~ "pakiet „pulseaudio-utils” lub „sox”), by włączyć dźwięki."
 
 #~ msgid "Passwordless blocking enabled (asks once per session)."
 #~ msgstr "Blokowanie bez hasła włączone (pyta raz na sesję)."

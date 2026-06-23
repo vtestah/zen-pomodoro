@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 23:53+0700\n"
+"POT-Creation-Date: 2026-06-23 23:56+0700\n"
 "PO-Revision-Date: 2025-10-12 13:07+0700\n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: vi\n"
@@ -84,7 +84,7 @@ msgstr "Đã hết giờ nghỉ"
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodori %d, set %d đang chạy"
 
-#: applet.js:1046 features.js:412 features.js:1097 menu.js:652
+#: applet.js:1046 features.js:412 features.js:1037 menu.js:652
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ xong %s · còn %d 🍅"
@@ -150,7 +150,7 @@ msgstr "Kiểm tra trước khi chạy Pomodoro thất bại"
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "http://vi.wikipedia.org/wiki/Kỹ_thuật_Pomodoro"
 
-#: applet.js:1972 features.js:1875
+#: applet.js:1972 features.js:1815
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Hãy dừng bộ đếm trước khi đổi cấu hình Pomodoro"
 
@@ -180,12 +180,11 @@ msgstr "Bạn đang tập trung vào điều gì?"
 msgid "Choose or type a focus task"
 msgstr "Chọn hoặc nhập việc cần tập trung"
 
-#: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1923
+#: dialogs.js:65 features.js:499 features.js:1119 features.js:1863
 msgid "Cancel"
 msgstr "Huỷ"
 
-#: dialogs.js:72 features.js:1924
+#: dialogs.js:72 features.js:1864
 msgid "Start"
 msgstr "Bắt đầu"
 
@@ -326,237 +325,216 @@ msgstr "Ước lượng:"
 msgid "Add"
 msgstr "Thêm"
 
-#: features.js:509 features.js:537
-msgid "No tasks to save"
-msgstr "Không có việc nào để lưu"
-
-#: features.js:516
-#, javascript-format
-msgid "Template saved: %s"
-msgstr "Đã lưu mẫu: %s"
-
-#: features.js:540
-msgid "Save as template"
-msgstr "Lưu thành mẫu"
-
-#: features.js:541
-msgid "Template name"
-msgstr "Tên mẫu"
-
-#: features.js:560
-msgid "Save"
-msgstr "Lưu"
-
-#: features.js:604
+#: features.js:544
 msgid "longer focus blocks suit deep work"
 msgstr "khối tập trung dài hơn hợp với công việc chuyên sâu"
 
-#: features.js:605
+#: features.js:545
 msgid "the classic rhythm suits studying"
 msgstr "nhịp cổ điển hợp với việc học"
 
-#: features.js:606
+#: features.js:546
 msgid "a little more break time lets ideas settle"
 msgstr "nghỉ thêm chút giúp ý tưởng lắng lại"
 
-#: features.js:607
+#: features.js:547
 msgid "shorter cycles keep small tasks moving"
 msgstr "chu kỳ ngắn giúp việc nhỏ tiến đều"
 
-#: features.js:608
+#: features.js:548
 msgid "a balanced rhythm"
 msgstr "một nhịp cân bằng"
 
-#: features.js:609
+#: features.js:549
 #, javascript-format
 msgid "Focus rhythm %d / %d / %d min — %s."
 msgstr "Nhịp tập trung %d / %d / %d phút — %s."
 
-#: features.js:615
+#: features.js:555
 #, javascript-format
 msgid "Daily goal: %d focus blocks."
 msgstr "Mục tiêu ngày: %d khối tập trung."
 
-#: features.js:616
+#: features.js:556
 msgid "No daily goal yet — just getting a feel for it."
 msgstr "Chưa có mục tiêu ngày — cứ thử làm quen đã."
 
-#: features.js:627
+#: features.js:567
 msgid "Silent focus — no ticking or chimes."
 msgstr "Tập trung yên tĩnh — không tiếng tích tắc hay chuông."
 
-#: features.js:631
+#: features.js:571
 msgid "Soft brown-noise ambience while you focus."
 msgstr "Tiếng ồn nâu nhẹ nhàng trong lúc bạn tập trung."
 
-#: features.js:636
+#: features.js:576
 #, javascript-format
 msgid "A gentle chime every %d min to mark time."
 msgstr "Chuông nhẹ mỗi %d phút để đánh dấu thời gian."
 
-#: features.js:641
+#: features.js:581
 msgid "Quiet, visual-only cues for a shared space."
 msgstr "Gợi ý chỉ bằng hình ảnh, yên tĩnh cho không gian chung."
 
-#: features.js:647
+#: features.js:587
 msgid "Notifications are muted while you focus."
 msgstr "Tắt tiếng thông báo trong lúc bạn tập trung."
 
-#: features.js:650
+#: features.js:590
 msgid "Distraction blocking is ready — add sites in Settings → Advanced."
 msgstr "Đã sẵn sàng chặn xao nhãng — thêm trang trong Cài đặt → Nâng cao."
 
-#: features.js:653
+#: features.js:593
 msgid "One-click start and a calm start ritual make it easier to begin."
 msgstr ""
 "Bắt đầu một chạm và nghi thức khởi đầu nhẹ nhàng giúp bạn dễ bắt tay vào "
 "việc."
 
-#: features.js:657
+#: features.js:597
 msgid "Breaks start on their own so you don't overwork."
 msgstr "Giờ nghỉ tự bắt đầu để bạn không làm việc quá sức."
 
-#: features.js:661
+#: features.js:601
 msgid "A calm theme, no ticking seconds and no end-of-timer rush."
 msgstr "Giao diện nhẹ nhàng, không tiếng đếm giây và không hối hả lúc hết giờ."
 
-#: features.js:701
+#: features.js:641
 msgid "What will you mainly focus on?"
 msgstr "Bạn sẽ chủ yếu tập trung vào điều gì?"
 
-#: features.js:702
+#: features.js:642
 msgid "This shapes how long each focus block should be."
 msgstr "Điều này quyết định độ dài mỗi khối tập trung."
 
-#: features.js:704
+#: features.js:644
 msgid "Deep work or coding"
 msgstr "Làm việc chuyên sâu hoặc lập trình"
 
-#: features.js:705
+#: features.js:645
 msgid "Studying or reading"
 msgstr "Học hoặc đọc"
 
-#: features.js:706
+#: features.js:646
 msgid "Writing or creative work"
 msgstr "Viết lách hoặc công việc sáng tạo"
 
-#: features.js:707
+#: features.js:647
 msgid "Lots of small tasks"
 msgstr "Nhiều việc nhỏ"
 
-#: features.js:709
+#: features.js:649
 msgid "How long can you usually concentrate?"
 msgstr "Bạn thường tập trung được bao lâu?"
 
-#: features.js:710
+#: features.js:650
 msgid "Pick a length you can actually keep — it beats an ideal one."
 msgstr "Chọn độ dài bạn thực sự duy trì được — hơn là chọn mức lý tưởng."
 
-#: features.js:712
+#: features.js:652
 msgid "About 15 minutes"
 msgstr "Khoảng 15 phút"
 
-#: features.js:713
+#: features.js:653
 msgid "About 25 minutes"
 msgstr "Khoảng 25 phút"
 
-#: features.js:714
+#: features.js:654
 msgid "45 minutes or more"
 msgstr "45 phút trở lên"
 
-#: features.js:715
+#: features.js:655
 msgid "I lose track of time when I'm in flow"
 msgstr "Tôi quên cả thời gian khi vào guồng"
 
-#: features.js:717
+#: features.js:657
 msgid "What gets in your way most?"
 msgstr "Điều gì cản trở bạn nhiều nhất?"
 
-#: features.js:718
+#: features.js:658
 msgid "I'll switch on the right help for this."
 msgstr "Tôi sẽ bật trợ giúp phù hợp cho việc này."
 
-#: features.js:720
+#: features.js:660
 msgid "Notifications and pings"
 msgstr "Thông báo và tiếng báo"
 
-#: features.js:721
+#: features.js:661
 msgid "Distracting websites"
 msgstr "Trang web gây xao nhãng"
 
-#: features.js:722
+#: features.js:662
 msgid "It's hard to get started"
 msgstr "Khó bắt đầu"
 
-#: features.js:723
+#: features.js:663
 msgid "I forget to take breaks"
 msgstr "Tôi quên nghỉ ngơi"
 
-#: features.js:724
+#: features.js:664
 msgid "Timers make me anxious"
 msgstr "Bộ đếm khiến tôi lo lắng"
 
-#: features.js:726
+#: features.js:666
 msgid "What helps you concentrate?"
 msgstr "Điều gì giúp bạn tập trung?"
 
-#: features.js:727
+#: features.js:667
 msgid "Sets the focus soundscape — change it anytime in Sounds."
 msgstr "Thiết lập âm thanh tập trung — đổi bất cứ lúc nào trong Âm thanh."
 
-#: features.js:729
+#: features.js:669
 msgid "Silence"
 msgstr "Yên lặng"
 
-#: features.js:730
+#: features.js:670
 msgid "Soft background noise"
 msgstr "Tiếng nền nhẹ nhàng"
 
-#: features.js:731
+#: features.js:671
 msgid "A gentle chime to mark time"
 msgstr "Chuông nhẹ để đánh dấu thời gian"
 
-#: features.js:732
+#: features.js:672
 msgid "I share my space — keep it quiet"
 msgstr "Tôi ở không gian chung — giữ yên tĩnh"
 
-#: features.js:734
+#: features.js:674
 msgid "How much do you want to get done today?"
 msgstr "Hôm nay bạn muốn làm được bao nhiêu?"
 
-#: features.js:735
+#: features.js:675
 msgid "Sets your daily goal — no pressure, you can change it."
 msgstr "Đặt mục tiêu ngày — không áp lực, bạn có thể đổi."
 
-#: features.js:737
+#: features.js:677
 msgid "Just trying it out"
 msgstr "Chỉ thử cho biết"
 
-#: features.js:738
+#: features.js:678
 msgid "A light day (about 4)"
 msgstr "Một ngày nhẹ nhàng (khoảng 4)"
 
-#: features.js:739
+#: features.js:679
 msgid "A full day (about 6)"
 msgstr "Một ngày trọn vẹn (khoảng 6)"
 
-#: features.js:740
+#: features.js:680
 msgid "A big push (about 8)"
 msgstr "Bứt phá lớn (khoảng 8)"
 
-#: features.js:756
+#: features.js:696
 msgid "Smart setup"
 msgstr "Thiết lập thông minh"
 
-#: features.js:765
+#: features.js:705
 msgid "Skip"
 msgstr "Bỏ qua"
 
-#: features.js:768
+#: features.js:708
 msgid "Let's tune Zen Pomodoro to you 🍅"
 msgstr "Hãy điều chỉnh Zen Pomodoro theo bạn 🍅"
 
-#: features.js:769
+#: features.js:709
 msgid ""
 "Answer five quick questions and I'll build a focus setup that fits how you "
 "work — your rhythm, sounds, breaks and the help you need. You can fine-tune "
@@ -566,23 +544,23 @@ msgstr ""
 "cách bạn làm việc — nhịp độ, âm thanh, giờ nghỉ và sự trợ giúp bạn cần. Bạn "
 "có thể tinh chỉnh mọi thứ sau trong Cài đặt."
 
-#: features.js:770
+#: features.js:710
 msgid "Let's go"
 msgstr "Bắt đầu thôi"
 
-#: features.js:776 features.js:792
+#: features.js:716 features.js:732
 msgid "Back"
 msgstr "Quay lại"
 
-#: features.js:777
+#: features.js:717
 msgid "Next"
 msgstr "Tiếp"
 
-#: features.js:780
+#: features.js:720
 msgid "Your tailored setup 🍅"
 msgstr "Thiết lập riêng cho bạn 🍅"
 
-#: features.js:781
+#: features.js:721
 msgid ""
 "Based on your answers, here's what I'll set up. Apply it now, then tweak "
 "anything in Settings."
@@ -590,234 +568,234 @@ msgstr ""
 "Dựa trên câu trả lời của bạn, đây là những gì tôi sẽ thiết lập. Áp dụng "
 "ngay, rồi tinh chỉnh tuỳ ý trong Cài đặt."
 
-#: features.js:793
+#: features.js:733
 msgid "Apply"
 msgstr "Áp dụng"
 
-#: features.js:794
+#: features.js:734
 msgid "Apply & start"
 msgstr "Áp dụng và bắt đầu"
 
-#: features.js:806 menu.js:317 menu.js:871 menu.js:877
+#: features.js:746 menu.js:317 menu.js:871 menu.js:877
 #, javascript-format
 msgid "%d min"
 msgstr "%d phút"
 
-#: features.js:810 menu.js:321
+#: features.js:750 menu.js:321
 #, javascript-format
 msgid "%dh %dm"
 msgstr "%d giờ %d phút"
 
-#: features.js:810 menu.js:321
+#: features.js:750 menu.js:321
 #, javascript-format
 msgid "%dh"
 msgstr "%d giờ"
 
-#: features.js:965
+#: features.js:905
 msgid "Statistics reset."
 msgstr "Đã đặt lại thống kê."
 
-#: features.js:987
+#: features.js:927
 #, javascript-format
 msgid "%d to go today — at your pace, done by about %s."
 msgstr "Còn %d hôm nay — với nhịp của bạn, xong khoảng %s."
 
-#: features.js:988
+#: features.js:928
 #, javascript-format
 msgid "%d more to reach today's goal of %d."
 msgstr "Còn %d nữa để đạt mục tiêu %d hôm nay."
 
-#: features.js:990
+#: features.js:930
 #, javascript-format
 msgid "Daily goal reached — %d done today. Nice."
 msgstr "Đã đạt mục tiêu ngày — %d hôm nay. Tuyệt."
 
-#: features.js:993
+#: features.js:933
 #, javascript-format
 msgid "%d interruptions this week — what keeps pulling you away?"
 msgstr "%d lần gián đoạn tuần này — điều gì cứ kéo bạn ra vậy?"
 
-#: features.js:996 features.js:1114
+#: features.js:936 features.js:1054
 #, javascript-format
 msgid "Most focused around %s — good time for deep work."
 msgstr "Tập trung nhất quanh %s — thời điểm tốt cho việc chuyên sâu."
 
-#: features.js:999
+#: features.js:939
 #, javascript-format
 msgid "Most focus went to “%s”."
 msgstr "Tập trung nhiều nhất vào “%s”."
 
-#: features.js:1001
+#: features.js:941
 #, javascript-format
 msgid "%d pomodoros this week. Keep it going."
 msgstr "%d pomodoro tuần này. Cứ thế phát huy."
 
-#: features.js:1002
+#: features.js:942
 msgid "Start a focus session — your insights will appear here."
 msgstr "Bắt đầu một phiên tập trung — thông tin chi tiết sẽ hiện ở đây."
 
-#: features.js:1056
+#: features.js:996
 msgid "Focus statistics"
 msgstr "Thống kê tập trung"
 
-#: features.js:1070
+#: features.js:1010
 #, javascript-format
 msgid "%d / %d goal"
 msgstr "%d / %d mục tiêu"
 
-#: features.js:1071
+#: features.js:1011
 msgid "Today"
 msgstr "Hôm nay"
 
-#: features.js:1072
+#: features.js:1012
 msgid "This week"
 msgstr "Tuần này"
 
-#: features.js:1073
+#: features.js:1013
 msgid "Streak"
 msgstr "Chuỗi"
 
-#: features.js:1073
+#: features.js:1013
 #, javascript-format
 msgid "best %d"
 msgstr "kỷ lục %d"
 
-#: features.js:1074
+#: features.js:1014
 msgid "All time"
 msgstr "Toàn thời gian"
 
-#: features.js:1082
+#: features.js:1022
 msgid "Sun"
 msgstr "CN"
 
-#: features.js:1082
+#: features.js:1022
 msgid "Mon"
 msgstr "T2"
 
-#: features.js:1082
+#: features.js:1022
 msgid "Tue"
 msgstr "T3"
 
-#: features.js:1082
+#: features.js:1022
 msgid "Wed"
 msgstr "T4"
 
-#: features.js:1082
+#: features.js:1022
 msgid "Thu"
 msgstr "T5"
 
-#: features.js:1082
+#: features.js:1022
 msgid "Fri"
 msgstr "T6"
 
-#: features.js:1082
+#: features.js:1022
 msgid "Sat"
 msgstr "T7"
 
-#: features.js:1083
+#: features.js:1023
 #, javascript-format
 msgid "This week: %d 🍅 · %s · best day %s"
 msgstr "Tuần này: %d 🍅 · %s · ngày tốt nhất %s"
 
-#: features.js:1089
+#: features.js:1029
 msgid "Nothing harvested yet today"
 msgstr "Hôm nay chưa thu hoạch gì"
 
-#: features.js:1091
+#: features.js:1031
 msgid "Today's harvest"
 msgstr "Thu hoạch hôm nay"
 
-#: features.js:1098
+#: features.js:1038
 #, javascript-format
 msgid "Interruptions: %d today · %d this week"
 msgstr "Gián đoạn: %d hôm nay · %d tuần này"
 
-#: features.js:1104
+#: features.js:1044
 msgid "When you focus (by hour)"
 msgstr "Khi bạn tập trung (theo giờ)"
 
-#: features.js:1109
+#: features.js:1049
 msgid "night"
 msgstr "đêm"
 
-#: features.js:1109
+#: features.js:1049
 msgid "morning"
 msgstr "sáng"
 
-#: features.js:1109
+#: features.js:1049
 msgid "afternoon"
 msgstr "chiều"
 
-#: features.js:1109
+#: features.js:1049
 msgid "evening"
 msgstr "tối"
 
-#: features.js:1115
+#: features.js:1055
 msgid "Not enough data yet to spot your best focus time."
 msgstr "Chưa đủ dữ liệu để tìm ra khung giờ tập trung tốt nhất."
 
-#: features.js:1124
+#: features.js:1064
 msgid "Focus time — last 14 days"
 msgstr "Thời gian tập trung — 14 ngày qua"
 
-#: features.js:1129
+#: features.js:1069
 msgid "Activity — last 12 weeks"
 msgstr "Hoạt động — 12 tuần qua"
 
-#: features.js:1134
+#: features.js:1074
 msgid "Less"
 msgstr "Ít"
 
-#: features.js:1138
+#: features.js:1078
 msgid "More"
 msgstr "Nhiều"
 
-#: features.js:1151
+#: features.js:1091
 msgid "By task"
 msgstr "Theo việc"
 
-#: features.js:1172 menu.js:626
+#: features.js:1112 menu.js:626
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Cột mốc: %s"
 
-#: features.js:1180
+#: features.js:1120
 msgid "Delete all statistics"
 msgstr "Xoá toàn bộ thống kê"
 
-#: features.js:1185
+#: features.js:1125
 msgid "Reset statistics…"
 msgstr "Đặt lại thống kê…"
 
-#: features.js:1186
+#: features.js:1126
 msgid "Close"
 msgstr "Đóng"
 
-#: features.js:1512
+#: features.js:1452
 msgid "No task"
 msgstr "Không có việc"
 
-#: features.js:1549
+#: features.js:1489
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "Thông báo đẩy cần libsoup, hiện không có ở đây."
 
-#: features.js:1555
+#: features.js:1495
 msgid "Enter your Pushover user key and app token first."
 msgstr "Hãy nhập user key và app token Pushover trước."
 
-#: features.js:1562
+#: features.js:1502
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Thông báo thử từ Zen Pomodoro 🍅"
 
-#: features.js:1584
+#: features.js:1524
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Đã gửi thử Pushover ✓ — kiểm tra thiết bị của bạn."
 
-#: features.js:1585 features.js:1589
+#: features.js:1525 features.js:1529
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr "Gửi thử Pushover thất bại. Hãy kiểm tra lại user key và app token."
 
-#: features.js:1632
+#: features.js:1572
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -825,40 +803,40 @@ msgstr ""
 "Để tự động chặn trang web trong khi tập trung, hãy bật chặn không cần mật "
 "khẩu trong cài đặt."
 
-#: features.js:1690
+#: features.js:1630
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Đã bật chặn không cần mật khẩu (không hỏi)."
 
-#: features.js:1696
+#: features.js:1636
 msgid "Passwordless blocking removed."
 msgstr "Đã gỡ chặn không cần mật khẩu."
 
-#: features.js:1733
+#: features.js:1673
 msgid "Click to exit Zen"
 msgstr "Nhấn để thoát Zen"
 
 #. settings-schema.json->focus->title
-#: features.js:1768 visual.js:894
+#: features.js:1708 visual.js:894
 msgid "Focus"
 msgstr "Tập trung"
 
-#: features.js:1845
+#: features.js:1785
 msgid "Breathe in"
 msgstr "Hít vào"
 
-#: features.js:1848 features.js:1854
+#: features.js:1788 features.js:1794
 msgid "Hold"
 msgstr "Giữ"
 
-#: features.js:1851
+#: features.js:1791
 msgid "Breathe out"
 msgstr "Thở ra"
 
-#: features.js:1881
+#: features.js:1821
 msgid "Focus until"
 msgstr "Tập trung đến"
 
-#: features.js:1882
+#: features.js:1822
 msgid "Enter a time (HH:MM)"
 msgstr "Nhập thời gian (HH:MM)"
 
@@ -2350,6 +2328,22 @@ msgid ""
 msgstr ""
 "Chọn âm thanh nền lặp của riêng bạn. Để trống để dùng tiếng ồn nâu nhẹ tích "
 "hợp."
+
+#~ msgid "No tasks to save"
+#~ msgstr "Không có việc nào để lưu"
+
+#, javascript-format
+#~ msgid "Template saved: %s"
+#~ msgstr "Đã lưu mẫu: %s"
+
+#~ msgid "Save as template"
+#~ msgstr "Lưu thành mẫu"
+
+#~ msgid "Template name"
+#~ msgstr "Tên mẫu"
+
+#~ msgid "Save"
+#~ msgstr "Lưu"
 
 #~ msgid "Toggle done (current)"
 #~ msgstr "Đánh dấu hoàn thành (việc hiện tại)"

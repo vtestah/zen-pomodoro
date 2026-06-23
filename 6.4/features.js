@@ -502,66 +502,6 @@ function install(proto) {
         dialog.open();
     };
 
-    proto._saveTaskTemplate = function(name) {
-        name = (name || "").toString().trim();
-        if (!name) { return; }
-        let tasks = this._taskList().map((t) => ({ title: t.title, est: t.est || 1 }));
-        if (!tasks.length) { Main.notify(_("No tasks to save")); return; }
-        if (!this._tasksData) { this._tasksData = this._defaultTasksData(); }
-        if (!Array.isArray(this._tasksData.templates)) { this._tasksData.templates = []; }
-        this._tasksData.templates = this._tasksData.templates.filter((x) => x.name !== name);
-        this._tasksData.templates.push({ name: name.slice(0, 80), tasks: tasks });
-        this._saveTasks();
-        this._refreshTasksMenu();
-        Main.notify(_("Template saved: %s").format(name));
-    };
-
-    proto._applyTaskTemplate = function(name) {
-        let tpl = (this._tasksData && Array.isArray(this._tasksData.templates))
-            ? this._tasksData.templates.find((x) => x.name === name) : null;
-        if (!tpl) { return; }
-        if (!this._tasksData) { this._tasksData = this._defaultTasksData(); }
-        for (let t of tpl.tasks) {
-            let task = { id: this._newTaskId(), title: t.title, est: t.est || 1, done: 0, doneToday: 0, completed: false };
-            this._tasksData.tasks.push(task);
-            if (!this._tasksData.currentId) {
-                this._tasksData.currentId = task.id;
-                this._setCurrentFocusTask(task.title);
-            }
-        }
-        this._saveTasks();
-        this._refreshTasksMenu();
-    };
-
-    proto._showSaveTemplateDialog = function() {
-        if (!this._taskList().length) { Main.notify(_("No tasks to save")); return; }
-        let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
-        let content = new Dialog.MessageDialogContent({
-            title: _("Save as template"),
-            description: _("Template name")
-        });
-        let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true });
-        CinnamonEntry.addContextMenu(entry);
-        content.add_child(entry);
-        dialog.contentLayout.add(content);
-        dialog.setInitialKeyFocus(entry.clutter_text);
-        let confirm = () => {
-            let n = entry.clutter_text.get_text().trim();
-            dialog.close();
-            if (n) { this._saveTaskTemplate(n); }
-        };
-        entry.clutter_text.connect('key-press-event', (actor, ev) => {
-            let s = ev.get_key_symbol();
-            if (s === Clutter.KEY_Return || s === Clutter.KEY_KP_Enter) { confirm(); return true; }
-            return false;
-        });
-        dialog.setButtons([
-            { label: _("Cancel"), key: Clutter.KEY_Escape, action: () => dialog.close() },
-            { label: _("Save"), default: true, action: confirm }
-        ]);
-        dialog.open();
-    };
-
     // Recommendation engine for the smart onboarding wizard. Pure function:
     // takes the user's answers and derives a tailored set of settings plus a
     // human-readable list of reasons. No side effects — the wizard applies the

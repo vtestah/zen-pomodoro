@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pomodoro Timer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 23:53+0700\n"
+"POT-Creation-Date: 2026-06-23 23:56+0700\n"
 "PO-Revision-Date: 2017-02-24 23:32+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -85,7 +85,7 @@ msgstr "Predah završen"
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodoro %d, zadatak %d je pokrenut"
 
-#: applet.js:1046 features.js:412 features.js:1097 menu.js:652
+#: applet.js:1046 features.js:412 features.js:1037 menu.js:652
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ kraj %s · preostalo %d 🍅"
@@ -151,7 +151,7 @@ msgstr "Provjera prije pokretanja Pomodora nije uspjela"
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://hr.wikipedia.org/wiki/Pomodoro_tehnika"
 
-#: applet.js:1972 features.js:1875
+#: applet.js:1972 features.js:1815
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Zaustavite mjerač prije promjene Pomodoro predloška"
 
@@ -181,12 +181,11 @@ msgstr "Na što se fokusirate?"
 msgid "Choose or type a focus task"
 msgstr "Odaberite ili upišite zadatak fokusa"
 
-#: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1923
+#: dialogs.js:65 features.js:499 features.js:1119 features.js:1863
 msgid "Cancel"
 msgstr "Odustani"
 
-#: dialogs.js:72 features.js:1924
+#: dialogs.js:72 features.js:1864
 msgid "Start"
 msgstr "Pokreni"
 
@@ -331,236 +330,215 @@ msgstr "Procjena:"
 msgid "Add"
 msgstr "Dodaj"
 
-#: features.js:509 features.js:537
-msgid "No tasks to save"
-msgstr "Nema zadataka za spremiti"
-
-#: features.js:516
-#, javascript-format
-msgid "Template saved: %s"
-msgstr "Predložak spremljen: %s"
-
-#: features.js:540
-msgid "Save as template"
-msgstr "Spremi kao predložak"
-
-#: features.js:541
-msgid "Template name"
-msgstr "Naziv predloška"
-
-#: features.js:560
-msgid "Save"
-msgstr "Spremi"
-
-#: features.js:604
+#: features.js:544
 msgid "longer focus blocks suit deep work"
 msgstr "duži blokovi fokusa pogoduju dubokom radu"
 
-#: features.js:605
+#: features.js:545
 msgid "the classic rhythm suits studying"
 msgstr "klasični ritam pogoduje učenju"
 
-#: features.js:606
+#: features.js:546
 msgid "a little more break time lets ideas settle"
 msgstr "malo više predaha pomaže idejama da se slegnu"
 
-#: features.js:607
+#: features.js:547
 msgid "shorter cycles keep small tasks moving"
 msgstr "kraći ciklusi održavaju male zadatke u tijeku"
 
-#: features.js:608
+#: features.js:548
 msgid "a balanced rhythm"
 msgstr "uravnotežen ritam"
 
-#: features.js:609
+#: features.js:549
 #, javascript-format
 msgid "Focus rhythm %d / %d / %d min — %s."
 msgstr "Ritam fokusa %d / %d / %d min — %s."
 
-#: features.js:615
+#: features.js:555
 #, javascript-format
 msgid "Daily goal: %d focus blocks."
 msgstr "Dnevni cilj: %d blokova fokusa."
 
-#: features.js:616
+#: features.js:556
 msgid "No daily goal yet — just getting a feel for it."
 msgstr "Još bez dnevnog cilja — samo se privikavate."
 
-#: features.js:627
+#: features.js:567
 msgid "Silent focus — no ticking or chimes."
 msgstr "Tihi fokus — bez kucanja i zvonjave."
 
-#: features.js:631
+#: features.js:571
 msgid "Soft brown-noise ambience while you focus."
 msgstr "Mekani smeđi šum dok se fokusirate."
 
-#: features.js:636
+#: features.js:576
 #, javascript-format
 msgid "A gentle chime every %d min to mark time."
 msgstr "Nježno zvonce svakih %d min za označavanje vremena."
 
-#: features.js:641
+#: features.js:581
 msgid "Quiet, visual-only cues for a shared space."
 msgstr "Tihi, samo vizualni znakovi za zajednički prostor."
 
-#: features.js:647
+#: features.js:587
 msgid "Notifications are muted while you focus."
 msgstr "Obavijesti su utišane dok se fokusirate."
 
-#: features.js:650
+#: features.js:590
 msgid "Distraction blocking is ready — add sites in Settings → Advanced."
 msgstr ""
 "Blokiranje ometanja je spremno — dodajte stranice u Postavke → Napredno."
 
-#: features.js:653
+#: features.js:593
 msgid "One-click start and a calm start ritual make it easier to begin."
 msgstr "Pokretanje jednim klikom i smiren ritual početka olakšavaju početak."
 
-#: features.js:657
+#: features.js:597
 msgid "Breaks start on their own so you don't overwork."
 msgstr "Predasi počinju sami da se ne biste preopteretili."
 
-#: features.js:661
+#: features.js:601
 msgid "A calm theme, no ticking seconds and no end-of-timer rush."
 msgstr "Smirena tema, bez kucanja sekundi i bez žurbe na kraju mjerača."
 
-#: features.js:701
+#: features.js:641
 msgid "What will you mainly focus on?"
 msgstr "Na što ćete se uglavnom fokusirati?"
 
-#: features.js:702
+#: features.js:642
 msgid "This shapes how long each focus block should be."
 msgstr "Ovo određuje koliko bi trebao trajati svaki blok fokusa."
 
-#: features.js:704
+#: features.js:644
 msgid "Deep work or coding"
 msgstr "Dubok rad ili programiranje"
 
-#: features.js:705
+#: features.js:645
 msgid "Studying or reading"
 msgstr "Učenje ili čitanje"
 
-#: features.js:706
+#: features.js:646
 msgid "Writing or creative work"
 msgstr "Pisanje ili kreativni rad"
 
-#: features.js:707
+#: features.js:647
 msgid "Lots of small tasks"
 msgstr "Mnogo malih zadataka"
 
-#: features.js:709
+#: features.js:649
 msgid "How long can you usually concentrate?"
 msgstr "Koliko se obično možete koncentrirati?"
 
-#: features.js:710
+#: features.js:650
 msgid "Pick a length you can actually keep — it beats an ideal one."
 msgstr "Odaberite trajanje koje stvarno možete održati — bolje je od idealnog."
 
-#: features.js:712
+#: features.js:652
 msgid "About 15 minutes"
 msgstr "Oko 15 minuta"
 
-#: features.js:713
+#: features.js:653
 msgid "About 25 minutes"
 msgstr "Oko 25 minuta"
 
-#: features.js:714
+#: features.js:654
 msgid "45 minutes or more"
 msgstr "45 minuta ili više"
 
-#: features.js:715
+#: features.js:655
 msgid "I lose track of time when I'm in flow"
 msgstr "Izgubim pojam o vremenu kad sam u zanosu"
 
-#: features.js:717
+#: features.js:657
 msgid "What gets in your way most?"
 msgstr "Što vas najviše ometa?"
 
-#: features.js:718
+#: features.js:658
 msgid "I'll switch on the right help for this."
 msgstr "Uključit ću pravu pomoć za ovo."
 
-#: features.js:720
+#: features.js:660
 msgid "Notifications and pings"
 msgstr "Obavijesti i signali"
 
-#: features.js:721
+#: features.js:661
 msgid "Distracting websites"
 msgstr "Web-stranice koje ometaju"
 
-#: features.js:722
+#: features.js:662
 msgid "It's hard to get started"
 msgstr "Teško je započeti"
 
-#: features.js:723
+#: features.js:663
 msgid "I forget to take breaks"
 msgstr "Zaboravim na predahe"
 
-#: features.js:724
+#: features.js:664
 msgid "Timers make me anxious"
 msgstr "Mjerači me čine tjeskobnim"
 
-#: features.js:726
+#: features.js:666
 msgid "What helps you concentrate?"
 msgstr "Što vam pomaže u koncentraciji?"
 
-#: features.js:727
+#: features.js:667
 msgid "Sets the focus soundscape — change it anytime in Sounds."
 msgstr "Postavlja zvukove fokusa — promijenite ih bilo kada u Zvukovima."
 
-#: features.js:729
+#: features.js:669
 msgid "Silence"
 msgstr "Tišina"
 
-#: features.js:730
+#: features.js:670
 msgid "Soft background noise"
 msgstr "Mekani pozadinski šum"
 
-#: features.js:731
+#: features.js:671
 msgid "A gentle chime to mark time"
 msgstr "Nježno zvonce za označavanje vremena"
 
-#: features.js:732
+#: features.js:672
 msgid "I share my space — keep it quiet"
 msgstr "Dijelim prostor — neka bude tiho"
 
-#: features.js:734
+#: features.js:674
 msgid "How much do you want to get done today?"
 msgstr "Koliko želite obaviti danas?"
 
-#: features.js:735
+#: features.js:675
 msgid "Sets your daily goal — no pressure, you can change it."
 msgstr "Postavlja vaš dnevni cilj — bez pritiska, možete ga promijeniti."
 
-#: features.js:737
+#: features.js:677
 msgid "Just trying it out"
 msgstr "Samo isprobavam"
 
-#: features.js:738
+#: features.js:678
 msgid "A light day (about 4)"
 msgstr "Lagan dan (oko 4)"
 
-#: features.js:739
+#: features.js:679
 msgid "A full day (about 6)"
 msgstr "Pun dan (oko 6)"
 
-#: features.js:740
+#: features.js:680
 msgid "A big push (about 8)"
 msgstr "Veliki iskorak (oko 8)"
 
-#: features.js:756
+#: features.js:696
 msgid "Smart setup"
 msgstr "Pametno postavljanje"
 
-#: features.js:765
+#: features.js:705
 msgid "Skip"
 msgstr "Preskoči"
 
-#: features.js:768
+#: features.js:708
 msgid "Let's tune Zen Pomodoro to you 🍅"
 msgstr "Prilagodimo Zen Pomodoro vama 🍅"
 
-#: features.js:769
+#: features.js:709
 msgid ""
 "Answer five quick questions and I'll build a focus setup that fits how you "
 "work — your rhythm, sounds, breaks and the help you need. You can fine-tune "
@@ -570,23 +548,23 @@ msgstr ""
 "vašem načinu rada — vaš ritam, zvukove, predahe i pomoć koja vam treba. Sve "
 "možete kasnije fino ugoditi u Postavkama."
 
-#: features.js:770
+#: features.js:710
 msgid "Let's go"
 msgstr "Krenimo"
 
-#: features.js:776 features.js:792
+#: features.js:716 features.js:732
 msgid "Back"
 msgstr "Natrag"
 
-#: features.js:777
+#: features.js:717
 msgid "Next"
 msgstr "Dalje"
 
-#: features.js:780
+#: features.js:720
 msgid "Your tailored setup 🍅"
 msgstr "Vaša prilagođena postavka 🍅"
 
-#: features.js:781
+#: features.js:721
 msgid ""
 "Based on your answers, here's what I'll set up. Apply it now, then tweak "
 "anything in Settings."
@@ -594,235 +572,235 @@ msgstr ""
 "Na temelju vaših odgovora, evo što ću postaviti. Primijenite sada, a zatim "
 "podesite bilo što u Postavkama."
 
-#: features.js:793
+#: features.js:733
 msgid "Apply"
 msgstr "Primijeni"
 
-#: features.js:794
+#: features.js:734
 msgid "Apply & start"
 msgstr "Primijeni i pokreni"
 
-#: features.js:806 menu.js:317 menu.js:871 menu.js:877
+#: features.js:746 menu.js:317 menu.js:871 menu.js:877
 #, javascript-format
 msgid "%d min"
 msgstr "%d min"
 
-#: features.js:810 menu.js:321
+#: features.js:750 menu.js:321
 #, javascript-format
 msgid "%dh %dm"
 msgstr "%d h %d m"
 
-#: features.js:810 menu.js:321
+#: features.js:750 menu.js:321
 #, javascript-format
 msgid "%dh"
 msgstr "%d h"
 
-#: features.js:965
+#: features.js:905
 msgid "Statistics reset."
 msgstr "Statistika poništena."
 
-#: features.js:987
+#: features.js:927
 #, javascript-format
 msgid "%d to go today — at your pace, done by about %s."
 msgstr "Još %d danas — vašim tempom, gotovo oko %s."
 
-#: features.js:988
+#: features.js:928
 #, javascript-format
 msgid "%d more to reach today's goal of %d."
 msgstr "Još %d do današnjeg cilja od %d."
 
-#: features.js:990
+#: features.js:930
 #, javascript-format
 msgid "Daily goal reached — %d done today. Nice."
 msgstr "Dnevni cilj postignut — %d danas. Bravo."
 
-#: features.js:993
+#: features.js:933
 #, javascript-format
 msgid "%d interruptions this week — what keeps pulling you away?"
 msgstr "%d prekida ovaj tjedan — što vas stalno odvlači?"
 
-#: features.js:996 features.js:1114
+#: features.js:936 features.js:1054
 #, javascript-format
 msgid "Most focused around %s — good time for deep work."
 msgstr "Najfokusiraniji oko %s — dobro vrijeme za dubok rad."
 
-#: features.js:999
+#: features.js:939
 #, javascript-format
 msgid "Most focus went to “%s”."
 msgstr "Najviše fokusa otišlo je na “%s”."
 
-#: features.js:1001
+#: features.js:941
 #, javascript-format
 msgid "%d pomodoros this week. Keep it going."
 msgstr "%d pomodora ovaj tjedan. Samo tako nastavite."
 
-#: features.js:1002
+#: features.js:942
 msgid "Start a focus session — your insights will appear here."
 msgstr "Pokrenite sesiju fokusa — vaši uvidi pojavit će se ovdje."
 
-#: features.js:1056
+#: features.js:996
 msgid "Focus statistics"
 msgstr "Statistika fokusa"
 
-#: features.js:1070
+#: features.js:1010
 #, javascript-format
 msgid "%d / %d goal"
 msgstr "%d / %d cilj"
 
-#: features.js:1071
+#: features.js:1011
 msgid "Today"
 msgstr "Danas"
 
-#: features.js:1072
+#: features.js:1012
 msgid "This week"
 msgstr "Ovaj tjedan"
 
-#: features.js:1073
+#: features.js:1013
 msgid "Streak"
 msgstr "Niz"
 
-#: features.js:1073
+#: features.js:1013
 #, javascript-format
 msgid "best %d"
 msgstr "rekord %d"
 
-#: features.js:1074
+#: features.js:1014
 msgid "All time"
 msgstr "Sveukupno"
 
-#: features.js:1082
+#: features.js:1022
 msgid "Sun"
 msgstr "Ned"
 
-#: features.js:1082
+#: features.js:1022
 msgid "Mon"
 msgstr "Pon"
 
-#: features.js:1082
+#: features.js:1022
 msgid "Tue"
 msgstr "Uto"
 
-#: features.js:1082
+#: features.js:1022
 msgid "Wed"
 msgstr "Sri"
 
-#: features.js:1082
+#: features.js:1022
 msgid "Thu"
 msgstr "Čet"
 
-#: features.js:1082
+#: features.js:1022
 msgid "Fri"
 msgstr "Pet"
 
-#: features.js:1082
+#: features.js:1022
 msgid "Sat"
 msgstr "Sub"
 
-#: features.js:1083
+#: features.js:1023
 #, javascript-format
 msgid "This week: %d 🍅 · %s · best day %s"
 msgstr "Ovaj tjedan: %d 🍅 · %s · najbolji dan %s"
 
-#: features.js:1089
+#: features.js:1029
 msgid "Nothing harvested yet today"
 msgstr "Danas još nema uroda"
 
-#: features.js:1091
+#: features.js:1031
 msgid "Today's harvest"
 msgstr "Današnji urod"
 
-#: features.js:1098
+#: features.js:1038
 #, javascript-format
 msgid "Interruptions: %d today · %d this week"
 msgstr "Prekidi: %d danas · %d ovaj tjedan"
 
-#: features.js:1104
+#: features.js:1044
 msgid "When you focus (by hour)"
 msgstr "Kada se fokusirate (po satu)"
 
-#: features.js:1109
+#: features.js:1049
 msgid "night"
 msgstr "noć"
 
-#: features.js:1109
+#: features.js:1049
 msgid "morning"
 msgstr "jutro"
 
-#: features.js:1109
+#: features.js:1049
 msgid "afternoon"
 msgstr "popodne"
 
-#: features.js:1109
+#: features.js:1049
 msgid "evening"
 msgstr "večer"
 
-#: features.js:1115
+#: features.js:1055
 msgid "Not enough data yet to spot your best focus time."
 msgstr "Još nema dovoljno podataka za određivanje najboljeg vremena fokusa."
 
-#: features.js:1124
+#: features.js:1064
 msgid "Focus time — last 14 days"
 msgstr "Vrijeme fokusa — posljednjih 14 dana"
 
-#: features.js:1129
+#: features.js:1069
 msgid "Activity — last 12 weeks"
 msgstr "Aktivnost — posljednjih 12 tjedana"
 
-#: features.js:1134
+#: features.js:1074
 msgid "Less"
 msgstr "Manje"
 
-#: features.js:1138
+#: features.js:1078
 msgid "More"
 msgstr "Više"
 
-#: features.js:1151
+#: features.js:1091
 msgid "By task"
 msgstr "Po zadatku"
 
-#: features.js:1172 menu.js:626
+#: features.js:1112 menu.js:626
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Prekretnice: %s"
 
-#: features.js:1180
+#: features.js:1120
 msgid "Delete all statistics"
 msgstr "Izbriši svu statistiku"
 
-#: features.js:1185
+#: features.js:1125
 msgid "Reset statistics…"
 msgstr "Poništi statistiku…"
 
-#: features.js:1186
+#: features.js:1126
 msgid "Close"
 msgstr "Zatvori"
 
-#: features.js:1512
+#: features.js:1452
 msgid "No task"
 msgstr "Bez zadatka"
 
-#: features.js:1549
+#: features.js:1489
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "Push obavijesti trebaju libsoup, koji ovdje nije dostupan."
 
-#: features.js:1555
+#: features.js:1495
 msgid "Enter your Pushover user key and app token first."
 msgstr "Najprije unesite svoj Pushover korisnički ključ i token aplikacije."
 
-#: features.js:1562
+#: features.js:1502
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Probna obavijest iz Zen Pomodoro 🍅"
 
-#: features.js:1584
+#: features.js:1524
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Pushover test poslan ✓ — provjerite uređaj."
 
-#: features.js:1585 features.js:1589
+#: features.js:1525 features.js:1529
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr ""
 "Pushover test nije uspio. Provjerite korisnički ključ i token aplikacije."
 
-#: features.js:1632
+#: features.js:1572
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -830,40 +808,40 @@ msgstr ""
 "Za automatsko blokiranje stranica tijekom fokusa uključite blokiranje bez "
 "lozinke u postavkama."
 
-#: features.js:1690
+#: features.js:1630
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Blokiranje bez lozinke omogućeno (bez upita)."
 
-#: features.js:1696
+#: features.js:1636
 msgid "Passwordless blocking removed."
 msgstr "Blokiranje bez lozinke uklonjeno."
 
-#: features.js:1733
+#: features.js:1673
 msgid "Click to exit Zen"
 msgstr "Kliknite za izlaz iz Zena"
 
 #. settings-schema.json->focus->title
-#: features.js:1768 visual.js:894
+#: features.js:1708 visual.js:894
 msgid "Focus"
 msgstr "Fokus"
 
-#: features.js:1845
+#: features.js:1785
 msgid "Breathe in"
 msgstr "Udahnite"
 
-#: features.js:1848 features.js:1854
+#: features.js:1788 features.js:1794
 msgid "Hold"
 msgstr "Zadržite"
 
-#: features.js:1851
+#: features.js:1791
 msgid "Breathe out"
 msgstr "Izdahnite"
 
-#: features.js:1881
+#: features.js:1821
 msgid "Focus until"
 msgstr "Fokus do"
 
-#: features.js:1882
+#: features.js:1822
 msgid "Enter a time (HH:MM)"
 msgstr "Unesite vrijeme (HH:MM)"
 
@@ -2357,6 +2335,22 @@ msgid ""
 msgstr ""
 "Odaberite vlastiti ponavljajući zvuk okoline. Ostavite prazno za ugrađeni "
 "meki smeđi šum."
+
+#~ msgid "No tasks to save"
+#~ msgstr "Nema zadataka za spremiti"
+
+#, javascript-format
+#~ msgid "Template saved: %s"
+#~ msgstr "Predložak spremljen: %s"
+
+#~ msgid "Save as template"
+#~ msgstr "Spremi kao predložak"
+
+#~ msgid "Template name"
+#~ msgstr "Naziv predloška"
+
+#~ msgid "Save"
+#~ msgstr "Spremi"
 
 #~ msgid "Toggle done (current)"
 #~ msgstr "Uključi/isključi gotovo (trenutni)"

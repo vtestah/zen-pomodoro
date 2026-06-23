@@ -472,7 +472,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
             "_opt_tickerSoundPath",
             () => {
                 this._loadSoundEffects();
-                this._onPlayTickedSoundChanged();
+                if (this._onPlayTickedSoundChanged() === false) {
+                    this._playTickerSound(true); // idle: short preview of the new file
+                }
             }
         );
     
@@ -489,18 +491,18 @@ class PomodoroApplet extends Applet.TextIconApplet {
     
         // Continuing with additional settings properties
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_sound", "_opt_playBreakSound", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_sound_file", "_opt_breakSoundPath", this._loadSoundEffects.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_sound_file", "_opt_breakSoundPath", () => { this._loadSoundEffects(); this._playBreakSound(true); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_sound_volume", "_opt_breakSoundVolume", () => this._playBreakSound(true));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "warn_sound", "_opt_playWarnSound", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "warn_sound_delay", "_opt_warnSoundDelay", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "warn_sound_file", "_opt_warnSoundPath", this._loadSoundEffects.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "warn_sound_file", "_opt_warnSoundPath", () => { this._loadSoundEffects(); this._playWarnSound(true); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "warn_sound_volume", "_opt_warnSoundVolume", () => this._playWarnSound(true));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "start_sound", "_opt_playStartSound", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "start_sound_file", "_opt_startSoundPath", this._loadSoundEffects.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "start_sound_file", "_opt_startSoundPath", () => { this._loadSoundEffects(); this._playStartSound(true); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "start_sound_volume", "_opt_startSoundVolume", () => this._playStartSound(true));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "interval_chime", "_opt_intervalChime", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "interval_chime_seconds", "_opt_intervalChimeSeconds", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "interval_chime_file", "_opt_intervalChimeFile", this._loadSoundEffects.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "interval_chime_file", "_opt_intervalChimeFile", () => { this._loadSoundEffects(); this._playIntervalChime(true); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "interval_chime_volume", "_opt_intervalChimeVolume", () => this._playIntervalChime(true));
     
         // Show the "no sound backend" hint only when neither GSound nor a

@@ -95,6 +95,13 @@ function install(proto) {
         }
     };
 
+    // Preview helpers for the settings "Preview" buttons (play a short sample).
+    proto._previewTimerSound = function() { this._playTickerSound(true); };
+    proto._previewBreakSound = function() { this._playBreakSound(true); };
+    proto._previewWarnSound  = function() { this._playWarnSound(true); };
+    proto._previewStartSound = function() { this._playStartSound(true); };
+    proto._previewChime      = function() { this._playIntervalChime(true); };
+
     proto._loadSoundEffects = function() {
         if (!SoundModule.isPlayable()) {
             global.logError("Zen Pomodoro: no usable sound backend (GSound or paplay/canberra-gtk-play/play); sounds disabled");

@@ -184,22 +184,27 @@
                 "timer_sound",
                 "timer_sound_file",
                 "timer_sound_volume",
+                "timer_sound_test",
                 "hdr_alerts",
                 "break_sound",
                 "break_sound_file",
                 "break_sound_volume",
+                "break_sound_test",
                 "warn_sound",
                 "warn_sound_delay",
                 "warn_sound_file",
                 "warn_sound_volume",
+                "warn_sound_test",
                 "start_sound",
                 "start_sound_file",
                 "start_sound_volume",
+                "start_sound_test",
                 "hdr_interval",
                 "interval_chime",
                 "interval_chime_seconds",
                 "interval_chime_file",
-                "interval_chime_volume"
+                "interval_chime_volume",
+                "interval_chime_test"
             ]
         },
         "sec_tools": {
@@ -981,6 +986,41 @@
         "description": "Chime volume:",
         "dependency": "interval_chime",
         "tooltip": "Volume of the interval chime (0 = silent)."
+    },
+    "timer_sound_test": {
+        "type": "button",
+        "description": "Listen",
+        "callback": "_previewTimerSound",
+        "dependency": "timer_sound",
+        "tooltip": "Play the selected sound now."
+    },
+    "break_sound_test": {
+        "type": "button",
+        "description": "Listen",
+        "callback": "_previewBreakSound",
+        "dependency": "break_sound",
+        "tooltip": "Play the selected sound now."
+    },
+    "warn_sound_test": {
+        "type": "button",
+        "description": "Listen",
+        "callback": "_previewWarnSound",
+        "dependency": "warn_sound",
+        "tooltip": "Play the selected sound now."
+    },
+    "start_sound_test": {
+        "type": "button",
+        "description": "Listen",
+        "callback": "_previewStartSound",
+        "dependency": "start_sound",
+        "tooltip": "Play the selected sound now."
+    },
+    "interval_chime_test": {
+        "type": "button",
+        "description": "Listen",
+        "callback": "_previewChime",
+        "dependency": "interval_chime",
+        "tooltip": "Play the selected sound now."
     },
     "enable_scripts": {
         "type": "switch",

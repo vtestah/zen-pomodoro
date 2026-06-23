@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 21:56+0700\n"
+"POT-Creation-Date: 2026-06-23 22:34+0700\n"
 "PO-Revision-Date: 2021-10-02 21:15-0300\n"
 "Last-Translator: Marcelo Aof\n"
 "Language-Team: pt_BR\n"
@@ -18,152 +18,152 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.0\n"
 
-#: applet.js:579
+#: applet.js:586
 msgid "Strict focus is on"
 msgstr "Foco estrito ativado"
 
-#: applet.js:579
+#: applet.js:586
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Não se distraia — conclua o bloco ou reinicie para começar de novo."
 
-#: applet.js:645 applet.js:1982
+#: applet.js:652 applet.js:1990
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Duração do foco: %d min"
 
-#: applet.js:952
+#: applet.js:959
 msgid "Focus session restored — resume when ready"
 msgstr "Sessão de foco restaurada — retome quando quiser"
 
-#: applet.js:987
+#: applet.js:995
 msgid "FOCUS"
 msgstr "FOCO"
 
-#: applet.js:989
+#: applet.js:997
 msgid "PAUSED FOCUS"
 msgstr "FOCO PAUSADO"
 
-#: applet.js:992
+#: applet.js:1000
 msgid "BREAK"
 msgstr "INTERVALO"
 
-#: applet.js:995
+#: applet.js:1003
 msgid "PAUSED BREAK"
 msgstr "INTERVALO PAUSADO"
 
-#: applet.js:997
+#: applet.js:1005
 msgid "BREAK OVER"
 msgstr "INTERVALO ENCERRADO"
 
-#: applet.js:1000 applet.js:1060 menu.js:237 menu.js:649
+#: applet.js:1008 applet.js:1068 menu.js:237 menu.js:649
 msgid "Ready to focus"
 msgstr "Pronto para focar"
 
-#: applet.js:1018
+#: applet.js:1026
 msgid "Short break running"
 msgstr "Intervalo curto em andamento"
 
-#: applet.js:1021
+#: applet.js:1029
 msgid "Short break paused"
 msgstr "Intervalo curto pausado"
 
-#: applet.js:1024
+#: applet.js:1032
 msgid "Long break running"
 msgstr "Intervalo longo em andamento"
 
-#: applet.js:1027
+#: applet.js:1035
 msgid "Long break paused"
 msgstr "Intervalo longo pausado"
 
-#: applet.js:1030 applet.js:1422
+#: applet.js:1038 applet.js:1430
 msgid "Break ended"
 msgstr "Intervalo encerrado"
 
-#: applet.js:1033
+#: applet.js:1041
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "Repetição %d, ciclo %d em andamento"
 
-#: applet.js:1038 features.js:412 features.js:1097 menu.js:671
+#: applet.js:1046 features.js:412 features.js:1097 menu.js:671
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ fim %s · faltam %d 🍅"
 
-#: applet.js:1043
+#: applet.js:1051
 msgid "Pomodoro paused"
 msgstr "Pomodoro pausado"
 
-#: applet.js:1046
+#: applet.js:1054
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Pronto para focar — role ou clique do meio para começar"
 
-#: applet.js:1191
+#: applet.js:1199
 msgid "Classic"
 msgstr "Clássico"
 
-#: applet.js:1192
+#: applet.js:1200
 msgid "Long focus"
 msgstr "Foco longo"
 
-#: applet.js:1402
+#: applet.js:1410
 msgid "Pomodoro started"
 msgstr "A contagem regressiva começou"
 
-#: applet.js:1480
+#: applet.js:1488
 msgid "Let's go to work!"
 msgstr "Hora de focar!"
 
-#: applet.js:1507
+#: applet.js:1515
 msgid "Pomodoro done"
 msgstr "Pomodoro concluído"
 
-#: applet.js:1509
+#: applet.js:1517
 msgid "Take a short break"
 msgstr "Faça um intervalo curto"
 
-#: applet.js:1510 applet.js:1548
+#: applet.js:1518 applet.js:1556
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d min"
 
-#: applet.js:1511 applet.js:1549
+#: applet.js:1519 applet.js:1557
 msgid "Skip break"
 msgstr "Pular intervalo"
 
-#: applet.js:1542
+#: applet.js:1550
 msgid "Set complete!"
 msgstr "Série concluída!"
 
-#: applet.js:1547
+#: applet.js:1555
 msgid "Take a long break"
 msgstr "Faça um intervalo longo"
 
-#: applet.js:1600
+#: applet.js:1608
 msgid "Pomodoro ended"
 msgstr "A contagem regressiva terminou"
 
-#: applet.js:1675 applet.js:1699 applet.js:1702
+#: applet.js:1683 applet.js:1707 applet.js:1710
 msgid "Pomodoro preflight failed"
 msgstr "Verificação inicial do Pomodoro falhou"
 
-#: applet.js:1871
+#: applet.js:1879
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://pt.wikipedia.org/wiki/T%C3%A9cnica_pomodoro"
 
-#: applet.js:1948 features.js:1858
+#: applet.js:1956 features.js:1875
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Pare o cronômetro antes de trocar a predefinição do Pomodoro"
 
-#: applet.js:1965
+#: applet.js:1973
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Predefinição do Pomodoro %s aplicada"
 
-#: applet.js:1977
+#: applet.js:1985
 msgid "Stop the timer before changing the focus length"
 msgstr "Pare o cronômetro antes de mudar a duração do foco"
 
-#: applet.js:1994
+#: applet.js:2002
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Intervalo estendido em %d min"
@@ -181,11 +181,11 @@ msgid "Choose or type a focus task"
 msgstr "Escolha ou digite uma tarefa de foco"
 
 #: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1906
+#: features.js:1923
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: dialogs.js:72 features.js:1907
+#: dialogs.js:72 features.js:1924
 msgid "Start"
 msgstr "Iniciar"
 
@@ -797,33 +797,33 @@ msgstr "Zerar estatísticas…"
 msgid "Close"
 msgstr "Fechar"
 
-#: features.js:1495
+#: features.js:1512
 msgid "No task"
 msgstr "Sem tarefa"
 
-#: features.js:1532
+#: features.js:1549
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr ""
 "As notificações push precisam do libsoup, que não está disponível aqui."
 
-#: features.js:1538
+#: features.js:1555
 msgid "Enter your Pushover user key and app token first."
 msgstr "Primeiro informe sua chave de usuário e o token do app do Pushover."
 
-#: features.js:1545
+#: features.js:1562
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Notificação de teste do Zen Pomodoro 🍅"
 
-#: features.js:1567
+#: features.js:1584
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Teste do Pushover enviado ✓ — verifique seu dispositivo."
 
-#: features.js:1568 features.js:1572
+#: features.js:1585 features.js:1589
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr ""
 "Falha no teste do Pushover. Confira sua chave de usuário e o token do app."
 
-#: features.js:1615
+#: features.js:1632
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -831,40 +831,40 @@ msgstr ""
 "Para bloquear sites automaticamente durante o foco, ative o bloqueio sem "
 "senha nas configurações."
 
-#: features.js:1673
+#: features.js:1690
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Bloqueio sem senha ativado (sem solicitação)."
 
-#: features.js:1679
+#: features.js:1696
 msgid "Passwordless blocking removed."
 msgstr "Bloqueio sem senha removido."
 
-#: features.js:1716
+#: features.js:1733
 msgid "Click to exit Zen"
 msgstr "Clique para sair do Zen"
 
 #. settings-schema.json->focus->title
-#: features.js:1751 visual.js:894
+#: features.js:1768 visual.js:894
 msgid "Focus"
 msgstr "Foco"
 
-#: features.js:1828
+#: features.js:1845
 msgid "Breathe in"
 msgstr "Inspire"
 
-#: features.js:1831 features.js:1837
+#: features.js:1848 features.js:1854
 msgid "Hold"
 msgstr "Segure"
 
-#: features.js:1834
+#: features.js:1851
 msgid "Breathe out"
 msgstr "Expire"
 
-#: features.js:1864
+#: features.js:1881
 msgid "Focus until"
 msgstr "Focar até"
 
-#: features.js:1865
+#: features.js:1882
 msgid "Enter a time (HH:MM)"
 msgstr "Digite um horário (HH:MM)"
 
@@ -1738,20 +1738,24 @@ msgid "How many extra minutes the 'extend focus' option adds."
 msgstr "Quantos minutos extras a opção 'estender foco' adiciona."
 
 #. settings-schema.json->focus_ambient_sound->description
-msgid "Play soft ambient (brown noise) during focus"
-msgstr "Tocar som ambiente suave (ruído marrom) durante o foco"
+msgid "Play an ambient sound during focus"
+msgstr "Reproduzir um som ambiente durante o foco"
 
 #. settings-schema.json->focus_ambient_sound->tooltip
-msgid "Play soft brown noise during focus."
-msgstr "Toca um ruído marrom suave durante o foco."
+msgid ""
+"Loop a soft ambient sound during focus — the built-in brown noise, or your "
+"own file below."
+msgstr ""
+"Reproduzir em loop um som ambiente suave durante o foco — o ruído marrom "
+"integrado ou seu próprio arquivo abaixo."
 
 #. settings-schema.json->focus_ambient_volume->description
 msgid "Ambient volume"
 msgstr "Volume do ambiente"
 
 #. settings-schema.json->focus_ambient_volume->tooltip
-msgid "Volume of the brown-noise ambient sound (0 = silent)."
-msgstr "Volume do som ambiente de ruído marrom (0 = mudo)."
+msgid "Volume of the ambient sound (0 = silent)."
+msgstr "Volume do som ambiente (0 = silêncio)."
 
 #. settings-schema.json->break_breathing->description
 msgid "Show a breathing guide during breaks"
@@ -2390,6 +2394,27 @@ msgstr "Meta diária — som"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Meta diária — prioridade"
+
+#. settings-schema.json->focus_ambient_file->description
+msgid "Ambient sound file"
+msgstr "Arquivo de som ambiente"
+
+#. settings-schema.json->focus_ambient_file->tooltip
+msgid ""
+"Pick your own looping ambient sound. Leave empty for the built-in soft brown"
+" noise."
+msgstr ""
+"Escolha seu próprio som ambiente em loop. Deixe vazio para o ruído marrom "
+"integrado."
+
+#~ msgid "Play soft ambient (brown noise) during focus"
+#~ msgstr "Tocar som ambiente suave (ruído marrom) durante o foco"
+
+#~ msgid "Play soft brown noise during focus."
+#~ msgstr "Toca um ruído marrom suave durante o foco."
+
+#~ msgid "Volume of the brown-noise ambient sound (0 = silent)."
+#~ msgstr "Volume do som ambiente de ruído marrom (0 = mudo)."
 
 #~ msgid ""
 #~ "Pushover sends alerts to your phone or desktop. Create a free account at "

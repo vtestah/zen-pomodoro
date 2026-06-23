@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 21:56+0700\n"
+"POT-Creation-Date: 2026-06-23 22:34+0700\n"
 "PO-Revision-Date: 2017-03-14 22:17+0800\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: zh_CN\n"
@@ -18,152 +18,152 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.11\n"
 
-#: applet.js:579
+#: applet.js:586
 msgid "Strict focus is on"
 msgstr "严格专注已开启"
 
-#: applet.js:579
+#: applet.js:586
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "坚持住 — 完成这个专注块，或重置以重新开始。"
 
-#: applet.js:645 applet.js:1982
+#: applet.js:652 applet.js:1990
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "专注时长：%d 分钟"
 
-#: applet.js:952
+#: applet.js:959
 msgid "Focus session restored — resume when ready"
 msgstr "专注会话已恢复 — 准备好后继续"
 
-#: applet.js:987
+#: applet.js:995
 msgid "FOCUS"
 msgstr "专注"
 
-#: applet.js:989
+#: applet.js:997
 msgid "PAUSED FOCUS"
 msgstr "专注已暂停"
 
-#: applet.js:992
+#: applet.js:1000
 msgid "BREAK"
 msgstr "休息"
 
-#: applet.js:995
+#: applet.js:1003
 msgid "PAUSED BREAK"
 msgstr "休息已暂停"
 
-#: applet.js:997
+#: applet.js:1005
 msgid "BREAK OVER"
 msgstr "休息结束"
 
-#: applet.js:1000 applet.js:1060 menu.js:237 menu.js:649
+#: applet.js:1008 applet.js:1068 menu.js:237 menu.js:649
 msgid "Ready to focus"
 msgstr "准备专注"
 
-#: applet.js:1018
+#: applet.js:1026
 msgid "Short break running"
 msgstr "短时休息运行中"
 
-#: applet.js:1021
+#: applet.js:1029
 msgid "Short break paused"
 msgstr "短时休息已暂停"
 
-#: applet.js:1024
+#: applet.js:1032
 msgid "Long break running"
 msgstr "长时休息运行中"
 
-#: applet.js:1027
+#: applet.js:1035
 msgid "Long break paused"
 msgstr "长时休息已暂停"
 
-#: applet.js:1030 applet.js:1422
+#: applet.js:1038 applet.js:1430
 msgid "Break ended"
 msgstr "休息结束"
 
-#: applet.js:1033
+#: applet.js:1041
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "番茄钟%d，设置%d正在运行"
 
-#: applet.js:1038 features.js:412 features.js:1097 menu.js:671
+#: applet.js:1046 features.js:412 features.js:1097 menu.js:671
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ %s 完成 · 还剩 %d 🍅"
 
-#: applet.js:1043
+#: applet.js:1051
 msgid "Pomodoro paused"
 msgstr "番茄钟已暂停"
 
-#: applet.js:1046
+#: applet.js:1054
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "准备专注 — 滚动滚轮或按中键开始"
 
-#: applet.js:1191
+#: applet.js:1199
 msgid "Classic"
 msgstr "经典"
 
-#: applet.js:1192
+#: applet.js:1200
 msgid "Long focus"
 msgstr "长时专注"
 
-#: applet.js:1402
+#: applet.js:1410
 msgid "Pomodoro started"
 msgstr "番茄钟已启动"
 
-#: applet.js:1480
+#: applet.js:1488
 msgid "Let's go to work!"
 msgstr "让我们工作吧！"
 
-#: applet.js:1507
+#: applet.js:1515
 msgid "Pomodoro done"
 msgstr "番茄钟完成"
 
-#: applet.js:1509
+#: applet.js:1517
 msgid "Take a short break"
 msgstr "短时休息"
 
-#: applet.js:1510 applet.js:1548
+#: applet.js:1518 applet.js:1556
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d 分钟"
 
-#: applet.js:1511 applet.js:1549
+#: applet.js:1519 applet.js:1557
 msgid "Skip break"
 msgstr "跳过休息"
 
-#: applet.js:1542
+#: applet.js:1550
 msgid "Set complete!"
 msgstr "一组完成！"
 
-#: applet.js:1547
+#: applet.js:1555
 msgid "Take a long break"
 msgstr "长时休息"
 
-#: applet.js:1600
+#: applet.js:1608
 msgid "Pomodoro ended"
 msgstr "番茄钟结束"
 
-#: applet.js:1675 applet.js:1699 applet.js:1702
+#: applet.js:1683 applet.js:1707 applet.js:1710
 msgid "Pomodoro preflight failed"
 msgstr "番茄钟启动前检查失败"
 
-#: applet.js:1871
+#: applet.js:1879
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://zh.wikipedia.org/wiki/番茄工作法"
 
-#: applet.js:1948 features.js:1858
+#: applet.js:1956 features.js:1875
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "更改番茄钟预设前请先停止定时器"
 
-#: applet.js:1965
+#: applet.js:1973
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "已应用番茄钟预设 %s"
 
-#: applet.js:1977
+#: applet.js:1985
 msgid "Stop the timer before changing the focus length"
 msgstr "更改专注时长前请先停止定时器"
 
-#: applet.js:1994
+#: applet.js:2002
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "休息已延长 %d 分钟"
@@ -181,11 +181,11 @@ msgid "Choose or type a focus task"
 msgstr "选择或输入一个专注任务"
 
 #: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1906
+#: features.js:1923
 msgid "Cancel"
 msgstr "取消"
 
-#: dialogs.js:72 features.js:1907
+#: dialogs.js:72 features.js:1924
 msgid "Start"
 msgstr "开始"
 
@@ -787,70 +787,70 @@ msgstr "重置统计…"
 msgid "Close"
 msgstr "关闭"
 
-#: features.js:1495
+#: features.js:1512
 msgid "No task"
 msgstr "无任务"
 
-#: features.js:1532
+#: features.js:1549
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "推送通知需要 libsoup，但此处不可用。"
 
-#: features.js:1538
+#: features.js:1555
 msgid "Enter your Pushover user key and app token first."
 msgstr "请先输入你的 Pushover 用户密钥和应用令牌。"
 
-#: features.js:1545
+#: features.js:1562
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "来自 Zen Pomodoro 的测试通知 🍅"
 
-#: features.js:1567
+#: features.js:1584
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Pushover 测试已发送 ✓ — 请检查你的设备。"
 
-#: features.js:1568 features.js:1572
+#: features.js:1585 features.js:1589
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr "Pushover 测试失败。请仔细检查你的用户密钥和应用令牌。"
 
-#: features.js:1615
+#: features.js:1632
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
 msgstr "要在专注期间自动屏蔽网站，请在设置中开启免密码屏蔽。"
 
-#: features.js:1673
+#: features.js:1690
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "已启用免密码屏蔽（不再提示）。"
 
-#: features.js:1679
+#: features.js:1696
 msgid "Passwordless blocking removed."
 msgstr "已移除免密码屏蔽。"
 
-#: features.js:1716
+#: features.js:1733
 msgid "Click to exit Zen"
 msgstr "点击退出禅模式"
 
 #. settings-schema.json->focus->title
-#: features.js:1751 visual.js:894
+#: features.js:1768 visual.js:894
 msgid "Focus"
 msgstr "专注"
 
-#: features.js:1828
+#: features.js:1845
 msgid "Breathe in"
 msgstr "吸气"
 
-#: features.js:1831 features.js:1837
+#: features.js:1848 features.js:1854
 msgid "Hold"
 msgstr "屏息"
 
-#: features.js:1834
+#: features.js:1851
 msgid "Breathe out"
 msgstr "呼气"
 
-#: features.js:1864
+#: features.js:1881
 msgid "Focus until"
 msgstr "专注至"
 
-#: features.js:1865
+#: features.js:1882
 msgid "Enter a time (HH:MM)"
 msgstr "输入时间（HH:MM）"
 
@@ -1665,20 +1665,22 @@ msgid "How many extra minutes the 'extend focus' option adds."
 msgstr "“延长专注”选项增加多少额外分钟。"
 
 #. settings-schema.json->focus_ambient_sound->description
-msgid "Play soft ambient (brown noise) during focus"
-msgstr "专注期间播放柔和的环境音（棕噪声）"
+msgid "Play an ambient sound during focus"
+msgstr "专注期间播放背景音"
 
 #. settings-schema.json->focus_ambient_sound->tooltip
-msgid "Play soft brown noise during focus."
-msgstr "专注期间播放柔和的棕噪声。"
+msgid ""
+"Loop a soft ambient sound during focus — the built-in brown noise, or your "
+"own file below."
+msgstr "专注期间循环播放柔和的背景音——内置的棕噪音，或下面你自己的文件。"
 
 #. settings-schema.json->focus_ambient_volume->description
 msgid "Ambient volume"
 msgstr "环境音音量"
 
 #. settings-schema.json->focus_ambient_volume->tooltip
-msgid "Volume of the brown-noise ambient sound (0 = silent)."
-msgstr "棕噪声环境音的音量（0 = 静音）。"
+msgid "Volume of the ambient sound (0 = silent)."
+msgstr "背景音的音量（0 = 静音）。"
 
 #. settings-schema.json->break_breathing->description
 msgid "Show a breathing guide during breaks"
@@ -2267,6 +2269,25 @@ msgstr "每日目标 — 声音"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "每日目标 — 优先级"
+
+#. settings-schema.json->focus_ambient_file->description
+msgid "Ambient sound file"
+msgstr "背景音文件"
+
+#. settings-schema.json->focus_ambient_file->tooltip
+msgid ""
+"Pick your own looping ambient sound. Leave empty for the built-in soft brown"
+" noise."
+msgstr "选择你自己的循环背景音。留空则使用内置的柔和棕噪音。"
+
+#~ msgid "Play soft ambient (brown noise) during focus"
+#~ msgstr "专注期间播放柔和的环境音（棕噪声）"
+
+#~ msgid "Play soft brown noise during focus."
+#~ msgstr "专注期间播放柔和的棕噪声。"
+
+#~ msgid "Volume of the brown-noise ambient sound (0 = silent)."
+#~ msgstr "棕噪声环境音的音量（0 = 静音）。"
 
 #~ msgid ""
 #~ "Pushover sends alerts to your phone or desktop. Create a free account at "

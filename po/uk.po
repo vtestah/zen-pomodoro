@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 21:56+0700\n"
+"POT-Creation-Date: 2026-06-23 22:34+0700\n"
 "PO-Revision-Date: 2022-01-05 13:55+0200\n"
 "Last-Translator: Rutar <RutarAndriy@gmail.com>\n"
 "Language-Team: Ukrainian\n"
@@ -18,152 +18,152 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.0\n"
 
-#: applet.js:579
+#: applet.js:586
 msgid "Strict focus is on"
 msgstr "Суворий фокус увімкнено"
 
-#: applet.js:579
+#: applet.js:586
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Тримайтеся — завершіть блок або скиньте, щоб почати заново."
 
-#: applet.js:645 applet.js:1982
+#: applet.js:652 applet.js:1990
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Довжина фокусу: %d хв"
 
-#: applet.js:952
+#: applet.js:959
 msgid "Focus session restored — resume when ready"
 msgstr "Сесію фокусу відновлено — продовжте, коли будете готові"
 
-#: applet.js:987
+#: applet.js:995
 msgid "FOCUS"
 msgstr "ФОКУС"
 
-#: applet.js:989
+#: applet.js:997
 msgid "PAUSED FOCUS"
 msgstr "ФОКУС НА ПАУЗІ"
 
-#: applet.js:992
+#: applet.js:1000
 msgid "BREAK"
 msgstr "ПЕРЕРВА"
 
-#: applet.js:995
+#: applet.js:1003
 msgid "PAUSED BREAK"
 msgstr "ПЕРЕРВА НА ПАУЗІ"
 
-#: applet.js:997
+#: applet.js:1005
 msgid "BREAK OVER"
 msgstr "ПЕРЕРВУ ЗАКІНЧЕНО"
 
-#: applet.js:1000 applet.js:1060 menu.js:237 menu.js:649
+#: applet.js:1008 applet.js:1068 menu.js:237 menu.js:649
 msgid "Ready to focus"
 msgstr "Готові до фокусу"
 
-#: applet.js:1018
+#: applet.js:1026
 msgid "Short break running"
 msgstr "Коротка перерва почалася"
 
-#: applet.js:1021
+#: applet.js:1029
 msgid "Short break paused"
 msgstr "Коротку перерву призупинено"
 
-#: applet.js:1024
+#: applet.js:1032
 msgid "Long break running"
 msgstr "Довга перерва почалася"
 
-#: applet.js:1027
+#: applet.js:1035
 msgid "Long break paused"
 msgstr "Довгу перерву призупинено"
 
-#: applet.js:1030 applet.js:1422
+#: applet.js:1038 applet.js:1430
 msgid "Break ended"
 msgstr "Перерву закінчено"
 
-#: applet.js:1033
+#: applet.js:1041
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodoro %d, set %d працює"
 
-#: applet.js:1038 features.js:412 features.js:1097 menu.js:671
+#: applet.js:1046 features.js:412 features.js:1097 menu.js:671
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ фініш %s · залишилось %d 🍅"
 
-#: applet.js:1043
+#: applet.js:1051
 msgid "Pomodoro paused"
 msgstr "Pomodoro призупинено"
 
-#: applet.js:1046
+#: applet.js:1054
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Готові до фокусу — прокрутіть або клацніть середньою, щоб почати"
 
-#: applet.js:1191
+#: applet.js:1199
 msgid "Classic"
 msgstr "Класичний"
 
-#: applet.js:1192
+#: applet.js:1200
 msgid "Long focus"
 msgstr "Довгий фокус"
 
-#: applet.js:1402
+#: applet.js:1410
 msgid "Pomodoro started"
 msgstr "Pomodoro запущено"
 
-#: applet.js:1480
+#: applet.js:1488
 msgid "Let's go to work!"
 msgstr "Давай працювати!"
 
-#: applet.js:1507
+#: applet.js:1515
 msgid "Pomodoro done"
 msgstr "Pomodoro готово"
 
-#: applet.js:1509
+#: applet.js:1517
 msgid "Take a short break"
 msgstr "Зробіть коротку перерву"
 
-#: applet.js:1510 applet.js:1548
+#: applet.js:1518 applet.js:1556
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d хв"
 
-#: applet.js:1511 applet.js:1549
+#: applet.js:1519 applet.js:1557
 msgid "Skip break"
 msgstr "Пропустити перерву"
 
-#: applet.js:1542
+#: applet.js:1550
 msgid "Set complete!"
 msgstr "Підхід завершено!"
 
-#: applet.js:1547
+#: applet.js:1555
 msgid "Take a long break"
 msgstr "Зробіть довгу перерву"
 
-#: applet.js:1600
+#: applet.js:1608
 msgid "Pomodoro ended"
 msgstr "Pomodoro завершено"
 
-#: applet.js:1675 applet.js:1699 applet.js:1702
+#: applet.js:1683 applet.js:1707 applet.js:1710
 msgid "Pomodoro preflight failed"
 msgstr "Передстартову перевірку Pomodoro не пройдено"
 
-#: applet.js:1871
+#: applet.js:1879
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://uk.wikipedia.org/wiki/Метод_Pomodoro"
 
-#: applet.js:1948 features.js:1858
+#: applet.js:1956 features.js:1875
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Зупиніть таймер перед зміною пресету Pomodoro"
 
-#: applet.js:1965
+#: applet.js:1973
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Застосовано пресет Pomodoro %s"
 
-#: applet.js:1977
+#: applet.js:1985
 msgid "Stop the timer before changing the focus length"
 msgstr "Зупиніть таймер, перш ніж змінювати довжину фокусу"
 
-#: applet.js:1994
+#: applet.js:2002
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Перерву продовжено на %d хв"
@@ -181,11 +181,11 @@ msgid "Choose or type a focus task"
 msgstr "Виберіть або введіть завдання фокусу"
 
 #: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1906
+#: features.js:1923
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: dialogs.js:72 features.js:1907
+#: dialogs.js:72 features.js:1924
 msgid "Start"
 msgstr "Старт"
 
@@ -796,33 +796,33 @@ msgstr "Скинути статистику…"
 msgid "Close"
 msgstr "Закрити"
 
-#: features.js:1495
+#: features.js:1512
 msgid "No task"
 msgstr "Без завдання"
 
-#: features.js:1532
+#: features.js:1549
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "Для push-сповіщень потрібен libsoup, якого тут немає."
 
-#: features.js:1538
+#: features.js:1555
 msgid "Enter your Pushover user key and app token first."
 msgstr "Спершу введіть ключ користувача та токен застосунку Pushover."
 
-#: features.js:1545
+#: features.js:1562
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Тестове сповіщення від Zen Pomodoro 🍅"
 
-#: features.js:1567
+#: features.js:1584
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Тест Pushover надіслано ✓ — перевірте пристрій."
 
-#: features.js:1568 features.js:1572
+#: features.js:1585 features.js:1589
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr ""
 "Не вдалося надіслати тест Pushover. Перевірте ключ користувача та токен "
 "застосунку."
 
-#: features.js:1615
+#: features.js:1632
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -830,40 +830,40 @@ msgstr ""
 "Щоб автоматично блокувати сайти під час фокуса, увімкніть безпарольне "
 "блокування в налаштуваннях."
 
-#: features.js:1673
+#: features.js:1690
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Безпарольне блокування увімкнено (без запиту)."
 
-#: features.js:1679
+#: features.js:1696
 msgid "Passwordless blocking removed."
 msgstr "Безпарольне налаштування вилучено."
 
-#: features.js:1716
+#: features.js:1733
 msgid "Click to exit Zen"
 msgstr "Натисніть, щоб вийти із Дзену"
 
 #. settings-schema.json->focus->title
-#: features.js:1751 visual.js:894
+#: features.js:1768 visual.js:894
 msgid "Focus"
 msgstr "Фокус"
 
-#: features.js:1828
+#: features.js:1845
 msgid "Breathe in"
 msgstr "Вдих"
 
-#: features.js:1831 features.js:1837
+#: features.js:1848 features.js:1854
 msgid "Hold"
 msgstr "Затримка"
 
-#: features.js:1834
+#: features.js:1851
 msgid "Breathe out"
 msgstr "Видих"
 
-#: features.js:1864
+#: features.js:1881
 msgid "Focus until"
 msgstr "Фокус до"
 
-#: features.js:1865
+#: features.js:1882
 msgid "Enter a time (HH:MM)"
 msgstr "Введіть час (ГГ:ХХ)"
 
@@ -1718,20 +1718,24 @@ msgid "How many extra minutes the 'extend focus' option adds."
 msgstr "Скільки додаткових хвилин додає опція «продовжити фокус»."
 
 #. settings-schema.json->focus_ambient_sound->description
-msgid "Play soft ambient (brown noise) during focus"
-msgstr "Тихий фон (коричневий шум) під час фокусу"
+msgid "Play an ambient sound during focus"
+msgstr "Відтворювати фоновий звук під час фокуса"
 
 #. settings-schema.json->focus_ambient_sound->tooltip
-msgid "Play soft brown noise during focus."
-msgstr "Відтворювати м’який коричневий шум під час фокусу."
+msgid ""
+"Loop a soft ambient sound during focus — the built-in brown noise, or your "
+"own file below."
+msgstr ""
+"Зациклений м’який фоновий звук під час фокуса — вбудований коричневий шум "
+"або власний файл нижче."
 
 #. settings-schema.json->focus_ambient_volume->description
 msgid "Ambient volume"
 msgstr "Гучність фону"
 
 #. settings-schema.json->focus_ambient_volume->tooltip
-msgid "Volume of the brown-noise ambient sound (0 = silent)."
-msgstr "Гучність фонового шуму (0 = тихо)."
+msgid "Volume of the ambient sound (0 = silent)."
+msgstr "Гучність фонового звуку (0 = тиша)."
 
 #. settings-schema.json->break_breathing->description
 msgid "Show a breathing guide during breaks"
@@ -2364,6 +2368,27 @@ msgstr "Денна ціль — звук"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Денна ціль — пріоритет"
+
+#. settings-schema.json->focus_ambient_file->description
+msgid "Ambient sound file"
+msgstr "Файл фонового звуку"
+
+#. settings-schema.json->focus_ambient_file->tooltip
+msgid ""
+"Pick your own looping ambient sound. Leave empty for the built-in soft brown"
+" noise."
+msgstr ""
+"Виберіть власний зациклений фоновий звук. Залиште порожнім для вбудованого "
+"коричневого шуму."
+
+#~ msgid "Play soft ambient (brown noise) during focus"
+#~ msgstr "Тихий фон (коричневий шум) під час фокусу"
+
+#~ msgid "Play soft brown noise during focus."
+#~ msgstr "Відтворювати м’який коричневий шум під час фокусу."
+
+#~ msgid "Volume of the brown-noise ambient sound (0 = silent)."
+#~ msgstr "Гучність фонового шуму (0 = тихо)."
 
 #~ msgid ""
 #~ "Pushover sends alerts to your phone or desktop. Create a free account at "

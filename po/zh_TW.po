@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 21:56+0700\n"
+"POT-Creation-Date: 2026-06-23 22:34+0700\n"
 "PO-Revision-Date: 2025-07-27 02:35+08:00\n"
 "Last-Translator: Peter Dave Hello <hsu@peterdavehello.org>\n"
 "Language-Team: zh_TW\n"
@@ -16,152 +16,152 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: applet.js:579
+#: applet.js:586
 msgid "Strict focus is on"
 msgstr "嚴格專注已開啟"
 
-#: applet.js:579
+#: applet.js:586
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "堅持下去 — 完成這個區塊，或重設以重新開始。"
 
-#: applet.js:645 applet.js:1982
+#: applet.js:652 applet.js:1990
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "專注時長：%d 分鐘"
 
-#: applet.js:952
+#: applet.js:959
 msgid "Focus session restored — resume when ready"
 msgstr "專注工作階段已復原 — 準備好即可繼續"
 
-#: applet.js:987
+#: applet.js:995
 msgid "FOCUS"
 msgstr "專注"
 
-#: applet.js:989
+#: applet.js:997
 msgid "PAUSED FOCUS"
 msgstr "專注已暫停"
 
-#: applet.js:992
+#: applet.js:1000
 msgid "BREAK"
 msgstr "休息"
 
-#: applet.js:995
+#: applet.js:1003
 msgid "PAUSED BREAK"
 msgstr "休息已暫停"
 
-#: applet.js:997
+#: applet.js:1005
 msgid "BREAK OVER"
 msgstr "休息結束"
 
-#: applet.js:1000 applet.js:1060 menu.js:237 menu.js:649
+#: applet.js:1008 applet.js:1068 menu.js:237 menu.js:649
 msgid "Ready to focus"
 msgstr "準備專注"
 
-#: applet.js:1018
+#: applet.js:1026
 msgid "Short break running"
 msgstr "短暫休息進行中"
 
-#: applet.js:1021
+#: applet.js:1029
 msgid "Short break paused"
 msgstr "短暫休息已暫停"
 
-#: applet.js:1024
+#: applet.js:1032
 msgid "Long break running"
 msgstr "長時間休息進行中"
 
-#: applet.js:1027
+#: applet.js:1035
 msgid "Long break paused"
 msgstr "長時間休息已暫停"
 
-#: applet.js:1030 applet.js:1422
+#: applet.js:1038 applet.js:1430
 msgid "Break ended"
 msgstr "休息結束"
 
-#: applet.js:1033
+#: applet.js:1041
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "第 %d 個番茄鐘，第 %d 組進行中"
 
-#: applet.js:1038 features.js:412 features.js:1097 menu.js:671
+#: applet.js:1046 features.js:412 features.js:1097 menu.js:671
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ %s 完成 · 還剩 %d 🍅"
 
-#: applet.js:1043
+#: applet.js:1051
 msgid "Pomodoro paused"
 msgstr "番茄鐘已暫停"
 
-#: applet.js:1046
+#: applet.js:1054
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "準備專注 — 捲動或按中鍵開始"
 
-#: applet.js:1191
+#: applet.js:1199
 msgid "Classic"
 msgstr "經典"
 
-#: applet.js:1192
+#: applet.js:1200
 msgid "Long focus"
 msgstr "長時間專注"
 
-#: applet.js:1402
+#: applet.js:1410
 msgid "Pomodoro started"
 msgstr "番茄鐘已開始"
 
-#: applet.js:1480
+#: applet.js:1488
 msgid "Let's go to work!"
 msgstr "開始工作吧！"
 
-#: applet.js:1507
+#: applet.js:1515
 msgid "Pomodoro done"
 msgstr "番茄鐘完成"
 
-#: applet.js:1509
+#: applet.js:1517
 msgid "Take a short break"
 msgstr "來個短暫休息"
 
-#: applet.js:1510 applet.js:1548
+#: applet.js:1518 applet.js:1556
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d 分鐘"
 
-#: applet.js:1511 applet.js:1549
+#: applet.js:1519 applet.js:1557
 msgid "Skip break"
 msgstr "跳過休息"
 
-#: applet.js:1542
+#: applet.js:1550
 msgid "Set complete!"
 msgstr "這組完成了！"
 
-#: applet.js:1547
+#: applet.js:1555
 msgid "Take a long break"
 msgstr "來個長時間休息"
 
-#: applet.js:1600
+#: applet.js:1608
 msgid "Pomodoro ended"
 msgstr "番茄鐘已結束"
 
-#: applet.js:1675 applet.js:1699 applet.js:1702
+#: applet.js:1683 applet.js:1707 applet.js:1710
 msgid "Pomodoro preflight failed"
 msgstr "番茄鐘啟動前檢查失敗"
 
-#: applet.js:1871
+#: applet.js:1879
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://zh.wikipedia.org/zh-tw/番茄工作法"
 
-#: applet.js:1948 features.js:1858
+#: applet.js:1956 features.js:1875
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "變更番茄鐘預設組合前請先停止計時器"
 
-#: applet.js:1965
+#: applet.js:1973
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "已套用番茄鐘預設組合 %s"
 
-#: applet.js:1977
+#: applet.js:1985
 msgid "Stop the timer before changing the focus length"
 msgstr "變更專注時長前請先停止計時器"
 
-#: applet.js:1994
+#: applet.js:2002
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "休息已延長 %d 分鐘"
@@ -179,11 +179,11 @@ msgid "Choose or type a focus task"
 msgstr "選擇或輸入專注任務"
 
 #: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1906
+#: features.js:1923
 msgid "Cancel"
 msgstr "取消"
 
-#: dialogs.js:72 features.js:1907
+#: dialogs.js:72 features.js:1924
 msgid "Start"
 msgstr "開始"
 
@@ -784,70 +784,70 @@ msgstr "重設統計…"
 msgid "Close"
 msgstr "關閉"
 
-#: features.js:1495
+#: features.js:1512
 msgid "No task"
 msgstr "無任務"
 
-#: features.js:1532
+#: features.js:1549
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "推播通知需要 libsoup，但此處無法使用。"
 
-#: features.js:1538
+#: features.js:1555
 msgid "Enter your Pushover user key and app token first."
 msgstr "請先輸入你的 Pushover 使用者金鑰與應用程式權杖。"
 
-#: features.js:1545
+#: features.js:1562
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "來自 Zen Pomodoro 的測試通知 🍅"
 
-#: features.js:1567
+#: features.js:1584
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Pushover 測試已送出 ✓ — 請查看你的裝置。"
 
-#: features.js:1568 features.js:1572
+#: features.js:1585 features.js:1589
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr "Pushover 測試失敗。請再次確認你的使用者金鑰與應用程式權杖。"
 
-#: features.js:1615
+#: features.js:1632
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
 msgstr "若要在專注期間自動封鎖網站，請在設定中開啟免密碼封鎖。"
 
-#: features.js:1673
+#: features.js:1690
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "免密碼封鎖已啟用（不會詢問）。"
 
-#: features.js:1679
+#: features.js:1696
 msgid "Passwordless blocking removed."
 msgstr "免密碼封鎖已移除。"
 
-#: features.js:1716
+#: features.js:1733
 msgid "Click to exit Zen"
 msgstr "點擊離開禪模式"
 
 #. settings-schema.json->focus->title
-#: features.js:1751 visual.js:894
+#: features.js:1768 visual.js:894
 msgid "Focus"
 msgstr "專注"
 
-#: features.js:1828
+#: features.js:1845
 msgid "Breathe in"
 msgstr "吸氣"
 
-#: features.js:1831 features.js:1837
+#: features.js:1848 features.js:1854
 msgid "Hold"
 msgstr "屏息"
 
-#: features.js:1834
+#: features.js:1851
 msgid "Breathe out"
 msgstr "吐氣"
 
-#: features.js:1864
+#: features.js:1881
 msgid "Focus until"
 msgstr "專注至"
 
-#: features.js:1865
+#: features.js:1882
 msgid "Enter a time (HH:MM)"
 msgstr "輸入時間（HH:MM）"
 
@@ -1662,20 +1662,22 @@ msgid "How many extra minutes the 'extend focus' option adds."
 msgstr "「延長專注」選項會額外增加幾分鐘。"
 
 #. settings-schema.json->focus_ambient_sound->description
-msgid "Play soft ambient (brown noise) during focus"
-msgstr "專注時播放柔和的背景音（棕噪音）"
+msgid "Play an ambient sound during focus"
+msgstr "專注期間播放背景音"
 
 #. settings-schema.json->focus_ambient_sound->tooltip
-msgid "Play soft brown noise during focus."
-msgstr "專注時播放柔和的棕噪音。"
+msgid ""
+"Loop a soft ambient sound during focus — the built-in brown noise, or your "
+"own file below."
+msgstr "專注期間循環播放柔和的背景音——內建的棕噪音，或下面你自己的檔案。"
 
 #. settings-schema.json->focus_ambient_volume->description
 msgid "Ambient volume"
 msgstr "背景音量"
 
 #. settings-schema.json->focus_ambient_volume->tooltip
-msgid "Volume of the brown-noise ambient sound (0 = silent)."
-msgstr "棕噪音背景音的音量（0 = 靜音）。"
+msgid "Volume of the ambient sound (0 = silent)."
+msgstr "背景音的音量（0 = 靜音）。"
 
 #. settings-schema.json->break_breathing->description
 msgid "Show a breathing guide during breaks"
@@ -2264,6 +2266,25 @@ msgstr "每日目標 — 音效"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "每日目標 — 優先順序"
+
+#. settings-schema.json->focus_ambient_file->description
+msgid "Ambient sound file"
+msgstr "背景音檔案"
+
+#. settings-schema.json->focus_ambient_file->tooltip
+msgid ""
+"Pick your own looping ambient sound. Leave empty for the built-in soft brown"
+" noise."
+msgstr "選擇你自己的循環背景音。留空則使用內建的柔和棕噪音。"
+
+#~ msgid "Play soft ambient (brown noise) during focus"
+#~ msgstr "專注時播放柔和的背景音（棕噪音）"
+
+#~ msgid "Play soft brown noise during focus."
+#~ msgstr "專注時播放柔和的棕噪音。"
+
+#~ msgid "Volume of the brown-noise ambient sound (0 = silent)."
+#~ msgstr "棕噪音背景音的音量（0 = 靜音）。"
 
 #~ msgid ""
 #~ "Pushover sends alerts to your phone or desktop. Create a free account at "

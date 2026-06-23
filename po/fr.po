@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 21:56+0700\n"
+"POT-Creation-Date: 2026-06-23 22:34+0700\n"
 "PO-Revision-Date: 2024-10-02 21:47+0200\n"
 "Last-Translator: Claudiux <claude.clerc@gmail.com>\n"
 "Language-Team: French\n"
@@ -19,154 +19,154 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: applet.js:579
+#: applet.js:586
 msgid "Strict focus is on"
 msgstr "Concentration stricte activée"
 
-#: applet.js:579
+#: applet.js:586
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr ""
 "Restez concentré — terminez le bloc, ou réinitialisez pour recommencer."
 
-#: applet.js:645 applet.js:1982
+#: applet.js:652 applet.js:1990
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Durée de focus : %d min"
 
-#: applet.js:952
+#: applet.js:959
 msgid "Focus session restored — resume when ready"
 msgstr "Session de focus restaurée — reprenez quand vous voulez"
 
-#: applet.js:987
+#: applet.js:995
 msgid "FOCUS"
 msgstr "FOCUS"
 
-#: applet.js:989
+#: applet.js:997
 msgid "PAUSED FOCUS"
 msgstr "FOCUS EN PAUSE"
 
-#: applet.js:992
+#: applet.js:1000
 msgid "BREAK"
 msgstr "PAUSE"
 
-#: applet.js:995
+#: applet.js:1003
 msgid "PAUSED BREAK"
 msgstr "PAUSE SUSPENDUE"
 
-#: applet.js:997
+#: applet.js:1005
 msgid "BREAK OVER"
 msgstr "PAUSE TERMINÉE"
 
-#: applet.js:1000 applet.js:1060 menu.js:237 menu.js:649
+#: applet.js:1008 applet.js:1068 menu.js:237 menu.js:649
 msgid "Ready to focus"
 msgstr "Prêt à se concentrer"
 
-#: applet.js:1018
+#: applet.js:1026
 msgid "Short break running"
 msgstr "Courte pose en cours"
 
-#: applet.js:1021
+#: applet.js:1029
 msgid "Short break paused"
 msgstr "Courte pause suspendue"
 
-#: applet.js:1024
+#: applet.js:1032
 msgid "Long break running"
 msgstr "Longue pause en cours"
 
-#: applet.js:1027
+#: applet.js:1035
 msgid "Long break paused"
 msgstr "Longue pause suspendue"
 
-#: applet.js:1030 applet.js:1422
+#: applet.js:1038 applet.js:1430
 msgid "Break ended"
 msgstr "Pause terminée"
 
-#: applet.js:1033
+#: applet.js:1041
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodoro %d, set %d en cours"
 
-#: applet.js:1038 features.js:412 features.js:1097 menu.js:671
+#: applet.js:1046 features.js:412 features.js:1097 menu.js:671
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ fin %s · %d 🍅 restant"
 
-#: applet.js:1043
+#: applet.js:1051
 msgid "Pomodoro paused"
 msgstr "Pomodoro en pause"
 
-#: applet.js:1046
+#: applet.js:1054
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Prêt à se concentrer — molette ou clic du milieu pour démarrer"
 
-#: applet.js:1191
+#: applet.js:1199
 msgid "Classic"
 msgstr "Classique"
 
-#: applet.js:1192
+#: applet.js:1200
 msgid "Long focus"
 msgstr "Focus long"
 
 # notifications
-#: applet.js:1402
+#: applet.js:1410
 msgid "Pomodoro started"
 msgstr "Pomodoro démarré"
 
-#: applet.js:1480
+#: applet.js:1488
 msgid "Let's go to work!"
 msgstr "Au travail!"
 
-#: applet.js:1507
+#: applet.js:1515
 msgid "Pomodoro done"
 msgstr "Pomodoro terminé"
 
-#: applet.js:1509
+#: applet.js:1517
 msgid "Take a short break"
 msgstr "Prenez une courte pause"
 
-#: applet.js:1510 applet.js:1548
+#: applet.js:1518 applet.js:1556
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d min"
 
-#: applet.js:1511 applet.js:1549
+#: applet.js:1519 applet.js:1557
 msgid "Skip break"
 msgstr "Passer la pause"
 
-#: applet.js:1542
+#: applet.js:1550
 msgid "Set complete!"
 msgstr "Série terminée !"
 
-#: applet.js:1547
+#: applet.js:1555
 msgid "Take a long break"
 msgstr "Prenez une longue pause"
 
-#: applet.js:1600
+#: applet.js:1608
 msgid "Pomodoro ended"
 msgstr "Pomodoro terminé"
 
-#: applet.js:1675 applet.js:1699 applet.js:1702
+#: applet.js:1683 applet.js:1707 applet.js:1710
 msgid "Pomodoro preflight failed"
 msgstr "Échec de la vérification préalable du Pomodoro"
 
-#: applet.js:1871
+#: applet.js:1879
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://fr.wikipedia.org/wiki/Technique_Pomodoro"
 
-#: applet.js:1948 features.js:1858
+#: applet.js:1956 features.js:1875
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Arrêtez le minuteur avant de changer de préréglage Pomodoro"
 
-#: applet.js:1965
+#: applet.js:1973
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Préréglage Pomodoro %s appliqué"
 
-#: applet.js:1977
+#: applet.js:1985
 msgid "Stop the timer before changing the focus length"
 msgstr "Arrêtez le minuteur avant de changer la durée de focus"
 
-#: applet.js:1994
+#: applet.js:2002
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Pause prolongée de %d min"
@@ -184,11 +184,11 @@ msgid "Choose or type a focus task"
 msgstr "Choisissez ou saisissez une tâche de focus"
 
 #: dialogs.js:65 features.js:499 features.js:559 features.js:1179
-#: features.js:1906
+#: features.js:1923
 msgid "Cancel"
 msgstr "Annuler"
 
-#: dialogs.js:72 features.js:1907
+#: dialogs.js:72 features.js:1924
 msgid "Start"
 msgstr "Démarrer"
 
@@ -806,35 +806,35 @@ msgstr "Réinitialiser les statistiques…"
 msgid "Close"
 msgstr "Fermer"
 
-#: features.js:1495
+#: features.js:1512
 msgid "No task"
 msgstr "Aucune tâche"
 
-#: features.js:1532
+#: features.js:1549
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "Les notifications push nécessitent libsoup, indisponible ici."
 
-#: features.js:1538
+#: features.js:1555
 msgid "Enter your Pushover user key and app token first."
 msgstr ""
 "Saisissez d'abord votre clé utilisateur et votre jeton d'application "
 "Pushover."
 
-#: features.js:1545
+#: features.js:1562
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Notification de test de Zen Pomodoro 🍅"
 
-#: features.js:1567
+#: features.js:1584
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Test Pushover envoyé ✓ — vérifiez votre appareil."
 
-#: features.js:1568 features.js:1572
+#: features.js:1585 features.js:1589
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr ""
 "Échec du test Pushover. Vérifiez votre clé utilisateur et votre jeton "
 "d'application."
 
-#: features.js:1615
+#: features.js:1632
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -842,40 +842,40 @@ msgstr ""
 "Pour bloquer les sites automatiquement pendant la concentration, activez le "
 "blocage sans mot de passe dans les paramètres."
 
-#: features.js:1673
+#: features.js:1690
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Blocage sans mot de passe activé (aucune demande)."
 
-#: features.js:1679
+#: features.js:1696
 msgid "Passwordless blocking removed."
 msgstr "Blocage sans mot de passe supprimé."
 
-#: features.js:1716
+#: features.js:1733
 msgid "Click to exit Zen"
 msgstr "Cliquez pour quitter le mode Zen"
 
 #. settings-schema.json->focus->title
-#: features.js:1751 visual.js:894
+#: features.js:1768 visual.js:894
 msgid "Focus"
 msgstr "Focus"
 
-#: features.js:1828
+#: features.js:1845
 msgid "Breathe in"
 msgstr "Inspirez"
 
-#: features.js:1831 features.js:1837
+#: features.js:1848 features.js:1854
 msgid "Hold"
 msgstr "Retenez"
 
-#: features.js:1834
+#: features.js:1851
 msgid "Breathe out"
 msgstr "Expirez"
 
-#: features.js:1864
+#: features.js:1881
 msgid "Focus until"
 msgstr "Focus jusqu'à"
 
-#: features.js:1865
+#: features.js:1882
 msgid "Enter a time (HH:MM)"
 msgstr "Saisissez une heure (HH:MM)"
 
@@ -1756,20 +1756,24 @@ msgstr ""
 "Combien de minutes supplémentaires ajoute l'option « prolonger le focus »."
 
 #. settings-schema.json->focus_ambient_sound->description
-msgid "Play soft ambient (brown noise) during focus"
-msgstr "Jouer une ambiance douce (bruit brun) pendant le focus"
+msgid "Play an ambient sound during focus"
+msgstr "Jouer un son d’ambiance pendant la concentration"
 
 #. settings-schema.json->focus_ambient_sound->tooltip
-msgid "Play soft brown noise during focus."
-msgstr "Jouer un bruit brun doux pendant le focus."
+msgid ""
+"Loop a soft ambient sound during focus — the built-in brown noise, or your "
+"own file below."
+msgstr ""
+"Boucler un son d’ambiance doux pendant la concentration — le bruit brun "
+"intégré ou votre propre fichier ci-dessous."
 
 #. settings-schema.json->focus_ambient_volume->description
 msgid "Ambient volume"
 msgstr "Volume de l'ambiance"
 
 #. settings-schema.json->focus_ambient_volume->tooltip
-msgid "Volume of the brown-noise ambient sound (0 = silent)."
-msgstr "Volume du bruit brun d'ambiance (0 = silence)."
+msgid "Volume of the ambient sound (0 = silent)."
+msgstr "Volume du son d’ambiance (0 = silencieux)."
 
 #. settings-schema.json->break_breathing->description
 msgid "Show a breathing guide during breaks"
@@ -2411,6 +2415,27 @@ msgstr "Objectif quotidien — son"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Objectif quotidien — priorité"
+
+#. settings-schema.json->focus_ambient_file->description
+msgid "Ambient sound file"
+msgstr "Fichier du son d’ambiance"
+
+#. settings-schema.json->focus_ambient_file->tooltip
+msgid ""
+"Pick your own looping ambient sound. Leave empty for the built-in soft brown"
+" noise."
+msgstr ""
+"Choisissez votre propre son d’ambiance en boucle. Laissez vide pour le bruit"
+" brun intégré."
+
+#~ msgid "Play soft ambient (brown noise) during focus"
+#~ msgstr "Jouer une ambiance douce (bruit brun) pendant le focus"
+
+#~ msgid "Play soft brown noise during focus."
+#~ msgstr "Jouer un bruit brun doux pendant le focus."
+
+#~ msgid "Volume of the brown-noise ambient sound (0 = silent)."
+#~ msgstr "Volume du bruit brun d'ambiance (0 = silence)."
 
 #~ msgid ""
 #~ "Pushover sends alerts to your phone or desktop. Create a free account at "

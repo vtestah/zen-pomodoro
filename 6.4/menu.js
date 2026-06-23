@@ -2,6 +2,7 @@ const St = imports.gi.St;
 const Applet = imports.ui.applet;
 const PopupMenu = imports.ui.popupMenu;
 const GLib = imports.gi.GLib;
+const Pango = imports.gi.Pango;
 const Gettext = imports.gettext;
 
 const UUID = "zen-pomodoro@vtestah";
@@ -866,6 +867,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (!list.length) {
             let hint = new PopupMenu.PopupMenuItem(_("No tasks yet — add what you'll focus on, with a \ud83c\udf45 estimate."));
             hint.setSensitive(false);
+            hint.label.clutter_text.line_wrap = true;
+            hint.label.clutter_text.line_wrap_mode = Pango.WrapMode.WORD_CHAR;
+            hint.label.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
+            hint.label.set_style("max-width: 17em;");
             this._tasksSubmenu.menu.addMenuItem(hint);
         }
         if (list.length) {

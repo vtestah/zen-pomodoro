@@ -751,6 +751,7 @@
     },
     "pushover_user_key": {
         "type": "entry",
+        "expand-width": true,
         "description": "Pushover user key",
         "default": "",
         "dependency": "pushover_enabled",
@@ -758,6 +759,7 @@
     },
     "pushover_app_token": {
         "type": "entry",
+        "expand-width": true,
         "description": "Pushover application API token",
         "default": "",
         "dependency": "pushover_enabled",
@@ -779,12 +781,14 @@
     },
     "pushover_title": {
         "type": "entry",
+        "expand-width": true,
         "description": "Notification title",
         "default": "Zen Pomodoro",
         "tooltip": "Title shown on the push notifications."
     },
     "pushover_msg_focus": {
         "type": "entry",
+        "expand-width": true,
         "description": "Message when focus starts",
         "default": "🎯 Focus: {task} ({minutes} min)",
         "tooltip": "Sent when a focus session starts. {task} and {minutes} are substituted. Leave empty to send nothing.",
@@ -792,6 +796,7 @@
     },
     "pushover_msg_resume": {
         "type": "entry",
+        "expand-width": true,
         "description": "Message when a break ends",
         "default": "Break's over — back to focus.",
         "tooltip": "Sent when a break finishes. Leave empty to send no message.",
@@ -1147,6 +1152,7 @@
     },
     "pushover_msg_short_break": {
         "type": "entry",
+        "expand-width": true,
         "description": "Message when a short break starts",
         "default": "Pomodoro done — short break ({minutes} min).",
         "tooltip": "Sent when a short break begins. {task} and {minutes} are substituted. Leave empty to send nothing.",
@@ -1154,6 +1160,7 @@
     },
     "pushover_msg_long_break": {
         "type": "entry",
+        "expand-width": true,
         "description": "Message when a long break starts",
         "default": "Set complete — long break ({minutes} min).",
         "tooltip": "Sent when a long break begins. {task} and {minutes} are substituted. Leave empty to send nothing.",
@@ -1161,6 +1168,7 @@
     },
     "pushover_msg_goal": {
         "type": "entry",
+        "expand-width": true,
         "description": "Message when the daily goal is reached",
         "default": "🏆 Daily goal reached — great work!",
         "tooltip": "Sent once when you hit your daily pomodoro goal. {task} and {minutes} are substituted. Leave empty to send nothing.",

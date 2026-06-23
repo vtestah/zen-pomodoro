@@ -342,4 +342,8 @@ var PomodoroFinishedDialog = GObject.registerClass({
         this._content.title = _("Pomodoro finished, ready to take a break?") + "\n";
         this._content.description = '';
     }
+
+    setTip(text) {
+        this._content.description = text ? (text + "\n") : '';
+    }
 });

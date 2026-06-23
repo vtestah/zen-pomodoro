@@ -197,6 +197,12 @@ function install(proto) {
                 s.streak = 1;
             }
             s.lastGoalMetDate = today;
+            // Celebrate locally (everyone), not only via Pushover.
+            let body = _("%d focus blocks today — great work!").format(goal);
+            if ((s.streak || 0) > 1) {
+                body += "  " + _("\ud83d\udd25 %d-day streak").format(s.streak);
+            }
+            Main.notify(_("Daily goal reached \ud83c\udf45"), body);
             this._sendPushover(this._opt_pushoverMsgGoal, this._opt_pushoverSndGoal, this._opt_pushoverPriGoal);
         }
         this._dailyStatsData = s;
@@ -425,6 +431,29 @@ function install(proto) {
         return { remaining: remaining, mins: mins, time: `${hh}:${mm}` };
     };
 
+    // A short, calm suggestion for what to actually do on a break — the part
+    // most timers skip. Rotates so it doesn't feel repetitive.
+    proto._restTip = function(isLong) {
+        let shortTips = [
+            _("Look ~20 ft away for 20 seconds — rest your eyes."),
+            _("Stand up and stretch."),
+            _("Drink some water."),
+            _("Look out a window and relax your shoulders."),
+            _("Close your eyes and take a few slow breaths.")
+        ];
+        let longTips = [
+            _("Take a short walk."),
+            _("Step outside for some fresh air."),
+            _("Stretch and move around a little."),
+            _("Grab a snack and some water."),
+            _("Rest your eyes and look into the distance.")
+        ];
+        let tips = isLong ? longTips : shortTips;
+        // Rotate through tips rather than repeating the same one.
+        this._restTipIndex = ((this._restTipIndex || 0) + 1) % 1000;
+        return tips[this._restTipIndex % tips.length];
+    };
+
     proto._showAddTaskDialog = function() {
         let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
         let content = new Dialog.MessageDialogContent({
@@ -533,114 +562,237 @@ function install(proto) {
         dialog.open();
     };
 
+    // Recommendation engine for the smart onboarding wizard. Pure function:
+    // takes the user's answers and derives a tailored set of settings plus a
+    // human-readable list of reasons. No side effects — the wizard applies the
+    // returned settings only when the user accepts.
+    proto._computeFocusPlan = function(a) {
+        a = a || {};
+        let work = a.work || 'study';
+        let attention = a.attention || 'medium';
+        let struggle = a.struggle || 'none';
+        let sound = a.sound || 'silence';
+        let load = a.load || 'light';
+        let clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, Math.round(v)));
+
+        // Base rhythm from how long the person can concentrate.
+        let base = ({
+            short:  { f: 15, s: 5,  l: 15, n: 4 },
+            medium: { f: 25, s: 5,  l: 15, n: 4 },
+            long:   { f: 50, s: 10, l: 20, n: 4 },
+            flow:   { f: 50, s: 10, l: 20, n: 3 }
+        })[attention] || { f: 25, s: 5, l: 15, n: 4 };
+        let f = base.f, s = base.s, l = base.l, n = base.n;
+
+        // Nudge the rhythm toward the kind of work.
+        if (work === 'deep') { if (f <= 25) { f += 5; } }      // a little longer to ramp up
+        else if (work === 'creative') { l += 5; }              // longer breaks let ideas settle
+        else if (work === 'admin') { f = Math.max(15, f - 5); } // quicker cycles for small tasks
+
+        f = clamp(f, 1, 60); s = clamp(s, 1, 15); l = clamp(l, 1, 60); n = clamp(n, 1, 10);
+
+        let set = {
+            pomodoro_duration: f,
+            short_break_duration: s,
+            long_break_duration: l,
+            pomodori_number: n
+        };
+        let reasons = [];
+        let why = (t) => reasons.push(t);
+
+        let workReason = ({
+            deep: _("longer focus blocks suit deep work"),
+            study: _("the classic rhythm suits studying"),
+            creative: _("a little more break time lets ideas settle"),
+            admin: _("shorter cycles keep small tasks moving")
+        })[work] || _("a balanced rhythm");
+        why(_("Focus rhythm %d / %d / %d min — %s.").format(f, s, l, workReason));
+
+        // Daily goal from how much they want to do.
+        let goal = ({ try: 0, light: 4, full: 6, push: 8 })[load];
+        if (goal === undefined) { goal = 4; }
+        set.daily_goal = goal;
+        if (goal > 0) { why(_("Daily goal: %d focus blocks.").format(goal)); }
+        else { why(_("No daily goal yet — just getting a feel for it.")); }
+
+        // Flow extension helps deep work / natural flow; off for anyone who overworks.
+        if (attention === 'flow' || work === 'deep') {
+            set.flow_extend = true;
+            set.flow_extend_minutes = 10;
+        }
+
+        // Soundscape / environment.
+        if (sound === 'silence') {
+            set.timer_sound = false; set.interval_chime = false; set.focus_ambient_sound = false;
+            why(_("Silent focus — no ticking or chimes."));
+        } else if (sound === 'ambient') {
+            set.focus_ambient_sound = true; set.focus_ambient_volume = 40;
+            set.timer_sound = false; set.interval_chime = false;
+            why(_("Soft brown-noise ambience while you focus."));
+        } else if (sound === 'chime') {
+            set.interval_chime = true;
+            set.interval_chime_seconds = (attention === 'short') ? 180 : 300;
+            set.timer_sound = false;
+            why(_("A gentle chime every %d min to mark time.").format(Math.round(set.interval_chime_seconds / 60)));
+        } else if (sound === 'shared') {
+            set.timer_sound = false; set.interval_chime = false; set.focus_ambient_sound = false;
+            set.start_sound = false; set.break_sound = false;
+            set.focus_show_task_chip = true; set.focus_dnd = true;
+            why(_("Quiet, visual-only cues for a shared space."));
+        }
+
+        // The main obstacle decides which assist to switch on.
+        if (struggle === 'notifications') {
+            set.focus_dnd = true;
+            why(_("Notifications are muted while you focus."));
+        } else if (struggle === 'websites') {
+            set.enable_blocking = true;
+            why(_("Distraction blocking is ready — add sites in Settings → Advanced."));
+        } else if (struggle === 'starting') {
+            set.start_on_click = true; set.focus_start_ritual = true; set.require_focus_task = false;
+            why(_("One-click start and a calm start ritual make it easier to begin."));
+        } else if (struggle === 'overwork') {
+            set.auto_start_after_pomodoro_ends = true; set.show_dialog_messages = true;
+            set.break_breathing = true; set.flow_extend = false;
+            why(_("Breaks start on their own so you don't overwork."));
+        } else if (struggle === 'anxiety') {
+            set.focus_calm_ending = true; set.show_seconds = false; set.warn_sound = false;
+            set.theme_preset = 'cool'; set.breathing_pattern = 'relax'; set.frame_style = 'glow';
+            why(_("A calm theme, no ticking seconds and no end-of-timer rush."));
+        }
+
+        return { settings: set, reasons: reasons };
+    };
+
+    // Smart, adaptive onboarding: ask a few diagnostic questions, then compute
+    // and apply a tailored setup instead of making the user pick raw presets.
     proto._showOnboardingWizard = function() {
         let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
-        let TOTAL = 7;
-        let st = { step: 0 };
         let sp = this._settingsProvider;
-        let content = new St.BoxLayout({ vertical: true, style: 'spacing: 10px; width: 520px; padding: 6px 14px;' });
+        let answers = {};
+        let st = { step: 0 };
+        let content = new St.BoxLayout({ vertical: true, style: 'spacing: 10px; width: 560px; padding: 6px 14px;' });
         dialog.contentLayout.add(content);
 
         let title = (s) => new St.Label({ text: s, style: 'font-size: 1.35em; font-weight: bold;' });
         let para = (s) => { let l = new St.Label({ text: s }); l.clutter_text.line_wrap = true; return l; };
-        let hint = (s) => new St.Label({ text: s, style: 'font-weight: bold; padding-top: 8px;' });
-        let BASE = 'margin: 6px 8px 0 0; padding: 8px 16px; border-radius: 8px;';
+        let BASE = 'margin: 5px 0 0 0; padding: 9px 14px; border-radius: 8px;';
         let SEL = BASE + ' background-color: rgba(227,90,60,0.92); color: #ffffff; font-weight: bold; border: 1px solid #e3593c;';
-        let rowOf = (arr) => { let r = new St.BoxLayout({ vertical: false }); arr.forEach((x) => r.add(x)); return r; };
-        let choice = (defs) => {
-            let r = new St.BoxLayout({ vertical: false });
+
+        // A single-select question: full-width option rows, highlight in place.
+        let ask = (key, opts) => {
+            let col = new St.BoxLayout({ vertical: true, style: 'spacing: 2px;' });
             let btns = [];
-            defs.forEach((d) => {
-                let b = new St.Button({ label: d.label, style_class: 'button' });
-                b.set_style(d.active ? SEL : BASE);
-                b.connect('clicked', () => { try { d.fn(); } catch (e) {} btns.forEach((x) => x.set_style(BASE)); b.set_style(SEL); });
-                btns.push(b);
-                r.add(b);
+            opts.forEach((o) => {
+                let b = new St.Button({ x_expand: true, style_class: 'button' });
+                b.set_label(o.label);
+                b.set_style(answers[key] === o.value ? SEL : BASE);
+                b.connect('clicked', () => {
+                    answers[key] = o.value;
+                    btns.forEach((x) => x.b.set_style(x.v === o.value ? SEL : BASE));
+                });
+                btns.push({ b: b, v: o.value });
+                col.add(b);
             });
-            return r;
-        };
-        let toggle = (label, initial, setter) => {
-            let on = { v: !!initial };
-            let b = new St.Button({ style_class: 'button' });
-            let refresh = () => { b.set_label((on.v ? "\u2713  " : "") + label); b.set_style(on.v ? SEL : BASE); };
-            b.connect('clicked', () => { on.v = !on.v; try { setter(on.v); } catch (e) {} refresh(); });
-            refresh();
-            return b;
-        };
-        let actionChip = (label, fn) => {
-            let b = new St.Button({ label: label, style_class: 'button' });
-            b.set_style(BASE);
-            b.connect('clicked', () => { try { fn(b); } catch (e) {} });
-            return b;
+            return col;
         };
 
+        let QUESTIONS = [
+            { key: 'work', title: _("What will you mainly focus on?"),
+              help: _("This shapes how long each focus block should be."),
+              opts: [
+                { value: 'deep',     label: _("Deep work or coding") },
+                { value: 'study',    label: _("Studying or reading") },
+                { value: 'creative', label: _("Writing or creative work") },
+                { value: 'admin',    label: _("Lots of small tasks") }
+              ] },
+            { key: 'attention', title: _("How long can you usually concentrate?"),
+              help: _("Pick a length you can actually keep — it beats an ideal one."),
+              opts: [
+                { value: 'short',  label: _("About 15 minutes") },
+                { value: 'medium', label: _("About 25 minutes") },
+                { value: 'long',   label: _("45 minutes or more") },
+                { value: 'flow',   label: _("I lose track of time when I'm in flow") }
+              ] },
+            { key: 'struggle', title: _("What gets in your way most?"),
+              help: _("I'll switch on the right help for this."),
+              opts: [
+                { value: 'notifications', label: _("Notifications and pings") },
+                { value: 'websites',      label: _("Distracting websites") },
+                { value: 'starting',      label: _("It's hard to get started") },
+                { value: 'overwork',      label: _("I forget to take breaks") },
+                { value: 'anxiety',       label: _("Timers make me anxious") }
+              ] },
+            { key: 'sound', title: _("What helps you concentrate?"),
+              help: _("Sets the focus soundscape — change it anytime in Sounds."),
+              opts: [
+                { value: 'silence', label: _("Silence") },
+                { value: 'ambient', label: _("Soft background noise") },
+                { value: 'chime',   label: _("A gentle chime to mark time") },
+                { value: 'shared',  label: _("I share my space — keep it quiet") }
+              ] },
+            { key: 'load', title: _("How much do you want to get done today?"),
+              help: _("Sets your daily goal — no pressure, you can change it."),
+              opts: [
+                { value: 'try',   label: _("Just trying it out") },
+                { value: 'light', label: _("A light day (about 4)") },
+                { value: 'full',  label: _("A full day (about 6)") },
+                { value: 'push',  label: _("A big push (about 8)") }
+              ] }
+        ];
+        let TOTAL = QUESTIONS.length + 2; // intro + questions + review
+
         let finish = () => { try { sp.setValue('onboarding_done', true); } catch (e) {} dialog.close(); };
+        let applyPlan = (plan, thenStart) => {
+            Object.keys(plan.settings).forEach((k) => { try { sp.setValue(k, plan.settings[k]); } catch (e) {} });
+            try { sp.setValue('onboarding_done', true); } catch (e) {}
+            dialog.close();
+            if (thenStart) { try { this._startTimerFromMenu(); } catch (e) {} }
+        };
 
         let build = () => {
             content.destroy_all_children();
             let head = new St.BoxLayout({ vertical: false, style: 'spacing: 4px; padding-bottom: 2px;' });
-            head.add(new St.Label({ text: _("Quick start"), style: 'font-size: 0.8em; padding-right: 6px;' }));
+            head.add(new St.Label({ text: _("Smart setup"), style: 'font-size: 0.8em; padding-right: 6px;' }));
             for (let i = 0; i < TOTAL; i++) {
                 let dot = new St.Label({ text: "\ud83c\udf45", style: 'font-size: 0.95em;' });
                 dot.set_opacity(i <= st.step ? 255 : 70);
                 head.add(dot);
             }
             content.add(head);
+
             let s = st.step;
-            if (s === 0) {
-                content.add(title(_("Welcome to Zen Pomodoro \ud83c\udf45")));
-                content.add(para(_("Work in calm focus intervals with gentle on-screen cues instead of alarms. Let's set it up in a few quick steps — you can change everything later in Settings.")));
-            } else if (s === 1) {
-                content.add(title(_("Your rhythm")));
-                content.add(para(_("Pick a focus / short break / long break length. The classic Pomodoro is 25 / 5 / 15 minutes.")));
-                content.add(hint(_("Tap to choose:")));
-                content.add(choice([
-                    { label: _("25 / 5 / 15"), active: (this._opt_pomodoroTimeMinutes === 25), fn: () => { sp.setValue('pomodoro_duration', 25); sp.setValue('short_break_duration', 5); sp.setValue('long_break_duration', 15); sp.setValue('pomodori_number', 4); } },
-                    { label: _("50 / 10 / 20"), active: (this._opt_pomodoroTimeMinutes === 50), fn: () => { sp.setValue('pomodoro_duration', 50); sp.setValue('short_break_duration', 10); sp.setValue('long_break_duration', 20); sp.setValue('pomodori_number', 4); } }
-                ]));
-            } else if (s === 2) {
-                content.add(title(_("Daily goal")));
-                content.add(para(_("How many pomodoros do you aim for each day? It powers your streak and the progress ring (you can turn it off).")));
-                content.add(hint(_("Tap to choose:")));
-                let g = this._opt_dailyGoal || 0;
-                content.add(choice([
-                    { label: _("Off"), active: g === 0, fn: () => sp.setValue('daily_goal', 0) },
-                    { label: "4", active: g === 4, fn: () => sp.setValue('daily_goal', 4) },
-                    { label: "6", active: g === 6, fn: () => sp.setValue('daily_goal', 6) },
-                    { label: "8", active: g === 8, fn: () => sp.setValue('daily_goal', 8) }
-                ]));
-            } else if (s === 3) {
-                content.add(title(_("Calm focus")));
-                content.add(para(_("Recommended: mute notifications while focusing and play a soft periodic chime. Fine-tune all sounds later in Settings → Sounds.")));
-                content.add(hint(_("Tap to toggle:")));
-                content.add(rowOf([
-                    toggle(_("Mute notifications"), this._opt_focusDnd, (v) => sp.setValue('focus_dnd', v)),
-                    toggle(_("Soft chime"), this._opt_intervalChime, (v) => sp.setValue('interval_chime', v))
-                ]));
-            } else if (s === 4) {
-                content.add(title(_("Block distractions")));
-                content.add(para(_("Optionally block distracting sites during focus (edits /etc/hosts via an admin prompt). Add domains in Settings → Advanced — you can even set it up to ask for your password only once.")));
-                content.add(hint(_("Tap to toggle:")));
-                content.add(rowOf([ toggle(_("Block distracting sites"), false, (v) => sp.setValue('enable_blocking', v)) ]));
-            } else if (s === 5) {
-                content.add(title(_("Track tasks")));
-                content.add(para(_("Add tasks with an estimate in pomodoros from the menu's Tasks submenu. Your current task links to the focus session, and the dashboard shows where your time goes.")));
-                let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true, hint_text: _("Add your first task (optional)") });
-                CinnamonEntry.addContextMenu(entry);
-                content.add(entry);
-                content.add(rowOf([ actionChip(_("Add task"), (b) => { let t = entry.clutter_text.get_text().trim(); if (t) { this._addTask(t, 1); entry.clutter_text.set_text(""); b.set_label("\u2713 " + _("Added")); } }) ]));
-            } else {
-                content.add(title(_("You're all set \ud83c\udf45")));
-                content.add(para(_("Open the menu to start a focus, pick a task, or open Statistics → the dashboard. Set keyboard shortcuts in Settings → Panel. Enjoy calm, focused work!")));
-                let startBtn = new St.Button({ label: "\ud83c\udf45  " + _("Start first focus"), style_class: 'button' });
-                startBtn.set_style(SEL + ' padding: 10px 22px;');
-                startBtn.connect('clicked', () => { finish(); this._startTimerFromMenu(); });
-                content.add(rowOf([ startBtn ]));
-            }
             let buttons = [{ label: _("Skip"), action: finish }];
-            if (st.step > 0) { buttons.push({ label: _("Back"), action: () => { st.step--; build(); } }); }
-            if (st.step < TOTAL - 1) { buttons.push({ label: _("Next"), default: true, action: () => { st.step++; build(); } }); }
-            else { buttons.push({ label: _("Done"), default: true, action: finish }); }
+
+            if (s === 0) {
+                content.add(title(_("Let's tune Zen Pomodoro to you \ud83c\udf45")));
+                content.add(para(_("Answer five quick questions and I'll build a focus setup that fits how you work — your rhythm, sounds, breaks and the help you need. You can fine-tune everything later in Settings.")));
+                buttons.push({ label: _("Let's go"), default: true, action: () => { st.step++; build(); } });
+            } else if (s >= 1 && s <= QUESTIONS.length) {
+                let q = QUESTIONS[s - 1];
+                content.add(title(q.title));
+                if (q.help) { content.add(para(q.help)); }
+                content.add(ask(q.key, q.opts));
+                buttons.push({ label: _("Back"), action: () => { st.step--; build(); } });
+                buttons.push({ label: _("Next"), default: true, action: () => { st.step++; build(); } });
+            } else {
+                let plan = this._computeFocusPlan(answers);
+                content.add(title(_("Your tailored setup \ud83c\udf45")));
+                content.add(para(_("Based on your answers, here's what I'll set up. Apply it now, then tweak anything in Settings.")));
+                let list = new St.BoxLayout({ vertical: true, style: 'spacing: 5px; padding: 6px 0 2px 0;' });
+                plan.reasons.forEach((r) => {
+                    let row = new St.BoxLayout({ vertical: false, style: 'spacing: 8px;' });
+                    row.add(new St.Label({ text: "\u2713", style: 'color: #6fcf97; font-weight: bold;' }));
+                    let t = new St.Label({ text: r });
+                    t.clutter_text.line_wrap = true;
+                    row.add(t);
+                    list.add(row);
+                });
+                content.add(list);
+                buttons.push({ label: _("Back"), action: () => { st.step--; build(); } });
+                buttons.push({ label: _("Apply"), action: () => applyPlan(plan, false) });
+                buttons.push({ label: "\ud83c\udf45  " + _("Apply & start"), default: true, action: () => applyPlan(plan, true) });
+            }
             dialog.setButtons(buttons);
         };
         build();
@@ -791,35 +943,29 @@ function install(proto) {
         }
     };
 
-    proto._exportStats = function() {
-        let dir = null;
-        try { dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DOWNLOAD); } catch (e) { dir = null; }
-        if (!dir) { dir = GLib.get_home_dir(); }
-        let now = new Date();
-        let stamp = this._todayStr(now) + "-" +
-            now.getHours().toString().padStart(2, '0') +
-            now.getMinutes().toString().padStart(2, '0') +
-            now.getSeconds().toString().padStart(2, '0');
-
-        let h = (this._dailyStatsData && this._dailyStatsData.history) ? this._dailyStatsData.history : {};
-        let rows = ["date,pomodoros,focus_minutes,interruptions"];
-        for (let k of Object.keys(h).sort()) {
-            let c = h[k] || {};
-            rows.push(`${k},${c.c || 0},${c.m || 0},${c.i || 0}`);
-        }
-        let csv = rows.join("\n") + "\n";
-        let csvPath = GLib.build_filenamev([dir, "zen-pomodoro-" + stamp + ".csv"]);
-        let jsonObj = { exportedAt: now.toISOString(), stats: this._dailyStatsData || {}, tasks: this._tasksData || {} };
-        let jsonPath = GLib.build_filenamev([dir, "zen-pomodoro-" + stamp + ".json"]);
-
-        let ok = false;
-        try { GLib.file_set_contents(csvPath, csv); ok = true; } catch (e) { global.logError("Zen Pomodoro export csv: " + e); }
-        try { GLib.file_set_contents(jsonPath, JSON.stringify(jsonObj, null, 2)); ok = true; } catch (e) { global.logError("Zen Pomodoro export json: " + e); }
-        if (ok) {
-            try { Gio.AppInfo.launch_default_for_uri(GLib.filename_to_uri(dir, null), null); } catch (e) {}
-            Main.notify(_("Statistics exported"), _("Saved CSV + JSON to %s (opened the folder).").format(dir));
-        } else {
-            Main.notify(_("Export failed"));
+    // A lightweight, on-brand alternative to a raw data dump: copy a short,
+    // readable progress summary to the clipboard (paste into a journal, a
+    // stand-up note, a message). The full raw history stays on disk in the
+    // applet's daily-stats file for anyone who wants it.
+    proto._copyStatsSummary = function(st) {
+        st = st || this._computeStats();
+        let date = "";
+        try { date = new Date().toLocaleDateString(); } catch (e) { date = this._todayStr(new Date()); }
+        let tomato = " \ud83c\udf45";
+        let lines = [
+            _("Focus statistics") + " \u2014 " + date,
+            _("Today") + ": " + (st.today || 0) + tomato + " \u00b7 " + this._dashFmtMin(st.todayMin || 0),
+            _("This week") + ": " + (st.week || 0) + tomato + " \u00b7 " + this._dashFmtMin(st.weekMin || 0),
+            _("Last 30 days: %d").format(st.month || 0),
+            _("All time") + ": " + (st.total || 0) + tomato + " \u00b7 " + this._dashFmtMin(st.totalMinutes || 0),
+            _("Streak: %d days (best %d)").format(st.streak || 0, st.longestStreak || 0)
+        ];
+        let text = lines.join("\n") + "\n";
+        try {
+            St.Clipboard.get_default().set_text(St.ClipboardType.CLIPBOARD, text);
+            Main.notify(_("Summary copied to clipboard"));
+        } catch (e) {
+            global.logError("Zen Pomodoro: copy summary failed: " + e);
         }
     };
 
@@ -1029,7 +1175,7 @@ function install(proto) {
 
         dialog.contentLayout.add(root);
         dialog.setButtons([
-            { label: _("Export CSV"), action: () => this._exportStats() },
+            { label: _("Copy summary"), action: () => this._copyStatsSummary(st) },
             { label: _("Close"), key: Clutter.KEY_Escape, default: true, action: () => dialog.close() }
         ]);
         dialog.open();
@@ -1254,6 +1400,54 @@ function install(proto) {
             });
         } catch (e) {
             global.logError("Zen Pomodoro: Pushover error: " + e.message);
+        }
+    };
+
+    // Settings "Send a test notification" button. Unlike _sendPushover this
+    // gives explicit feedback so the user can confirm their keys are correct.
+    proto._pushoverTest = function() {
+        if (!Soup) {
+            Main.notify(_("Push notifications need libsoup, which isn't available here."));
+            return;
+        }
+        let user = (this._opt_pushoverUserKey || '').trim();
+        let token = (this._opt_pushoverAppToken || '').trim();
+        if (!user || !token) {
+            Main.notify(_("Enter your Pushover user key and app token first."));
+            return;
+        }
+        let title = (this._opt_pushoverTitle || '').trim() || 'Zen Pomodoro';
+        let body = 'token=' + encodeURIComponent(token) +
+            '&user=' + encodeURIComponent(user) +
+            '&title=' + encodeURIComponent(title) +
+            '&message=' + encodeURIComponent(_("Test notification from Zen Pomodoro \ud83c\udf45")) +
+            '&priority=0';
+        try {
+            if (!this._pushoverSession) {
+                this._pushoverSession = new Soup.Session();
+            }
+            let msg = Soup.Message.new('POST', 'https://api.pushover.net/1/messages.json');
+            msg.set_request_body_from_bytes('application/x-www-form-urlencoded',
+                new GLib.Bytes(ByteArray.fromString(body)));
+            this._pushoverSession.send_and_read_async(msg, GLib.PRIORITY_DEFAULT, null, (s, res) => {
+                let ok = false;
+                try {
+                    let bytes = s.send_and_read_finish(res);
+                    let status = (typeof msg.get_status === 'function') ? msg.get_status() : 0;
+                    let txt = '';
+                    try { txt = ByteArray.toString(bytes.get_data()); } catch (e) { txt = ''; }
+                    ok = (status === 200) && /"status"\s*:\s*1/.test(txt);
+                } catch (e) {
+                    global.logError("Zen Pomodoro: Pushover test failed: " + e.message);
+                    ok = false;
+                }
+                Main.notify(ok
+                    ? _("Pushover test sent \u2713 — check your device.")
+                    : _("Pushover test failed. Double-check your user key and app token."));
+            });
+        } catch (e) {
+            global.logError("Zen Pomodoro: Pushover test error: " + e.message);
+            Main.notify(_("Pushover test failed. Double-check your user key and app token."));
         }
     };
 

@@ -234,7 +234,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         let topRow = new St.BoxLayout({ vertical: false, x_expand: true });
         this._stateBadgeLabel = new St.Label({
-            text: _("READY"),
+            text: _("Ready to focus"),
             style_class: "pomodoro-badge pomodoro-badge-idle"
         });
         this._timeLeftLabel = new St.Label({
@@ -399,6 +399,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
     _buildPrimaryAction() {
         this._primaryActionItem = new PopupMenu.PopupMenuItem(_("Start focus"));
         this._primaryActionItem.connect("activate", () => {
+            if (this._primaryActionMode === "none") {
+                return;
+            }
             if (this._primaryActionMode === "pause") {
                 this.emit('stop-timer');
             } else {
@@ -469,7 +472,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         this._buildPrimaryAction();
 
-        this._chooseTaskItem = new PopupMenu.PopupMenuItem(_("Task\u2026"));
+        this._chooseTaskItem = new PopupMenu.PopupMenuItem(_("Current task\u2026"));
         this._chooseTaskItem.connect('activate', () => {
             this.emit('choose-task');
         });
@@ -494,7 +497,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this.addMenuItem(this._presetSubmenu);
         this._populatePresetSubmenu();
 
-        this._tasksSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Tasks"));
+        this._tasksSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Task list"));
         this.addMenuItem(this._tasksSubmenu);
         this._populateTasksSubmenu();
 
@@ -620,6 +623,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             if (goal > 0) {
                 let count = runtime.dailyCount || 0;
                 let text = _("Today: %d / %d").format(count, goal);
+                if (count >= goal) {
+                    text += "  \u2713";
+                }
                 if (runtime.streak && runtime.streak > 0) {
                     text += "   \u{1F525}" + runtime.streak;
                 }
@@ -679,10 +685,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             }
         }
 
-        let badge = runtime.stateLabel || "Ready";
-        if (badge === "Ready") {
-            badge = "READY";
-        }
+        let badge = runtime.stateLabel || _("Ready to focus");
 
         if (this._progressLabel) {
             if (typeof progressPercent === "number") {
@@ -699,9 +702,17 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 if (runtime.endTime) {
                     line += ` \u00B7 ` + _("until %s").format(runtime.endTime);
                 }
+                if ((state === "pomodoro" || state === "pomodoro-paused") && runtime.finishEstimate) {
+                    line += ` \u00B7 ` + _("\u2248 finish %s \u00b7 %d \ud83c\udf45 left").format(
+                        runtime.finishEstimate.time, runtime.finishEstimate.remaining);
+                }
                 this._progressLabel.set_text(line);
+            } else if (state === "break-over") {
+                this._progressLabel.set_text(_("Break finished — press Start for focus"));
+            } else if (runtime.finishEstimate) {
+                this._progressLabel.set_text(_("Finish your tasks by ~%s").format(runtime.finishEstimate.time));
             } else {
-                this._progressLabel.set_text(state === "break-over" ? _("Break finished — press Start for focus") : _("%d min focus — press Start").format(runtime.focusMinutes || 25));
+                this._progressLabel.set_text(_("%d min focus — press Start").format(runtime.focusMinutes || 25));
             }
         }
 
@@ -798,6 +809,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
 
         if (this._primaryActionItem) {
+            this._primaryActionItem.setSensitive(true);
             if (runtime.timerPaused) {
                 let resumeLabel = (state === "short-break-paused" || state === "long-break-paused")
                     ? _("Resume break") : _("Resume focus");
@@ -805,9 +817,17 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 this._primaryActionItem.setOrnament(PopupMenu.OrnamentType.NONE);
                 this._primaryActionMode = "resume";
             } else if (runtime.timerRunning) {
-                this._primaryActionItem.setLabel(state === "pomodoro" ? _("Pause focus") : _("Pause break"));
-                this._primaryActionItem.setOrnament(PopupMenu.OrnamentType.CHECK, true);
-                this._primaryActionMode = "pause";
+                if (runtime.strictFocus && state === "pomodoro") {
+                    // Strict focus: no casual pause — stay with the block.
+                    this._primaryActionItem.setLabel(_("Focusing — stay with it"));
+                    this._primaryActionItem.setOrnament(PopupMenu.OrnamentType.NONE);
+                    this._primaryActionItem.setSensitive(false);
+                    this._primaryActionMode = "none";
+                } else {
+                    this._primaryActionItem.setLabel(state === "pomodoro" ? _("Pause focus") : _("Pause break"));
+                    this._primaryActionItem.setOrnament(PopupMenu.OrnamentType.CHECK, true);
+                    this._primaryActionMode = "pause";
+                }
             } else if (state === "break-over") {
                 this._primaryActionItem.setLabel(_("Start next focus"));
                 this._primaryActionItem.setOrnament(PopupMenu.OrnamentType.NONE);
@@ -822,7 +842,11 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
 
         if (this._skipTimerItem) {
-            this._skipTimerItem.setSensitive(Boolean(runtime.timerRunning || runtime.timerPaused));
+            let canSkip = Boolean(runtime.timerRunning || runtime.timerPaused);
+            if (runtime.strictFocus && state === "pomodoro" && runtime.timerRunning) {
+                canSkip = false;
+            }
+            this._skipTimerItem.setSensitive(canSkip);
         }
         if (this._resetTimerItem) {
             this._resetTimerItem.setSensitive(state !== "pomodoro-stop" || Boolean(runtime.timerRunning || runtime.timerPaused));
@@ -850,7 +874,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._populateTasksSubmenu();
         if (this._tasksSubmenu && this._tasksSubmenu.label) {
             let cur = this._tasks.find((t) => t.id === this._tasksCurrentId);
-            this._tasksSubmenu.label.set_text(_("Tasks") + (cur ? (": " + cur.title) : ""));
+            this._tasksSubmenu.label.set_text(_("Task list") + (cur ? (": " + cur.title) : ""));
         }
     }
 
@@ -869,6 +893,11 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             this._tasksSubmenu.menu.addMenuItem(fin);
         }
         let list = this._tasks || [];
+        if (!list.length) {
+            let hint = new PopupMenu.PopupMenuItem(_("No tasks yet — add what you'll focus on, with a \ud83c\udf45 estimate."));
+            hint.setSensitive(false);
+            this._tasksSubmenu.menu.addMenuItem(hint);
+        }
         if (list.length) {
             this._tasksSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         }

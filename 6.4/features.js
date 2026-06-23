@@ -943,30 +943,26 @@ function install(proto) {
         }
     };
 
-    // A lightweight, on-brand alternative to a raw data dump: copy a short,
-    // readable progress summary to the clipboard (paste into a journal, a
-    // stand-up note, a message). The full raw history stays on disk in the
-    // applet's daily-stats file for anyone who wants it.
-    proto._copyStatsSummary = function(st) {
-        st = st || this._computeStats();
-        let date = "";
-        try { date = new Date().toLocaleDateString(); } catch (e) { date = this._todayStr(new Date()); }
-        let tomato = " \ud83c\udf45";
-        let lines = [
-            _("Focus statistics") + " \u2014 " + date,
-            _("Today") + ": " + (st.today || 0) + tomato + " \u00b7 " + this._dashFmtMin(st.todayMin || 0),
-            _("This week") + ": " + (st.week || 0) + tomato + " \u00b7 " + this._dashFmtMin(st.weekMin || 0),
-            _("Last 30 days: %d").format(st.month || 0),
-            _("All time") + ": " + (st.total || 0) + tomato + " \u00b7 " + this._dashFmtMin(st.totalMinutes || 0),
-            _("Streak: %d days (best %d)").format(st.streak || 0, st.longestStreak || 0)
-        ];
-        let text = lines.join("\n") + "\n";
+    // Clear all tracked focus statistics (today, streak, history, totals,
+    // heatmap). Useful to start fresh or wipe test data. Guarded by a
+    // two-step confirmation in the dashboard.
+    proto._resetStatistics = function() {
+        this._dailyStatsData = {
+            date: "", count: 0, streak: 0, lastGoalMetDate: "",
+            history: {}, total: 0, totalMinutes: 0, totalInterruptions: 0,
+            hours: new Array(24).fill(0)
+        };
         try {
-            St.Clipboard.get_default().set_text(St.ClipboardType.CLIPBOARD, text);
-            Main.notify(_("Summary copied to clipboard"));
+            this._writeJsonAsync(POMODORO_STATS_FILE, this._dailyStatsData);
         } catch (e) {
-            global.logError("Zen Pomodoro: copy summary failed: " + e);
+            global.logError("Zen Pomodoro: reset statistics failed: " + e);
         }
+        this._dailyCount = 0;
+        this._dailyStreak = 0;
+        if (typeof this._updateMenuRuntime === "function") {
+            this._updateMenuRuntime();
+        }
+        Main.notify(_("Statistics reset."));
     };
 
     proto._peakFocusHour = function(hours) {
@@ -1174,10 +1170,20 @@ function install(proto) {
         }
 
         dialog.contentLayout.add(root);
-        dialog.setButtons([
-            { label: _("Copy summary"), action: () => this._copyStatsSummary(st) },
-            { label: _("Close"), key: Clutter.KEY_Escape, default: true, action: () => dialog.close() }
-        ]);
+        let setDashButtons, confirmReset;
+        confirmReset = () => {
+            dialog.setButtons([
+                { label: _("Cancel"), action: () => setDashButtons() },
+                { label: _("Delete all statistics"), action: () => { this._resetStatistics(); dialog.close(); } }
+            ]);
+        };
+        setDashButtons = () => {
+            dialog.setButtons([
+                { label: _("Reset statistics\u2026"), action: () => confirmReset() },
+                { label: _("Close"), key: Clutter.KEY_Escape, default: true, action: () => dialog.close() }
+            ]);
+        };
+        setDashButtons();
         dialog.open();
         return dialog;
     };

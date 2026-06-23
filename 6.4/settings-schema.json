@@ -742,7 +742,7 @@
     },
     "pushover_help": {
         "type": "label",
-        "description": "Pushover sends alerts to your phone or desktop. Create a free account at pushover.net, copy your User Key, then create an Application there to get an API Token.",
+        "description": "Free phone/desktop alerts. Sign up at pushover.net and paste your keys below.",
         "dependency": "pushover_enabled"
     },
     "pushover_user_key": {
@@ -820,7 +820,7 @@
     },
     "sox-info": {
         "type": "label",
-        "description": "No sound backend was found. Install GSound or a sound player (e.g. the 'pulseaudio-utils' or 'sox' package) to enable sounds.",
+        "description": "No sound backend found — install GSound or a player like pulseaudio-utils.",
         "dependency": "show_sox_info"
     },
     "show_sox_info": {

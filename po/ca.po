@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:23+0700\n"
+"POT-Creation-Date: 2026-06-23 17:31+0700\n"
 "PO-Revision-Date: 2024-07-13 03:43+0200\n"
 "Last-Translator: carlos <c.carrizosa@gmx.com>\n"
 "Language-Team: ca\n"
@@ -1341,10 +1341,6 @@ msgid "Symbolic icon"
 msgstr "Icona simbòlica"
 
 #. settings-schema.json->panel_icon_style->options
-msgid "Colored icon"
-msgstr "Icona de color"
-
-#. settings-schema.json->panel_icon_style->options
 msgid "Custom icon"
 msgstr "Icona personalitzada"
 
@@ -1355,12 +1351,12 @@ msgstr "Sense icona (només temporitzador)"
 #. settings-schema.json->panel_icon_style->tooltip
 msgid ""
 "What to show in the panel: a progress ring with the state icon inside "
-"(recommended), a plain symbolic or colored icon, or no icon at all. The "
-"timer text is a separate option below."
+"(recommended), a plain symbolic icon, your own custom icon, or no icon at "
+"all. The timer text is a separate option below."
 msgstr ""
 "Què mostrar al tauler: un anell de progrés amb la icona d'estat a dins "
-"(recomanat), una icona simbòlica o de color, o cap icona. El text del "
-"temporitzador es configura per separat a sota."
+"(recomanat), una icona simbòlica, la teva pròpia icona, o cap icona. El text"
+" del temporitzador es configura per separat a sota."
 
 #. settings-schema.json->panel_custom_icon->description
 msgid "Custom panel icon"
@@ -2460,6 +2456,18 @@ msgstr "Objectiu diari — so"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Objectiu diari — prioritat"
+
+#~ msgid "Colored icon"
+#~ msgstr "Icona de color"
+
+#~ msgid ""
+#~ "What to show in the panel: a progress ring with the state icon inside "
+#~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
+#~ "timer text is a separate option below."
+#~ msgstr ""
+#~ "Què mostrar al tauler: un anell de progrés amb la icona d'estat a dins "
+#~ "(recomanat), una icona simbòlica o de color, o cap icona. El text del "
+#~ "temporitzador es configura per separat a sota."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Mostra la icona pomodoro al tauler de la miniaplicació"

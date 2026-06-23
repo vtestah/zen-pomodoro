@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:23+0700\n"
+"POT-Creation-Date: 2026-06-23 17:31+0700\n"
 "PO-Revision-Date: 2022-01-05 13:55+0200\n"
 "Last-Translator: Rutar <RutarAndriy@gmail.com>\n"
 "Language-Team: Ukrainian\n"
@@ -1324,10 +1324,6 @@ msgid "Symbolic icon"
 msgstr "Символічна піктограма"
 
 #. settings-schema.json->panel_icon_style->options
-msgid "Colored icon"
-msgstr "Кольорова піктограма"
-
-#. settings-schema.json->panel_icon_style->options
 msgid "Custom icon"
 msgstr "Власна піктограма"
 
@@ -1338,12 +1334,12 @@ msgstr "Без піктограми (лише таймер)"
 #. settings-schema.json->panel_icon_style->tooltip
 msgid ""
 "What to show in the panel: a progress ring with the state icon inside "
-"(recommended), a plain symbolic or colored icon, or no icon at all. The "
-"timer text is a separate option below."
+"(recommended), a plain symbolic icon, your own custom icon, or no icon at "
+"all. The timer text is a separate option below."
 msgstr ""
 "Що показувати на панелі: кільце прогресу з піктограмою стану всередині "
-"(рекомендовано), просту символічну чи кольорову піктограму, або нічого. "
-"Текст таймера налаштовується окремо нижче."
+"(рекомендовано), символічну піктограму, власну піктограму, або нічого. Текст"
+" таймера налаштовується окремо нижче."
 
 #. settings-schema.json->panel_custom_icon->description
 msgid "Custom panel icon"
@@ -2410,6 +2406,18 @@ msgstr "Денна ціль — звук"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Денна ціль — пріоритет"
+
+#~ msgid "Colored icon"
+#~ msgstr "Кольорова піктограма"
+
+#~ msgid ""
+#~ "What to show in the panel: a progress ring with the state icon inside "
+#~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
+#~ "timer text is a separate option below."
+#~ msgstr ""
+#~ "Що показувати на панелі: кільце прогресу з піктограмою стану всередині "
+#~ "(рекомендовано), просту символічну чи кольорову піктограму, або нічого. "
+#~ "Текст таймера налаштовується окремо нижче."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Відобразити піктограму Pomodoro на панелі аплетів"

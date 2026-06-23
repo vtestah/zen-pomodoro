@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:23+0700\n"
+"POT-Creation-Date: 2026-06-23 17:31+0700\n"
 "PO-Revision-Date: 2017-06-07 06:28+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -1323,10 +1323,6 @@ msgid "Symbolic icon"
 msgstr "Symbolisk ikon"
 
 #. settings-schema.json->panel_icon_style->options
-msgid "Colored icon"
-msgstr "Färgad ikon"
-
-#. settings-schema.json->panel_icon_style->options
 msgid "Custom icon"
 msgstr "Anpassad ikon"
 
@@ -1337,12 +1333,12 @@ msgstr "Ingen ikon (endast timer)"
 #. settings-schema.json->panel_icon_style->tooltip
 msgid ""
 "What to show in the panel: a progress ring with the state icon inside "
-"(recommended), a plain symbolic or colored icon, or no icon at all. The "
-"timer text is a separate option below."
+"(recommended), a plain symbolic icon, your own custom icon, or no icon at "
+"all. The timer text is a separate option below."
 msgstr ""
 "Vad som visas i panelen: en förloppsring med statusikonen inuti "
-"(rekommenderas), en enkel symbolisk eller färgad ikon, eller ingen ikon "
-"alls. Timertexten ställs in separat nedan."
+"(rekommenderas), en symbolisk ikon, din egen ikon, eller ingen ikon alls. "
+"Timertexten ställs in separat nedan."
 
 #. settings-schema.json->panel_custom_icon->description
 msgid "Custom panel icon"
@@ -2410,6 +2406,18 @@ msgstr "Dagligt mål — ljud"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Dagligt mål — prioritet"
+
+#~ msgid "Colored icon"
+#~ msgstr "Färgad ikon"
+
+#~ msgid ""
+#~ "What to show in the panel: a progress ring with the state icon inside "
+#~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
+#~ "timer text is a separate option below."
+#~ msgstr ""
+#~ "Vad som visas i panelen: en förloppsring med statusikonen inuti "
+#~ "(rekommenderas), en enkel symbolisk eller färgad ikon, eller ingen ikon "
+#~ "alls. Timertexten ställs in separat nedan."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Visa Pomodoro-ikonen i panelen"

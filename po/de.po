@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:23+0700\n"
+"POT-Creation-Date: 2026-06-23 17:31+0700\n"
 "PO-Revision-Date: 2020-11-25 22:30+0100\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: de\n"
@@ -1326,10 +1326,6 @@ msgid "Symbolic icon"
 msgstr "Symbolisches Symbol"
 
 #. settings-schema.json->panel_icon_style->options
-msgid "Colored icon"
-msgstr "Farbiges Symbol"
-
-#. settings-schema.json->panel_icon_style->options
 msgid "Custom icon"
 msgstr "Eigenes Symbol"
 
@@ -1340,12 +1336,12 @@ msgstr "Kein Symbol (nur Timer)"
 #. settings-schema.json->panel_icon_style->tooltip
 msgid ""
 "What to show in the panel: a progress ring with the state icon inside "
-"(recommended), a plain symbolic or colored icon, or no icon at all. The "
-"timer text is a separate option below."
+"(recommended), a plain symbolic icon, your own custom icon, or no icon at "
+"all. The timer text is a separate option below."
 msgstr ""
 "Was im Panel angezeigt wird: ein Fortschrittsring mit dem Statussymbol darin"
-" (empfohlen), ein einfaches symbolisches oder farbiges Symbol oder gar kein "
-"Symbol. Der Timer-Text wird separat unten eingestellt."
+" (empfohlen), ein einfaches symbolisches Symbol, dein eigenes Symbol oder "
+"gar kein Symbol. Der Timer-Text wird separat unten eingestellt."
 
 #. settings-schema.json->panel_custom_icon->description
 msgid "Custom panel icon"
@@ -2428,6 +2424,18 @@ msgstr "Tagesziel — Klang"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Tagesziel — Priorität"
+
+#~ msgid "Colored icon"
+#~ msgstr "Farbiges Symbol"
+
+#~ msgid ""
+#~ "What to show in the panel: a progress ring with the state icon inside "
+#~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
+#~ "timer text is a separate option below."
+#~ msgstr ""
+#~ "Was im Panel angezeigt wird: ein Fortschrittsring mit dem Statussymbol darin"
+#~ " (empfohlen), ein einfaches symbolisches oder farbiges Symbol oder gar kein "
+#~ "Symbol. Der Timer-Text wird separat unten eingestellt."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Pomodoro-Icon in der Applet-Leiste anzeigen"

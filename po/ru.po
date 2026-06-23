@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zen-pomodoro@vtestah\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:23+0700\n"
+"POT-Creation-Date: 2026-06-23 17:31+0700\n"
 "PO-Revision-Date: 2026-06-22 17:27+0700\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: ru\n"
@@ -1323,10 +1323,6 @@ msgid "Symbolic icon"
 msgstr "Символьная иконка"
 
 #. settings-schema.json->panel_icon_style->options
-msgid "Colored icon"
-msgstr "Цветная иконка"
-
-#. settings-schema.json->panel_icon_style->options
 msgid "Custom icon"
 msgstr "Своя иконка"
 
@@ -1337,11 +1333,11 @@ msgstr "Без иконки (только таймер)"
 #. settings-schema.json->panel_icon_style->tooltip
 msgid ""
 "What to show in the panel: a progress ring with the state icon inside "
-"(recommended), a plain symbolic or colored icon, or no icon at all. The "
-"timer text is a separate option below."
+"(recommended), a plain symbolic icon, your own custom icon, or no icon at "
+"all. The timer text is a separate option below."
 msgstr ""
 "Что показывать на панели: кольцо прогресса с иконкой состояния внутри "
-"(рекомендуется), простую символьную или цветную иконку, либо ничего. Текст "
+"(рекомендуется), простую символьную иконку, свою иконку, либо ничего. Текст "
 "таймера настраивается отдельно ниже."
 
 #. settings-schema.json->panel_custom_icon->description
@@ -2403,6 +2399,18 @@ msgstr "Дневная цель — звук"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Дневная цель — приоритет"
+
+#~ msgid "Colored icon"
+#~ msgstr "Цветная иконка"
+
+#~ msgid ""
+#~ "What to show in the panel: a progress ring with the state icon inside "
+#~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
+#~ "timer text is a separate option below."
+#~ msgstr ""
+#~ "Что показывать на панели: кольцо прогресса с иконкой состояния внутри "
+#~ "(рекомендуется), простую символьную или цветную иконку, либо ничего. Текст "
+#~ "таймера настраивается отдельно ниже."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Показывать иконку помидора на панели"

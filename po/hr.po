@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pomodoro Timer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:23+0700\n"
+"POT-Creation-Date: 2026-06-23 17:31+0700\n"
 "PO-Revision-Date: 2017-02-24 23:32+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -1322,10 +1322,6 @@ msgid "Symbolic icon"
 msgstr "Simbolička ikona"
 
 #. settings-schema.json->panel_icon_style->options
-msgid "Colored icon"
-msgstr "Ikona u boji"
-
-#. settings-schema.json->panel_icon_style->options
 msgid "Custom icon"
 msgstr "Prilagođena ikona"
 
@@ -1336,12 +1332,12 @@ msgstr "Bez ikone (samo mjerač vremena)"
 #. settings-schema.json->panel_icon_style->tooltip
 msgid ""
 "What to show in the panel: a progress ring with the state icon inside "
-"(recommended), a plain symbolic or colored icon, or no icon at all. The "
-"timer text is a separate option below."
+"(recommended), a plain symbolic icon, your own custom icon, or no icon at "
+"all. The timer text is a separate option below."
 msgstr ""
 "Što prikazati na ploči: prsten napretka s ikonom stanja unutar njega "
-"(preporučeno), jednostavnu simboličku ili ikonu u boji, ili bez ikone. Tekst"
-" mjerača vremena postavlja se zasebno ispod."
+"(preporučeno), simboličku ikonu, vlastitu ikonu, ili bez ikone. Tekst "
+"mjerača vremena postavlja se zasebno ispod."
 
 #. settings-schema.json->panel_custom_icon->description
 msgid "Custom panel icon"
@@ -2411,6 +2407,18 @@ msgstr "Dnevni cilj — zvuk"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Dnevni cilj — prioritet"
+
+#~ msgid "Colored icon"
+#~ msgstr "Ikona u boji"
+
+#~ msgid ""
+#~ "What to show in the panel: a progress ring with the state icon inside "
+#~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
+#~ "timer text is a separate option below."
+#~ msgstr ""
+#~ "Što prikazati na ploči: prsten napretka s ikonom stanja unutar njega "
+#~ "(preporučeno), jednostavnu simboličku ili ikonu u boji, ili bez ikone. Tekst"
+#~ " mjerača vremena postavlja se zasebno ispod."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Prikaži pomodoro ikonu u panelu apleta"

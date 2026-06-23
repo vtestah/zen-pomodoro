@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:23+0700\n"
+"POT-Creation-Date: 2026-06-23 17:31+0700\n"
 "PO-Revision-Date: 2024-10-02 21:47+0200\n"
 "Last-Translator: Claudiux <claude.clerc@gmail.com>\n"
 "Language-Team: French\n"
@@ -1342,10 +1342,6 @@ msgid "Symbolic icon"
 msgstr "Icône symbolique"
 
 #. settings-schema.json->panel_icon_style->options
-msgid "Colored icon"
-msgstr "Icône en couleur"
-
-#. settings-schema.json->panel_icon_style->options
 msgid "Custom icon"
 msgstr "Icône personnalisée"
 
@@ -1356,13 +1352,12 @@ msgstr "Aucune icône (minuteur seul)"
 #. settings-schema.json->panel_icon_style->tooltip
 msgid ""
 "What to show in the panel: a progress ring with the state icon inside "
-"(recommended), a plain symbolic or colored icon, or no icon at all. The "
-"timer text is a separate option below."
+"(recommended), a plain symbolic icon, your own custom icon, or no icon at "
+"all. The timer text is a separate option below."
 msgstr ""
 "Ce qui s'affiche dans le panneau : un anneau de progression avec l'icône "
-"d'état à l'intérieur (recommandé), une simple icône symbolique ou en "
-"couleur, ou aucune icône. Le texte du minuteur se règle séparément ci-"
-"dessous."
+"d'état à l'intérieur (recommandé), une icône symbolique, votre propre icône,"
+" ou aucune icône. Le texte du minuteur se règle séparément ci-dessous."
 
 #. settings-schema.json->panel_custom_icon->description
 msgid "Custom panel icon"
@@ -2461,6 +2456,19 @@ msgstr "Objectif quotidien — son"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Objectif quotidien — priorité"
+
+#~ msgid "Colored icon"
+#~ msgstr "Icône en couleur"
+
+#~ msgid ""
+#~ "What to show in the panel: a progress ring with the state icon inside "
+#~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
+#~ "timer text is a separate option below."
+#~ msgstr ""
+#~ "Ce qui s'affiche dans le panneau : un anneau de progression avec l'icône "
+#~ "d'état à l'intérieur (recommandé), une simple icône symbolique ou en "
+#~ "couleur, ou aucune icône. Le texte du minuteur se règle séparément ci-"
+#~ "dessous."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Afficher l'icône du Pomodoro dans le panneau d'applet"

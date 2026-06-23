@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:23+0700\n"
+"POT-Creation-Date: 2026-06-23 17:31+0700\n"
 "PO-Revision-Date: 2024-04-25 18:57-0400\n"
 "Last-Translator: Ben Southall <stellarpower@googlemail.com>\n"
 "Language-Team: Richard Decal <decal@uw.edu>\n"
@@ -1339,10 +1339,6 @@ msgid "Symbolic icon"
 msgstr "Icono simbólico"
 
 #. settings-schema.json->panel_icon_style->options
-msgid "Colored icon"
-msgstr "Icono de color"
-
-#. settings-schema.json->panel_icon_style->options
 msgid "Custom icon"
 msgstr "Icono personalizado"
 
@@ -1353,12 +1349,12 @@ msgstr "Sin icono (solo temporizador)"
 #. settings-schema.json->panel_icon_style->tooltip
 msgid ""
 "What to show in the panel: a progress ring with the state icon inside "
-"(recommended), a plain symbolic or colored icon, or no icon at all. The "
-"timer text is a separate option below."
+"(recommended), a plain symbolic icon, your own custom icon, or no icon at "
+"all. The timer text is a separate option below."
 msgstr ""
 "Qué mostrar en el panel: un anillo de progreso con el icono de estado dentro"
-" (recomendado), un icono simbólico o de color, o ningún icono. El texto del "
-"temporizador se configura por separado más abajo."
+" (recomendado), un icono simbólico, tu propio icono, o ningún icono. El "
+"texto del temporizador se configura por separado más abajo."
 
 #. settings-schema.json->panel_custom_icon->description
 msgid "Custom panel icon"
@@ -2461,6 +2457,18 @@ msgstr "Meta diaria — sonido"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Meta diaria — prioridad"
+
+#~ msgid "Colored icon"
+#~ msgstr "Icono de color"
+
+#~ msgid ""
+#~ "What to show in the panel: a progress ring with the state icon inside "
+#~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
+#~ "timer text is a separate option below."
+#~ msgstr ""
+#~ "Qué mostrar en el panel: un anillo de progreso con el icono de estado dentro"
+#~ " (recomendado), un icono simbólico o de color, o ningún icono. El texto del "
+#~ "temporizador se configura por separado más abajo."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Mostrar el ícono de pomodoro en el panel"

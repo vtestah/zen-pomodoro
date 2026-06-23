@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:23+0700\n"
+"POT-Creation-Date: 2026-06-23 17:31+0700\n"
 "PO-Revision-Date: 2024-11-18 14:34+0200\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: fi\n"
@@ -1322,10 +1322,6 @@ msgid "Symbolic icon"
 msgstr "Symbolinen kuvake"
 
 #. settings-schema.json->panel_icon_style->options
-msgid "Colored icon"
-msgstr "Värillinen kuvake"
-
-#. settings-schema.json->panel_icon_style->options
 msgid "Custom icon"
 msgstr "Mukautettu kuvake"
 
@@ -1336,12 +1332,12 @@ msgstr "Ei kuvaketta (vain ajastin)"
 #. settings-schema.json->panel_icon_style->tooltip
 msgid ""
 "What to show in the panel: a progress ring with the state icon inside "
-"(recommended), a plain symbolic or colored icon, or no icon at all. The "
-"timer text is a separate option below."
+"(recommended), a plain symbolic icon, your own custom icon, or no icon at "
+"all. The timer text is a separate option below."
 msgstr ""
 "Mitä paneelissa näytetään: edistymisrengas, jonka sisällä on tilakuvake "
-"(suositus), pelkkä symbolinen tai värillinen kuvake, tai ei kuvaketta "
-"lainkaan. Ajastimen teksti määritetään erikseen alla."
+"(suositus), symbolinen kuvake, oma kuvakkeesi, tai ei kuvaketta lainkaan. "
+"Ajastimen teksti määritetään erikseen alla."
 
 #. settings-schema.json->panel_custom_icon->description
 msgid "Custom panel icon"
@@ -2419,6 +2415,18 @@ msgstr "Päivätavoite — ääni"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Päivätavoite — prioriteetti"
+
+#~ msgid "Colored icon"
+#~ msgstr "Värillinen kuvake"
+
+#~ msgid ""
+#~ "What to show in the panel: a progress ring with the state icon inside "
+#~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
+#~ "timer text is a separate option below."
+#~ msgstr ""
+#~ "Mitä paneelissa näytetään: edistymisrengas, jonka sisällä on tilakuvake "
+#~ "(suositus), pelkkä symbolinen tai värillinen kuvake, tai ei kuvaketta "
+#~ "lainkaan. Ajastimen teksti määritetään erikseen alla."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Näytä pomodoro kuvake"

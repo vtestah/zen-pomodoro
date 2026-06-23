@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:23+0700\n"
+"POT-Creation-Date: 2026-06-23 17:31+0700\n"
 "PO-Revision-Date: 2024-04-27 23:12+0200\n"
 "Last-Translator: Krzysztof Kucharski <krzysztof85@gmail.com>\n"
 "Language-Team: Polish\n"
@@ -1328,10 +1328,6 @@ msgid "Symbolic icon"
 msgstr "Ikona symboliczna"
 
 #. settings-schema.json->panel_icon_style->options
-msgid "Colored icon"
-msgstr "Ikona kolorowa"
-
-#. settings-schema.json->panel_icon_style->options
 msgid "Custom icon"
 msgstr "Ikona niestandardowa"
 
@@ -1342,12 +1338,12 @@ msgstr "Bez ikony (tylko czas)"
 #. settings-schema.json->panel_icon_style->tooltip
 msgid ""
 "What to show in the panel: a progress ring with the state icon inside "
-"(recommended), a plain symbolic or colored icon, or no icon at all. The "
-"timer text is a separate option below."
+"(recommended), a plain symbolic icon, your own custom icon, or no icon at "
+"all. The timer text is a separate option below."
 msgstr ""
 "Co pokazywać na panelu: pierścień postępu z ikoną stanu w środku (zalecane),"
-" zwykłą ikonę symboliczną lub kolorową, albo brak ikony. Tekst czasu ustawia"
-" się osobno poniżej."
+" ikonę symboliczną, własną ikonę, albo brak ikony. Tekst czasu ustawia się "
+"osobno poniżej."
 
 #. settings-schema.json->panel_custom_icon->description
 msgid "Custom panel icon"
@@ -2419,6 +2415,18 @@ msgstr "Cel dzienny — dźwięk"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Cel dzienny — priorytet"
+
+#~ msgid "Colored icon"
+#~ msgstr "Ikona kolorowa"
+
+#~ msgid ""
+#~ "What to show in the panel: a progress ring with the state icon inside "
+#~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
+#~ "timer text is a separate option below."
+#~ msgstr ""
+#~ "Co pokazywać na panelu: pierścień postępu z ikoną stanu w środku (zalecane),"
+#~ " zwykłą ikonę symboliczną lub kolorową, albo brak ikony. Tekst czasu ustawia"
+#~ " się osobno poniżej."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Wyświetl ikonę Pomodoro w panelu apletów"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:23+0700\n"
+"POT-Creation-Date: 2026-06-23 17:31+0700\n"
 "PO-Revision-Date: 2017-03-14 22:17+0800\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: zh_CN\n"
@@ -1304,10 +1304,6 @@ msgid "Symbolic icon"
 msgstr "符号图标"
 
 #. settings-schema.json->panel_icon_style->options
-msgid "Colored icon"
-msgstr "彩色图标"
-
-#. settings-schema.json->panel_icon_style->options
 msgid "Custom icon"
 msgstr "自定义图标"
 
@@ -1318,9 +1314,9 @@ msgstr "无图标（仅计时器）"
 #. settings-schema.json->panel_icon_style->tooltip
 msgid ""
 "What to show in the panel: a progress ring with the state icon inside "
-"(recommended), a plain symbolic or colored icon, or no icon at all. The "
-"timer text is a separate option below."
-msgstr "在面板中显示的内容：内含状态图标的进度环（推荐）、简单的符号或彩色图标，或完全不显示图标。计时器文本在下方单独设置。"
+"(recommended), a plain symbolic icon, your own custom icon, or no icon at "
+"all. The timer text is a separate option below."
+msgstr "在面板中显示的内容：内含状态图标的进度环（推荐）、符号图标、您自己的图标，或完全不显示图标。计时器文本在下方单独设置。"
 
 #. settings-schema.json->panel_custom_icon->description
 msgid "Custom panel icon"
@@ -2308,6 +2304,15 @@ msgstr "每日目标 — 声音"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "每日目标 — 优先级"
+
+#~ msgid "Colored icon"
+#~ msgstr "彩色图标"
+
+#~ msgid ""
+#~ "What to show in the panel: a progress ring with the state icon inside "
+#~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
+#~ "timer text is a separate option below."
+#~ msgstr "在面板中显示的内容：内含状态图标的进度环（推荐）、简单的符号或彩色图标，或完全不显示图标。计时器文本在下方单独设置。"
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "在小程序面板显示番茄钟"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:23+0700\n"
+"POT-Creation-Date: 2026-06-23 17:31+0700\n"
 "PO-Revision-Date: 2025-02-17 20:03-0100\n"
 "Last-Translator: Marcelo Aof\n"
 "Language-Team: pt\n"
@@ -1341,10 +1341,6 @@ msgid "Symbolic icon"
 msgstr "Ícone simbólico"
 
 #. settings-schema.json->panel_icon_style->options
-msgid "Colored icon"
-msgstr "Ícone colorido"
-
-#. settings-schema.json->panel_icon_style->options
 msgid "Custom icon"
 msgstr "Ícone personalizado"
 
@@ -1355,11 +1351,11 @@ msgstr "Sem ícone (apenas o temporizador)"
 #. settings-schema.json->panel_icon_style->tooltip
 msgid ""
 "What to show in the panel: a progress ring with the state icon inside "
-"(recommended), a plain symbolic or colored icon, or no icon at all. The "
-"timer text is a separate option below."
+"(recommended), a plain symbolic icon, your own custom icon, or no icon at "
+"all. The timer text is a separate option below."
 msgstr ""
 "O que mostrar no painel: um anel de progresso com o ícone de estado no "
-"interior (recomendado), um ícone simbólico ou colorido simples, ou nenhum "
+"interior (recomendado), um ícone simbólico, o seu próprio ícone, ou nenhum "
 "ícone. O texto do temporizador é configurado separadamente abaixo."
 
 #. settings-schema.json->panel_custom_icon->description
@@ -2455,6 +2451,18 @@ msgstr "Meta diária — som"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Meta diária — prioridade"
+
+#~ msgid "Colored icon"
+#~ msgstr "Ícone colorido"
+
+#~ msgid ""
+#~ "What to show in the panel: a progress ring with the state icon inside "
+#~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
+#~ "timer text is a separate option below."
+#~ msgstr ""
+#~ "O que mostrar no painel: um anel de progresso com o ícone de estado no "
+#~ "interior (recomendado), um ícone simbólico ou colorido simples, ou nenhum "
+#~ "ícone. O texto do temporizador é configurado separadamente abaixo."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Mostrar o ícone do pomodoro no painel"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:23+0700\n"
+"POT-Creation-Date: 2026-06-23 17:31+0700\n"
 "PO-Revision-Date: 2025-10-12 13:07+0700\n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: vi\n"
@@ -1318,10 +1318,6 @@ msgid "Symbolic icon"
 msgstr "Biểu tượng đơn sắc"
 
 #. settings-schema.json->panel_icon_style->options
-msgid "Colored icon"
-msgstr "Biểu tượng màu"
-
-#. settings-schema.json->panel_icon_style->options
 msgid "Custom icon"
 msgstr "Biểu tượng tùy chỉnh"
 
@@ -1332,12 +1328,12 @@ msgstr "Không có biểu tượng (chỉ bộ đếm giờ)"
 #. settings-schema.json->panel_icon_style->tooltip
 msgid ""
 "What to show in the panel: a progress ring with the state icon inside "
-"(recommended), a plain symbolic or colored icon, or no icon at all. The "
-"timer text is a separate option below."
+"(recommended), a plain symbolic icon, your own custom icon, or no icon at "
+"all. The timer text is a separate option below."
 msgstr ""
 "Hiển thị gì trên bảng: một vòng tiến trình với biểu tượng trạng thái bên "
-"trong (khuyến nghị), một biểu tượng đơn sắc hoặc màu đơn giản, hoặc không có"
-" biểu tượng nào. Văn bản bộ đếm giờ được đặt riêng bên dưới."
+"trong (khuyến nghị), một biểu tượng đơn sắc, biểu tượng của riêng bạn, hoặc "
+"không có biểu tượng nào. Văn bản bộ đếm giờ được đặt riêng bên dưới."
 
 #. settings-schema.json->panel_custom_icon->description
 msgid "Custom panel icon"
@@ -2404,6 +2400,18 @@ msgstr "Mục tiêu ngày — âm thanh"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Mục tiêu ngày — độ ưu tiên"
+
+#~ msgid "Colored icon"
+#~ msgstr "Biểu tượng màu"
+
+#~ msgid ""
+#~ "What to show in the panel: a progress ring with the state icon inside "
+#~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
+#~ "timer text is a separate option below."
+#~ msgstr ""
+#~ "Hiển thị gì trên bảng: một vòng tiến trình với biểu tượng trạng thái bên "
+#~ "trong (khuyến nghị), một biểu tượng đơn sắc hoặc màu đơn giản, hoặc không có"
+#~ " biểu tượng nào. Văn bản bộ đếm giờ được đặt riêng bên dưới."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Hiển thị biểu tượng Pomodoro trên thanh applet"

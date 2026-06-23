@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:23+0700\n"
+"POT-Creation-Date: 2026-06-23 17:31+0700\n"
 "PO-Revision-Date: 2024-06-18 15:41+0200\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: it\n"
@@ -1336,10 +1336,6 @@ msgid "Symbolic icon"
 msgstr "Icona simbolica"
 
 #. settings-schema.json->panel_icon_style->options
-msgid "Colored icon"
-msgstr "Icona a colori"
-
-#. settings-schema.json->panel_icon_style->options
 msgid "Custom icon"
 msgstr "Icona personalizzata"
 
@@ -1350,12 +1346,12 @@ msgstr "Nessuna icona (solo timer)"
 #. settings-schema.json->panel_icon_style->tooltip
 msgid ""
 "What to show in the panel: a progress ring with the state icon inside "
-"(recommended), a plain symbolic or colored icon, or no icon at all. The "
-"timer text is a separate option below."
+"(recommended), a plain symbolic icon, your own custom icon, or no icon at "
+"all. The timer text is a separate option below."
 msgstr ""
 "Cosa mostrare nel pannello: un anello di avanzamento con l'icona di stato "
-"all'interno (consigliato), una semplice icona simbolica o a colori, oppure "
-"nessuna icona. Il testo del timer si imposta separatamente qui sotto."
+"all'interno (consigliato), un'icona simbolica, la tua icona, oppure nessuna "
+"icona. Il testo del timer si imposta separatamente qui sotto."
 
 #. settings-schema.json->panel_custom_icon->description
 msgid "Custom panel icon"
@@ -2453,6 +2449,18 @@ msgstr "Obiettivo giornaliero — suono"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Obiettivo giornaliero — priorità"
+
+#~ msgid "Colored icon"
+#~ msgstr "Icona a colori"
+
+#~ msgid ""
+#~ "What to show in the panel: a progress ring with the state icon inside "
+#~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
+#~ "timer text is a separate option below."
+#~ msgstr ""
+#~ "Cosa mostrare nel pannello: un anello di avanzamento con l'icona di stato "
+#~ "all'interno (consigliato), una semplice icona simbolica o a colori, oppure "
+#~ "nessuna icona. Il testo del timer si imposta separatamente qui sotto."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Visualizza l'icona di pomodoro nel pannello dell'applet"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:53+0700\n"
+"POT-Creation-Date: 2026-06-23 18:05+0700\n"
 "PO-Revision-Date: 2024-11-18 14:34+0200\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: fi\n"
@@ -413,8 +413,8 @@ msgstr ""
 #: features.js:653
 msgid "One-click start and a calm start ritual make it easier to begin."
 msgstr ""
-"Yhden napsautuksen aloitus ja rauhallinen aloitusrituaali helpottavat alkuun "
-"pääsyä."
+"Yhden napsautuksen aloitus ja rauhallinen aloitusrituaali helpottavat alkuun"
+" pääsyä."
 
 #: features.js:657
 msgid "Breaks start on their own so you don't overwork."
@@ -567,9 +567,9 @@ msgid ""
 "work — your rhythm, sounds, breaks and the help you need. You can fine-tune "
 "everything later in Settings."
 msgstr ""
-"Vastaa viiteen lyhyeen kysymykseen, niin rakennan sinulle työtapaasi sopivan "
-"fokusasetuksen — rytmin, äänet, tauot ja tarvitsemasi avun. Voit hienosäätää "
-"kaikkea myöhemmin Asetuksissa."
+"Vastaa viiteen lyhyeen kysymykseen, niin rakennan sinulle työtapaasi sopivan"
+" fokusasetuksen — rytmin, äänet, tauot ja tarvitsemasi avun. Voit "
+"hienosäätää kaikkea myöhemmin Asetuksissa."
 
 #: features.js:770
 msgid "Let's go"
@@ -603,7 +603,7 @@ msgstr "Käytä"
 msgid "Apply & start"
 msgstr "Käytä ja aloita"
 
-#: features.js:806 menu.js:322 menu.js:897 menu.js:903
+#: features.js:806 menu.js:322 menu.js:896 menu.js:902
 #, javascript-format
 msgid "%d min"
 msgstr "%d min"
@@ -804,7 +804,8 @@ msgstr "Ei tehtävää"
 
 #: features.js:1509
 msgid "Push notifications need libsoup, which isn't available here."
-msgstr "Push-ilmoitukset tarvitsevat libsoupin, jota ei ole täällä saatavilla."
+msgstr ""
+"Push-ilmoitukset tarvitsevat libsoupin, jota ei ole täällä saatavilla."
 
 #: features.js:1515
 msgid "Enter your Pushover user key and app token first."
@@ -883,14 +884,6 @@ msgstr "Syötä kellonaika (TT:MM)"
 msgid "Error: menu unavailable"
 msgstr "Virhe: valikko ei käytettävissä"
 
-#: menu.js:173 menu.js:718 menu.js:955
-msgid "blocked"
-msgstr "estetty"
-
-#: menu.js:173 menu.js:423 menu.js:718 menu.js:955
-msgid "ready"
-msgstr "valmis"
-
 #: menu.js:258
 msgid "Ready to start"
 msgstr "Valmis aloittamaan"
@@ -904,29 +897,33 @@ msgstr "Tehtävä valitaan aloitettaessa"
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:370 menu.js:792
+#: menu.js:370 menu.js:791
 msgid "Start focus"
 msgstr "Aloita fokus"
 
 #: menu.js:386
-msgid "Skip step"
+msgid "Skip phase"
 msgstr "Ohita vaihe"
 
 #: menu.js:392
-msgid "Reset session"
-msgstr "Nollaa istunto"
+msgid "Reset timer"
+msgstr "Nollaa ajastin"
 
 #: menu.js:404
-msgid "Reset all"
-msgstr "Nollaa kaikki"
+msgid "Reset counters"
+msgstr "Nollaa laskurit"
 
 #: menu.js:405
-msgid "Confirm reset of everything"
-msgstr "Vahvista kaiken nollaus"
+msgid "Reset timer and counters"
+msgstr "Nollaa ajastin ja laskurit"
 
 #: menu.js:423
-msgid "Sites"
-msgstr "Sivustot"
+msgid "Site blocking"
+msgstr "Sivustojen esto"
+
+#: menu.js:423 menu.js:719 menu.js:954
+msgid "off"
+msgstr "pois"
 
 #: menu.js:430
 msgid "Current task…"
@@ -944,15 +941,15 @@ msgstr "Zen-tila"
 msgid "Ambient sound"
 msgstr "Taustaääni"
 
-#: menu.js:453 menu.js:903
+#: menu.js:453 menu.js:902
 msgid "Focus length"
 msgstr "Fokuksen kesto"
 
-#: menu.js:460 menu.js:734 menu.js:950
+#: menu.js:460 menu.js:733 menu.js:949
 msgid "Preset"
 msgstr "Esiasetus"
 
-#: menu.js:464 menu.js:820
+#: menu.js:464 menu.js:819
 msgid "Task list"
 msgstr "Tehtävälista"
 
@@ -961,8 +958,8 @@ msgid "Statistics"
 msgstr "Tilastot"
 
 #: menu.js:469
-msgid "Open dashboard…"
-msgstr "Avaa koontinäyttö…"
+msgid "Details…"
+msgstr "Tiedot…"
 
 #: menu.js:472 menu.js:607
 #, javascript-format
@@ -1004,8 +1001,8 @@ msgid "none yet"
 msgstr "ei vielä"
 
 #: menu.js:498
-msgid "Quick start"
-msgstr "Pikakäynnistys"
+msgid "Setup wizard…"
+msgstr "Ohjattu asennus…"
 
 #: menu.js:503
 msgid "SESSION"
@@ -1061,51 +1058,61 @@ msgstr "Tehtävä: %s"
 msgid "Task: none"
 msgstr "Tehtävä: ei mitään"
 
-#: menu.js:771
+#: menu.js:720 menu.js:955
+#, javascript-format
+msgid "blocking %d"
+msgstr "estää %d"
+
+#: menu.js:720 menu.js:955
+#, javascript-format
+msgid "%d in list"
+msgstr "%d luettelossa"
+
+#: menu.js:770
 msgid "Resume break"
 msgstr "Jatka taukoa"
 
-#: menu.js:771
+#: menu.js:770
 msgid "Resume focus"
 msgstr "Jatka fokusta"
 
-#: menu.js:778
+#: menu.js:777
 msgid "Focusing — stay with it"
 msgstr "Keskitytään — pysy mukana"
 
-#: menu.js:783
+#: menu.js:782
 msgid "Pause focus"
 msgstr "Pysäytä fokus"
 
-#: menu.js:783
+#: menu.js:782
 msgid "Pause break"
 msgstr "Pysäytä tauko"
 
-#: menu.js:788
+#: menu.js:787
 msgid "Start next focus"
 msgstr "Aloita seuraava fokus"
 
-#: menu.js:830
+#: menu.js:829
 msgid "Add task…"
 msgstr "Lisää tehtävä…"
 
-#: menu.js:840
+#: menu.js:839
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr "Ei vielä tehtäviä — lisää se, mihin keskityt, ja 🍅-arvio."
 
-#: menu.js:866
+#: menu.js:865
 msgid "Toggle done (current)"
 msgstr "Vaihda valmis-tila (nykyinen)"
 
-#: menu.js:869
+#: menu.js:868
 msgid "Delete current"
 msgstr "Poista nykyinen"
 
-#: menu.js:878
+#: menu.js:877
 msgid "Save as template…"
 msgstr "Tallenna mallina…"
 
-#: menu.js:884
+#: menu.js:883
 #, javascript-format
 msgid "Apply: %s"
 msgstr "Käytä: %s"
@@ -1229,7 +1236,8 @@ msgid "Long Break Duration:"
 msgstr "Pitkän tauon kesto:"
 
 #. settings-schema.json->long_break_duration->tooltip
-msgid "Length of the longer break after a set of pomodoros (classic is 15–30)."
+msgid ""
+"Length of the longer break after a set of pomodoros (classic is 15–30)."
 msgstr "Pitkän tauon pituus pomodoroerän jälkeen (klassinen on 15–30)."
 
 #. settings-schema.json->pomodori_number->description
@@ -1237,7 +1245,8 @@ msgid "Number of pomodori before long break:"
 msgstr "Määrä ennen pitkää taukoa:"
 
 #. settings-schema.json->pomodori_number->tooltip
-msgid "How many focus blocks to complete before the long break (classic is 4)."
+msgid ""
+"How many focus blocks to complete before the long break (classic is 4)."
 msgstr "Kuinka monta fokusjaksoa ennen pitkää taukoa (klassinen on 4)."
 
 #. settings-schema.json->start_automatically_on_load->description
@@ -1262,8 +1271,8 @@ msgid ""
 "If Cinnamon restarts mid-focus, the session is remembered so you can resume "
 "it from the menu — it won't auto-start."
 msgstr ""
-"Jos Cinnamon käynnistyy uudelleen kesken fokuksen, istunto muistetaan, joten "
-"voit jatkaa sitä valikosta — se ei käynnisty itsestään."
+"Jos Cinnamon käynnistyy uudelleen kesken fokuksen, istunto muistetaan, joten"
+" voit jatkaa sitä valikosta — se ei käynnisty itsestään."
 
 #. settings-schema.json->show_dialog_messages->description
 msgid "Show Dialog Messages"
@@ -1274,8 +1283,8 @@ msgid ""
 "Show pop-up dialogs at the end of each phase (off keeps it quiet — only on-"
 "screen cues)."
 msgstr ""
-"Näytä ponnahdusikkunat kunkin vaiheen lopussa (pois = hiljaista, vain näytön "
-"vihjeet)."
+"Näytä ponnahdusikkunat kunkin vaiheen lopussa (pois = hiljaista, vain näytön"
+" vihjeet)."
 
 #. settings-schema.json->auto_start_after_pomodoro_ends->description
 msgid "Auto start after a pomodoro ends"
@@ -1358,7 +1367,8 @@ msgstr "Näytä sekunnit paneelin ajastimessa"
 #. settings-schema.json->show_seconds->tooltip
 msgid "Off shows only the remaining minutes on the panel (less distracting)."
 msgstr ""
-"Pois näyttää paneelissa vain jäljellä olevat minuutit (vähemmän häiritsevää)."
+"Pois näyttää paneelissa vain jäljellä olevat minuutit (vähemmän "
+"häiritsevää)."
 
 #. settings-schema.json->hotkey->description
 msgid "Shortcut: open the applet menu"
@@ -1402,9 +1412,9 @@ msgstr "Ohjaa ajastinta hiirellä paneelissa"
 
 #. settings-schema.json->panel_scroll_control->tooltip
 msgid ""
-"Scroll up on the applet to start or resume, scroll down to pause, and middle-"
-"click to skip the phase. Turn this off if you sometimes scroll over the "
-"panel by accident."
+"Scroll up on the applet to start or resume, scroll down to pause, and "
+"middle-click to skip the phase. Turn this off if you sometimes scroll over "
+"the panel by accident."
 msgstr ""
 "Vieritä sovelman päällä ylös aloittaaksesi tai jatkaaksesi, alas "
 "pysäyttääksesi, ja napsauta keskipainiketta ohittaaksesi vaiheen. Poista "
@@ -1427,8 +1437,8 @@ msgid ""
 "What the mouse wheel does on the applet: start/pause the timer, or change "
 "the focus length (when idle). Middle-click always skips to the next phase."
 msgstr ""
-"Mitä hiiren rulla tekee sovelmassa: aloittaa/pysäyttää ajastimen tai muuttaa "
-"fokuksen kestoa (valmiustilassa). Keskipainike siirtyy aina seuraavaan "
+"Mitä hiiren rulla tekee sovelmassa: aloittaa/pysäyttää ajastimen tai muuttaa"
+" fokuksen kestoa (valmiustilassa). Keskipainike siirtyy aina seuraavaan "
 "vaiheeseen."
 
 #. settings-schema.json->focus_show_task_chip->description
@@ -1450,8 +1460,8 @@ msgstr ""
 
 #. settings-schema.json->focus_start_ritual->description
 msgid ""
-"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus "
-"begins"
+"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus"
+" begins"
 msgstr ""
 "Aloitusrituaali: lyhyt keskitetty ”Fokus: <tehtävä>” ja pehmeä häivähdys "
 "fokuksen alkaessa"
@@ -1471,7 +1481,8 @@ msgstr "Tehtävä"
 
 #. settings-schema.json->preset_tasks->tooltip
 msgid "Quick-pick task buttons shown in the focus task dialog; one per row."
-msgstr "Tehtävien pikavalintapainikkeet fokustehtävädialogissa; yksi per rivi."
+msgstr ""
+"Tehtävien pikavalintapainikkeet fokustehtävädialogissa; yksi per rivi."
 
 #. settings-schema.json->require_focus_task->description
 msgid "Require a focus task before starting"
@@ -1555,8 +1566,8 @@ msgstr "Hehkun voimakkuus"
 
 #. settings-schema.json->glow_intensity->tooltip
 msgid ""
-"How bright the on-screen edge glow is during focus — higher is more visible, "
-"lower is subtler."
+"How bright the on-screen edge glow is during focus — higher is more visible,"
+" lower is subtler."
 msgstr ""
 "Kuinka kirkkaana näytön reunan hehku näkyy fokuksen aikana — korkeampi "
 "näkyvämpi, matalampi hienovaraisempi."
@@ -1588,8 +1599,8 @@ msgstr "Rentouttava 4-6"
 
 #. settings-schema.json->breathing_pattern->tooltip
 msgid ""
-"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 "
-"— seconds per phase."
+"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6"
+" — seconds per phase."
 msgstr ""
 "Oppaan hengitysrytmi: Laatikko (4-4-4-4), rauhoittava 4-7-8 tai rentouttava "
 "4-6 — sekunteja per vaihe."
@@ -1649,8 +1660,8 @@ msgstr "Esikatsele fokuskehystä"
 
 #. settings-schema.json->preview_appearance_button->tooltip
 msgid ""
-"Briefly show the on-screen focus frame and task chip with the current colors "
-"and style (works when no timer is running)."
+"Briefly show the on-screen focus frame and task chip with the current colors"
+" and style (works when no timer is running)."
 msgstr ""
 "Näytä hetkeksi näytön fokuskehys ja tehtävälappu nykyisillä väreillä ja "
 "tyylillä (toimii, kun ajastin ei ole käynnissä)."
@@ -1757,8 +1768,8 @@ msgstr "Tiukka fokus: ei taukoa eikä ohitusta fokusjakson aikana"
 
 #. settings-schema.json->strict_focus->tooltip
 msgid ""
-"While a focus block is running, hide pause and skip so you commit to it. You "
-"can still Reset to abandon the session — it's never a hard lock."
+"While a focus block is running, hide pause and skip so you commit to it. You"
+" can still Reset to abandon the session — it's never a hard lock."
 msgstr ""
 "Kun fokusjakso on käynnissä, pysäytys ja ohitus piilotetaan, jotta sitoudut "
 "siihen. Voit silti nollata istunnon ja keskeyttää sen — kyse ei ole koskaan "
@@ -1839,8 +1850,8 @@ msgstr ""
 #. settings-schema.json->pushover_help->description
 msgid ""
 "Pushover sends alerts to your phone or desktop. Create a free account at "
-"pushover.net, copy your User Key, then create an Application there to get an "
-"API Token."
+"pushover.net, copy your User Key, then create an Application there to get an"
+" API Token."
 msgstr ""
 "Pushover lähettää hälytyksiä puhelimeesi tai työpöydällesi. Luo ilmainen "
 "tili osoitteessa pushover.net, kopioi User Key ja luo sitten Application "
@@ -1879,8 +1890,8 @@ msgstr "Mukauta viestejä, ääniä ja prioriteettia"
 
 #. settings-schema.json->pushover_customize->tooltip
 msgid ""
-"Show options to change the text, sound and priority for each event. Off uses "
-"sensible defaults."
+"Show options to change the text, sound and priority for each event. Off uses"
+" sensible defaults."
 msgstr ""
 "Näytä asetukset kunkin tapahtuman tekstin, äänen ja prioriteetin "
 "muuttamiseksi. Pois käytössä järkevät oletukset."
@@ -1920,7 +1931,8 @@ msgstr ""
 "pääkäyttäjäkyselyllä)"
 
 #. settings-schema.json->enable_blocking->tooltip
-msgid "Block distracting sites by editing /etc/hosts (asks for your password)."
+msgid ""
+"Block distracting sites by editing /etc/hosts (asks for your password)."
 msgstr ""
 "Estä häiritsevät sivustot muokkaamalla /etc/hosts-tiedostoa (kysyy "
 "salasanasi)."
@@ -1935,11 +1947,11 @@ msgstr "Verkkotunnus"
 
 #. settings-schema.json->block_domains->tooltip
 msgid ""
-"Domains to block during focus, one per row (e.g. youtube.com, www.youtube."
-"com)."
+"Domains to block during focus, one per row (e.g. youtube.com, "
+"www.youtube.com)."
 msgstr ""
-"Fokuksen aikana estettävät verkkotunnukset, yksi per rivi (esim. youtube."
-"com, www.youtube.com)."
+"Fokuksen aikana estettävät verkkotunnukset, yksi per rivi (esim. "
+"youtube.com, www.youtube.com)."
 
 #. settings-schema.json->block_now_button->description
 msgid "Block these domains now"
@@ -1959,11 +1971,11 @@ msgstr "Poista esto"
 
 #. settings-schema.json->unblock_button->tooltip
 msgid ""
-"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password "
-"once)."
+"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
+" once)."
 msgstr ""
-"Poistaa Zen Pomodoron estomerkinnät /etc/hosts-tiedostosta (kysyy salasanasi "
-"kerran)."
+"Poistaa Zen Pomodoron estomerkinnät /etc/hosts-tiedostosta (kysyy salasanasi"
+" kerran)."
 
 #. settings-schema.json->edit_hosts_button->description
 msgid "Edit /etc/hosts manually (admin)"
@@ -1971,8 +1983,8 @@ msgstr "Muokkaa /etc/hosts-tiedostoa käsin (pääkäyttäjä)"
 
 #. settings-schema.json->edit_hosts_button->tooltip
 msgid ""
-"Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only "
-"manages its own clearly-marked section."
+"Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only"
+" manages its own clearly-marked section."
 msgstr ""
 "Avaa /etc/hosts-tiedoston editorissasi pääkäyttäjän oikeuksin. Zen Pomodoro "
 "hallitsee vain omaa selkeästi merkittyä osiotaan."
@@ -1982,8 +1994,8 @@ msgid ""
 "No sound backend was found. Install GSound or a sound player (e.g. the "
 "'pulseaudio-utils' or 'sox' package) to enable sounds."
 msgstr ""
-"Äänitaustaa ei löytynyt. Asenna GSound tai soitin (esim. paketti ”pulseaudio-"
-"utils” tai ”sox”) ottaaksesi äänet käyttöön."
+"Äänitaustaa ei löytynyt. Asenna GSound tai soitin (esim. paketti "
+"”pulseaudio-utils” tai ”sox”) ottaaksesi äänet käyttöön."
 
 #. settings-schema.json->timer_sound->description
 msgid "Play Timer Sound"
@@ -2274,8 +2286,8 @@ msgid ""
 "Sent once when you hit your daily pomodoro goal. {task} and {minutes} are "
 "substituted. Leave empty to send nothing."
 msgstr ""
-"Lähetetään kerran, kun saavutat päivittäisen pomodoro-tavoitteesi. {task} ja "
-"{minutes} korvataan. Jätä tyhjäksi, niin mitään ei lähetetä."
+"Lähetetään kerran, kun saavutat päivittäisen pomodoro-tavoitteesi. {task} ja"
+" {minutes} korvataan. Jätä tyhjäksi, niin mitään ei lähetetä."
 
 #. settings-schema.json->pushover_snd_focus->description
 msgid "Focus start — sound"
@@ -2404,6 +2416,33 @@ msgstr "Päivätavoite — ääni"
 #. settings-schema.json->pushover_pri_goal->description
 msgid "Daily goal — priority"
 msgstr "Päivätavoite — prioriteetti"
+
+#~ msgid "blocked"
+#~ msgstr "estetty"
+
+#~ msgid "ready"
+#~ msgstr "valmis"
+
+#~ msgid "Skip step"
+#~ msgstr "Ohita vaihe"
+
+#~ msgid "Reset session"
+#~ msgstr "Nollaa istunto"
+
+#~ msgid "Reset all"
+#~ msgstr "Nollaa kaikki"
+
+#~ msgid "Confirm reset of everything"
+#~ msgstr "Vahvista kaiken nollaus"
+
+#~ msgid "Sites"
+#~ msgstr "Sivustot"
+
+#~ msgid "Open dashboard…"
+#~ msgstr "Avaa koontinäyttö…"
+
+#~ msgid "Quick start"
+#~ msgstr "Pikakäynnistys"
 
 #, javascript-format
 #~ msgid "Hotkey: %s"

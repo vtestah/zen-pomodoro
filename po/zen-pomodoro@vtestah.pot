@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:53+0700\n"
+"POT-Creation-Date: 2026-06-23 18:05+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -593,7 +593,7 @@ msgstr ""
 msgid "Apply & start"
 msgstr ""
 
-#: features.js:806 menu.js:322 menu.js:897 menu.js:903
+#: features.js:806 menu.js:322 menu.js:896 menu.js:902
 #, javascript-format
 msgid "%d min"
 msgstr ""
@@ -873,14 +873,6 @@ msgstr ""
 msgid "Error: menu unavailable"
 msgstr ""
 
-#: menu.js:173 menu.js:718 menu.js:955
-msgid "blocked"
-msgstr ""
-
-#: menu.js:173 menu.js:423 menu.js:718 menu.js:955
-msgid "ready"
-msgstr ""
-
 #: menu.js:258
 msgid "Ready to start"
 msgstr ""
@@ -894,28 +886,32 @@ msgstr ""
 msgid "Pomodoro %d / %d"
 msgstr ""
 
-#: menu.js:370 menu.js:792
+#: menu.js:370 menu.js:791
 msgid "Start focus"
 msgstr ""
 
 #: menu.js:386
-msgid "Skip step"
+msgid "Skip phase"
 msgstr ""
 
 #: menu.js:392
-msgid "Reset session"
+msgid "Reset timer"
 msgstr ""
 
 #: menu.js:404
-msgid "Reset all"
+msgid "Reset counters"
 msgstr ""
 
 #: menu.js:405
-msgid "Confirm reset of everything"
+msgid "Reset timer and counters"
 msgstr ""
 
 #: menu.js:423
-msgid "Sites"
+msgid "Site blocking"
+msgstr ""
+
+#: menu.js:423 menu.js:719 menu.js:954
+msgid "off"
 msgstr ""
 
 #: menu.js:430
@@ -934,15 +930,15 @@ msgstr ""
 msgid "Ambient sound"
 msgstr ""
 
-#: menu.js:453 menu.js:903
+#: menu.js:453 menu.js:902
 msgid "Focus length"
 msgstr ""
 
-#: menu.js:460 menu.js:734 menu.js:950
+#: menu.js:460 menu.js:733 menu.js:949
 msgid "Preset"
 msgstr ""
 
-#: menu.js:464 menu.js:820
+#: menu.js:464 menu.js:819
 msgid "Task list"
 msgstr ""
 
@@ -951,7 +947,7 @@ msgid "Statistics"
 msgstr ""
 
 #: menu.js:469
-msgid "Open dashboard…"
+msgid "Details…"
 msgstr ""
 
 #: menu.js:472 menu.js:607
@@ -994,7 +990,7 @@ msgid "none yet"
 msgstr ""
 
 #: menu.js:498
-msgid "Quick start"
+msgid "Setup wizard…"
 msgstr ""
 
 #: menu.js:503
@@ -1051,51 +1047,61 @@ msgstr ""
 msgid "Task: none"
 msgstr ""
 
-#: menu.js:771
+#: menu.js:720 menu.js:955
+#, javascript-format
+msgid "blocking %d"
+msgstr ""
+
+#: menu.js:720 menu.js:955
+#, javascript-format
+msgid "%d in list"
+msgstr ""
+
+#: menu.js:770
 msgid "Resume break"
 msgstr ""
 
-#: menu.js:771
+#: menu.js:770
 msgid "Resume focus"
 msgstr ""
 
-#: menu.js:778
+#: menu.js:777
 msgid "Focusing — stay with it"
 msgstr ""
 
-#: menu.js:783
+#: menu.js:782
 msgid "Pause focus"
 msgstr ""
 
-#: menu.js:783
+#: menu.js:782
 msgid "Pause break"
 msgstr ""
 
-#: menu.js:788
+#: menu.js:787
 msgid "Start next focus"
 msgstr ""
 
-#: menu.js:830
+#: menu.js:829
 msgid "Add task…"
 msgstr ""
 
-#: menu.js:840
+#: menu.js:839
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 
-#: menu.js:866
+#: menu.js:865
 msgid "Toggle done (current)"
 msgstr ""
 
-#: menu.js:869
+#: menu.js:868
 msgid "Delete current"
 msgstr ""
 
-#: menu.js:878
+#: menu.js:877
 msgid "Save as template…"
 msgstr ""
 
-#: menu.js:884
+#: menu.js:883
 #, javascript-format
 msgid "Apply: %s"
 msgstr ""

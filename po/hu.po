@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 17:53+0700\n"
+"POT-Creation-Date: 2026-06-23 18:05+0700\n"
 "PO-Revision-Date: 2025-08-07 20:11+0200\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: hu\n"
@@ -148,8 +148,8 @@ msgstr "A Pomodoro indítás előtti ellenőrzése sikertelen"
 #: applet.js:1854
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
-"https://en.wikipedia.org/wiki/Pomodoro_Technique Magyar leírás: https://www."
-"mindenmegtanulhato.hu/a-pomodoro-technika/"
+"https://en.wikipedia.org/wiki/Pomodoro_Technique Magyar leírás: "
+"https://www.mindenmegtanulhato.hu/a-pomodoro-technika/"
 
 #: applet.js:1931 features.js:1820
 msgid "Stop the timer before changing Pomodoro preset"
@@ -604,7 +604,7 @@ msgstr "Alkalmaz"
 msgid "Apply & start"
 msgstr "Alkalmaz és indít"
 
-#: features.js:806 menu.js:322 menu.js:897 menu.js:903
+#: features.js:806 menu.js:322 menu.js:896 menu.js:902
 #, javascript-format
 msgid "%d min"
 msgstr "%d perc"
@@ -888,14 +888,6 @@ msgstr "Adj meg egy időpontot (ÓÓ:PP)"
 msgid "Error: menu unavailable"
 msgstr "Hiba: a menü nem érhető el"
 
-#: menu.js:173 menu.js:718 menu.js:955
-msgid "blocked"
-msgstr "blokkolva"
-
-#: menu.js:173 menu.js:423 menu.js:718 menu.js:955
-msgid "ready"
-msgstr "kész"
-
 #: menu.js:258
 msgid "Ready to start"
 msgstr "Készen az indításra"
@@ -909,29 +901,33 @@ msgstr "A feladat indításkor kerül kiválasztásra"
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:370 menu.js:792
+#: menu.js:370 menu.js:791
 msgid "Start focus"
 msgstr "Fókusz indítása"
 
 #: menu.js:386
-msgid "Skip step"
-msgstr "Lépés kihagyása"
+msgid "Skip phase"
+msgstr "Fázis kihagyása"
 
 #: menu.js:392
-msgid "Reset session"
-msgstr "Menet nullázása"
+msgid "Reset timer"
+msgstr "Időzítő visszaállítása"
 
 #: menu.js:404
-msgid "Reset all"
-msgstr "Minden nullázása"
+msgid "Reset counters"
+msgstr "Számlálók visszaállítása"
 
 #: menu.js:405
-msgid "Confirm reset of everything"
-msgstr "Teljes nullázás megerősítése"
+msgid "Reset timer and counters"
+msgstr "Időzítő és számlálók visszaállítása"
 
 #: menu.js:423
-msgid "Sites"
-msgstr "Oldalak"
+msgid "Site blocking"
+msgstr "Webhelyblokkolás"
+
+#: menu.js:423 menu.js:719 menu.js:954
+msgid "off"
+msgstr "ki"
 
 #: menu.js:430
 msgid "Current task…"
@@ -949,15 +945,15 @@ msgstr "Zen mód"
 msgid "Ambient sound"
 msgstr "Háttérhang"
 
-#: menu.js:453 menu.js:903
+#: menu.js:453 menu.js:902
 msgid "Focus length"
 msgstr "Fókusz hossza"
 
-#: menu.js:460 menu.js:734 menu.js:950
+#: menu.js:460 menu.js:733 menu.js:949
 msgid "Preset"
 msgstr "Előbeállítás"
 
-#: menu.js:464 menu.js:820
+#: menu.js:464 menu.js:819
 msgid "Task list"
 msgstr "Feladatlista"
 
@@ -966,8 +962,8 @@ msgid "Statistics"
 msgstr "Statisztika"
 
 #: menu.js:469
-msgid "Open dashboard…"
-msgstr "Irányítópult megnyitása…"
+msgid "Details…"
+msgstr "Részletek…"
 
 #: menu.js:472 menu.js:607
 #, javascript-format
@@ -1009,8 +1005,8 @@ msgid "none yet"
 msgstr "még nincs"
 
 #: menu.js:498
-msgid "Quick start"
-msgstr "Gyors kezdés"
+msgid "Setup wizard…"
+msgstr "Beállítási varázsló…"
 
 #: menu.js:503
 msgid "SESSION"
@@ -1066,51 +1062,61 @@ msgstr "Feladat: %s"
 msgid "Task: none"
 msgstr "Feladat: nincs"
 
-#: menu.js:771
+#: menu.js:720 menu.js:955
+#, javascript-format
+msgid "blocking %d"
+msgstr "%d blokkolva"
+
+#: menu.js:720 menu.js:955
+#, javascript-format
+msgid "%d in list"
+msgstr "%d a listán"
+
+#: menu.js:770
 msgid "Resume break"
 msgstr "Szünet folytatása"
 
-#: menu.js:771
+#: menu.js:770
 msgid "Resume focus"
 msgstr "Fókusz folytatása"
 
-#: menu.js:778
+#: menu.js:777
 msgid "Focusing — stay with it"
 msgstr "Fókuszálás — tarts ki"
 
-#: menu.js:783
+#: menu.js:782
 msgid "Pause focus"
 msgstr "Fókusz szüneteltetése"
 
-#: menu.js:783
+#: menu.js:782
 msgid "Pause break"
 msgstr "Szünet szüneteltetése"
 
-#: menu.js:788
+#: menu.js:787
 msgid "Start next focus"
 msgstr "Következő fókusz indítása"
 
-#: menu.js:830
+#: menu.js:829
 msgid "Add task…"
 msgstr "Feladat hozzáadása…"
 
-#: menu.js:840
+#: menu.js:839
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr "Még nincs feladat — add hozzá, mire fókuszálsz, 🍅 becsléssel."
 
-#: menu.js:866
+#: menu.js:865
 msgid "Toggle done (current)"
 msgstr "Kész állapot váltása (aktuális)"
 
-#: menu.js:869
+#: menu.js:868
 msgid "Delete current"
 msgstr "Aktuális törlése"
 
-#: menu.js:878
+#: menu.js:877
 msgid "Save as template…"
 msgstr "Mentés sablonként…"
 
-#: menu.js:884
+#: menu.js:883
 #, javascript-format
 msgid "Apply: %s"
 msgstr "Alkalmaz: %s"
@@ -1234,7 +1240,8 @@ msgid "Long Break Duration:"
 msgstr "Hosszú szünet időtartama:"
 
 #. settings-schema.json->long_break_duration->tooltip
-msgid "Length of the longer break after a set of pomodoros (classic is 15–30)."
+msgid ""
+"Length of the longer break after a set of pomodoros (classic is 15–30)."
 msgstr ""
 "A hosszabb szünet hossza egy pomodoro-sorozat után (klasszikusan 15–30)."
 
@@ -1243,7 +1250,8 @@ msgid "Number of pomodori before long break:"
 msgstr "Pomodorók száma hosszú szünet előtt:"
 
 #. settings-schema.json->pomodori_number->tooltip
-msgid "How many focus blocks to complete before the long break (classic is 4)."
+msgid ""
+"How many focus blocks to complete before the long break (classic is 4)."
 msgstr "Hány fókuszblokk teljesüljön a hosszú szünet előtt (klasszikusan 4)."
 
 #. settings-schema.json->start_automatically_on_load->description
@@ -1412,9 +1420,9 @@ msgstr "Az időzítő vezérlése egérrel a panelen"
 
 #. settings-schema.json->panel_scroll_control->tooltip
 msgid ""
-"Scroll up on the applet to start or resume, scroll down to pause, and middle-"
-"click to skip the phase. Turn this off if you sometimes scroll over the "
-"panel by accident."
+"Scroll up on the applet to start or resume, scroll down to pause, and "
+"middle-click to skip the phase. Turn this off if you sometimes scroll over "
+"the panel by accident."
 msgstr ""
 "Görgess felfelé az appleten az indításhoz vagy folytatáshoz, lefelé a "
 "szüneteltetéshez, középső kattintás a fázis kihagyásához. Kapcsold ki, ha "
@@ -1461,8 +1469,8 @@ msgstr ""
 
 #. settings-schema.json->focus_start_ritual->description
 msgid ""
-"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus "
-"begins"
+"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus"
+" begins"
 msgstr ""
 "Kezdő rituálé: rövid, középre igazított „Fókusz: <feladat>” és lágy beúszás "
 "a fókusz kezdetekor"
@@ -1470,8 +1478,8 @@ msgstr ""
 #. settings-schema.json->focus_start_ritual->tooltip
 msgid "Briefly show 'Focus: <task>' with a smooth fade-in when focus begins."
 msgstr ""
-"Röviden megjeleníti a „Fókusz: <feladat>” feliratot lágy beúszással a fókusz "
-"kezdetekor."
+"Röviden megjeleníti a „Fókusz: <feladat>” feliratot lágy beúszással a fókusz"
+" kezdetekor."
 
 #. settings-schema.json->preset_tasks->description
 msgid "Preset focus tasks (quick-pick buttons in the focus dialog)"
@@ -1569,8 +1577,8 @@ msgstr "Ragyogás erőssége"
 
 #. settings-schema.json->glow_intensity->tooltip
 msgid ""
-"How bright the on-screen edge glow is during focus — higher is more visible, "
-"lower is subtler."
+"How bright the on-screen edge glow is during focus — higher is more visible,"
+" lower is subtler."
 msgstr ""
 "Mennyire erős a képernyőszéli ragyogás fókusz közben — magasabb láthatóbb, "
 "alacsonyabb finomabb."
@@ -1603,8 +1611,8 @@ msgstr "Lazító 4-6"
 
 #. settings-schema.json->breathing_pattern->tooltip
 msgid ""
-"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 "
-"— seconds per phase."
+"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6"
+" — seconds per phase."
 msgstr ""
 "A vezető légzésritmusa: Doboz (4-4-4-4), nyugtató 4-7-8, vagy lazító 4-6 — "
 "másodperc fázisonként."
@@ -1665,8 +1673,8 @@ msgstr "Fókuszkeret előnézete"
 
 #. settings-schema.json->preview_appearance_button->tooltip
 msgid ""
-"Briefly show the on-screen focus frame and task chip with the current colors "
-"and style (works when no timer is running)."
+"Briefly show the on-screen focus frame and task chip with the current colors"
+" and style (works when no timer is running)."
 msgstr ""
 "Röviden megjeleníti a képernyős fókuszkeretet és feladatcímkét az aktuális "
 "színekkel és stílussal (akkor működik, ha nem fut időzítő)."
@@ -1775,8 +1783,8 @@ msgstr "Szigorú fókusz: nincs szünet vagy kihagyás fókuszblokk közben"
 
 #. settings-schema.json->strict_focus->tooltip
 msgid ""
-"While a focus block is running, hide pause and skip so you commit to it. You "
-"can still Reset to abandon the session — it's never a hard lock."
+"While a focus block is running, hide pause and skip so you commit to it. You"
+" can still Reset to abandon the session — it's never a hard lock."
 msgstr ""
 "Amíg fókuszblokk fut, a szünet és kihagyás rejtve van, hogy elköteleződj "
 "mellette. A menetet a Nullázással így is feladhatod — soha nem teljes "
@@ -1784,7 +1792,8 @@ msgstr ""
 
 #. settings-schema.json->focus_until_enabled->description
 msgid "Show 'Focus until…' in the menu (focus until a clock time)"
-msgstr "A „Fókusz eddig…” megjelenítése a menüben (fókusz egy adott időpontig)"
+msgstr ""
+"A „Fókusz eddig…” megjelenítése a menüben (fókusz egy adott időpontig)"
 
 #. settings-schema.json->focus_until_enabled->tooltip
 msgid "Add a 'Focus until…' option (focus until a clock time)."
@@ -1829,8 +1838,8 @@ msgid ""
 "Command run when a focus block starts (e.g. update your chat status). No "
 "shell pipes or redirects."
 msgstr ""
-"Fókuszblokk kezdetekor futtatott parancs (pl. csevegési állapot frissítése). "
-"Shell-csővezetékek és átirányítások nélkül."
+"Fókuszblokk kezdetekor futtatott parancs (pl. csevegési állapot frissítése)."
+" Shell-csővezetékek és átirányítások nélkül."
 
 #. settings-schema.json->break_start_command->description
 msgid "Command to run when a break starts"
@@ -1855,12 +1864,12 @@ msgstr ""
 #. settings-schema.json->pushover_help->description
 msgid ""
 "Pushover sends alerts to your phone or desktop. Create a free account at "
-"pushover.net, copy your User Key, then create an Application there to get an "
-"API Token."
+"pushover.net, copy your User Key, then create an Application there to get an"
+" API Token."
 msgstr ""
-"A Pushover riasztásokat küld a telefonodra vagy az asztali géped. Hozz létre "
-"ingyenes fiókot a pushover.net oldalon, másold ki a User Key kulcsodat, majd "
-"hozz létre ott egy Application alkalmazást az API Token megszerzéséhez."
+"A Pushover riasztásokat küld a telefonodra vagy az asztali géped. Hozz létre"
+" ingyenes fiókot a pushover.net oldalon, másold ki a User Key kulcsodat, "
+"majd hozz létre ott egy Application alkalmazást az API Token megszerzéséhez."
 
 #. settings-schema.json->pushover_user_key->description
 msgid "Pushover user key"
@@ -1896,8 +1905,8 @@ msgstr "Üzenetek, hangok és prioritás testreszabása"
 
 #. settings-schema.json->pushover_customize->tooltip
 msgid ""
-"Show options to change the text, sound and priority for each event. Off uses "
-"sensible defaults."
+"Show options to change the text, sound and priority for each event. Off uses"
+" sensible defaults."
 msgstr ""
 "Megjeleníti a szöveg, hang és prioritás módosítási lehetőségeit minden "
 "eseményhez. Kikapcsolva ésszerű alapértékeket használ."
@@ -1939,7 +1948,8 @@ msgstr ""
 "rendszergazdai kéréssel)"
 
 #. settings-schema.json->enable_blocking->tooltip
-msgid "Block distracting sites by editing /etc/hosts (asks for your password)."
+msgid ""
+"Block distracting sites by editing /etc/hosts (asks for your password)."
 msgstr ""
 "Figyelemelterelő oldalak blokkolása a /etc/hosts szerkesztésével (jelszót "
 "kér)."
@@ -1954,11 +1964,11 @@ msgstr "Domain"
 
 #. settings-schema.json->block_domains->tooltip
 msgid ""
-"Domains to block during focus, one per row (e.g. youtube.com, www.youtube."
-"com)."
+"Domains to block during focus, one per row (e.g. youtube.com, "
+"www.youtube.com)."
 msgstr ""
-"Fókusz közben blokkolandó domainek, soronként egy (pl. youtube.com, www."
-"youtube.com)."
+"Fókusz közben blokkolandó domainek, soronként egy (pl. youtube.com, "
+"www.youtube.com)."
 
 #. settings-schema.json->block_now_button->description
 msgid "Block these domains now"
@@ -1978,8 +1988,8 @@ msgstr "Feloldás"
 
 #. settings-schema.json->unblock_button->tooltip
 msgid ""
-"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password "
-"once)."
+"Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
+" once)."
 msgstr ""
 "Eltávolítja a Zen Pomodoro blokkolási bejegyzéseit a /etc/hosts fájlból "
 "(egyszer jelszót kér)."
@@ -1990,11 +2000,11 @@ msgstr "A /etc/hosts kézi szerkesztése (rendszergazda)"
 
 #. settings-schema.json->edit_hosts_button->tooltip
 msgid ""
-"Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only "
-"manages its own clearly-marked section."
+"Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only"
+" manages its own clearly-marked section."
 msgstr ""
-"Megnyitja a /etc/hosts fájlt a szerkesztődben rendszergazdai jogokkal. A Zen "
-"Pomodoro csak a saját, jól megjelölt szakaszát kezeli."
+"Megnyitja a /etc/hosts fájlt a szerkesztődben rendszergazdai jogokkal. A Zen"
+" Pomodoro csak a saját, jól megjelölt szakaszát kezeli."
 
 #. settings-schema.json->sox-info->description
 msgid ""
@@ -2143,8 +2153,8 @@ msgid ""
 "Run your personal ~/.local/bin/pomodoro scripts. Off = built-in features "
 "only."
 msgstr ""
-"A személyes ~/.local/bin/pomodoro szkriptjeid futtatása. Ki = csak beépített "
-"funkciók."
+"A személyes ~/.local/bin/pomodoro szkriptjeid futtatása. Ki = csak beépített"
+" funkciók."
 
 #. settings-schema.json->custom_short_break_script->description
 msgid "Execute this custom script when a short break starts"
@@ -2210,8 +2220,8 @@ msgid ""
 "Your timer presets — name + focus / short / long minutes + pomodori. Apply "
 "them from the menu's Preset submenu."
 msgstr ""
-"Az időzítő-előbeállításaid — név + fókusz / rövid / hosszú perc + pomodorók. "
-"Alkalmazd őket a menü Előbeállítás almenüjéből."
+"Az időzítő-előbeállításaid — név + fókusz / rövid / hosszú perc + pomodorók."
+" Alkalmazd őket a menü Előbeállítás almenüjéből."
 
 #. settings-schema.json->block_passwordless_full->description
 msgid "Fully passwordless blocking (no prompt at all)"
@@ -2238,8 +2248,8 @@ msgid ""
 "no longer prompts every time. Uses the mode selected above; re-run after "
 "changing the mode."
 msgstr ""
-"Egyszer jelszót kér, és telepít egy kis rendszerházirendet, hogy a blokkolás "
-"ne kérdezzen minden alkalommal. A fent kiválasztott módot használja; a mód "
+"Egyszer jelszót kér, és telepít egy kis rendszerházirendet, hogy a blokkolás"
+" ne kérdezzen minden alkalommal. A fent kiválasztott módot használja; a mód "
 "módosítása után futtasd újra."
 
 #. settings-schema.json->remove_passwordless_button->description
@@ -2295,8 +2305,8 @@ msgid ""
 "Sent once when you hit your daily pomodoro goal. {task} and {minutes} are "
 "substituted. Leave empty to send nothing."
 msgstr ""
-"Egyszer kerül elküldésre, amikor eléred a napi pomodoro-célodat. A {task} és "
-"{minutes} behelyettesítésre kerül. Hagyd üresen, ha nem szeretnél semmit "
+"Egyszer kerül elküldésre, amikor eléred a napi pomodoro-célodat. A {task} és"
+" {minutes} behelyettesítésre kerül. Hagyd üresen, ha nem szeretnél semmit "
 "küldeni."
 
 #. settings-schema.json->pushover_snd_focus->description
@@ -2427,6 +2437,33 @@ msgstr "Napi cél — hang"
 msgid "Daily goal — priority"
 msgstr "Napi cél — prioritás"
 
+#~ msgid "blocked"
+#~ msgstr "blokkolva"
+
+#~ msgid "ready"
+#~ msgstr "kész"
+
+#~ msgid "Skip step"
+#~ msgstr "Lépés kihagyása"
+
+#~ msgid "Reset session"
+#~ msgstr "Menet nullázása"
+
+#~ msgid "Reset all"
+#~ msgstr "Minden nullázása"
+
+#~ msgid "Confirm reset of everything"
+#~ msgstr "Teljes nullázás megerősítése"
+
+#~ msgid "Sites"
+#~ msgstr "Oldalak"
+
+#~ msgid "Open dashboard…"
+#~ msgstr "Irányítópult megnyitása…"
+
+#~ msgid "Quick start"
+#~ msgstr "Gyors kezdés"
+
 #, javascript-format
 #~ msgid "Hotkey: %s"
 #~ msgstr "Gyorsbillentyű: %s"
@@ -2439,9 +2476,9 @@ msgstr "Napi cél — prioritás"
 #~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
 #~ "timer text is a separate option below."
 #~ msgstr ""
-#~ "Mi jelenjen meg a panelen: egy folyamatgyűrű az állapotikonnal a "
-#~ "belsejében (ajánlott), egyszerű szimbolikus vagy színes ikon, vagy "
-#~ "egyáltalán nincs ikon. Az időzítő szövege külön állítható be alább."
+#~ "Mi jelenjen meg a panelen: egy folyamatgyűrű az állapotikonnal a belsejében "
+#~ "(ajánlott), egyszerű szimbolikus vagy színes ikon, vagy egyáltalán nincs "
+#~ "ikon. Az időzítő szövege külön állítható be alább."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Jelenítse meg a pomodoro ikont a kisalkalmazás panelen"
@@ -2492,8 +2529,7 @@ msgstr "Napi cél — prioritás"
 #~ msgstr "Beállítások"
 
 #~ msgid "Set the keybinding to open the applet menu"
-#~ msgstr ""
-#~ "A kisalkalmazás menü megnyitásához állítsa be a billentyűkombinációt"
+#~ msgstr "A kisalkalmazás menü megnyitásához állítsa be a billentyűkombinációt"
 
 #~ msgid "Please install 'sox' and restart Cinnamon to use the sound feature!"
 #~ msgstr ""

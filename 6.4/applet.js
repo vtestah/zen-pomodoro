@@ -1878,6 +1878,10 @@ class PomodoroApplet extends Applet.TextIconApplet {
         menu.connect('task-delete', (m, id) => {
             this._deleteTask(id);
         });
+        menu.connect('task-edit', (m, id) => {
+            let t = this._tasksData && this._tasksData.tasks.find((x) => x.id === id);
+            if (t) { this._showAddTaskDialog(t); }
+        });
 
         menu.connect('skip-timer', () => {
             if (this._strictFocusBlocks()) { this._strictFocusNotice(); return; }

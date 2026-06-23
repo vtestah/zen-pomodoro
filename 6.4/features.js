@@ -381,6 +381,19 @@ function install(proto) {
         this._refreshTasksMenu();
     };
 
+    proto._editTask = function(id, title, est) {
+        let t = this._taskList().find((x) => x.id === id);
+        if (!t) { return; }
+        title = (title || "").toString().trim();
+        if (title) { t.title = title.slice(0, 120); }
+        t.est = Math.max(1, Math.min(99, parseInt(est) || t.est || 1));
+        if (this._tasksData && this._tasksData.currentId === id) {
+            this._currentFocusTask = t.title;
+        }
+        this._saveTasks();
+        this._refreshTasksMenu();
+    };
+
     proto._toggleTaskCompleted = function(id) {
         let t = this._taskList().find((x) => x.id === id);
         if (!t) { return; }
@@ -402,6 +415,10 @@ function install(proto) {
         if (!t) { return; }
         t.done = (t.done || 0) + 1;
         t.doneToday = (t.doneToday || 0) + 1;
+        // The estimate is a real target: gently suggest closing when it's hit.
+        if (!t.completed && t.est > 0 && t.doneToday === t.est) {
+            Main.notify(_("Hit your %d 🍅 estimate for: %s. Mark it done when ready.").format(t.est, t.title));
+        }
         this._saveTasks();
         this._refreshTasksMenu();
     };
@@ -454,17 +471,18 @@ function install(proto) {
         return tips[this._restTipIndex % tips.length];
     };
 
-    proto._showAddTaskDialog = function() {
+    proto._showAddTaskDialog = function(existing) {
         let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
         let content = new Dialog.MessageDialogContent({
-            title: _("New task"),
+            title: existing ? _("Edit task") : _("New task"),
             description: _("What do you want to work on?")
         });
         let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true });
         CinnamonEntry.addContextMenu(entry);
+        if (existing && existing.title) { entry.set_text(existing.title); }
         content.add_child(entry);
 
-        let est = { value: 1 };
+        let est = { value: existing ? Math.max(1, Math.min(6, existing.est || 1)) : 1 };
         let estRow = new St.BoxLayout({ vertical: false, style: 'spacing: 6px; padding-top: 10px;' });
         estRow.add(new St.Label({ text: _("Estimate:") }));
         let estBtns = [];
@@ -488,7 +506,10 @@ function install(proto) {
         let confirm = () => {
             let t = entry.clutter_text.get_text().trim();
             dialog.close();
-            if (t) { this._addTask(t, est.value); }
+            if (t) {
+                if (existing) { this._editTask(existing.id, t, est.value); }
+                else { this._addTask(t, est.value); }
+            }
         };
         entry.clutter_text.connect('key-press-event', (actor, ev) => {
             let s = ev.get_key_symbol();
@@ -497,7 +518,7 @@ function install(proto) {
         });
         dialog.setButtons([
             { label: _("Cancel"), key: Clutter.KEY_Escape, action: () => dialog.close() },
-            { label: _("Add"), default: true, action: confirm }
+            { label: existing ? _("Save") : _("Add"), default: true, action: confirm }
         ]);
         dialog.open();
     };

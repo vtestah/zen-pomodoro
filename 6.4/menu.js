@@ -841,6 +841,12 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             row.add_child(mark);
             let label = new St.Label({ x_expand: true, text: " " + t.title + "   " + (t.doneToday || 0) + "/" + (t.est || 1) + " 🍅" });
             row.add_child(label);
+            let editBtn = new St.Button({
+                style_class: "pomodoro-task-btn", can_focus: false,
+                child: new St.Icon({ icon_name: "document-edit-symbolic", icon_size: 14 })
+            });
+            editBtn.connect('clicked', () => { this.emit('task-edit', t.id); return true; });
+            row.add_child(editBtn);
             let doneBtn = new St.Button({
                 style_class: "pomodoro-task-btn", can_focus: false,
                 child: new St.Icon({ icon_name: t.completed ? "edit-undo-symbolic" : "object-select-symbolic", icon_size: 14 })

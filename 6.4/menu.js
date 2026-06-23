@@ -93,8 +93,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._statStreakItem = null;
         this._statBestItem = null;
         this._statAchieveItem = null;
-        this._statsChart = null;
-        this._statsHeatmap = null;
         this._tasksSubmenu = null;
         this._tasks = [];
         this._tasksCurrentId = "";
@@ -329,43 +327,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         return rem ? _("%dh %dm").format(hrs, rem) : _("%dh").format(hrs);
     }
 
-    _repaintStatsHeatmap(area) {
-        let cr = area.get_context();
-        try {
-            let [w, h] = area.get_surface_size();
-            let data = this._statsHeatmap || [];
-            let cols = 12;
-            let rows = 7;
-            let maxv = 1;
-            for (let v of data) {
-                if (v > maxv) {
-                    maxv = v;
-                }
-            }
-            let gap = 2;
-            let cw = Math.max(2, (w - gap * (cols - 1)) / cols);
-            let ch = Math.max(2, (h - gap * (rows - 1)) / rows);
-            let c = this._progressBarColor || [0.84, 0.60, 0.19];
-            for (let col = 0; col < cols; col++) {
-                for (let row = 0; row < rows; row++) {
-                    let idx = col * rows + row;
-                    let v = (idx < data.length) ? data[idx] : 0;
-                    let x = Math.round(col * (cw + gap));
-                    let y = Math.round(row * (ch + gap));
-                    if (v > 0) {
-                        cr.setSourceRGBA(c[0], c[1], c[2], 0.25 + 0.75 * (v / maxv));
-                    } else {
-                        cr.setSourceRGBA(1, 1, 1, 0.08);
-                    }
-                    cr.rectangle(x, y, Math.round(cw), Math.round(ch));
-                    cr.fill();
-                }
-            }
-        } finally {
-            cr.$dispose();
-        }
-    }
-
     _updateProgressBar(state, progressPercent) {
         let active = (typeof progressPercent === "number");
         this._progressBarActive = active;
@@ -541,15 +502,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._statAchieveItem = new PopupMenu.PopupMenuItem(_("Milestones: %s").format(_("none yet")));
         this._statAchieveItem.setSensitive(false);
         this._statsSubmenu.menu.addMenuItem(this._statAchieveItem);
-        try {
-            let chartItem = new PopupMenu.PopupBaseMenuItem({ reactive: false });
-            this._statsChart = new St.DrawingArea({ x_expand: true, style: "height: 64px; margin: 2px 6px 4px 6px;" });
-            this._statsChart.connect('repaint', (area) => this._repaintStatsHeatmap(area));
-            chartItem.addActor(this._statsChart);
-            this._statsSubmenu.menu.addMenuItem(chartItem);
-        } catch (e) {
-            global.logError("Zen Pomodoro: stats chart unavailable: " + e.message);
-        }
         this.addMenuItem(this._statsSubmenu);
 
         let quickStart = new PopupMenu.PopupMenuItem("\u2728 " + _("Quick start"));
@@ -700,10 +652,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                     badges.push("🔥 " + stk);
                 }
                 this._statAchieveItem.label.set_text(_("Milestones: %s").format(badges.length ? badges.join("   ") : _("none yet")));
-            }
-            if (this._statsChart && Array.isArray(st.heatmap)) {
-                this._statsHeatmap = st.heatmap;
-                this._statsChart.queue_repaint();
             }
         }
 

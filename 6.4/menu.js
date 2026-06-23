@@ -243,7 +243,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         this._progressBar = new St.DrawingArea({
             x_expand: true,
-            style: "height: 4px; margin: 0 0 2px 0;"
+            style: "height: 6px; margin: 1px 0 2px 0;"
         });
         this._progressBar.connect('repaint', (area) => {
             this._repaintProgressBar(area);

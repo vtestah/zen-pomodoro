@@ -1715,7 +1715,10 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._showStatsDashboard();
         });
         menu.connect('open-blocking-settings', () => {
-            try { this.configureApplet(); } catch (e) { global.logError('Zen Pomodoro: open settings failed: ' + e.message); }
+            // Open settings on the Advanced page (tab index 6 per the
+            // settings-schema layout: timer, panel, appearance, focus, sounds,
+            // notifications, advanced), where the site-blocking section lives.
+            try { this.configureApplet(6); } catch (e) { global.logError('Zen Pomodoro: open settings failed: ' + e.message); }
         });
         menu.connect('open-onboarding', () => {
             this._showOnboardingWizard();

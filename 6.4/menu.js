@@ -465,9 +465,15 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._ambientItem.connect('toggled', (item, state) => this.emit('set-ambient', state));
         this.addMenuItem(this._ambientItem);
 
-        let sitesRow = this._makeInfoRow(_("Site blocking"), _("off"));
-        this._sitesLabel = sitesRow.value;
-        this.addMenuItem(sitesRow.item);
+        let sitesItem = new PopupMenu.PopupBaseMenuItem();
+        sitesItem.addActor(new St.Label({ text: _("Site blocking"), style_class: "pomodoro-info-label" }));
+        this._sitesLabel = new St.Label({ text: _("off"), style_class: "pomodoro-info-value" });
+        sitesItem.addActor(this._sitesLabel, { expand: true, align: St.Align.END });
+        let sitesChevron = new St.Label({ text: "\u203A", style: "padding-left: 10px;" });
+        sitesChevron.set_opacity(130);
+        sitesItem.addActor(sitesChevron);
+        sitesItem.connect('activate', () => { this.emit('open-blocking-settings'); });
+        this.addMenuItem(sitesItem);
 
         // Statistics — one compact clickable row that opens the dashboard.
         this._statTodayItem = new PopupMenu.PopupBaseMenuItem();

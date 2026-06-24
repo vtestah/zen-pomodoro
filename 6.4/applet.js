@@ -1714,6 +1714,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         menu.connect('open-stats', () => {
             this._showStatsDashboard();
         });
+        menu.connect('open-blocking-settings', () => {
+            try { this.configureApplet(); } catch (e) { global.logError('Zen Pomodoro: open settings failed: ' + e.message); }
+        });
         menu.connect('open-onboarding', () => {
             this._showOnboardingWizard();
         });

@@ -490,7 +490,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         // Less used.
         this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        this.addMenuItem(this._makeResetAllSubmenu());
         let quickStart = new PopupMenu.PopupMenuItem(_("Setup wizard\u2026"));
         quickStart.connect('activate', () => this.emit('open-onboarding'));
         this.addMenuItem(quickStart);

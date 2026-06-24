@@ -324,7 +324,12 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
         // Recover an in-progress focus session that survived a Cinnamon restart.
         this._refreshDailyStatsCache();
-        this._loadTasksAsync(() => this._refreshTasksMenu());
+        this._loadTasksAsync(() => {
+            // Keep the header in sync with the list's current task on load.
+            let cur = this._currentTask();
+            if (cur && !this._currentFocusTask) { this._currentFocusTask = cur.title; }
+            this._refreshTasksMenu();
+        });
         this._restoreSessionState();
 
         // start timer automatically

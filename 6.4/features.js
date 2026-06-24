@@ -1301,6 +1301,11 @@ function install(proto) {
             return b.dateLabel + " · " + (b.count || 0) + " \ud83c\udf45 · " + this._dashFmtMin(b.min || 0);
         });
         colA.add(barArea);
+        let barAxis = new St.BoxLayout({ vertical: false });
+        barAxis.add(new St.Label({ text: bars[0].dateLabel, style: 'font-size: 0.7em; opacity: 0.6;' }));
+        barAxis.add(new St.Label({ text: bars[6].dateLabel, x_expand: true, x_align: Clutter.ActorAlign.CENTER, style: 'font-size: 0.7em; opacity: 0.6;' }));
+        barAxis.add(new St.Label({ text: bars[13].dateLabel, style: 'font-size: 0.7em; opacity: 0.6;' }));
+        colA.add(barAxis);
 
         colB.add(new St.Label({ text: _("Activity \u2014 last 12 weeks"), style: 'font-weight: bold;' }));
         let heatArea = new St.DrawingArea({ x_expand: true, style: 'height: 74px;' });
@@ -1312,7 +1317,15 @@ function install(proto) {
             if (!m || m.future || !m.label) { return null; }
             return m.label + " · " + (m.value || 0) + " \ud83c\udf45";
         });
-        colB.add(heatArea);
+        let dayCol = new St.BoxLayout({ vertical: true, style: 'width: 26px;' });
+        for (let drow = 0; drow < 7; drow++) {
+            let dtxt = (drow === 1 || drow === 3 || drow === 5) ? dowShort[drow] : "";
+            dayCol.add(new St.Label({ text: dtxt, y_expand: true, style: 'font-size: 0.62em; opacity: 0.6;' }));
+        }
+        let heatRow = new St.BoxLayout({ vertical: false });
+        heatRow.add(dayCol);
+        heatRow.add(heatArea);
+        colB.add(heatRow);
         let legend = new St.BoxLayout({ vertical: false, style: 'spacing: 6px;' });
         legend.add(new St.Label({ text: _("Less"), style: 'font-size: 0.8em;' }));
         let legendCells = new St.DrawingArea({ style: 'width: 80px; height: 13px;' });

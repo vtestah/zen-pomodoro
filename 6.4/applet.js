@@ -1840,9 +1840,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
         menu.connect('set-ambient', (m, state) => {
             try { this._settingsProvider.setValue('focus_ambient_sound', !!state); } catch (e) {}
         });
-        menu.connect('set-focus-length', (m, mins) => {
-            this._setFocusLengthFromMenu(mins);
-        });
 
         menu.connect('open-stats', () => {
             this._showStatsDashboard();
@@ -1979,22 +1976,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._updatePresetIndicator();
         Main.notify(_("Pomodoro preset %s applied").format(this._getActivePresetLabel()));
         return true;
-    }
-
-    // Quick focus-length change from the menu (sets only the focus duration).
-    _setFocusLengthFromMenu(mins) {
-        mins = parseInt(mins, 10);
-        if (!Number.isFinite(mins)) {
-            return;
-        }
-        mins = Math.max(1, Math.min(60, mins));
-        if (this._timerQueue.isRunning() || this._isPausedState()) {
-            Main.notify(_("Stop the timer before changing the focus length"));
-            return;
-        }
-        this._settingsProvider.setValue("pomodoro_duration", mins);
-        this._updateMenuRuntime();
-        Main.notify(_("Focus length: %d min").format(mins));
     }
 
     // Extend the current break by N minutes (from the break notification).

@@ -75,7 +75,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._zenItem = null;
         this._focusUntilItem = null;
         this._ambientItem = null;
-        this._focusLenSubmenu = null;
         this._focusLength = 0;
         this._primaryActionItem = null;
         this._preset25Item = null;
@@ -452,16 +451,12 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             });
         }
 
-        // Session setup — length + preset together.
+        // Session setup — preset (focus + breaks + cycle).
         this.addMenuItem(this._makeSectionLabel(_("Session")));
-        this._focusLenSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Focus length"));
-        this.addMenuItem(this._focusLenSubmenu);
-        this._populateFocusLenSubmenu();
         this._presetSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Preset"));
         this.addMenuItem(this._presetSubmenu);
         this._populatePresetSubmenu();
-        // These labels get a value appended; don't let it ellipsize to "Прес…".
-        if (this._focusLenSubmenu.label) { this._focusLenSubmenu.label.clutter_text.set_ellipsize(Pango.EllipsizeMode.NONE); }
+        // The label gets a value appended; don't let it ellipsize to "Прес…".
         if (this._presetSubmenu.label) { this._presetSubmenu.label.clutter_text.set_ellipsize(Pango.EllipsizeMode.NONE); }
 
         // Modes — optional extras and toggles.
@@ -596,10 +591,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (this._ambientItem && typeof runtime.ambientOn === "boolean") {
             this._ambientItem.setToggleState(runtime.ambientOn);
         }
-        if (this._focusLenSubmenu && typeof runtime.focusLength === "number" &&
+        if (typeof runtime.focusLength === "number" &&
             runtime.focusLength !== this._focusLength) {
             this._focusLength = runtime.focusLength;
-            this._populateFocusLenSubmenu();
         }
 
         if (this._statTodayItem && runtime.stats) {
@@ -914,23 +908,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
     }
 
-
-    _populateFocusLenSubmenu() {
-        if (!this._focusLenSubmenu) {
-            return;
-        }
-        this._focusLenSubmenu.menu.removeAll();
-        let cur = this._focusLength || 0;
-        [15, 25, 30, 45, 50].forEach((min) => {
-            let it = new PopupMenu.PopupMenuItem(_("%d min").format(min));
-            it.setOrnament(PopupMenu.OrnamentType.DOT, min === cur);
-            it.connect('activate', () => this.emit('set-focus-length', min));
-            this._focusLenSubmenu.menu.addMenuItem(it);
-        });
-        if (cur > 0) {
-            this._focusLenSubmenu.label.set_text(_("Focus length") + ": " + _("%d min").format(cur));
-        }
-    }
 
     setPresets(list, activeName) {
         this._presets = Array.isArray(list) ? list : [];

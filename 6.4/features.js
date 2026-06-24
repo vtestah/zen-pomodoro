@@ -490,20 +490,51 @@ function install(proto) {
             if (h > 0) { return m > 0 ? _("%d h %d min").format(h, m) : _("%d h").format(h); }
             return _("%d min").format(m);
         };
-        content.add_child(new St.Label({ text: _("How many pomodoros? (1 🍅 ≈ %d min)").format(focusLen), style: 'padding-top: 10px;' }));
+        let qLabel = new St.Label({ text: '', style: 'padding-top: 10px;' });
+        content.add_child(qLabel);
+        // A pomodoro's length comes from the active preset. You can switch the
+        // preset right here — the estimate stays counted in pomodoros, only the
+        // minutes change. "Custom" lights up when durations match no preset.
+        let presetList = this._presetList();
+        let presetRow = new St.BoxLayout({ vertical: false, style: 'spacing: 6px; padding-top: 4px;' });
+        presetRow.add(new St.Label({ text: _("Preset") + ":", style: 'padding-top: 3px; color: rgba(255,255,255,0.6);' }));
+        let presetBtns = [];
+        let customChip = new St.Label({ text: _("Custom") });
+
         let estRow = new St.BoxLayout({ vertical: false, style: 'spacing: 6px; padding-top: 4px;' });
         let estBtns = [];
         let estVals = [0, 1, 2, 3, 4, 5, 6];
         let estReadout = new St.Label({ text: '', style: 'padding-top: 4px; color: rgba(255,255,255,0.6);' });
         let plusBtn = new St.Button({ label: "+", style_class: 'button' });
         let restyle = () => {
+            focusLen = this._opt_pomodoroTimeMinutes || 25;
+            qLabel.set_text(_("How many pomodoros? (1 🍅 ≈ %d min)").format(focusLen));
             for (let k = 0; k < estBtns.length; k++) {
                 estBtns[k].set_style('padding: 2px 8px;' + ((estVals[k] === est.value) ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
             }
             plusBtn.set_style('padding: 2px 8px;' + ((est.value > 6) ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
             let prefix = (est.value > 6) ? (est.value + " \ud83c\udf45 \u00b7 ") : "";
             estReadout.set_text(est.value === 0 ? _("No estimate — just counts your 🍅") : (prefix + "\u2248 " + fmtMins(est.value * focusLen)));
+            let active = this._getActivePresetLabel();
+            let matched = false;
+            for (let pb of presetBtns) {
+                let on = (pb.preset.name === active);
+                if (on) { matched = true; }
+                pb.btn.set_style('padding: 2px 8px;' + (on ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
+            }
+            if (matched) { customChip.hide(); } else { customChip.show(); }
+            customChip.set_style('padding: 2px 8px; border-radius: 6px;' + (matched ? '' : ' background-color: rgba(227,90,60,0.55);'));
         };
+        presetList.forEach((p) => {
+            let b = new St.Button({ label: p.name, style_class: 'button' });
+            b.connect('clicked', () => {
+                if (this._applyDurationPreset(p.pomodoro, p.short_break, p.long_break, p.pomodori, true)) { restyle(); }
+            });
+            presetBtns.push({ btn: b, preset: p });
+            presetRow.add(b);
+        });
+        presetRow.add(customChip);
+        content.add_child(presetRow);
         estVals.forEach((v) => {
             let b = new St.Button({ label: (v === 0 ? "\u2014" : (v + " \ud83c\udf45")), style_class: 'button' });
             b.connect('clicked', () => { est.value = v; restyle(); });

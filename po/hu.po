@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 13:42+0700\n"
+"POT-Creation-Date: 2026-06-24 14:28+0700\n"
 "PO-Revision-Date: 2025-08-07 20:11+0200\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: hu\n"
@@ -25,7 +25,7 @@ msgstr "Szigorú fókusz bekapcsolva"
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Tarts ki — fejezd be a blokkot, vagy indítsd újra a nullázással."
 
-#: applet.js:655 applet.js:1997
+#: applet.js:655
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Fókusz hossza: %d perc"
@@ -54,7 +54,7 @@ msgstr "SZÜNET MEGÁLLÍTVA"
 msgid "BREAK OVER"
 msgstr "SZÜNET VÉGE"
 
-#: applet.js:1011 applet.js:1071 menu.js:246 menu.js:650
+#: applet.js:1011 applet.js:1071 menu.js:245 menu.js:644
 msgid "Ready to focus"
 msgstr "Készen a fókuszra"
 
@@ -83,7 +83,7 @@ msgstr "Szünet véget ért"
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodorók %d, állítsa be %d fut"
 
-#: applet.js:1049 features.js:430 features.js:1073
+#: applet.js:1049 features.js:430 features.js:1104
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ befejezés %s · %d 🍅 van hátra"
@@ -145,26 +145,22 @@ msgstr "Pomodoro véget ért"
 msgid "Pomodoro preflight failed"
 msgstr "A Pomodoro indítás előtti ellenőrzése sikertelen"
 
-#: applet.js:1884
+#: applet.js:1881
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr ""
 "https://en.wikipedia.org/wiki/Pomodoro_Technique Magyar leírás: "
 "https://www.mindenmegtanulhato.hu/a-pomodoro-technika/"
 
-#: applet.js:1963 features.js:1852
+#: applet.js:1960 features.js:1883
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Állítsd le az időzítőt a Pomodoro előbeállítás módosítása előtt"
 
-#: applet.js:1980
+#: applet.js:1978
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "%s Pomodoro előbeállítás alkalmazva"
 
 #: applet.js:1992
-msgid "Stop the timer before changing the focus length"
-msgstr "Állítsd le az időzítőt a fókusz hosszának módosítása előtt"
-
-#: applet.js:2009
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Szünet meghosszabbítva %d perccel"
@@ -181,11 +177,11 @@ msgstr "Mire fókuszálsz?"
 msgid "Choose or type a focus task"
 msgstr "Válassz vagy írj be egy fókuszfeladatot"
 
-#: dialogs.js:64 dialogs.js:79 features.js:1901
+#: dialogs.js:64 dialogs.js:79 features.js:1932
 msgid "Start"
 msgstr "Indítás"
 
-#: dialogs.js:69 features.js:535 features.js:1155 features.js:1900
+#: dialogs.js:69 features.js:566 features.js:1186 features.js:1931
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -334,7 +330,7 @@ msgstr "Kapj be egy falatot és igyál vizet."
 msgid "Rest your eyes and look into the distance."
 msgstr "Pihentesd a szemed és nézz a távolba."
 
-#: features.js:478 menu.js:894
+#: features.js:478 menu.js:888
 msgid "Edit task"
 msgstr "Feladat szerkesztése"
 
@@ -360,241 +356,249 @@ msgstr "%d ó %d perc"
 msgid "%d h"
 msgstr "%d ó"
 
-#: features.js:491 features.js:782 menu.js:331 menu.js:925 menu.js:931
+#: features.js:491 features.js:813 menu.js:330
 #, javascript-format
 msgid "%d min"
 msgstr "%d perc"
 
-#: features.js:493
+#: features.js:500 menu.js:456 menu.js:732 menu.js:955
+msgid "Preset"
+msgstr "Előbeállítás"
+
+#: features.js:502
+msgid "Custom"
+msgstr "Egyéni"
+
+#: features.js:511
 #, javascript-format
 msgid "How many pomodoros? (1 🍅 ≈ %d min)"
 msgstr "Hány pomodoro? (1 🍅 ≈ %d perc)"
 
-#: features.js:505
+#: features.js:517
 msgid "No estimate — just counts your 🍅"
 msgstr "Becslés nélkül — csak számolja a 🍅"
 
-#: features.js:536
+#: features.js:567
 msgid "Save"
 msgstr "Mentés"
 
-#: features.js:536
+#: features.js:567
 msgid "Add"
 msgstr "Hozzáadás"
 
-#: features.js:580
+#: features.js:611
 msgid "longer focus blocks suit deep work"
 msgstr "a hosszabb fókuszblokkok a mélymunkához valók"
 
-#: features.js:581
+#: features.js:612
 msgid "the classic rhythm suits studying"
 msgstr "a klasszikus ritmus a tanuláshoz illik"
 
-#: features.js:582
+#: features.js:613
 msgid "a little more break time lets ideas settle"
 msgstr "egy kis plusz szünet hagyja leülepedni a gondolatokat"
 
-#: features.js:583
+#: features.js:614
 msgid "shorter cycles keep small tasks moving"
 msgstr "a rövidebb ciklusok mozgásban tartják az apró feladatokat"
 
-#: features.js:584
+#: features.js:615
 msgid "a balanced rhythm"
 msgstr "kiegyensúlyozott ritmus"
 
-#: features.js:585
+#: features.js:616
 #, javascript-format
 msgid "Focus rhythm %d / %d / %d min — %s."
 msgstr "Fókuszritmus: %d / %d / %d perc — %s."
 
-#: features.js:591
+#: features.js:622
 #, javascript-format
 msgid "Daily goal: %d focus blocks."
 msgstr "Napi cél: %d fókuszblokk."
 
-#: features.js:592
+#: features.js:623
 msgid "No daily goal yet — just getting a feel for it."
 msgstr "Még nincs napi cél — csak ráérzünk."
 
-#: features.js:603
+#: features.js:634
 msgid "Silent focus — no ticking or chimes."
 msgstr "Csendes fókusz — ketyegés és csengő nélkül."
 
-#: features.js:607
+#: features.js:638
 msgid "Soft brown-noise ambience while you focus."
 msgstr "Lágy barnazaj-háttér fókuszálás közben."
 
-#: features.js:612
+#: features.js:643
 #, javascript-format
 msgid "A gentle chime every %d min to mark time."
 msgstr "Finom csengő %d percenként az idő jelzésére."
 
-#: features.js:617
+#: features.js:648
 msgid "Quiet, visual-only cues for a shared space."
 msgstr "Csendes, csak vizuális jelzések közös térhez."
 
-#: features.js:623
+#: features.js:654
 msgid "Notifications are muted while you focus."
 msgstr "Az értesítések némítva vannak fókuszálás közben."
 
-#: features.js:626
+#: features.js:657
 msgid "Distraction blocking is ready — add sites in Settings → Advanced."
 msgstr ""
 "A figyelemelterelés-blokkolás kész — adj hozzá oldalakat itt: Beállítások → "
 "Speciális."
 
-#: features.js:629
+#: features.js:660
 msgid "One-click start and a calm start ritual make it easier to begin."
 msgstr ""
 "Az egykattintásos indítás és a nyugodt kezdő rituálé megkönnyíti a "
 "belekezdést."
 
-#: features.js:633
+#: features.js:664
 msgid "Breaks start on their own so you don't overwork."
 msgstr "A szünetek maguktól indulnak, hogy ne hajszold túl magad."
 
-#: features.js:637
+#: features.js:668
 msgid "A calm theme, no ticking seconds and no end-of-timer rush."
 msgstr "Nyugodt téma, ketyegő másodpercek és időzítővégi hajsza nélkül."
 
-#: features.js:677
+#: features.js:708
 msgid "What will you mainly focus on?"
 msgstr "Mire fogsz főként fókuszálni?"
 
-#: features.js:678
+#: features.js:709
 msgid "This shapes how long each focus block should be."
 msgstr "Ez határozza meg, milyen hosszú legyen egy-egy fókuszblokk."
 
-#: features.js:680
+#: features.js:711
 msgid "Deep work or coding"
 msgstr "Mélymunka vagy kódolás"
 
-#: features.js:681
+#: features.js:712
 msgid "Studying or reading"
 msgstr "Tanulás vagy olvasás"
 
-#: features.js:682
+#: features.js:713
 msgid "Writing or creative work"
 msgstr "Írás vagy kreatív munka"
 
-#: features.js:683
+#: features.js:714
 msgid "Lots of small tasks"
 msgstr "Sok apró feladat"
 
-#: features.js:685
+#: features.js:716
 msgid "How long can you usually concentrate?"
 msgstr "Általában meddig tudsz koncentrálni?"
 
-#: features.js:686
+#: features.js:717
 msgid "Pick a length you can actually keep — it beats an ideal one."
 msgstr ""
 "Olyan hosszt válassz, amit valóban tartani tudsz — ez jobb az ideálisnál."
 
-#: features.js:688
+#: features.js:719
 msgid "About 15 minutes"
 msgstr "Körülbelül 15 perc"
 
-#: features.js:689
+#: features.js:720
 msgid "About 25 minutes"
 msgstr "Körülbelül 25 perc"
 
-#: features.js:690
+#: features.js:721
 msgid "45 minutes or more"
 msgstr "45 perc vagy több"
 
-#: features.js:691
+#: features.js:722
 msgid "I lose track of time when I'm in flow"
 msgstr "Elveszítem az időérzékem, amikor flow-ban vagyok"
 
-#: features.js:693
+#: features.js:724
 msgid "What gets in your way most?"
 msgstr "Mi zavar a legjobban?"
 
-#: features.js:694
+#: features.js:725
 msgid "I'll switch on the right help for this."
 msgstr "Bekapcsolom ehhez a megfelelő segítséget."
 
-#: features.js:696
+#: features.js:727
 msgid "Notifications and pings"
 msgstr "Értesítések és csipogások"
 
-#: features.js:697
+#: features.js:728
 msgid "Distracting websites"
 msgstr "Figyelemelterelő weboldalak"
 
-#: features.js:698
+#: features.js:729
 msgid "It's hard to get started"
 msgstr "Nehéz belekezdeni"
 
-#: features.js:699
+#: features.js:730
 msgid "I forget to take breaks"
 msgstr "Elfelejtek szünetet tartani"
 
-#: features.js:700
+#: features.js:731
 msgid "Timers make me anxious"
 msgstr "Az időzítők szorongást keltenek bennem"
 
-#: features.js:702
+#: features.js:733
 msgid "What helps you concentrate?"
 msgstr "Mi segít a koncentrálásban?"
 
-#: features.js:703
+#: features.js:734
 msgid "Sets the focus soundscape — change it anytime in Sounds."
 msgstr "Beállítja a fókusz hangzását — bármikor módosítható a Hangok résznél."
 
-#: features.js:705
+#: features.js:736
 msgid "Silence"
 msgstr "Csend"
 
-#: features.js:706
+#: features.js:737
 msgid "Soft background noise"
 msgstr "Lágy háttérzaj"
 
-#: features.js:707
+#: features.js:738
 msgid "A gentle chime to mark time"
 msgstr "Finom csengő az idő jelzésére"
 
-#: features.js:708
+#: features.js:739
 msgid "I share my space — keep it quiet"
 msgstr "Közös térben vagyok — legyen csendes"
 
-#: features.js:710
+#: features.js:741
 msgid "How much do you want to get done today?"
 msgstr "Mennyit szeretnél ma elvégezni?"
 
-#: features.js:711
+#: features.js:742
 msgid "Sets your daily goal — no pressure, you can change it."
 msgstr "Beállítja a napi célodat — nyomás nélkül, bármikor módosíthatod."
 
-#: features.js:713
+#: features.js:744
 msgid "Just trying it out"
 msgstr "Csak kipróbálom"
 
-#: features.js:714
+#: features.js:745
 msgid "A light day (about 4)"
 msgstr "Könnyű nap (kb. 4)"
 
-#: features.js:715
+#: features.js:746
 msgid "A full day (about 6)"
 msgstr "Teljes nap (kb. 6)"
 
-#: features.js:716
+#: features.js:747
 msgid "A big push (about 8)"
 msgstr "Nagy hajrá (kb. 8)"
 
-#: features.js:732
+#: features.js:763
 msgid "Smart setup"
 msgstr "Okos beállítás"
 
-#: features.js:741
+#: features.js:772
 msgid "Skip"
 msgstr "Kihagyás"
 
-#: features.js:744
+#: features.js:775
 msgid "Let's tune Zen Pomodoro to you 🍅"
 msgstr "Hangoljuk a Zen Pomodorót rád 🍅"
 
-#: features.js:745
+#: features.js:776
 msgid ""
 "Answer five quick questions and I'll build a focus setup that fits how you "
 "work — your rhythm, sounds, breaks and the help you need. You can fine-tune "
@@ -604,23 +608,23 @@ msgstr ""
 "munkamódodhoz — a ritmusod, hangok, szünetek és a szükséges segítség. "
 "Mindent finomhangolhatsz később a Beállításokban."
 
-#: features.js:746
+#: features.js:777
 msgid "Let's go"
 msgstr "Kezdjük"
 
-#: features.js:752 features.js:768
+#: features.js:783 features.js:799
 msgid "Back"
 msgstr "Vissza"
 
-#: features.js:753
+#: features.js:784
 msgid "Next"
 msgstr "Tovább"
 
-#: features.js:756
+#: features.js:787
 msgid "Your tailored setup 🍅"
 msgstr "A személyre szabott beállításod 🍅"
 
-#: features.js:757
+#: features.js:788
 msgid ""
 "Based on your answers, here's what I'll set up. Apply it now, then tweak "
 "anything in Settings."
@@ -628,232 +632,232 @@ msgstr ""
 "A válaszaid alapján ezt fogom beállítani. Alkalmazd most, majd bármit "
 "finomíthatsz a Beállításokban."
 
-#: features.js:769
+#: features.js:800
 msgid "Apply"
 msgstr "Alkalmaz"
 
-#: features.js:770
+#: features.js:801
 msgid "Apply & start"
 msgstr "Alkalmaz és indít"
 
-#: features.js:786 menu.js:335
+#: features.js:817 menu.js:334
 #, javascript-format
 msgid "%dh %dm"
 msgstr "%d ó %d p"
 
-#: features.js:786 menu.js:335
+#: features.js:817 menu.js:334
 #, javascript-format
 msgid "%dh"
 msgstr "%d ó"
 
-#: features.js:941
+#: features.js:972
 msgid "Statistics reset."
 msgstr "Statisztika nullázva."
 
-#: features.js:963
+#: features.js:994
 #, javascript-format
 msgid "%d to go today — at your pace, done by about %s."
 msgstr "Még %d ma — ezzel a tempóval kb. %s-ra végzel."
 
-#: features.js:964
+#: features.js:995
 #, javascript-format
 msgid "%d more to reach today's goal of %d."
 msgstr "Még %d a mai %d-es cél eléréséhez."
 
-#: features.js:966
+#: features.js:997
 #, javascript-format
 msgid "Daily goal reached — %d done today. Nice."
 msgstr "Napi cél elérve — %d kész ma. Szép."
 
-#: features.js:969
+#: features.js:1000
 #, javascript-format
 msgid "%d interruptions this week — what keeps pulling you away?"
 msgstr "%d megszakítás ezen a héten — mi vonja el folyton a figyelmed?"
 
-#: features.js:972 features.js:1090
+#: features.js:1003 features.js:1121
 #, javascript-format
 msgid "Most focused around %s — good time for deep work."
 msgstr "A legnagyobb fókusz %s körül — jó idő a mélymunkához."
 
-#: features.js:975
+#: features.js:1006
 #, javascript-format
 msgid "Most focus went to “%s”."
 msgstr "A legtöbb fókusz erre ment: „%s”."
 
-#: features.js:977
+#: features.js:1008
 #, javascript-format
 msgid "%d pomodoros this week. Keep it going."
 msgstr "%d pomodoro ezen a héten. Csak így tovább."
 
-#: features.js:978
+#: features.js:1009
 msgid "Start a focus session — your insights will appear here."
 msgstr "Indíts egy fókuszmenetet — az elemzéseid itt jelennek meg."
 
-#: features.js:1032
+#: features.js:1063
 msgid "Focus statistics"
 msgstr "Fókuszstatisztika"
 
-#: features.js:1046
+#: features.js:1077
 #, javascript-format
 msgid "%d / %d goal"
 msgstr "%d / %d cél"
 
-#: features.js:1047
+#: features.js:1078
 msgid "Today"
 msgstr "Ma"
 
-#: features.js:1048
+#: features.js:1079
 msgid "This week"
 msgstr "Ez a hét"
 
-#: features.js:1049
+#: features.js:1080
 msgid "Streak"
 msgstr "Sorozat"
 
-#: features.js:1049
+#: features.js:1080
 #, javascript-format
 msgid "best %d"
 msgstr "rekord %d"
 
-#: features.js:1050
+#: features.js:1081
 msgid "All time"
 msgstr "Mindenkori"
 
-#: features.js:1058
+#: features.js:1089
 msgid "Sun"
 msgstr "V"
 
-#: features.js:1058
+#: features.js:1089
 msgid "Mon"
 msgstr "H"
 
-#: features.js:1058
+#: features.js:1089
 msgid "Tue"
 msgstr "K"
 
-#: features.js:1058
+#: features.js:1089
 msgid "Wed"
 msgstr "Sze"
 
-#: features.js:1058
+#: features.js:1089
 msgid "Thu"
 msgstr "Cs"
 
-#: features.js:1058
+#: features.js:1089
 msgid "Fri"
 msgstr "P"
 
-#: features.js:1058
+#: features.js:1089
 msgid "Sat"
 msgstr "Szo"
 
-#: features.js:1059
+#: features.js:1090
 #, javascript-format
 msgid "This week: %d 🍅 · %s · best day %s"
 msgstr "Ezen a héten: %d 🍅 · %s · legjobb nap %s"
 
-#: features.js:1065
+#: features.js:1096
 msgid "Nothing harvested yet today"
 msgstr "Ma még nincs termés"
 
-#: features.js:1067
+#: features.js:1098
 msgid "Today's harvest"
 msgstr "Mai termés"
 
-#: features.js:1074
+#: features.js:1105
 #, javascript-format
 msgid "Interruptions: %d today · %d this week"
 msgstr "Megszakítások: %d ma · %d ezen a héten"
 
-#: features.js:1080
+#: features.js:1111
 msgid "When you focus (by hour)"
 msgstr "Mikor fókuszálsz (óránként)"
 
-#: features.js:1085
+#: features.js:1116
 msgid "night"
 msgstr "éjszaka"
 
-#: features.js:1085
+#: features.js:1116
 msgid "morning"
 msgstr "reggel"
 
-#: features.js:1085
+#: features.js:1116
 msgid "afternoon"
 msgstr "délután"
 
-#: features.js:1085
+#: features.js:1116
 msgid "evening"
 msgstr "este"
 
-#: features.js:1091
+#: features.js:1122
 msgid "Not enough data yet to spot your best focus time."
 msgstr "Még nincs elég adat a legjobb fókuszidőd megállapításához."
 
-#: features.js:1100
+#: features.js:1131
 msgid "Focus time — last 14 days"
 msgstr "Fókuszidő — utolsó 14 nap"
 
-#: features.js:1105
+#: features.js:1136
 msgid "Activity — last 12 weeks"
 msgstr "Aktivitás — utolsó 12 hét"
 
-#: features.js:1110
+#: features.js:1141
 msgid "Less"
 msgstr "Kevesebb"
 
-#: features.js:1114
+#: features.js:1145
 msgid "More"
 msgstr "Több"
 
-#: features.js:1127
+#: features.js:1158
 msgid "By task"
 msgstr "Feladatonként"
 
-#: features.js:1148 menu.js:646
+#: features.js:1179 menu.js:640
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Mérföldkövek: %s"
 
-#: features.js:1156
+#: features.js:1187
 msgid "Delete all statistics"
 msgstr "Minden statisztika törlése"
 
-#: features.js:1161
+#: features.js:1192
 msgid "Reset statistics…"
 msgstr "Statisztika nullázása…"
 
-#: features.js:1162
+#: features.js:1193
 msgid "Close"
 msgstr "Bezárás"
 
-#: features.js:1489
+#: features.js:1520
 msgid "No task"
 msgstr "Nincs feladat"
 
-#: features.js:1526
+#: features.js:1557
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "A push-értesítésekhez libsoup szükséges, amely itt nem érhető el."
 
-#: features.js:1532
+#: features.js:1563
 msgid "Enter your Pushover user key and app token first."
 msgstr ""
 "Előbb add meg a Pushover felhasználói kulcsodat és alkalmazás-tokenedet."
 
-#: features.js:1539
+#: features.js:1570
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Tesztértesítés a Zen Pomodorótól 🍅"
 
-#: features.js:1561
+#: features.js:1592
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Pushover teszt elküldve ✓ — ellenőrizd az eszközöd."
 
-#: features.js:1562 features.js:1566
+#: features.js:1593 features.js:1597
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr ""
 "A Pushover teszt sikertelen. Ellenőrizd a felhasználói kulcsot és az "
 "alkalmazás-tokent."
 
-#: features.js:1609
+#: features.js:1640
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -861,272 +865,264 @@ msgstr ""
 "A webhelyek automatikus blokkolásához fókusz közben kapcsold be a jelszó "
 "nélküli blokkolást a beállításokban."
 
-#: features.js:1667
+#: features.js:1698
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Jelszó nélküli blokkolás bekapcsolva (kérdés nélkül)."
 
-#: features.js:1673
+#: features.js:1704
 msgid "Passwordless blocking removed."
 msgstr "Jelszó nélküli blokkolás eltávolítva."
 
-#: features.js:1710
+#: features.js:1741
 msgid "Click to exit Zen"
 msgstr "Kattints a Zen elhagyásához"
 
 #. settings-schema.json->focus->title
-#: features.js:1745 visual.js:894
+#: features.js:1776 visual.js:894
 msgid "Focus"
 msgstr "Fókusz"
 
-#: features.js:1822
+#: features.js:1853
 msgid "Breathe in"
 msgstr "Belégzés"
 
-#: features.js:1825 features.js:1831
+#: features.js:1856 features.js:1862
 msgid "Hold"
 msgstr "Tartás"
 
-#: features.js:1828
+#: features.js:1859
 msgid "Breathe out"
 msgstr "Kilégzés"
 
-#: features.js:1858
+#: features.js:1889
 msgid "Focus until"
 msgstr "Fókusz eddig"
 
-#: features.js:1859
+#: features.js:1890
 msgid "Enter a time (HH:MM)"
 msgstr "Adj meg egy időpontot (ÓÓ:PP)"
 
-#: menu.js:132
+#: menu.js:131
 msgid "Error: menu unavailable"
 msgstr "Hiba: a menü nem érhető el"
 
-#: menu.js:263
+#: menu.js:262
 msgid "Ready to start"
 msgstr "Készen az indításra"
 
-#: menu.js:271 menu.js:716
+#: menu.js:270 menu.js:710
 msgid "Task will be selected on start"
 msgstr "A feladat indításkor kerül kiválasztásra"
 
-#: menu.js:277
+#: menu.js:276
 msgid "Change task"
 msgstr "Feladatváltás"
 
-#: menu.js:371
+#: menu.js:370
 #, javascript-format
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:379 menu.js:796
+#: menu.js:378 menu.js:790
 msgid "Start focus"
 msgstr "Fókusz indítása"
 
-#: menu.js:395
+#: menu.js:394
 msgid "Skip phase"
 msgstr "Fázis kihagyása"
 
-#: menu.js:401
+#: menu.js:400
 msgid "Reset timer"
 msgstr "Időzítő visszaállítása"
 
-#: menu.js:413
+#: menu.js:412
 msgid "Reset counters"
 msgstr "Számlálók visszaállítása"
 
-#: menu.js:414
+#: menu.js:413
 msgid "Reset timer and counters"
 msgstr "Időzítő és számlálók visszaállítása"
 
-#: menu.js:435 menu.js:839
+#: menu.js:434 menu.js:833
 msgid "Task list"
 msgstr "Feladatlista"
 
-#: menu.js:456
+#: menu.js:455
 msgid "Session"
 msgstr "Munkamenet"
 
-#: menu.js:457 menu.js:931
-msgid "Focus length"
-msgstr "Fókusz hossza"
-
-#: menu.js:460 menu.js:738 menu.js:978
-msgid "Preset"
-msgstr "Előbeállítás"
-
-#: menu.js:468
+#: menu.js:463
 msgid "Modes"
 msgstr "Módok"
 
-#: menu.js:469
+#: menu.js:464
 msgid "Focus until…"
 msgstr "Fókusz eddig…"
 
-#: menu.js:473
+#: menu.js:468
 msgid "Zen mode"
 msgstr "Zen mód"
 
-#: menu.js:477
+#: menu.js:472
 msgid "Ambient sound"
 msgstr "Háttérhang"
 
-#: menu.js:482
+#: menu.js:477
 msgid "Site blocking"
 msgstr "Webhelyblokkolás"
 
-#: menu.js:482 menu.js:724 menu.js:983
+#: menu.js:477 menu.js:718 menu.js:960
 msgid "off"
 msgstr "ki"
 
-#: menu.js:488
+#: menu.js:483
 msgid "Statistics"
 msgstr "Statisztika"
 
-#: menu.js:489 menu.js:608
+#: menu.js:484 menu.js:602
 #, javascript-format
 msgid "Today: %d"
 msgstr "Ma: %d"
 
-#: menu.js:492 menu.js:631
+#: menu.js:487 menu.js:625
 #, javascript-format
 msgid "Streak: %d days (best %d)"
 msgstr "Sorozat: %d nap (rekord %d)"
 
-#: menu.js:495
+#: menu.js:490
 msgid "Details…"
 msgstr "Részletek…"
 
-#: menu.js:502
+#: menu.js:497
 msgid "Setup wizard…"
 msgstr "Beállítási varázsló…"
 
-#: menu.js:581
+#: menu.js:576
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr "Ma: %d / %d"
 
-#: menu.js:613
+#: menu.js:607
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "Utolsó 7 nap: %d"
 
-#: menu.js:622
+#: menu.js:616
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "Utolsó 30 nap: %d"
 
-#: menu.js:625
+#: menu.js:619
 #, javascript-format
 msgid "All time: %d"
 msgstr "Mindenkori: %d"
 
-#: menu.js:628
+#: menu.js:622
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Fókuszidő: %s ma · %s összesen"
 
-#: menu.js:634
+#: menu.js:628
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Legjobb nap: %d"
 
-#: menu.js:646
+#: menu.js:640
 msgid "none yet"
 msgstr "még nincs"
 
-#: menu.js:662
+#: menu.js:656
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:664
+#: menu.js:658
 msgid "Long break"
 msgstr "Hosszú szünet"
 
-#: menu.js:666
+#: menu.js:660
 msgid "Short break"
 msgstr "Rövid szünet"
 
-#: menu.js:669
+#: menu.js:663
 #, javascript-format
 msgid "until %s"
 msgstr "eddig: %s"
 
-#: menu.js:672
+#: menu.js:666
 #, javascript-format
 msgid "≈ finish %s"
 msgstr "≈ vége %s"
 
-#: menu.js:676
+#: menu.js:670
 msgid "Break finished — press Start for focus"
 msgstr "Szünet kész — nyomd meg az Indítást a fókuszhoz"
 
-#: menu.js:678
+#: menu.js:672
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "A feladataid kb. %s-ra készülnek el"
 
-#: menu.js:680
+#: menu.js:674
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "%d perc fókusz — nyomd meg az Indítást"
 
-#: menu.js:718
+#: menu.js:712
 msgid "Task: none"
 msgstr "Feladat: nincs"
 
-#: menu.js:725 menu.js:984
+#: menu.js:719 menu.js:961
 #, javascript-format
 msgid "blocking %d"
 msgstr "%d blokkolva"
 
-#: menu.js:725 menu.js:984
+#: menu.js:719 menu.js:961
 #, javascript-format
 msgid "%d in list"
 msgstr "%d a listán"
 
-#: menu.js:775
+#: menu.js:769
 msgid "Resume break"
 msgstr "Szünet folytatása"
 
-#: menu.js:775
+#: menu.js:769
 msgid "Resume focus"
 msgstr "Fókusz folytatása"
 
-#: menu.js:782
+#: menu.js:776
 msgid "Focusing — stay with it"
 msgstr "Fókuszálás — tarts ki"
 
-#: menu.js:787
+#: menu.js:781
 msgid "Pause focus"
 msgstr "Fókusz szüneteltetése"
 
-#: menu.js:787
+#: menu.js:781
 msgid "Pause break"
 msgstr "Szünet szüneteltetése"
 
-#: menu.js:792
+#: menu.js:786
 msgid "Start next focus"
 msgstr "Következő fókusz indítása"
 
-#: menu.js:854
+#: menu.js:848
 msgid "Add task…"
 msgstr "Feladat hozzáadása…"
 
-#: menu.js:864
+#: menu.js:858
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr "Még nincs feladat — add hozzá, mire fókuszálsz, 🍅 becsléssel."
 
-#: menu.js:901
+#: menu.js:895
 msgid "Reopen task"
 msgstr "Feladat újranyitása"
 
-#: menu.js:901
+#: menu.js:895
 msgid "Mark done"
 msgstr "Késznek jelöl"
 
-#: menu.js:908
+#: menu.js:902
 msgid "Delete task"
 msgstr "Feladat törlése"
 
@@ -2411,6 +2407,12 @@ msgid ""
 msgstr ""
 "Válaszd ki a saját ismétlődő háttérhangod. Hagyd üresen a beépített lágy "
 "barna zajhoz."
+
+#~ msgid "Stop the timer before changing the focus length"
+#~ msgstr "Állítsd le az időzítőt a fókusz hosszának módosítása előtt"
+
+#~ msgid "Focus length"
+#~ msgstr "Fókusz hossza"
 
 #~ msgid "Estimate:"
 #~ msgstr "Becslés:"

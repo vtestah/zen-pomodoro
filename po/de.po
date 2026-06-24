@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 13:42+0700\n"
+"POT-Creation-Date: 2026-06-24 14:28+0700\n"
 "PO-Revision-Date: 2020-11-25 22:30+0100\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: de\n"
@@ -26,7 +26,7 @@ msgstr "Strenger Fokus ist aktiv"
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Dranbleiben — den Block beenden oder zurücksetzen und neu starten."
 
-#: applet.js:655 applet.js:1997
+#: applet.js:655
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Fokuslänge: %d Min."
@@ -55,7 +55,7 @@ msgstr "PAUSE ANGEHALTEN"
 msgid "BREAK OVER"
 msgstr "PAUSE VORBEI"
 
-#: applet.js:1011 applet.js:1071 menu.js:246 menu.js:650
+#: applet.js:1011 applet.js:1071 menu.js:245 menu.js:644
 msgid "Ready to focus"
 msgstr "Bereit für den Fokus"
 
@@ -84,7 +84,7 @@ msgstr "Pause beendet"
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodori %d, Arbeitsphase %d läuft"
 
-#: applet.js:1049 features.js:430 features.js:1073
+#: applet.js:1049 features.js:430 features.js:1104
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ fertig %s · noch %d 🍅"
@@ -146,24 +146,20 @@ msgstr "Pomodoro beendet"
 msgid "Pomodoro preflight failed"
 msgstr "Pomodoro-Vorabprüfung fehlgeschlagen"
 
-#: applet.js:1884
+#: applet.js:1881
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://de.wikipedia.org/wiki/Pomodoro-Technik"
 
-#: applet.js:1963 features.js:1852
+#: applet.js:1960 features.js:1883
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Timer stoppen, bevor die Pomodoro-Voreinstellung gewechselt wird"
 
-#: applet.js:1980
+#: applet.js:1978
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Pomodoro-Voreinstellung %s angewendet"
 
 #: applet.js:1992
-msgid "Stop the timer before changing the focus length"
-msgstr "Timer stoppen, bevor die Fokuslänge geändert wird"
-
-#: applet.js:2009
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Pause um %d Min. verlängert"
@@ -180,11 +176,11 @@ msgstr "Worauf konzentrierst du dich?"
 msgid "Choose or type a focus task"
 msgstr "Aufgabe wählen oder eingeben"
 
-#: dialogs.js:64 dialogs.js:79 features.js:1901
+#: dialogs.js:64 dialogs.js:79 features.js:1932
 msgid "Start"
 msgstr "Starten"
 
-#: dialogs.js:69 features.js:535 features.js:1155 features.js:1900
+#: dialogs.js:69 features.js:566 features.js:1186 features.js:1931
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -334,7 +330,7 @@ msgstr "Einen Snack und etwas Wasser holen."
 msgid "Rest your eyes and look into the distance."
 msgstr "Die Augen entspannen und in die Ferne schauen."
 
-#: features.js:478 menu.js:894
+#: features.js:478 menu.js:888
 msgid "Edit task"
 msgstr "Aufgabe bearbeiten"
 
@@ -360,239 +356,247 @@ msgstr "%d Std. %d Min."
 msgid "%d h"
 msgstr "%d Std."
 
-#: features.js:491 features.js:782 menu.js:331 menu.js:925 menu.js:931
+#: features.js:491 features.js:813 menu.js:330
 #, javascript-format
 msgid "%d min"
 msgstr "%d Min."
 
-#: features.js:493
+#: features.js:500 menu.js:456 menu.js:732 menu.js:955
+msgid "Preset"
+msgstr "Voreinstellung"
+
+#: features.js:502
+msgid "Custom"
+msgstr "Eigenes"
+
+#: features.js:511
 #, javascript-format
 msgid "How many pomodoros? (1 🍅 ≈ %d min)"
 msgstr "Wie viele Pomodoros? (1 🍅 ≈ %d Min.)"
 
-#: features.js:505
+#: features.js:517
 msgid "No estimate — just counts your 🍅"
 msgstr "Keine Schätzung — zählt nur deine 🍅"
 
-#: features.js:536
+#: features.js:567
 msgid "Save"
 msgstr "Speichern"
 
-#: features.js:536
+#: features.js:567
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: features.js:580
+#: features.js:611
 msgid "longer focus blocks suit deep work"
 msgstr "längere Fokusblöcke passen zu konzentrierter Arbeit"
 
-#: features.js:581
+#: features.js:612
 msgid "the classic rhythm suits studying"
 msgstr "der klassische Rhythmus passt zum Lernen"
 
-#: features.js:582
+#: features.js:613
 msgid "a little more break time lets ideas settle"
 msgstr "etwas mehr Pause lässt Ideen reifen"
 
-#: features.js:583
+#: features.js:614
 msgid "shorter cycles keep small tasks moving"
 msgstr "kürzere Zyklen halten kleine Aufgaben in Bewegung"
 
-#: features.js:584
+#: features.js:615
 msgid "a balanced rhythm"
 msgstr "ein ausgewogener Rhythmus"
 
-#: features.js:585
+#: features.js:616
 #, javascript-format
 msgid "Focus rhythm %d / %d / %d min — %s."
 msgstr "Fokus-Rhythmus %d / %d / %d Min. — %s."
 
-#: features.js:591
+#: features.js:622
 #, javascript-format
 msgid "Daily goal: %d focus blocks."
 msgstr "Tagesziel: %d Fokusblöcke."
 
-#: features.js:592
+#: features.js:623
 msgid "No daily goal yet — just getting a feel for it."
 msgstr "Noch kein Tagesziel — erst mal ausprobieren."
 
-#: features.js:603
+#: features.js:634
 msgid "Silent focus — no ticking or chimes."
 msgstr "Stiller Fokus — kein Ticken, keine Klänge."
 
-#: features.js:607
+#: features.js:638
 msgid "Soft brown-noise ambience while you focus."
 msgstr "Sanftes braunes Rauschen während des Fokus."
 
-#: features.js:612
+#: features.js:643
 #, javascript-format
 msgid "A gentle chime every %d min to mark time."
 msgstr "Sanfter Klang alle %d Min. als Zeitmarke."
 
-#: features.js:617
+#: features.js:648
 msgid "Quiet, visual-only cues for a shared space."
 msgstr "Leise, rein visuelle Hinweise für gemeinsame Räume."
 
-#: features.js:623
+#: features.js:654
 msgid "Notifications are muted while you focus."
 msgstr "Benachrichtigungen sind während des Fokus stumm."
 
-#: features.js:626
+#: features.js:657
 msgid "Distraction blocking is ready — add sites in Settings → Advanced."
 msgstr ""
 "Ablenkungsblockierung ist bereit — Seiten unter Einstellungen → Erweitert "
 "hinzufügen."
 
-#: features.js:629
+#: features.js:660
 msgid "One-click start and a calm start ritual make it easier to begin."
 msgstr "Ein-Klick-Start und ein ruhiges Startritual erleichtern den Einstieg."
 
-#: features.js:633
+#: features.js:664
 msgid "Breaks start on their own so you don't overwork."
 msgstr "Pausen starten von selbst, damit du dich nicht überarbeitest."
 
-#: features.js:637
+#: features.js:668
 msgid "A calm theme, no ticking seconds and no end-of-timer rush."
 msgstr "Ein ruhiges Thema, keine tickenden Sekunden, keine Hektik am Ende."
 
-#: features.js:677
+#: features.js:708
 msgid "What will you mainly focus on?"
 msgstr "Worauf konzentrierst du dich hauptsächlich?"
 
-#: features.js:678
+#: features.js:709
 msgid "This shapes how long each focus block should be."
 msgstr "Davon hängt die Länge jedes Fokusblocks ab."
 
-#: features.js:680
+#: features.js:711
 msgid "Deep work or coding"
 msgstr "Konzentrierte Arbeit oder Programmieren"
 
-#: features.js:681
+#: features.js:712
 msgid "Studying or reading"
 msgstr "Lernen oder Lesen"
 
-#: features.js:682
+#: features.js:713
 msgid "Writing or creative work"
 msgstr "Schreiben oder kreative Arbeit"
 
-#: features.js:683
+#: features.js:714
 msgid "Lots of small tasks"
 msgstr "Viele kleine Aufgaben"
 
-#: features.js:685
+#: features.js:716
 msgid "How long can you usually concentrate?"
 msgstr "Wie lange kannst du dich normalerweise konzentrieren?"
 
-#: features.js:686
+#: features.js:717
 msgid "Pick a length you can actually keep — it beats an ideal one."
 msgstr ""
 "Wähle eine Länge, die du wirklich durchhältst — besser als eine ideale."
 
-#: features.js:688
+#: features.js:719
 msgid "About 15 minutes"
 msgstr "Etwa 15 Minuten"
 
-#: features.js:689
+#: features.js:720
 msgid "About 25 minutes"
 msgstr "Etwa 25 Minuten"
 
-#: features.js:690
+#: features.js:721
 msgid "45 minutes or more"
 msgstr "45 Minuten oder mehr"
 
-#: features.js:691
+#: features.js:722
 msgid "I lose track of time when I'm in flow"
 msgstr "Ich vergesse die Zeit, wenn ich im Flow bin"
 
-#: features.js:693
+#: features.js:724
 msgid "What gets in your way most?"
 msgstr "Was stört dich am meisten?"
 
-#: features.js:694
+#: features.js:725
 msgid "I'll switch on the right help for this."
 msgstr "Ich aktiviere die passende Hilfe dafür."
 
-#: features.js:696
+#: features.js:727
 msgid "Notifications and pings"
 msgstr "Benachrichtigungen und Pings"
 
-#: features.js:697
+#: features.js:728
 msgid "Distracting websites"
 msgstr "Ablenkende Websites"
 
-#: features.js:698
+#: features.js:729
 msgid "It's hard to get started"
 msgstr "Es fällt mir schwer anzufangen"
 
-#: features.js:699
+#: features.js:730
 msgid "I forget to take breaks"
 msgstr "Ich vergesse, Pausen zu machen"
 
-#: features.js:700
+#: features.js:731
 msgid "Timers make me anxious"
 msgstr "Timer machen mich nervös"
 
-#: features.js:702
+#: features.js:733
 msgid "What helps you concentrate?"
 msgstr "Was hilft dir beim Konzentrieren?"
 
-#: features.js:703
+#: features.js:734
 msgid "Sets the focus soundscape — change it anytime in Sounds."
 msgstr "Legt die Fokus-Klänge fest — jederzeit unter „Töne“ änderbar."
 
-#: features.js:705
+#: features.js:736
 msgid "Silence"
 msgstr "Stille"
 
-#: features.js:706
+#: features.js:737
 msgid "Soft background noise"
 msgstr "Sanftes Hintergrundrauschen"
 
-#: features.js:707
+#: features.js:738
 msgid "A gentle chime to mark time"
 msgstr "Ein sanfter Klang als Zeitmarke"
 
-#: features.js:708
+#: features.js:739
 msgid "I share my space — keep it quiet"
 msgstr "Ich teile meinen Raum — bitte leise"
 
-#: features.js:710
+#: features.js:741
 msgid "How much do you want to get done today?"
 msgstr "Wie viel möchtest du heute schaffen?"
 
-#: features.js:711
+#: features.js:742
 msgid "Sets your daily goal — no pressure, you can change it."
 msgstr "Legt dein Tagesziel fest — ohne Druck, jederzeit änderbar."
 
-#: features.js:713
+#: features.js:744
 msgid "Just trying it out"
 msgstr "Nur zum Ausprobieren"
 
-#: features.js:714
+#: features.js:745
 msgid "A light day (about 4)"
 msgstr "Ein leichter Tag (etwa 4)"
 
-#: features.js:715
+#: features.js:746
 msgid "A full day (about 6)"
 msgstr "Ein voller Tag (etwa 6)"
 
-#: features.js:716
+#: features.js:747
 msgid "A big push (about 8)"
 msgstr "Ein großer Schub (etwa 8)"
 
-#: features.js:732
+#: features.js:763
 msgid "Smart setup"
 msgstr "Intelligente Einrichtung"
 
-#: features.js:741
+#: features.js:772
 msgid "Skip"
 msgstr "Überspringen"
 
-#: features.js:744
+#: features.js:775
 msgid "Let's tune Zen Pomodoro to you 🍅"
 msgstr "Stellen wir Zen Pomodoro auf dich ein 🍅"
 
-#: features.js:745
+#: features.js:776
 msgid ""
 "Answer five quick questions and I'll build a focus setup that fits how you "
 "work — your rhythm, sounds, breaks and the help you need. You can fine-tune "
@@ -602,23 +606,23 @@ msgstr ""
 "Arbeitsweise passt — Rhythmus, Töne, Pausen und die nötige Hilfe. Alles "
 "lässt sich später in den Einstellungen feinjustieren."
 
-#: features.js:746
+#: features.js:777
 msgid "Let's go"
 msgstr "Los geht's"
 
-#: features.js:752 features.js:768
+#: features.js:783 features.js:799
 msgid "Back"
 msgstr "Zurück"
 
-#: features.js:753
+#: features.js:784
 msgid "Next"
 msgstr "Weiter"
 
-#: features.js:756
+#: features.js:787
 msgid "Your tailored setup 🍅"
 msgstr "Deine maßgeschneiderte Einrichtung 🍅"
 
-#: features.js:757
+#: features.js:788
 msgid ""
 "Based on your answers, here's what I'll set up. Apply it now, then tweak "
 "anything in Settings."
@@ -626,230 +630,230 @@ msgstr ""
 "Basierend auf deinen Antworten richte ich Folgendes ein. Jetzt anwenden und "
 "später in den Einstellungen anpassen."
 
-#: features.js:769
+#: features.js:800
 msgid "Apply"
 msgstr "Anwenden"
 
-#: features.js:770
+#: features.js:801
 msgid "Apply & start"
 msgstr "Anwenden & starten"
 
-#: features.js:786 menu.js:335
+#: features.js:817 menu.js:334
 #, javascript-format
 msgid "%dh %dm"
 msgstr "%d Std. %d Min."
 
-#: features.js:786 menu.js:335
+#: features.js:817 menu.js:334
 #, javascript-format
 msgid "%dh"
 msgstr "%d Std."
 
-#: features.js:941
+#: features.js:972
 msgid "Statistics reset."
 msgstr "Statistik zurückgesetzt."
 
-#: features.js:963
+#: features.js:994
 #, javascript-format
 msgid "%d to go today — at your pace, done by about %s."
 msgstr "Noch %d für heute — in deinem Tempo fertig gegen ca. %s."
 
-#: features.js:964
+#: features.js:995
 #, javascript-format
 msgid "%d more to reach today's goal of %d."
 msgstr "Noch %d bis zum Tagesziel von %d."
 
-#: features.js:966
+#: features.js:997
 #, javascript-format
 msgid "Daily goal reached — %d done today. Nice."
 msgstr "Tagesziel erreicht — %d heute geschafft. Schön."
 
-#: features.js:969
+#: features.js:1000
 #, javascript-format
 msgid "%d interruptions this week — what keeps pulling you away?"
 msgstr "%d Unterbrechungen diese Woche — was lenkt dich immer wieder ab?"
 
-#: features.js:972 features.js:1090
+#: features.js:1003 features.js:1121
 #, javascript-format
 msgid "Most focused around %s — good time for deep work."
 msgstr "Höchste Konzentration gegen %s — gute Zeit für anspruchsvolle Arbeit."
 
-#: features.js:975
+#: features.js:1006
 #, javascript-format
 msgid "Most focus went to “%s”."
 msgstr "Der meiste Fokus ging an „%s“."
 
-#: features.js:977
+#: features.js:1008
 #, javascript-format
 msgid "%d pomodoros this week. Keep it going."
 msgstr "%d Pomodoro diese Woche. Weiter so."
 
-#: features.js:978
+#: features.js:1009
 msgid "Start a focus session — your insights will appear here."
 msgstr "Starte eine Fokussitzung — deine Auswertungen erscheinen hier."
 
-#: features.js:1032
+#: features.js:1063
 msgid "Focus statistics"
 msgstr "Fokus-Statistik"
 
-#: features.js:1046
+#: features.js:1077
 #, javascript-format
 msgid "%d / %d goal"
 msgstr "%d / %d Ziel"
 
-#: features.js:1047
+#: features.js:1078
 msgid "Today"
 msgstr "Heute"
 
-#: features.js:1048
+#: features.js:1079
 msgid "This week"
 msgstr "Diese Woche"
 
-#: features.js:1049
+#: features.js:1080
 msgid "Streak"
 msgstr "Serie"
 
-#: features.js:1049
+#: features.js:1080
 #, javascript-format
 msgid "best %d"
 msgstr "Rekord %d"
 
-#: features.js:1050
+#: features.js:1081
 msgid "All time"
 msgstr "Gesamt"
 
-#: features.js:1058
+#: features.js:1089
 msgid "Sun"
 msgstr "So"
 
-#: features.js:1058
+#: features.js:1089
 msgid "Mon"
 msgstr "Mo"
 
-#: features.js:1058
+#: features.js:1089
 msgid "Tue"
 msgstr "Di"
 
-#: features.js:1058
+#: features.js:1089
 msgid "Wed"
 msgstr "Mi"
 
-#: features.js:1058
+#: features.js:1089
 msgid "Thu"
 msgstr "Do"
 
-#: features.js:1058
+#: features.js:1089
 msgid "Fri"
 msgstr "Fr"
 
-#: features.js:1058
+#: features.js:1089
 msgid "Sat"
 msgstr "Sa"
 
-#: features.js:1059
+#: features.js:1090
 #, javascript-format
 msgid "This week: %d 🍅 · %s · best day %s"
 msgstr "Diese Woche: %d 🍅 · %s · bester Tag %s"
 
-#: features.js:1065
+#: features.js:1096
 msgid "Nothing harvested yet today"
 msgstr "Heute noch nichts geerntet"
 
-#: features.js:1067
+#: features.js:1098
 msgid "Today's harvest"
 msgstr "Heutige Ernte"
 
-#: features.js:1074
+#: features.js:1105
 #, javascript-format
 msgid "Interruptions: %d today · %d this week"
 msgstr "Unterbrechungen: %d heute · %d diese Woche"
 
-#: features.js:1080
+#: features.js:1111
 msgid "When you focus (by hour)"
 msgstr "Wann du fokussierst (nach Stunde)"
 
-#: features.js:1085
+#: features.js:1116
 msgid "night"
 msgstr "Nacht"
 
-#: features.js:1085
+#: features.js:1116
 msgid "morning"
 msgstr "Morgen"
 
-#: features.js:1085
+#: features.js:1116
 msgid "afternoon"
 msgstr "Nachmittag"
 
-#: features.js:1085
+#: features.js:1116
 msgid "evening"
 msgstr "Abend"
 
-#: features.js:1091
+#: features.js:1122
 msgid "Not enough data yet to spot your best focus time."
 msgstr "Noch zu wenig Daten für deine beste Fokuszeit."
 
-#: features.js:1100
+#: features.js:1131
 msgid "Focus time — last 14 days"
 msgstr "Fokuszeit — letzte 14 Tage"
 
-#: features.js:1105
+#: features.js:1136
 msgid "Activity — last 12 weeks"
 msgstr "Aktivität — letzte 12 Wochen"
 
-#: features.js:1110
+#: features.js:1141
 msgid "Less"
 msgstr "Weniger"
 
-#: features.js:1114
+#: features.js:1145
 msgid "More"
 msgstr "Mehr"
 
-#: features.js:1127
+#: features.js:1158
 msgid "By task"
 msgstr "Nach Aufgabe"
 
-#: features.js:1148 menu.js:646
+#: features.js:1179 menu.js:640
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Meilensteine: %s"
 
-#: features.js:1156
+#: features.js:1187
 msgid "Delete all statistics"
 msgstr "Alle Statistiken löschen"
 
-#: features.js:1161
+#: features.js:1192
 msgid "Reset statistics…"
 msgstr "Statistik zurücksetzen…"
 
-#: features.js:1162
+#: features.js:1193
 msgid "Close"
 msgstr "Schließen"
 
-#: features.js:1489
+#: features.js:1520
 msgid "No task"
 msgstr "Keine Aufgabe"
 
-#: features.js:1526
+#: features.js:1557
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr ""
 "Push-Benachrichtigungen brauchen libsoup, das hier nicht verfügbar ist."
 
-#: features.js:1532
+#: features.js:1563
 msgid "Enter your Pushover user key and app token first."
 msgstr "Zuerst Pushover-Benutzerschlüssel und App-Token eingeben."
 
-#: features.js:1539
+#: features.js:1570
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Testbenachrichtigung von Zen Pomodoro 🍅"
 
-#: features.js:1561
+#: features.js:1592
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Pushover-Test gesendet ✓ — prüfe dein Gerät."
 
-#: features.js:1562 features.js:1566
+#: features.js:1593 features.js:1597
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr "Pushover-Test fehlgeschlagen. Benutzerschlüssel und App-Token prüfen."
 
-#: features.js:1609
+#: features.js:1640
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -857,273 +861,265 @@ msgstr ""
 "Um Websites während des Fokus automatisch zu blockieren, aktiviere die "
 "passwortlose Blockierung in den Einstellungen."
 
-#: features.js:1667
+#: features.js:1698
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Passwortloses Blockieren aktiviert (keine Abfrage)."
 
-#: features.js:1673
+#: features.js:1704
 msgid "Passwordless blocking removed."
 msgstr "Passwortloses Blockieren entfernt."
 
-#: features.js:1710
+#: features.js:1741
 msgid "Click to exit Zen"
 msgstr "Klicken zum Verlassen von Zen"
 
 #. settings-schema.json->focus->title
-#: features.js:1745 visual.js:894
+#: features.js:1776 visual.js:894
 msgid "Focus"
 msgstr "Fokus"
 
-#: features.js:1822
+#: features.js:1853
 msgid "Breathe in"
 msgstr "Einatmen"
 
-#: features.js:1825 features.js:1831
+#: features.js:1856 features.js:1862
 msgid "Hold"
 msgstr "Halten"
 
-#: features.js:1828
+#: features.js:1859
 msgid "Breathe out"
 msgstr "Ausatmen"
 
-#: features.js:1858
+#: features.js:1889
 msgid "Focus until"
 msgstr "Fokus bis"
 
-#: features.js:1859
+#: features.js:1890
 msgid "Enter a time (HH:MM)"
 msgstr "Uhrzeit eingeben (HH:MM)"
 
-#: menu.js:132
+#: menu.js:131
 msgid "Error: menu unavailable"
 msgstr "Fehler: Menü nicht verfügbar"
 
-#: menu.js:263
+#: menu.js:262
 msgid "Ready to start"
 msgstr "Bereit zum Starten"
 
-#: menu.js:271 menu.js:716
+#: menu.js:270 menu.js:710
 msgid "Task will be selected on start"
 msgstr "Aufgabe wird beim Start gewählt"
 
-#: menu.js:277
+#: menu.js:276
 msgid "Change task"
 msgstr "Aufgabe wechseln"
 
-#: menu.js:371
+#: menu.js:370
 #, javascript-format
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:379 menu.js:796
+#: menu.js:378 menu.js:790
 msgid "Start focus"
 msgstr "Fokus starten"
 
-#: menu.js:395
+#: menu.js:394
 msgid "Skip phase"
 msgstr "Phase überspringen"
 
-#: menu.js:401
+#: menu.js:400
 msgid "Reset timer"
 msgstr "Timer zurücksetzen"
 
-#: menu.js:413
+#: menu.js:412
 msgid "Reset counters"
 msgstr "Zähler zurücksetzen"
 
-#: menu.js:414
+#: menu.js:413
 msgid "Reset timer and counters"
 msgstr "Timer und Zähler zurücksetzen"
 
-#: menu.js:435 menu.js:839
+#: menu.js:434 menu.js:833
 msgid "Task list"
 msgstr "Aufgabenliste"
 
-#: menu.js:456
+#: menu.js:455
 msgid "Session"
 msgstr "Sitzung"
 
-#: menu.js:457 menu.js:931
-msgid "Focus length"
-msgstr "Fokuslänge"
-
-#: menu.js:460 menu.js:738 menu.js:978
-msgid "Preset"
-msgstr "Voreinstellung"
-
-#: menu.js:468
+#: menu.js:463
 msgid "Modes"
 msgstr "Modi"
 
-#: menu.js:469
+#: menu.js:464
 msgid "Focus until…"
 msgstr "Fokus bis…"
 
-#: menu.js:473
+#: menu.js:468
 msgid "Zen mode"
 msgstr "Zen-Modus"
 
-#: menu.js:477
+#: menu.js:472
 msgid "Ambient sound"
 msgstr "Hintergrundklang"
 
-#: menu.js:482
+#: menu.js:477
 msgid "Site blocking"
 msgstr "Website-Blockierung"
 
-#: menu.js:482 menu.js:724 menu.js:983
+#: menu.js:477 menu.js:718 menu.js:960
 msgid "off"
 msgstr "aus"
 
-#: menu.js:488
+#: menu.js:483
 msgid "Statistics"
 msgstr "Statistik"
 
-#: menu.js:489 menu.js:608
+#: menu.js:484 menu.js:602
 #, javascript-format
 msgid "Today: %d"
 msgstr "Heute: %d"
 
-#: menu.js:492 menu.js:631
+#: menu.js:487 menu.js:625
 #, javascript-format
 msgid "Streak: %d days (best %d)"
 msgstr "Serie: %d Tage (Rekord %d)"
 
-#: menu.js:495
+#: menu.js:490
 msgid "Details…"
 msgstr "Details…"
 
-#: menu.js:502
+#: menu.js:497
 msgid "Setup wizard…"
 msgstr "Einrichtungsassistent…"
 
-#: menu.js:581
+#: menu.js:576
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr "Heute: %d / %d"
 
-#: menu.js:613
+#: menu.js:607
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "Letzte 7 Tage: %d"
 
-#: menu.js:622
+#: menu.js:616
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "Letzte 30 Tage: %d"
 
-#: menu.js:625
+#: menu.js:619
 #, javascript-format
 msgid "All time: %d"
 msgstr "Gesamt: %d"
 
-#: menu.js:628
+#: menu.js:622
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Fokuszeit: %s heute · %s gesamt"
 
-#: menu.js:634
+#: menu.js:628
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Bester Tag: %d"
 
-#: menu.js:646
+#: menu.js:640
 msgid "none yet"
 msgstr "noch keine"
 
-#: menu.js:662
+#: menu.js:656
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d von %d"
 
-#: menu.js:664
+#: menu.js:658
 msgid "Long break"
 msgstr "Lange Pause"
 
-#: menu.js:666
+#: menu.js:660
 msgid "Short break"
 msgstr "Kurze Pause"
 
-#: menu.js:669
+#: menu.js:663
 #, javascript-format
 msgid "until %s"
 msgstr "bis %s"
 
-#: menu.js:672
+#: menu.js:666
 #, javascript-format
 msgid "≈ finish %s"
 msgstr "≈ Ende %s"
 
-#: menu.js:676
+#: menu.js:670
 msgid "Break finished — press Start for focus"
 msgstr "Pause beendet — Start für den Fokus drücken"
 
-#: menu.js:678
+#: menu.js:672
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Aufgaben fertig bis ~%s"
 
-#: menu.js:680
+#: menu.js:674
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "%d Min. Fokus — Start drücken"
 
-#: menu.js:718
+#: menu.js:712
 msgid "Task: none"
 msgstr "Aufgabe: keine"
 
-#: menu.js:725 menu.js:984
+#: menu.js:719 menu.js:961
 #, javascript-format
 msgid "blocking %d"
 msgstr "blockiert %d"
 
-#: menu.js:725 menu.js:984
+#: menu.js:719 menu.js:961
 #, javascript-format
 msgid "%d in list"
 msgstr "%d in der Liste"
 
-#: menu.js:775
+#: menu.js:769
 msgid "Resume break"
 msgstr "Pause fortsetzen"
 
-#: menu.js:775
+#: menu.js:769
 msgid "Resume focus"
 msgstr "Fokus fortsetzen"
 
-#: menu.js:782
+#: menu.js:776
 msgid "Focusing — stay with it"
 msgstr "Fokus läuft — dranbleiben"
 
-#: menu.js:787
+#: menu.js:781
 msgid "Pause focus"
 msgstr "Fokus anhalten"
 
-#: menu.js:787
+#: menu.js:781
 msgid "Pause break"
 msgstr "Pause anhalten"
 
-#: menu.js:792
+#: menu.js:786
 msgid "Start next focus"
 msgstr "Nächsten Fokus starten"
 
-#: menu.js:854
+#: menu.js:848
 msgid "Add task…"
 msgstr "Aufgabe hinzufügen…"
 
-#: menu.js:864
+#: menu.js:858
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Noch keine Aufgaben — füge hinzu, woran du arbeitest, mit einer 🍅-Schätzung."
 
-#: menu.js:901
+#: menu.js:895
 msgid "Reopen task"
 msgstr "Aufgabe wieder öffnen"
 
-#: menu.js:901
+#: menu.js:895
 msgid "Mark done"
 msgstr "Als erledigt markieren"
 
-#: menu.js:908
+#: menu.js:902
 msgid "Delete task"
 msgstr "Aufgabe löschen"
 
@@ -2408,6 +2404,12 @@ msgid ""
 msgstr ""
 "Wähle deinen eigenen Endlos-Umgebungsklang. Leer lassen für das eingebaute "
 "sanfte braune Rauschen."
+
+#~ msgid "Stop the timer before changing the focus length"
+#~ msgstr "Timer stoppen, bevor die Fokuslänge geändert wird"
+
+#~ msgid "Focus length"
+#~ msgstr "Fokuslänge"
 
 #~ msgid "Estimate:"
 #~ msgstr "Schätzung:"

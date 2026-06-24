@@ -1955,7 +1955,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._timerQueue.start();
     }
 
-    _applyDurationPreset(workMinutes, breakMinutes, longBreakMinutes = breakMinutes, pomodoriNumber = 4) {
+    _applyDurationPreset(workMinutes, breakMinutes, longBreakMinutes = breakMinutes, pomodoriNumber = 4, silent = false) {
         if (this._timerQueue.isRunning() || this._isPausedState()) {
             Main.notify(_("Stop the timer before changing Pomodoro preset"));
             return false;
@@ -1974,7 +1974,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._setTimerLabel(0);
         this._clearAppletTooltip();
         this._updatePresetIndicator();
-        Main.notify(_("Pomodoro preset %s applied").format(this._getActivePresetLabel()));
+        if (!silent) {
+            Main.notify(_("Pomodoro preset %s applied").format(this._getActivePresetLabel()));
+        }
         return true;
     }
 

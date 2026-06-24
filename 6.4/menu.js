@@ -484,9 +484,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._statTodayItem = new PopupMenu.PopupMenuItem(_("Today: %d").format(0) + " 🍅");
         this._statTodayItem.setSensitive(false);
         this.addMenuItem(this._statTodayItem);
-        this._statStreakItem = new PopupMenu.PopupMenuItem(_("Streak: %d days (best %d)").format(0, 0));
-        this._statStreakItem.setSensitive(false);
-        this.addMenuItem(this._statStreakItem);
         let dashItem = new PopupMenu.PopupMenuItem(_("Details\u2026"));
         dashItem.connect('activate', () => { this.emit('open-stats'); });
         this.addMenuItem(dashItem);
@@ -602,7 +599,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (this._statTodayItem && runtime.stats) {
             let st = runtime.stats;
             if (this._statTodayItem) {
-                this._statTodayItem.label.set_text(_("Today: %d").format(st.today || 0) + " 🍅");
+                let line = _("Today: %d").format(st.today || 0) + " 🍅";
+                if ((st.streak || 0) > 0) { line += "  ·  🔥 " + (st.streak || 0); }
+                this._statTodayItem.label.set_text(line);
+                if ((runtime.dailyGoal || 0) > 0) { this._statTodayItem.actor.hide(); } else { this._statTodayItem.actor.show(); }
             }
             if (this._statWeekItem) {
                 let wk = st.week || 0;
@@ -623,9 +623,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             }
             if (this._statTimeItem) {
                 this._statTimeItem.label.set_text(_("Focus time: %s today · %s total").format(this._fmtDuration(st.todayMin || 0), this._fmtDuration(st.totalMinutes || 0)));
-            }
-            if (this._statStreakItem) {
-                this._statStreakItem.label.set_text(((st.streak || 0) > 0 ? "🔥 " : "") + _("Streak: %d days (best %d)").format(st.streak || 0, st.longestStreak || 0));
             }
             if (this._statBestItem) {
                 this._statBestItem.label.set_text(_("Best day: %d").format(st.bestDay || 0));

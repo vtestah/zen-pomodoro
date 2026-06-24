@@ -484,14 +484,22 @@ function install(proto) {
         content.add_child(entry);
 
         let est = { value: existing ? Math.max(0, Math.min(6, existing.est || 0)) : 0 };
-        content.add_child(new St.Label({ text: _("Estimate:"), style: 'padding-top: 10px;' }));
+        let focusLen = this._opt_pomodoroTimeMinutes || 25;
+        let fmtMins = (mins) => {
+            let h = Math.floor(mins / 60), m = mins % 60;
+            if (h > 0) { return m > 0 ? _("%d h %d min").format(h, m) : _("%d h").format(h); }
+            return _("%d min").format(m);
+        };
+        content.add_child(new St.Label({ text: _("How many pomodoros? (1 🍅 ≈ %d min)").format(focusLen), style: 'padding-top: 10px;' }));
         let estRow = new St.BoxLayout({ vertical: false, style: 'spacing: 6px; padding-top: 4px;' });
         let estBtns = [];
         let estVals = [0, 1, 2, 3, 4, 5, 6];
+        let estReadout = new St.Label({ text: '', style: 'padding-top: 4px; color: rgba(255,255,255,0.6);' });
         let restyle = () => {
             for (let k = 0; k < estBtns.length; k++) {
                 estBtns[k].set_style('padding: 2px 8px;' + ((estVals[k] === est.value) ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
             }
+            estReadout.set_text(est.value === 0 ? _("No estimate — just counts your 🍅") : ("\u2248 " + fmtMins(est.value * focusLen)));
         };
         estVals.forEach((v) => {
             let b = new St.Button({ label: (v === 0 ? "\u2014" : (v + " \ud83c\udf45")), style_class: 'button' });
@@ -501,6 +509,7 @@ function install(proto) {
         });
         restyle();
         content.add_child(estRow);
+        content.add_child(estReadout);
 
         dialog.contentLayout.add(content);
         dialog.setInitialKeyFocus(entry.clutter_text);

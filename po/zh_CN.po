@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 11:19+0700\n"
+"POT-Creation-Date: 2026-06-24 13:35+0700\n"
 "PO-Revision-Date: 2017-03-14 22:17+0800\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: zh_CN\n"
@@ -55,7 +55,7 @@ msgstr "休息已暂停"
 msgid "BREAK OVER"
 msgstr "休息结束"
 
-#: applet.js:1011 applet.js:1071 menu.js:246 menu.js:634
+#: applet.js:1011 applet.js:1071 menu.js:246 menu.js:650
 msgid "Ready to focus"
 msgstr "准备专注"
 
@@ -84,7 +84,7 @@ msgstr "休息结束"
 msgid "Pomodori %d, set %d running"
 msgstr "番茄钟%d，设置%d正在运行"
 
-#: applet.js:1049 features.js:430 features.js:1059
+#: applet.js:1049 features.js:430 features.js:1068
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ %s 完成 · 还剩 %d 🍅"
@@ -150,7 +150,7 @@ msgstr "番茄钟启动前检查失败"
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://zh.wikipedia.org/wiki/番茄工作法"
 
-#: applet.js:1963 features.js:1838
+#: applet.js:1963 features.js:1847
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "更改番茄钟预设前请先停止定时器"
 
@@ -180,11 +180,11 @@ msgstr "你要专注做什么？"
 msgid "Choose or type a focus task"
 msgstr "选择或输入一个专注任务"
 
-#: dialogs.js:64 dialogs.js:79 features.js:1887
+#: dialogs.js:64 dialogs.js:79 features.js:1896
 msgid "Start"
 msgstr "开始"
 
-#: dialogs.js:69 features.js:521 features.js:1141 features.js:1886
+#: dialogs.js:69 features.js:530 features.js:1150 features.js:1895
 msgid "Cancel"
 msgstr "取消"
 
@@ -330,7 +330,7 @@ msgstr "吃点零食，喝点水。"
 msgid "Rest your eyes and look into the distance."
 msgstr "让眼睛休息，眺望远处。"
 
-#: features.js:478 menu.js:873
+#: features.js:478 menu.js:894
 msgid "Edit task"
 msgstr "编辑任务"
 
@@ -342,524 +342,537 @@ msgstr "新任务"
 msgid "What do you want to work on?"
 msgstr "你想做什么？"
 
-#: features.js:487
-msgid "Estimate:"
-msgstr "预估："
+#: features.js:490
+#, javascript-format
+msgid "%d h %d min"
+msgstr "%d 小时 %d 分钟"
 
-#: features.js:522
+#: features.js:490
+#, javascript-format
+msgid "%d h"
+msgstr "%d 小时"
+
+#: features.js:491 features.js:777 menu.js:331 menu.js:925 menu.js:931
+#, javascript-format
+msgid "%d min"
+msgstr "%d 分钟"
+
+#: features.js:493
+#, javascript-format
+msgid "How many pomodoros? (1 🍅 ≈ %d min)"
+msgstr "几个番茄钟？(1 🍅 ≈ %d 分钟)"
+
+#: features.js:502
+msgid "No estimate — just counts your 🍅"
+msgstr "无预估 — 只统计你的 🍅"
+
+#: features.js:531
 msgid "Save"
 msgstr "保存"
 
-#: features.js:522
+#: features.js:531
 msgid "Add"
 msgstr "添加"
 
-#: features.js:566
+#: features.js:575
 msgid "longer focus blocks suit deep work"
 msgstr "更长的专注块适合深度工作"
 
-#: features.js:567
+#: features.js:576
 msgid "the classic rhythm suits studying"
 msgstr "经典节奏适合学习"
 
-#: features.js:568
+#: features.js:577
 msgid "a little more break time lets ideas settle"
 msgstr "多一点休息时间，让思路沉淀"
 
-#: features.js:569
+#: features.js:578
 msgid "shorter cycles keep small tasks moving"
 msgstr "更短的周期让琐碎任务保持推进"
 
-#: features.js:570
+#: features.js:579
 msgid "a balanced rhythm"
 msgstr "均衡的节奏"
 
-#: features.js:571
+#: features.js:580
 #, javascript-format
 msgid "Focus rhythm %d / %d / %d min — %s."
 msgstr "专注节奏 %d / %d / %d 分钟 — %s。"
 
-#: features.js:577
+#: features.js:586
 #, javascript-format
 msgid "Daily goal: %d focus blocks."
 msgstr "每日目标：%d 个专注块。"
 
-#: features.js:578
+#: features.js:587
 msgid "No daily goal yet — just getting a feel for it."
 msgstr "暂无每日目标 — 先随意体验一下。"
 
-#: features.js:589
+#: features.js:598
 msgid "Silent focus — no ticking or chimes."
 msgstr "静音专注 — 没有滴答声或提示音。"
 
-#: features.js:593
+#: features.js:602
 msgid "Soft brown-noise ambience while you focus."
 msgstr "专注时播放柔和的棕噪声环境音。"
 
-#: features.js:598
+#: features.js:607
 #, javascript-format
 msgid "A gentle chime every %d min to mark time."
 msgstr "每 %d 分钟轻轻提示一次以标记时间。"
 
-#: features.js:603
+#: features.js:612
 msgid "Quiet, visual-only cues for a shared space."
 msgstr "安静的纯视觉提示，适合共享空间。"
 
-#: features.js:609
+#: features.js:618
 msgid "Notifications are muted while you focus."
 msgstr "专注时通知会被静音。"
 
-#: features.js:612
+#: features.js:621
 msgid "Distraction blocking is ready — add sites in Settings → Advanced."
 msgstr "干扰屏蔽已就绪 — 在 设置 → 高级 中添加网站。"
 
-#: features.js:615
+#: features.js:624
 msgid "One-click start and a calm start ritual make it easier to begin."
 msgstr "一键开始和平静的开始仪式让你更容易进入状态。"
 
-#: features.js:619
+#: features.js:628
 msgid "Breaks start on their own so you don't overwork."
 msgstr "休息会自动开始，让你不至于过度劳累。"
 
-#: features.js:623
+#: features.js:632
 msgid "A calm theme, no ticking seconds and no end-of-timer rush."
 msgstr "平静的主题，没有滴答的秒数，也没有计时结束时的紧迫感。"
 
-#: features.js:663
+#: features.js:672
 msgid "What will you mainly focus on?"
 msgstr "你主要会专注于什么？"
 
-#: features.js:664
+#: features.js:673
 msgid "This shapes how long each focus block should be."
 msgstr "这决定了每个专注块应该有多长。"
 
-#: features.js:666
+#: features.js:675
 msgid "Deep work or coding"
 msgstr "深度工作或编程"
 
-#: features.js:667
+#: features.js:676
 msgid "Studying or reading"
 msgstr "学习或阅读"
 
-#: features.js:668
+#: features.js:677
 msgid "Writing or creative work"
 msgstr "写作或创意工作"
 
-#: features.js:669
+#: features.js:678
 msgid "Lots of small tasks"
 msgstr "大量琐碎任务"
 
-#: features.js:671
+#: features.js:680
 msgid "How long can you usually concentrate?"
 msgstr "你通常能集中注意力多久？"
 
-#: features.js:672
+#: features.js:681
 msgid "Pick a length you can actually keep — it beats an ideal one."
 msgstr "选一个你真正能坚持的时长 — 这比理想时长更管用。"
 
-#: features.js:674
+#: features.js:683
 msgid "About 15 minutes"
 msgstr "大约 15 分钟"
 
-#: features.js:675
+#: features.js:684
 msgid "About 25 minutes"
 msgstr "大约 25 分钟"
 
-#: features.js:676
+#: features.js:685
 msgid "45 minutes or more"
 msgstr "45 分钟或更长"
 
-#: features.js:677
+#: features.js:686
 msgid "I lose track of time when I'm in flow"
 msgstr "进入心流时我会忘记时间"
 
-#: features.js:679
+#: features.js:688
 msgid "What gets in your way most?"
 msgstr "最常妨碍你的是什么？"
 
-#: features.js:680
+#: features.js:689
 msgid "I'll switch on the right help for this."
 msgstr "我会为此开启合适的辅助功能。"
 
-#: features.js:682
+#: features.js:691
 msgid "Notifications and pings"
 msgstr "通知和提示音"
 
-#: features.js:683
+#: features.js:692
 msgid "Distracting websites"
 msgstr "让人分心的网站"
 
-#: features.js:684
+#: features.js:693
 msgid "It's hard to get started"
 msgstr "很难开始"
 
-#: features.js:685
+#: features.js:694
 msgid "I forget to take breaks"
 msgstr "我会忘记休息"
 
-#: features.js:686
+#: features.js:695
 msgid "Timers make me anxious"
 msgstr "计时器让我焦虑"
 
-#: features.js:688
+#: features.js:697
 msgid "What helps you concentrate?"
 msgstr "什么能帮助你集中注意力？"
 
-#: features.js:689
+#: features.js:698
 msgid "Sets the focus soundscape — change it anytime in Sounds."
 msgstr "设置专注时的音景 — 可随时在 声音 中更改。"
 
-#: features.js:691
+#: features.js:700
 msgid "Silence"
 msgstr "静音"
 
-#: features.js:692
+#: features.js:701
 msgid "Soft background noise"
 msgstr "柔和的背景噪声"
 
-#: features.js:693
+#: features.js:702
 msgid "A gentle chime to mark time"
 msgstr "轻柔的提示音以标记时间"
 
-#: features.js:694
+#: features.js:703
 msgid "I share my space — keep it quiet"
 msgstr "我与他人共享空间 — 保持安静"
 
-#: features.js:696
+#: features.js:705
 msgid "How much do you want to get done today?"
 msgstr "你今天想完成多少？"
 
-#: features.js:697
+#: features.js:706
 msgid "Sets your daily goal — no pressure, you can change it."
 msgstr "设置你的每日目标 — 没有压力，随时可以更改。"
 
-#: features.js:699
+#: features.js:708
 msgid "Just trying it out"
 msgstr "只是试试看"
 
-#: features.js:700
+#: features.js:709
 msgid "A light day (about 4)"
 msgstr "轻松的一天（大约 4 个）"
 
-#: features.js:701
+#: features.js:710
 msgid "A full day (about 6)"
 msgstr "充实的一天（大约 6 个）"
 
-#: features.js:702
+#: features.js:711
 msgid "A big push (about 8)"
 msgstr "全力冲刺（大约 8 个）"
 
-#: features.js:718
+#: features.js:727
 msgid "Smart setup"
 msgstr "智能设置"
 
-#: features.js:727
+#: features.js:736
 msgid "Skip"
 msgstr "跳过"
 
-#: features.js:730
+#: features.js:739
 msgid "Let's tune Zen Pomodoro to you 🍅"
 msgstr "让我们把 Zen Pomodoro 调整成适合你的设置 🍅"
 
-#: features.js:731
+#: features.js:740
 msgid ""
 "Answer five quick questions and I'll build a focus setup that fits how you "
 "work — your rhythm, sounds, breaks and the help you need. You can fine-tune "
 "everything later in Settings."
 msgstr ""
-"回答五个简短的问题，我会为你打造一套契合你工作方式的专注设置 — 包括节奏、声"
-"音、休息以及你需要的辅助功能。之后你可以在 设置 中微调一切。"
+"回答五个简短的问题，我会为你打造一套契合你工作方式的专注设置 — 包括节奏、声音、休息以及你需要的辅助功能。之后你可以在 设置 中微调一切。"
 
-#: features.js:732
+#: features.js:741
 msgid "Let's go"
 msgstr "开始吧"
 
-#: features.js:738 features.js:754
+#: features.js:747 features.js:763
 msgid "Back"
 msgstr "上一步"
 
-#: features.js:739
+#: features.js:748
 msgid "Next"
 msgstr "下一步"
 
-#: features.js:742
+#: features.js:751
 msgid "Your tailored setup 🍅"
 msgstr "为你量身定制的设置 🍅"
 
-#: features.js:743
+#: features.js:752
 msgid ""
 "Based on your answers, here's what I'll set up. Apply it now, then tweak "
 "anything in Settings."
-msgstr ""
-"根据你的回答，这是我将设置的内容。现在就应用，然后可在 设置 中调整任何项目。"
+msgstr "根据你的回答，这是我将设置的内容。现在就应用，然后可在 设置 中调整任何项目。"
 
-#: features.js:755
+#: features.js:764
 msgid "Apply"
 msgstr "应用"
 
-#: features.js:756
+#: features.js:765
 msgid "Apply & start"
 msgstr "应用并开始"
 
-#: features.js:768 menu.js:331 menu.js:904 menu.js:910
-#, javascript-format
-msgid "%d min"
-msgstr "%d 分钟"
-
-#: features.js:772 menu.js:335
+#: features.js:781 menu.js:335
 #, javascript-format
 msgid "%dh %dm"
 msgstr "%d 小时 %d 分"
 
-#: features.js:772 menu.js:335
+#: features.js:781 menu.js:335
 #, javascript-format
 msgid "%dh"
 msgstr "%d 小时"
 
-#: features.js:927
+#: features.js:936
 msgid "Statistics reset."
 msgstr "统计已重置。"
 
-#: features.js:949
+#: features.js:958
 #, javascript-format
 msgid "%d to go today — at your pace, done by about %s."
 msgstr "今天还差 %d 个 — 按你的节奏，大约 %s 完成。"
 
-#: features.js:950
+#: features.js:959
 #, javascript-format
 msgid "%d more to reach today's goal of %d."
 msgstr "再完成 %d 个即可达成今天 %d 个的目标。"
 
-#: features.js:952
+#: features.js:961
 #, javascript-format
 msgid "Daily goal reached — %d done today. Nice."
 msgstr "已达成每日目标 — 今天完成了 %d 个。不错。"
 
-#: features.js:955
+#: features.js:964
 #, javascript-format
 msgid "%d interruptions this week — what keeps pulling you away?"
 msgstr "本周有 %d 次中断 — 是什么总让你分心？"
 
-#: features.js:958 features.js:1076
+#: features.js:967 features.js:1085
 #, javascript-format
 msgid "Most focused around %s — good time for deep work."
 msgstr "你在 %s 前后最专注 — 适合深度工作。"
 
-#: features.js:961
+#: features.js:970
 #, javascript-format
 msgid "Most focus went to “%s”."
 msgstr "大部分专注时间花在了“%s”上。"
 
-#: features.js:963
+#: features.js:972
 #, javascript-format
 msgid "%d pomodoros this week. Keep it going."
 msgstr "本周 %d 个番茄钟。继续保持。"
 
-#: features.js:964
+#: features.js:973
 msgid "Start a focus session — your insights will appear here."
 msgstr "开始一次专注会话 — 你的数据洞察会显示在这里。"
 
-#: features.js:1018
+#: features.js:1027
 msgid "Focus statistics"
 msgstr "专注统计"
 
-#: features.js:1032
+#: features.js:1041
 #, javascript-format
 msgid "%d / %d goal"
 msgstr "%d / %d 目标"
 
-#: features.js:1033
+#: features.js:1042
 msgid "Today"
 msgstr "今天"
 
-#: features.js:1034
+#: features.js:1043
 msgid "This week"
 msgstr "本周"
 
-#: features.js:1035
+#: features.js:1044
 msgid "Streak"
 msgstr "连续天数"
 
-#: features.js:1035
+#: features.js:1044
 #, javascript-format
 msgid "best %d"
 msgstr "最佳 %d"
 
-#: features.js:1036
+#: features.js:1045
 msgid "All time"
 msgstr "总计"
 
-#: features.js:1044
+#: features.js:1053
 msgid "Sun"
 msgstr "周日"
 
-#: features.js:1044
+#: features.js:1053
 msgid "Mon"
 msgstr "周一"
 
-#: features.js:1044
+#: features.js:1053
 msgid "Tue"
 msgstr "周二"
 
-#: features.js:1044
+#: features.js:1053
 msgid "Wed"
 msgstr "周三"
 
-#: features.js:1044
+#: features.js:1053
 msgid "Thu"
 msgstr "周四"
 
-#: features.js:1044
+#: features.js:1053
 msgid "Fri"
 msgstr "周五"
 
-#: features.js:1044
+#: features.js:1053
 msgid "Sat"
 msgstr "周六"
 
-#: features.js:1045
+#: features.js:1054
 #, javascript-format
 msgid "This week: %d 🍅 · %s · best day %s"
 msgstr "本周：%d 🍅 · %s · 最佳日 %s"
 
-#: features.js:1051
+#: features.js:1060
 msgid "Nothing harvested yet today"
 msgstr "今天还没有收获"
 
-#: features.js:1053
+#: features.js:1062
 msgid "Today's harvest"
 msgstr "今日收获"
 
-#: features.js:1060
+#: features.js:1069
 #, javascript-format
 msgid "Interruptions: %d today · %d this week"
 msgstr "中断：今天 %d 次 · 本周 %d 次"
 
-#: features.js:1066
+#: features.js:1075
 msgid "When you focus (by hour)"
 msgstr "你的专注时段（按小时）"
 
-#: features.js:1071
+#: features.js:1080
 msgid "night"
 msgstr "夜晚"
 
-#: features.js:1071
+#: features.js:1080
 msgid "morning"
 msgstr "上午"
 
-#: features.js:1071
+#: features.js:1080
 msgid "afternoon"
 msgstr "下午"
 
-#: features.js:1071
+#: features.js:1080
 msgid "evening"
 msgstr "傍晚"
 
-#: features.js:1077
+#: features.js:1086
 msgid "Not enough data yet to spot your best focus time."
 msgstr "数据还不足以找出你的最佳专注时段。"
 
-#: features.js:1086
+#: features.js:1095
 msgid "Focus time — last 14 days"
 msgstr "专注时间 — 最近 14 天"
 
-#: features.js:1091
+#: features.js:1100
 msgid "Activity — last 12 weeks"
 msgstr "活动 — 最近 12 周"
 
-#: features.js:1096
+#: features.js:1105
 msgid "Less"
 msgstr "较少"
 
-#: features.js:1100
+#: features.js:1109
 msgid "More"
 msgstr "较多"
 
-#: features.js:1113
+#: features.js:1122
 msgid "By task"
 msgstr "按任务"
 
-#: features.js:1134 menu.js:630
+#: features.js:1143 menu.js:646
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "里程碑：%s"
 
-#: features.js:1142
+#: features.js:1151
 msgid "Delete all statistics"
 msgstr "删除所有统计"
 
-#: features.js:1147
+#: features.js:1156
 msgid "Reset statistics…"
 msgstr "重置统计…"
 
-#: features.js:1148
+#: features.js:1157
 msgid "Close"
 msgstr "关闭"
 
-#: features.js:1475
+#: features.js:1484
 msgid "No task"
 msgstr "无任务"
 
-#: features.js:1512
+#: features.js:1521
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "推送通知需要 libsoup，但此处不可用。"
 
-#: features.js:1518
+#: features.js:1527
 msgid "Enter your Pushover user key and app token first."
 msgstr "请先输入你的 Pushover 用户密钥和应用令牌。"
 
-#: features.js:1525
+#: features.js:1534
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "来自 Zen Pomodoro 的测试通知 🍅"
 
-#: features.js:1547
+#: features.js:1556
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Pushover 测试已发送 ✓ — 请检查你的设备。"
 
-#: features.js:1548 features.js:1552
+#: features.js:1557 features.js:1561
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr "Pushover 测试失败。请仔细检查你的用户密钥和应用令牌。"
 
-#: features.js:1595
+#: features.js:1604
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
 msgstr "要在专注期间自动屏蔽网站，请在设置中开启免密码屏蔽。"
 
-#: features.js:1653
+#: features.js:1662
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "已启用免密码屏蔽（不再提示）。"
 
-#: features.js:1659
+#: features.js:1668
 msgid "Passwordless blocking removed."
 msgstr "已移除免密码屏蔽。"
 
-#: features.js:1696
+#: features.js:1705
 msgid "Click to exit Zen"
 msgstr "点击退出禅模式"
 
 #. settings-schema.json->focus->title
-#: features.js:1731 visual.js:894
+#: features.js:1740 visual.js:894
 msgid "Focus"
 msgstr "专注"
 
-#: features.js:1808
+#: features.js:1817
 msgid "Breathe in"
 msgstr "吸气"
 
-#: features.js:1811 features.js:1817
+#: features.js:1820 features.js:1826
 msgid "Hold"
 msgstr "屏息"
 
-#: features.js:1814
+#: features.js:1823
 msgid "Breathe out"
 msgstr "呼气"
 
-#: features.js:1844
+#: features.js:1853
 msgid "Focus until"
 msgstr "专注至"
 
-#: features.js:1845
+#: features.js:1854
 msgid "Enter a time (HH:MM)"
 msgstr "输入时间（HH:MM）"
 
@@ -871,7 +884,7 @@ msgstr "错误：菜单不可用"
 msgid "Ready to start"
 msgstr "准备开始"
 
-#: menu.js:271 menu.js:700
+#: menu.js:271 menu.js:716
 msgid "Task will be selected on start"
 msgstr "将在开始时选择任务"
 
@@ -884,7 +897,7 @@ msgstr "切换任务"
 msgid "Pomodoro %d / %d"
 msgstr "番茄钟 %d / %d"
 
-#: menu.js:379 menu.js:780
+#: menu.js:379 menu.js:796
 msgid "Start focus"
 msgstr "开始专注"
 
@@ -904,194 +917,194 @@ msgstr "重置计数"
 msgid "Reset timer and counters"
 msgstr "重置计时器和计数"
 
-#: menu.js:435 menu.js:823
+#: menu.js:435 menu.js:839
 msgid "Task list"
 msgstr "任务列表"
 
-#: menu.js:440
+#: menu.js:456
 msgid "Session"
 msgstr "会话"
 
-#: menu.js:441 menu.js:910
+#: menu.js:457 menu.js:931
 msgid "Focus length"
 msgstr "专注时长"
 
-#: menu.js:444 menu.js:722 menu.js:957
+#: menu.js:460 menu.js:738 menu.js:978
 msgid "Preset"
 msgstr "预设"
 
-#: menu.js:452
+#: menu.js:468
 msgid "Modes"
 msgstr "模式"
 
-#: menu.js:453
+#: menu.js:469
 msgid "Focus until…"
 msgstr "专注至…"
 
-#: menu.js:457
+#: menu.js:473
 msgid "Zen mode"
 msgstr "禅模式"
 
-#: menu.js:461
+#: menu.js:477
 msgid "Ambient sound"
 msgstr "环境音"
 
-#: menu.js:466
+#: menu.js:482
 msgid "Site blocking"
 msgstr "网站屏蔽"
 
-#: menu.js:466 menu.js:708 menu.js:962
+#: menu.js:482 menu.js:724 menu.js:983
 msgid "off"
 msgstr "关闭"
 
-#: menu.js:472
+#: menu.js:488
 msgid "Statistics"
 msgstr "统计"
 
-#: menu.js:473 menu.js:592
+#: menu.js:489 menu.js:608
 #, javascript-format
 msgid "Today: %d"
 msgstr "今天：%d"
 
-#: menu.js:476 menu.js:615
+#: menu.js:492 menu.js:631
 #, javascript-format
 msgid "Streak: %d days (best %d)"
 msgstr "连续天数：%d 天（最佳 %d）"
 
-#: menu.js:479
+#: menu.js:495
 msgid "Details…"
 msgstr "详情…"
 
-#: menu.js:486
+#: menu.js:502
 msgid "Setup wizard…"
 msgstr "设置向导…"
 
-#: menu.js:565
+#: menu.js:581
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr "今天：%d / %d"
 
-#: menu.js:597
+#: menu.js:613
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "最近 7 天：%d"
 
-#: menu.js:606
+#: menu.js:622
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "最近 30 天：%d"
 
-#: menu.js:609
+#: menu.js:625
 #, javascript-format
 msgid "All time: %d"
 msgstr "总计：%d"
 
-#: menu.js:612
+#: menu.js:628
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "专注时间：今天 %s · 总计 %s"
 
-#: menu.js:618
+#: menu.js:634
 #, javascript-format
 msgid "Best day: %d"
 msgstr "最佳单日：%d"
 
-#: menu.js:630
+#: menu.js:646
 msgid "none yet"
 msgstr "暂无"
 
-#: menu.js:646
+#: menu.js:662
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "番茄钟 %d / %d"
 
-#: menu.js:648
+#: menu.js:664
 msgid "Long break"
 msgstr "长时休息"
 
-#: menu.js:650
+#: menu.js:666
 msgid "Short break"
 msgstr "短时休息"
 
-#: menu.js:653
+#: menu.js:669
 #, javascript-format
 msgid "until %s"
 msgstr "至 %s"
 
-#: menu.js:656
+#: menu.js:672
 #, javascript-format
 msgid "≈ finish %s"
 msgstr "≈ 完成 %s"
 
-#: menu.js:660
+#: menu.js:676
 msgid "Break finished — press Start for focus"
 msgstr "休息结束 — 按开始进入专注"
 
-#: menu.js:662
+#: menu.js:678
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "在约 %s 前完成你的任务"
 
-#: menu.js:664
+#: menu.js:680
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "%d 分钟专注 — 按开始"
 
-#: menu.js:702
+#: menu.js:718
 msgid "Task: none"
 msgstr "任务：无"
 
-#: menu.js:709 menu.js:963
+#: menu.js:725 menu.js:984
 #, javascript-format
 msgid "blocking %d"
 msgstr "正在屏蔽 %d"
 
-#: menu.js:709 menu.js:963
+#: menu.js:725 menu.js:984
 #, javascript-format
 msgid "%d in list"
 msgstr "列表中 %d 个"
 
-#: menu.js:759
+#: menu.js:775
 msgid "Resume break"
 msgstr "继续休息"
 
-#: menu.js:759
+#: menu.js:775
 msgid "Resume focus"
 msgstr "继续专注"
 
-#: menu.js:766
+#: menu.js:782
 msgid "Focusing — stay with it"
 msgstr "专注中 — 坚持住"
 
-#: menu.js:771
+#: menu.js:787
 msgid "Pause focus"
 msgstr "暂停专注"
 
-#: menu.js:771
+#: menu.js:787
 msgid "Pause break"
 msgstr "暂停休息"
 
-#: menu.js:776
+#: menu.js:792
 msgid "Start next focus"
 msgstr "开始下一次专注"
 
-#: menu.js:833
+#: menu.js:854
 msgid "Add task…"
 msgstr "添加任务…"
 
-#: menu.js:843
+#: menu.js:864
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr "还没有任务 — 添加你要专注的内容，并附上 🍅 预估。"
 
-#: menu.js:880
+#: menu.js:901
 msgid "Reopen task"
 msgstr "重新打开任务"
 
-#: menu.js:880
+#: menu.js:901
 msgid "Mark done"
 msgstr "标记为完成"
 
-#: menu.js:887
+#: menu.js:908
 msgid "Delete task"
 msgstr "删除任务"
 
@@ -1218,7 +1231,8 @@ msgid "Long Break Duration:"
 msgstr "长时休息时长："
 
 #. settings-schema.json->long_break_duration->tooltip
-msgid "Length of the longer break after a set of pomodoros (classic is 15–30)."
+msgid ""
+"Length of the longer break after a set of pomodoros (classic is 15–30)."
 msgstr "一组番茄钟后较长休息的时长（经典为 15–30）。"
 
 #. settings-schema.json->pomodori_number->description
@@ -1226,7 +1240,8 @@ msgid "Number of pomodori before long break:"
 msgstr "长时休息前番茄钟的数量："
 
 #. settings-schema.json->pomodori_number->tooltip
-msgid "How many focus blocks to complete before the long break (classic is 4)."
+msgid ""
+"How many focus blocks to complete before the long break (classic is 4)."
 msgstr "在长时休息前要完成多少个专注块（经典为 4）。"
 
 #. settings-schema.json->start_automatically_on_load->description
@@ -1248,9 +1263,7 @@ msgstr "在 Cinnamon 重启后恢复进行中的专注会话（手动继续）"
 msgid ""
 "If Cinnamon restarts mid-focus, the session is remembered so you can resume "
 "it from the menu — it won't auto-start."
-msgstr ""
-"如果 Cinnamon 在专注途中重启，会话会被记住，你可以从菜单继续 — 它不会自动开"
-"始。"
+msgstr "如果 Cinnamon 在专注途中重启，会话会被记住，你可以从菜单继续 — 它不会自动开始。"
 
 #. settings-schema.json->show_dialog_messages->description
 msgid "Show Dialog Messages"
@@ -1311,9 +1324,7 @@ msgid ""
 "What to show in the panel: a progress ring with the state icon inside "
 "(recommended), a plain symbolic icon, your own custom icon, or no icon at "
 "all. The timer text is a separate option below."
-msgstr ""
-"在面板中显示的内容：内含状态图标的进度环（推荐）、符号图标、您自己的图标，或"
-"完全不显示图标。计时器文本在下方单独设置。"
+msgstr "在面板中显示的内容：内含状态图标的进度环（推荐）、符号图标、您自己的图标，或完全不显示图标。计时器文本在下方单独设置。"
 
 #. settings-schema.json->panel_custom_icon->description
 msgid "Custom panel icon"
@@ -1323,9 +1334,7 @@ msgstr "自定义面板图标"
 msgid ""
 "Pick your own panel icon — a theme icon name or an image file. Used when "
 "Panel icon is set to Custom icon."
-msgstr ""
-"选择您自己的面板图标——主题图标名称或图像文件。当“面板图标”设置为“自定义图"
-"标”时使用。"
+msgstr "选择您自己的面板图标——主题图标名称或图像文件。当“面板图标”设置为“自定义图标”时使用。"
 
 #. settings-schema.json->show_timer->description
 msgid "Show the pomodoro timer in the applet panel"
@@ -1375,8 +1384,7 @@ msgstr "空闲时单击即可启动定时器"
 msgid ""
 "When no timer is running, left-clicking the applet starts a focus session "
 "directly instead of opening the menu."
-msgstr ""
-"当没有定时器运行时，左键单击小程序会直接开始一次专注会话，而不是打开菜单。"
+msgstr "当没有定时器运行时，左键单击小程序会直接开始一次专注会话，而不是打开菜单。"
 
 #. settings-schema.json->panel_scroll_control->description
 msgid "Control the timer with the mouse on the panel"
@@ -1384,12 +1392,10 @@ msgstr "用鼠标在面板上控制定时器"
 
 #. settings-schema.json->panel_scroll_control->tooltip
 msgid ""
-"Scroll up on the applet to start or resume, scroll down to pause, and middle-"
-"click to skip the phase. Turn this off if you sometimes scroll over the "
-"panel by accident."
-msgstr ""
-"在小程序上向上滚动以开始或继续，向下滚动以暂停，按中键以跳过当前阶段。如果你"
-"有时会不小心在面板上滚动，请关闭此项。"
+"Scroll up on the applet to start or resume, scroll down to pause, and "
+"middle-click to skip the phase. Turn this off if you sometimes scroll over "
+"the panel by accident."
+msgstr "在小程序上向上滚动以开始或继续，向下滚动以暂停，按中键以跳过当前阶段。如果你有时会不小心在面板上滚动，请关闭此项。"
 
 #. settings-schema.json->scroll_action->description
 msgid "Mouse-wheel action on the panel"
@@ -1407,9 +1413,7 @@ msgstr "调整专注时长"
 msgid ""
 "What the mouse wheel does on the applet: start/pause the timer, or change "
 "the focus length (when idle). Middle-click always skips to the next phase."
-msgstr ""
-"鼠标滚轮在小程序上的作用：开始/暂停定时器，或更改专注时长（空闲时）。中键始终"
-"跳到下一阶段。"
+msgstr "鼠标滚轮在小程序上的作用：开始/暂停定时器，或更改专注时长（空闲时）。中键始终跳到下一阶段。"
 
 #. settings-schema.json->focus_show_task_chip->description
 msgid "Show the current task as an on-screen chip during focus"
@@ -1429,8 +1433,8 @@ msgstr "接近结束时不焦虑地闪烁 — 改用平静、稳定的提示。"
 
 #. settings-schema.json->focus_start_ritual->description
 msgid ""
-"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus "
-"begins"
+"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus"
+" begins"
 msgstr "开始仪式：专注开始时在屏幕中央短暂显示“专注：<task>”并平滑淡入"
 
 #. settings-schema.json->focus_start_ritual->tooltip
@@ -1465,8 +1469,7 @@ msgstr "单色"
 msgid ""
 "Color scheme for accents and on-screen cues. Choose Custom to set your own "
 "focus/break colors below."
-msgstr ""
-"强调色和屏幕提示的配色方案。选择“自定义”可在下方设置你自己的专注/休息颜色。"
+msgstr "强调色和屏幕提示的配色方案。选择“自定义”可在下方设置你自己的专注/休息颜色。"
 
 #. settings-schema.json->accent_focus_color->description
 msgid "Custom focus accent color"
@@ -1516,8 +1519,8 @@ msgstr "光晕强度"
 
 #. settings-schema.json->glow_intensity->tooltip
 msgid ""
-"How bright the on-screen edge glow is during focus — higher is more visible, "
-"lower is subtler."
+"How bright the on-screen edge glow is during focus — higher is more visible,"
+" lower is subtler."
 msgstr "专注期间屏幕边缘光晕的亮度 — 越高越明显，越低越柔和。"
 
 #. settings-schema.json->glow_progress_width->description
@@ -1547,11 +1550,9 @@ msgstr "放松 4-6"
 
 #. settings-schema.json->breathing_pattern->tooltip
 msgid ""
-"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 "
-"— seconds per phase."
-msgstr ""
-"呼吸引导的节奏：箱式（4-4-4-4）、舒缓的 4-7-8，或放松的 4-6 — 每个阶段的秒"
-"数。"
+"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6"
+" — seconds per phase."
+msgstr "呼吸引导的节奏：箱式（4-4-4-4）、舒缓的 4-7-8，或放松的 4-6 — 每个阶段的秒数。"
 
 #. settings-schema.json->chip_position->description
 msgid "Task chip position"
@@ -1607,10 +1608,9 @@ msgstr "预览专注边框"
 
 #. settings-schema.json->preview_appearance_button->tooltip
 msgid ""
-"Briefly show the on-screen focus frame and task chip with the current colors "
-"and style (works when no timer is running)."
-msgstr ""
-"用当前的颜色和样式短暂显示屏幕专注边框和任务标签（在没有定时器运行时有效）。"
+"Briefly show the on-screen focus frame and task chip with the current colors"
+" and style (works when no timer is running)."
+msgstr "用当前的颜色和样式短暂显示屏幕专注边框和任务标签（在没有定时器运行时有效）。"
 
 #. settings-schema.json->preview_breathing_button->description
 msgid "Preview breathing guide"
@@ -1711,11 +1711,9 @@ msgstr "严格专注：专注块期间不可暂停或跳过"
 
 #. settings-schema.json->strict_focus->tooltip
 msgid ""
-"While a focus block is running, hide pause and skip so you commit to it. You "
-"can still Reset to abandon the session — it's never a hard lock."
-msgstr ""
-"在专注块运行时隐藏暂停和跳过，让你专心投入。你仍然可以通过重置来放弃会话 — 这"
-"绝不是硬性锁定。"
+"While a focus block is running, hide pause and skip so you commit to it. You"
+" can still Reset to abandon the session — it's never a hard lock."
+msgstr "在专注块运行时隐藏暂停和跳过，让你专心投入。你仍然可以通过重置来放弃会话 — 这绝不是硬性锁定。"
 
 #. settings-schema.json->focus_until_enabled->description
 msgid "Show 'Focus until…' in the menu (focus until a clock time)"
@@ -1741,9 +1739,7 @@ msgstr "休息和暂停时暂停音乐和视频"
 msgid ""
 "Pauses any playing media (browser tab, music app via MPRIS) when a break or "
 "pause starts, and resumes the same players when focus continues."
-msgstr ""
-"当休息或暂停开始时，暂停所有正在播放的媒体（浏览器标签页、通过 MPRIS 的音乐应"
-"用），并在专注继续时恢复相同的播放器。"
+msgstr "当休息或暂停开始时，暂停所有正在播放的媒体（浏览器标签页、通过 MPRIS 的音乐应用），并在专注继续时恢复相同的播放器。"
 
 #. settings-schema.json->run_command_enabled->description
 msgid "Run a command when focus or a break starts"
@@ -1761,8 +1757,7 @@ msgstr "专注开始时运行的命令"
 msgid ""
 "Command run when a focus block starts (e.g. update your chat status). No "
 "shell pipes or redirects."
-msgstr ""
-"专注块开始时运行的命令（例如更新你的聊天状态）。不支持 shell 管道或重定向。"
+msgstr "专注块开始时运行的命令（例如更新你的聊天状态）。不支持 shell 管道或重定向。"
 
 #. settings-schema.json->break_start_command->description
 msgid "Command to run when a break starts"
@@ -1784,7 +1779,8 @@ msgstr "当专注或休息开始时，通过 Pushover 向你的设备发送推�
 
 #. settings-schema.json->pushover_help->description
 msgid ""
-"Free phone/desktop alerts. Sign up at pushover.net and paste your keys below."
+"Free phone/desktop alerts. Sign up at pushover.net and paste your keys "
+"below."
 msgstr "免费的手机/桌面提醒。在 pushover.net 注册，然后在下方粘贴你的密钥。"
 
 #. settings-schema.json->pushover_user_key->description
@@ -1817,10 +1813,9 @@ msgstr "自定义消息、声音和优先级"
 
 #. settings-schema.json->pushover_customize->tooltip
 msgid ""
-"Show options to change the text, sound and priority for each event. Off uses "
-"sensible defaults."
-msgstr ""
-"显示用于更改每个事件的文本、声音和优先级的选项。关闭时使用合理的默认值。"
+"Show options to change the text, sound and priority for each event. Off uses"
+" sensible defaults."
+msgstr "显示用于更改每个事件的文本、声音和优先级的选项。关闭时使用合理的默认值。"
 
 #. settings-schema.json->pushover_title->description
 msgid "Notification title"
@@ -1854,12 +1849,10 @@ msgstr "专注期间屏蔽分心网站"
 
 #. settings-schema.json->enable_blocking->tooltip
 msgid ""
-"When on, the sites below are blocked automatically during each focus session "
-"and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
+"When on, the sites below are blocked automatically during each focus session"
+" and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
 "doesn't ask for a password each time."
-msgstr ""
-"开启后，下面的网站会在每个专注时段自动屏蔽，结束后解除。运行一次“设置免密码屏"
-"蔽”，这样就不会每次都要求输入密码。"
+msgstr "开启后，下面的网站会在每个专注时段自动屏蔽，结束后解除。运行一次“设置免密码屏蔽”，这样就不会每次都要求输入密码。"
 
 #. settings-schema.json->block_domains->description
 msgid "Domains to block (e.g. youtube.com)"
@@ -1871,8 +1864,8 @@ msgstr "域名"
 
 #. settings-schema.json->block_domains->tooltip
 msgid ""
-"Domains to block during focus, one per row (e.g. youtube.com, www.youtube."
-"com)."
+"Domains to block during focus, one per row (e.g. youtube.com, "
+"www.youtube.com)."
 msgstr "专注期间要屏蔽的域名，每行一个（例如 youtube.com、www.youtube.com）。"
 
 #. settings-schema.json->sox-info->description
@@ -2094,9 +2087,7 @@ msgstr "番茄钟数"
 msgid ""
 "Your timer presets — name + focus / short / long minutes + pomodori. Apply "
 "them from the menu's Preset submenu."
-msgstr ""
-"你的定时器预设 — 名称 + 专注 / 短时 / 长时分钟数 + 番茄钟数。可从菜单的“预"
-"设”子菜单中应用。"
+msgstr "你的定时器预设 — 名称 + 专注 / 短时 / 长时分钟数 + 番茄钟数。可从菜单的“预设”子菜单中应用。"
 
 #. settings-schema.json->setup_passwordless_button->description
 msgid "Set up passwordless blocking (one-time)"
@@ -2106,8 +2097,7 @@ msgstr "设置免密码屏蔽（一次性）"
 msgid ""
 "Asks for your password once and installs a small system policy so blocking "
 "no longer prompts during focus."
-msgstr ""
-"会要求输入一次密码并安装一个小的系统策略，这样专注期间屏蔽就不再询问密码。"
+msgstr "会要求输入一次密码并安装一个小的系统策略，这样专注期间屏蔽就不再询问密码。"
 
 #. settings-schema.json->remove_passwordless_button->description
 msgid "Remove passwordless setup"
@@ -2155,9 +2145,7 @@ msgstr "达成每日目标时的消息"
 msgid ""
 "Sent once when you hit your daily pomodoro goal. {task} and {minutes} are "
 "substituted. Leave empty to send nothing."
-msgstr ""
-"在你达成每日番茄钟目标时发送一次。{task} 和 {minutes} 会被替换。留空则不发"
-"送。"
+msgstr "在你达成每日番茄钟目标时发送一次。{task} 和 {minutes} 会被替换。留空则不发送。"
 
 #. settings-schema.json->pushover_snd_focus->description
 msgid "Focus start — sound"
@@ -2293,9 +2281,12 @@ msgstr "背景音文件"
 
 #. settings-schema.json->focus_ambient_file->tooltip
 msgid ""
-"Pick your own looping ambient sound. Leave empty for the built-in soft brown "
-"noise."
+"Pick your own looping ambient sound. Leave empty for the built-in soft brown"
+" noise."
 msgstr "选择你自己的循环背景音。留空则使用内置的柔和棕噪音。"
+
+#~ msgid "Estimate:"
+#~ msgstr "预估："
 
 #~ msgid "Preset focus tasks (quick-pick buttons in the focus dialog)"
 #~ msgstr "预设专注任务（专注对话框中的快速选择按钮）"
@@ -2356,18 +2347,16 @@ msgstr "选择你自己的循环背景音。留空则使用内置的柔和棕噪
 
 #~ msgid ""
 #~ "Pushover sends alerts to your phone or desktop. Create a free account at "
-#~ "pushover.net, copy your User Key, then create an Application there to get "
-#~ "an API Token."
+#~ "pushover.net, copy your User Key, then create an Application there to get an"
+#~ " API Token."
 #~ msgstr ""
-#~ "Pushover 会向你的手机或桌面发送提醒。在 pushover.net 创建一个免费账户，复"
-#~ "制你的 User Key，然后在那里创建一个 Application 以获取 API Token。"
+#~ "Pushover 会向你的手机或桌面发送提醒。在 pushover.net 创建一个免费账户，复制你的 User Key，然后在那里创建一个 "
+#~ "Application 以获取 API Token。"
 
 #~ msgid ""
 #~ "No sound backend was found. Install GSound or a sound player (e.g. the "
 #~ "'pulseaudio-utils' or 'sox' package) to enable sounds."
-#~ msgstr ""
-#~ "未找到声音后端。请安装 GSound 或一个声音播放器（例如 'pulseaudio-utils' "
-#~ "或 'sox' 软件包）以启用声音。"
+#~ msgstr "未找到声音后端。请安装 GSound 或一个声音播放器（例如 'pulseaudio-utils' 或 'sox' 软件包）以启用声音。"
 
 #~ msgid "Passwordless blocking enabled (asks once per session)."
 #~ msgstr "已启用免密码屏蔽（每个会话询问一次）。"
@@ -2377,19 +2366,15 @@ msgstr "选择你自己的循环背景音。留空则使用内置的柔和棕噪
 
 #~ msgid ""
 #~ "After setup, never ask for a password. Off (default) asks once per login "
-#~ "session. Convenient but less safe: any local program could then change "
-#~ "your blocklist without asking."
-#~ msgstr ""
-#~ "设置之后，永不要求输入密码。关闭（默认）则每个登录会话询问一次。方便但不太"
-#~ "安全：任何本地程序届时都可在不询问的情况下更改你的屏蔽列表。"
+#~ "session. Convenient but less safe: any local program could then change your "
+#~ "blocklist without asking."
+#~ msgstr "设置之后，永不要求输入密码。关闭（默认）则每个登录会话询问一次。方便但不太安全：任何本地程序届时都可在不询问的情况下更改你的屏蔽列表。"
 
 #~ msgid ""
-#~ "Asks for your password once and installs a small system policy so "
-#~ "blocking no longer prompts every time. Uses the mode selected above; re-"
-#~ "run after changing the mode."
-#~ msgstr ""
-#~ "要求输入一次你的密码，并安装一个小的系统策略，使屏蔽不再每次都提示。使用上"
-#~ "面选择的模式；更改模式后请重新运行。"
+#~ "Asks for your password once and installs a small system policy so blocking "
+#~ "no longer prompts every time. Uses the mode selected above; re-run after "
+#~ "changing the mode."
+#~ msgstr "要求输入一次你的密码，并安装一个小的系统策略，使屏蔽不再每次都提示。使用上面选择的模式；更改模式后请重新运行。"
 
 #~ msgid "Could not open the hosts file"
 #~ msgstr "无法打开 hosts 文件"
@@ -2398,11 +2383,9 @@ msgstr "选择你自己的循环背景音。留空则使用内置的柔和棕噪
 #~ msgstr "手动编辑 /etc/hosts（管理员）"
 
 #~ msgid ""
-#~ "Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro "
-#~ "only manages its own clearly-marked section."
-#~ msgstr ""
-#~ "以管理员权限在你的编辑器中打开 /etc/hosts。Zen Pomodoro 只管理它自己明确标"
-#~ "记的部分。"
+#~ "Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only"
+#~ " manages its own clearly-marked section."
+#~ msgstr "以管理员权限在你的编辑器中打开 /etc/hosts。Zen Pomodoro 只管理它自己明确标记的部分。"
 
 #~ msgid "Add some domains to block first."
 #~ msgstr "请先添加要屏蔽的域名。"
@@ -2426,18 +2409,15 @@ msgstr "选择你自己的循环背景音。留空则使用内置的柔和棕噪
 #~ msgid ""
 #~ "Adds the domains above to /etc/hosts (you'll be asked for your password "
 #~ "once). They stay blocked until you click Unblock."
-#~ msgstr ""
-#~ "将上面的域名添加到 /etc/hosts（会要求输入一次你的密码）。它们会保持屏蔽，"
-#~ "直到你点击“解除屏蔽”。"
+#~ msgstr "将上面的域名添加到 /etc/hosts（会要求输入一次你的密码）。它们会保持屏蔽，直到你点击“解除屏蔽”。"
 
 #~ msgid "Unblock"
 #~ msgstr "解除屏蔽"
 
 #~ msgid ""
-#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your "
-#~ "password once)."
-#~ msgstr ""
-#~ "从 /etc/hosts 中移除 Zen Pomodoro 的屏蔽条目（会要求输入一次你的密码）。"
+#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
+#~ " once)."
+#~ msgstr "从 /etc/hosts 中移除 Zen Pomodoro 的屏蔽条目（会要求输入一次你的密码）。"
 
 #~ msgid "blocked"
 #~ msgstr "已屏蔽"
@@ -2477,9 +2457,7 @@ msgstr "选择你自己的循环背景音。留空则使用内置的柔和棕噪
 #~ "What to show in the panel: a progress ring with the state icon inside "
 #~ "(recommended), a plain symbolic or colored icon, or no icon at all. The "
 #~ "timer text is a separate option below."
-#~ msgstr ""
-#~ "在面板中显示的内容：内含状态图标的进度环（推荐）、简单的符号或彩色图标，或"
-#~ "完全不显示图标。计时器文本在下方单独设置。"
+#~ msgstr "在面板中显示的内容：内含状态图标的进度环（推荐）、简单的符号或彩色图标，或完全不显示图标。计时器文本在下方单独设置。"
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "在小程序面板显示番茄钟"

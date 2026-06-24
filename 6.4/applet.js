@@ -1106,7 +1106,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 this._tasksData.currentId = t.id;
             }
         }
-        this._applyTaskPreset(this._currentTask());
         this._saveTasks();
         this._refreshTasksMenu();
     }
@@ -1965,6 +1964,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         // @PUBLIC_STRIP_END
 
         this._setCurrentFocusTask(task);
+        this._applyTaskPreset(this._currentTask());
         this._timerQueue.preventStart(false);
         this._timerQueue.start();
     }
@@ -2116,6 +2116,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             if (this._taskSelectOnly) {
                 this._taskSelectOnly = false;
                 this._setCurrentFocusTask(task);
+                this._applyTaskPreset(this._currentTask());
                 this._updateMenuRuntime();
                 return;
             }

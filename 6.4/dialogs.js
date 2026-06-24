@@ -100,7 +100,8 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
             let mark = (t.title === this._currentTitle) ? "\u25cf " : "";
             let dt = t.doneToday || 0;
             let prog = (t.est > 0) ? (dt + "/" + t.est + " \ud83c\udf45") : (dt > 0 ? (dt + " \ud83c\udf45") : "");
-            let label = mark + t.title + (prog ? "   " + prog : "");
+            let rhythm = (t.preset && t.preset.name) ? ("  \u00b7 " + t.preset.name) : "";
+            let label = mark + t.title + (prog ? "   " + prog : "") + rhythm;
             let button = new St.Button({
                 style_class: 'dialog-button',
                 label: this._clipLabel(label),

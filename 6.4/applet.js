@@ -1099,12 +1099,14 @@ class PomodoroApplet extends Applet.TextIconApplet {
             } else {
                 let t = {
                     id: this._newTaskId(), title: norm.slice(0, 120),
-                    est: 1, done: 0, doneToday: 0, completed: false
+                    est: 1, done: 0, doneToday: 0, completed: false,
+                    preset: this._currentPresetSnapshot()
                 };
                 this._tasksData.tasks.push(t);
                 this._tasksData.currentId = t.id;
             }
         }
+        this._applyTaskPreset(this._currentTask());
         this._saveTasks();
         this._refreshTasksMenu();
     }

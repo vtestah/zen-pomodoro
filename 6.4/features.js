@@ -311,7 +311,8 @@ function install(proto) {
                         est: Math.max(1, Math.min(99, parseInt(t.est) || 1)),
                         done: Math.max(0, parseInt(t.done) || 0),
                         doneToday: Math.max(0, parseInt(t.doneToday) || 0),
-                        completed: Boolean(t.completed)
+                        completed: Boolean(t.completed),
+                        preset: this._sanitizeTaskPreset(t.preset)
                     });
                 }
             }
@@ -353,7 +354,49 @@ function install(proto) {
         return this._taskList().find((t) => t.id === this._tasksData.currentId) || null;
     };
 
-    proto._addTask = function(title, est) {
+    // A snapshot of the timer's current rhythm, used as the default preset for
+    // new tasks and to label "what's active right now".
+    proto._currentPresetSnapshot = function() {
+        return {
+            name: this._getActivePresetLabel(),
+            pomodoro: this._opt_pomodoroTimeMinutes || 25,
+            short_break: this._opt_shortBreakTimeMinutes || 5,
+            long_break: this._opt_longBreakTimeMinutes || 15,
+            pomodori: this._opt_pomodoriNumber || 4
+        };
+    };
+
+    proto._sanitizeTaskPreset = function(p) {
+        if (!p || typeof p !== "object") { return null; }
+        let pom = parseInt(p.pomodoro) || 0, sb = parseInt(p.short_break) || 0,
+            lb = parseInt(p.long_break) || 0, n = parseInt(p.pomodori) || 0;
+        if (pom <= 0 || sb <= 0 || lb <= 0 || n <= 0) { return null; }
+        return { name: (p.name || "").toString().slice(0, 80), pomodoro: pom, short_break: sb, long_break: lb, pomodori: n };
+    };
+
+    // Apply a task's saved rhythm to the timer when it becomes current — but
+    // only while idle, so we never reshape a running pomodoro.
+    proto._applyTaskPreset = function(t) {
+        if (!t || !t.preset) { return; }
+        if (this._timerQueue && (this._timerQueue.isRunning() || this._isPausedState())) { return; }
+        let p = t.preset;
+        this._applyDurationPreset(p.pomodoro, p.short_break, p.long_break, p.pomodori, true);
+    };
+
+    // Save a preset onto the current task (used when picking a preset from the
+    // menu while a task is current).
+    proto._saveCurrentTaskPreset = function(preset) {
+        let t = this._currentTask();
+        if (!t) { return false; }
+        let p = this._sanitizeTaskPreset(preset);
+        if (!p) { return false; }
+        t.preset = p;
+        this._saveTasks();
+        this._refreshTasksMenu();
+        return true;
+    };
+
+    proto._addTask = function(title, est, preset) {
         title = (title || "").toString().trim();
         if (!title) { return; }
         if (!this._tasksData) { this._tasksData = this._defaultTasksData(); }
@@ -361,12 +404,14 @@ function install(proto) {
             id: this._newTaskId(),
             title: title.slice(0, 120),
             est: Math.max(0, Math.min(99, parseInt(est) || 0)),
-            done: 0, doneToday: 0, completed: false
+            done: 0, doneToday: 0, completed: false,
+            preset: this._sanitizeTaskPreset(preset) || this._currentPresetSnapshot()
         };
         this._tasksData.tasks.push(task);
         if (!this._tasksData.currentId) {
             this._tasksData.currentId = task.id;
             this._currentFocusTask = task.title;
+            this._applyTaskPreset(task);
         }
         this._saveTasks();
         this._refreshTasksMenu();
@@ -377,19 +422,23 @@ function install(proto) {
         this._tasksData.currentId = id || "";
         let t = this._currentTask();
         this._currentFocusTask = t ? t.title : "";
+        this._applyTaskPreset(t);
         this._saveTasks();
         this._refreshTasksMenu();
     };
 
-    proto._editTask = function(id, title, est) {
+    proto._editTask = function(id, title, est, preset) {
         let t = this._taskList().find((x) => x.id === id);
         if (!t) { return; }
         title = (title || "").toString().trim();
         if (title) { t.title = title.slice(0, 120); }
         let pe = parseInt(est);
         t.est = Math.max(0, Math.min(99, isNaN(pe) ? (t.est || 0) : pe));
+        let p = this._sanitizeTaskPreset(preset);
+        if (p) { t.preset = p; }
         if (this._tasksData && this._tasksData.currentId === id) {
             this._currentFocusTask = t.title;
+            this._applyTaskPreset(t);
         }
         this._saveTasks();
         this._refreshTasksMenu();
@@ -433,16 +482,20 @@ function install(proto) {
     };
 
     proto._estimateFinish = function() {
-        let remaining = 0;
+        let remaining = 0, focusMins = 0;
+        let work = this._opt_pomodoroTimeMinutes || 25;
         for (let t of this._taskList()) {
             if (t.completed) { continue; }
             let left = (t.est || 0) - (t.doneToday || 0);
-            if (left > 0) { remaining += left; }
+            if (left > 0) {
+                remaining += left;
+                let f = (t.preset && t.preset.pomodoro) ? t.preset.pomodoro : work;
+                focusMins += left * f;
+            }
         }
         if (remaining <= 0) { return null; }
-        let work = this._opt_pomodoroTimeMinutes || 25;
         let brk = this._opt_shortBreakTimeMinutes || 5;
-        let mins = remaining * work + Math.max(0, remaining - 1) * brk;
+        let mins = focusMins + Math.max(0, remaining - 1) * brk;
         let end = new Date(Date.now() + mins * 60000);
         let hh = end.getHours().toString().padStart(2, '0');
         let mm = end.getMinutes().toString().padStart(2, '0');
@@ -484,7 +537,8 @@ function install(proto) {
         content.add_child(entry);
 
         let est = { value: existing ? Math.max(0, Math.min(99, existing.est || 0)) : 0 };
-        let focusLen = this._opt_pomodoroTimeMinutes || 25;
+        let taskPreset = (existing && this._sanitizeTaskPreset(existing.preset)) || this._currentPresetSnapshot();
+        let focusLen = taskPreset.pomodoro || 25;
         let fmtMins = (mins) => {
             let h = Math.floor(mins / 60), m = mins % 60;
             if (h > 0) { return m > 0 ? _("%d h %d min").format(h, m) : _("%d h").format(h); }
@@ -507,7 +561,7 @@ function install(proto) {
         let estReadout = new St.Label({ text: '', style: 'padding-top: 4px; color: rgba(255,255,255,0.6);' });
         let plusBtn = new St.Button({ label: "+", style_class: 'button' });
         let restyle = () => {
-            focusLen = this._opt_pomodoroTimeMinutes || 25;
+            focusLen = taskPreset.pomodoro || 25;
             qLabel.set_text(_("How many pomodoros? (1 🍅 = %d min)").format(focusLen));
             for (let k = 0; k < estBtns.length; k++) {
                 estBtns[k].set_style('padding: 2px 8px;' + ((estVals[k] === est.value) ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
@@ -515,7 +569,7 @@ function install(proto) {
             plusBtn.set_style('padding: 2px 8px;' + ((est.value > 6) ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
             let prefix = (est.value > 6) ? (est.value + " \ud83c\udf45 \u00b7 ") : "";
             estReadout.set_text(est.value === 0 ? _("No estimate — just counts your 🍅") : (prefix + fmtMins(est.value * focusLen)));
-            let active = this._getActivePresetLabel();
+            let active = taskPreset.name;
             let matched = false;
             for (let pb of presetBtns) {
                 let on = (pb.preset.name === active);
@@ -528,7 +582,8 @@ function install(proto) {
         presetList.forEach((p) => {
             let b = new St.Button({ label: p.name, style_class: 'button' });
             b.connect('clicked', () => {
-                if (this._applyDurationPreset(p.pomodoro, p.short_break, p.long_break, p.pomodori, true)) { restyle(); }
+                taskPreset = { name: p.name, pomodoro: p.pomodoro, short_break: p.short_break, long_break: p.long_break, pomodori: p.pomodori };
+                restyle();
             });
             presetBtns.push({ btn: b, preset: p });
             presetRow.add(b);
@@ -553,8 +608,8 @@ function install(proto) {
             let t = entry.clutter_text.get_text().trim();
             dialog.close();
             if (t) {
-                if (existing) { this._editTask(existing.id, t, est.value); }
-                else { this._addTask(t, est.value); }
+                if (existing) { this._editTask(existing.id, t, est.value, taskPreset); }
+                else { this._addTask(t, est.value, taskPreset); }
             }
         };
         entry.clutter_text.connect('key-press-event', (actor, ev) => {

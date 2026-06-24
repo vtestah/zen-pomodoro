@@ -880,6 +880,12 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             let prog = (t.est > 0) ? (dt + "/" + t.est + " 🍅") : (dt > 0 ? (dt + " 🍅") : "");
             let label = new St.Label({ x_expand: true, text: " " + t.title + (prog ? "   " + prog : "") });
             row.add_child(label);
+            if (t.preset && t.preset.name) {
+                let rlab = new St.Label({ text: t.preset.name + " " });
+                rlab.set_style('color: rgba(255,255,255,0.45); max-width: 9em;');
+                rlab.clutter_text.set_ellipsize(Pango.EllipsizeMode.END);
+                row.add_child(rlab);
+            }
             let editBtn = new St.Button({
                 style_class: "pomodoro-task-btn", can_focus: false,
                 child: new St.Icon({ icon_name: "document-edit-symbolic", icon_size: 14 })

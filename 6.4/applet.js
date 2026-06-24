@@ -1834,7 +1834,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         });
 
         menu.connect('apply-preset', (m, preset) => {
-            this._applyDurationPreset(preset.pomodoro, preset.short_break, preset.long_break, preset.pomodori);
+            if (this._applyDurationPreset(preset.pomodoro, preset.short_break, preset.long_break, preset.pomodori)) {
+                this._saveCurrentTaskPreset(preset);
+            }
         });
 
         menu.connect('set-ambient', (m, state) => {

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 14:28+0700\n"
+"POT-Creation-Date: 2026-06-24 14:36+0700\n"
 "PO-Revision-Date: 2022-01-05 13:55+0200\n"
 "Last-Translator: Rutar <RutarAndriy@gmail.com>\n"
 "Language-Team: Ukrainian\n"
@@ -372,8 +372,8 @@ msgstr "Власний"
 
 #: features.js:511
 #, javascript-format
-msgid "How many pomodoros? (1 🍅 ≈ %d min)"
-msgstr "Скільки помідорів? (1 🍅 ≈ %d хв)"
+msgid "How many pomodoros? (1 🍅 = %d min)"
+msgstr "Скільки помідорів? (1 🍅 = %d хв)"
 
 #: features.js:517
 msgid "No estimate — just counts your 🍅"
@@ -2386,6 +2386,10 @@ msgid ""
 msgstr ""
 "Виберіть власний зациклений фоновий звук. Залиште порожнім для вбудованого "
 "коричневого шуму."
+
+#, javascript-format
+#~ msgid "How many pomodoros? (1 🍅 ≈ %d min)"
+#~ msgstr "Скільки помідорів? (1 🍅 ≈ %d хв)"
 
 #~ msgid "Stop the timer before changing the focus length"
 #~ msgstr "Зупиніть таймер, перш ніж змінювати довжину фокусу"

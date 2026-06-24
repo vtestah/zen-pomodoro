@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 14:28+0700\n"
+"POT-Creation-Date: 2026-06-24 14:36+0700\n"
 "PO-Revision-Date: 2025-07-27 02:35+08:00\n"
 "Last-Translator: Peter Dave Hello <hsu@peterdavehello.org>\n"
 "Language-Team: zh_TW\n"
@@ -365,8 +365,8 @@ msgstr "自訂"
 
 #: features.js:511
 #, javascript-format
-msgid "How many pomodoros? (1 🍅 ≈ %d min)"
-msgstr "幾個番茄鐘？(1 🍅 ≈ %d 分鐘)"
+msgid "How many pomodoros? (1 🍅 = %d min)"
+msgstr "幾個番茄鐘？(1 🍅 = %d 分鐘)"
 
 #: features.js:517
 msgid "No estimate — just counts your 🍅"
@@ -2281,6 +2281,10 @@ msgid ""
 "Pick your own looping ambient sound. Leave empty for the built-in soft brown"
 " noise."
 msgstr "選擇你自己的循環背景音。留空則使用內建的柔和棕噪音。"
+
+#, javascript-format
+#~ msgid "How many pomodoros? (1 🍅 ≈ %d min)"
+#~ msgstr "幾個番茄鐘？(1 🍅 ≈ %d 分鐘)"
 
 #~ msgid "Stop the timer before changing the focus length"
 #~ msgstr "變更專注時長前請先停止計時器"

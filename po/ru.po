@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zen-pomodoro@vtestah\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 14:28+0700\n"
+"POT-Creation-Date: 2026-06-24 14:36+0700\n"
 "PO-Revision-Date: 2026-06-22 17:27+0700\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: ru\n"
@@ -367,8 +367,8 @@ msgstr "Свой"
 
 #: features.js:511
 #, javascript-format
-msgid "How many pomodoros? (1 🍅 ≈ %d min)"
-msgstr "Сколько помидоров? (1 🍅 ≈ %d мин)"
+msgid "How many pomodoros? (1 🍅 = %d min)"
+msgstr "Сколько помидоров? (1 🍅 = %d мин)"
 
 #: features.js:517
 msgid "No estimate — just counts your 🍅"
@@ -2379,6 +2379,10 @@ msgid ""
 msgstr ""
 "Выберите свой зацикленный фоновый звук. Оставьте пустым для встроенного "
 "коричневого шума."
+
+#, javascript-format
+#~ msgid "How many pomodoros? (1 🍅 ≈ %d min)"
+#~ msgstr "Сколько помидоров? (1 🍅 ≈ %d мин)"
 
 #~ msgid "Stop the timer before changing the focus length"
 #~ msgstr "Остановите таймер, прежде чем менять длину фокуса"

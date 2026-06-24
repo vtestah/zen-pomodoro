@@ -508,13 +508,13 @@ function install(proto) {
         let plusBtn = new St.Button({ label: "+", style_class: 'button' });
         let restyle = () => {
             focusLen = this._opt_pomodoroTimeMinutes || 25;
-            qLabel.set_text(_("How many pomodoros? (1 🍅 ≈ %d min)").format(focusLen));
+            qLabel.set_text(_("How many pomodoros? (1 🍅 = %d min)").format(focusLen));
             for (let k = 0; k < estBtns.length; k++) {
                 estBtns[k].set_style('padding: 2px 8px;' + ((estVals[k] === est.value) ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
             }
             plusBtn.set_style('padding: 2px 8px;' + ((est.value > 6) ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
             let prefix = (est.value > 6) ? (est.value + " \ud83c\udf45 \u00b7 ") : "";
-            estReadout.set_text(est.value === 0 ? _("No estimate — just counts your 🍅") : (prefix + "\u2248 " + fmtMins(est.value * focusLen)));
+            estReadout.set_text(est.value === 0 ? _("No estimate — just counts your 🍅") : (prefix + fmtMins(est.value * focusLen)));
             let active = this._getActivePresetLabel();
             let matched = false;
             for (let pb of presetBtns) {

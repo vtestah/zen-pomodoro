@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pomodoro Timer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 14:28+0700\n"
+"POT-Creation-Date: 2026-06-24 14:36+0700\n"
 "PO-Revision-Date: 2017-02-24 23:32+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -371,8 +371,8 @@ msgstr "Prilagođeno"
 
 #: features.js:511
 #, javascript-format
-msgid "How many pomodoros? (1 🍅 ≈ %d min)"
-msgstr "Koliko pomodora? (1 🍅 ≈ %d min)"
+msgid "How many pomodoros? (1 🍅 = %d min)"
+msgstr "Koliko pomodora? (1 🍅 = %d min)"
 
 #: features.js:517
 msgid "No estimate — just counts your 🍅"
@@ -2383,6 +2383,10 @@ msgid ""
 msgstr ""
 "Odaberite vlastiti ponavljajući zvuk okoline. Ostavite prazno za ugrađeni "
 "meki smeđi šum."
+
+#, javascript-format
+#~ msgid "How many pomodoros? (1 🍅 ≈ %d min)"
+#~ msgstr "Koliko pomodora? (1 🍅 ≈ %d min)"
 
 #~ msgid "Stop the timer before changing the focus length"
 #~ msgstr "Zaustavite mjerač prije promjene trajanja fokusa"

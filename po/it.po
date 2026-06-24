@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 14:28+0700\n"
+"POT-Creation-Date: 2026-06-24 14:36+0700\n"
 "PO-Revision-Date: 2024-06-18 15:41+0200\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: it\n"
@@ -370,8 +370,8 @@ msgstr "Personalizzato"
 
 #: features.js:511
 #, javascript-format
-msgid "How many pomodoros? (1 🍅 ≈ %d min)"
-msgstr "Quanti pomodori? (1 🍅 ≈ %d min)"
+msgid "How many pomodoros? (1 🍅 = %d min)"
+msgstr "Quanti pomodori? (1 🍅 = %d min)"
 
 #: features.js:517
 msgid "No estimate — just counts your 🍅"
@@ -2423,6 +2423,10 @@ msgid ""
 msgstr ""
 "Scegli un tuo suono ambientale in loop. Lascia vuoto per il rumore marrone "
 "integrato."
+
+#, javascript-format
+#~ msgid "How many pomodoros? (1 🍅 ≈ %d min)"
+#~ msgstr "Quanti pomodori? (1 🍅 ≈ %d min)"
 
 #~ msgid "Stop the timer before changing the focus length"
 #~ msgstr "Ferma il timer prima di cambiare la durata del focus"

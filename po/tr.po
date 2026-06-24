@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 14:28+0700\n"
+"POT-Creation-Date: 2026-06-24 14:36+0700\n"
 "PO-Revision-Date: 2018-11-06 02:05+0300\n"
 "Last-Translator: Gökhan GÖKKAYA <gokhanlnx@gmail.com>\n"
 "Language-Team: Linux Mint Türkiye <gokhanlnx@gmail.com>\n"
@@ -371,8 +371,8 @@ msgstr "Özel"
 
 #: features.js:511
 #, javascript-format
-msgid "How many pomodoros? (1 🍅 ≈ %d min)"
-msgstr "Kaç pomodoro? (1 🍅 ≈ %d dk)"
+msgid "How many pomodoros? (1 🍅 = %d min)"
+msgstr "Kaç pomodoro? (1 🍅 = %d dk)"
 
 #: features.js:517
 msgid "No estimate — just counts your 🍅"
@@ -2396,6 +2396,10 @@ msgid ""
 msgstr ""
 "Kendi döngülü ortam sesini seç. Yerleşik yumuşak kahverengi gürültü için boş"
 " bırak."
+
+#, javascript-format
+#~ msgid "How many pomodoros? (1 🍅 ≈ %d min)"
+#~ msgstr "Kaç pomodoro? (1 🍅 ≈ %d dk)"
 
 #~ msgid "Stop the timer before changing the focus length"
 #~ msgstr "Odak uzunluğunu değiştirmeden önce zamanlayıcıyı durdur"

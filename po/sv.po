@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 14:28+0700\n"
+"POT-Creation-Date: 2026-06-24 14:36+0700\n"
 "PO-Revision-Date: 2017-06-07 06:28+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -370,8 +370,8 @@ msgstr "Anpassad"
 
 #: features.js:511
 #, javascript-format
-msgid "How many pomodoros? (1 🍅 ≈ %d min)"
-msgstr "Hur många pomodoros? (1 🍅 ≈ %d min)"
+msgid "How many pomodoros? (1 🍅 = %d min)"
+msgstr "Hur många pomodoros? (1 🍅 = %d min)"
 
 #: features.js:517
 msgid "No estimate — just counts your 🍅"
@@ -2384,6 +2384,10 @@ msgid ""
 msgstr ""
 "Välj ett eget loopande omgivningsljud. Lämna tomt för det inbyggda mjuka "
 "bruna bruset."
+
+#, javascript-format
+#~ msgid "How many pomodoros? (1 🍅 ≈ %d min)"
+#~ msgstr "Hur många pomodoros? (1 🍅 ≈ %d min)"
 
 #~ msgid "Stop the timer before changing the focus length"
 #~ msgstr "Stoppa timern innan du ändrar fokuslängden"

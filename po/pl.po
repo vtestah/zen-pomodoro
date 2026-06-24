@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 14:28+0700\n"
+"POT-Creation-Date: 2026-06-24 14:36+0700\n"
 "PO-Revision-Date: 2024-04-27 23:12+0200\n"
 "Last-Translator: Krzysztof Kucharski <krzysztof85@gmail.com>\n"
 "Language-Team: Polish\n"
@@ -376,8 +376,8 @@ msgstr "Własny"
 
 #: features.js:511
 #, javascript-format
-msgid "How many pomodoros? (1 🍅 ≈ %d min)"
-msgstr "Ile pomodoro? (1 🍅 ≈ %d min)"
+msgid "How many pomodoros? (1 🍅 = %d min)"
+msgstr "Ile pomodoro? (1 🍅 = %d min)"
 
 #: features.js:517
 msgid "No estimate — just counts your 🍅"
@@ -2395,6 +2395,10 @@ msgid ""
 msgstr ""
 "Wybierz własny zapętlony dźwięk otoczenia. Zostaw puste, aby użyć "
 "wbudowanego brązowego szumu."
+
+#, javascript-format
+#~ msgid "How many pomodoros? (1 🍅 ≈ %d min)"
+#~ msgstr "Ile pomodoro? (1 🍅 ≈ %d min)"
 
 #~ msgid "Stop the timer before changing the focus length"
 #~ msgstr "Zatrzymaj minutnik przed zmianą długości skupienia"

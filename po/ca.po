@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 14:28+0700\n"
+"POT-Creation-Date: 2026-06-24 14:36+0700\n"
 "PO-Revision-Date: 2024-07-13 03:43+0200\n"
 "Last-Translator: carlos <c.carrizosa@gmx.com>\n"
 "Language-Team: ca\n"
@@ -372,8 +372,8 @@ msgstr "Personalitzat"
 
 #: features.js:511
 #, javascript-format
-msgid "How many pomodoros? (1 🍅 ≈ %d min)"
-msgstr "Quants pomodoros? (1 🍅 ≈ %d min)"
+msgid "How many pomodoros? (1 🍅 = %d min)"
+msgstr "Quants pomodoros? (1 🍅 = %d min)"
 
 #: features.js:517
 msgid "No estimate — just counts your 🍅"
@@ -2429,6 +2429,10 @@ msgid ""
 msgstr ""
 "Tria el teu propi so ambient en bucle. Deixa-ho buit per al soroll marró "
 "integrat."
+
+#, javascript-format
+#~ msgid "How many pomodoros? (1 🍅 ≈ %d min)"
+#~ msgstr "Quants pomodoros? (1 🍅 ≈ %d min)"
 
 #~ msgid "Stop the timer before changing the focus length"
 #~ msgstr "Atura el temporitzador abans de canviar la durada del focus"

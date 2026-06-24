@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 14:28+0700\n"
+"POT-Creation-Date: 2026-06-24 14:36+0700\n"
 "PO-Revision-Date: 2017-03-14 22:17+0800\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: zh_CN\n"
@@ -367,8 +367,8 @@ msgstr "自定义"
 
 #: features.js:511
 #, javascript-format
-msgid "How many pomodoros? (1 🍅 ≈ %d min)"
-msgstr "几个番茄钟？(1 🍅 ≈ %d 分钟)"
+msgid "How many pomodoros? (1 🍅 = %d min)"
+msgstr "几个番茄钟？(1 🍅 = %d 分钟)"
 
 #: features.js:517
 msgid "No estimate — just counts your 🍅"
@@ -2284,6 +2284,10 @@ msgid ""
 "Pick your own looping ambient sound. Leave empty for the built-in soft brown"
 " noise."
 msgstr "选择你自己的循环背景音。留空则使用内置的柔和棕噪音。"
+
+#, javascript-format
+#~ msgid "How many pomodoros? (1 🍅 ≈ %d min)"
+#~ msgstr "几个番茄钟？(1 🍅 ≈ %d 分钟)"
 
 #~ msgid "Stop the timer before changing the focus length"
 #~ msgstr "更改专注时长前请先停止定时器"

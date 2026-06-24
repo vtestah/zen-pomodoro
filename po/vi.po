@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 14:28+0700\n"
+"POT-Creation-Date: 2026-06-24 14:36+0700\n"
 "PO-Revision-Date: 2025-10-12 13:07+0700\n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: vi\n"
@@ -367,8 +367,8 @@ msgstr "Tùy chỉnh"
 
 #: features.js:511
 #, javascript-format
-msgid "How many pomodoros? (1 🍅 ≈ %d min)"
-msgstr "Bao nhiêu pomodoro? (1 🍅 ≈ %d phút)"
+msgid "How many pomodoros? (1 🍅 = %d min)"
+msgstr "Bao nhiêu pomodoro? (1 🍅 = %d phút)"
 
 #: features.js:517
 msgid "No estimate — just counts your 🍅"
@@ -2378,6 +2378,10 @@ msgid ""
 msgstr ""
 "Chọn âm thanh nền lặp của riêng bạn. Để trống để dùng tiếng ồn nâu nhẹ tích "
 "hợp."
+
+#, javascript-format
+#~ msgid "How many pomodoros? (1 🍅 ≈ %d min)"
+#~ msgstr "Bao nhiêu pomodoro? (1 🍅 ≈ %d phút)"
 
 #~ msgid "Stop the timer before changing the focus length"
 #~ msgstr "Hãy dừng bộ đếm trước khi đổi độ dài tập trung"

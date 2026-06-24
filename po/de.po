@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 14:28+0700\n"
+"POT-Creation-Date: 2026-06-24 14:36+0700\n"
 "PO-Revision-Date: 2020-11-25 22:30+0100\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: de\n"
@@ -371,8 +371,8 @@ msgstr "Eigenes"
 
 #: features.js:511
 #, javascript-format
-msgid "How many pomodoros? (1 🍅 ≈ %d min)"
-msgstr "Wie viele Pomodoros? (1 🍅 ≈ %d Min.)"
+msgid "How many pomodoros? (1 🍅 = %d min)"
+msgstr "Wie viele Pomodoros? (1 🍅 = %d Min.)"
 
 #: features.js:517
 msgid "No estimate — just counts your 🍅"
@@ -2404,6 +2404,10 @@ msgid ""
 msgstr ""
 "Wähle deinen eigenen Endlos-Umgebungsklang. Leer lassen für das eingebaute "
 "sanfte braune Rauschen."
+
+#, javascript-format
+#~ msgid "How many pomodoros? (1 🍅 ≈ %d min)"
+#~ msgstr "Wie viele Pomodoros? (1 🍅 ≈ %d Min.)"
 
 #~ msgid "Stop the timer before changing the focus length"
 #~ msgstr "Timer stoppen, bevor die Fokuslänge geändert wird"

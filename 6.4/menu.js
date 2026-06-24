@@ -453,15 +453,14 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
 
         // Session setup — preset (focus + breaks + cycle).
-        this.addMenuItem(this._makeSectionLabel(_("Session")));
         this._presetSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Preset"));
         this.addMenuItem(this._presetSubmenu);
         this._populatePresetSubmenu();
         // The label gets a value appended; don't let it ellipsize to "Прес…".
         if (this._presetSubmenu.label) { this._presetSubmenu.label.clutter_text.set_ellipsize(Pango.EllipsizeMode.NONE); }
 
-        // Modes — optional extras and toggles.
-        this.addMenuItem(this._makeSectionLabel(_("Modes")));
+        // Optional modes + toggles, grouped by a separator instead of a header.
+        this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         this._focusUntilItem = new PopupMenu.PopupMenuItem(_("Focus until\u2026"));
         this._focusUntilItem.connect('activate', () => { this.emit('focus-until'); });
         this.addMenuItem(this._focusUntilItem);
@@ -484,7 +483,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._statTodayItem = new PopupMenu.PopupBaseMenuItem();
         this._statTodayItem.addActor(new St.Label({ text: _("Statistics"), style_class: "pomodoro-info-label" }));
         this._statValueLabel = new St.Label({ text: "", style_class: "pomodoro-info-value" });
-        this._statTodayItem.addActor(this._statValueLabel, { expand: true, span: -1, align: St.Align.END });
+        this._statTodayItem.addActor(this._statValueLabel, { expand: true, align: St.Align.END });
+        let statChevron = new St.Label({ text: "\u203A", style: "padding-left: 10px;" });
+        statChevron.set_opacity(130);
+        this._statTodayItem.addActor(statChevron);
         this._statTodayItem.connect('activate', () => { this.emit('open-stats'); });
         this.addMenuItem(this._statTodayItem);
 

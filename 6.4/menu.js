@@ -505,6 +505,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         let sr = this._makeSkipResetItems();
         this.addMenuItem(sr.skipItem);
         this.addMenuItem(sr.resetItem);
+        this._ambientItem = new PopupMenu.PopupSwitchMenuItem(_("Ambient sound"), false);
+        this._ambientItem.connect('toggled', (item, state) => this.emit('set-ambient', state));
+        this.addMenuItem(this._ambientItem);
         this.addMenuItem(this._makeResetAllSubmenu());
     }
 

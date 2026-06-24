@@ -65,7 +65,6 @@ DROP=[
   '"custom_long_break_script", "_opt_customLongBreakScript"',
   'focusBlockActive: this._focusBlockActive,',
   'blockedSitesCount: this._getBlockedSitesCount(),',
-  'this._reloadPresetTasks();',
   'this._hideTaskRequiredHint();',
   'this._sitesLabel = null;',
 ]
@@ -96,10 +95,6 @@ d=json.load(open(f,encoding='utf-8'),object_pairs_hook=collections.OrderedDict)
 drop={"enable_scripts","custom_short_break_script","custom_long_break_script"}
 for k in list(d.keys()):
     if k in drop: del d[k]
-# Generic, non-personal default preset tasks for the public package.
-if "preset_tasks" in d:
-    d["preset_tasks"]["default"]=[{"task":t} for t in
-        ["Deep work","Writing","Study","Email","Planning"]]
 lay=d.get("layout")
 if lay:
     lay["pages"]=[p for p in lay.get("pages",[]) if p!="scripts"]

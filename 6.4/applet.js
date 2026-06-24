@@ -199,7 +199,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_focusShowTaskChip = null;
         this._opt_focusCalmEnding = null;
         this._opt_focusStartRitual = null;
-        this._opt_presetTasks = null;
         this._opt_customPresets = null;
         this._opt_requireFocusTask = null;
         this._opt_themePreset = null;
@@ -450,7 +449,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_show_task_chip", "_opt_focusShowTaskChip", () => { this._updateFocusFrame(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_calm_ending", "_opt_focusCalmEnding", () => { this._updateFocusFrame(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_start_ritual", "_opt_focusStartRitual", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "preset_tasks", "_opt_presetTasks", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "require_focus_task", "_opt_requireFocusTask", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "theme_preset", "_opt_themePreset", () => { this._applyAppearance(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "accent_focus_color", "_opt_accentFocusColor", () => { this._applyAppearance(); });
@@ -1344,24 +1342,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
     // Parse "rgb(r,g,b)" / "rgba(...)" / "#rrggbb" into [r,g,b], with a safe fallback.
 
     // Preset focus tasks from settings (list of {task}) -> array of strings.
-    _presetTaskStrings() {
-        let arr = this._opt_presetTasks;
-        if (!Array.isArray(arr)) {
-            return [];
-        }
-        let out = [];
-        for (let row of arr) {
-            let t = (row && typeof row.task === "string") ? row.task.replace(/\s+/g, " ").trim() : "";
-            if (t) {
-                out.push(t);
-            }
-            if (out.length >= 8) {
-                break;
-            }
-        }
-        return out;
-    }
-
     // Push accent colours / font scale to the menu and refresh frame + menu.
 
     _isSessionActive() {
@@ -1927,7 +1907,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             return;
         }
 
-        this._focusTaskDialog.setTaskList(this._taskList(), this._currentFocusTask, this._presetTaskStrings(), Boolean(this._opt_requireFocusTask), false, false);
+        this._focusTaskDialog.setTaskList(this._taskList(), this._currentFocusTask, Boolean(this._opt_requireFocusTask), false, false);
         this._focusTaskDialog.open();
     }
 
@@ -1939,7 +1919,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._taskSelectOnly = true;
         let cur = this._timerQueue ? this._timerQueue.getCurrentTimer() : null;
         let focusRunning = Boolean(cur && cur === this._timers.pomodoro && cur.isRunning());
-        this._focusTaskDialog.setTaskList(this._taskList(), this._currentFocusTask, this._presetTaskStrings(), Boolean(this._opt_requireFocusTask), true, focusRunning);
+        this._focusTaskDialog.setTaskList(this._taskList(), this._currentFocusTask, Boolean(this._opt_requireFocusTask), true, focusRunning);
         this._focusTaskDialog.open();
     }
 

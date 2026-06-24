@@ -48,13 +48,6 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         });
         content.add_child(this._taskListBox);
 
-        this._presetTaskBox = new St.BoxLayout({
-            vertical: true,
-            x_expand: true,
-            style: 'spacing: 6px; padding-top: 8px;'
-        });
-        content.add_child(this._presetTaskBox);
-
         this._content = content;
         this.contentLayout.add(content);
         this.setInitialKeyFocus(this._entryText);
@@ -86,14 +79,12 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         this._setDialogButtons(selectOnly ? (running ? _("Switch") : _("Select")) : _("Start"));
     }
 
-    setTaskList(tasks, currentTitle, presets, requireTask, selectOnly, running) {
+    setTaskList(tasks, currentTitle, requireTask, selectOnly, running) {
         this._taskItems = Array.isArray(tasks) ? tasks : [];
         this._currentTitle = currentTitle || "";
-        this._presets = Array.isArray(presets) ? presets : [];
         this._requireTask = Boolean(requireTask);
         this._applyMode(Boolean(selectOnly), Boolean(running));
         this._reloadTaskList();
-        this._reloadPresetTasks();
         this._hideTaskRequiredHint();
         this._entryText.set_text("");
     }
@@ -110,7 +101,7 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
             let label = mark + t.title + "   " + (t.doneToday || 0) + "/" + (t.est || 1) + " \ud83c\udf45";
             let button = new St.Button({
                 style_class: 'dialog-button',
-                label: this._getPresetButtonLabel(label),
+                label: this._clipLabel(label),
                 can_focus: true, x_expand: true, reactive: true
             });
             let title = t.title;
@@ -133,39 +124,7 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         if (this._hintLabel) { this._hintLabel.hide(); }
     }
 
-    _reloadPresetTasks() {
-        if (!this._presetTaskBox) {
-            return;
-        }
-        for (let child of this._presetTaskBox.get_children()) {
-            child.destroy();
-        }
-
-        let tasks = Array.isArray(this._presets) ? this._presets : [];
-        if (tasks.length === 0) {
-            this._presetTaskBox.hide();
-            return;
-        }
-
-        this._presetTaskBox.show();
-        for (let task of tasks) {
-            let button = new St.Button({
-                style_class: 'dialog-button',
-                label: this._getPresetButtonLabel(task),
-                can_focus: true,
-                x_expand: true,
-                reactive: true
-            });
-
-            button.connect('clicked', () => {
-                this._confirmPresetTask(task);
-            });
-
-            this._presetTaskBox.add_child(button);
-        }
-    }
-
-    _getPresetButtonLabel(task) {
+    _clipLabel(task) {
         let maxLength = 48;
         if (task.length <= maxLength) {
             return task;
@@ -176,11 +135,6 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
 
     _getTask() {
         return this._entryText.get_text().replace(/\s+/g, " ").trim();
-    }
-
-    _confirmPresetTask(task) {
-        this._entryText.set_text(task || "");
-        this._confirm();
     }
 
     _confirm() {

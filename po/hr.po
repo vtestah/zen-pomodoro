@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pomodoro Timer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 10:15+0700\n"
+"POT-Creation-Date: 2026-06-24 10:46+0700\n"
 "PO-Revision-Date: 2017-02-24 23:32+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -15,164 +15,165 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.8.7.1\n"
 
-#: applet.js:586
+#: applet.js:584
 msgid "Strict focus is on"
 msgstr "Strogi fokus je uključen"
 
-#: applet.js:586
+#: applet.js:584
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Ostanite uz njega — završite blok ili poništite za novi početak."
 
-#: applet.js:652 applet.js:2012
+#: applet.js:650 applet.js:1992
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Trajanje fokusa: %d min"
 
-#: applet.js:959
+#: applet.js:957
 msgid "Focus session restored — resume when ready"
 msgstr "Sesija fokusa obnovljena — nastavite kad budete spremni"
 
-#: applet.js:995
+#: applet.js:993
 msgid "FOCUS"
 msgstr "FOKUS"
 
-#: applet.js:997
+#: applet.js:995
 msgid "PAUSED FOCUS"
 msgstr "FOKUS PAUZIRAN"
 
-#: applet.js:1000
+#: applet.js:998
 msgid "BREAK"
 msgstr "PREDAH"
 
-#: applet.js:1003
+#: applet.js:1001
 msgid "PAUSED BREAK"
 msgstr "PREDAH PAUZIRAN"
 
-#: applet.js:1005
+#: applet.js:1003
 msgid "BREAK OVER"
 msgstr "PREDAH ZAVRŠEN"
 
-#: applet.js:1008 applet.js:1068 menu.js:245 menu.js:632
+#: applet.js:1006 applet.js:1066 menu.js:245 menu.js:632
 msgid "Ready to focus"
 msgstr "Spremni za fokus"
 
-#: applet.js:1026
+#: applet.js:1024
 msgid "Short break running"
 msgstr "Kratki predah u tijeku"
 
-#: applet.js:1029
+#: applet.js:1027
 msgid "Short break paused"
 msgstr "Kratki predah pauziran"
 
-#: applet.js:1032
+#: applet.js:1030
 msgid "Long break running"
 msgstr "Duži predah u tijeku"
 
-#: applet.js:1035
+#: applet.js:1033
 msgid "Long break paused"
 msgstr "Duži predah pauziran"
 
-#: applet.js:1038 applet.js:1452
+#: applet.js:1036 applet.js:1432
 msgid "Break ended"
 msgstr "Predah završen"
 
-#: applet.js:1041
+#: applet.js:1039
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodoro %d, zadatak %d je pokrenut"
 
-#: applet.js:1046 features.js:429 features.js:1058
+#: applet.js:1044 features.js:429 features.js:1058
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ kraj %s · preostalo %d 🍅"
 
-#: applet.js:1051
+#: applet.js:1049
 msgid "Pomodoro paused"
 msgstr "Pomodoro pauziran"
 
-#: applet.js:1054
+#: applet.js:1052
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Spremni za fokus — kotačićem ili srednjim klikom za početak"
 
-#: applet.js:1221
+#: applet.js:1219
 msgid "Classic"
 msgstr "Klasični"
 
-#: applet.js:1222
+#: applet.js:1220
 msgid "Long focus"
 msgstr "Dugi fokus"
 
-#: applet.js:1432
+#: applet.js:1412
 msgid "Pomodoro started"
 msgstr "Pomodoro je pokrenut"
 
-#: applet.js:1510
+#: applet.js:1490
 msgid "Let's go to work!"
 msgstr "Idemo raditi!"
 
-#: applet.js:1537
+#: applet.js:1517
 msgid "Pomodoro done"
 msgstr "Pomodoro gotov"
 
-#: applet.js:1539
+#: applet.js:1519
 msgid "Take a short break"
 msgstr "Uzmite kratki predah"
 
-#: applet.js:1540 applet.js:1578
+#: applet.js:1520 applet.js:1558
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d min"
 
-#: applet.js:1541 applet.js:1579
+#: applet.js:1521 applet.js:1559
 msgid "Skip break"
 msgstr "Preskoči predah"
 
-#: applet.js:1572
+#: applet.js:1552
 msgid "Set complete!"
 msgstr "Set završen!"
 
-#: applet.js:1577
+#: applet.js:1557
 msgid "Take a long break"
 msgstr "Uzmite duži predah"
 
-#: applet.js:1630
+#: applet.js:1610
 msgid "Pomodoro ended"
 msgstr "Pomodoro je završio"
 
-#: applet.js:1705 applet.js:1729 applet.js:1732
+#: applet.js:1685 applet.js:1709 applet.js:1712
 msgid "Pomodoro preflight failed"
 msgstr "Provjera prije pokretanja Pomodora nije uspjela"
 
-#: applet.js:1899
+#: applet.js:1879
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://hr.wikipedia.org/wiki/Pomodoro_tehnika"
 
-#: applet.js:1978 features.js:1837
+#: applet.js:1958 features.js:1837
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Zaustavite mjerač prije promjene Pomodoro predloška"
 
-#: applet.js:1995
+#: applet.js:1975
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Pomodoro predložak %s primijenjen"
 
-#: applet.js:2007
+#: applet.js:1987
 msgid "Stop the timer before changing the focus length"
 msgstr "Zaustavite mjerač prije promjene trajanja fokusa"
 
-#: applet.js:2024
+#: applet.js:2004
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Predah produžen za %d min"
 
-#: dialogs.js:28 dialogs.js:83
+#: dialogs.js:28 dialogs.js:76
 msgid "Focus task"
 msgstr "Zadatak fokusa"
 
-#: dialogs.js:29 dialogs.js:84
+#: dialogs.js:29 dialogs.js:77
 msgid "What are you focusing on?"
 msgstr "Na što se fokusirate?"
 
@@ -180,56 +181,56 @@ msgstr "Na što se fokusirate?"
 msgid "Choose or type a focus task"
 msgstr "Odaberite ili upišite zadatak fokusa"
 
-#: dialogs.js:71 dialogs.js:86 features.js:1886
+#: dialogs.js:64 dialogs.js:79 features.js:1886
 msgid "Start"
 msgstr "Pokreni"
 
-#: dialogs.js:76 features.js:520 features.js:1140 features.js:1885
+#: dialogs.js:69 features.js:520 features.js:1140 features.js:1885
 msgid "Cancel"
 msgstr "Odustani"
 
-#: dialogs.js:83
+#: dialogs.js:76
 msgid "Current task"
 msgstr "Trenutni zadatak"
 
-#: dialogs.js:84
+#: dialogs.js:77
 msgid "Choose a task to focus on"
 msgstr "Odaberite zadatak za fokusiranje"
 
-#: dialogs.js:86
+#: dialogs.js:79
 msgid "Switch"
 msgstr "Promijeni"
 
-#: dialogs.js:86
+#: dialogs.js:79
 msgid "Select"
 msgstr "Odaberi"
 
-#: dialogs.js:222
+#: dialogs.js:176
 msgid "Hide"
 msgstr "Sakrij"
 
-#: dialogs.js:229
+#: dialogs.js:183
 msgid "Switch Off Pomodoro"
 msgstr "Isključi Pomodoro"
 
-#: dialogs.js:235
+#: dialogs.js:189
 msgid "Start a new Pomodoro"
 msgstr "Pokreni novi Pomodoro"
 
-#: dialogs.js:246
+#: dialogs.js:200
 msgid "Pomodoro set finished, you deserve a break!"
 msgstr "Pomodoro zadatak je završio, zaslužili ste predah!"
 
-#: dialogs.js:255
+#: dialogs.js:209
 msgid "Your break is over, start another pomodoro!"
 msgstr "Vaš predah je gotov, pokrenite novi pomodoro!"
 
-#: dialogs.js:261
+#: dialogs.js:215
 #, javascript-format
 msgid "A new pomodoro begins in %s."
 msgstr "Novi pomodoro počinje za %s."
 
-#: dialogs.js:273
+#: dialogs.js:227
 #, javascript-format
 msgid "%d minute"
 msgid_plural "%d minutes"
@@ -237,7 +238,7 @@ msgstr[0] "%d minuta"
 msgstr[1] "%d minute"
 msgstr[2] "%d minuta"
 
-#: dialogs.js:274
+#: dialogs.js:228
 #, javascript-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -245,33 +246,33 @@ msgstr[0] "%d sekunda"
 msgstr[1] "%d sekunde"
 msgstr[2] "%d sekundi"
 
-#: dialogs.js:276
+#: dialogs.js:230
 #, javascript-format
 msgid "%s and %s"
 msgstr "%s i %s"
 
-#: dialogs.js:297 dialogs.js:349
+#: dialogs.js:251 dialogs.js:303
 msgid "Pause Pomodoro"
 msgstr "Pauziraj Pomodoro"
 
-#: dialogs.js:303
+#: dialogs.js:257
 msgid "Continue Current Pomodoro"
 msgstr "Nastavi trenutni Pomodoro"
 
-#: dialogs.js:315
+#: dialogs.js:269
 msgid "Short break finished, ready to continue?"
 msgstr "Kratak predah je završio, spremni za nastavak?"
 
-#: dialogs.js:357
+#: dialogs.js:311
 #, javascript-format
 msgid "Extend +%d min"
 msgstr "Produži +%d min"
 
-#: dialogs.js:364
+#: dialogs.js:318
 msgid "Start break"
 msgstr "Započni predah"
 
-#: dialogs.js:374
+#: dialogs.js:328
 msgid "Pomodoro finished, ready to take a break?"
 msgstr "Pomodoro završen, spremni za predah?"
 
@@ -460,8 +461,7 @@ msgstr "Koliko se obično možete koncentrirati?"
 
 #: features.js:671
 msgid "Pick a length you can actually keep — it beats an ideal one."
-msgstr ""
-"Odaberite trajanje koje stvarno možete održati — bolje je od idealnog."
+msgstr "Odaberite trajanje koje stvarno možete održati — bolje je od idealnog."
 
 #: features.js:673
 msgid "About 15 minutes"
@@ -1214,8 +1214,7 @@ msgid "Long Break Duration:"
 msgstr "Trajanje dužeg predaha:"
 
 #. settings-schema.json->long_break_duration->tooltip
-msgid ""
-"Length of the longer break after a set of pomodoros (classic is 15–30)."
+msgid "Length of the longer break after a set of pomodoros (classic is 15–30)."
 msgstr "Trajanje dužeg predaha nakon seta pomodora (klasično 15–30)."
 
 #. settings-schema.json->pomodori_number->description
@@ -1223,8 +1222,7 @@ msgid "Number of pomodori before long break:"
 msgstr "Broj pomodora prije dužeg predaha:"
 
 #. settings-schema.json->pomodori_number->tooltip
-msgid ""
-"How many focus blocks to complete before the long break (classic is 4)."
+msgid "How many focus blocks to complete before the long break (classic is 4)."
 msgstr "Koliko blokova fokusa završiti prije dužeg predaha (klasično je 4)."
 
 #. settings-schema.json->start_automatically_on_load->description
@@ -1388,13 +1386,13 @@ msgstr "Upravljaj mjeračem mišem na ploči"
 
 #. settings-schema.json->panel_scroll_control->tooltip
 msgid ""
-"Scroll up on the applet to start or resume, scroll down to pause, and "
-"middle-click to skip the phase. Turn this off if you sometimes scroll over "
-"the panel by accident."
+"Scroll up on the applet to start or resume, scroll down to pause, and middle-"
+"click to skip the phase. Turn this off if you sometimes scroll over the "
+"panel by accident."
 msgstr ""
 "Pomak kotačića prema gore pokreće ili nastavlja, prema dolje pauzira, a "
-"srednji klik preskače fazu. Isključite ako ponekad slučajno pomičete kotačić"
-" preko ploče."
+"srednji klik preskače fazu. Isključite ako ponekad slučajno pomičete kotačić "
+"preko ploče."
 
 #. settings-schema.json->scroll_action->description
 msgid "Mouse-wheel action on the panel"
@@ -1413,8 +1411,8 @@ msgid ""
 "What the mouse wheel does on the applet: start/pause the timer, or change "
 "the focus length (when idle). Middle-click always skips to the next phase."
 msgstr ""
-"Što kotačić miša radi na apletu: pokreće/pauzira mjerač ili mijenja trajanje"
-" fokusa (kad miruje). Srednji klik uvijek preskače na sljedeću fazu."
+"Što kotačić miša radi na apletu: pokreće/pauzira mjerač ili mijenja trajanje "
+"fokusa (kad miruje). Srednji klik uvijek preskače na sljedeću fazu."
 
 #. settings-schema.json->focus_show_task_chip->description
 msgid "Show the current task as an on-screen chip during focus"
@@ -1436,8 +1434,8 @@ msgstr ""
 
 #. settings-schema.json->focus_start_ritual->description
 msgid ""
-"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus"
-" begins"
+"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus "
+"begins"
 msgstr ""
 "Ritual početka: kratko centrirano 'Fokus: <task>' i glatko pojavljivanje na "
 "početku fokusa"
@@ -1446,21 +1444,6 @@ msgstr ""
 msgid "Briefly show 'Focus: <task>' with a smooth fade-in when focus begins."
 msgstr ""
 "Nakratko prikaži 'Fokus: <task>' uz glatko pojavljivanje na početku fokusa."
-
-#. settings-schema.json->preset_tasks->description
-msgid "Preset focus tasks (quick-pick buttons in the focus dialog)"
-msgstr ""
-"Unaprijed zadani zadaci fokusa (gumbi za brzi odabir u dijalogu fokusa)"
-
-#. settings-schema.json->preset_tasks->columns->title
-msgid "Task"
-msgstr "Zadatak"
-
-#. settings-schema.json->preset_tasks->tooltip
-msgid "Quick-pick task buttons shown in the focus task dialog; one per row."
-msgstr ""
-"Gumbi za brzi odabir zadatka prikazani u dijalogu zadatka fokusa; jedan po "
-"retku."
 
 #. settings-schema.json->require_focus_task->description
 msgid "Require a focus task before starting"
@@ -1544,8 +1527,8 @@ msgstr "Intenzitet sjaja"
 
 #. settings-schema.json->glow_intensity->tooltip
 msgid ""
-"How bright the on-screen edge glow is during focus — higher is more visible,"
-" lower is subtler."
+"How bright the on-screen edge glow is during focus — higher is more visible, "
+"lower is subtler."
 msgstr ""
 "Koliko jako svijetli rub zaslona tijekom fokusa — više je vidljivije, manje "
 "je suptilnije."
@@ -1577,11 +1560,11 @@ msgstr "Opuštajuće 4-6"
 
 #. settings-schema.json->breathing_pattern->tooltip
 msgid ""
-"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6"
-" — seconds per phase."
+"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 "
+"— seconds per phase."
 msgstr ""
-"Ritam disanja za vodič: Kutija (4-4-4-4), umirujuće 4-7-8 ili opušteno 4-6 —"
-" sekunde po fazi."
+"Ritam disanja za vodič: Kutija (4-4-4-4), umirujuće 4-7-8 ili opušteno 4-6 — "
+"sekunde po fazi."
 
 #. settings-schema.json->chip_position->description
 msgid "Task chip position"
@@ -1639,11 +1622,11 @@ msgstr "Pregledaj okvir fokusa"
 
 #. settings-schema.json->preview_appearance_button->tooltip
 msgid ""
-"Briefly show the on-screen focus frame and task chip with the current colors"
-" and style (works when no timer is running)."
+"Briefly show the on-screen focus frame and task chip with the current colors "
+"and style (works when no timer is running)."
 msgstr ""
-"Nakratko prikaži zaslonski okvir fokusa i pločicu zadatka s trenutnim bojama"
-" i stilom (radi kad mjerač ne radi)."
+"Nakratko prikaži zaslonski okvir fokusa i pločicu zadatka s trenutnim bojama "
+"i stilom (radi kad mjerač ne radi)."
 
 #. settings-schema.json->preview_breathing_button->description
 msgid "Preview breathing guide"
@@ -1751,8 +1734,8 @@ msgstr "Strogi fokus: bez pauze i preskakanja tijekom bloka fokusa"
 
 #. settings-schema.json->strict_focus->tooltip
 msgid ""
-"While a focus block is running, hide pause and skip so you commit to it. You"
-" can still Reset to abandon the session — it's never a hard lock."
+"While a focus block is running, hide pause and skip so you commit to it. You "
+"can still Reset to abandon the session — it's never a hard lock."
 msgstr ""
 "Dok blok fokusa traje, sakrij pauzu i preskakanje da mu se posvetite. I "
 "dalje možete Poništiti za napuštanje sesije — nikad nije čvrsto zaključano."
@@ -1827,11 +1810,10 @@ msgstr ""
 
 #. settings-schema.json->pushover_help->description
 msgid ""
-"Free phone/desktop alerts. Sign up at pushover.net and paste your keys "
-"below."
+"Free phone/desktop alerts. Sign up at pushover.net and paste your keys below."
 msgstr ""
-"Besplatne obavijesti na telefon/računalo. Registrirajte se na pushover.net i"
-" zalijepite ključeve ispod."
+"Besplatne obavijesti na telefon/računalo. Registrirajte se na pushover.net i "
+"zalijepite ključeve ispod."
 
 #. settings-schema.json->pushover_user_key->description
 msgid "Pushover user key"
@@ -1865,8 +1847,8 @@ msgstr "Prilagodi poruke, zvukove i prioritet"
 
 #. settings-schema.json->pushover_customize->tooltip
 msgid ""
-"Show options to change the text, sound and priority for each event. Off uses"
-" sensible defaults."
+"Show options to change the text, sound and priority for each event. Off uses "
+"sensible defaults."
 msgstr ""
 "Prikaži opcije za promjenu teksta, zvuka i prioriteta za svaki događaj. "
 "Isključeno koristi razumne zadane vrijednosti."
@@ -1905,8 +1887,8 @@ msgstr "Blokiraj ometajuće stranice tijekom fokusa"
 
 #. settings-schema.json->enable_blocking->tooltip
 msgid ""
-"When on, the sites below are blocked automatically during each focus session"
-" and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
+"When on, the sites below are blocked automatically during each focus session "
+"and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
 "doesn't ask for a password each time."
 msgstr ""
 "Kada je uključeno, stranice ispod automatski se blokiraju tijekom svake "
@@ -1923,11 +1905,11 @@ msgstr "Domena"
 
 #. settings-schema.json->block_domains->tooltip
 msgid ""
-"Domains to block during focus, one per row (e.g. youtube.com, "
-"www.youtube.com)."
+"Domains to block during focus, one per row (e.g. youtube.com, www.youtube."
+"com)."
 msgstr ""
-"Domene za blokiranje tijekom fokusa, jedna po retku (npr. youtube.com, "
-"www.youtube.com)."
+"Domene za blokiranje tijekom fokusa, jedna po retku (npr. youtube.com, www."
+"youtube.com)."
 
 #. settings-schema.json->sox-info->description
 msgid ""
@@ -2157,8 +2139,8 @@ msgid ""
 "Your timer presets — name + focus / short / long minutes + pomodori. Apply "
 "them from the menu's Preset submenu."
 msgstr ""
-"Vaši predlošci mjerača — naziv + minute fokusa / kratkog / dugog + pomodori."
-" Primijenite ih iz podizbornika Predložak u izborniku."
+"Vaši predlošci mjerača — naziv + minute fokusa / kratkog / dugog + pomodori. "
+"Primijenite ih iz podizbornika Predložak u izborniku."
 
 #. settings-schema.json->setup_passwordless_button->description
 msgid "Set up passwordless blocking (one-time)"
@@ -2181,8 +2163,8 @@ msgid ""
 "Removes the system policy and the root helper, so blocking asks for your "
 "password again each time."
 msgstr ""
-"Uklanja sistemsku politiku i root pomoćnik, pa blokiranje opet traži lozinku"
-" svaki put."
+"Uklanja sistemsku politiku i root pomoćnik, pa blokiranje opet traži lozinku "
+"svaki put."
 
 #. settings-schema.json->onboarding_button->description
 msgid "Run the quick-start guide"
@@ -2362,11 +2344,23 @@ msgstr "Datoteka zvuka okoline"
 
 #. settings-schema.json->focus_ambient_file->tooltip
 msgid ""
-"Pick your own looping ambient sound. Leave empty for the built-in soft brown"
-" noise."
+"Pick your own looping ambient sound. Leave empty for the built-in soft brown "
+"noise."
 msgstr ""
 "Odaberite vlastiti ponavljajući zvuk okoline. Ostavite prazno za ugrađeni "
 "meki smeđi šum."
+
+#~ msgid "Preset focus tasks (quick-pick buttons in the focus dialog)"
+#~ msgstr ""
+#~ "Unaprijed zadani zadaci fokusa (gumbi za brzi odabir u dijalogu fokusa)"
+
+#~ msgid "Task"
+#~ msgstr "Zadatak"
+
+#~ msgid "Quick-pick task buttons shown in the focus task dialog; one per row."
+#~ msgstr ""
+#~ "Gumbi za brzi odabir zadatka prikazani u dijalogu zadatka fokusa; jedan "
+#~ "po retku."
 
 #~ msgid "Current task…"
 #~ msgstr "Trenutni zadatak…"
@@ -2418,12 +2412,12 @@ msgstr ""
 
 #~ msgid ""
 #~ "Pushover sends alerts to your phone or desktop. Create a free account at "
-#~ "pushover.net, copy your User Key, then create an Application there to get an"
-#~ " API Token."
+#~ "pushover.net, copy your User Key, then create an Application there to get "
+#~ "an API Token."
 #~ msgstr ""
-#~ "Pushover šalje upozorenja na telefon ili računalo. Otvorite besplatan račun "
-#~ "na pushover.net, kopirajte svoj User Key, zatim ondje izradite Application "
-#~ "da dobijete API Token."
+#~ "Pushover šalje upozorenja na telefon ili računalo. Otvorite besplatan "
+#~ "račun na pushover.net, kopirajte svoj User Key, zatim ondje izradite "
+#~ "Application da dobijete API Token."
 
 #~ msgid ""
 #~ "No sound backend was found. Install GSound or a sound player (e.g. the "
@@ -2440,17 +2434,17 @@ msgstr ""
 
 #~ msgid ""
 #~ "After setup, never ask for a password. Off (default) asks once per login "
-#~ "session. Convenient but less safe: any local program could then change your "
-#~ "blocklist without asking."
+#~ "session. Convenient but less safe: any local program could then change "
+#~ "your blocklist without asking."
 #~ msgstr ""
-#~ "Nakon postavljanja, nikad ne traži lozinku. Isključeno (zadano) traži jednom"
-#~ " po prijavnoj sesiji. Praktično, ali manje sigurno: bilo koji lokalni "
-#~ "program tada može promijeniti vaš popis blokade bez pitanja."
+#~ "Nakon postavljanja, nikad ne traži lozinku. Isključeno (zadano) traži "
+#~ "jednom po prijavnoj sesiji. Praktično, ali manje sigurno: bilo koji "
+#~ "lokalni program tada može promijeniti vaš popis blokade bez pitanja."
 
 #~ msgid ""
-#~ "Asks for your password once and installs a small system policy so blocking "
-#~ "no longer prompts every time. Uses the mode selected above; re-run after "
-#~ "changing the mode."
+#~ "Asks for your password once and installs a small system policy so "
+#~ "blocking no longer prompts every time. Uses the mode selected above; re-"
+#~ "run after changing the mode."
 #~ msgstr ""
 #~ "Jednom traži vašu lozinku i instalira malu sistemsku politiku tako da "
 #~ "blokiranje više ne traži upit svaki put. Koristi gore odabrani način; "
@@ -2463,8 +2457,8 @@ msgstr ""
 #~ msgstr "Uredi /etc/hosts ručno (administrator)"
 
 #~ msgid ""
-#~ "Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only"
-#~ " manages its own clearly-marked section."
+#~ "Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro "
+#~ "only manages its own clearly-marked section."
 #~ msgstr ""
 #~ "Otvara /etc/hosts u uređivaču s administratorskim pravima. Zen Pomodoro "
 #~ "upravlja samo svojim jasno označenim odjeljkom."
@@ -2493,15 +2487,15 @@ msgstr ""
 #~ "Adds the domains above to /etc/hosts (you'll be asked for your password "
 #~ "once). They stay blocked until you click Unblock."
 #~ msgstr ""
-#~ "Dodaje gornje domene u /etc/hosts (jednom će vas pitati za lozinku). Ostaju "
-#~ "blokirane dok ne kliknete Deblokiraj."
+#~ "Dodaje gornje domene u /etc/hosts (jednom će vas pitati za lozinku). "
+#~ "Ostaju blokirane dok ne kliknete Deblokiraj."
 
 #~ msgid "Unblock"
 #~ msgstr "Deblokiraj"
 
 #~ msgid ""
-#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
-#~ " once)."
+#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your "
+#~ "password once)."
 #~ msgstr ""
 #~ "Uklanja blok-unose aplikacije Zen Pomodoro iz /etc/hosts (jednom traži "
 #~ "lozinku)."
@@ -2546,8 +2540,8 @@ msgstr ""
 #~ "timer text is a separate option below."
 #~ msgstr ""
 #~ "Što prikazati na ploči: prsten napretka s ikonom stanja unutar njega "
-#~ "(preporučeno), jednostavnu simboličku ili ikonu u boji, ili bez ikone. Tekst"
-#~ " mjerača vremena postavlja se zasebno ispod."
+#~ "(preporučeno), jednostavnu simboličku ili ikonu u boji, ili bez ikone. "
+#~ "Tekst mjerača vremena postavlja se zasebno ispod."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Prikaži pomodoro ikonu u panelu apleta"

@@ -113,7 +113,6 @@
                 "focus_show_task_chip",
                 "focus_calm_ending",
                 "focus_start_ritual",
-                "preset_tasks",
                 "require_focus_task"
             ]
         },
@@ -461,38 +460,6 @@
         "description": "Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus begins",
         "default": true,
         "tooltip": "Briefly show 'Focus: <task>' with a smooth fade-in when focus begins."
-    },
-    "preset_tasks": {
-        "type": "list",
-        "description": "Preset focus tasks (quick-pick buttons in the focus dialog)",
-        "columns": [
-            {
-                "id": "task",
-                "title": "Task",
-                "type": "string"
-            }
-        ],
-        "default": [
-            {
-                "task": "Deep work"
-            },
-            {
-                "task": "Planning"
-            },
-            {
-                "task": "Writing"
-            },
-            {
-                "task": "Reading"
-            },
-            {
-                "task": "Email"
-            },
-            {
-                "task": "Study"
-            }
-        ],
-        "tooltip": "Quick-pick task buttons shown in the focus task dialog; one per row."
     },
     "require_focus_task": {
         "type": "switch",

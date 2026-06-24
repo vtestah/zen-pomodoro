@@ -85,6 +85,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._sessionSubmenu = null;
         this._statsSubmenu = null;
         this._statTodayItem = null;
+        this._statValueLabel = null;
         this._statWeekItem = null;
         this._statMonthItem = null;
         this._statTotalItem = null;
@@ -479,14 +480,13 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this.addMenuItem(sitesRow.item);
         // @PUBLIC_STRIP_END
 
-        // Statistics.
-        this.addMenuItem(this._makeSectionLabel(_("Statistics")));
-        this._statTodayItem = new PopupMenu.PopupMenuItem(_("Today: %d").format(0) + " 🍅");
-        this._statTodayItem.setSensitive(false);
+        // Statistics — one compact clickable row that opens the dashboard.
+        this._statTodayItem = new PopupMenu.PopupBaseMenuItem();
+        this._statTodayItem.addActor(new St.Label({ text: _("Statistics"), style_class: "pomodoro-info-label" }));
+        this._statValueLabel = new St.Label({ text: "", style_class: "pomodoro-info-value" });
+        this._statTodayItem.addActor(this._statValueLabel, { expand: true, span: -1, align: St.Align.END });
+        this._statTodayItem.connect('activate', () => { this.emit('open-stats'); });
         this.addMenuItem(this._statTodayItem);
-        let dashItem = new PopupMenu.PopupMenuItem(_("Details\u2026"));
-        dashItem.connect('activate', () => { this.emit('open-stats'); });
-        this.addMenuItem(dashItem);
 
         // Less used.
         this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
@@ -600,10 +600,12 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         if (this._statTodayItem && runtime.stats) {
             let st = runtime.stats;
-            if (this._statTodayItem) {
-                let line = _("Today: %d").format(st.today || 0) + " 🍅";
+            if (this._statValueLabel) {
+                let line = (st.today || 0) + " 🍅";
                 if ((st.streak || 0) > 0) { line += "  ·  🔥 " + (st.streak || 0); }
-                this._statTodayItem.label.set_text(line);
+                this._statValueLabel.set_text(line);
+            }
+            if (this._statTodayItem) {
                 if ((runtime.dailyGoal || 0) > 0) { this._statTodayItem.actor.hide(); } else { this._statTodayItem.actor.show(); }
             }
             if (this._statWeekItem) {

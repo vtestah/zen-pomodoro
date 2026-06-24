@@ -801,8 +801,11 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         let cur = this._tasks && this._tasks.find((t) => t.id === this._tasksCurrentId);
         if (cur) {
             let s = "\u25cf " + cur.title;
+            let dt = cur.doneToday || 0;
             if (cur.est > 0) {
-                s += "   " + (cur.doneToday || 0) + "/" + cur.est + " \ud83c\udf45";
+                s += "   " + dt + "/" + cur.est + " \ud83c\udf45";
+            } else if (dt > 0) {
+                s += "   " + dt + " \ud83c\udf45";
             }
             return s;
         }
@@ -858,7 +861,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 mark.set_style("color: rgb(235, 175, 75);");
             }
             row.add_child(mark);
-            let label = new St.Label({ x_expand: true, text: " " + t.title + "   " + (t.doneToday || 0) + "/" + (t.est || 1) + " 🍅" });
+            let dt = t.doneToday || 0;
+            let prog = (t.est > 0) ? (dt + "/" + t.est + " 🍅") : (dt > 0 ? (dt + " 🍅") : "");
+            let label = new St.Label({ x_expand: true, text: " " + t.title + (prog ? "   " + prog : "") });
             row.add_child(label);
             let editBtn = new St.Button({
                 style_class: "pomodoro-task-btn", can_focus: false,

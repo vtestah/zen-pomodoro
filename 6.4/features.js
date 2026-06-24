@@ -360,7 +360,7 @@ function install(proto) {
         let task = {
             id: this._newTaskId(),
             title: title.slice(0, 120),
-            est: Math.max(1, Math.min(99, parseInt(est) || 1)),
+            est: Math.max(0, Math.min(99, parseInt(est) || 0)),
             done: 0, doneToday: 0, completed: false
         };
         this._tasksData.tasks.push(task);
@@ -386,7 +386,8 @@ function install(proto) {
         if (!t) { return; }
         title = (title || "").toString().trim();
         if (title) { t.title = title.slice(0, 120); }
-        t.est = Math.max(1, Math.min(99, parseInt(est) || t.est || 1));
+        let pe = parseInt(est);
+        t.est = Math.max(0, Math.min(99, isNaN(pe) ? (t.est || 0) : pe));
         if (this._tasksData && this._tasksData.currentId === id) {
             this._currentFocusTask = t.title;
         }
@@ -482,22 +483,22 @@ function install(proto) {
         if (existing && existing.title) { entry.set_text(existing.title); }
         content.add_child(entry);
 
-        let est = { value: existing ? Math.max(1, Math.min(6, existing.est || 1)) : 1 };
-        let estRow = new St.BoxLayout({ vertical: false, style: 'spacing: 6px; padding-top: 10px;' });
-        estRow.add(new St.Label({ text: _("Estimate:") }));
+        let est = { value: existing ? Math.max(0, Math.min(6, existing.est || 0)) : 0 };
+        content.add_child(new St.Label({ text: _("Estimate:"), style: 'padding-top: 10px;' }));
+        let estRow = new St.BoxLayout({ vertical: false, style: 'spacing: 6px; padding-top: 4px;' });
         let estBtns = [];
+        let estVals = [0, 1, 2, 3, 4, 5, 6];
         let restyle = () => {
             for (let k = 0; k < estBtns.length; k++) {
-                estBtns[k].set_style('padding: 2px 8px;' + ((k + 1 === est.value) ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
+                estBtns[k].set_style('padding: 2px 8px;' + ((estVals[k] === est.value) ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
             }
         };
-        for (let i = 1; i <= 6; i++) {
-            let b = new St.Button({ label: i + " \ud83c\udf45", style_class: 'button' });
-            let val = i;
-            b.connect('clicked', () => { est.value = val; restyle(); });
+        estVals.forEach((v) => {
+            let b = new St.Button({ label: (v === 0 ? "\u2014" : (v + " \ud83c\udf45")), style_class: 'button' });
+            b.connect('clicked', () => { est.value = v; restyle(); });
             estBtns.push(b);
             estRow.add(b);
-        }
+        });
         restyle();
         content.add_child(estRow);
 

@@ -45,11 +45,6 @@ const Gettext = imports.gettext;
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 const {
-    POMODORO_FOCUS_START_SCRIPT,
-    POMODORO_FOCUS_STOP_SCRIPT,
-    POMODORO_CONFIG_FILE,
-    POMODORO_FOCUS_TASKS_FILE,
-    POMODORO_DOMAINS_FILE,
     POMODORO_STATE_FILE,
     POMODORO_STATE_MAX_AGE_MS,
     POMODORO_STATS_FILE,
@@ -121,7 +116,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
         // 'pomodoro', 'pomodoro-stop', 'short-break', 'long-break', 'break-over', '*-paused'
         this._currentState = 'pomodoro-stop';
         this._focusBlockActive = false;
-        this._focusBlockMode = '';
         this._focusFrame = null;
         this._focusFrames = [];
         this._focusTaskChip = null;
@@ -193,9 +187,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_intervalChimeSeconds = null;
         this._opt_intervalChimeFile = null;
         this._opt_intervalChimeVolume = null;
-        this._opt_enableScripts = null;
-        this._opt_customShortBreakScript = null;
-        this._opt_customLongBreakScript = null;
         this._opt_focusShowTaskChip = null;
         this._opt_focusCalmEnding = null;
         this._opt_focusStartRitual = null;
@@ -448,9 +439,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_start_after_pomodoro_ends", "_opt_autoContinueAfterPomodoro", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_start_after_short_break_ends", "_opt_autoContinueAfterShortBreak", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_start_after_break_ends", "_opt_autoStartNewAfterFinish", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "enable_scripts", "_opt_enableScripts", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "custom_short_break_script", "_opt_customShortBreakScript", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "custom_long_break_script", "_opt_customLongBreakScript", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_show_task_chip", "_opt_focusShowTaskChip", () => { this._updateFocusFrame(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_calm_ending", "_opt_focusCalmEnding", () => { this._updateFocusFrame(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_start_ritual", "_opt_focusStartRitual", emptyCallback);
@@ -798,36 +786,13 @@ class PomodoroApplet extends Applet.TextIconApplet {
         });
     }
 
-    // @PUBLIC_STRIP_BEGIN
     _getBlockedSitesCount() {
-        let now = GLib.get_monotonic_time();
-        if (this.__domainsCountCache !== undefined && this.__domainsCountAt &&
-            (now - this.__domainsCountAt) < 5000000) {
-            return this.__domainsCountCache;
-        }
-
-        let count = 0;
         try {
-            let [ok, contents] = GLib.file_get_contents(POMODORO_DOMAINS_FILE);
-            if (ok) {
-                let text = ByteArray.toString(contents);
-                for (let line of text.split(/\r?\n/)) {
-                    let l = line.trim();
-                    if (!l || l.startsWith("#")) {
-                        continue;
-                    }
-                    count++;
-                }
-            }
+            return this._collectBlockDomains().length;
         } catch (e) {
-            count = 0;
+            return 0;
         }
-
-        this.__domainsCountCache = count;
-        this.__domainsCountAt = now;
-        return count;
     }
-    // @PUBLIC_STRIP_END
 
     _writeJsonAsync(path, obj) {
         let data;
@@ -1485,7 +1450,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         pomodoroTimer.connect('timer-running', () => {
             this._setCurrentState('pomodoro');
             this._playTickerSound();
-            if (this._opt_enableScripts || this._opt_enableBlocking) this._startFocusBlockIfNeeded(pomodoroTimer.getTicksRemaining());
+            if (this._opt_enableBlocking) this._startFocusBlockIfNeeded();
         });
     
         pomodoroTimer.connect('timer-started', () => {
@@ -1528,13 +1493,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
             ]);
             this._runEventCommand('break');
             this._sendPushover(this._opt_pushoverMsgShortBreak, this._opt_pushoverSndShortBreak, this._opt_pushoverPriShortBreak);
-            // @PUBLIC_STRIP_BEGIN
-            if (this._opt_enableScripts && this._opt_customShortBreakScript) {
-                let breakSecs = convertMinutesToSeconds(this._opt_shortBreakTimeMinutes);
-                let workSecs = convertMinutesToSeconds(this._opt_pomodoroTimeMinutes);
-                this._checkAndExecuteCustomScript(this._opt_customShortBreakScript, breakSecs, workSecs);
-            }
-            // @PUBLIC_STRIP_END
         });
     
         shortBreakTimer.connect('timer-stopped', () => {
@@ -1567,13 +1525,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
             }
             this._runEventCommand('break');
             this._sendPushover(this._opt_pushoverMsgLongBreak, this._opt_pushoverSndLongBreak, this._opt_pushoverPriLongBreak);
-            // @PUBLIC_STRIP_BEGIN
-            if (this._opt_enableScripts && this._opt_customLongBreakScript) {
-                let breakSecs = convertMinutesToSeconds(this._opt_longBreakTimeMinutes);
-                let workSecs = convertMinutesToSeconds(this._opt_pomodoroTimeMinutes);
-                this._checkAndExecuteCustomScript(this._opt_customLongBreakScript, breakSecs, workSecs);
-            }
-            // @PUBLIC_STRIP_END
         });
     
         longBreakTimer.connect('timer-stopped', () => {
@@ -1646,121 +1597,27 @@ class PomodoroApplet extends Applet.TextIconApplet {
     }
     
 
-    // @PUBLIC_STRIP_BEGIN
-    _runPomodoroScript(filePath, args = []) {
-        if (filePath.startsWith('file://')) {
-            filePath = filePath.substr(7);
-        }
-
-        const fileExists = GLib.file_test(filePath, GLib.FileTest.EXISTS);
-        const isExecutable = GLib.file_test(filePath, GLib.FileTest.IS_EXECUTABLE);
-
-        if (!fileExists) {
-            global.logError(`Pomodoro custom script file does not exist: ${filePath}`);
-            return false;
-        }
-
-        if (!isExecutable) {
-            global.logError(`Pomodoro custom script does not have executable permissions: ${filePath}`);
-            return false;
-        }
-
-        try {
-            let argv = [filePath].concat(args.map(arg => String(arg)));
-            GLib.spawn_async(null, argv, null, GLib.SpawnFlags.STDOUT_TO_DEV_NULL | GLib.SpawnFlags.STDERR_TO_DEV_NULL, null);
-            return true;
-        } catch (error) {
-            global.logError(`Failed to execute Pomodoro custom script file: ${filePath}, error: ${error.message}`);
-            return false;
-        }
-    }
-
-    _checkAndExecuteCustomScript(filePath, duration, workDuration) {
-        let args = [];
-        if (duration !== undefined && duration !== null) {
-            args.push(duration);
-        }
-        if (workDuration !== undefined && workDuration !== null) {
-            args.push(workDuration);
-        }
-        return this._runPomodoroScript(filePath, args);
-    }
-
-    _runFocusPreflight() {
-        if (!GLib.file_test(POMODORO_FOCUS_START_SCRIPT, GLib.FileTest.IS_EXECUTABLE)) {
-            Main.notify(_("Pomodoro preflight failed"));
-            return false;
-        }
-
-        try {
-            let [ok, stdout, stderr, status] = GLib.spawn_sync(
-                null,
-                [POMODORO_FOCUS_START_SCRIPT, "--preflight"],
-                null,
-                GLib.SpawnFlags.NONE,
-                null
-            );
-
-            if (ok && status === 0) {
-                return true;
-            }
-
-            let message = "";
-            if (stderr && stderr.length > 0) {
-                message = ByteArray.toString(stderr).trim();
-            } else if (stdout && stdout.length > 0) {
-                message = ByteArray.toString(stdout).trim();
-            }
-
-            Main.notify(_("Pomodoro preflight failed") + (message ? ": " + message : ""));
-            return false;
-        } catch (error) {
-            Main.notify(_("Pomodoro preflight failed") + ": " + error.message);
-            return false;
-        }
-    }
-
-    _runFocusStartScript(remainingSeconds) {
-        return this._runPomodoroScript(POMODORO_FOCUS_START_SCRIPT, [remainingSeconds, this._currentFocusTask]);
-    }
-
-    _runFocusStopScript() {
-        return this._runPomodoroScript(POMODORO_FOCUS_STOP_SCRIPT);
-    }
-
-    _startFocusBlockIfNeeded(remainingSeconds) {
+    _startFocusBlockIfNeeded() {
         if (this._focusBlockActive) {
             return false;
         }
-
-        let started = false;
-        if (this._opt_enableScripts) {
-            started = this._runFocusStartScript(remainingSeconds);
-            if (started) { this._focusBlockMode = 'script'; }
-        } else if (this._opt_enableBlocking) {
-            started = this._applyBuiltinBlock();
-            if (started) { this._focusBlockMode = 'builtin'; }
+        if (!this._opt_enableBlocking) {
+            return false;
         }
-        if (started) {
+        if (this._applyBuiltinBlock()) {
             this._focusBlockActive = true;
+            return true;
         }
-        return started;
+        return false;
     }
 
     _stopFocusBlockIfNeeded() {
         if (!this._focusBlockActive) {
             return false;
         }
-
         this._focusBlockActive = false;
-        let mode = this._focusBlockMode;
-        this._focusBlockMode = '';
-        if (mode === 'builtin') {
-            return this._removeBuiltinBlock();
-        }
-        return this._runFocusStopScript();
+        return this._removeBuiltinBlock();
     }
-    // @PUBLIC_STRIP_END
 
     _pauseTimerFromMenu() {
         let timer = this._timerQueue.getCurrentTimer();
@@ -1955,14 +1812,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
     }
 
     _startTimerAfterFocusTask(task) {
-        // @PUBLIC_STRIP_BEGIN
-        if (this._opt_enableScripts && !this._runFocusPreflight()) {
-            this._timerQueue.preventStart(true);
-            this._appletMenu.toggleTimerState(false);
-            return;
-        }
-        // @PUBLIC_STRIP_END
-
         this._setCurrentFocusTask(task);
         this._applyTaskPreset(this._currentTask());
         this._timerQueue.preventStart(false);

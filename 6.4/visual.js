@@ -15,11 +15,6 @@ if (typeof require !== 'undefined') {
     C = imports.ui.appletManager.applets[UUID].constants;
 }
 const {
-    POMODORO_FOCUS_START_SCRIPT,
-    POMODORO_FOCUS_STOP_SCRIPT,
-    POMODORO_CONFIG_FILE,
-    POMODORO_FOCUS_TASKS_FILE,
-    POMODORO_DOMAINS_FILE,
     POMODORO_STATE_FILE,
     POMODORO_STATE_MAX_AGE_MS,
     POMODORO_STATS_FILE,

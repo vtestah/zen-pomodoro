@@ -1,16 +1,11 @@
 const GLib = imports.gi.GLib;
 
-// @PUBLIC_STRIP_BEGIN
-var POMODORO_FOCUS_START_SCRIPT = GLib.build_filenamev([GLib.get_home_dir(), ".local", "bin", "pomodoro", "focus-start.sh"]);
-var POMODORO_FOCUS_STOP_SCRIPT = GLib.build_filenamev([GLib.get_home_dir(), ".local", "bin", "pomodoro", "focus-stop.sh"]);
-var POMODORO_CONFIG_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "config.env"]);
-var POMODORO_FOCUS_TASKS_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "tasks.txt"]);
-var POMODORO_DOMAINS_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "domains.txt"]);
-// @PUBLIC_STRIP_END
-var POMODORO_STATE_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "applet-state.json"]);
+// Persistent state lives under the XDG state dir (created on first write).
+var POMODORO_STATE_DIR = GLib.build_filenamev([GLib.get_user_state_dir(), "zen-pomodoro"]);
+var POMODORO_STATE_FILE = GLib.build_filenamev([POMODORO_STATE_DIR, "applet-state.json"]);
 var POMODORO_STATE_MAX_AGE_MS = 3 * 60 * 60 * 1000;
-var POMODORO_STATS_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "daily-stats.json"]);
-var POMODORO_TASKS_DATA_FILE = GLib.build_filenamev([GLib.get_home_dir(), ".config", "pomodoro", "tasks-data.json"]);
+var POMODORO_STATS_FILE = GLib.build_filenamev([POMODORO_STATE_DIR, "daily-stats.json"]);
+var POMODORO_TASKS_DATA_FILE = GLib.build_filenamev([POMODORO_STATE_DIR, "tasks-data.json"]);
 var POMODORO_HOSTS_HELPER_INSTALLED = "/usr/local/sbin/zen-pomodoro-hosts-helper";
 var POMODORO_FOCUS_FRAME_BOTTOM_SAFE = "border-bottom: 0px;";
 var POMODORO_FOCUS_FRAME_NORMAL_STYLE = `border: 2px solid rgba(214, 152, 48, 0.72); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: transparent;`;

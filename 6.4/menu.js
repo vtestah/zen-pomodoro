@@ -172,18 +172,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         return { item: item, value: value };
     }
 
-    // @PUBLIC_STRIP_BEGIN
     _makeCompactInfoRow(presetLabel, sitesBlocked) {
-    // @PUBLIC_STRIP_ELSE
-    // _makeCompactInfoRow(presetLabel) {
-    // @PUBLIC_STRIP_END
         let item = new PopupMenu.PopupBaseMenuItem({ reactive: false });
         let label = new St.Label({
-            // @PUBLIC_STRIP_BEGIN
             text: `${presetLabel}`,
-            // @PUBLIC_STRIP_ELSE
-            // text: `${presetLabel}`,
-            // @PUBLIC_STRIP_END
             style_class: "pomodoro-compact"
         });
         item.addActor(label);
@@ -473,11 +465,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._ambientItem.connect('toggled', (item, state) => this.emit('set-ambient', state));
         this.addMenuItem(this._ambientItem);
 
-        // @PUBLIC_STRIP_BEGIN
         let sitesRow = this._makeInfoRow(_("Site blocking"), _("off"));
         this._sitesLabel = sitesRow.value;
         this.addMenuItem(sitesRow.item);
-        // @PUBLIC_STRIP_END
 
         // Statistics — one compact clickable row that opens the dashboard.
         this._statTodayItem = new PopupMenu.PopupBaseMenuItem();
@@ -719,18 +709,14 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             }
         }
 
-        // @PUBLIC_STRIP_BEGIN
         let siteN = (typeof runtime.blockedSitesCount === "number") ? runtime.blockedSitesCount : 0;
         let sitesText = (siteN <= 0) ? _("off")
             : (runtime.focusBlockActive ? _("blocking %d").format(siteN) : _("%d in list").format(siteN));
-        // @PUBLIC_STRIP_END
 
         // Idle layout: separate Sites and Preset info rows.
-        // @PUBLIC_STRIP_BEGIN
         if (this._sitesLabel) {
             this._sitesLabel.set_text(sitesText);
         }
-        // @PUBLIC_STRIP_END
         if (this._presetSummaryLabel) {
             this._presetSummaryLabel.set_text(activePreset);
         }
@@ -740,11 +726,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         // Active layout: single compact "preset · status" row.
         if (this._compactInfoLabel) {
-            // @PUBLIC_STRIP_BEGIN
             this._compactInfoLabel.set_text(`${activePreset} \u00B7 ${sitesText}`);
-            // @PUBLIC_STRIP_ELSE
-            // this._compactInfoLabel.set_text(`${activePreset}`);
-            // @PUBLIC_STRIP_END
         }
 
 
@@ -1002,18 +984,12 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (this._presetSubmenu && this._presetSubmenu.label && preset.activePreset) {
             this._presetSubmenu.label.set_text(_("Preset") + ": " + preset.activePreset);
         }
-        // @PUBLIC_STRIP_BEGIN
         if (this._compactInfoLabel && preset.activePreset && this._lastRuntimeState) {
             let siteN = (typeof this._lastRuntimeState.blockedSitesCount === "number") ? this._lastRuntimeState.blockedSitesCount : 0;
             let t = (siteN <= 0) ? _("off")
                 : (this._lastRuntimeState.focusBlockActive ? _("blocking %d").format(siteN) : _("%d in list").format(siteN));
             this._compactInfoLabel.set_text(`${preset.activePreset} \u00B7 ${t}`);
         }
-        // @PUBLIC_STRIP_ELSE
-        // if (this._compactInfoLabel && preset.activePreset) {
-        //     this._compactInfoLabel.set_text(`${preset.activePreset}`);
-        // }
-        // @PUBLIC_STRIP_END
         let active = preset.activePreset || "";
         for (let entry of (this._presetItems || [])) {
             let on = entry.preset.name === active;

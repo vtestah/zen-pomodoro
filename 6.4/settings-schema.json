@@ -65,8 +65,7 @@
             "title": "Advanced",
             "sections": [
                 "sec_tools",
-                "sec_blocking",
-                "sec_scripts"
+                "sec_blocking"
             ]
         },
         "sec_durations": {
@@ -265,15 +264,6 @@
                 "block_domains",
                 "setup_passwordless_button",
                 "remove_passwordless_button"
-            ]
-        },
-        "sec_scripts": {
-            "type": "section",
-            "title": "Scripts",
-            "keys": [
-                "enable_scripts",
-                "custom_short_break_script",
-                "custom_long_break_script"
             ]
         },
         "sec_shortcuts": {
@@ -956,28 +946,6 @@
         "description": "Listen",
         "callback": "_previewChime",
         "tooltip": "Play the selected sound now."
-    },
-    "enable_scripts": {
-        "type": "switch",
-        "description": "Enable scripts",
-        "default": false,
-        "tooltip": "Run your personal ~/.local/bin/pomodoro scripts. Off = built-in features only."
-    },
-    "custom_short_break_script": {
-        "type": "filechooser",
-        "default": "",
-        "description": "Execute this custom script when a short break starts",
-        "select-dir": false,
-        "dependency": "enable_scripts",
-        "tooltip": "Script to run when a short break starts."
-    },
-    "custom_long_break_script": {
-        "type": "filechooser",
-        "default": "",
-        "description": "Execute this custom script when a long break starts",
-        "select-dir": false,
-        "dependency": "enable_scripts",
-        "tooltip": "Script to run when a long break starts."
     },
     "hdr_tick": {
         "type": "header",

@@ -5,11 +5,12 @@ cues instead of anxious alarms — a soft glow frame that traces your progress, 
 quiet start ritual, a calm ending, an optional full‑screen Zen mode and a
 breathing guide on breaks.
 
-This repository is the **single source of truth** and the **personal build**. It
-contains everything in the public applet **plus** personal extras that never ship
-to Cinnamon Spices: site blocking (`/etc/hosts` via an admin prompt), Pushover
-push notifications, and optional custom scripts under `~/.local/bin/pomodoro/`.
-The public package is a **sanitized export** built on demand — see
+This repository is the **single source of truth**, and the code in `6.4/` is the
+public applet exactly as published — there is no personal/public split. Optional
+**site blocking** (edits a clearly‑marked section of `/etc/hosts` via a
+polkit/pkexec prompt) and **Pushover** push notifications (you supply your own
+keys) are regular, off‑by‑default features. `build-public.sh` simply packages
+this source for Cinnamon Spices — see
 [Publishing to Cinnamon Spices](#publishing-to-cinnamon-spices).
 
 Based on **Pomodoro Timer** by *gfreeau* (GPL).
@@ -30,6 +31,10 @@ Based on **Pomodoro Timer** by *gfreeau* (GPL).
   idle auto‑pause, *Focus until…*, optional **strict focus** mode.
 - **Sounds** — ticking, alerts, interval chime, ambient brown noise;
   Do‑Not‑Disturb while focusing.
+- **Optional distraction blocking** — block sites you choose during focus by
+  editing `/etc/hosts` with your permission (polkit/pkexec); off by default.
+- **Optional push notifications** — phase changes on your phone via Pushover,
+  using your own user key and app token.
 - **Quick control** — panel mouse wheel (start/pause or adjust focus length),
   middle‑click to skip, start‑on‑click, keyboard shortcuts.
 - **Appearance** — theme presets + custom accent colours, frame style, glow
@@ -39,12 +44,12 @@ Based on **Pomodoro Timer** by *gfreeau* (GPL).
 ## Layout
 - `6.4/` — applet code for Cinnamon 6.x: `applet.js`, `menu.js`, `features.js`,
   `visual.js`, `timer.js`, `sound.js`, `soundfx.js`, `dialogs.js`,
-  `constants.js`, `settings-schema.json`, `stylesheet.css`. Personal‑only regions
-  are wrapped in `// @PUBLIC_STRIP_BEGIN … @PUBLIC_STRIP_END` markers.
+  `constants.js`, `settings-schema.json`, `stylesheet.css`, plus the root‑run
+  blocking helpers `hosts-helper.py` and `setup-passwordless.py`.
 - `po/` — translation sources (`.po`, `.pot`). Compiled `.mo` files go to
   `~/.local/share/locale/…` and are **not** committed.
 - `metadata.json` — the single source of truth for the version.
-- `build-public.sh` — builds the sanitized Spices package into `dist/`.
+- `build-public.sh` — packages this source into the Spices layout under `dist/`.
 - `release.sh`, `cliff.toml`, `CHANGELOG.md`, `RELEASING.md` — release tooling.
 - `.githooks/commit-msg` — Conventional Commits check.
 - `*.svg`, `*.png`, `sounds/` — assets; `screenshot.png` — Spices store image.
@@ -83,12 +88,12 @@ regenerate the `.pot` (`cinnamon-xlet-makepot` run from `6.4/`), `msgmerge` the
 others are machine translations — native review welcome.
 
 ## Publishing to Cinnamon Spices
-The public applet must not contain the personal bits. `./build-public.sh`
-produces a sanitized package in `dist/zen-pomodoro@vtestah/`: it strips the
-`@PUBLIC_STRIP` regions (site blocking / scripts / personal paths), moves state
-to `GLib.get_user_state_dir()`, writes a clean `metadata.json` (no
-`last-edited` / `icon` / `dangerous`), ships only `.po`, and lays the package out
-as `UUID/files/UUID/`. A validator fails the build if any private remnant leaks.
+`./build-public.sh` packages this source into `dist/zen-pomodoro@vtestah/`: it
+lays the package out as `UUID/files/UUID/`, writes a clean `metadata.json` (no
+`last-edited` / `icon` / `dangerous`), ships only `.po` (no compiled `.mo`), and
+includes the blocking helpers. A validator fails the build if a personal path,
+`sudo`, a leftover `@PUBLIC_STRIP` marker, or the removed custom‑scripts feature
+ever reappears.
 
 That export goes into a fork of `linuxmint/cinnamon-spices-applets` as a PR
 titled `Zen Pomodoro vX.Y.Z: <summary>` (their convention; PRs are squash‑merged).

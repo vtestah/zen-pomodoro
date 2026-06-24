@@ -34,11 +34,6 @@ if (typeof require !== 'undefined') {
     DialogsModule = AppletDir.dialogs;
 }
 const {
-    POMODORO_FOCUS_START_SCRIPT,
-    POMODORO_FOCUS_STOP_SCRIPT,
-    POMODORO_CONFIG_FILE,
-    POMODORO_FOCUS_TASKS_FILE,
-    POMODORO_DOMAINS_FILE,
     POMODORO_STATE_FILE,
     POMODORO_STATE_MAX_AGE_MS,
     POMODORO_STATS_FILE,
@@ -1811,7 +1806,6 @@ function install(proto) {
         return domains;
     };
 
-    // @PUBLIC_STRIP_BEGIN
     // Path of the root-owned helper that "Set up passwordless blocking" installs
     // (with a polkit policy so pkexec runs it without a prompt). Used for
     // automatic blocking during focus.
@@ -1855,7 +1849,6 @@ function install(proto) {
             return false;
         }
     };
-    // @PUBLIC_STRIP_END
 
     // Block/unblock via a bundled helper run with pkexec (interactive admin
     // prompt). The helper only manages its own marked section of /etc/hosts.

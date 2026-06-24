@@ -868,7 +868,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._tasksSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         for (let task of list) {
             let t = task;
-            let item = new PopupMenu.PopupBaseMenuItem();
+            let item = new PopupMenu.PopupBaseMenuItem({ reactive: true, activate: false, hover: true });
             let row = new St.BoxLayout({ vertical: false, x_expand: true });
             let mark = new St.Label({ text: t.completed ? "✓" : (t.id === this._tasksCurrentId ? "●" : "  ") });
             if (t.completed) {
@@ -885,7 +885,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 style_class: "pomodoro-task-btn", can_focus: false,
                 child: new St.Icon({ icon_name: "document-edit-symbolic", icon_size: 14 })
             });
-            editBtn.connect('button-release-event', (a, ev) => { if (ev.get_button() === 1) { this.emit('task-edit', t.id); } return true; });
+            editBtn.connect('button-release-event', (a, ev) => { if (ev.get_button() === 1) { this.close(); GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('task-edit', t.id); return GLib.SOURCE_REMOVE; }); } return true; });
             new Tooltips.Tooltip(editBtn, _("Edit task"));
             row.add_child(editBtn);
             let doneBtn = new St.Button({
@@ -903,7 +903,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             new Tooltips.Tooltip(delBtn, _("Delete task"));
             row.add_child(delBtn);
             item.addActor(row, { expand: true, span: -1 });
-            item.connect('activate', () => this.emit('select-task', t.id));
+            item.actor.connect('button-release-event', (a, ev) => { if (ev.get_button() === 1) { this.emit('select-task', t.id); } return true; });
             this._tasksSubmenu.menu.addMenuItem(item);
             this._taskItems.push({ item: item, task: t });
         }

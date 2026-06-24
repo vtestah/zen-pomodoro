@@ -624,6 +624,64 @@ function install(proto) {
         dialog.open();
     };
 
+    // Add or edit a timer preset (name + focus / short / long / pomodori),
+    // managed straight from the menu's Preset submenu.
+    proto._showPresetDialog = function(existing, index) {
+        let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
+        let content = new Dialog.MessageDialogContent({
+            title: existing ? _("Edit preset") : _("New preset"),
+            description: _("Name it and set its rhythm.")
+        });
+        let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true, hint_text: _("e.g. Deep work") });
+        CinnamonEntry.addContextMenu(entry);
+        if (existing && existing.name) { entry.set_text(existing.name); }
+        content.add_child(entry);
+
+        let vals = {
+            pomodoro: existing ? (parseInt(existing.pomodoro) || 25) : 25,
+            short_break: existing ? (parseInt(existing.short_break) || 5) : 5,
+            long_break: existing ? (parseInt(existing.long_break) || 15) : 15,
+            pomodori: existing ? (parseInt(existing.pomodori) || 4) : 4
+        };
+        let minFmt = (v) => _("%d min").format(v);
+        let numFmt = (v) => "" + v;
+        let mkStepper = (labelText, key, min, max, step, fmt) => {
+            let row = new St.BoxLayout({ vertical: false, style: 'spacing: 8px; padding-top: 6px;' });
+            row.add(new St.Label({ text: labelText, style: 'min-width: 150px; padding-top: 4px;' }));
+            let minus = new St.Button({ label: "\u2212", style_class: 'button', style: 'padding: 2px 12px;' });
+            let valLab = new St.Label({ text: fmt(vals[key]), style: 'min-width: 64px; padding-top: 4px;' });
+            let plus = new St.Button({ label: "+", style_class: 'button', style: 'padding: 2px 12px;' });
+            minus.connect('clicked', () => { vals[key] = Math.max(min, vals[key] - step); valLab.set_text(fmt(vals[key])); });
+            plus.connect('clicked', () => { vals[key] = Math.min(max, vals[key] + step); valLab.set_text(fmt(vals[key])); });
+            row.add(minus); row.add(valLab); row.add(plus);
+            content.add_child(row);
+        };
+        mkStepper(_("Focus (min)"), 'pomodoro', 1, 180, 5, minFmt);
+        mkStepper(_("Short break (min)"), 'short_break', 1, 120, 5, minFmt);
+        mkStepper(_("Long break (min)"), 'long_break', 1, 180, 5, minFmt);
+        mkStepper(_("Pomodori"), 'pomodori', 1, 16, 1, numFmt);
+
+        dialog.contentLayout.add(content);
+        dialog.setInitialKeyFocus(entry.clutter_text);
+        let confirm = () => {
+            let name = entry.clutter_text.get_text().trim();
+            dialog.close();
+            if (!name) { return; }
+            if (existing) { this._editPreset(index, name, vals.pomodoro, vals.short_break, vals.long_break, vals.pomodori); }
+            else { this._addPreset(name, vals.pomodoro, vals.short_break, vals.long_break, vals.pomodori); }
+        };
+        entry.clutter_text.connect('key-press-event', (actor, ev) => {
+            let s = ev.get_key_symbol();
+            if (s === Clutter.KEY_Return || s === Clutter.KEY_KP_Enter) { confirm(); return true; }
+            return false;
+        });
+        dialog.setButtons([
+            { label: _("Cancel"), key: Clutter.KEY_Escape, action: () => dialog.close() },
+            { label: existing ? _("Save") : _("Add"), default: true, action: confirm }
+        ]);
+        dialog.open();
+    };
+
     // Recommendation engine for the smart onboarding wizard. Pure function:
     // takes the user's answers and derives a tailored set of settings plus a
     // human-readable list of reasons. No side effects — the wizard applies the

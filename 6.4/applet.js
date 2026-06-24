@@ -1840,6 +1840,16 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 this._saveCurrentTaskPreset(preset);
             }
         });
+        menu.connect('preset-add', () => {
+            this._showPresetDialog(null, -1);
+        });
+        menu.connect('preset-edit', (m, index) => {
+            let list = this._presetList();
+            if (list[index]) { this._showPresetDialog(list[index], index); }
+        });
+        menu.connect('preset-delete', (m, index) => {
+            this._deletePreset(index);
+        });
 
         menu.connect('set-ambient', (m, state) => {
             try { this._settingsProvider.setValue('focus_ambient_sound', !!state); } catch (e) {}
@@ -1982,6 +1992,40 @@ class PomodoroApplet extends Applet.TextIconApplet {
             Main.notify(_("Pomodoro preset %s applied").format(this._getActivePresetLabel()));
         }
         return true;
+    }
+
+    _normPreset(name, p, s, l, n) {
+        return {
+            name: (name || "").toString().slice(0, 80) || _("Preset"),
+            pomodoro: Math.max(1, Math.min(180, parseInt(p) || 25)),
+            short_break: Math.max(1, Math.min(120, parseInt(s) || 5)),
+            long_break: Math.max(1, Math.min(180, parseInt(l) || 15)),
+            pomodori: Math.max(1, Math.min(16, parseInt(n) || 4))
+        };
+    }
+
+    _addPreset(name, p, s, l, n) {
+        let list = this._presetList();
+        list.push(this._normPreset(name, p, s, l, n));
+        this._settingsProvider.setValue("custom_presets", list);
+        this._updatePresetIndicator();
+    }
+
+    _editPreset(index, name, p, s, l, n) {
+        let list = this._presetList();
+        if (index < 0 || index >= list.length) { return; }
+        list[index] = this._normPreset(name, p, s, l, n);
+        this._settingsProvider.setValue("custom_presets", list);
+        this._updatePresetIndicator();
+    }
+
+    _deletePreset(index) {
+        let list = this._presetList();
+        if (index < 0 || index >= list.length) { return; }
+        if (list.length <= 1) { Main.notify(_("Keep at least one preset")); return; }
+        list.splice(index, 1);
+        this._settingsProvider.setValue("custom_presets", list);
+        this._updatePresetIndicator();
     }
 
     // Extend the current break by N minutes (from the break notification).

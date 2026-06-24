@@ -932,22 +932,59 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (!this._presetSubmenu) {
             return;
         }
+        // Like the task list: park focus on the header before rebuilding so
+        // destroying the focused row doesn't close the menu.
+        if (this._presetSubmenu.menu.isOpen && this._presetSubmenu.actor) {
+            this._presetSubmenu.actor.grab_key_focus();
+        }
         this._presetSubmenu.menu.removeAll();
         this._presetItems = [];
+        this._presetEditPending = false;
         let active = this._presetState ? this._presetState.activePreset : "";
         let list = (this._presets && this._presets.length) ? this._presets : [
             { name: "Classic", pomodoro: 25, short_break: 5, long_break: 15, pomodori: 4 },
             { name: "Long focus", pomodoro: 50, short_break: 10, long_break: 20, pomodori: 4 }
         ];
+        let add = new PopupMenu.PopupMenuItem(_("Add preset…"));
+        add.connect('activate', () => this.emit('preset-add'));
+        this._presetSubmenu.menu.addMenuItem(add);
+        this._presetSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         for (let i = 0; i < list.length; i++) {
             let preset = list[i];
-            let item = new PopupMenu.PopupMenuItem(this._presetItemLabel(preset));
+            let idx = i;
+            let item = new PopupMenu.PopupBaseMenuItem();
+            let row = new St.BoxLayout({ vertical: false, x_expand: true });
+            let mark = new St.Label({ text: (preset.name === active) ? "● " : "  " });
+            if (preset.name === active) { mark.set_style("color: rgb(235, 175, 75);"); }
+            row.add_child(mark);
+            let label = new St.Label({ x_expand: true, text: this._presetItemLabel(preset) });
+            row.add_child(label);
+            let editBtn = new St.Button({
+                style_class: "pomodoro-task-btn", can_focus: false,
+                child: new St.Icon({ icon_name: "document-edit-symbolic", icon_size: 14 })
+            });
+            editBtn.connect('clicked', () => {
+                this._presetEditPending = true;
+                this.emit('preset-edit', idx);
+                GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this._presetEditPending = false; return GLib.SOURCE_REMOVE; });
+                return true;
+            });
+            new Tooltips.Tooltip(editBtn, _("Edit preset"));
+            row.add_child(editBtn);
+            let delBtn = new St.Button({
+                style_class: "pomodoro-task-btn", can_focus: false,
+                child: new St.Icon({ icon_name: "edit-delete-symbolic", icon_size: 14 })
+            });
+            delBtn.connect('button-release-event', (a, ev) => { if (ev.get_button() === 1) { GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('preset-delete', idx); return GLib.SOURCE_REMOVE; }); } return true; });
+            new Tooltips.Tooltip(delBtn, _("Delete preset"));
+            row.add_child(delBtn);
+            item.addActor(row, { expand: true, span: -1 });
             item.connect('activate', () => {
+                if (this._presetEditPending) { this._presetEditPending = false; return; }
                 this.emit('apply-preset', preset);
             });
-            item.setOrnament(PopupMenu.OrnamentType.CHECK, preset.name === active);
             this._presetSubmenu.menu.addMenuItem(item);
-            this._presetItems.push({ item: item, preset: preset });
+            this._presetItems.push({ item: item, preset: preset, mark: mark });
         }
     }
 
@@ -974,7 +1011,11 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         // @PUBLIC_STRIP_END
         let active = preset.activePreset || "";
         for (let entry of (this._presetItems || [])) {
-            entry.item.setOrnament(PopupMenu.OrnamentType.CHECK, entry.preset.name === active);
+            let on = entry.preset.name === active;
+            if (entry.mark) {
+                entry.mark.set_text(on ? "● " : "  ");
+                entry.mark.set_style(on ? "color: rgb(235, 175, 75);" : "");
+            }
         }
     }
 

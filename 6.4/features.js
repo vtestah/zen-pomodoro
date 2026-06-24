@@ -500,9 +500,9 @@ function install(proto) {
             for (let k = 0; k < estBtns.length; k++) {
                 estBtns[k].set_style('padding: 2px 8px;' + ((estVals[k] === est.value) ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
             }
-            plusBtn.set_label(est.value > 6 ? (est.value + " \ud83c\udf45") : "+");
             plusBtn.set_style('padding: 2px 8px;' + ((est.value > 6) ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
-            estReadout.set_text(est.value === 0 ? _("No estimate — just counts your 🍅") : ("\u2248 " + fmtMins(est.value * focusLen)));
+            let prefix = (est.value > 6) ? (est.value + " \ud83c\udf45 \u00b7 ") : "";
+            estReadout.set_text(est.value === 0 ? _("No estimate — just counts your 🍅") : (prefix + "\u2248 " + fmtMins(est.value * focusLen)));
         };
         estVals.forEach((v) => {
             let b = new St.Button({ label: (v === 0 ? "\u2014" : (v + " \ud83c\udf45")), style_class: 'button' });

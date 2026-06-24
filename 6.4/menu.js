@@ -435,6 +435,22 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._tasksSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Task list"));
         this.addMenuItem(this._tasksSubmenu);
         this._populateTasksSubmenu();
+        // Cap + scroll the task list instead of growing toward full screen.
+        // open() resets the scrollbar policy from the top menu's max-height, so
+        // re-apply it (deferred, after open settles) when the list is long.
+        if (this._tasksSubmenu.menu && this._tasksSubmenu.menu.actor) {
+            this._tasksSubmenu.menu.actor.add_style_class_name("pomodoro-tasks-scroll");
+            this._tasksSubmenu.menu.connect('open-state-changed', (menu, isOpen) => {
+                if (!isOpen || !menu.actor) { return; }
+                GLib.idle_add(GLib.PRIORITY_DEFAULT_IDLE, () => {
+                    if (menu.actor) {
+                        let adj = menu.actor.get_vscroll_bar().get_adjustment();
+                        menu.actor.vscrollbar_policy = (adj.upper > 322) ? St.PolicyType.AUTOMATIC : St.PolicyType.NEVER;
+                    }
+                    return GLib.SOURCE_REMOVE;
+                });
+            });
+        }
 
         // Session setup — length + preset together.
         this.addMenuItem(this._makeSectionLabel(_("Session")));
@@ -869,21 +885,21 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 style_class: "pomodoro-task-btn", can_focus: false,
                 child: new St.Icon({ icon_name: "document-edit-symbolic", icon_size: 14 })
             });
-            editBtn.connect('clicked', () => { this.emit('task-edit', t.id); return true; });
+            editBtn.connect('button-release-event', (a, ev) => { if (ev.get_button() === 1) { this.emit('task-edit', t.id); } return true; });
             new Tooltips.Tooltip(editBtn, _("Edit task"));
             row.add_child(editBtn);
             let doneBtn = new St.Button({
                 style_class: "pomodoro-task-btn", can_focus: false,
                 child: new St.Icon({ icon_name: t.completed ? "edit-undo-symbolic" : "object-select-symbolic", icon_size: 14 })
             });
-            doneBtn.connect('clicked', () => { this.emit('task-complete', t.id); return true; });
+            doneBtn.connect('button-release-event', (a, ev) => { if (ev.get_button() === 1) { this.emit('task-complete', t.id); } return true; });
             new Tooltips.Tooltip(doneBtn, t.completed ? _("Reopen task") : _("Mark done"));
             row.add_child(doneBtn);
             let delBtn = new St.Button({
                 style_class: "pomodoro-task-btn", can_focus: false,
                 child: new St.Icon({ icon_name: "edit-delete-symbolic", icon_size: 14 })
             });
-            delBtn.connect('clicked', () => { this.emit('task-delete', t.id); return true; });
+            delBtn.connect('button-release-event', (a, ev) => { if (ev.get_button() === 1) { this.emit('task-delete', t.id); } return true; });
             new Tooltips.Tooltip(delBtn, _("Delete task"));
             row.add_child(delBtn);
             item.addActor(row, { expand: true, span: -1 });

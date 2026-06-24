@@ -1,4 +1,5 @@
 const St = imports.gi.St;
+const Clutter = imports.gi.Clutter;
 const Applet = imports.ui.applet;
 const PopupMenu = imports.ui.popupMenu;
 const GLib = imports.gi.GLib;
@@ -247,8 +248,15 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         });
         this._timeLeftLabel = new St.Label({
             text: "--:--",
-            style_class: "pomodoro-time"
+            style_class: "pomodoro-time",
+            x_align: Clutter.ActorAlign.CENTER,
+            y_align: Clutter.ActorAlign.CENTER
         });
+        this._menuRing = new St.DrawingArea({ width: 138, height: 138 });
+        this._menuRing.connect('repaint', (area) => { this._repaintMenuRing(area); });
+        this._ringBox = new St.Widget({ layout_manager: new Clutter.BinLayout(), x_align: Clutter.ActorAlign.CENTER });
+        this._ringBox.add_actor(this._menuRing);
+        this._ringBox.add_actor(this._timeLeftLabel);
 
         this._progressBar = new St.DrawingArea({
             x_expand: true,
@@ -280,8 +288,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         });
 
         statusBox.add_actor(this._stateBadgeLabel);
-        statusBox.add_actor(this._timeLeftLabel);
-        statusBox.add_actor(this._progressBar);
+        statusBox.add_actor(this._ringBox);
         statusBox.add_actor(this._progressLabel);
         statusBox.add_actor(this._taskLabel);
         statusBox.add_actor(this._dailyLabel);
@@ -307,6 +314,34 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                     cr.setSourceRGBA(c[0], c[1], c[2], 0.95);
                     cr.rectangle(0, 0, fw, h);
                     cr.fill();
+                }
+            }
+        } finally {
+            cr.$dispose();
+        }
+    }
+
+    _repaintMenuRing(area) {
+        let cr = area.get_context();
+        try {
+            let [w, h] = area.get_surface_size();
+            let cx = w / 2, cy = h / 2;
+            let radius = Math.min(w, h) / 2 - 6;
+            if (radius <= 1) { return; }
+            let c = this._progressBarColor || [0.84, 0.60, 0.19];
+            cr.setLineWidth(5);
+            // Faint full track.
+            cr.setSourceRGBA(c[0], c[1], c[2], 0.16);
+            cr.arc(cx, cy, radius, 0, 2 * Math.PI);
+            cr.stroke();
+            // Progress arc — clockwise from 12 o'clock.
+            if (this._progressBarActive) {
+                let frac = Math.max(0, Math.min(100, this._progressBarPercent)) / 100;
+                if (frac > 0) {
+                    cr.setSourceRGBA(c[0], c[1], c[2], 0.95);
+                    let start = -Math.PI / 2;
+                    cr.arc(cx, cy, radius, start, start + 2 * Math.PI * frac);
+                    cr.stroke();
                 }
             }
         } finally {
@@ -350,6 +385,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 this._progressBar.hide();
             }
             this._progressBar.queue_repaint();
+        }
+        if (this._menuRing) {
+            this._menuRing.queue_repaint();
         }
     }
 

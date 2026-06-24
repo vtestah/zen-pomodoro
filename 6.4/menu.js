@@ -844,6 +844,11 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (!this._tasksSubmenu) {
             return;
         }
+        // Destroying the focused row would move key focus out of the menu and
+        // close it. Park focus on the stable submenu header first.
+        if (this._tasksSubmenu.menu.isOpen && this._tasksSubmenu.actor) {
+            this._tasksSubmenu.actor.grab_key_focus();
+        }
         this._tasksSubmenu.menu.removeAll();
         this._taskItems = [];
         let add = new PopupMenu.PopupMenuItem(_("Add task…"));
@@ -868,7 +873,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._tasksSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         for (let task of list) {
             let t = task;
-            let item = new PopupMenu.PopupBaseMenuItem({ reactive: true, activate: false, hover: true });
+            let item = new PopupMenu.PopupBaseMenuItem();
             let row = new St.BoxLayout({ vertical: false, x_expand: true });
             let mark = new St.Label({ text: t.completed ? "✓" : (t.id === this._tasksCurrentId ? "●" : "  ") });
             if (t.completed) {
@@ -892,18 +897,18 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 style_class: "pomodoro-task-btn", can_focus: false,
                 child: new St.Icon({ icon_name: t.completed ? "edit-undo-symbolic" : "object-select-symbolic", icon_size: 14 })
             });
-            doneBtn.connect('button-release-event', (a, ev) => { if (ev.get_button() === 1) { this.emit('task-complete', t.id); } return true; });
+            doneBtn.connect('button-release-event', (a, ev) => { if (ev.get_button() === 1) { GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('task-complete', t.id); return GLib.SOURCE_REMOVE; }); } return true; });
             new Tooltips.Tooltip(doneBtn, t.completed ? _("Reopen task") : _("Mark done"));
             row.add_child(doneBtn);
             let delBtn = new St.Button({
                 style_class: "pomodoro-task-btn", can_focus: false,
                 child: new St.Icon({ icon_name: "edit-delete-symbolic", icon_size: 14 })
             });
-            delBtn.connect('button-release-event', (a, ev) => { if (ev.get_button() === 1) { this.emit('task-delete', t.id); } return true; });
+            delBtn.connect('button-release-event', (a, ev) => { if (ev.get_button() === 1) { GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('task-delete', t.id); return GLib.SOURCE_REMOVE; }); } return true; });
             new Tooltips.Tooltip(delBtn, _("Delete task"));
             row.add_child(delBtn);
             item.addActor(row, { expand: true, span: -1 });
-            item.actor.connect('button-release-event', (a, ev) => { if (ev.get_button() === 1) { this.emit('select-task', t.id); } return true; });
+            item.connect('activate', () => this.emit('select-task', t.id));
             this._tasksSubmenu.menu.addMenuItem(item);
             this._taskItems.push({ item: item, task: t });
         }

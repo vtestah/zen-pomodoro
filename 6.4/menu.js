@@ -890,7 +890,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 style_class: "pomodoro-task-btn", can_focus: false,
                 child: new St.Icon({ icon_name: "document-edit-symbolic", icon_size: 14 })
             });
-            editBtn.connect('button-release-event', (a, ev) => { if (ev.get_button() === 1) { this.close(); GLib.timeout_add(GLib.PRIORITY_DEFAULT, 350, () => { this.emit('task-edit', t.id); return GLib.SOURCE_REMOVE; }); } return true; });
+            editBtn.connect('clicked', () => { this.emit('task-edit', t.id); return true; });
             new Tooltips.Tooltip(editBtn, _("Edit task"));
             row.add_child(editBtn);
             let doneBtn = new St.Button({

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 09:57+0700\n"
+"POT-Creation-Date: 2026-06-24 10:15+0700\n"
 "PO-Revision-Date: 2024-07-13 03:43+0200\n"
 "Last-Translator: carlos <c.carrizosa@gmx.com>\n"
 "Language-Team: ca\n"
@@ -55,7 +55,7 @@ msgstr "DESCANS EN PAUSA"
 msgid "BREAK OVER"
 msgstr "DESCANS ACABAT"
 
-#: applet.js:1008 applet.js:1068 menu.js:245 menu.js:642
+#: applet.js:1008 applet.js:1068 menu.js:245 menu.js:632
 msgid "Ready to focus"
 msgstr "A punt per concentrar-te"
 
@@ -613,7 +613,7 @@ msgstr "Aplica"
 msgid "Apply & start"
 msgstr "Aplica i comença"
 
-#: features.js:767 menu.js:329 menu.js:899 menu.js:905
+#: features.js:767 menu.js:329 menu.js:894 menu.js:900
 #, javascript-format
 msgid "%d min"
 msgstr "%d min"
@@ -792,7 +792,7 @@ msgstr "Més"
 msgid "By task"
 msgstr "Per tasca"
 
-#: features.js:1133 menu.js:638
+#: features.js:1133 menu.js:628
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Fites: %s"
@@ -891,7 +891,7 @@ msgstr "Error: menú no disponible"
 msgid "Ready to start"
 msgstr "A punt per començar"
 
-#: menu.js:270 menu.js:703
+#: menu.js:270 menu.js:698
 msgid "Task will be selected on start"
 msgstr "La tasca se seleccionarà en començar"
 
@@ -900,7 +900,7 @@ msgstr "La tasca se seleccionarà en començar"
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:377 menu.js:783
+#: menu.js:377 menu.js:778
 msgid "Start focus"
 msgstr "Comença el focus"
 
@@ -920,182 +920,182 @@ msgstr "Reinicia els comptadors"
 msgid "Reset timer and counters"
 msgstr "Reinicia el temporitzador i els comptadors"
 
-#: menu.js:430
-msgid "Site blocking"
-msgstr "Bloqueig de llocs"
-
-#: menu.js:430 menu.js:711 menu.js:957
-msgid "off"
-msgstr "desactivat"
-
-#: menu.js:437
-msgid "Current task…"
-msgstr "Tasca actual…"
-
-#: menu.js:443
-msgid "Focus until…"
-msgstr "Focus fins a…"
-
-#: menu.js:449
-msgid "Zen mode"
-msgstr "Mode Zen"
-
-#: menu.js:456
-msgid "Ambient sound"
-msgstr "So ambient"
-
-#: menu.js:460 menu.js:905
-msgid "Focus length"
-msgstr "Durada del focus"
-
-#: menu.js:467 menu.js:725 menu.js:952
-msgid "Preset"
-msgstr "Perfil"
-
-#: menu.js:471 menu.js:823
+#: menu.js:433 menu.js:818
 msgid "Task list"
 msgstr "Llista de tasques"
 
-#: menu.js:475
+#: menu.js:438
+msgid "Session"
+msgstr "Sessió"
+
+#: menu.js:439 menu.js:900
+msgid "Focus length"
+msgstr "Durada del focus"
+
+#: menu.js:442 menu.js:720 menu.js:947
+msgid "Preset"
+msgstr "Perfil"
+
+#: menu.js:450
+msgid "Modes"
+msgstr "Modes"
+
+#: menu.js:451
+msgid "Focus until…"
+msgstr "Focus fins a…"
+
+#: menu.js:455
+msgid "Zen mode"
+msgstr "Mode Zen"
+
+#: menu.js:459
+msgid "Ambient sound"
+msgstr "So ambient"
+
+#: menu.js:464
+msgid "Site blocking"
+msgstr "Bloqueig de llocs"
+
+#: menu.js:464 menu.js:706 menu.js:952
+msgid "off"
+msgstr "desactivat"
+
+#: menu.js:470
 msgid "Statistics"
 msgstr "Estadístiques"
 
-#: menu.js:476 menu.js:600
+#: menu.js:471 menu.js:590
 #, javascript-format
 msgid "Today: %d"
 msgstr "Avui: %d"
 
-#: menu.js:479 menu.js:623
+#: menu.js:474 menu.js:613
 #, javascript-format
 msgid "Streak: %d days (best %d)"
 msgstr "Ratxa: %d dies (rècord %d)"
 
-#: menu.js:482
+#: menu.js:477
 msgid "Details…"
 msgstr "Detalls…"
 
-#: menu.js:486
+#: menu.js:484
 msgid "Setup wizard…"
 msgstr "Auxiliar de configuració…"
 
-#: menu.js:491
-msgid "SESSION"
-msgstr "SESSIÓ"
-
-#: menu.js:573
+#: menu.js:563
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr "Avui: %d / %d"
 
-#: menu.js:605
+#: menu.js:595
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "Últims 7 dies: %d"
 
-#: menu.js:614
+#: menu.js:604
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "Últims 30 dies: %d"
 
-#: menu.js:617
+#: menu.js:607
 #, javascript-format
 msgid "All time: %d"
 msgstr "Total: %d"
 
-#: menu.js:620
+#: menu.js:610
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Temps de focus: %s avui · %s en total"
 
-#: menu.js:626
+#: menu.js:616
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Millor dia: %d"
 
-#: menu.js:638
+#: menu.js:628
 msgid "none yet"
 msgstr "encara cap"
 
-#: menu.js:654
+#: menu.js:644
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d de %d"
 
-#: menu.js:656
+#: menu.js:646
 msgid "Long break"
 msgstr "Descans llarg"
 
-#: menu.js:658
+#: menu.js:648
 msgid "Short break"
 msgstr "Descans curt"
 
-#: menu.js:661
+#: menu.js:651
 #, javascript-format
 msgid "until %s"
 msgstr "fins a les %s"
 
-#: menu.js:664
+#: menu.js:654
 #, javascript-format
 msgid "≈ finish %s"
 msgstr "≈ fi %s"
 
-#: menu.js:668
+#: menu.js:658
 msgid "Break finished — press Start for focus"
 msgstr "Descans acabat — prem Comença per al focus"
 
-#: menu.js:670
+#: menu.js:660
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Acaba les tasques cap a ~%s"
 
-#: menu.js:672
+#: menu.js:662
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "Focus de %d min — prem Comença"
 
-#: menu.js:705
+#: menu.js:700
 msgid "Task: none"
 msgstr "Tasca: cap"
 
-#: menu.js:712 menu.js:958
+#: menu.js:707 menu.js:953
 #, javascript-format
 msgid "blocking %d"
 msgstr "bloquejant %d"
 
-#: menu.js:712 menu.js:958
+#: menu.js:707 menu.js:953
 #, javascript-format
 msgid "%d in list"
 msgstr "%d a la llista"
 
-#: menu.js:762
+#: menu.js:757
 msgid "Resume break"
 msgstr "Reprèn el descans"
 
-#: menu.js:762
+#: menu.js:757
 msgid "Resume focus"
 msgstr "Reprèn el focus"
 
-#: menu.js:769
+#: menu.js:764
 msgid "Focusing — stay with it"
 msgstr "Concentrant-te — mantén-t'hi"
 
-#: menu.js:774
+#: menu.js:769
 msgid "Pause focus"
 msgstr "Pausa el focus"
 
-#: menu.js:774
+#: menu.js:769
 msgid "Pause break"
 msgstr "Pausa el descans"
 
-#: menu.js:779
+#: menu.js:774
 msgid "Start next focus"
 msgstr "Comença el focus següent"
 
-#: menu.js:833
+#: menu.js:828
 msgid "Add task…"
 msgstr "Afegeix una tasca…"
 
-#: menu.js:843
+#: menu.js:838
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Encara no hi ha tasques — afegeix allò en què et concentraràs, amb una "
@@ -2413,6 +2413,12 @@ msgid ""
 msgstr ""
 "Tria el teu propi so ambient en bucle. Deixa-ho buit per al soroll marró "
 "integrat."
+
+#~ msgid "Current task…"
+#~ msgstr "Tasca actual…"
+
+#~ msgid "SESSION"
+#~ msgstr "SESSIÓ"
 
 #, javascript-format
 #~ msgid "Task: %s"

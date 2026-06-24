@@ -426,52 +426,47 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
     _buildIdleLayout() {
         this._buildStatusHeader();
 
+        this._buildPrimaryAction();
+
+        // Tasks — the header task line is the quick picker; this manages the list.
+        this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+        this._tasksSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Task list"));
+        this.addMenuItem(this._tasksSubmenu);
+        this._populateTasksSubmenu();
+
+        // Session setup — length + preset together.
+        this.addMenuItem(this._makeSectionLabel(_("Session")));
+        this._focusLenSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Focus length"));
+        this.addMenuItem(this._focusLenSubmenu);
+        this._populateFocusLenSubmenu();
+        this._presetSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Preset"));
+        this.addMenuItem(this._presetSubmenu);
+        this._populatePresetSubmenu();
+        // These labels get a value appended; don't let it ellipsize to "Прес…".
+        if (this._focusLenSubmenu.label) { this._focusLenSubmenu.label.clutter_text.set_ellipsize(Pango.EllipsizeMode.NONE); }
+        if (this._presetSubmenu.label) { this._presetSubmenu.label.clutter_text.set_ellipsize(Pango.EllipsizeMode.NONE); }
+
+        // Modes — optional extras and toggles.
+        this.addMenuItem(this._makeSectionLabel(_("Modes")));
+        this._focusUntilItem = new PopupMenu.PopupMenuItem(_("Focus until\u2026"));
+        this._focusUntilItem.connect('activate', () => { this.emit('focus-until'); });
+        this.addMenuItem(this._focusUntilItem);
+
+        this._zenItem = new PopupMenu.PopupMenuItem(_("Zen mode"));
+        this._zenItem.connect('activate', () => { this.emit('toggle-zen'); });
+        this.addMenuItem(this._zenItem);
+
+        this._ambientItem = new PopupMenu.PopupSwitchMenuItem(_("Ambient sound"), false);
+        this._ambientItem.connect('toggled', (item, state) => this.emit('set-ambient', state));
+        this.addMenuItem(this._ambientItem);
+
         // @PUBLIC_STRIP_BEGIN
         let sitesRow = this._makeInfoRow(_("Site blocking"), _("off"));
         this._sitesLabel = sitesRow.value;
         this.addMenuItem(sitesRow.item);
         // @PUBLIC_STRIP_END
 
-        this._buildPrimaryAction();
-
-        this._chooseTaskItem = new PopupMenu.PopupMenuItem(_("Current task\u2026"));
-        this._chooseTaskItem.connect('activate', () => {
-            this.emit('choose-task');
-        });
-        this.addMenuItem(this._chooseTaskItem);
-
-        this._focusUntilItem = new PopupMenu.PopupMenuItem(_("Focus until\u2026"));
-        this._focusUntilItem.connect('activate', () => {
-            this.emit('focus-until');
-        });
-        this.addMenuItem(this._focusUntilItem);
-
-        this._zenItem = new PopupMenu.PopupMenuItem(_("Zen mode"));
-        this._zenItem.connect('activate', () => {
-            this.emit('toggle-zen');
-        });
-        this.addMenuItem(this._zenItem);
-
-        // Quick access: ambient sound toggle + focus length picker.
-        this._ambientItem = new PopupMenu.PopupSwitchMenuItem(_("Ambient sound"), false);
-        this._ambientItem.connect('toggled', (item, state) => this.emit('set-ambient', state));
-        this.addMenuItem(this._ambientItem);
-
-        this._focusLenSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Focus length"));
-        this.addMenuItem(this._focusLenSubmenu);
-        this._populateFocusLenSubmenu();
-
-        this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-
-        // Presets collapsed into a submenu to reduce idle clutter.
-        this._presetSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Preset"));
-        this.addMenuItem(this._presetSubmenu);
-        this._populatePresetSubmenu();
-
-        this._tasksSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Task list"));
-        this.addMenuItem(this._tasksSubmenu);
-        this._populateTasksSubmenu();
-
+        // Statistics.
         this.addMenuItem(this._makeSectionLabel(_("Statistics")));
         this._statTodayItem = new PopupMenu.PopupMenuItem(_("Today: %d").format(0));
         this._statTodayItem.setSensitive(false);
@@ -483,17 +478,12 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         dashItem.connect('activate', () => { this.emit('open-stats'); });
         this.addMenuItem(dashItem);
 
+        // Less used.
+        this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+        this.addMenuItem(this._makeResetAllSubmenu());
         let quickStart = new PopupMenu.PopupMenuItem(_("Setup wizard\u2026"));
         quickStart.connect('activate', () => this.emit('open-onboarding'));
         this.addMenuItem(quickStart);
-
-        this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        this.addMenuItem(this._makeSectionLabel(_("SESSION")));
-
-        let sr = this._makeSkipResetItems();
-        this.addMenuItem(sr.skipItem);
-        this.addMenuItem(sr.resetItem);
-        this.addMenuItem(this._makeResetAllSubmenu());
     }
 
     _buildActiveLayout() {
@@ -690,7 +680,12 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             this._stateBadgeLabel.set_style(badgeAccent ? `color: ${badgeAccent};` : null);
         }
         if (this._timeLeftLabel) {
-            this._timeLeftLabel.set_text(timeLeft || "--:--");
+            let tl = timeLeft;
+            if (!tl && isIdle) {
+                let mins = runtime.focusMinutes || this._focusLength || 25;
+                tl = mins + ":00";
+            }
+            this._timeLeftLabel.set_text(tl || "--:--");
             this._timeLeftLabel.set_style_class_name("pomodoro-time");
             this._timeLeftLabel.set_style("color: " + this._brightTextColor() + ";");
         }

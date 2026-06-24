@@ -4,6 +4,7 @@ const PopupMenu = imports.ui.popupMenu;
 const GLib = imports.gi.GLib;
 const Pango = imports.gi.Pango;
 const Gettext = imports.gettext;
+const Tooltips = imports.ui.tooltips;
 
 const UUID = "zen-pomodoro@vtestah";
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
@@ -273,6 +274,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._taskLabel.set_reactive(true);
         this._taskLabel.set_track_hover(true);
         this._taskLabel.connect('button-press-event', () => { this.emit('choose-task'); return true; });
+        new Tooltips.Tooltip(this._taskLabel, _("Change task"));
         this._dailyLabel = new St.Label({
             text: "",
             style_class: "pomodoro-cycle"
@@ -863,18 +865,21 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 child: new St.Icon({ icon_name: "document-edit-symbolic", icon_size: 14 })
             });
             editBtn.connect('clicked', () => { this.emit('task-edit', t.id); return true; });
+            new Tooltips.Tooltip(editBtn, _("Edit task"));
             row.add_child(editBtn);
             let doneBtn = new St.Button({
                 style_class: "pomodoro-task-btn", can_focus: false,
                 child: new St.Icon({ icon_name: t.completed ? "edit-undo-symbolic" : "object-select-symbolic", icon_size: 14 })
             });
             doneBtn.connect('clicked', () => { this.emit('task-complete', t.id); return true; });
+            new Tooltips.Tooltip(doneBtn, t.completed ? _("Reopen task") : _("Mark done"));
             row.add_child(doneBtn);
             let delBtn = new St.Button({
                 style_class: "pomodoro-task-btn", can_focus: false,
                 child: new St.Icon({ icon_name: "edit-delete-symbolic", icon_size: 14 })
             });
             delBtn.connect('clicked', () => { this.emit('task-delete', t.id); return true; });
+            new Tooltips.Tooltip(delBtn, _("Delete task"));
             row.add_child(delBtn);
             item.addActor(row, { expand: true, span: -1 });
             item.connect('activate', () => this.emit('select-task', t.id));

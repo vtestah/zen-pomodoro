@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 10:46+0700\n"
+"POT-Creation-Date: 2026-06-24 11:04+0700\n"
 "PO-Revision-Date: 2025-10-12 13:07+0700\n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: vi\n"
@@ -55,7 +55,7 @@ msgstr "TẠM DỪNG NGHỈ"
 msgid "BREAK OVER"
 msgstr "HẾT GIỜ NGHỈ"
 
-#: applet.js:1006 applet.js:1066 menu.js:245 menu.js:632
+#: applet.js:1006 applet.js:1066 menu.js:246 menu.js:634
 msgid "Ready to focus"
 msgstr "Sẵn sàng tập trung"
 
@@ -330,7 +330,7 @@ msgstr "Ăn nhẹ và uống chút nước."
 msgid "Rest your eyes and look into the distance."
 msgstr "Cho mắt nghỉ và nhìn ra xa."
 
-#: features.js:477
+#: features.js:477 menu.js:868
 msgid "Edit task"
 msgstr "Sửa công việc"
 
@@ -425,7 +425,8 @@ msgstr "Giờ nghỉ tự bắt đầu để bạn không làm việc quá sức
 
 #: features.js:622
 msgid "A calm theme, no ticking seconds and no end-of-timer rush."
-msgstr "Giao diện nhẹ nhàng, không tiếng đếm giây và không hối hả lúc hết giờ."
+msgstr ""
+"Giao diện nhẹ nhàng, không tiếng đếm giây và không hối hả lúc hết giờ."
 
 #: features.js:662
 msgid "What will you mainly focus on?"
@@ -605,17 +606,17 @@ msgstr "Áp dụng"
 msgid "Apply & start"
 msgstr "Áp dụng và bắt đầu"
 
-#: features.js:767 menu.js:329 menu.js:894 menu.js:900
+#: features.js:767 menu.js:331 menu.js:899 menu.js:905
 #, javascript-format
 msgid "%d min"
 msgstr "%d phút"
 
-#: features.js:771 menu.js:333
+#: features.js:771 menu.js:335
 #, javascript-format
 msgid "%dh %dm"
 msgstr "%d giờ %d phút"
 
-#: features.js:771 menu.js:333
+#: features.js:771 menu.js:335
 #, javascript-format
 msgid "%dh"
 msgstr "%d giờ"
@@ -783,7 +784,7 @@ msgstr "Nhiều"
 msgid "By task"
 msgstr "Theo việc"
 
-#: features.js:1133 menu.js:628
+#: features.js:1133 menu.js:630
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Cột mốc: %s"
@@ -869,221 +870,237 @@ msgstr "Tập trung đến"
 msgid "Enter a time (HH:MM)"
 msgstr "Nhập thời gian (HH:MM)"
 
-#: menu.js:131
+#: menu.js:132
 msgid "Error: menu unavailable"
 msgstr "Lỗi: menu không khả dụng"
 
-#: menu.js:262
+#: menu.js:263
 msgid "Ready to start"
 msgstr "Sẵn sàng bắt đầu"
 
-#: menu.js:270 menu.js:698
+#: menu.js:271 menu.js:700
 msgid "Task will be selected on start"
 msgstr "Việc sẽ được chọn khi bắt đầu"
 
-#: menu.js:369
+#: menu.js:277
+msgid "Change task"
+msgstr "Đổi công việc"
+
+#: menu.js:371
 #, javascript-format
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:377 menu.js:778
+#: menu.js:379 menu.js:780
 msgid "Start focus"
 msgstr "Bắt đầu tập trung"
 
-#: menu.js:393
+#: menu.js:395
 msgid "Skip phase"
 msgstr "Bỏ qua giai đoạn"
 
-#: menu.js:399
+#: menu.js:401
 msgid "Reset timer"
 msgstr "Đặt lại bộ đếm giờ"
 
-#: menu.js:411
+#: menu.js:413
 msgid "Reset counters"
 msgstr "Đặt lại bộ đếm"
 
-#: menu.js:412
+#: menu.js:414
 msgid "Reset timer and counters"
 msgstr "Đặt lại bộ đếm giờ và bộ đếm"
 
-#: menu.js:433 menu.js:818
+#: menu.js:435 menu.js:820
 msgid "Task list"
 msgstr "Danh sách việc"
 
-#: menu.js:438
+#: menu.js:440
 msgid "Session"
 msgstr "Phiên"
 
-#: menu.js:439 menu.js:900
+#: menu.js:441 menu.js:905
 msgid "Focus length"
 msgstr "Độ dài tập trung"
 
-#: menu.js:442 menu.js:720 menu.js:947
+#: menu.js:444 menu.js:722 menu.js:952
 msgid "Preset"
 msgstr "Cấu hình sẵn"
 
-#: menu.js:450
+#: menu.js:452
 msgid "Modes"
 msgstr "Chế độ"
 
-#: menu.js:451
+#: menu.js:453
 msgid "Focus until…"
 msgstr "Tập trung đến…"
 
-#: menu.js:455
+#: menu.js:457
 msgid "Zen mode"
 msgstr "Chế độ Zen"
 
-#: menu.js:459
+#: menu.js:461
 msgid "Ambient sound"
 msgstr "Âm thanh nền"
 
-#: menu.js:464
+#: menu.js:466
 msgid "Site blocking"
 msgstr "Chặn trang web"
 
-#: menu.js:464 menu.js:706 menu.js:952
+#: menu.js:466 menu.js:708 menu.js:957
 msgid "off"
 msgstr "tắt"
 
-#: menu.js:470
+#: menu.js:472
 msgid "Statistics"
 msgstr "Thống kê"
 
-#: menu.js:471 menu.js:590
+#: menu.js:473 menu.js:592
 #, javascript-format
 msgid "Today: %d"
 msgstr "Hôm nay: %d"
 
-#: menu.js:474 menu.js:613
+#: menu.js:476 menu.js:615
 #, javascript-format
 msgid "Streak: %d days (best %d)"
 msgstr "Chuỗi: %d ngày (kỷ lục %d)"
 
-#: menu.js:477
+#: menu.js:479
 msgid "Details…"
 msgstr "Chi tiết…"
 
-#: menu.js:484
+#: menu.js:486
 msgid "Setup wizard…"
 msgstr "Trình hướng dẫn thiết lập…"
 
-#: menu.js:563
+#: menu.js:565
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr "Hôm nay: %d / %d"
 
-#: menu.js:595
+#: menu.js:597
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "7 ngày qua: %d"
 
-#: menu.js:604
+#: menu.js:606
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "30 ngày qua: %d"
 
-#: menu.js:607
+#: menu.js:609
 #, javascript-format
 msgid "All time: %d"
 msgstr "Toàn thời gian: %d"
 
-#: menu.js:610
+#: menu.js:612
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Thời gian tập trung: %s hôm nay · %s tổng"
 
-#: menu.js:616
+#: menu.js:618
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Ngày tốt nhất: %d"
 
-#: menu.js:628
+#: menu.js:630
 msgid "none yet"
 msgstr "chưa có"
 
-#: menu.js:644
+#: menu.js:646
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:646
+#: menu.js:648
 msgid "Long break"
 msgstr "Nghỉ dài"
 
-#: menu.js:648
+#: menu.js:650
 msgid "Short break"
 msgstr "Nghỉ ngắn"
 
-#: menu.js:651
+#: menu.js:653
 #, javascript-format
 msgid "until %s"
 msgstr "đến %s"
 
-#: menu.js:654
+#: menu.js:656
 #, javascript-format
 msgid "≈ finish %s"
 msgstr "≈ xong %s"
 
-#: menu.js:658
+#: menu.js:660
 msgid "Break finished — press Start for focus"
 msgstr "Hết giờ nghỉ — nhấn Bắt đầu để tập trung"
 
-#: menu.js:660
+#: menu.js:662
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Hoàn thành việc của bạn vào khoảng %s"
 
-#: menu.js:662
+#: menu.js:664
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "Tập trung %d phút — nhấn Bắt đầu"
 
-#: menu.js:700
+#: menu.js:702
 msgid "Task: none"
 msgstr "Việc: không có"
 
-#: menu.js:707 menu.js:953
+#: menu.js:709 menu.js:958
 #, javascript-format
 msgid "blocking %d"
 msgstr "đang chặn %d"
 
-#: menu.js:707 menu.js:953
+#: menu.js:709 menu.js:958
 #, javascript-format
 msgid "%d in list"
 msgstr "%d trong danh sách"
 
-#: menu.js:757
+#: menu.js:759
 msgid "Resume break"
 msgstr "Tiếp tục nghỉ"
 
-#: menu.js:757
+#: menu.js:759
 msgid "Resume focus"
 msgstr "Tiếp tục tập trung"
 
-#: menu.js:764
+#: menu.js:766
 msgid "Focusing — stay with it"
 msgstr "Đang tập trung — cứ kiên trì"
 
-#: menu.js:769
+#: menu.js:771
 msgid "Pause focus"
 msgstr "Tạm dừng tập trung"
 
-#: menu.js:769
+#: menu.js:771
 msgid "Pause break"
 msgstr "Tạm dừng nghỉ"
 
-#: menu.js:774
+#: menu.js:776
 msgid "Start next focus"
 msgstr "Bắt đầu tập trung tiếp theo"
 
-#: menu.js:828
+#: menu.js:830
 msgid "Add task…"
 msgstr "Thêm việc…"
 
-#: menu.js:838
+#: menu.js:840
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr "Chưa có việc nào — thêm điều bạn sẽ tập trung, kèm ước lượng 🍅."
+
+#: menu.js:875
+msgid "Reopen task"
+msgstr "Mở lại công việc"
+
+#: menu.js:875
+msgid "Mark done"
+msgstr "Đánh dấu hoàn thành"
+
+#: menu.js:882
+msgid "Delete task"
+msgstr "Xóa công việc"
 
 #. settings-schema.json->sec_preview->title
 #: visual.js:572
@@ -1208,7 +1225,8 @@ msgid "Long Break Duration:"
 msgstr "Thời lượng nghỉ dài:"
 
 #. settings-schema.json->long_break_duration->tooltip
-msgid "Length of the longer break after a set of pomodoros (classic is 15–30)."
+msgid ""
+"Length of the longer break after a set of pomodoros (classic is 15–30)."
 msgstr "Độ dài nghỉ dài sau một set pomodoro (cổ điển là 15–30)."
 
 #. settings-schema.json->pomodori_number->description
@@ -1216,7 +1234,8 @@ msgid "Number of pomodori before long break:"
 msgstr "Số Pomodoro trước khi nghỉ dài:"
 
 #. settings-schema.json->pomodori_number->tooltip
-msgid "How many focus blocks to complete before the long break (classic is 4)."
+msgid ""
+"How many focus blocks to complete before the long break (classic is 4)."
 msgstr "Số khối tập trung cần hoàn thành trước khi nghỉ dài (cổ điển là 4)."
 
 #. settings-schema.json->start_automatically_on_load->description
@@ -1254,8 +1273,8 @@ msgid ""
 "Show pop-up dialogs at the end of each phase (off keeps it quiet — only on-"
 "screen cues)."
 msgstr ""
-"Hiện hộp thoại bật lên ở cuối mỗi giai đoạn (tắt sẽ yên tĩnh — chỉ còn gợi ý "
-"trên màn hình)."
+"Hiện hộp thoại bật lên ở cuối mỗi giai đoạn (tắt sẽ yên tĩnh — chỉ còn gợi ý"
+" trên màn hình)."
 
 #. settings-schema.json->auto_start_after_pomodoro_ends->description
 msgid "Auto start after a pomodoro ends"
@@ -1382,9 +1401,9 @@ msgstr "Điều khiển bộ đếm bằng chuột trên thanh panel"
 
 #. settings-schema.json->panel_scroll_control->tooltip
 msgid ""
-"Scroll up on the applet to start or resume, scroll down to pause, and middle-"
-"click to skip the phase. Turn this off if you sometimes scroll over the "
-"panel by accident."
+"Scroll up on the applet to start or resume, scroll down to pause, and "
+"middle-click to skip the phase. Turn this off if you sometimes scroll over "
+"the panel by accident."
 msgstr ""
 "Cuộn lên trên applet để bắt đầu hoặc tiếp tục, cuộn xuống để tạm dừng, và "
 "nhấn nút giữa để bỏ qua giai đoạn. Tắt đi nếu đôi khi bạn vô tình cuộn qua "
@@ -1429,8 +1448,8 @@ msgstr ""
 
 #. settings-schema.json->focus_start_ritual->description
 msgid ""
-"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus "
-"begins"
+"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus"
+" begins"
 msgstr ""
 "Nghi thức khởi đầu: hiện ngắn 'Tập trung: <task>' ở giữa và hiệu ứng mờ dần "
 "khi bắt đầu tập trung"
@@ -1469,8 +1488,8 @@ msgid ""
 "Color scheme for accents and on-screen cues. Choose Custom to set your own "
 "focus/break colors below."
 msgstr ""
-"Bảng màu cho điểm nhấn và gợi ý trên màn hình. Chọn Custom để tự đặt màu tập "
-"trung/nghỉ bên dưới."
+"Bảng màu cho điểm nhấn và gợi ý trên màn hình. Chọn Custom để tự đặt màu tập"
+" trung/nghỉ bên dưới."
 
 #. settings-schema.json->accent_focus_color->description
 msgid "Custom focus accent color"
@@ -1522,8 +1541,8 @@ msgstr "Cường độ phát sáng"
 
 #. settings-schema.json->glow_intensity->tooltip
 msgid ""
-"How bright the on-screen edge glow is during focus — higher is more visible, "
-"lower is subtler."
+"How bright the on-screen edge glow is during focus — higher is more visible,"
+" lower is subtler."
 msgstr ""
 "Mức sáng của viền phát sáng trên màn hình khi tập trung — cao thì rõ hơn, "
 "thấp thì dịu hơn."
@@ -1555,11 +1574,11 @@ msgstr "Thư giãn 4-6"
 
 #. settings-schema.json->breathing_pattern->tooltip
 msgid ""
-"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 "
-"— seconds per phase."
+"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6"
+" — seconds per phase."
 msgstr ""
-"Nhịp thở cho hướng dẫn: Hộp (4-4-4-4), 4-7-8 làm dịu, hoặc 4-6 thư giãn — số "
-"giây mỗi pha."
+"Nhịp thở cho hướng dẫn: Hộp (4-4-4-4), 4-7-8 làm dịu, hoặc 4-6 thư giãn — số"
+" giây mỗi pha."
 
 #. settings-schema.json->chip_position->description
 msgid "Task chip position"
@@ -1592,8 +1611,8 @@ msgstr "Thời lượng nghi thức khởi đầu (giây)"
 #. settings-schema.json->ritual_seconds->tooltip
 msgid "How long the 'Focus: <task>' start ritual stays on screen, in seconds."
 msgstr ""
-"Nghi thức khởi đầu 'Tập trung: <task>' hiện trên màn hình bao lâu, tính bằng "
-"giây."
+"Nghi thức khởi đầu 'Tập trung: <task>' hiện trên màn hình bao lâu, tính bằng"
+" giây."
 
 #. settings-schema.json->reduce_motion->description
 msgid "Reduce motion (disable focus animations)"
@@ -1617,11 +1636,11 @@ msgstr "Xem trước khung tập trung"
 
 #. settings-schema.json->preview_appearance_button->tooltip
 msgid ""
-"Briefly show the on-screen focus frame and task chip with the current colors "
-"and style (works when no timer is running)."
+"Briefly show the on-screen focus frame and task chip with the current colors"
+" and style (works when no timer is running)."
 msgstr ""
-"Hiện ngắn khung tập trung và thẻ việc trên màn hình với màu và kiểu hiện tại "
-"(hoạt động khi không có bộ đếm nào chạy)."
+"Hiện ngắn khung tập trung và thẻ việc trên màn hình với màu và kiểu hiện tại"
+" (hoạt động khi không có bộ đếm nào chạy)."
 
 #. settings-schema.json->preview_breathing_button->description
 msgid "Preview breathing guide"
@@ -1729,8 +1748,8 @@ msgstr ""
 
 #. settings-schema.json->strict_focus->tooltip
 msgid ""
-"While a focus block is running, hide pause and skip so you commit to it. You "
-"can still Reset to abandon the session — it's never a hard lock."
+"While a focus block is running, hide pause and skip so you commit to it. You"
+" can still Reset to abandon the session — it's never a hard lock."
 msgstr ""
 "Khi một khối tập trung đang chạy, ẩn nút tạm dừng và bỏ qua để bạn cam kết "
 "với nó. Bạn vẫn có thể Đặt lại để bỏ phiên — đây không bao giờ là khoá cứng."
@@ -1806,10 +1825,11 @@ msgstr ""
 
 #. settings-schema.json->pushover_help->description
 msgid ""
-"Free phone/desktop alerts. Sign up at pushover.net and paste your keys below."
+"Free phone/desktop alerts. Sign up at pushover.net and paste your keys "
+"below."
 msgstr ""
-"Thông báo miễn phí trên điện thoại/máy tính. Đăng ký tại pushover.net và dán "
-"khóa của bạn bên dưới."
+"Thông báo miễn phí trên điện thoại/máy tính. Đăng ký tại pushover.net và dán"
+" khóa của bạn bên dưới."
 
 #. settings-schema.json->pushover_user_key->description
 msgid "Pushover user key"
@@ -1841,8 +1861,8 @@ msgstr "Tuỳ chỉnh nội dung, âm thanh và độ ưu tiên"
 
 #. settings-schema.json->pushover_customize->tooltip
 msgid ""
-"Show options to change the text, sound and priority for each event. Off uses "
-"sensible defaults."
+"Show options to change the text, sound and priority for each event. Off uses"
+" sensible defaults."
 msgstr ""
 "Hiện các tuỳ chọn để đổi nội dung, âm thanh và độ ưu tiên cho từng sự kiện. "
 "Tắt sẽ dùng mặc định hợp lý."
@@ -1881,8 +1901,8 @@ msgstr "Chặn các trang web gây xao nhãng khi tập trung"
 
 #. settings-schema.json->enable_blocking->tooltip
 msgid ""
-"When on, the sites below are blocked automatically during each focus session "
-"and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
+"When on, the sites below are blocked automatically during each focus session"
+" and unblocked afterwards. Run \"Set up passwordless blocking\" once so it "
 "doesn't ask for a password each time."
 msgstr ""
 "Khi bật, các trang bên dưới sẽ tự động bị chặn trong mỗi phiên tập trung và "
@@ -1899,11 +1919,11 @@ msgstr "Tên miền"
 
 #. settings-schema.json->block_domains->tooltip
 msgid ""
-"Domains to block during focus, one per row (e.g. youtube.com, www.youtube."
-"com)."
+"Domains to block during focus, one per row (e.g. youtube.com, "
+"www.youtube.com)."
 msgstr ""
-"Tên miền cần chặn khi tập trung, mỗi dòng một tên (vd. youtube.com, www."
-"youtube.com)."
+"Tên miền cần chặn khi tập trung, mỗi dòng một tên (vd. youtube.com, "
+"www.youtube.com)."
 
 #. settings-schema.json->sox-info->description
 msgid ""
@@ -2066,8 +2086,8 @@ msgid ""
 "Run your personal ~/.local/bin/pomodoro scripts. Off = built-in features "
 "only."
 msgstr ""
-"Chạy các kịch bản cá nhân ~/.local/bin/pomodoro của bạn. Tắt = chỉ tính năng "
-"tích hợp."
+"Chạy các kịch bản cá nhân ~/.local/bin/pomodoro của bạn. Tắt = chỉ tính năng"
+" tích hợp."
 
 #. settings-schema.json->custom_short_break_script->description
 msgid "Execute this custom script when a short break starts"
@@ -2145,8 +2165,8 @@ msgid ""
 "Asks for your password once and installs a small system policy so blocking "
 "no longer prompts during focus."
 msgstr ""
-"Hỏi mật khẩu của bạn một lần và cài một chính sách hệ thống nhỏ để việc chặn "
-"không còn hỏi trong khi tập trung."
+"Hỏi mật khẩu của bạn một lần và cài một chính sách hệ thống nhỏ để việc chặn"
+" không còn hỏi trong khi tập trung."
 
 #. settings-schema.json->remove_passwordless_button->description
 msgid "Remove passwordless setup"
@@ -2157,8 +2177,8 @@ msgid ""
 "Removes the system policy and the root helper, so blocking asks for your "
 "password again each time."
 msgstr ""
-"Gỡ chính sách hệ thống và trình trợ giúp root, để việc chặn lại hỏi mật khẩu "
-"mỗi lần."
+"Gỡ chính sách hệ thống và trình trợ giúp root, để việc chặn lại hỏi mật khẩu"
+" mỗi lần."
 
 #. settings-schema.json->onboarding_button->description
 msgid "Run the quick-start guide"
@@ -2177,8 +2197,8 @@ msgid ""
 "Sent when a short break begins. {task} and {minutes} are substituted. Leave "
 "empty to send nothing."
 msgstr ""
-"Gửi khi nghỉ ngắn bắt đầu. {task} và {minutes} sẽ được thay thế. Để trống để "
-"không gửi gì."
+"Gửi khi nghỉ ngắn bắt đầu. {task} và {minutes} sẽ được thay thế. Để trống để"
+" không gửi gì."
 
 #. settings-schema.json->pushover_msg_long_break->description
 msgid "Message when a long break starts"
@@ -2201,8 +2221,8 @@ msgid ""
 "Sent once when you hit your daily pomodoro goal. {task} and {minutes} are "
 "substituted. Leave empty to send nothing."
 msgstr ""
-"Gửi một lần khi bạn đạt mục tiêu pomodoro trong ngày. {task} và {minutes} sẽ "
-"được thay thế. Để trống để không gửi gì."
+"Gửi một lần khi bạn đạt mục tiêu pomodoro trong ngày. {task} và {minutes} sẽ"
+" được thay thế. Để trống để không gửi gì."
 
 #. settings-schema.json->pushover_snd_focus->description
 msgid "Focus start — sound"
@@ -2338,8 +2358,8 @@ msgstr "Tệp âm thanh nền"
 
 #. settings-schema.json->focus_ambient_file->tooltip
 msgid ""
-"Pick your own looping ambient sound. Leave empty for the built-in soft brown "
-"noise."
+"Pick your own looping ambient sound. Leave empty for the built-in soft brown"
+" noise."
 msgstr ""
 "Chọn âm thanh nền lặp của riêng bạn. Để trống để dùng tiếng ồn nâu nhẹ tích "
 "hợp."
@@ -2405,12 +2425,12 @@ msgstr ""
 
 #~ msgid ""
 #~ "Pushover sends alerts to your phone or desktop. Create a free account at "
-#~ "pushover.net, copy your User Key, then create an Application there to get "
-#~ "an API Token."
+#~ "pushover.net, copy your User Key, then create an Application there to get an"
+#~ " API Token."
 #~ msgstr ""
 #~ "Pushover gửi cảnh báo đến điện thoại hoặc máy tính của bạn. Tạo tài khoản "
-#~ "miễn phí tại pushover.net, sao chép User Key, rồi tạo một Application ở "
-#~ "đó để lấy API Token."
+#~ "miễn phí tại pushover.net, sao chép User Key, rồi tạo một Application ở đó "
+#~ "để lấy API Token."
 
 #~ msgid ""
 #~ "No sound backend was found. Install GSound or a sound player (e.g. the "
@@ -2427,21 +2447,20 @@ msgstr ""
 
 #~ msgid ""
 #~ "After setup, never ask for a password. Off (default) asks once per login "
-#~ "session. Convenient but less safe: any local program could then change "
-#~ "your blocklist without asking."
+#~ "session. Convenient but less safe: any local program could then change your "
+#~ "blocklist without asking."
 #~ msgstr ""
 #~ "Sau khi thiết lập, không bao giờ hỏi mật khẩu. Tắt (mặc định) hỏi một lần "
-#~ "mỗi phiên đăng nhập. Tiện nhưng kém an toàn: bất kỳ chương trình cục bộ "
-#~ "nào cũng có thể đổi danh sách chặn của bạn mà không hỏi."
+#~ "mỗi phiên đăng nhập. Tiện nhưng kém an toàn: bất kỳ chương trình cục bộ nào "
+#~ "cũng có thể đổi danh sách chặn của bạn mà không hỏi."
 
 #~ msgid ""
-#~ "Asks for your password once and installs a small system policy so "
-#~ "blocking no longer prompts every time. Uses the mode selected above; re-"
-#~ "run after changing the mode."
+#~ "Asks for your password once and installs a small system policy so blocking "
+#~ "no longer prompts every time. Uses the mode selected above; re-run after "
+#~ "changing the mode."
 #~ msgstr ""
-#~ "Hỏi mật khẩu một lần và cài một chính sách hệ thống nhỏ để việc chặn "
-#~ "không còn hỏi mỗi lần. Dùng chế độ đã chọn ở trên; chạy lại sau khi đổi "
-#~ "chế độ."
+#~ "Hỏi mật khẩu một lần và cài một chính sách hệ thống nhỏ để việc chặn không "
+#~ "còn hỏi mỗi lần. Dùng chế độ đã chọn ở trên; chạy lại sau khi đổi chế độ."
 
 #~ msgid "Could not open the hosts file"
 #~ msgstr "Không thể mở tệp hosts"
@@ -2450,8 +2469,8 @@ msgstr ""
 #~ msgstr "Sửa /etc/hosts thủ công (quản trị)"
 
 #~ msgid ""
-#~ "Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro "
-#~ "only manages its own clearly-marked section."
+#~ "Opens /etc/hosts in your editor with administrator rights. Zen Pomodoro only"
+#~ " manages its own clearly-marked section."
 #~ msgstr ""
 #~ "Mở /etc/hosts trong trình soạn thảo với quyền quản trị. Zen Pomodoro chỉ "
 #~ "quản lý phần được đánh dấu rõ của riêng nó."
@@ -2471,8 +2490,8 @@ msgstr ""
 #~ msgid ""
 #~ "Block distracting sites by editing /etc/hosts (asks for your password)."
 #~ msgstr ""
-#~ "Chặn các trang gây xao nhãng bằng cách sửa /etc/hosts (sẽ hỏi mật khẩu "
-#~ "của bạn)."
+#~ "Chặn các trang gây xao nhãng bằng cách sửa /etc/hosts (sẽ hỏi mật khẩu của "
+#~ "bạn)."
 
 #~ msgid "Block these domains now"
 #~ msgstr "Chặn các tên miền này ngay"
@@ -2488,8 +2507,8 @@ msgstr ""
 #~ msgstr "Bỏ chặn"
 
 #~ msgid ""
-#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your "
-#~ "password once)."
+#~ "Removes Zen Pomodoro's block entries from /etc/hosts (asks for your password"
+#~ " once)."
 #~ msgstr ""
 #~ "Gỡ các mục chặn của Zen Pomodoro khỏi /etc/hosts (hỏi mật khẩu một lần)."
 
@@ -2533,8 +2552,8 @@ msgstr ""
 #~ "timer text is a separate option below."
 #~ msgstr ""
 #~ "Hiển thị gì trên bảng: một vòng tiến trình với biểu tượng trạng thái bên "
-#~ "trong (khuyến nghị), một biểu tượng đơn sắc hoặc màu đơn giản, hoặc không "
-#~ "có biểu tượng nào. Văn bản bộ đếm giờ được đặt riêng bên dưới."
+#~ "trong (khuyến nghị), một biểu tượng đơn sắc hoặc màu đơn giản, hoặc không có"
+#~ " biểu tượng nào. Văn bản bộ đếm giờ được đặt riêng bên dưới."
 
 #~ msgid "Display the pomodoro icon in the applet panel"
 #~ msgstr "Hiển thị biểu tượng Pomodoro trên thanh applet"
@@ -2546,8 +2565,7 @@ msgstr ""
 #~ msgstr "Sử dụng biểu tượng tượng trưng trên thanh applet"
 
 #~ msgid "Use a monochrome symbolic icon that follows your panel theme."
-#~ msgstr ""
-#~ "Dùng biểu tượng tượng trưng đơn sắc theo chủ đề thanh panel của bạn."
+#~ msgstr "Dùng biểu tượng tượng trưng đơn sắc theo chủ đề thanh panel của bạn."
 
 #~ msgid "Show timer progress as a ring on the panel icon"
 #~ msgstr "Hiện tiến độ bộ đếm dạng vòng quanh biểu tượng trên thanh panel"

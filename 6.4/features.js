@@ -1151,6 +1151,11 @@ function install(proto) {
         }
     };
 
+    proto._dashDateLabel = function(d) {
+        let dd = d.getDate(), mm = d.getMonth() + 1;
+        return (dd < 10 ? "0" : "") + dd + "." + (mm < 10 ? "0" : "") + mm;
+    };
+
     proto._showStatsDashboard = function() {
         let st = this._computeStats();
         let accent = [0.93, 0.42, 0.31];
@@ -1161,17 +1166,57 @@ function install(proto) {
         let cellOf = (d) => h[d] || { c: 0, m: 0 };
         let bars = [];
         for (let i = 13; i >= 0; i--) {
-            let cell = cellOf(this._todayStr(new Date(Date.now() - i * 86400000)));
-            bars.push({ min: cell.m, count: cell.c, today: (i === 0) });
+            let bd = new Date(Date.now() - i * 86400000);
+            let cell = cellOf(this._todayStr(bd));
+            bars.push({ min: cell.m, count: cell.c, today: (i === 0), dateLabel: this._dashDateLabel(bd) });
         }
         this._dashBars = bars;
-        this._dashHeatmap = st.heatmap || [];
+        let hmMeta = [];
+        let now0 = new Date(); now0.setHours(0, 0, 0, 0);
+        let dow0 = now0.getDay();
+        let dowShort = [_("Sun"), _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat")];
+        for (let col = 0; col < 12; col++) {
+            for (let row = 0; row < 7; row++) {
+                let daysBack = (11 - col) * 7 + (dow0 - row);
+                let m = { value: 0, future: daysBack < 0, label: "" };
+                if (daysBack >= 0) {
+                    let dd = new Date(now0.getTime() - daysBack * 86400000);
+                    let ds = this._todayStr(dd);
+                    m.value = (h[ds] && h[ds].c) || 0;
+                    m.label = dowShort[dd.getDay()] + " " + this._dashDateLabel(dd);
+                }
+                hmMeta[col * 7 + row] = m;
+            }
+        }
+        this._dashHeatmapMeta = hmMeta;
+        this._dashHeatmap = hmMeta.map((m) => m.value);
         this._dashHours = st.hours || new Array(24).fill(0);
         let peak = this._peakFocusHour(st.hours);
         this._dashPeakHour = peak ? peak.hour : null;
 
         let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
         let root = new St.BoxLayout({ vertical: true, style: 'spacing: 9px; width: 680px; padding: 8px 16px;' });
+
+        // Floating hover tooltip shared by all charts (sits above the dialog).
+        let dashTip = new St.Label({ visible: false, style: 'background-color: rgba(20,20,20,0.96); color: #fff; padding: 4px 9px; border-radius: 6px; font-size: 0.86em;' });
+        Main.uiGroup.add_child(dashTip);
+        let wireHover = (area, infoFn) => {
+            area.reactive = true;
+            area.connect('motion-event', (a, ev) => {
+                let [ex, ey] = ev.get_coords();
+                let [ax, ay] = a.get_transformed_position();
+                let text = infoFn(ex - ax, ey - ay, a.width, a.height);
+                if (text) {
+                    dashTip.set_text(text);
+                    dashTip.show();
+                    dashTip.set_position(Math.round(ex) + 14, Math.round(ey) + 10);
+                } else {
+                    dashTip.hide();
+                }
+                return false;
+            });
+            area.connect('leave-event', () => { dashTip.hide(); return false; });
+        };
 
         root.add(new St.Label({ text: _("Focus statistics"), style: 'font-size: 1.4em; font-weight: bold;' }));
 
@@ -1224,6 +1269,11 @@ function install(proto) {
         root.add(new St.Label({ text: _("When you focus (by hour)"), style: 'font-weight: bold; padding-top: 2px;' }));
         let hoursArea = new St.DrawingArea({ x_expand: true, style: 'height: 70px;' });
         hoursArea.connect('repaint', (a) => this._paintHours(a));
+        wireHover(hoursArea, (x, y, w, hh) => {
+            let i = Math.floor(x / (w / 24));
+            if (i < 0 || i > 23) { return null; }
+            return ((i < 10 ? "0" : "") + i) + ":00 · " + (this._dashHours[i] || 0) + " \ud83c\udf45";
+        });
         root.add(hoursArea);
         let axis = new St.BoxLayout({ vertical: false });
         [_("night"), _("morning"), _("afternoon"), _("evening")].forEach((t) => {
@@ -1244,11 +1294,24 @@ function install(proto) {
         colA.add(new St.Label({ text: _("Focus time \u2014 last 14 days"), style: 'font-weight: bold;' }));
         let barArea = new St.DrawingArea({ x_expand: true, style: 'height: 92px;' });
         barArea.connect('repaint', (a) => this._paintDashBars(a));
+        wireHover(barArea, (x, y, w, hh) => {
+            let i = Math.floor(x / (w / 14));
+            let b = (this._dashBars || [])[i];
+            if (!b) { return null; }
+            return b.dateLabel + " · " + (b.count || 0) + " \ud83c\udf45 · " + this._dashFmtMin(b.min || 0);
+        });
         colA.add(barArea);
 
         colB.add(new St.Label({ text: _("Activity \u2014 last 12 weeks"), style: 'font-weight: bold;' }));
         let heatArea = new St.DrawingArea({ x_expand: true, style: 'height: 74px;' });
         heatArea.connect('repaint', (a) => this._paintDashHeatmap(a));
+        wireHover(heatArea, (x, y, w, hh) => {
+            let col = Math.floor(x / (w / 12)), row = Math.floor(y / (hh / 7));
+            if (col < 0 || col > 11 || row < 0 || row > 6) { return null; }
+            let m = (this._dashHeatmapMeta || [])[col * 7 + row];
+            if (!m || m.future || !m.label) { return null; }
+            return m.label + " · " + (m.value || 0) + " \ud83c\udf45";
+        });
         colB.add(heatArea);
         let legend = new St.BoxLayout({ vertical: false, style: 'spacing: 6px;' });
         legend.add(new St.Label({ text: _("Less"), style: 'font-size: 0.8em;' }));
@@ -1277,6 +1340,8 @@ function install(proto) {
                 rowB.add(new St.Label({ text: title, style: 'width: 240px;' }));
                 let mb = new St.DrawingArea({ x_expand: true, style: 'height: 13px;' });
                 mb.connect('repaint', (a) => this._paintMiniBar(a, frac));
+                let tTitle = t.title, tDone = (t.done || 0);
+                wireHover(mb, () => tTitle + " · " + tDone + " \ud83c\udf45");
                 rowB.add(mb);
                 rowB.add(new St.Label({ text: (t.done || 0) + " \ud83c\udf45", style: 'width: 48px;' }));
                 root.add(rowB);
@@ -1307,6 +1372,7 @@ function install(proto) {
             ]);
         };
         setDashButtons();
+        dialog.connect('closed', () => { try { dashTip.destroy(); } catch (e) {} });
         dialog.open();
         return dialog;
     };

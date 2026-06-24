@@ -832,8 +832,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._taskTemplates = Array.isArray(templates) ? templates : [];
         this._populateTasksSubmenu();
         if (this._tasksSubmenu && this._tasksSubmenu.label) {
-            let cur = this._tasks.find((t) => t.id === this._tasksCurrentId);
-            this._tasksSubmenu.label.set_text(_("Task list") + (cur ? (": " + cur.title) : ""));
+            this._tasksSubmenu.label.set_text(_("Task list"));
         }
     }
 

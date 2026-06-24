@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 13:35+0700\n"
+"POT-Creation-Date: 2026-06-24 13:42+0700\n"
 "PO-Revision-Date: 2018-11-06 02:05+0300\n"
 "Last-Translator: Gökhan GÖKKAYA <gokhanlnx@gmail.com>\n"
 "Language-Team: Linux Mint Türkiye <gokhanlnx@gmail.com>\n"
@@ -84,7 +84,7 @@ msgstr "Mola bitti"
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodori %d, set %d çalışıyor"
 
-#: applet.js:1049 features.js:430 features.js:1068
+#: applet.js:1049 features.js:430 features.js:1073
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ bitiş %s · %d 🍅 kaldı"
@@ -150,7 +150,7 @@ msgstr "Pomodoro ön kontrolü başarısız"
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://tr.wikipedia.org/wiki/Pomodoro_Tekniği"
 
-#: applet.js:1963 features.js:1847
+#: applet.js:1963 features.js:1852
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Pomodoro hazır ayarını değiştirmeden önce zamanlayıcıyı durdur"
 
@@ -180,11 +180,11 @@ msgstr "Neye odaklanıyorsun?"
 msgid "Choose or type a focus task"
 msgstr "Bir odak görevi seç ya da yaz"
 
-#: dialogs.js:64 dialogs.js:79 features.js:1896
+#: dialogs.js:64 dialogs.js:79 features.js:1901
 msgid "Start"
 msgstr "Başlat"
 
-#: dialogs.js:69 features.js:530 features.js:1150 features.js:1895
+#: dialogs.js:69 features.js:535 features.js:1155 features.js:1900
 msgid "Cancel"
 msgstr "İptal"
 
@@ -346,6 +346,10 @@ msgstr "Yeni görev"
 msgid "What do you want to work on?"
 msgstr "Ne üzerinde çalışmak istiyorsun?"
 
+#: features.js:481
+msgid "e.g. Write the report"
+msgstr "örn. raporu yaz"
+
 #: features.js:490
 #, javascript-format
 msgid "%d h %d min"
@@ -356,7 +360,7 @@ msgstr "%d sa %d dk"
 msgid "%d h"
 msgstr "%d sa"
 
-#: features.js:491 features.js:777 menu.js:331 menu.js:925 menu.js:931
+#: features.js:491 features.js:782 menu.js:331 menu.js:925 menu.js:931
 #, javascript-format
 msgid "%d min"
 msgstr "%d dk"
@@ -366,228 +370,228 @@ msgstr "%d dk"
 msgid "How many pomodoros? (1 🍅 ≈ %d min)"
 msgstr "Kaç pomodoro? (1 🍅 ≈ %d dk)"
 
-#: features.js:502
+#: features.js:505
 msgid "No estimate — just counts your 🍅"
 msgstr "Tahmin yok — sadece 🍅 sayar"
 
-#: features.js:531
+#: features.js:536
 msgid "Save"
 msgstr "Kaydet"
 
-#: features.js:531
+#: features.js:536
 msgid "Add"
 msgstr "Ekle"
 
-#: features.js:575
+#: features.js:580
 msgid "longer focus blocks suit deep work"
 msgstr "daha uzun odak blokları derin çalışmaya uygundur"
 
-#: features.js:576
+#: features.js:581
 msgid "the classic rhythm suits studying"
 msgstr "klasik ritim ders çalışmaya uygundur"
 
-#: features.js:577
+#: features.js:582
 msgid "a little more break time lets ideas settle"
 msgstr "biraz daha uzun mola fikirlerin oturmasını sağlar"
 
-#: features.js:578
+#: features.js:583
 msgid "shorter cycles keep small tasks moving"
 msgstr "kısa döngüler küçük görevleri ilerletir"
 
-#: features.js:579
+#: features.js:584
 msgid "a balanced rhythm"
 msgstr "dengeli bir ritim"
 
-#: features.js:580
+#: features.js:585
 #, javascript-format
 msgid "Focus rhythm %d / %d / %d min — %s."
 msgstr "Odak ritmi %d / %d / %d dk — %s."
 
-#: features.js:586
+#: features.js:591
 #, javascript-format
 msgid "Daily goal: %d focus blocks."
 msgstr "Günlük hedef: %d odak bloğu."
 
-#: features.js:587
+#: features.js:592
 msgid "No daily goal yet — just getting a feel for it."
 msgstr "Henüz günlük hedef yok — sadece deniyoruz."
 
-#: features.js:598
+#: features.js:603
 msgid "Silent focus — no ticking or chimes."
 msgstr "Sessiz odak — tıkırtı ya da çınlama yok."
 
-#: features.js:602
+#: features.js:607
 msgid "Soft brown-noise ambience while you focus."
 msgstr "Odaklanırken yumuşak kahverengi gürültü ortamı."
 
-#: features.js:607
+#: features.js:612
 #, javascript-format
 msgid "A gentle chime every %d min to mark time."
 msgstr "Zamanı belirtmek için her %d dk'da bir yumuşak çınlama."
 
-#: features.js:612
+#: features.js:617
 msgid "Quiet, visual-only cues for a shared space."
 msgstr "Ortak alan için sessiz, yalnızca görsel ipuçları."
 
-#: features.js:618
+#: features.js:623
 msgid "Notifications are muted while you focus."
 msgstr "Odaklanırken bildirimler susturulur."
 
-#: features.js:621
+#: features.js:626
 msgid "Distraction blocking is ready — add sites in Settings → Advanced."
 msgstr ""
 "Dikkat dağıtıcı engelleme hazır — siteleri Ayarlar → Gelişmiş'ten ekle."
 
-#: features.js:624
+#: features.js:629
 msgid "One-click start and a calm start ritual make it easier to begin."
 msgstr ""
 "Tek tıkla başlatma ve sakin bir başlangıç ritüeli başlamayı kolaylaştırır."
 
-#: features.js:628
+#: features.js:633
 msgid "Breaks start on their own so you don't overwork."
 msgstr "Molalar kendiliğinden başlar, böylece fazla çalışmazsın."
 
-#: features.js:632
+#: features.js:637
 msgid "A calm theme, no ticking seconds and no end-of-timer rush."
 msgstr "Sakin bir tema, saniye tıkırtısı ve süre sonu telaşı yok."
 
-#: features.js:672
+#: features.js:677
 msgid "What will you mainly focus on?"
 msgstr "Çoğunlukla neye odaklanacaksın?"
 
-#: features.js:673
+#: features.js:678
 msgid "This shapes how long each focus block should be."
 msgstr "Bu, her odak bloğunun ne kadar süreceğini belirler."
 
-#: features.js:675
+#: features.js:680
 msgid "Deep work or coding"
 msgstr "Derin çalışma ya da kodlama"
 
-#: features.js:676
+#: features.js:681
 msgid "Studying or reading"
 msgstr "Ders çalışma ya da okuma"
 
-#: features.js:677
+#: features.js:682
 msgid "Writing or creative work"
 msgstr "Yazma ya da yaratıcı çalışma"
 
-#: features.js:678
+#: features.js:683
 msgid "Lots of small tasks"
 msgstr "Çok sayıda küçük görev"
 
-#: features.js:680
+#: features.js:685
 msgid "How long can you usually concentrate?"
 msgstr "Genelde ne kadar süre konsantre olabiliyorsun?"
 
-#: features.js:681
+#: features.js:686
 msgid "Pick a length you can actually keep — it beats an ideal one."
 msgstr "Gerçekten sürdürebileceğin bir süre seç — ideal olandan iyidir."
 
-#: features.js:683
+#: features.js:688
 msgid "About 15 minutes"
 msgstr "Yaklaşık 15 dakika"
 
-#: features.js:684
+#: features.js:689
 msgid "About 25 minutes"
 msgstr "Yaklaşık 25 dakika"
 
-#: features.js:685
+#: features.js:690
 msgid "45 minutes or more"
 msgstr "45 dakika ya da daha fazla"
 
-#: features.js:686
+#: features.js:691
 msgid "I lose track of time when I'm in flow"
 msgstr "Akıştayken zamanın nasıl geçtiğini anlamıyorum"
 
-#: features.js:688
+#: features.js:693
 msgid "What gets in your way most?"
 msgstr "Seni en çok ne engelliyor?"
 
-#: features.js:689
+#: features.js:694
 msgid "I'll switch on the right help for this."
 msgstr "Bunun için doğru yardımı açacağım."
 
-#: features.js:691
+#: features.js:696
 msgid "Notifications and pings"
 msgstr "Bildirimler ve uyarılar"
 
-#: features.js:692
+#: features.js:697
 msgid "Distracting websites"
 msgstr "Dikkat dağıtıcı siteler"
 
-#: features.js:693
+#: features.js:698
 msgid "It's hard to get started"
 msgstr "Başlamak zor geliyor"
 
-#: features.js:694
+#: features.js:699
 msgid "I forget to take breaks"
 msgstr "Mola vermeyi unutuyorum"
 
-#: features.js:695
+#: features.js:700
 msgid "Timers make me anxious"
 msgstr "Zamanlayıcılar beni kaygılandırıyor"
 
-#: features.js:697
+#: features.js:702
 msgid "What helps you concentrate?"
 msgstr "Konsantre olmana ne yardımcı oluyor?"
 
-#: features.js:698
+#: features.js:703
 msgid "Sets the focus soundscape — change it anytime in Sounds."
 msgstr "Odak ses ortamını belirler — istediğin zaman Sesler'den değiştir."
 
-#: features.js:700
+#: features.js:705
 msgid "Silence"
 msgstr "Sessizlik"
 
-#: features.js:701
+#: features.js:706
 msgid "Soft background noise"
 msgstr "Yumuşak arka plan gürültüsü"
 
-#: features.js:702
+#: features.js:707
 msgid "A gentle chime to mark time"
 msgstr "Zamanı belirtmek için yumuşak bir çınlama"
 
-#: features.js:703
+#: features.js:708
 msgid "I share my space — keep it quiet"
 msgstr "Alanımı paylaşıyorum — sessiz olsun"
 
-#: features.js:705
+#: features.js:710
 msgid "How much do you want to get done today?"
 msgstr "Bugün ne kadar iş bitirmek istiyorsun?"
 
-#: features.js:706
+#: features.js:711
 msgid "Sets your daily goal — no pressure, you can change it."
 msgstr "Günlük hedefini belirler — baskı yok, değiştirebilirsin."
 
-#: features.js:708
+#: features.js:713
 msgid "Just trying it out"
 msgstr "Sadece deniyorum"
 
-#: features.js:709
+#: features.js:714
 msgid "A light day (about 4)"
 msgstr "Hafif bir gün (yaklaşık 4)"
 
-#: features.js:710
+#: features.js:715
 msgid "A full day (about 6)"
 msgstr "Dolu bir gün (yaklaşık 6)"
 
-#: features.js:711
+#: features.js:716
 msgid "A big push (about 8)"
 msgstr "Büyük bir hamle (yaklaşık 8)"
 
-#: features.js:727
+#: features.js:732
 msgid "Smart setup"
 msgstr "Akıllı kurulum"
 
-#: features.js:736
+#: features.js:741
 msgid "Skip"
 msgstr "Atla"
 
-#: features.js:739
+#: features.js:744
 msgid "Let's tune Zen Pomodoro to you 🍅"
 msgstr "Zen Pomodoro'yu sana göre ayarlayalım 🍅"
 
-#: features.js:740
+#: features.js:745
 msgid ""
 "Answer five quick questions and I'll build a focus setup that fits how you "
 "work — your rhythm, sounds, breaks and the help you need. You can fine-tune "
@@ -597,23 +601,23 @@ msgstr ""
 "hazırlayayım — ritmin, sesler, molalar ve ihtiyacın olan yardım. Her şeyi "
 "daha sonra Ayarlar'dan ince ayarlayabilirsin."
 
-#: features.js:741
+#: features.js:746
 msgid "Let's go"
 msgstr "Başlayalım"
 
-#: features.js:747 features.js:763
+#: features.js:752 features.js:768
 msgid "Back"
 msgstr "Geri"
 
-#: features.js:748
+#: features.js:753
 msgid "Next"
 msgstr "İleri"
 
-#: features.js:751
+#: features.js:756
 msgid "Your tailored setup 🍅"
 msgstr "Sana özel kurulumun 🍅"
 
-#: features.js:752
+#: features.js:757
 msgid ""
 "Based on your answers, here's what I'll set up. Apply it now, then tweak "
 "anything in Settings."
@@ -621,232 +625,232 @@ msgstr ""
 "Yanıtlarına göre kuracağım ayarlar bunlar. Şimdi uygula, sonra Ayarlar'dan "
 "dilediğini değiştir."
 
-#: features.js:764
+#: features.js:769
 msgid "Apply"
 msgstr "Uygula"
 
-#: features.js:765
+#: features.js:770
 msgid "Apply & start"
 msgstr "Uygula ve başla"
 
-#: features.js:781 menu.js:335
+#: features.js:786 menu.js:335
 #, javascript-format
 msgid "%dh %dm"
 msgstr "%d sa %d dk"
 
-#: features.js:781 menu.js:335
+#: features.js:786 menu.js:335
 #, javascript-format
 msgid "%dh"
 msgstr "%d sa"
 
-#: features.js:936
+#: features.js:941
 msgid "Statistics reset."
 msgstr "İstatistikler sıfırlandı."
 
-#: features.js:958
+#: features.js:963
 #, javascript-format
 msgid "%d to go today — at your pace, done by about %s."
 msgstr "Bugün %d kaldı — bu tempoyla yaklaşık %s civarında biter."
 
-#: features.js:959
+#: features.js:964
 #, javascript-format
 msgid "%d more to reach today's goal of %d."
 msgstr "%d tane daha — bugünkü hedef %d."
 
-#: features.js:961
+#: features.js:966
 #, javascript-format
 msgid "Daily goal reached — %d done today. Nice."
 msgstr "Günlük hedefe ulaşıldı — bugün %d tamamlandı. Güzel."
 
-#: features.js:964
+#: features.js:969
 #, javascript-format
 msgid "%d interruptions this week — what keeps pulling you away?"
 msgstr "Bu hafta %d kesinti — dikkatini ne dağıtıyor?"
 
-#: features.js:967 features.js:1085
+#: features.js:972 features.js:1090
 #, javascript-format
 msgid "Most focused around %s — good time for deep work."
 msgstr ""
 "En çok %s civarında odaklanıyorsun — derin çalışma için iyi bir zaman."
 
-#: features.js:970
+#: features.js:975
 #, javascript-format
 msgid "Most focus went to “%s”."
 msgstr "En çok odak “%s” görevine ayrıldı."
 
-#: features.js:972
+#: features.js:977
 #, javascript-format
 msgid "%d pomodoros this week. Keep it going."
 msgstr "Bu hafta %d pomodoro. Böyle devam et."
 
-#: features.js:973
+#: features.js:978
 msgid "Start a focus session — your insights will appear here."
 msgstr "Bir odak oturumu başlat — içgörülerin burada görünecek."
 
-#: features.js:1027
+#: features.js:1032
 msgid "Focus statistics"
 msgstr "Odak istatistikleri"
 
-#: features.js:1041
+#: features.js:1046
 #, javascript-format
 msgid "%d / %d goal"
 msgstr "%d / %d hedef"
 
-#: features.js:1042
+#: features.js:1047
 msgid "Today"
 msgstr "Bugün"
 
-#: features.js:1043
+#: features.js:1048
 msgid "This week"
 msgstr "Bu hafta"
 
-#: features.js:1044
+#: features.js:1049
 msgid "Streak"
 msgstr "Seri"
 
-#: features.js:1044
+#: features.js:1049
 #, javascript-format
 msgid "best %d"
 msgstr "rekor %d"
 
-#: features.js:1045
+#: features.js:1050
 msgid "All time"
 msgstr "Tüm zamanlar"
 
-#: features.js:1053
+#: features.js:1058
 msgid "Sun"
 msgstr "Paz"
 
-#: features.js:1053
+#: features.js:1058
 msgid "Mon"
 msgstr "Pzt"
 
-#: features.js:1053
+#: features.js:1058
 msgid "Tue"
 msgstr "Sal"
 
-#: features.js:1053
+#: features.js:1058
 msgid "Wed"
 msgstr "Çar"
 
-#: features.js:1053
+#: features.js:1058
 msgid "Thu"
 msgstr "Per"
 
-#: features.js:1053
+#: features.js:1058
 msgid "Fri"
 msgstr "Cum"
 
-#: features.js:1053
+#: features.js:1058
 msgid "Sat"
 msgstr "Cmt"
 
-#: features.js:1054
+#: features.js:1059
 #, javascript-format
 msgid "This week: %d 🍅 · %s · best day %s"
 msgstr "Bu hafta: %d 🍅 · %s · en iyi gün %s"
 
-#: features.js:1060
+#: features.js:1065
 msgid "Nothing harvested yet today"
 msgstr "Bugün henüz hasat yok"
 
-#: features.js:1062
+#: features.js:1067
 msgid "Today's harvest"
 msgstr "Bugünkü hasat"
 
-#: features.js:1069
+#: features.js:1074
 #, javascript-format
 msgid "Interruptions: %d today · %d this week"
 msgstr "Kesintiler: bugün %d · bu hafta %d"
 
-#: features.js:1075
+#: features.js:1080
 msgid "When you focus (by hour)"
 msgstr "Ne zaman odaklanıyorsun (saate göre)"
 
-#: features.js:1080
+#: features.js:1085
 msgid "night"
 msgstr "gece"
 
-#: features.js:1080
+#: features.js:1085
 msgid "morning"
 msgstr "sabah"
 
-#: features.js:1080
+#: features.js:1085
 msgid "afternoon"
 msgstr "öğleden sonra"
 
-#: features.js:1080
+#: features.js:1085
 msgid "evening"
 msgstr "akşam"
 
-#: features.js:1086
+#: features.js:1091
 msgid "Not enough data yet to spot your best focus time."
 msgstr "En iyi odak zamanını belirlemek için henüz yeterli veri yok."
 
-#: features.js:1095
+#: features.js:1100
 msgid "Focus time — last 14 days"
 msgstr "Odak süresi — son 14 gün"
 
-#: features.js:1100
+#: features.js:1105
 msgid "Activity — last 12 weeks"
 msgstr "Etkinlik — son 12 hafta"
 
-#: features.js:1105
+#: features.js:1110
 msgid "Less"
 msgstr "Az"
 
-#: features.js:1109
+#: features.js:1114
 msgid "More"
 msgstr "Çok"
 
-#: features.js:1122
+#: features.js:1127
 msgid "By task"
 msgstr "Göreve göre"
 
-#: features.js:1143 menu.js:646
+#: features.js:1148 menu.js:646
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Kilometre taşları: %s"
 
-#: features.js:1151
+#: features.js:1156
 msgid "Delete all statistics"
 msgstr "Tüm istatistikleri sil"
 
-#: features.js:1156
+#: features.js:1161
 msgid "Reset statistics…"
 msgstr "İstatistikleri sıfırla…"
 
-#: features.js:1157
+#: features.js:1162
 msgid "Close"
 msgstr "Kapat"
 
-#: features.js:1484
+#: features.js:1489
 msgid "No task"
 msgstr "Görev yok"
 
-#: features.js:1521
+#: features.js:1526
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "Push bildirimleri için libsoup gerekir, ancak burada mevcut değil."
 
-#: features.js:1527
+#: features.js:1532
 msgid "Enter your Pushover user key and app token first."
 msgstr "Önce Pushover kullanıcı anahtarını ve uygulama belirtecini gir."
 
-#: features.js:1534
+#: features.js:1539
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Zen Pomodoro'dan test bildirimi 🍅"
 
-#: features.js:1556
+#: features.js:1561
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Pushover testi gönderildi ✓ — cihazını kontrol et."
 
-#: features.js:1557 features.js:1561
+#: features.js:1562 features.js:1566
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr ""
 "Pushover testi başarısız. Kullanıcı anahtarını ve uygulama belirtecini "
 "kontrol et."
 
-#: features.js:1604
+#: features.js:1609
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -854,40 +858,40 @@ msgstr ""
 "Odak sırasında siteleri otomatik engellemek için ayarlardan parolasız "
 "engellemeyi açın."
 
-#: features.js:1662
+#: features.js:1667
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Parolasız engelleme etkin (hiç sormaz)."
 
-#: features.js:1668
+#: features.js:1673
 msgid "Passwordless blocking removed."
 msgstr "Parolasız engelleme kaldırıldı."
 
-#: features.js:1705
+#: features.js:1710
 msgid "Click to exit Zen"
 msgstr "Zen'den çıkmak için tıkla"
 
 #. settings-schema.json->focus->title
-#: features.js:1740 visual.js:894
+#: features.js:1745 visual.js:894
 msgid "Focus"
 msgstr "Odak"
 
-#: features.js:1817
+#: features.js:1822
 msgid "Breathe in"
 msgstr "Nefes al"
 
-#: features.js:1820 features.js:1826
+#: features.js:1825 features.js:1831
 msgid "Hold"
 msgstr "Tut"
 
-#: features.js:1823
+#: features.js:1828
 msgid "Breathe out"
 msgstr "Nefes ver"
 
-#: features.js:1853
+#: features.js:1858
 msgid "Focus until"
 msgstr "Şu saate kadar odak"
 
-#: features.js:1854
+#: features.js:1859
 msgid "Enter a time (HH:MM)"
 msgstr "Bir saat gir (SS:DD)"
 

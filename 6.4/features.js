@@ -478,12 +478,12 @@ function install(proto) {
             title: existing ? _("Edit task") : _("New task"),
             description: _("What do you want to work on?")
         });
-        let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true });
+        let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true, hint_text: _("e.g. Write the report") });
         CinnamonEntry.addContextMenu(entry);
         if (existing && existing.title) { entry.set_text(existing.title); }
         content.add_child(entry);
 
-        let est = { value: existing ? Math.max(0, Math.min(6, existing.est || 0)) : 0 };
+        let est = { value: existing ? Math.max(0, Math.min(99, existing.est || 0)) : 0 };
         let focusLen = this._opt_pomodoroTimeMinutes || 25;
         let fmtMins = (mins) => {
             let h = Math.floor(mins / 60), m = mins % 60;
@@ -495,10 +495,13 @@ function install(proto) {
         let estBtns = [];
         let estVals = [0, 1, 2, 3, 4, 5, 6];
         let estReadout = new St.Label({ text: '', style: 'padding-top: 4px; color: rgba(255,255,255,0.6);' });
+        let plusBtn = new St.Button({ label: "+", style_class: 'button' });
         let restyle = () => {
             for (let k = 0; k < estBtns.length; k++) {
                 estBtns[k].set_style('padding: 2px 8px;' + ((estVals[k] === est.value) ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
             }
+            plusBtn.set_label(est.value > 6 ? (est.value + " \ud83c\udf45") : "+");
+            plusBtn.set_style('padding: 2px 8px;' + ((est.value > 6) ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
             estReadout.set_text(est.value === 0 ? _("No estimate — just counts your 🍅") : ("\u2248 " + fmtMins(est.value * focusLen)));
         };
         estVals.forEach((v) => {
@@ -507,6 +510,8 @@ function install(proto) {
             estBtns.push(b);
             estRow.add(b);
         });
+        plusBtn.connect('clicked', () => { est.value = Math.min(99, Math.max(est.value, 6) + 1); restyle(); });
+        estRow.add(plusBtn);
         restyle();
         content.add_child(estRow);
         content.add_child(estReadout);

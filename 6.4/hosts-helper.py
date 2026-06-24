@@ -22,11 +22,13 @@ HOST_RE = re.compile(
 
 
 def read_hosts():
-    try:
-        with open(HOSTS, "r", encoding="utf-8") as f:
-            return f.read()
-    except Exception:
+    # A missing file is fine (fresh start). A real read error must NOT be
+    # swallowed: returning "" here would drop the rest of /etc/hosts on the
+    # next write. Let the exception propagate so main() aborts without writing.
+    if not os.path.exists(HOSTS):
         return ""
+    with open(HOSTS, "r", encoding="utf-8") as f:
+        return f.read()
 
 
 def strip_section(text):
@@ -70,7 +72,11 @@ def main():
         return 2
 
     action = sys.argv[1]
-    base = strip_section(read_hosts())
+    try:
+        base = strip_section(read_hosts())
+    except Exception as exc:
+        sys.stderr.write("cannot read %s: %s\n" % (HOSTS, exc))
+        return 1
 
     if action == "unblock":
         write_hosts(base)

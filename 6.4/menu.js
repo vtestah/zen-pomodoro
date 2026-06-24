@@ -573,7 +573,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             let goal = runtime.dailyGoal || 0;
             if (goal > 0) {
                 let count = runtime.dailyCount || 0;
-                let text = _("Today: %d / %d").format(count, goal);
+                let cap = Math.min(goal, 8);
+                let filled = Math.max(0, Math.min(count, cap));
+                let bar = "🍅".repeat(filled) + "⚪".repeat(Math.max(0, cap - filled));
+                let text = bar + "  " + count + " / " + goal;
                 if (count >= goal) {
                     text += "  \u2713";
                 }

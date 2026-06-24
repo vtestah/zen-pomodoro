@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 00:57+0700\n"
+"POT-Creation-Date: 2026-06-24 09:57+0700\n"
 "PO-Revision-Date: 2021-10-02 21:15-0300\n"
 "Last-Translator: Marcelo Aof\n"
 "Language-Team: pt_BR\n"
@@ -55,7 +55,7 @@ msgstr "INTERVALO PAUSADO"
 msgid "BREAK OVER"
 msgstr "INTERVALO ENCERRADO"
 
-#: applet.js:1008 applet.js:1068 menu.js:236 menu.js:630
+#: applet.js:1008 applet.js:1068 menu.js:245 menu.js:642
 msgid "Ready to focus"
 msgstr "Pronto para focar"
 
@@ -84,7 +84,7 @@ msgstr "Intervalo encerrado"
 msgid "Pomodori %d, set %d running"
 msgstr "Repetição %d, ciclo %d em andamento"
 
-#: applet.js:1046 features.js:429 features.js:1058 menu.js:652
+#: applet.js:1046 features.js:429 features.js:1058
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ fim %s · faltam %d 🍅"
@@ -610,17 +610,17 @@ msgstr "Aplicar"
 msgid "Apply & start"
 msgstr "Aplicar e iniciar"
 
-#: features.js:767 menu.js:317 menu.js:877 menu.js:883
+#: features.js:767 menu.js:329 menu.js:899 menu.js:905
 #, javascript-format
 msgid "%d min"
 msgstr "%d min"
 
-#: features.js:771 menu.js:321
+#: features.js:771 menu.js:333
 #, javascript-format
 msgid "%dh %dm"
 msgstr "%dh %dm"
 
-#: features.js:771 menu.js:321
+#: features.js:771 menu.js:333
 #, javascript-format
 msgid "%dh"
 msgstr "%dh"
@@ -789,7 +789,7 @@ msgstr "Mais"
 msgid "By task"
 msgstr "Por tarefa"
 
-#: features.js:1133 menu.js:626
+#: features.js:1133 menu.js:638
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Marcos: %s"
@@ -877,219 +877,219 @@ msgstr "Focar até"
 msgid "Enter a time (HH:MM)"
 msgstr "Digite um horário (HH:MM)"
 
-#: menu.js:122
+#: menu.js:131
 msgid "Error: menu unavailable"
 msgstr "Erro: menu indisponível"
 
-#: menu.js:253
+#: menu.js:262
 msgid "Ready to start"
 msgstr "Pronto para começar"
 
-#: menu.js:261 menu.js:693
+#: menu.js:270 menu.js:703
 msgid "Task will be selected on start"
 msgstr "A tarefa será escolhida ao iniciar"
 
-#: menu.js:357
+#: menu.js:369
 #, javascript-format
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:365 menu.js:773
+#: menu.js:377 menu.js:783
 msgid "Start focus"
 msgstr "Iniciar foco"
 
-#: menu.js:381
+#: menu.js:393
 msgid "Skip phase"
 msgstr "Pular fase"
 
-#: menu.js:387
+#: menu.js:399
 msgid "Reset timer"
 msgstr "Redefinir cronômetro"
 
-#: menu.js:399
+#: menu.js:411
 msgid "Reset counters"
 msgstr "Redefinir contadores"
 
-#: menu.js:400
+#: menu.js:412
 msgid "Reset timer and counters"
 msgstr "Redefinir cronômetro e contadores"
 
-#: menu.js:418
+#: menu.js:430
 msgid "Site blocking"
 msgstr "Bloqueio de sites"
 
-#: menu.js:418 menu.js:701 menu.js:935
+#: menu.js:430 menu.js:711 menu.js:957
 msgid "off"
 msgstr "desligado"
 
-#: menu.js:425
+#: menu.js:437
 msgid "Current task…"
 msgstr "Tarefa atual…"
 
-#: menu.js:431
+#: menu.js:443
 msgid "Focus until…"
 msgstr "Focar até…"
 
-#: menu.js:437
+#: menu.js:449
 msgid "Zen mode"
 msgstr "Modo Zen"
 
-#: menu.js:444
+#: menu.js:456
 msgid "Ambient sound"
 msgstr "Som ambiente"
 
-#: menu.js:448 menu.js:883
+#: menu.js:460 menu.js:905
 msgid "Focus length"
 msgstr "Duração do foco"
 
-#: menu.js:455 menu.js:715 menu.js:930
+#: menu.js:467 menu.js:725 menu.js:952
 msgid "Preset"
 msgstr "Predefinição"
 
-#: menu.js:459 menu.js:801
+#: menu.js:471 menu.js:823
 msgid "Task list"
 msgstr "Lista de tarefas"
 
-#: menu.js:463
+#: menu.js:475
 msgid "Statistics"
 msgstr "Estatísticas"
 
-#: menu.js:464 menu.js:588
+#: menu.js:476 menu.js:600
 #, javascript-format
 msgid "Today: %d"
 msgstr "Hoje: %d"
 
-#: menu.js:467 menu.js:611
+#: menu.js:479 menu.js:623
 #, javascript-format
 msgid "Streak: %d days (best %d)"
 msgstr "Sequência: %d dias (recorde %d)"
 
-#: menu.js:470
+#: menu.js:482
 msgid "Details…"
 msgstr "Detalhes…"
 
-#: menu.js:474
+#: menu.js:486
 msgid "Setup wizard…"
 msgstr "Assistente de configuração…"
 
-#: menu.js:479
+#: menu.js:491
 msgid "SESSION"
 msgstr "SESSÃO"
 
-#: menu.js:561
+#: menu.js:573
 #, javascript-format
 msgid "Today: %d / %d"
 msgstr "Hoje: %d / %d"
 
-#: menu.js:593
+#: menu.js:605
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "Últimos 7 dias: %d"
 
-#: menu.js:602
+#: menu.js:614
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "Últimos 30 dias: %d"
 
-#: menu.js:605
+#: menu.js:617
 #, javascript-format
 msgid "All time: %d"
 msgstr "Total: %d"
 
-#: menu.js:608
+#: menu.js:620
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Tempo de foco: %s hoje · %s no total"
 
-#: menu.js:614
+#: menu.js:626
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Melhor dia: %d"
 
-#: menu.js:626
+#: menu.js:638
 msgid "none yet"
 msgstr "ainda nenhum"
 
-#: menu.js:642
+#: menu.js:654
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d de %d"
 
-#: menu.js:644
+#: menu.js:656
 msgid "Long break"
 msgstr "Intervalo longo"
 
-#: menu.js:646
+#: menu.js:658
 msgid "Short break"
 msgstr "Intervalo curto"
 
-#: menu.js:649
+#: menu.js:661
 #, javascript-format
 msgid "until %s"
 msgstr "até %s"
 
-#: menu.js:657
+#: menu.js:664
+#, javascript-format
+msgid "≈ finish %s"
+msgstr "≈ fim %s"
+
+#: menu.js:668
 msgid "Break finished — press Start for focus"
 msgstr "Intervalo terminado — pressione Iniciar para focar"
 
-#: menu.js:659
+#: menu.js:670
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Conclua suas tarefas até ~%s"
 
-#: menu.js:661
+#: menu.js:672
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "Foco de %d min — pressione Iniciar"
 
-#: menu.js:689 menu.js:691
-#, javascript-format
-msgid "Task: %s"
-msgstr "Tarefa: %s"
-
-#: menu.js:695
+#: menu.js:705
 msgid "Task: none"
 msgstr "Tarefa: nenhuma"
 
-#: menu.js:702 menu.js:936
+#: menu.js:712 menu.js:958
 #, javascript-format
 msgid "blocking %d"
 msgstr "bloqueando %d"
 
-#: menu.js:702 menu.js:936
+#: menu.js:712 menu.js:958
 #, javascript-format
 msgid "%d in list"
 msgstr "%d na lista"
 
-#: menu.js:752
+#: menu.js:762
 msgid "Resume break"
 msgstr "Retomar intervalo"
 
-#: menu.js:752
+#: menu.js:762
 msgid "Resume focus"
 msgstr "Retomar foco"
 
-#: menu.js:759
+#: menu.js:769
 msgid "Focusing — stay with it"
 msgstr "Focando — não se distraia"
 
-#: menu.js:764
+#: menu.js:774
 msgid "Pause focus"
 msgstr "Pausar foco"
 
-#: menu.js:764
+#: menu.js:774
 msgid "Pause break"
 msgstr "Pausar intervalo"
 
-#: menu.js:769
+#: menu.js:779
 msgid "Start next focus"
 msgstr "Iniciar próximo foco"
 
-#: menu.js:811
+#: menu.js:833
 msgid "Add task…"
 msgstr "Adicionar tarefa…"
 
-#: menu.js:821
+#: menu.js:843
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Ainda sem tarefas — adicione no que vai focar, com uma estimativa em 🍅."
@@ -2394,6 +2394,10 @@ msgid ""
 msgstr ""
 "Escolha seu próprio som ambiente em loop. Deixe vazio para o ruído marrom "
 "integrado."
+
+#, javascript-format
+#~ msgid "Task: %s"
+#~ msgstr "Tarefa: %s"
 
 #~ msgid "No tasks to save"
 #~ msgstr "Nenhuma tarefa para salvar"

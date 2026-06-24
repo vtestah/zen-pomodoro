@@ -108,8 +108,17 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
     }
 
     _rebuildMenu() {
+        // Preserve task data (it's state, not widgets) across the teardown.
+        let keepTasks = this._tasks;
+        let keepCurrentId = this._tasksCurrentId;
+        let keepFinish = this._tasksFinishText;
+        let keepTemplates = this._taskTemplates;
         this.removeAll();
         this._nullWidgetRefs();
+        this._tasks = keepTasks;
+        this._tasksCurrentId = keepCurrentId;
+        this._tasksFinishText = keepFinish;
+        this._taskTemplates = keepTemplates;
 
         try {
             if (this._layoutCategory === "active") {
@@ -261,6 +270,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             text: _("Task will be selected on start"),
             style_class: "pomodoro-task"
         });
+        this._taskLabel.set_reactive(true);
+        this._taskLabel.set_track_hover(true);
+        this._taskLabel.connect('button-press-event', () => { this.emit('choose-task'); return true; });
         this._dailyLabel = new St.Label({
             text: "",
             style_class: "pomodoro-cycle"
@@ -649,8 +661,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                         line += ` \u00B7 ` + _("until %s").format(runtime.endTime);
                     }
                     if ((state === "pomodoro" || state === "pomodoro-paused") && runtime.finishEstimate) {
-                        line += ` \u00B7 ` + _("\u2248 finish %s \u00b7 %d \ud83c\udf45 left").format(
-                            runtime.finishEstimate.time, runtime.finishEstimate.remaining);
+                        line += ` \u00B7 ` + _("\u2248 finish %s").format(runtime.finishEstimate.time);
                     }
                     this._progressLabel.set_text(line);
                 } else if (state === "break-over") {
@@ -685,10 +696,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
 
         if (this._taskLabel) {
-            if (task) {
-                this._taskLabel.set_text(_("Task: %s").format(task));
-            } else if (selectedTask && isIdle) {
-                this._taskLabel.set_text(_("Task: %s").format(selectedTask));
+            let name = task || ((selectedTask && isIdle) ? selectedTask : "");
+            if (name) {
+                this._taskLabel.set_text(this._taskHeaderText(name));
             } else if (state === "pomodoro-stop") {
                 this._taskLabel.set_text(_("Task will be selected on start"));
             } else {
@@ -788,6 +798,18 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (this._resetTimerItem) {
             this._resetTimerItem.setSensitive(state !== "pomodoro-stop" || Boolean(runtime.timerRunning || runtime.timerPaused));
         }
+    }
+
+    _taskHeaderText(fallbackName) {
+        let cur = this._tasks && this._tasks.find((t) => t.id === this._tasksCurrentId);
+        if (cur) {
+            let s = "\u25cf " + cur.title;
+            if (cur.est > 0) {
+                s += "   " + (cur.doneToday || 0) + "/" + cur.est + " \ud83c\udf45";
+            }
+            return s;
+        }
+        return "\u25cf " + fallbackName;
     }
 
     setTasks(list, currentId, finishText, templates) {

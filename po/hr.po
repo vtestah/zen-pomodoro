@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pomodoro Timer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 17:39+0700\n"
+"POT-Creation-Date: 2026-06-25 17:47+0700\n"
 "PO-Revision-Date: 2017-02-24 23:32+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -1071,6 +1071,7 @@ msgstr "Fokus do…"
 msgid "Zen mode"
 msgstr "Zen način"
 
+#. settings-schema.json->sec_ambient->title
 #: menu.js:483 menu.js:522
 msgid "Ambient sound"
 msgstr "Pozadinski zvuk"
@@ -1238,8 +1239,8 @@ msgid "Focus: %s"
 msgstr "Fokus: %s"
 
 #. settings-schema.json->timer->title
-msgid "Timer"
-msgstr "Mjerač vremena"
+msgid "General"
+msgstr ""
 
 #. settings-schema.json->panel->title
 #. settings-schema.json->sec_panel->title
@@ -1251,7 +1252,6 @@ msgid "Appearance"
 msgstr "Izgled"
 
 #. settings-schema.json->sounds->title
-#. settings-schema.json->sec_sounds->title
 msgid "Sounds"
 msgstr "Zvukovi"
 
@@ -1284,8 +1284,12 @@ msgid "Goals & flow"
 msgstr "Ciljevi i tok"
 
 #. settings-schema.json->sec_modes->title
-msgid "Ambient & modes"
-msgstr "Pozadina i načini"
+msgid "Modes"
+msgstr ""
+
+#. settings-schema.json->sec_sounds->title
+msgid "Alerts & effects"
+msgstr ""
 
 #. settings-schema.json->sec_tools->title
 msgid "Run a command"

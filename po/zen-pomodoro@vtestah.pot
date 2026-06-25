@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 17:39+0700\n"
+"POT-Creation-Date: 2026-06-25 17:47+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1062,6 +1062,7 @@ msgstr ""
 msgid "Zen mode"
 msgstr ""
 
+#. settings-schema.json->sec_ambient->title
 #: menu.js:483 menu.js:522
 msgid "Ambient sound"
 msgstr ""
@@ -1228,7 +1229,7 @@ msgid "Focus: %s"
 msgstr ""
 
 #. settings-schema.json->timer->title
-msgid "Timer"
+msgid "General"
 msgstr ""
 
 #. settings-schema.json->panel->title
@@ -1241,7 +1242,6 @@ msgid "Appearance"
 msgstr ""
 
 #. settings-schema.json->sounds->title
-#. settings-schema.json->sec_sounds->title
 msgid "Sounds"
 msgstr ""
 
@@ -1274,7 +1274,11 @@ msgid "Goals & flow"
 msgstr ""
 
 #. settings-schema.json->sec_modes->title
-msgid "Ambient & modes"
+msgid "Modes"
+msgstr ""
+
+#. settings-schema.json->sec_sounds->title
+msgid "Alerts & effects"
 msgstr ""
 
 #. settings-schema.json->sec_tools->title

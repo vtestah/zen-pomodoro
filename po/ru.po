@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zen-pomodoro@vtestah\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 17:39+0700\n"
+"POT-Creation-Date: 2026-06-25 17:47+0700\n"
 "PO-Revision-Date: 2026-06-22 17:27+0700\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: ru\n"
@@ -1087,6 +1087,7 @@ msgstr "Фокус до…"
 msgid "Zen mode"
 msgstr "Режим Дзен"
 
+#. settings-schema.json->sec_ambient->title
 #: menu.js:483 menu.js:522
 msgid "Ambient sound"
 msgstr "Фоновый звук"
@@ -1253,8 +1254,8 @@ msgid "Focus: %s"
 msgstr "Фокус: %s"
 
 #. settings-schema.json->timer->title
-msgid "Timer"
-msgstr "Таймер"
+msgid "General"
+msgstr "Общие"
 
 #. settings-schema.json->panel->title
 #. settings-schema.json->sec_panel->title
@@ -1266,7 +1267,6 @@ msgid "Appearance"
 msgstr "Внешний вид"
 
 #. settings-schema.json->sounds->title
-#. settings-schema.json->sec_sounds->title
 msgid "Sounds"
 msgstr "Звуки"
 
@@ -1299,8 +1299,12 @@ msgid "Goals & flow"
 msgstr "Цели и поток"
 
 #. settings-schema.json->sec_modes->title
-msgid "Ambient & modes"
-msgstr "Амбиент и режимы"
+msgid "Modes"
+msgstr "Режимы"
+
+#. settings-schema.json->sec_sounds->title
+msgid "Alerts & effects"
+msgstr "Сигналы и эффекты"
 
 #. settings-schema.json->sec_tools->title
 msgid "Run a command"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 17:39+0700\n"
+"POT-Creation-Date: 2026-06-25 17:47+0700\n"
 "PO-Revision-Date: 2025-10-12 13:07+0700\n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: vi\n"
@@ -1066,6 +1066,7 @@ msgstr "Tập trung đến…"
 msgid "Zen mode"
 msgstr "Chế độ Zen"
 
+#. settings-schema.json->sec_ambient->title
 #: menu.js:483 menu.js:522
 msgid "Ambient sound"
 msgstr "Âm thanh nền"
@@ -1232,8 +1233,8 @@ msgid "Focus: %s"
 msgstr "Tập trung: %s"
 
 #. settings-schema.json->timer->title
-msgid "Timer"
-msgstr "Bộ đếm"
+msgid "General"
+msgstr ""
 
 #. settings-schema.json->panel->title
 #. settings-schema.json->sec_panel->title
@@ -1245,7 +1246,6 @@ msgid "Appearance"
 msgstr "Giao diện"
 
 #. settings-schema.json->sounds->title
-#. settings-schema.json->sec_sounds->title
 msgid "Sounds"
 msgstr "Âm thanh"
 
@@ -1278,8 +1278,12 @@ msgid "Goals & flow"
 msgstr "Mục tiêu và guồng"
 
 #. settings-schema.json->sec_modes->title
-msgid "Ambient & modes"
-msgstr "Âm nền và chế độ"
+msgid "Modes"
+msgstr ""
+
+#. settings-schema.json->sec_sounds->title
+msgid "Alerts & effects"
+msgstr ""
 
 #. settings-schema.json->sec_tools->title
 msgid "Run a command"

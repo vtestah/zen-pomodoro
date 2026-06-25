@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 17:39+0700\n"
+"POT-Creation-Date: 2026-06-25 17:47+0700\n"
 "PO-Revision-Date: 2021-10-02 21:15-0300\n"
 "Last-Translator: Marcelo Aof\n"
 "Language-Team: pt_BR\n"
@@ -1074,6 +1074,7 @@ msgstr "Focar até…"
 msgid "Zen mode"
 msgstr "Modo Zen"
 
+#. settings-schema.json->sec_ambient->title
 #: menu.js:483 menu.js:522
 msgid "Ambient sound"
 msgstr "Som ambiente"
@@ -1241,8 +1242,8 @@ msgid "Focus: %s"
 msgstr "Foco: %s"
 
 #. settings-schema.json->timer->title
-msgid "Timer"
-msgstr "Cronômetro"
+msgid "General"
+msgstr ""
 
 #. settings-schema.json->panel->title
 #. settings-schema.json->sec_panel->title
@@ -1254,7 +1255,6 @@ msgid "Appearance"
 msgstr "Aparência"
 
 #. settings-schema.json->sounds->title
-#. settings-schema.json->sec_sounds->title
 msgid "Sounds"
 msgstr "Sons"
 
@@ -1287,8 +1287,12 @@ msgid "Goals & flow"
 msgstr "Metas e fluxo"
 
 #. settings-schema.json->sec_modes->title
-msgid "Ambient & modes"
-msgstr "Ambiente e modos"
+msgid "Modes"
+msgstr ""
+
+#. settings-schema.json->sec_sounds->title
+msgid "Alerts & effects"
+msgstr ""
 
 #. settings-schema.json->sec_tools->title
 msgid "Run a command"

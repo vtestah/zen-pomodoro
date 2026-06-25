@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 17:39+0700\n"
+"POT-Creation-Date: 2026-06-25 17:47+0700\n"
 "PO-Revision-Date: 2022-01-05 13:55+0200\n"
 "Last-Translator: Rutar <RutarAndriy@gmail.com>\n"
 "Language-Team: Ukrainian\n"
@@ -1073,6 +1073,7 @@ msgstr "Фокус до…"
 msgid "Zen mode"
 msgstr "Режим Дзен"
 
+#. settings-schema.json->sec_ambient->title
 #: menu.js:483 menu.js:522
 msgid "Ambient sound"
 msgstr "Фоновий звук"
@@ -1240,8 +1241,8 @@ msgid "Focus: %s"
 msgstr "Фокус: %s"
 
 #. settings-schema.json->timer->title
-msgid "Timer"
-msgstr "Таймер"
+msgid "General"
+msgstr ""
 
 #. settings-schema.json->panel->title
 #. settings-schema.json->sec_panel->title
@@ -1253,7 +1254,6 @@ msgid "Appearance"
 msgstr "Зовнішній вигляд"
 
 #. settings-schema.json->sounds->title
-#. settings-schema.json->sec_sounds->title
 msgid "Sounds"
 msgstr "Звуки"
 
@@ -1286,8 +1286,12 @@ msgid "Goals & flow"
 msgstr "Цілі та потік"
 
 #. settings-schema.json->sec_modes->title
-msgid "Ambient & modes"
-msgstr "Ембієнт і режими"
+msgid "Modes"
+msgstr ""
+
+#. settings-schema.json->sec_sounds->title
+msgid "Alerts & effects"
+msgstr ""
 
 #. settings-schema.json->sec_tools->title
 msgid "Run a command"

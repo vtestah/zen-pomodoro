@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 17:39+0700\n"
+"POT-Creation-Date: 2026-06-25 17:47+0700\n"
 "PO-Revision-Date: 2018-11-06 02:05+0300\n"
 "Last-Translator: Gökhan GÖKKAYA <gokhanlnx@gmail.com>\n"
 "Language-Team: Linux Mint Türkiye <gokhanlnx@gmail.com>\n"
@@ -1072,6 +1072,7 @@ msgstr "Şu saate kadar odak…"
 msgid "Zen mode"
 msgstr "Zen modu"
 
+#. settings-schema.json->sec_ambient->title
 #: menu.js:483 menu.js:522
 msgid "Ambient sound"
 msgstr "Ortam sesi"
@@ -1238,8 +1239,8 @@ msgid "Focus: %s"
 msgstr "Odak: %s"
 
 #. settings-schema.json->timer->title
-msgid "Timer"
-msgstr "Zamanlayıcı"
+msgid "General"
+msgstr ""
 
 #. settings-schema.json->panel->title
 #. settings-schema.json->sec_panel->title
@@ -1251,7 +1252,6 @@ msgid "Appearance"
 msgstr "Görünüm"
 
 #. settings-schema.json->sounds->title
-#. settings-schema.json->sec_sounds->title
 msgid "Sounds"
 msgstr "Sesler"
 
@@ -1284,8 +1284,12 @@ msgid "Goals & flow"
 msgstr "Hedefler ve akış"
 
 #. settings-schema.json->sec_modes->title
-msgid "Ambient & modes"
-msgstr "Ortam ve modlar"
+msgid "Modes"
+msgstr ""
+
+#. settings-schema.json->sec_sounds->title
+msgid "Alerts & effects"
+msgstr ""
 
 #. settings-schema.json->sec_tools->title
 msgid "Run a command"

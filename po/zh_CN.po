@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 17:39+0700\n"
+"POT-Creation-Date: 2026-06-25 17:47+0700\n"
 "PO-Revision-Date: 2017-03-14 22:17+0800\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: zh_CN\n"
@@ -1061,6 +1061,7 @@ msgstr "专注至…"
 msgid "Zen mode"
 msgstr "禅模式"
 
+#. settings-schema.json->sec_ambient->title
 #: menu.js:483 menu.js:522
 msgid "Ambient sound"
 msgstr "环境音"
@@ -1227,8 +1228,8 @@ msgid "Focus: %s"
 msgstr "专注：%s"
 
 #. settings-schema.json->timer->title
-msgid "Timer"
-msgstr "定时器"
+msgid "General"
+msgstr ""
 
 #. settings-schema.json->panel->title
 #. settings-schema.json->sec_panel->title
@@ -1240,7 +1241,6 @@ msgid "Appearance"
 msgstr "外观"
 
 #. settings-schema.json->sounds->title
-#. settings-schema.json->sec_sounds->title
 msgid "Sounds"
 msgstr "声音"
 
@@ -1273,8 +1273,12 @@ msgid "Goals & flow"
 msgstr "目标与心流"
 
 #. settings-schema.json->sec_modes->title
-msgid "Ambient & modes"
-msgstr "环境音与模式"
+msgid "Modes"
+msgstr ""
+
+#. settings-schema.json->sec_sounds->title
+msgid "Alerts & effects"
+msgstr ""
 
 #. settings-schema.json->sec_tools->title
 msgid "Run a command"

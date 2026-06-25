@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 17:39+0700\n"
+"POT-Creation-Date: 2026-06-25 17:47+0700\n"
 "PO-Revision-Date: 2017-06-07 06:28+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -1070,6 +1070,7 @@ msgstr "Fokus till…"
 msgid "Zen mode"
 msgstr "Zen-läge"
 
+#. settings-schema.json->sec_ambient->title
 #: menu.js:483 menu.js:522
 msgid "Ambient sound"
 msgstr "Bakgrundsljud"
@@ -1237,8 +1238,8 @@ msgid "Focus: %s"
 msgstr "Fokus: %s"
 
 #. settings-schema.json->timer->title
-msgid "Timer"
-msgstr "Timer"
+msgid "General"
+msgstr ""
 
 #. settings-schema.json->panel->title
 #. settings-schema.json->sec_panel->title
@@ -1250,7 +1251,6 @@ msgid "Appearance"
 msgstr "Utseende"
 
 #. settings-schema.json->sounds->title
-#. settings-schema.json->sec_sounds->title
 msgid "Sounds"
 msgstr "Ljud"
 
@@ -1283,8 +1283,12 @@ msgid "Goals & flow"
 msgstr "Mål och flow"
 
 #. settings-schema.json->sec_modes->title
-msgid "Ambient & modes"
-msgstr "Bakgrundsljud och lägen"
+msgid "Modes"
+msgstr ""
+
+#. settings-schema.json->sec_sounds->title
+msgid "Alerts & effects"
+msgstr ""
 
 #. settings-schema.json->sec_tools->title
 msgid "Run a command"

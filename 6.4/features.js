@@ -199,6 +199,7 @@ function install(proto) {
             }
             Main.notify(_("Daily goal reached \ud83c\udf45"), body);
             this._sendPushover(this._opt_pushoverMsgGoal, this._opt_pushoverSndGoal, this._opt_pushoverPriGoal);
+            this._runEventCommand('goal');
         }
         this._dailyStatsData = s;
         this._writeJsonAsync(POMODORO_STATS_FILE, s);
@@ -1658,7 +1659,10 @@ function install(proto) {
         if (!this._opt_runCommandEnabled) {
             return;
         }
-        let cmd = (which === 'focus') ? this._opt_focusStartCommand : this._opt_breakStartCommand;
+        let cmd;
+        if (which === 'focus') { cmd = this._opt_focusStartCommand; }
+        else if (which === 'goal') { cmd = this._opt_goalCommand; }
+        else { cmd = this._opt_breakStartCommand; }
         if (!cmd || !cmd.trim()) {
             return;
         }
@@ -1673,7 +1677,8 @@ function install(proto) {
                 global.logError("Zen Pomodoro: chosen file is not executable: " + cmd);
                 return;
             }
-            argv = [cmd];
+            // Pass context so one script can react: $1 = event, $2 = current task.
+            argv = [cmd, which, this._currentFocusTask || ""];
         } else {
             // Fall back to treating the value as an inline command.
             try {

@@ -218,6 +218,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_runCommandEnabled = null;
         this._opt_focusStartCommand = null;
         this._opt_breakStartCommand = null;
+        this._opt_goalCommand = null;
         this._opt_pushoverEnabled = null;
         this._opt_pushoverCustomize = null;
         this._opt_pushoverUserKey = null;
@@ -401,6 +402,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "run_command_enabled", "_opt_runCommandEnabled", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_start_command", "_opt_focusStartCommand", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_start_command", "_opt_breakStartCommand", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "goal_command", "_opt_goalCommand", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_enabled", "_opt_pushoverEnabled", () => {
             // When Pushover is turned off, collapse the advanced sections so they
             // don't linger as empty groups.

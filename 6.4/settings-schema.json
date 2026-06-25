@@ -211,7 +211,8 @@
             "keys": [
                 "run_command_enabled",
                 "focus_start_command",
-                "break_start_command"
+                "break_start_command",
+                "goal_command"
             ]
         },
         "sec_po": {
@@ -685,6 +686,14 @@
         "select-dir": false,
         "dependency": "run_command_enabled",
         "tooltip": "Pick a script to run when a break starts (e.g. clear your status). You can also type a command."
+    },
+    "goal_command": {
+        "type": "filechooser",
+        "description": "Command to run when the daily goal is reached",
+        "default": "",
+        "select-dir": false,
+        "dependency": "run_command_enabled",
+        "tooltip": "Pick a script to run when you reach your daily goal (e.g. a small celebration). You can also type a command."
     },
     "pushover_enabled": {
         "type": "switch",

@@ -29,7 +29,7 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
             description: _("What are you focusing on?")
         });
 
-        this._entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true });
+        this._entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true, hint_text: _("e.g. Write the report") });
         CinnamonEntry.addContextMenu(this._entry);
         this._entryText = this._entry.clutter_text;
         content.add_child(this._entry);

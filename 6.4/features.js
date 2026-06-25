@@ -805,6 +805,22 @@ function install(proto) {
 
     // Smart, adaptive onboarding: ask a few diagnostic questions, then compute
     // and apply a tailored setup instead of making the user pick raw presets.
+    // A short, persistent explanation of the technique (Settings button), so it
+    // is available without re-running the onboarding wizard.
+    proto._showAboutTechnique = function() {
+        let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
+        let box = new St.BoxLayout({ vertical: true, style: 'spacing: 9px; width: 540px; padding: 8px 16px;' });
+        dialog.contentLayout.add(box);
+        box.add(new St.Label({ text: _("The Pomodoro technique \ud83c\udf45"), style: 'font-size: 1.35em; font-weight: bold;' }));
+        let para = (s) => { let l = new St.Label({ text: s }); l.clutter_text.line_wrap = true; box.add(l); };
+        para(_("Work in short, focused sprints with deliberate rest between them:"));
+        para(_("\u2022 Focus for about 25 minutes on a single task.\n\u2022 Take a 5-minute break.\n\u2022 After four sprints, take a longer 15–30 minute break."));
+        para(_("Why it works: a finite countdown keeps the task approachable, frequent breaks protect your attention, and finishing each sprint builds momentum without burnout."));
+        para(_("Tip: pick one task per sprint. If something distracts you, jot it down and come back to it on the break."));
+        dialog.setButtons([{ label: _("Close"), default: true, action: () => dialog.close() }]);
+        dialog.open();
+    };
+
     proto._showOnboardingWizard = function() {
         let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
         let sp = this._settingsProvider;
@@ -904,8 +920,9 @@ function install(proto) {
             let buttons = [{ label: _("Skip"), action: finish }];
 
             if (s === 0) {
-                content.add(title(_("Let's tune Zen Pomodoro to you \ud83c\udf45")));
-                content.add(para(_("Answer five quick questions and I'll build a focus setup that fits how you work — your rhythm, sounds, breaks and the help you need. You can fine-tune everything later in Settings.")));
+                content.add(title(_("What is the Pomodoro technique? \ud83c\udf45")));
+                content.add(para(_("Focus in short sprints with deliberate rest: about 25 minutes on one task, then a 5-minute break; after four sprints, take a longer 15–30 minute break. The finite countdown keeps a task approachable and the regular breaks protect your attention.")));
+                content.add(para(_("Let's tune it to how you work — five quick questions, and you can change anything later in Settings.")));
                 buttons.push({ label: _("Let's go"), default: true, action: () => { st.step++; build(); } });
             } else if (s >= 1 && s <= QUESTIONS.length) {
                 let q = QUESTIONS[s - 1];

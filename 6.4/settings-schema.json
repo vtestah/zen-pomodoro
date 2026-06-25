@@ -78,7 +78,8 @@
                 "auto_start_after_pomodoro_ends",
                 "auto_start_after_short_break_ends",
                 "auto_start_after_break_ends",
-                "onboarding_button"
+                "onboarding_button",
+                "about_technique_button"
             ]
         },
         "sec_panel": {
@@ -1098,6 +1099,12 @@
         "description": "Run the quick-start guide",
         "tooltip": "Re-open the step-by-step setup guide.",
         "callback": "_showOnboardingWizard"
+    },
+    "about_technique_button": {
+        "type": "button",
+        "description": "About the Pomodoro technique",
+        "tooltip": "A short explanation of how the Pomodoro technique works.",
+        "callback": "_showAboutTechnique"
     },
     "pushover_msg_short_break": {
         "type": "entry",

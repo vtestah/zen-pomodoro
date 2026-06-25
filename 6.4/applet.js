@@ -1862,7 +1862,14 @@ class PomodoroApplet extends Applet.TextIconApplet {
         });
 
         menu.connect('set-ambient', (m, state) => {
-            try { this._settingsProvider.setValue('focus_ambient_choice', state ? (this._ambientLastChoice || 'brown') : 'off'); } catch (e) {}
+            let choice = state ? (this._ambientLastChoice || 'brown') : 'off';
+            this._opt_focusAmbientChoice = choice;
+            if (state) { this._ambientLastChoice = choice; }
+            // Apply immediately so the loop starts/stops the moment you toggle,
+            // instead of waiting on the settings-binding callback.
+            this._updateAmbientSound();
+            this._updateMenuRuntime();
+            try { this._settingsProvider.setValue('focus_ambient_choice', choice); } catch (e) {}
         });
 
         menu.connect('open-stats', () => {

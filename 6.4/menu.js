@@ -302,8 +302,11 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         try {
             let [w, h] = area.get_surface_size();
 
-            // Track.
-            cr.setSourceRGBA(1, 1, 1, 0.12);
+            // Track. A white track is invisible on a light popup, so use a faint
+            // dark track there and keep the faint light track on dark themes.
+            let lt = this._isLightTheme();
+            let tv = lt ? 0 : 1;
+            cr.setSourceRGBA(tv, tv, tv, lt ? 0.18 : 0.12);
             cr.rectangle(0, 0, w, h);
             cr.fill();
 

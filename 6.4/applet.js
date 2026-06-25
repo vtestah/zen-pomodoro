@@ -211,6 +211,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_flowExtend = null;
         this._opt_flowExtendMinutes = null;
         this._opt_focusAmbientSound = null;
+        this._opt_focusAmbientChoice = null;
+        this._opt_ambientMigrated = null;
+        this._ambientLastChoice = 'brown';
         this._opt_focusDnd = null;
         this._opt_pauseMedia = null;
         this._pausedMediaPlayers = [];
@@ -401,7 +404,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_resume_on_activity", "_opt_autoResumeOnActivity", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_extend", "_opt_flowExtend", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_extend_minutes", "_opt_flowExtendMinutes", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_sound", "_opt_focusAmbientSound", this._updateAmbientSound.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_sound", "_opt_focusAmbientSound", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_choice", "_opt_focusAmbientChoice", this._onAmbientChoiceChanged.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "ambient_migrated", "_opt_ambientMigrated", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_dnd", "_opt_focusDnd", () => this._updateDnd());
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pause_media", "_opt_pauseMedia", () => this._updateMediaPause());
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "run_command_enabled", "_opt_runCommandEnabled", emptyCallback);
@@ -523,6 +528,14 @@ class PomodoroApplet extends Applet.TextIconApplet {
         // Push the loaded presets to the menu now that settings are bound.
         this._updatePresetIndicator();
 
+
+        // One-time migration: the old on/off bool becomes a sound choice.
+        if (!this._opt_ambientMigrated) {
+            try {
+                this._settingsProvider.setValue('focus_ambient_choice', this._opt_focusAmbientSound ? 'brown' : 'off');
+                this._settingsProvider.setValue('ambient_migrated', true);
+            } catch (e) {}
+        }
 
         // First-run onboarding wizard.
         if (!this._opt_onboardingDone) {
@@ -780,7 +793,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             finishEstimate: finishEstimate,
             strictFocus: Boolean(this._opt_strictFocus),
             focusLength: this._opt_pomodoroTimeMinutes || 25,
-            ambientOn: Boolean(this._opt_focusAmbientSound),
+            ambientOn: this._ambientEnabled(),
             task: this._getPanelFocusTask(),
             selectedTask: this._currentFocusTask || "",
             activePreset: activePreset,
@@ -1725,7 +1738,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         });
 
         menu.connect('set-ambient', (m, state) => {
-            try { this._settingsProvider.setValue('focus_ambient_sound', !!state); } catch (e) {}
+            try { this._settingsProvider.setValue('focus_ambient_choice', state ? (this._ambientLastChoice || 'brown') : 'off'); } catch (e) {}
         });
 
         menu.connect('open-stats', () => {

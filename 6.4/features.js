@@ -762,10 +762,10 @@ function install(proto) {
 
         // Soundscape / environment.
         if (sound === 'silence') {
-            set.timer_sound = false; set.interval_chime = false; set.focus_ambient_sound = false;
+            set.timer_sound = false; set.interval_chime = false; set.focus_ambient_choice = 'off';
             why(_("Silent focus — no ticking or chimes."));
         } else if (sound === 'ambient') {
-            set.focus_ambient_sound = true; set.focus_ambient_volume = 40;
+            set.focus_ambient_choice = 'brown'; set.focus_ambient_volume = 40;
             set.timer_sound = false; set.interval_chime = false;
             why(_("Soft brown-noise ambience while you focus."));
         } else if (sound === 'chime') {
@@ -774,7 +774,7 @@ function install(proto) {
             set.timer_sound = false;
             why(_("A gentle chime every %d min to mark time.").format(Math.round(set.interval_chime_seconds / 60)));
         } else if (sound === 'shared') {
-            set.timer_sound = false; set.interval_chime = false; set.focus_ambient_sound = false;
+            set.timer_sound = false; set.interval_chime = false; set.focus_ambient_choice = 'off';
             set.start_sound = false; set.break_sound = false;
             set.focus_show_task_chip = true; set.focus_dnd = true;
             why(_("Quiet, visual-only cues for a shared space."));
@@ -1457,19 +1457,39 @@ function install(proto) {
         });
     };
 
+    // Ambient is on when a sound (not "off") is chosen.
+    proto._ambientEnabled = function() {
+        let c = this._opt_focusAmbientChoice;
+        return !!c && c !== 'off';
+    };
+
+    // Chosen sound changed: remember a real choice (for the menu toggle), then
+    // switch or stop the loop live.
+    proto._onAmbientChoiceChanged = function() {
+        if (this._ambientEnabled()) { this._ambientLastChoice = this._opt_focusAmbientChoice; }
+        this._updateAmbientSound();
+        if (typeof this._updateMenuRuntime === 'function') { this._updateMenuRuntime(); }
+    };
+
     proto._updateAmbientSound = function() {
-        if (this._opt_focusAmbientSound && this._currentState === 'pomodoro') {
+        if (this._ambientEnabled() && this._currentState === 'pomodoro') {
             this._startAmbientSound();
         } else {
             this._stopAmbientSound();
         }
     };
 
-    // Resolve the ambient sound path: the user's chosen file, or the bundled
-    // brown noise when none is set.
+    // Resolve the ambient sound path from the chosen built-in noise, or the
+    // user's own file when "Custom file" is selected.
     proto._ambientPath = function() {
-        let f = (this._opt_focusAmbientFile || "").trim();
-        if (!f) { f = 'brownnoise.ogg'; }
+        let map = { white: 'white.ogg', pink: 'pink.ogg', brown: 'brown.ogg', rain: 'rain.ogg', sea: 'sea.ogg' };
+        let choice = this._opt_focusAmbientChoice || 'off';
+        let f;
+        if (choice === 'custom') {
+            f = (this._opt_focusAmbientFile || "").trim() || 'brown.ogg';
+        } else {
+            f = map[choice] || 'brown.ogg';
+        }
         return SoundModule.addPathIfRelative(f, this._defaultSoundPath);
     };
 
@@ -1516,7 +1536,7 @@ function install(proto) {
         this._ambientVolTimeout = Mainloop.timeout_add(220, () => {
             this._ambientVolTimeout = 0;
             try {
-                if (this._opt_focusAmbientSound && this._currentState === 'pomodoro' &&
+                if (this._ambientEnabled() && this._currentState === 'pomodoro' &&
                     this._ambientSound && this._ambientSound.isPlaying()) {
                     let snd = this._ensureAmbientSound();
                     let vol = Math.max(0, Math.min(1, (this._opt_focusAmbientVolume || 40) / 100));

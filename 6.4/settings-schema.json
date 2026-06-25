@@ -161,7 +161,7 @@
             "type": "section",
             "title": "Ambient & modes",
             "keys": [
-                "focus_ambient_sound",
+                "focus_ambient_choice",
                 "focus_ambient_file",
                 "focus_ambient_volume",
                 "break_breathing",
@@ -616,6 +616,25 @@
         "dependency": "flow_extend",
         "tooltip": "How many extra minutes the 'extend focus' option adds."
     },
+    "focus_ambient_choice": {
+        "type": "combobox",
+        "description": "Ambient sound during focus",
+        "default": "off",
+        "options": {
+            "Off": "off",
+            "White noise": "white",
+            "Pink noise": "pink",
+            "Brown noise": "brown",
+            "Rain": "rain",
+            "Sea": "sea",
+            "Custom file": "custom"
+        },
+        "tooltip": "Loop a calming sound during focus. White/pink/brown noise and rain/sea are built in; pick \"Custom file\" to use your own."
+    },
+    "ambient_migrated": {
+        "type": "generic",
+        "default": false
+    },
     "focus_ambient_sound": {
         "type": "switch",
         "description": "Play an ambient sound during focus",
@@ -629,7 +648,7 @@
         "max": 100,
         "step": 1,
         "description": "Ambient volume",
-        "dependency": "focus_ambient_sound",
+        "dependency": "focus_ambient_choice!=off",
         "tooltip": "Volume of the ambient sound (0 = silent)."
     },
     "break_breathing": {
@@ -1241,7 +1260,7 @@
         "type": "filechooser",
         "description": "Ambient sound file",
         "default": "brownnoise.ogg",
-        "dependency": "focus_ambient_sound",
+        "dependency": "focus_ambient_choice=custom",
         "tooltip": "Pick your own looping ambient sound. Leave empty for the built-in soft brown noise."
     }
 }

@@ -48,6 +48,19 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         this._rebuildMenu();
         this.updateCounts(0, 0);
+
+        // Re-derive menu colours from the live theme whenever the menu opens, so
+        // switching to a light theme (e.g. Mint-X) is reflected immediately.
+        this.connect('open-state-changed', (m, isOpen) => {
+            if (!isOpen) { return; }
+            // The theme node is only reliable once the menu is realised, so
+            // recompute every colour (timer, badge, neutral text) on open.
+            if (this._lastRuntimeState) {
+                this._applyRuntimeToWidgets(this._lastRuntimeState);
+            } else {
+                this._applyThemePalette();
+            }
+        });
     }
 
     _applyMenuActorStyle() {
@@ -96,6 +109,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._tasksSubmenu = null;
         this._tasks = [];
         this._tasksCurrentId = "";
+        this._dimLabels = [];
         this._taskItems = [];
         this._tasksFinishText = "";
         this._taskTemplates = [];
@@ -221,7 +235,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (this._primaryActionItem.label) {
             this._primaryActionItem.label.set_style_class_name("pomodoro-primary");
             this._primaryActionItem.label.set_style(
-                `color: ${breakish ? this._accentBreakCss : this._accentFocusCss};`
+                `color: ${breakish ? this._accentColor(this._accentBreakCss) : this._accentColor(this._accentFocusCss)};`
             );
         }
     }
@@ -271,6 +285,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             text: "",
             style_class: "pomodoro-cycle"
         });
+        this._dimLabels.push(this._progressLabel, this._cycleLabel, this._taskLabel, this._dailyLabel);
 
         statusBox.add_actor(this._stateBadgeLabel);
         statusBox.add_actor(this._timeLeftLabel);
@@ -406,6 +421,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         let confirm = new PopupMenu.PopupMenuItem(_("Reset timer and counters"));
         if (confirm.label) {
             confirm.label.set_style_class_name("pomodoro-reset-confirm");
+            confirm.label.set_style("color: " + this._accentColor("rgb(220, 120, 120)") + ";");
         }
         confirm.connect('activate', () => {
             this.toggleTimerState(false);
@@ -466,7 +482,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this.addMenuItem(this._ambientItem);
 
         let sitesItem = new PopupMenu.PopupBaseMenuItem();
-        sitesItem.addActor(new St.Label({ text: _("Site blocking"), style_class: "pomodoro-info-label" }));
+        let sitesKeyLabel = new St.Label({ text: _("Site blocking"), style_class: "pomodoro-info-label" });
+        this._dimLabels.push(sitesKeyLabel);
+        sitesItem.addActor(sitesKeyLabel);
         this._sitesLabel = new St.Label({ text: _("off"), style_class: "pomodoro-info-value" });
         sitesItem.addActor(this._sitesLabel, { expand: true, align: St.Align.END });
         let sitesChevron = new St.Label({ text: "\u203A", style: "padding-left: 10px;" });
@@ -478,7 +496,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         // Statistics — one compact clickable row that opens the dashboard.
         this._statTodayItem = new PopupMenu.PopupBaseMenuItem();
-        this._statTodayItem.addActor(new St.Label({ text: _("Statistics"), style_class: "pomodoro-info-label" }));
+        let statKeyLabel = new St.Label({ text: _("Statistics"), style_class: "pomodoro-info-label" });
+        this._dimLabels.push(statKeyLabel);
+        this._statTodayItem.addActor(statKeyLabel);
         this._statValueLabel = new St.Label({ text: "", style_class: "pomodoro-info-value" });
         this._statTodayItem.addActor(this._statValueLabel, { expand: true, align: St.Align.END });
         let statChevron = new St.Label({ text: "\u203A", style: "padding-left: 10px;" });
@@ -533,18 +553,69 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._applyRuntimeToWidgets(runtime);
     }
 
-    // Brightest contrasting colour for the popup: near-white on a dark menu,
-    // near-black on a light one. Keeps the big time prominent (like the mock)
-    // without breaking light themes.
-    _brightTextColor() {
+    // The theme's own menu text colour, read from St. On a dark theme this is a
+    // light colour; on a light theme (e.g. Mint-X) it is dark. Every menu colour
+    // is derived from it so the menu adapts instead of assuming a dark popup.
+    // (The content box is transparent, so reading its *background* never worked —
+    // we read the inherited *foreground* colour, which the theme always sets.)
+    _themeFgRgb() {
         try {
-            let c = this.box.get_theme_node().get_background_color();
-            if (c.alpha > 20) {
-                let lum = (0.2126 * c.red + 0.7152 * c.green + 0.0722 * c.blue) / 255;
-                return lum < 0.5 ? "rgba(255, 255, 255, 0.96)" : "rgba(20, 20, 20, 0.95)";
-            }
+            let node = (this.box || this.actor).get_theme_node();
+            let c = node.get_foreground_color();
+            if (c) return [c.red, c.green, c.blue];
         } catch (e) {}
-        return "rgba(255, 255, 255, 0.96)";
+        return [235, 235, 235]; // assume a dark theme (light text) by default
+    }
+
+    _isLightTheme() {
+        let rgb = this._themeFgRgb();
+        // Dark menu text => light popup.
+        return (0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]) / 255 < 0.5;
+    }
+
+    _fgColor(alpha) {
+        let rgb = this._themeFgRgb();
+        return "rgba(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ", " + alpha + ")";
+    }
+
+    // Neutral secondary text. On dark themes keep the exact mid-grey (no visual
+    // change); on light themes use the theme's dark text so it stays legible.
+    _dimText() {
+        return this._isLightTheme() ? this._fgColor(0.80) : "rgba(150, 150, 150, 0.95)";
+    }
+
+    // Faint tertiary text (e.g. the preset tag in the task list).
+    _faintText() {
+        return this._isLightTheme() ? this._fgColor(0.58) : "rgba(255, 255, 255, 0.45)";
+    }
+
+    // Semantic accent (focus amber / break green / user colour). Unchanged on
+    // dark themes; darkened on light popups where a bright accent washes out.
+    _accentColor(css) {
+        if (!this._isLightTheme()) return css;
+        let m = /(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/.exec(css || "");
+        if (!m) return css;
+        return "rgb(" + Math.round(parseInt(m[1], 10) * 0.5) + ", " +
+            Math.round(parseInt(m[2], 10) * 0.5) + ", " +
+            Math.round(parseInt(m[3], 10) * 0.5) + ")";
+    }
+
+    // The prominent time label: the theme text colour on light popups, the
+    // original near-white on dark ones.
+    _brightTextColor() {
+        return this._isLightTheme() ? this._fgColor(0.95) : "rgba(255, 255, 255, 0.96)";
+    }
+
+    // Recolour every neutral label collected during build from the live theme.
+    _applyThemePalette() {
+        let dim = this._dimText();
+        let labels = this._dimLabels || [];
+        for (let i = 0; i < labels.length; i++) {
+            let l = labels[i];
+            if (l) {
+                try { l.set_style("color: " + dim + ";"); } catch (e) {}
+            }
+        }
     }
 
     _applyRuntimeToWidgets(runtime) {
@@ -699,7 +770,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (this._stateBadgeLabel) {
             this._stateBadgeLabel.set_text(badge.toUpperCase());
             this._stateBadgeLabel.set_style_class_name(badgeAccent ? "pomodoro-badge" : "pomodoro-badge pomodoro-badge-idle");
-            this._stateBadgeLabel.set_style(badgeAccent ? `color: ${badgeAccent};` : null);
+            this._stateBadgeLabel.set_style("color: " + (badgeAccent ? this._accentColor(badgeAccent) : this._dimText()) + ";");
         }
         if (this._timeLeftLabel) {
             let tl = timeLeft;
@@ -711,6 +782,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             this._timeLeftLabel.set_style_class_name("pomodoro-time");
             this._timeLeftLabel.set_style("color: " + this._brightTextColor() + ";");
         }
+        this._applyThemePalette();
 
         if (this._taskLabel) {
             let name = task || ((selectedTask && isIdle) ? selectedTask : "");
@@ -872,9 +944,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             let row = new St.BoxLayout({ vertical: false, x_expand: true });
             let mark = new St.Label({ text: t.completed ? "✓" : (t.id === this._tasksCurrentId ? "●" : "  ") });
             if (t.completed) {
-                mark.set_style("color: rgb(120, 205, 155);");
+                mark.set_style("color: " + this._accentColor("rgb(120, 205, 155)") + ";");
             } else if (t.id === this._tasksCurrentId) {
-                mark.set_style("color: rgb(235, 175, 75);");
+                mark.set_style("color: " + this._accentColor("rgb(235, 175, 75)") + ";");
             }
             row.add_child(mark);
             let dt = t.doneToday || 0;
@@ -883,7 +955,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             row.add_child(label);
             if (t.preset && t.preset.name) {
                 let rlab = new St.Label({ text: t.preset.name + " " });
-                rlab.set_style('color: rgba(255,255,255,0.45); max-width: 9em;');
+                rlab.set_style("color: " + this._faintText() + "; max-width: 9em;");
                 rlab.clutter_text.set_ellipsize(Pango.EllipsizeMode.END);
                 row.add_child(rlab);
             }
@@ -963,7 +1035,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             let item = new PopupMenu.PopupBaseMenuItem();
             let row = new St.BoxLayout({ vertical: false, x_expand: true });
             let mark = new St.Label({ text: (preset.name === active) ? "● " : "  " });
-            if (preset.name === active) { mark.set_style("color: rgb(235, 175, 75);"); }
+            if (preset.name === active) { mark.set_style("color: " + this._accentColor("rgb(235, 175, 75)") + ";"); }
             row.add_child(mark);
             let label = new St.Label({ x_expand: true, text: this._presetItemLabel(preset) });
             row.add_child(label);
@@ -1016,7 +1088,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             let on = entry.preset.name === active;
             if (entry.mark) {
                 entry.mark.set_text(on ? "● " : "  ");
-                entry.mark.set_style(on ? "color: rgb(235, 175, 75);" : "");
+                entry.mark.set_style(on ? ("color: " + this._accentColor("rgb(235, 175, 75)") + ";") : "");
             }
         }
     }

@@ -533,7 +533,6 @@ function install(proto) {
         CinnamonEntry.addContextMenu(entry);
         if (existing && existing.title) { entry.set_text(existing.title); }
         content.add_child(entry);
-        dialog.connect('opened', () => { try { let c = content.get_theme_node().get_foreground_color(); entryHint.set_style("color: rgba(" + c.red + ", " + c.green + ", " + c.blue + ", 0.6);"); } catch (e) {} });
 
         let est = { value: existing ? Math.max(0, Math.min(99, existing.est || 0)) : 0 };
         let taskPreset = (existing && this._sanitizeTaskPreset(existing.preset)) || this._currentPresetSnapshot();
@@ -550,7 +549,8 @@ function install(proto) {
         // minutes change. "Custom" lights up when durations match no preset.
         let presetList = this._presetList();
         let presetRow = new St.BoxLayout({ vertical: false, style: 'spacing: 6px; padding-top: 4px;' });
-        presetRow.add(new St.Label({ text: _("Preset") + ":", style: 'padding-top: 3px; color: rgba(255,255,255,0.6);' }));
+        let presetKeyLabel = new St.Label({ text: _("Preset") + ":", style: 'padding-top: 3px; color: rgba(255,255,255,0.6);' });
+        presetRow.add(presetKeyLabel);
         let presetBtns = [];
         let customChip = new St.Label({ text: _("Custom") });
 
@@ -600,6 +600,19 @@ function install(proto) {
         restyle();
         content.add_child(estRow);
         content.add_child(estReadout);
+
+        // Secondary text here (placeholder, "Preset:" caption, estimate readout) is
+        // fixed-white for dark themes; recolour it from the dialog's own theme
+        // foreground on open so it stays legible on light themes too.
+        dialog.connect('opened', () => {
+            try {
+                let c = content.get_theme_node().get_foreground_color();
+                let dim = "color: rgba(" + c.red + ", " + c.green + ", " + c.blue + ", 0.6);";
+                entryHint.set_style(dim);
+                presetKeyLabel.set_style("padding-top: 3px; " + dim);
+                estReadout.set_style("padding-top: 4px; " + dim);
+            } catch (e) {}
+        });
 
         dialog.contentLayout.add(content);
         dialog.setInitialKeyFocus(entry.clutter_text);

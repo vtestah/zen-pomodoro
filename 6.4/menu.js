@@ -470,16 +470,16 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._buildDistractEntry();
         this._populateDistractions();
         this._distractSubmenu.menu.connect('open-state-changed', (m, isOpen) => {
-            if (isOpen && this._distractEntry) {
+            // Don't auto-focus the entry: holding key focus here means a later
+            // click (e.g. delete) blurs it and closes the menu. Just recolour
+            // the placeholder from the entry's theme. Click the field to type.
+            if (isOpen && this._distractEntry && this._distractHint) {
                 GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
-                    if (this._distractEntry) {
-                        this._distractEntry.grab_key_focus();
-                        if (this._distractHint) {
-                            try {
-                                let ec = this._distractEntry.get_theme_node().get_foreground_color();
-                                this._distractHint.set_style("color: rgba(" + ec.red + ", " + ec.green + ", " + ec.blue + ", 0.55);");
-                            } catch (e) {}
-                        }
+                    if (this._distractEntry && this._distractHint) {
+                        try {
+                            let ec = this._distractEntry.get_theme_node().get_foreground_color();
+                            this._distractHint.set_style("color: rgba(" + ec.red + ", " + ec.green + ", " + ec.blue + ", 0.55);");
+                        } catch (e) {}
                     }
                     return GLib.SOURCE_REMOVE;
                 });
@@ -974,6 +974,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 style_class: 'pomodoro-task-btn', can_focus: false,
                 child: new St.Icon({ icon_name: 'edit-delete-symbolic', icon_size: 14 })
             });
+            del.connect('button-press-event', () => true);
             del.connect('button-release-event', (a, ev) => {
                 if (ev.get_button() === 1) {
                     GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('delete-distraction', id); return GLib.SOURCE_REMOVE; });

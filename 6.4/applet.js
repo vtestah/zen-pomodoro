@@ -2241,6 +2241,46 @@ class PomodoroApplet extends Applet.TextIconApplet {
         cr.fill();
     }
 
+    // A small, clean tomato used as the idle "ready to focus" brand mark.
+    // R is the radius envelope: the whole tomato (body + leaves) fits within R.
+    _paintPanelTomato(cr, cx, cy, R, darkP) {
+        let bodyR = R * 0.66;
+        let byc = cy + R * 0.18;
+        // Body — warm brand red, a touch deeper on light panels for contrast.
+        let br = darkP ? 0.91 : 0.82, bg = darkP ? 0.36 : 0.27, bb = darkP ? 0.24 : 0.17;
+        cr.save();
+        cr.translate(cx, byc);
+        cr.scale(1.0, 0.92);
+        cr.setSourceRGBA(br, bg, bb, 0.98);
+        cr.arc(0, 0, bodyR, 0, 2 * Math.PI);
+        cr.fill();
+        cr.restore();
+        // Subtle sheen for a "ripe" look.
+        cr.setSourceRGBA(1, 1, 1, darkP ? 0.16 : 0.13);
+        cr.arc(cx - bodyR * 0.32, byc - bodyR * 0.36, bodyR * 0.24, 0, 2 * Math.PI);
+        cr.fill();
+        // Calyx — a small green star of leaves fanning up from the top.
+        let lr = darkP ? 0.46 : 0.28, lg = darkP ? 0.80 : 0.56, lb = darkP ? 0.42 : 0.26;
+        cr.setSourceRGBA(lr, lg, lb, 0.98);
+        let topY = byc - bodyR * 0.92;
+        let llen = R * 0.5, lwid = R * 0.26, leaves = 5;
+        cr.save();
+        cr.translate(cx, topY + R * 0.06);
+        for (let i = 0; i < leaves; i++) {
+            let ang = (i - (leaves - 1) / 2) * 0.62;
+            cr.save();
+            cr.rotate(ang);
+            cr.moveTo(0, R * 0.05);
+            cr.lineTo(-lwid / 2, -llen * 0.55);
+            cr.lineTo(0, -llen);
+            cr.lineTo(lwid / 2, -llen * 0.55);
+            cr.closePath();
+            cr.fill();
+            cr.restore();
+        }
+        cr.restore();
+    }
+
     _panelIsDark() {
         // On a light panel the warm/light ring colours wash out. Detect the
         // panel brightness from the applet's foreground (text) colour: light
@@ -2275,21 +2315,23 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 let ar, ag, ab;
                 if (met) { ar = darkP ? 0.42 : 0.16; ag = darkP ? 0.88 : 0.60; ab = darkP ? 0.58 : 0.36; }
                 else { ar = darkP ? 1.0 : 0.80; ag = darkP ? 0.69 : 0.47; ab = darkP ? 0.32 : 0.08; }
-                cr.setLineWidth(2.5);
-                cr.setSourceRGBA(ar, ag, ab, darkP ? 0.22 : 0.34);
-                cr.arc(cx, cy, radius, 0, 2 * Math.PI);
-                cr.stroke();
-                if (goal > 0 && done > 0) {
-                    let f = Math.min(1, done / goal);
-                    let start = -Math.PI / 2;
-                    cr.setSourceRGBA(ar, ag, ab, 0.95);
-                    cr.arc(cx, cy, radius, start, start + 2 * Math.PI * f);
+                // When a daily goal is set, keep a faint track + today's progress
+                // arc hugging the tomato; otherwise show just the clean tomato.
+                if (goal > 0) {
+                    cr.setLineWidth(2.5);
+                    cr.setSourceRGBA(ar, ag, ab, darkP ? 0.22 : 0.34);
+                    cr.arc(cx, cy, radius, 0, 2 * Math.PI);
                     cr.stroke();
+                    if (done > 0) {
+                        let f = Math.min(1, done / goal);
+                        let start = -Math.PI / 2;
+                        cr.setSourceRGBA(ar, ag, ab, 0.95);
+                        cr.arc(cx, cy, radius, start, start + 2 * Math.PI * f);
+                        cr.stroke();
+                    }
                 }
-                // Centre: a small calm dot — a quiet "ready" mark.
-                cr.setSourceRGBA(ar, ag, ab, 0.95);
-                cr.arc(cx, cy, Math.max(1.5, radius * 0.3), 0, 2 * Math.PI);
-                cr.fill();
+                // Brand mark: a clean little tomato that reads as "ready to focus".
+                this._paintPanelTomato(cr, cx, cy, (goal > 0) ? radius * 0.64 : radius * 0.92, darkP);
                 return;
             }
 
@@ -2324,9 +2366,12 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 cr.stroke();
             }
 
-            // Centre: a pause glyph while paused; just the ring while running.
+            // Centre: a pause glyph while paused; otherwise the tomato sits
+            // inside the progress ring so it never reads as an empty ring.
             if (paused) {
                 this._paintPauseBars(cr, cx, cy, radius * 0.5, [r, g, b]);
+            } else {
+                this._paintPanelTomato(cr, cx, cy, radius * 0.64, darkP);
             }
         } finally {
             cr.$dispose();

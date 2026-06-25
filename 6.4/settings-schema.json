@@ -14,7 +14,6 @@
             "type": "page",
             "title": "Timer",
             "sections": [
-                "sec_durations",
                 "sec_behavior"
             ]
         },
@@ -68,20 +67,11 @@
                 "sec_blocking"
             ]
         },
-        "sec_durations": {
-            "type": "section",
-            "title": "Durations",
-            "keys": [
-                "pomodoro_duration",
-                "short_break_duration",
-                "long_break_duration",
-                "pomodori_number"
-            ]
-        },
         "sec_behavior": {
             "type": "section",
             "title": "Behavior",
             "keys": [
+                "rhythm_hint_label",
                 "start_automatically_on_load",
                 "session_recovery",
                 "show_dialog_messages",
@@ -280,6 +270,10 @@
                 "hotkey_skip"
             ]
         }
+    },
+    "rhythm_hint_label": {
+        "type": "label",
+        "description": "Focus, break and cycle lengths come from presets — switch or edit them from the menu (Preset ▸)."
     },
     "pomodoro_duration": {
         "type": "spinbutton",

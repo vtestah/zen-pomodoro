@@ -907,8 +907,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         return "\u25cf " + fallbackName;
     }
 
-    setDistractions(list) {
+    setDistractions(list, hotkeySet) {
         this._distractions = Array.isArray(list) ? list : [];
+        this._distractHotkeySet = !!hotkeySet;
         if (this._distractSubmenu) { this._populateDistractions(); }
     }
 
@@ -916,6 +917,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (!this._distractSubmenu) { return; }
         this._distractSubmenu.menu.removeAll();
         let items = this._distractions || [];
+        // Stay out of the way: only show the section once you've opted in
+        // (a shortcut is set) or there's something captured to review.
+        let active = (items.length > 0) || this._distractHotkeySet;
+        if (this._distractSubmenu.actor) { this._distractSubmenu.actor.visible = active; }
 
         // Inline capture: type + Enter adds, no modal.
         let entryItem = new PopupMenu.PopupBaseMenuItem({ reactive: false });

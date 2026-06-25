@@ -609,7 +609,8 @@ function install(proto) {
 
     proto._refreshDistractions = function() {
         if (this._appletMenu && typeof this._appletMenu.setDistractions === 'function') {
-            this._appletMenu.setDistractions(this._distractionList());
+            let hk = !!(this._opt_hotkeyDistraction && this._opt_hotkeyDistraction.trim());
+            this._appletMenu.setDistractions(this._distractionList(), hk);
         }
     };
 

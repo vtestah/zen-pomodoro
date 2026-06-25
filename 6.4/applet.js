@@ -591,6 +591,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 this._showDistractionCapture();
             });
         }
+        // The Distractions submenu hides when nothing is captured and no
+        // shortcut is set, so reflect any hotkey change in the menu.
+        this._refreshDistractions();
     }
 
     _toggleTimerFromHotkey() {

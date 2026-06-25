@@ -739,16 +739,23 @@ class PomodoroApplet extends Applet.TextIconApplet {
         }
     
         let vertical = (this._orientation === St.Side.LEFT || this._orientation === St.Side.RIGHT);
-        if (vertical) {
+        if (this._currentState === 'pomodoro-stop') {
+            // Idle: show just the tomato — no label — for a clean, calm panel.
+            // The state is still in the tooltip and the menu.
+            this.set_applet_label("");
+            if (typeof this.hide_applet_label === 'function') { this.hide_applet_label(true); }
+        } else if (vertical) {
             // Vertical panels are narrow: show only the remaining minutes (the
-            // icon + progress ring carry the rest), or nothing when idle.
+            // icon + progress ring carry the rest).
+            if (typeof this.hide_applet_label === 'function') { this.hide_applet_label(false); }
             let compact = "";
-            if (this._currentState !== 'pomodoro-stop' && this._currentState !== 'break-over' &&
+            if (this._currentState !== 'break-over' &&
                 this._opt_showTimerInPanel && typeof ticks === 'number') {
                 compact = `${Math.max(0, Math.ceil(ticks / 60))}`;
             }
             this.set_applet_label(compact);
         } else {
+            if (typeof this.hide_applet_label === 'function') { this.hide_applet_label(false); }
             this.set_applet_label(timerText);
         }
         this._updateMenuRuntime(ticks);
@@ -2241,44 +2248,99 @@ class PomodoroApplet extends Applet.TextIconApplet {
         cr.fill();
     }
 
-    // A small, clean tomato used as the idle "ready to focus" brand mark.
-    // R is the radius envelope: the whole tomato (body + leaves) fits within R.
+    // The idle "ready" tomato. Filled silhouettes read far better than an
+    // outline at panel size. Three variants are switchable at runtime via
+    // this._tomatoVariant (1 natural / 2 flat-icon / 3 soft-depth); 2 is the
+    // default as it stays clearest and calmest at ~22px.
     _paintPanelTomato(cr, cx, cy, R, darkP) {
-        let bodyR = R * 0.66;
-        let byc = cy + R * 0.18;
-        // Body — warm brand red, a touch deeper on light panels for contrast.
-        let br = darkP ? 0.91 : 0.82, bg = darkP ? 0.36 : 0.27, bb = darkP ? 0.24 : 0.17;
+        let v = this._tomatoVariant || 2;
+        if (v === 2) { this._paintTomatoFlat(cr, cx, cy, R, darkP); }
+        else if (v === 3) { this._paintTomatoSoft(cr, cx, cy, R, darkP); }
+        else { this._paintTomatoNatural(cr, cx, cy, R, darkP); }
+    }
+
+    _tomatoColors(darkP) {
+        return {
+            br: darkP ? 0.89 : 0.82, bg: darkP ? 0.34 : 0.27, bb: darkP ? 0.23 : 0.18,
+            lr: darkP ? 0.46 : 0.33, lg: darkP ? 0.78 : 0.57, lb: darkP ? 0.42 : 0.29
+        };
+    }
+
+    _tomatoCalyx(cr, cx, topY, R, c, leaves, llen, lwid, spread) {
+        cr.setSourceRGBA(c.lr, c.lg, c.lb, 0.98);
         cr.save();
-        cr.translate(cx, byc);
-        cr.scale(1.0, 0.92);
-        cr.setSourceRGBA(br, bg, bb, 0.98);
-        cr.arc(0, 0, bodyR, 0, 2 * Math.PI);
-        cr.fill();
-        cr.restore();
-        // Subtle sheen for a "ripe" look.
-        cr.setSourceRGBA(1, 1, 1, darkP ? 0.16 : 0.13);
-        cr.arc(cx - bodyR * 0.32, byc - bodyR * 0.36, bodyR * 0.24, 0, 2 * Math.PI);
-        cr.fill();
-        // Calyx — a small green star of leaves fanning up from the top.
-        let lr = darkP ? 0.46 : 0.28, lg = darkP ? 0.80 : 0.56, lb = darkP ? 0.42 : 0.26;
-        cr.setSourceRGBA(lr, lg, lb, 0.98);
-        let topY = byc - bodyR * 0.92;
-        let llen = R * 0.5, lwid = R * 0.26, leaves = 5;
-        cr.save();
-        cr.translate(cx, topY + R * 0.06);
+        cr.translate(cx, topY);
         for (let i = 0; i < leaves; i++) {
-            let ang = (i - (leaves - 1) / 2) * 0.62;
+            let ang = (i - (leaves - 1) / 2) * spread;
             cr.save();
             cr.rotate(ang);
-            cr.moveTo(0, R * 0.05);
-            cr.lineTo(-lwid / 2, -llen * 0.55);
+            cr.moveTo(0, lwid * 0.12);
+            cr.lineTo(-lwid / 2, -llen * 0.5);
             cr.lineTo(0, -llen);
-            cr.lineTo(lwid / 2, -llen * 0.55);
+            cr.lineTo(lwid / 2, -llen * 0.5);
             cr.closePath();
             cr.fill();
             cr.restore();
         }
         cr.restore();
+    }
+
+    // Variant 1 — natural: a filled body a touch wider than tall, with a green
+    // calyx draping over the shoulders. Matte (no gloss).
+    _paintTomatoNatural(cr, cx, cy, R, darkP) {
+        let c = this._tomatoColors(darkP);
+        let bw = R * 0.92, bh = R * 0.80, byc = cy + R * 0.14;
+        cr.save();
+        cr.translate(cx, byc);
+        cr.scale(bw, bh);
+        cr.setSourceRGBA(c.br, c.bg, c.bb, 0.98);
+        cr.arc(0, 0, 1, 0, 2 * Math.PI);
+        cr.fill();
+        cr.restore();
+        this._tomatoCalyx(cr, cx, byc - bh * 0.60, R, c, 5, R * 0.60, R * 0.32, 0.72);
+    }
+
+    // Variant 2 — flat icon: a rounder, bolder body with a compact 3-leaf cap
+    // and a short stem; clean emoji-like flat colours.
+    _paintTomatoFlat(cr, cx, cy, R, darkP) {
+        let c = this._tomatoColors(darkP);
+        let bw = R * 0.90, bh = R * 0.86, byc = cy + R * 0.12;
+        cr.save();
+        cr.translate(cx, byc);
+        cr.scale(bw, bh);
+        cr.setSourceRGBA(c.br, c.bg, c.bb, 0.99);
+        cr.arc(0, 0, 1, 0, 2 * Math.PI);
+        cr.fill();
+        cr.restore();
+        let topY = byc - bh * 0.70;
+        this._tomatoCalyx(cr, cx, topY, R, c, 3, R * 0.52, R * 0.42, 0.8);
+        cr.setSourceRGBA(c.lr * 0.8, c.lg * 0.8, c.lb * 0.8, 0.99);
+        cr.setLineWidth(Math.max(1.3, R * 0.18));
+        cr.moveTo(cx, topY);
+        cr.lineTo(cx, topY - R * 0.3);
+        cr.stroke();
+    }
+
+    // Variant 3 — soft depth: filled body with a subtle darker lower shading
+    // (matte, no white gloss) for a calm, ripe roundness.
+    _paintTomatoSoft(cr, cx, cy, R, darkP) {
+        let c = this._tomatoColors(darkP);
+        let bw = R * 0.92, bh = R * 0.80, byc = cy + R * 0.14;
+        cr.save();
+        cr.translate(cx, byc);
+        cr.scale(bw, bh);
+        cr.setSourceRGBA(c.br, c.bg, c.bb, 0.98);
+        cr.arc(0, 0, 1, 0, 2 * Math.PI);
+        cr.fill();
+        cr.restore();
+        cr.save();
+        cr.translate(cx, byc + bh * 0.20);
+        cr.scale(bw * 0.84, bh * 0.66);
+        cr.setSourceRGBA(c.br * 0.74, c.bg * 0.70, c.bb * 0.68, 0.5);
+        cr.arc(0, 0, 1, 0, 2 * Math.PI);
+        cr.fill();
+        cr.restore();
+        this._tomatoCalyx(cr, cx, byc - bh * 0.60, R, c, 5, R * 0.58, R * 0.30, 0.72);
     }
 
     _panelIsDark() {

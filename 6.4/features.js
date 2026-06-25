@@ -527,10 +527,13 @@ function install(proto) {
             title: existing ? _("Edit task") : _("New task"),
             description: _("What do you want to work on?")
         });
-        let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true, hint_text: _("e.g. Write the report") });
+        let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true });
+        let entryHint = new St.Label({ text: _("e.g. Write the report") });
+        entry.set_hint_actor(entryHint);
         CinnamonEntry.addContextMenu(entry);
         if (existing && existing.title) { entry.set_text(existing.title); }
         content.add_child(entry);
+        dialog.connect('opened', () => { try { let c = content.get_theme_node().get_foreground_color(); entryHint.set_style("color: rgba(" + c.red + ", " + c.green + ", " + c.blue + ", 0.6);"); } catch (e) {} });
 
         let est = { value: existing ? Math.max(0, Math.min(99, existing.est || 0)) : 0 };
         let taskPreset = (existing && this._sanitizeTaskPreset(existing.preset)) || this._currentPresetSnapshot();
@@ -628,10 +631,13 @@ function install(proto) {
             title: existing ? _("Edit preset") : _("New preset"),
             description: _("Name it and set its rhythm.")
         });
-        let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true, hint_text: _("e.g. Deep work") });
+        let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true });
+        let entryHint = new St.Label({ text: _("e.g. Deep work") });
+        entry.set_hint_actor(entryHint);
         CinnamonEntry.addContextMenu(entry);
         if (existing && existing.name) { entry.set_text(existing.name); }
         content.add_child(entry);
+        dialog.connect('opened', () => { try { let c = content.get_theme_node().get_foreground_color(); entryHint.set_style("color: rgba(" + c.red + ", " + c.green + ", " + c.blue + ", 0.6);"); } catch (e) {} });
 
         let vals = {
             pomodoro: existing ? (parseInt(existing.pomodoro) || 25) : 25,
@@ -941,7 +947,7 @@ function install(proto) {
         let card = new St.BoxLayout({
             vertical: true,
             x_expand: true,
-            style: 'spacing: 3px; padding: 12px; border-radius: 10px; background-color: rgba(255,255,255,0.06); min-width: 118px;'
+            style: 'spacing: 3px; padding: 12px; border-radius: 10px; background-color: rgba(128,128,128,0.16); min-width: 118px;'
         });
         card.add(new St.Label({ text: caption, style: 'font-size: 0.82em;' }));
         card.add(new St.Label({ text: value, style: 'font-size: 1.7em; font-weight: bold; color: ' + col + ';' }));
@@ -967,7 +973,7 @@ function install(proto) {
             for (let i = 0; i < n; i++) {
                 let b = bars[i] || { min: 0 };
                 let x = Math.round(i * (bw + gap));
-                cr.setSourceRGBA(1, 1, 1, 0.06);
+                cr.setSourceRGBA(0.5, 0.5, 0.5, 0.16);
                 cr.rectangle(x, 0, Math.round(bw), chartH);
                 cr.fill();
                 let bh = Math.round((b.min / maxv) * (chartH - 2));
@@ -1006,7 +1012,7 @@ function install(proto) {
                     if (v > 0) {
                         cr.setSourceRGBA(acc[0], acc[1], acc[2], 0.2 + 0.8 * (v / maxv));
                     } else {
-                        cr.setSourceRGBA(1, 1, 1, 0.06);
+                        cr.setSourceRGBA(0.5, 0.5, 0.5, 0.16);
                     }
                     cr.rectangle(x, y, Math.round(cw), Math.round(ch));
                     cr.fill();
@@ -1028,7 +1034,7 @@ function install(proto) {
             for (let i = 0; i < n; i++) {
                 let x = Math.round(i * (cw + gap));
                 if (i === 0) {
-                    cr.setSourceRGBA(1, 1, 1, 0.06);
+                    cr.setSourceRGBA(0.5, 0.5, 0.5, 0.16);
                 } else {
                     cr.setSourceRGBA(acc[0], acc[1], acc[2], 0.2 + 0.8 * (i / (n - 1)));
                 }
@@ -1047,7 +1053,7 @@ function install(proto) {
             let acc = this._dashAccent || [0.93, 0.42, 0.31];
             let y = Math.round(h * 0.2);
             let bh = Math.max(3, Math.round(h * 0.6));
-            cr.setSourceRGBA(1, 1, 1, 0.08);
+            cr.setSourceRGBA(0.5, 0.5, 0.5, 0.18);
             cr.rectangle(0, y, w, bh);
             cr.fill();
             let fw = Math.max(0, Math.min(1, frac)) * w;
@@ -1131,7 +1137,7 @@ function install(proto) {
             let peak = this._dashPeakHour;
             for (let i = 0; i < n; i++) {
                 let x = Math.round(i * (bw + gap));
-                cr.setSourceRGBA(1, 1, 1, 0.06);
+                cr.setSourceRGBA(0.5, 0.5, 0.5, 0.16);
                 cr.rectangle(x, 0, Math.round(bw), h);
                 cr.fill();
                 let bh = Math.round((data[i] / maxv) * (h - 2));

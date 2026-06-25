@@ -29,7 +29,9 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
             description: _("What are you focusing on?")
         });
 
-        this._entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true, hint_text: _("e.g. Write the report") });
+        this._entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true });
+        this._entryHint = new St.Label({ text: _("e.g. Write the report") });
+        this._entry.set_hint_actor(this._entryHint);
         CinnamonEntry.addContextMenu(this._entry);
         this._entryText = this._entry.clutter_text;
         content.add_child(this._entry);
@@ -62,6 +64,29 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         });
 
         this._setDialogButtons(_("Start"));
+
+        // run-dialog-entry is tuned for Cinnamon's always-dark run dialog (light
+        // text); on a light theme that text is invisible, so recolour the entry
+        // and hint from the dialog's own theme foreground when it opens.
+        this.connect('opened', () => this._applyEntryTheme());
+    }
+
+    _applyEntryTheme() {
+        if (!this._content) { return; }
+        try {
+            let c = this._content.get_theme_node().get_foreground_color();
+            if (this._entryHint) {
+                // Placeholder: a dim version of the theme's own text colour, so it
+                // reads on both light and dark dialogs (run-dialog-entry's built-in
+                // hint is tuned for the always-dark run dialog).
+                this._entryHint.set_style("color: rgba(" + c.red + ", " + c.green + ", " + c.blue + ", 0.6);");
+            }
+            let lum = (0.2126 * c.red + 0.7152 * c.green + 0.0722 * c.blue) / 255;
+            if (this._hintLabel) {
+                let hint = (lum < 0.5) ? "rgb(150, 92, 8)" : "rgba(255, 190, 64, 0.95)";
+                this._hintLabel.set_style("color: " + hint + "; padding-top: 6px;");
+            }
+        } catch (e) {}
     }
 
     _setDialogButtons(confirmLabel) {

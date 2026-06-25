@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 00:39+0700\n"
+"POT-Creation-Date: 2026-06-25 12:26+0700\n"
 "PO-Revision-Date: 2022-01-05 13:55+0200\n"
 "Last-Translator: Rutar <RutarAndriy@gmail.com>\n"
 "Language-Team: Ukrainian\n"
@@ -56,7 +56,7 @@ msgstr "ПЕРЕРВА НА ПАУЗІ"
 msgid "BREAK OVER"
 msgstr "ПЕРЕРВУ ЗАКІНЧЕНО"
 
-#: applet.js:976 applet.js:1036 menu.js:238 menu.js:648
+#: applet.js:976 applet.js:1036 menu.js:238 menu.js:649
 msgid "Ready to focus"
 msgstr "Готові до фокусу"
 
@@ -147,7 +147,7 @@ msgstr "Pomodoro завершено"
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://uk.wikipedia.org/wiki/Метод_Pomodoro"
 
-#: applet.js:1829 features.js:2068
+#: applet.js:1829 features.js:2082
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Зупиніть таймер перед зміною пресету Pomodoro"
 
@@ -156,7 +156,7 @@ msgstr "Зупиніть таймер перед зміною пресету Pom
 msgid "Pomodoro preset %s applied"
 msgstr "Застосовано пресет Pomodoro %s"
 
-#: applet.js:1854 features.js:549 menu.js:448 menu.js:737 menu.js:1005
+#: applet.js:1854 features.js:549 menu.js:448 menu.js:738 menu.js:1006
 msgid "Preset"
 msgstr "Пресет"
 
@@ -177,16 +177,20 @@ msgstr "Завдання фокусу"
 msgid "What are you focusing on?"
 msgstr "На чому фокусуєтеся?"
 
+#: dialogs.js:32 features.js:529
+msgid "e.g. Write the report"
+msgstr "напр. написати звіт"
+
 #: dialogs.js:38
 msgid "Choose or type a focus task"
 msgstr "Виберіть або введіть завдання фокусу"
 
-#: dialogs.js:64 dialogs.js:79 features.js:2117
+#: dialogs.js:64 dialogs.js:79 features.js:2131
 msgid "Start"
 msgstr "Старт"
 
 #: dialogs.js:69 features.js:616 features.js:674 features.js:1372
-#: features.js:2116
+#: features.js:2130
 msgid "Cancel"
 msgstr "Скасувати"
 
@@ -337,7 +341,7 @@ msgstr "Перекусіть та випийте води."
 msgid "Rest your eyes and look into the distance."
 msgstr "Дайте очам відпочити — подивіться вдалечінь."
 
-#: features.js:526 menu.js:894
+#: features.js:526 menu.js:895
 msgid "Edit task"
 msgstr "Редагувати завдання"
 
@@ -348,10 +352,6 @@ msgstr "Нове завдання"
 #: features.js:527
 msgid "What do you want to work on?"
 msgstr "Над чим хочете попрацювати?"
-
-#: features.js:529
-msgid "e.g. Write the report"
-msgstr "напр. написати звіт"
 
 #: features.js:539
 #, javascript-format
@@ -389,7 +389,7 @@ msgstr "Зберегти"
 msgid "Add"
 msgstr "Додати"
 
-#: features.js:627 menu.js:979
+#: features.js:627 menu.js:980
 msgid "Edit preset"
 msgstr "Змінити пресет"
 
@@ -848,7 +848,7 @@ msgstr "Більше"
 msgid "By task"
 msgstr "За завданнями"
 
-#: features.js:1365 menu.js:644
+#: features.js:1365 menu.js:645
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Досягнення: %s"
@@ -865,33 +865,33 @@ msgstr "Скинути статистику…"
 msgid "Close"
 msgstr "Закрити"
 
-#: features.js:1707
+#: features.js:1721
 msgid "No task"
 msgstr "Без завдання"
 
-#: features.js:1744
+#: features.js:1758
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "Для push-сповіщень потрібен libsoup, якого тут немає."
 
-#: features.js:1750
+#: features.js:1764
 msgid "Enter your Pushover user key and app token first."
 msgstr "Спершу введіть ключ користувача та токен застосунку Pushover."
 
-#: features.js:1757
+#: features.js:1771
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Тестове сповіщення від Zen Pomodoro 🍅"
 
-#: features.js:1779
+#: features.js:1793
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Тест Pushover надіслано ✓ — перевірте пристрій."
 
-#: features.js:1780 features.js:1784
+#: features.js:1794 features.js:1798
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr ""
 "Не вдалося надіслати тест Pushover. Перевірте ключ користувача та токен "
 "застосунку."
 
-#: features.js:1826
+#: features.js:1840
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -899,40 +899,40 @@ msgstr ""
 "Щоб автоматично блокувати сайти під час фокуса, увімкніть безпарольне "
 "блокування в налаштуваннях."
 
-#: features.js:1883
+#: features.js:1897
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Безпарольне блокування увімкнено (без запиту)."
 
-#: features.js:1889
+#: features.js:1903
 msgid "Passwordless blocking removed."
 msgstr "Безпарольне налаштування вилучено."
 
-#: features.js:1926
+#: features.js:1940
 msgid "Click to exit Zen"
 msgstr "Натисніть, щоб вийти із Дзену"
 
 #. settings-schema.json->focus->title
-#: features.js:1961 visual.js:889
+#: features.js:1975 visual.js:889
 msgid "Focus"
 msgstr "Фокус"
 
-#: features.js:2038
+#: features.js:2052
 msgid "Breathe in"
 msgstr "Вдих"
 
-#: features.js:2041 features.js:2047
+#: features.js:2055 features.js:2061
 msgid "Hold"
 msgstr "Затримка"
 
-#: features.js:2044
+#: features.js:2058
 msgid "Breathe out"
 msgstr "Видих"
 
-#: features.js:2074
+#: features.js:2088
 msgid "Focus until"
 msgstr "Фокус до"
 
-#: features.js:2075
+#: features.js:2089
 msgid "Enter a time (HH:MM)"
 msgstr "Введіть час (ГГ:ХХ)"
 
@@ -944,7 +944,7 @@ msgstr "Помилка: меню недоступне"
 msgid "Ready to start"
 msgstr "Готові почати"
 
-#: menu.js:263 menu.js:719
+#: menu.js:263 menu.js:720
 msgid "No task yet — tap to choose one"
 msgstr ""
 
@@ -957,7 +957,7 @@ msgstr "Змінити завдання"
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:371 menu.js:791
+#: menu.js:371 menu.js:792
 msgid "Start focus"
 msgstr "Почати фокус"
 
@@ -977,7 +977,7 @@ msgstr "Скинути лічильники"
 msgid "Reset timer and counters"
 msgstr "Скинути таймер і лічильники"
 
-#: menu.js:427 menu.js:833
+#: menu.js:427 menu.js:834
 msgid "Task list"
 msgstr "Список завдань"
 
@@ -989,7 +989,7 @@ msgstr "Фокус до…"
 msgid "Zen mode"
 msgstr "Режим Дзен"
 
-#: menu.js:464 menu.js:507
+#: menu.js:464 menu.js:505
 msgid "Ambient sound"
 msgstr "Фоновий звук"
 
@@ -997,7 +997,7 @@ msgstr "Фоновий звук"
 msgid "Site blocking"
 msgstr "Блокування сайтів"
 
-#: menu.js:470 menu.js:726 menu.js:1009
+#: menu.js:470 menu.js:727 menu.js:1010
 msgid "off"
 msgstr "вимк"
 
@@ -1017,136 +1017,136 @@ msgstr ""
 msgid "Setup wizard…"
 msgstr "Майстер налаштування…"
 
-#: menu.js:614
+#: menu.js:615
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "Останні 7 днів: %d"
 
-#: menu.js:623
+#: menu.js:624
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "Останні 30 днів: %d"
 
-#: menu.js:626
+#: menu.js:627
 #, javascript-format
 msgid "All time: %d"
 msgstr "За весь час: %d"
 
-#: menu.js:629
+#: menu.js:630
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Час фокусу: %s сьогодні · %s загалом"
 
-#: menu.js:632
+#: menu.js:633
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Найкращий день: %d"
 
-#: menu.js:644
+#: menu.js:645
 msgid "none yet"
 msgstr "поки немає"
 
-#: menu.js:654 menu.js:681
+#: menu.js:655 menu.js:682
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Завершите завдання до ~%s"
 
-#: menu.js:665
+#: menu.js:666
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d з %d"
 
-#: menu.js:667
+#: menu.js:668
 msgid "Long break"
 msgstr "Довга перерва"
 
-#: menu.js:669
+#: menu.js:670
 msgid "Short break"
 msgstr "Коротка перерва"
 
-#: menu.js:672
+#: menu.js:673
 #, javascript-format
 msgid "until %s"
 msgstr "до %s"
 
-#: menu.js:675
+#: menu.js:676
 #, javascript-format
 msgid "≈ finish %s"
 msgstr "≈ фініш %s"
 
-#: menu.js:679
+#: menu.js:680
 msgid "Break finished — press Start for focus"
 msgstr "Перерву закінчено — натисніть Старт для фокусу"
 
-#: menu.js:683
+#: menu.js:684
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "Фокус %d хв — натисніть Старт"
 
-#: menu.js:721
+#: menu.js:722
 msgid "Task: none"
 msgstr "Завдання: немає"
 
-#: menu.js:727 menu.js:1010
+#: menu.js:728 menu.js:1011
 #, javascript-format
 msgid "blocking %d"
 msgstr "блокує %d"
 
-#: menu.js:727 menu.js:1010
+#: menu.js:728 menu.js:1011
 #, javascript-format
 msgid "%d in list"
 msgstr "%d у списку"
 
-#: menu.js:770
+#: menu.js:771
 msgid "Resume break"
 msgstr "Продовжити перерву"
 
-#: menu.js:770
+#: menu.js:771
 msgid "Resume focus"
 msgstr "Продовжити фокус"
 
-#: menu.js:777
+#: menu.js:778
 msgid "Focusing — stay with it"
 msgstr "Триває фокус — не відволікайтеся"
 
-#: menu.js:782
+#: menu.js:783
 msgid "Pause focus"
 msgstr "Пауза фокусу"
 
-#: menu.js:782
+#: menu.js:783
 msgid "Pause break"
 msgstr "Пауза перерви"
 
-#: menu.js:787
+#: menu.js:788
 msgid "Start next focus"
 msgstr "Почати наступний фокус"
 
-#: menu.js:848
+#: menu.js:849
 msgid "Add task…"
 msgstr "Додати завдання…"
 
-#: menu.js:858
+#: menu.js:859
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Поки немає завдань — додайте те, над чим працюватимете, з оцінкою в 🍅."
 
-#: menu.js:901
+#: menu.js:902
 msgid "Reopen task"
 msgstr "Відновити завдання"
 
-#: menu.js:901
+#: menu.js:902
 msgid "Mark done"
 msgstr "Позначити виконаною"
 
-#: menu.js:908
+#: menu.js:909
 msgid "Delete task"
 msgstr "Видалити завдання"
 
-#: menu.js:955
+#: menu.js:956
 msgid "Add preset…"
 msgstr "Додати пресет…"
 
-#: menu.js:986
+#: menu.js:987
 msgid "Delete preset"
 msgstr "Видалити пресет"
 
@@ -1836,19 +1836,19 @@ msgstr "Команда для запуску на старті фокусу"
 
 #. settings-schema.json->focus_start_command->tooltip
 msgid ""
-"Command run when a focus block starts (e.g. update your chat status). No "
-"shell pipes or redirects."
+"Pick a script to run when a focus block starts (e.g. enable Do Not Disturb). "
+"You can also type a command."
 msgstr ""
-"Команда, що виконується на старті фокусу (наприклад, оновити статус у чаті). "
-"Без shell-конвеєрів і перенаправлень."
 
 #. settings-schema.json->break_start_command->description
 msgid "Command to run when a break starts"
 msgstr "Команда для запуску на старті перерви"
 
 #. settings-schema.json->break_start_command->tooltip
-msgid "Command run when a break starts (e.g. clear your status)."
-msgstr "Команда на старті перерви (наприклад, скинути статус)."
+msgid ""
+"Pick a script to run when a break starts (e.g. clear your status). You can "
+"also type a command."
+msgstr ""
 
 #. settings-schema.json->pushover_enabled->description
 msgid "Send push notifications to your phone (Pushover)"

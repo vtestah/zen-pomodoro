@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 00:39+0700\n"
+"POT-Creation-Date: 2026-06-25 12:26+0700\n"
 "PO-Revision-Date: 2020-11-25 22:30+0100\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: de\n"
@@ -55,7 +55,7 @@ msgstr "PAUSE ANGEHALTEN"
 msgid "BREAK OVER"
 msgstr "PAUSE VORBEI"
 
-#: applet.js:976 applet.js:1036 menu.js:238 menu.js:648
+#: applet.js:976 applet.js:1036 menu.js:238 menu.js:649
 msgid "Ready to focus"
 msgstr "Bereit für den Fokus"
 
@@ -146,7 +146,7 @@ msgstr "Pomodoro beendet"
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://de.wikipedia.org/wiki/Pomodoro-Technik"
 
-#: applet.js:1829 features.js:2068
+#: applet.js:1829 features.js:2082
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Timer stoppen, bevor die Pomodoro-Voreinstellung gewechselt wird"
 
@@ -155,7 +155,7 @@ msgstr "Timer stoppen, bevor die Pomodoro-Voreinstellung gewechselt wird"
 msgid "Pomodoro preset %s applied"
 msgstr "Pomodoro-Voreinstellung %s angewendet"
 
-#: applet.js:1854 features.js:549 menu.js:448 menu.js:737 menu.js:1005
+#: applet.js:1854 features.js:549 menu.js:448 menu.js:738 menu.js:1006
 msgid "Preset"
 msgstr "Voreinstellung"
 
@@ -176,16 +176,20 @@ msgstr "Fokusaufgabe"
 msgid "What are you focusing on?"
 msgstr "Worauf konzentrierst du dich?"
 
+#: dialogs.js:32 features.js:529
+msgid "e.g. Write the report"
+msgstr "z.B. Bericht schreiben"
+
 #: dialogs.js:38
 msgid "Choose or type a focus task"
 msgstr "Aufgabe wählen oder eingeben"
 
-#: dialogs.js:64 dialogs.js:79 features.js:2117
+#: dialogs.js:64 dialogs.js:79 features.js:2131
 msgid "Start"
 msgstr "Starten"
 
 #: dialogs.js:69 features.js:616 features.js:674 features.js:1372
-#: features.js:2116
+#: features.js:2130
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -335,7 +339,7 @@ msgstr "Einen Snack und etwas Wasser holen."
 msgid "Rest your eyes and look into the distance."
 msgstr "Die Augen entspannen und in die Ferne schauen."
 
-#: features.js:526 menu.js:894
+#: features.js:526 menu.js:895
 msgid "Edit task"
 msgstr "Aufgabe bearbeiten"
 
@@ -346,10 +350,6 @@ msgstr "Neue Aufgabe"
 #: features.js:527
 msgid "What do you want to work on?"
 msgstr "Woran möchtest du arbeiten?"
-
-#: features.js:529
-msgid "e.g. Write the report"
-msgstr "z.B. Bericht schreiben"
 
 #: features.js:539
 #, javascript-format
@@ -387,7 +387,7 @@ msgstr "Speichern"
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: features.js:627 menu.js:979
+#: features.js:627 menu.js:980
 msgid "Edit preset"
 msgstr "Preset bearbeiten"
 
@@ -848,7 +848,7 @@ msgstr "Mehr"
 msgid "By task"
 msgstr "Nach Aufgabe"
 
-#: features.js:1365 menu.js:644
+#: features.js:1365 menu.js:645
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Meilensteine: %s"
@@ -865,32 +865,32 @@ msgstr "Statistik zurücksetzen…"
 msgid "Close"
 msgstr "Schließen"
 
-#: features.js:1707
+#: features.js:1721
 msgid "No task"
 msgstr "Keine Aufgabe"
 
-#: features.js:1744
+#: features.js:1758
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr ""
 "Push-Benachrichtigungen brauchen libsoup, das hier nicht verfügbar ist."
 
-#: features.js:1750
+#: features.js:1764
 msgid "Enter your Pushover user key and app token first."
 msgstr "Zuerst Pushover-Benutzerschlüssel und App-Token eingeben."
 
-#: features.js:1757
+#: features.js:1771
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Testbenachrichtigung von Zen Pomodoro 🍅"
 
-#: features.js:1779
+#: features.js:1793
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Pushover-Test gesendet ✓ — prüfe dein Gerät."
 
-#: features.js:1780 features.js:1784
+#: features.js:1794 features.js:1798
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr "Pushover-Test fehlgeschlagen. Benutzerschlüssel und App-Token prüfen."
 
-#: features.js:1826
+#: features.js:1840
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -898,40 +898,40 @@ msgstr ""
 "Um Websites während des Fokus automatisch zu blockieren, aktiviere die "
 "passwortlose Blockierung in den Einstellungen."
 
-#: features.js:1883
+#: features.js:1897
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Passwortloses Blockieren aktiviert (keine Abfrage)."
 
-#: features.js:1889
+#: features.js:1903
 msgid "Passwordless blocking removed."
 msgstr "Passwortloses Blockieren entfernt."
 
-#: features.js:1926
+#: features.js:1940
 msgid "Click to exit Zen"
 msgstr "Klicken zum Verlassen von Zen"
 
 #. settings-schema.json->focus->title
-#: features.js:1961 visual.js:889
+#: features.js:1975 visual.js:889
 msgid "Focus"
 msgstr "Fokus"
 
-#: features.js:2038
+#: features.js:2052
 msgid "Breathe in"
 msgstr "Einatmen"
 
-#: features.js:2041 features.js:2047
+#: features.js:2055 features.js:2061
 msgid "Hold"
 msgstr "Halten"
 
-#: features.js:2044
+#: features.js:2058
 msgid "Breathe out"
 msgstr "Ausatmen"
 
-#: features.js:2074
+#: features.js:2088
 msgid "Focus until"
 msgstr "Fokus bis"
 
-#: features.js:2075
+#: features.js:2089
 msgid "Enter a time (HH:MM)"
 msgstr "Uhrzeit eingeben (HH:MM)"
 
@@ -943,7 +943,7 @@ msgstr "Fehler: Menü nicht verfügbar"
 msgid "Ready to start"
 msgstr "Bereit zum Starten"
 
-#: menu.js:263 menu.js:719
+#: menu.js:263 menu.js:720
 msgid "No task yet — tap to choose one"
 msgstr ""
 
@@ -956,7 +956,7 @@ msgstr "Aufgabe wechseln"
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:371 menu.js:791
+#: menu.js:371 menu.js:792
 msgid "Start focus"
 msgstr "Fokus starten"
 
@@ -976,7 +976,7 @@ msgstr "Zähler zurücksetzen"
 msgid "Reset timer and counters"
 msgstr "Timer und Zähler zurücksetzen"
 
-#: menu.js:427 menu.js:833
+#: menu.js:427 menu.js:834
 msgid "Task list"
 msgstr "Aufgabenliste"
 
@@ -988,7 +988,7 @@ msgstr "Fokus bis…"
 msgid "Zen mode"
 msgstr "Zen-Modus"
 
-#: menu.js:464 menu.js:507
+#: menu.js:464 menu.js:505
 msgid "Ambient sound"
 msgstr "Hintergrundklang"
 
@@ -996,7 +996,7 @@ msgstr "Hintergrundklang"
 msgid "Site blocking"
 msgstr "Website-Blockierung"
 
-#: menu.js:470 menu.js:726 menu.js:1009
+#: menu.js:470 menu.js:727 menu.js:1010
 msgid "off"
 msgstr "aus"
 
@@ -1016,136 +1016,136 @@ msgstr ""
 msgid "Setup wizard…"
 msgstr "Einrichtungsassistent…"
 
-#: menu.js:614
+#: menu.js:615
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "Letzte 7 Tage: %d"
 
-#: menu.js:623
+#: menu.js:624
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "Letzte 30 Tage: %d"
 
-#: menu.js:626
+#: menu.js:627
 #, javascript-format
 msgid "All time: %d"
 msgstr "Gesamt: %d"
 
-#: menu.js:629
+#: menu.js:630
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Fokuszeit: %s heute · %s gesamt"
 
-#: menu.js:632
+#: menu.js:633
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Bester Tag: %d"
 
-#: menu.js:644
+#: menu.js:645
 msgid "none yet"
 msgstr "noch keine"
 
-#: menu.js:654 menu.js:681
+#: menu.js:655 menu.js:682
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Aufgaben fertig bis ~%s"
 
-#: menu.js:665
+#: menu.js:666
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d von %d"
 
-#: menu.js:667
+#: menu.js:668
 msgid "Long break"
 msgstr "Lange Pause"
 
-#: menu.js:669
+#: menu.js:670
 msgid "Short break"
 msgstr "Kurze Pause"
 
-#: menu.js:672
+#: menu.js:673
 #, javascript-format
 msgid "until %s"
 msgstr "bis %s"
 
-#: menu.js:675
+#: menu.js:676
 #, javascript-format
 msgid "≈ finish %s"
 msgstr "≈ Ende %s"
 
-#: menu.js:679
+#: menu.js:680
 msgid "Break finished — press Start for focus"
 msgstr "Pause beendet — Start für den Fokus drücken"
 
-#: menu.js:683
+#: menu.js:684
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "%d Min. Fokus — Start drücken"
 
-#: menu.js:721
+#: menu.js:722
 msgid "Task: none"
 msgstr "Aufgabe: keine"
 
-#: menu.js:727 menu.js:1010
+#: menu.js:728 menu.js:1011
 #, javascript-format
 msgid "blocking %d"
 msgstr "blockiert %d"
 
-#: menu.js:727 menu.js:1010
+#: menu.js:728 menu.js:1011
 #, javascript-format
 msgid "%d in list"
 msgstr "%d in der Liste"
 
-#: menu.js:770
+#: menu.js:771
 msgid "Resume break"
 msgstr "Pause fortsetzen"
 
-#: menu.js:770
+#: menu.js:771
 msgid "Resume focus"
 msgstr "Fokus fortsetzen"
 
-#: menu.js:777
+#: menu.js:778
 msgid "Focusing — stay with it"
 msgstr "Fokus läuft — dranbleiben"
 
-#: menu.js:782
+#: menu.js:783
 msgid "Pause focus"
 msgstr "Fokus anhalten"
 
-#: menu.js:782
+#: menu.js:783
 msgid "Pause break"
 msgstr "Pause anhalten"
 
-#: menu.js:787
+#: menu.js:788
 msgid "Start next focus"
 msgstr "Nächsten Fokus starten"
 
-#: menu.js:848
+#: menu.js:849
 msgid "Add task…"
 msgstr "Aufgabe hinzufügen…"
 
-#: menu.js:858
+#: menu.js:859
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Noch keine Aufgaben — füge hinzu, woran du arbeitest, mit einer 🍅-Schätzung."
 
-#: menu.js:901
+#: menu.js:902
 msgid "Reopen task"
 msgstr "Aufgabe wieder öffnen"
 
-#: menu.js:901
+#: menu.js:902
 msgid "Mark done"
 msgstr "Als erledigt markieren"
 
-#: menu.js:908
+#: menu.js:909
 msgid "Delete task"
 msgstr "Aufgabe löschen"
 
-#: menu.js:955
+#: menu.js:956
 msgid "Add preset…"
 msgstr "Preset hinzufügen…"
 
-#: menu.js:986
+#: menu.js:987
 msgid "Delete preset"
 msgstr "Preset löschen"
 
@@ -1850,19 +1850,19 @@ msgstr "Befehl beim Start des Fokus"
 
 #. settings-schema.json->focus_start_command->tooltip
 msgid ""
-"Command run when a focus block starts (e.g. update your chat status). No "
-"shell pipes or redirects."
+"Pick a script to run when a focus block starts (e.g. enable Do Not Disturb). "
+"You can also type a command."
 msgstr ""
-"Befehl beim Start eines Fokusblocks (z. B. Chat-Status aktualisieren). Keine "
-"Shell-Pipes oder Umleitungen."
 
 #. settings-schema.json->break_start_command->description
 msgid "Command to run when a break starts"
 msgstr "Befehl beim Start einer Pause"
 
 #. settings-schema.json->break_start_command->tooltip
-msgid "Command run when a break starts (e.g. clear your status)."
-msgstr "Befehl beim Start einer Pause (z. B. Status zurücksetzen)."
+msgid ""
+"Pick a script to run when a break starts (e.g. clear your status). You can "
+"also type a command."
+msgstr ""
 
 #. settings-schema.json->pushover_enabled->description
 msgid "Send push notifications to your phone (Pushover)"

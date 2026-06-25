@@ -671,18 +671,20 @@
         "tooltip": "Run a command of your choice when focus or a break starts."
     },
     "focus_start_command": {
-        "type": "entry",
+        "type": "filechooser",
         "description": "Command to run when focus starts",
         "default": "",
+        "select-dir": false,
         "dependency": "run_command_enabled",
-        "tooltip": "Command run when a focus block starts (e.g. update your chat status). No shell pipes or redirects."
+        "tooltip": "Pick a script to run when a focus block starts (e.g. enable Do Not Disturb). You can also type a command."
     },
     "break_start_command": {
-        "type": "entry",
+        "type": "filechooser",
         "description": "Command to run when a break starts",
         "default": "",
+        "select-dir": false,
         "dependency": "run_command_enabled",
-        "tooltip": "Command run when a break starts (e.g. clear your status)."
+        "tooltip": "Pick a script to run when a break starts (e.g. clear your status). You can also type a command."
     },
     "pushover_enabled": {
         "type": "switch",

@@ -1662,16 +1662,30 @@ function install(proto) {
         if (!cmd || !cmd.trim()) {
             return;
         }
+        cmd = cmd.trim();
+        if (cmd.startsWith('file://')) {
+            cmd = decodeURIComponent(cmd.substr(7));
+        }
         let argv;
-        try {
-            let [ok, parsed] = GLib.shell_parse_argv(cmd);
-            if (!ok || !parsed || parsed.length === 0) {
+        if (GLib.file_test(cmd, GLib.FileTest.EXISTS)) {
+            // A chosen script file — run it directly (handles spaces in the path).
+            if (!GLib.file_test(cmd, GLib.FileTest.IS_EXECUTABLE)) {
+                global.logError("Zen Pomodoro: chosen file is not executable: " + cmd);
                 return;
             }
-            argv = parsed;
-        } catch (e) {
-            global.logError("Zen Pomodoro: cannot parse command '" + cmd + "': " + e.message);
-            return;
+            argv = [cmd];
+        } else {
+            // Fall back to treating the value as an inline command.
+            try {
+                let [ok, parsed] = GLib.shell_parse_argv(cmd);
+                if (!ok || !parsed || parsed.length === 0) {
+                    return;
+                }
+                argv = parsed;
+            } catch (e) {
+                global.logError("Zen Pomodoro: cannot parse command '" + cmd + "': " + e.message);
+                return;
+            }
         }
         try {
             let proc = Gio.Subprocess.new(argv,

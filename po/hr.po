@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pomodoro Timer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 00:39+0700\n"
+"POT-Creation-Date: 2026-06-25 12:26+0700\n"
 "PO-Revision-Date: 2017-02-24 23:32+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -56,7 +56,7 @@ msgstr "PREDAH PAUZIRAN"
 msgid "BREAK OVER"
 msgstr "PREDAH ZAVRŠEN"
 
-#: applet.js:976 applet.js:1036 menu.js:238 menu.js:648
+#: applet.js:976 applet.js:1036 menu.js:238 menu.js:649
 msgid "Ready to focus"
 msgstr "Spremni za fokus"
 
@@ -147,7 +147,7 @@ msgstr "Pomodoro je završio"
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://hr.wikipedia.org/wiki/Pomodoro_tehnika"
 
-#: applet.js:1829 features.js:2068
+#: applet.js:1829 features.js:2082
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Zaustavite mjerač prije promjene Pomodoro predloška"
 
@@ -156,7 +156,7 @@ msgstr "Zaustavite mjerač prije promjene Pomodoro predloška"
 msgid "Pomodoro preset %s applied"
 msgstr "Pomodoro predložak %s primijenjen"
 
-#: applet.js:1854 features.js:549 menu.js:448 menu.js:737 menu.js:1005
+#: applet.js:1854 features.js:549 menu.js:448 menu.js:738 menu.js:1006
 msgid "Preset"
 msgstr "Predložak"
 
@@ -177,16 +177,20 @@ msgstr "Zadatak fokusa"
 msgid "What are you focusing on?"
 msgstr "Na što se fokusirate?"
 
+#: dialogs.js:32 features.js:529
+msgid "e.g. Write the report"
+msgstr "npr. napiši izvještaj"
+
 #: dialogs.js:38
 msgid "Choose or type a focus task"
 msgstr "Odaberite ili upišite zadatak fokusa"
 
-#: dialogs.js:64 dialogs.js:79 features.js:2117
+#: dialogs.js:64 dialogs.js:79 features.js:2131
 msgid "Start"
 msgstr "Pokreni"
 
 #: dialogs.js:69 features.js:616 features.js:674 features.js:1372
-#: features.js:2116
+#: features.js:2130
 msgid "Cancel"
 msgstr "Odustani"
 
@@ -336,7 +340,7 @@ msgstr "Uzmite zalogaj i malo vode."
 msgid "Rest your eyes and look into the distance."
 msgstr "Odmorite oči i pogledajte u daljinu."
 
-#: features.js:526 menu.js:894
+#: features.js:526 menu.js:895
 msgid "Edit task"
 msgstr "Uredi zadatak"
 
@@ -347,10 +351,6 @@ msgstr "Novi zadatak"
 #: features.js:527
 msgid "What do you want to work on?"
 msgstr "Na čemu želite raditi?"
-
-#: features.js:529
-msgid "e.g. Write the report"
-msgstr "npr. napiši izvještaj"
 
 #: features.js:539
 #, javascript-format
@@ -388,7 +388,7 @@ msgstr "Spremi"
 msgid "Add"
 msgstr "Dodaj"
 
-#: features.js:627 menu.js:979
+#: features.js:627 menu.js:980
 msgid "Edit preset"
 msgstr "Uredi predložak"
 
@@ -847,7 +847,7 @@ msgstr "Više"
 msgid "By task"
 msgstr "Po zadatku"
 
-#: features.js:1365 menu.js:644
+#: features.js:1365 menu.js:645
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Prekretnice: %s"
@@ -864,32 +864,32 @@ msgstr "Poništi statistiku…"
 msgid "Close"
 msgstr "Zatvori"
 
-#: features.js:1707
+#: features.js:1721
 msgid "No task"
 msgstr "Bez zadatka"
 
-#: features.js:1744
+#: features.js:1758
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "Push obavijesti trebaju libsoup, koji ovdje nije dostupan."
 
-#: features.js:1750
+#: features.js:1764
 msgid "Enter your Pushover user key and app token first."
 msgstr "Najprije unesite svoj Pushover korisnički ključ i token aplikacije."
 
-#: features.js:1757
+#: features.js:1771
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Probna obavijest iz Zen Pomodoro 🍅"
 
-#: features.js:1779
+#: features.js:1793
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Pushover test poslan ✓ — provjerite uređaj."
 
-#: features.js:1780 features.js:1784
+#: features.js:1794 features.js:1798
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr ""
 "Pushover test nije uspio. Provjerite korisnički ključ i token aplikacije."
 
-#: features.js:1826
+#: features.js:1840
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -897,40 +897,40 @@ msgstr ""
 "Za automatsko blokiranje stranica tijekom fokusa uključite blokiranje bez "
 "lozinke u postavkama."
 
-#: features.js:1883
+#: features.js:1897
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Blokiranje bez lozinke omogućeno (bez upita)."
 
-#: features.js:1889
+#: features.js:1903
 msgid "Passwordless blocking removed."
 msgstr "Blokiranje bez lozinke uklonjeno."
 
-#: features.js:1926
+#: features.js:1940
 msgid "Click to exit Zen"
 msgstr "Kliknite za izlaz iz Zena"
 
 #. settings-schema.json->focus->title
-#: features.js:1961 visual.js:889
+#: features.js:1975 visual.js:889
 msgid "Focus"
 msgstr "Fokus"
 
-#: features.js:2038
+#: features.js:2052
 msgid "Breathe in"
 msgstr "Udahnite"
 
-#: features.js:2041 features.js:2047
+#: features.js:2055 features.js:2061
 msgid "Hold"
 msgstr "Zadržite"
 
-#: features.js:2044
+#: features.js:2058
 msgid "Breathe out"
 msgstr "Izdahnite"
 
-#: features.js:2074
+#: features.js:2088
 msgid "Focus until"
 msgstr "Fokus do"
 
-#: features.js:2075
+#: features.js:2089
 msgid "Enter a time (HH:MM)"
 msgstr "Unesite vrijeme (HH:MM)"
 
@@ -942,7 +942,7 @@ msgstr "Greška: izbornik nedostupan"
 msgid "Ready to start"
 msgstr "Spremni za početak"
 
-#: menu.js:263 menu.js:719
+#: menu.js:263 menu.js:720
 msgid "No task yet — tap to choose one"
 msgstr ""
 
@@ -955,7 +955,7 @@ msgstr "Promijeni zadatak"
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:371 menu.js:791
+#: menu.js:371 menu.js:792
 msgid "Start focus"
 msgstr "Pokreni fokus"
 
@@ -975,7 +975,7 @@ msgstr "Poništi brojače"
 msgid "Reset timer and counters"
 msgstr "Poništi mjerač i brojače"
 
-#: menu.js:427 menu.js:833
+#: menu.js:427 menu.js:834
 msgid "Task list"
 msgstr "Popis zadataka"
 
@@ -987,7 +987,7 @@ msgstr "Fokus do…"
 msgid "Zen mode"
 msgstr "Zen način"
 
-#: menu.js:464 menu.js:507
+#: menu.js:464 menu.js:505
 msgid "Ambient sound"
 msgstr "Pozadinski zvuk"
 
@@ -995,7 +995,7 @@ msgstr "Pozadinski zvuk"
 msgid "Site blocking"
 msgstr "Blokiranje stranica"
 
-#: menu.js:470 menu.js:726 menu.js:1009
+#: menu.js:470 menu.js:727 menu.js:1010
 msgid "off"
 msgstr "isključeno"
 
@@ -1015,136 +1015,136 @@ msgstr ""
 msgid "Setup wizard…"
 msgstr "Čarobnjak za postavljanje…"
 
-#: menu.js:614
+#: menu.js:615
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "Posljednjih 7 dana: %d"
 
-#: menu.js:623
+#: menu.js:624
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "Posljednjih 30 dana: %d"
 
-#: menu.js:626
+#: menu.js:627
 #, javascript-format
 msgid "All time: %d"
 msgstr "Sveukupno: %d"
 
-#: menu.js:629
+#: menu.js:630
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Vrijeme fokusa: %s danas · %s ukupno"
 
-#: menu.js:632
+#: menu.js:633
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Najbolji dan: %d"
 
-#: menu.js:644
+#: menu.js:645
 msgid "none yet"
 msgstr "još nijedan"
 
-#: menu.js:654 menu.js:681
+#: menu.js:655 menu.js:682
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Završite zadatke do ~%s"
 
-#: menu.js:665
+#: menu.js:666
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d od %d"
 
-#: menu.js:667
+#: menu.js:668
 msgid "Long break"
 msgstr "Duži predah"
 
-#: menu.js:669
+#: menu.js:670
 msgid "Short break"
 msgstr "Kratki predah"
 
-#: menu.js:672
+#: menu.js:673
 #, javascript-format
 msgid "until %s"
 msgstr "do %s"
 
-#: menu.js:675
+#: menu.js:676
 #, javascript-format
 msgid "≈ finish %s"
 msgstr "≈ kraj %s"
 
-#: menu.js:679
+#: menu.js:680
 msgid "Break finished — press Start for focus"
 msgstr "Predah završen — pritisnite Pokreni za fokus"
 
-#: menu.js:683
+#: menu.js:684
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "%d min fokusa — pritisnite Pokreni"
 
-#: menu.js:721
+#: menu.js:722
 msgid "Task: none"
 msgstr "Zadatak: nijedan"
 
-#: menu.js:727 menu.js:1010
+#: menu.js:728 menu.js:1011
 #, javascript-format
 msgid "blocking %d"
 msgstr "blokira %d"
 
-#: menu.js:727 menu.js:1010
+#: menu.js:728 menu.js:1011
 #, javascript-format
 msgid "%d in list"
 msgstr "%d na popisu"
 
-#: menu.js:770
+#: menu.js:771
 msgid "Resume break"
 msgstr "Nastavi predah"
 
-#: menu.js:770
+#: menu.js:771
 msgid "Resume focus"
 msgstr "Nastavi fokus"
 
-#: menu.js:777
+#: menu.js:778
 msgid "Focusing — stay with it"
 msgstr "Fokusiranje — ostanite uz to"
 
-#: menu.js:782
+#: menu.js:783
 msgid "Pause focus"
 msgstr "Pauziraj fokus"
 
-#: menu.js:782
+#: menu.js:783
 msgid "Pause break"
 msgstr "Pauziraj predah"
 
-#: menu.js:787
+#: menu.js:788
 msgid "Start next focus"
 msgstr "Pokreni sljedeći fokus"
 
-#: menu.js:848
+#: menu.js:849
 msgid "Add task…"
 msgstr "Dodaj zadatak…"
 
-#: menu.js:858
+#: menu.js:859
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Još nema zadataka — dodajte ono na što ćete se fokusirati, uz 🍅 procjenu."
 
-#: menu.js:901
+#: menu.js:902
 msgid "Reopen task"
 msgstr "Ponovno otvori zadatak"
 
-#: menu.js:901
+#: menu.js:902
 msgid "Mark done"
 msgstr "Označi gotovim"
 
-#: menu.js:908
+#: menu.js:909
 msgid "Delete task"
 msgstr "Izbriši zadatak"
 
-#: menu.js:955
+#: menu.js:956
 msgid "Add preset…"
 msgstr "Dodaj predložak…"
 
-#: menu.js:986
+#: menu.js:987
 msgid "Delete preset"
 msgstr "Izbriši predložak"
 
@@ -1832,19 +1832,19 @@ msgstr "Naredba za pokretanje na početku fokusa"
 
 #. settings-schema.json->focus_start_command->tooltip
 msgid ""
-"Command run when a focus block starts (e.g. update your chat status). No "
-"shell pipes or redirects."
+"Pick a script to run when a focus block starts (e.g. enable Do Not Disturb). "
+"You can also type a command."
 msgstr ""
-"Naredba koja se pokreće na početku bloka fokusa (npr. ažuriranje statusa u "
-"chatu). Bez shell cijevi ili preusmjeravanja."
 
 #. settings-schema.json->break_start_command->description
 msgid "Command to run when a break starts"
 msgstr "Naredba za pokretanje na početku predaha"
 
 #. settings-schema.json->break_start_command->tooltip
-msgid "Command run when a break starts (e.g. clear your status)."
-msgstr "Naredba koja se pokreće na početku predaha (npr. brisanje statusa)."
+msgid ""
+"Pick a script to run when a break starts (e.g. clear your status). You can "
+"also type a command."
+msgstr ""
 
 #. settings-schema.json->pushover_enabled->description
 msgid "Send push notifications to your phone (Pushover)"

@@ -490,9 +490,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         sitesItem.addActor(sitesKeyLabel);
         this._sitesLabel = new St.Label({ text: _("off"), style_class: "pomodoro-info-value" });
         sitesItem.addActor(this._sitesLabel, { expand: true, align: St.Align.END });
-        let sitesChevron = new St.Label({ text: "\u203A", style: "padding-left: 10px;" });
-        sitesChevron.set_opacity(130);
-        sitesItem.addActor(sitesChevron);
         sitesItem.connect('activate', () => { this.emit('open-blocking-settings'); });
         new Tooltips.Tooltip(sitesItem.actor, _("Manage blocked sites"));
         this.addMenuItem(sitesItem);
@@ -504,9 +501,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._statTodayItem.addActor(statKeyLabel);
         this._statValueLabel = new St.Label({ text: "", style_class: "pomodoro-info-value" });
         this._statTodayItem.addActor(this._statValueLabel, { expand: true, align: St.Align.END });
-        let statChevron = new St.Label({ text: "\u203A", style: "padding-left: 10px;" });
-        statChevron.set_opacity(130);
-        this._statTodayItem.addActor(statChevron);
         this._statTodayItem.connect('activate', () => { this.emit('open-stats'); });
         new Tooltips.Tooltip(this._statTodayItem.actor, _("Open the statistics dashboard"));
         this.addMenuItem(this._statTodayItem);

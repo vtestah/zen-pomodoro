@@ -467,6 +467,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         // Distractions: jot a thought and keep working; review / clear here.
         this._distractSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Distractions"));
         this.addMenuItem(this._distractSubmenu);
+        this._buildDistractEntry();
         this._populateDistractions();
         this._distractSubmenu.menu.connect('open-state-changed', (m, isOpen) => {
             if (isOpen && this._distractEntry) {
@@ -922,16 +923,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (this._distractSubmenu) { this._populateDistractions(); }
     }
 
-    _populateDistractions() {
-        if (!this._distractSubmenu) { return; }
-        this._distractSubmenu.menu.removeAll();
-        let items = this._distractions || [];
-        // Review surface: only show the section when there's something captured.
-        // Capture itself is the global shortcut, so an empty list means hide.
-        let active = (items.length > 0);
-        if (this._distractSubmenu.actor) { this._distractSubmenu.actor.visible = active; }
-
-        // Inline capture: type + Enter adds, no modal.
+    _buildDistractEntry() {
+        // Built once and kept across refreshes: destroying a focused entry on
+        // every add/delete drops the menu's key focus and closes the menu.
         let entryItem = new PopupMenu.PopupBaseMenuItem({ reactive: false });
         let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true, x_expand: true });
         let hint = new St.Label({ text: _("Jot a distraction, press Enter") });
@@ -956,46 +950,52 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         });
         entryItem.addActor(entry, { expand: true, span: -1 });
         this._distractSubmenu.menu.addMenuItem(entryItem);
+    }
 
-        if (!items.length) {
-            let none = new PopupMenu.PopupMenuItem(_("Nothing captured — stay focused 🍅"));
-            none.setSensitive(false);
-            this._distractSubmenu.menu.addMenuItem(none);
-        } else {
-            for (let d of items) {
-                let item = new PopupMenu.PopupBaseMenuItem();
-                let row = new St.BoxLayout({ vertical: false, x_expand: true });
-                let lab = new St.Label({ text: "• " + d.text, x_expand: true });
-                row.add_child(lab);
-                let id = d.id;
-                let del = new St.Button({
-                    style_class: 'pomodoro-task-btn', can_focus: false,
-                    child: new St.Icon({ icon_name: 'edit-delete-symbolic', icon_size: 14 })
-                });
-                del.connect('button-release-event', (a, ev) => {
-                    if (ev.get_button() === 1) {
-                        GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('delete-distraction', id); return GLib.SOURCE_REMOVE; });
-                    }
-                    return true;
-                });
-                row.add_child(del);
-                item.addActor(row, { expand: true, span: -1 });
-                this._distractSubmenu.menu.addMenuItem(item);
-            }
-            this._distractSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+    _populateDistractions() {
+        if (!this._distractSubmenu) { return; }
+        // Rebuild only the list rows; the persistent entry item is left alone so
+        // focus is kept and the menu stays open after add/delete.
+        if (this._distractListItems) {
+            for (let it of this._distractListItems) { try { it.destroy(); } catch (e) {} }
+        }
+        this._distractListItems = [];
+        let items = this._distractions || [];
+        // Review surface: only show the section when there's something captured.
+        if (this._distractSubmenu.actor) { this._distractSubmenu.actor.visible = (items.length > 0); }
+
+        for (let d of items) {
+            let item = new PopupMenu.PopupBaseMenuItem();
+            let row = new St.BoxLayout({ vertical: false, x_expand: true });
+            let lab = new St.Label({ text: "• " + d.text, x_expand: true });
+            row.add_child(lab);
+            let id = d.id;
+            let del = new St.Button({
+                style_class: 'pomodoro-task-btn', can_focus: false,
+                child: new St.Icon({ icon_name: 'edit-delete-symbolic', icon_size: 14 })
+            });
+            del.connect('button-release-event', (a, ev) => {
+                if (ev.get_button() === 1) {
+                    GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('delete-distraction', id); return GLib.SOURCE_REMOVE; });
+                }
+                return true;
+            });
+            row.add_child(del);
+            item.addActor(row, { expand: true, span: -1 });
+            this._distractSubmenu.menu.addMenuItem(item);
+            this._distractListItems.push(item);
+        }
+        if (items.length) {
+            let sep = new PopupMenu.PopupSeparatorMenuItem();
+            this._distractSubmenu.menu.addMenuItem(sep);
+            this._distractListItems.push(sep);
             let clear = new PopupMenu.PopupMenuItem(_("Clear all"));
             clear.connect('activate', () => this.emit('clear-distractions'));
             this._distractSubmenu.menu.addMenuItem(clear);
+            this._distractListItems.push(clear);
         }
-
         if (this._distractSubmenu.label) {
             this._distractSubmenu.label.set_text(_("Distractions") + (items.length ? " (" + items.length + ")" : ""));
-        }
-        if (this._distractSubmenu.menu.isOpen && this._distractEntry) {
-            GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
-                if (this._distractEntry) { this._distractEntry.grab_key_focus(); }
-                return GLib.SOURCE_REMOVE;
-            });
         }
     }
 

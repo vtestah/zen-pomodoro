@@ -756,9 +756,9 @@ function install(proto) {
             focusLen = taskPreset.pomodoro || 25;
             qLabel.set_text(_("How many pomodoros? (1 🍅 = %d min)").format(focusLen));
             for (let k = 0; k < estBtns.length; k++) {
-                estBtns[k].set_style('padding: 2px 8px;' + ((estVals[k] === est.value) ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
+                estBtns[k].set_style('padding: 2px 8px; border-radius: 6px;' + ((estVals[k] === est.value) ? ' background-color: rgba(227,90,60,0.55);' : ''));
             }
-            plusBtn.set_style('padding: 2px 8px;' + ((est.value > 6) ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
+            plusBtn.set_style('padding: 2px 8px; border-radius: 6px;' + ((est.value > 6) ? ' background-color: rgba(227,90,60,0.55);' : ''));
             let prefix = (est.value > 6) ? (est.value + " \ud83c\udf45 \u00b7 ") : "";
             estReadout.set_text(est.value === 0 ? _("No estimate — just counts your 🍅") : (prefix + fmtMins(est.value * focusLen)));
             let active = taskPreset.name;
@@ -766,7 +766,7 @@ function install(proto) {
             for (let pb of presetBtns) {
                 let on = (pb.preset.name === active);
                 if (on) { matched = true; }
-                pb.btn.set_style('padding: 2px 8px;' + (on ? ' background-color: rgba(227,90,60,0.55); border-radius: 6px;' : ''));
+                pb.btn.set_style('padding: 2px 8px; border-radius: 6px;' + (on ? ' background-color: rgba(227,90,60,0.55);' : ''));
             }
             if (matched) { customChip.hide(); } else { customChip.show(); }
             customChip.set_style('padding: 2px 8px; border-radius: 6px;' + (matched ? '' : ' background-color: rgba(227,90,60,0.55);'));

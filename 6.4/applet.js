@@ -2228,6 +2228,17 @@ class PomodoroApplet extends Applet.TextIconApplet {
                     this._repaintPanelProgress(area);
                 });
                 this.actor.insert_child_at_index(this._panelProgressArea, 0);
+                if (!this._panelHoverConnected) {
+                    this.actor.connect('enter-event', () => {
+                        this._panelHover = true;
+                        if (this._panelProgressArea && this._panelProgressArea.visible) { this._panelProgressArea.queue_repaint(); }
+                    });
+                    this.actor.connect('leave-event', () => {
+                        this._panelHover = false;
+                        if (this._panelProgressArea && this._panelProgressArea.visible) { this._panelProgressArea.queue_repaint(); }
+                    });
+                    this._panelHoverConnected = true;
+                }
             }
             this._applet_icon_box.hide();
             this._panelProgressArea.show();
@@ -2260,9 +2271,12 @@ class PomodoroApplet extends Applet.TextIconApplet {
     }
 
     _tomatoColors(darkP) {
+        // Gently brighten on hover so the icon visibly responds to the pointer.
+        let m = this._panelHover ? 1.15 : 1.0;
+        let c = (v) => Math.min(1, v * m);
         return {
-            br: darkP ? 0.89 : 0.82, bg: darkP ? 0.34 : 0.27, bb: darkP ? 0.23 : 0.18,
-            lr: darkP ? 0.46 : 0.33, lg: darkP ? 0.78 : 0.57, lb: darkP ? 0.42 : 0.29
+            br: c(darkP ? 0.86 : 0.75), bg: c(darkP ? 0.26 : 0.20), bb: c(darkP ? 0.20 : 0.16),
+            lr: c(darkP ? 0.46 : 0.33), lg: c(darkP ? 0.78 : 0.57), lb: c(darkP ? 0.42 : 0.29)
         };
     }
 

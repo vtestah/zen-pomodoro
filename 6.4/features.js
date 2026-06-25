@@ -590,81 +590,88 @@ function install(proto) {
         if (!Array.isArray(this._tasksData.distractions)) { this._tasksData.distractions = []; }
         this._tasksData.distractions.push({ id: this._newTaskId(), text: t.slice(0, 200), ts: Date.now() });
         this._saveTasks();
+        this._refreshDistractions();
     };
 
     proto._deleteDistraction = function(id) {
         if (!this._tasksData || !Array.isArray(this._tasksData.distractions)) { return; }
         this._tasksData.distractions = this._tasksData.distractions.filter((d) => d.id !== id);
         this._saveTasks();
+        this._refreshDistractions();
     };
 
     proto._clearDistractions = function() {
         if (!this._tasksData) { return; }
         this._tasksData.distractions = [];
         this._saveTasks();
+        this._refreshDistractions();
     };
 
-    // Quick capture for the Pomodoro "write it down and keep working" habit:
-    // jot a distracting thought, keep it out of your head, review it later.
-    proto._showDistractionsDialog = function() {
-        let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
-        let content = new Dialog.MessageDialogContent({
-            title: _("Distractions"),
-            description: _("Jot down what pulled you away, then get back to your task.")
+    proto._refreshDistractions = function() {
+        if (this._appletMenu && typeof this._appletMenu.setDistractions === 'function') {
+            this._appletMenu.setDistractions(this._distractionList());
+        }
+    };
+
+    // Lightweight quick-capture: a small focused input (no screen-dimming modal)
+    // so you can jot a distracting thought and get straight back to work.
+    // Opened by the global hotkey or from the menu. Enter saves; Esc / click
+    // outside dismisses.
+    proto._showDistractionCapture = function() {
+        if (this._capturePopover) {
+            if (this._captureEntry) { this._captureEntry.grab_key_focus(); }
+            return;
+        }
+        let monitor = Main.layoutManager.focusMonitor || Main.layoutManager.primaryMonitor;
+        let container = new St.BoxLayout({ vertical: true, reactive: true });
+        container.set_position(monitor.x, monitor.y);
+        container.set_size(monitor.width, monitor.height);
+
+        let card = new St.BoxLayout({
+            vertical: true,
+            x_align: Clutter.ActorAlign.CENTER,
+            y_align: Clutter.ActorAlign.START,
+            style: 'background-color: rgba(40,40,40,0.97); border: 1px solid rgba(227,90,60,0.55); border-radius: 12px; padding: 16px; spacing: 8px; margin-top: ' + Math.floor(monitor.height * 0.26) + 'px;'
         });
-        let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true });
-        let entryHint = new St.Label({ text: _("e.g. Reply to Anna later") });
-        entry.set_hint_actor(entryHint);
+        card.add_child(new St.Label({ text: _("Capture distraction"), style: 'color: #f5f5f5; font-weight: bold;' }));
+        let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true, style: 'min-width: 380px;' });
+        let hint = new St.Label({ text: _("Type it, press Enter — then back to work") });
+        entry.set_hint_actor(hint);
         CinnamonEntry.addContextMenu(entry);
-        content.add_child(entry);
+        card.add_child(entry);
+        container.add_child(card);
 
-        let listBox = new St.BoxLayout({ vertical: true, x_expand: true, style: 'spacing: 4px; padding-top: 10px; min-width: 360px;' });
-        content.add_child(listBox);
+        Main.uiGroup.add_actor(container);
+        let pushed = false;
+        try { pushed = Main.pushModal(container); } catch (e) { pushed = false; }
 
+        this._capturePopover = container;
+        this._captureEntry = entry;
         let self = this;
-        let rebuild = function() {
-            for (let c of listBox.get_children()) { c.destroy(); }
-            let items = self._distractionList();
-            if (!items.length) {
-                let empty = new St.Label({ text: _("Nothing captured — stay focused 🍅") });
-                empty.set_opacity(150);
-                listBox.add_child(empty);
-                return;
-            }
-            for (let d of items) {
-                let row = new St.BoxLayout({ vertical: false, x_expand: true, style: 'spacing: 8px; padding: 3px 2px;' });
-                let lab = new St.Label({ text: "• " + d.text, x_expand: true });
-                lab.clutter_text.line_wrap = true;
-                row.add_child(lab);
-                let id = d.id;
-                let del = new St.Button({
-                    style_class: 'pomodoro-task-btn', can_focus: false,
-                    child: new St.Icon({ icon_name: 'edit-delete-symbolic', icon_size: 14 })
-                });
-                del.connect('clicked', () => { self._deleteDistraction(id); rebuild(); });
-                row.add_child(del);
-                listBox.add_child(row);
-            }
+        let closed = false;
+        let close = function() {
+            if (closed) { return; }
+            closed = true;
+            try { if (pushed) { Main.popModal(container); } } catch (e) {}
+            container.destroy();
+            self._capturePopover = null;
+            self._captureEntry = null;
         };
-
-        let addCurrent = function() {
+        entry.clutter_text.connect('activate', () => {
             let txt = entry.get_text();
-            if (txt && txt.trim()) {
-                self._addDistraction(txt);
-                entry.set_text("");
-                rebuild();
-            }
-            entry.grab_key_focus();
-        };
-
-        rebuild();
-
-        dialog.setButtons([
-            { label: _("Clear all"), action: () => { self._clearDistractions(); rebuild(); } },
-            { label: _("Close"), key: Clutter.KEY_Escape, action: () => dialog.close() },
-            { label: _("Capture"), default: true, action: addCurrent }
-        ]);
-        dialog.open();
+            if (txt && txt.trim()) { self._addDistraction(txt); }
+            close();
+        });
+        container.connect('key-press-event', (a, ev) => {
+            if (ev.get_key_symbol() === Clutter.KEY_Escape) { close(); return true; }
+            return false;
+        });
+        container.connect('button-press-event', (a, ev) => {
+            let [px, py] = ev.get_coords();
+            let [cx, cy] = card.get_transformed_position();
+            if (px < cx || px > cx + card.get_width() || py < cy || py > cy + card.get_height()) { close(); return true; }
+            return false;
+        });
         entry.grab_key_focus();
     };
 

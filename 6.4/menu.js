@@ -463,10 +463,18 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             });
         }
 
-        // Quick capture: jot a distracting thought and keep working.
-        let distractItem = new PopupMenu.PopupMenuItem(_("Capture distraction…"));
-        distractItem.connect('activate', () => this.emit('open-distractions'));
-        this.addMenuItem(distractItem);
+        // Distractions: jot a thought and keep working; review / clear here.
+        this._distractSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Distractions"));
+        this.addMenuItem(this._distractSubmenu);
+        this._populateDistractions();
+        this._distractSubmenu.menu.connect('open-state-changed', (m, isOpen) => {
+            if (isOpen && this._distractEntry) {
+                GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
+                    if (this._distractEntry) { this._distractEntry.grab_key_focus(); }
+                    return GLib.SOURCE_REMOVE;
+                });
+            }
+        });
 
         // Session setup — preset (focus + breaks + cycle).
         this._presetSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Preset"));
@@ -897,6 +905,67 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             return s;
         }
         return "\u25cf " + fallbackName;
+    }
+
+    setDistractions(list) {
+        this._distractions = Array.isArray(list) ? list : [];
+        if (this._distractSubmenu) { this._populateDistractions(); }
+    }
+
+    _populateDistractions() {
+        if (!this._distractSubmenu) { return; }
+        this._distractSubmenu.menu.removeAll();
+        let items = this._distractions || [];
+
+        // Inline capture: type + Enter adds, no modal.
+        let entryItem = new PopupMenu.PopupBaseMenuItem({ reactive: false });
+        let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true, x_expand: true });
+        let hint = new St.Label({ text: _("Jot a distraction, press Enter") });
+        entry.set_hint_actor(hint);
+        this._distractEntry = entry;
+        entry.clutter_text.connect('activate', () => {
+            let t = entry.get_text();
+            if (t && t.trim()) { this.emit('add-distraction', t); entry.set_text(""); }
+            entry.grab_key_focus();
+        });
+        entryItem.addActor(entry, { expand: true, span: -1 });
+        this._distractSubmenu.menu.addMenuItem(entryItem);
+
+        if (!items.length) {
+            let none = new PopupMenu.PopupMenuItem(_("Nothing captured — stay focused 🍅"));
+            none.setSensitive(false);
+            this._distractSubmenu.menu.addMenuItem(none);
+        } else {
+            for (let d of items) {
+                let item = new PopupMenu.PopupBaseMenuItem();
+                let row = new St.BoxLayout({ vertical: false, x_expand: true });
+                let lab = new St.Label({ text: "• " + d.text, x_expand: true });
+                row.add_child(lab);
+                let id = d.id;
+                let del = new St.Button({
+                    style_class: 'pomodoro-task-btn', can_focus: false,
+                    child: new St.Icon({ icon_name: 'edit-delete-symbolic', icon_size: 14 })
+                });
+                del.connect('clicked', () => { this.emit('delete-distraction', id); return true; });
+                row.add_child(del);
+                item.addActor(row, { expand: true, span: -1 });
+                this._distractSubmenu.menu.addMenuItem(item);
+            }
+            this._distractSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+            let clear = new PopupMenu.PopupMenuItem(_("Clear all"));
+            clear.connect('activate', () => this.emit('clear-distractions'));
+            this._distractSubmenu.menu.addMenuItem(clear);
+        }
+
+        if (this._distractSubmenu.label) {
+            this._distractSubmenu.label.set_text(_("Distractions") + (items.length ? " (" + items.length + ")" : ""));
+        }
+        if (this._distractSubmenu.menu.isOpen && this._distractEntry) {
+            GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
+                if (this._distractEntry) { this._distractEntry.grab_key_focus(); }
+                return GLib.SOURCE_REMOVE;
+            });
+        }
     }
 
     setTasks(list, currentId, finishText, templates) {

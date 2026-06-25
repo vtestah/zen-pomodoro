@@ -166,6 +166,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_hotkey = null;
         this._opt_hotkeyToggle = null;
         this._opt_hotkeySkip = null;
+        this._opt_hotkeyDistraction = null;
         this._opt_startOnClick = null;
         this._opt_panelScrollControl = null;
         this._opt_scrollAction = null;
@@ -333,6 +334,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             let cur = this._currentTask();
             if (cur && !this._currentFocusTask) { this._currentFocusTask = cur.title; }
             this._refreshTasksMenu();
+            this._refreshDistractions();
         });
         this._restoreSessionState();
 
@@ -477,6 +479,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "show_seconds", "_opt_showSeconds", this._onShowTimerChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "hotkey_toggle", "_opt_hotkeyToggle", this._updateHotkey.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "hotkey_skip", "_opt_hotkeySkip", this._updateHotkey.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "hotkey_distraction", "_opt_hotkeyDistraction", this._updateHotkey.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "start_on_click", "_opt_startOnClick", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "panel_scroll_control", "_opt_panelScrollControl", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "scroll_action", "_opt_scrollAction", emptyCallback);
@@ -564,6 +567,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         Main.keybindingManager.removeHotKey(UUID);
         Main.keybindingManager.removeHotKey(UUID + "-toggle");
         Main.keybindingManager.removeHotKey(UUID + "-skip");
+        Main.keybindingManager.removeHotKey(UUID + "-distraction");
 
         if (this._opt_hotkey) {
             Main.keybindingManager.addHotKey(UUID, this._opt_hotkey, () => {
@@ -580,6 +584,11 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 if (this._appletMenu) {
                     this._appletMenu.emit('skip-timer');
                 }
+            });
+        }
+        if (this._opt_hotkeyDistraction) {
+            Main.keybindingManager.addHotKey(UUID + "-distraction", this._opt_hotkeyDistraction, () => {
+                this._showDistractionCapture();
             });
         }
     }
@@ -1901,8 +1910,14 @@ class PomodoroApplet extends Applet.TextIconApplet {
         menu.connect('reorder-tasks', () => {
             this._openReorderTasks();
         });
-        menu.connect('open-distractions', () => {
-            this._showDistractionsDialog();
+        menu.connect('add-distraction', (m, text) => {
+            this._addDistraction(text);
+        });
+        menu.connect('delete-distraction', (m, id) => {
+            this._deleteDistraction(id);
+        });
+        menu.connect('clear-distractions', () => {
+            this._clearDistractions();
         });
         menu.connect('select-task', (m, id) => {
             this._setCurrentTaskId(id);

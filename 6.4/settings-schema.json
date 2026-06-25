@@ -277,7 +277,8 @@
             "keys": [
                 "hotkey",
                 "hotkey_toggle",
-                "hotkey_skip"
+                "hotkey_skip",
+                "hotkey_distraction"
             ]
         }
     },
@@ -410,6 +411,12 @@
         "description": "Shortcut: skip to the next step",
         "default": "",
         "tooltip": "Keyboard shortcut to skip to the next phase (focus ↔ break)."
+    },
+    "hotkey_distraction": {
+        "type": "keybinding",
+        "description": "Shortcut: capture a distraction",
+        "default": "",
+        "tooltip": "Keyboard shortcut to pop up a quick note for a distracting thought, without opening the menu."
     },
     "start_on_click": {
         "type": "switch",

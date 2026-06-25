@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 21:15+0700\n"
+"POT-Creation-Date: 2026-06-25 21:33+0700\n"
 "PO-Revision-Date: 2017-06-07 06:28+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -18,161 +18,161 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.7.1\n"
 
-#: applet.js:611
+#: applet.js:620
 msgid "Strict focus is on"
 msgstr "Strikt fokus är på"
 
-#: applet.js:611
+#: applet.js:620
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Håll ut — slutför passet, eller återställ för att börja om."
 
-#: applet.js:677
+#: applet.js:686
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Fokuslängd: %d min"
 
-#: applet.js:971
+#: applet.js:980
 msgid "Focus session restored — resume when ready"
 msgstr "Fokuspass återställt — fortsätt när du är redo"
 
-#: applet.js:1007
+#: applet.js:1016
 msgid "FOCUS"
 msgstr "FOKUS"
 
-#: applet.js:1009
+#: applet.js:1018
 msgid "PAUSED FOCUS"
 msgstr "FOKUS PAUSAD"
 
-#: applet.js:1012
+#: applet.js:1021
 msgid "BREAK"
 msgstr "PAUS"
 
-#: applet.js:1015
+#: applet.js:1024
 msgid "PAUSED BREAK"
 msgstr "PAUS PAUSAD"
 
-#: applet.js:1017
+#: applet.js:1026
 msgid "BREAK OVER"
 msgstr "PAUS SLUT"
 
-#: applet.js:1020 applet.js:1080 menu.js:252 menu.js:722
+#: applet.js:1029 applet.js:1089 menu.js:252 menu.js:730
 msgid "Ready to focus"
 msgstr "Redo att fokusera"
 
-#: applet.js:1038
+#: applet.js:1047
 msgid "Short break running"
 msgstr "Kort rast pågår"
 
-#: applet.js:1041
+#: applet.js:1050
 msgid "Short break paused"
 msgstr "Kort rast pausad"
 
-#: applet.js:1044
+#: applet.js:1053
 msgid "Long break running"
 msgstr "Lång rast pågår"
 
-#: applet.js:1047
+#: applet.js:1056
 msgid "Long break paused"
 msgstr "Lång rast pausad"
 
-#: applet.js:1050 applet.js:1564
+#: applet.js:1059 applet.js:1573
 msgid "Break ended"
 msgstr "Rasten är slut"
 
-#: applet.js:1053
+#: applet.js:1062
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodoro %d, set %d pågår"
 
-#: applet.js:1058 features.js:554 features.js:1466
+#: applet.js:1067 features.js:554 features.js:1473
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ klar %s · %d 🍅 kvar"
 
-#: applet.js:1063
+#: applet.js:1072
 msgid "Pomodoro paused"
 msgstr "Pomodoro pausad"
 
-#: applet.js:1066
+#: applet.js:1075
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Redo att fokusera — skrolla eller mittklicka för att starta"
 
-#: applet.js:1234
+#: applet.js:1243
 msgid "Classic"
 msgstr "Klassisk"
 
-#: applet.js:1235
+#: applet.js:1244
 msgid "Long focus"
 msgstr "Långt fokus"
 
-#: applet.js:1429
+#: applet.js:1438
 msgid "Task complete"
 msgstr ""
 
 #. settings-schema.json->sec_preview->title
-#: applet.js:1530 visual.js:567
+#: applet.js:1539 visual.js:567
 msgid "Preview"
 msgstr "Förhandsvisning"
 
-#: applet.js:1544
+#: applet.js:1553
 msgid "Pomodoro started"
 msgstr "Pomodoro startad"
 
-#: applet.js:1622
+#: applet.js:1631
 msgid "Let's go to work!"
 msgstr "Dags att jobba!"
 
-#: applet.js:1649
+#: applet.js:1658
 msgid "Pomodoro done"
 msgstr "Pomodoro klar"
 
-#: applet.js:1651
+#: applet.js:1660
 msgid "Take a short break"
 msgstr "Ta en kort rast"
 
-#: applet.js:1652 applet.js:1683
+#: applet.js:1661 applet.js:1692
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d min"
 
-#: applet.js:1653 applet.js:1684
+#: applet.js:1662 applet.js:1693
 msgid "Skip break"
 msgstr "Hoppa över rast"
 
-#: applet.js:1677
+#: applet.js:1686
 msgid "Set complete!"
 msgstr "Set klart!"
 
-#: applet.js:1682
+#: applet.js:1691
 msgid "Take a long break"
 msgstr "Ta en lång rast"
 
-#: applet.js:1728
+#: applet.js:1737
 msgid "Pomodoro ended"
 msgstr "Pomodoro avslutad"
 
-#: applet.js:1934
+#: applet.js:1949
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://sv.wikipedia.org/wiki/Pomodorotekniken"
 
-#: applet.js:2006 features.js:2455
+#: applet.js:2021 features.js:2462
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Stoppa timern innan du byter Pomodoro-förinställning"
 
-#: applet.js:2024
+#: applet.js:2039
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Pomodoro-förinställning %s tillämpad"
 
-#: applet.js:2031 features.js:724 menu.js:472 menu.js:813 menu.js:1091
+#: applet.js:2046 features.js:731 menu.js:480 menu.js:821 menu.js:1160
 msgid "Preset"
 msgstr "Förinställning"
 
-#: applet.js:2057
+#: applet.js:2072
 msgid "Keep at least one preset"
 msgstr "Behåll minst en förinställning"
 
-#: applet.js:2072
+#: applet.js:2087
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Rast förlängd med %d min"
@@ -185,7 +185,7 @@ msgstr "Fokusuppgift"
 msgid "What are you focusing on?"
 msgstr "Vad fokuserar du på?"
 
-#: dialogs.js:34 features.js:703
+#: dialogs.js:34 features.js:710
 msgid "e.g. Write the report"
 msgstr "t.ex. skriv rapporten"
 
@@ -193,12 +193,12 @@ msgstr "t.ex. skriv rapporten"
 msgid "Choose or type a focus task"
 msgstr "Välj eller skriv en fokusuppgift"
 
-#: dialogs.js:67 dialogs.js:122 features.js:2504
+#: dialogs.js:67 dialogs.js:122 features.js:2511
 msgid "Start"
 msgstr "Starta"
 
-#: dialogs.js:112 dialogs.js:437 features.js:805 features.js:866
-#: features.js:1581 features.js:2503
+#: dialogs.js:112 dialogs.js:437 features.js:812 features.js:873
+#: features.js:1588 features.js:2510
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -327,412 +327,396 @@ msgid "Hit your %d 🍅 estimate for: %s. Mark it done when ready."
 msgstr ""
 "Du nådde din uppskattning på %d 🍅 för: %s. Markera som klar när du vill."
 
-#: features.js:612
-msgid "Distractions"
+#: features.js:636
+msgid "Capture distraction"
 msgstr ""
 
-#: features.js:613
-msgid "Jot down what pulled you away, then get back to your task."
+#: features.js:638
+msgid "Type it, press Enter — then back to work"
 msgstr ""
 
-#: features.js:616
-msgid "e.g. Reply to Anna later"
-msgstr ""
-
-#: features.js:629
-msgid "Nothing captured — stay focused 🍅"
-msgstr ""
-
-#: features.js:663
-msgid "Clear all"
-msgstr ""
-
-#: features.js:664 features.js:988 features.js:1588
-msgid "Close"
-msgstr "Stäng"
-
-#: features.js:665
-msgid "Capture"
-msgstr ""
-
-#: features.js:673
+#: features.js:680
 msgid "Look ~20 ft away for 20 seconds — rest your eyes."
 msgstr "Titta långt bort i 20 sekunder — vila ögonen."
 
-#: features.js:674
+#: features.js:681
 msgid "Stand up and stretch."
 msgstr "Res dig och sträck på dig."
 
-#: features.js:675
+#: features.js:682
 msgid "Drink some water."
 msgstr "Drick lite vatten."
 
-#: features.js:676
+#: features.js:683
 msgid "Look out a window and relax your shoulders."
 msgstr "Titta ut genom ett fönster och slappna av i axlarna."
 
-#: features.js:677
+#: features.js:684
 msgid "Close your eyes and take a few slow breaths."
 msgstr "Blunda och ta några långsamma andetag."
 
-#: features.js:678
+#: features.js:685
 msgid "Step away from screens — don't check your phone."
 msgstr ""
 
-#: features.js:679
+#: features.js:686
 msgid "Unclench your jaw and drop your shoulders."
 msgstr ""
 
-#: features.js:682
+#: features.js:689
 msgid "Take a short walk."
 msgstr "Ta en kort promenad."
 
-#: features.js:683
+#: features.js:690
 msgid "Step outside for some fresh air."
 msgstr "Gå ut och få lite frisk luft."
 
-#: features.js:684
+#: features.js:691
 msgid "Stretch and move around a little."
 msgstr "Sträck på dig och rör lite på dig."
 
-#: features.js:685
+#: features.js:692
 msgid "Grab a snack and some water."
 msgstr "Ta ett mellanmål och lite vatten."
 
-#: features.js:686
+#: features.js:693
 msgid "Rest your eyes and look into the distance."
 msgstr "Vila ögonen och titta långt bort."
 
-#: features.js:687
+#: features.js:694
 msgid "Rest away from screens — no phone, no feeds, no news."
 msgstr ""
 
-#: features.js:688
+#: features.js:695
 msgid "Move your body and let your mind wander."
 msgstr ""
 
-#: features.js:699 menu.js:975
+#: features.js:706 menu.js:1044
 msgid "Edit task"
 msgstr "Redigera uppgift"
 
-#: features.js:699
+#: features.js:706
 msgid "New task"
 msgstr "Ny uppgift"
 
-#: features.js:700
+#: features.js:707
 msgid "What do you want to work on?"
 msgstr "Vad vill du arbeta med?"
 
-#: features.js:714
+#: features.js:721
 #, javascript-format
 msgid "%d h %d min"
 msgstr "%d tim %d min"
 
-#: features.js:714
+#: features.js:721
 #, javascript-format
 msgid "%d h"
 msgstr "%d tim"
 
-#: features.js:715 features.js:833 features.js:1130 menu.js:341
+#: features.js:722 features.js:840 features.js:1137 menu.js:341
 #, javascript-format
 msgid "%d min"
 msgstr "%d min"
 
-#: features.js:727
+#: features.js:734
 msgid "Custom"
 msgstr "Anpassad"
 
-#: features.js:736
+#: features.js:743
 #, javascript-format
 msgid "How many pomodoros? (1 🍅 = %d min)"
 msgstr "Hur många pomodoros? (1 🍅 = %d min)"
 
-#: features.js:742
+#: features.js:749
 msgid "No estimate — just counts your 🍅"
 msgstr "Ingen uppskattning — räknar bara dina 🍅"
 
-#: features.js:806 features.js:867
+#: features.js:813 features.js:874
 msgid "Save"
 msgstr "Spara"
 
-#: features.js:806 features.js:867
+#: features.js:813 features.js:874
 msgid "Add"
 msgstr "Lägg till"
 
-#: features.js:816 menu.js:1065
+#: features.js:823 menu.js:1134
 msgid "Edit preset"
 msgstr "Redigera förinställning"
 
-#: features.js:816
+#: features.js:823
 msgid "New preset"
 msgstr "Ny förinställning"
 
-#: features.js:817
+#: features.js:824
 msgid "Name it and set its rhythm."
 msgstr "Namnge den och ställ in dess rytm."
 
-#: features.js:820
+#: features.js:827
 msgid "e.g. Deep work"
 msgstr "t.ex. Djupt arbete"
 
 #. settings-schema.json->custom_presets->columns->title
-#: features.js:846
+#: features.js:853
 msgid "Focus (min)"
 msgstr "Fokus (min)"
 
 #. settings-schema.json->custom_presets->columns->title
-#: features.js:847
+#: features.js:854
 msgid "Short break (min)"
 msgstr "Kort rast (min)"
 
 #. settings-schema.json->custom_presets->columns->title
-#: features.js:848
+#: features.js:855
 msgid "Long break (min)"
 msgstr "Lång rast (min)"
 
 #. settings-schema.json->custom_presets->columns->title
-#: features.js:849
+#: features.js:856
 msgid "Pomodori"
 msgstr "Pomodoro"
 
-#: features.js:911
+#: features.js:918
 msgid "longer focus blocks suit deep work"
 msgstr "längre fokuspass passar djuparbete"
 
-#: features.js:912
+#: features.js:919
 msgid "the classic rhythm suits studying"
 msgstr "den klassiska rytmen passar studier"
 
-#: features.js:913
+#: features.js:920
 msgid "a little more break time lets ideas settle"
 msgstr "lite mer rast låter idéerna landa"
 
-#: features.js:914
+#: features.js:921
 msgid "shorter cycles keep small tasks moving"
 msgstr "kortare cykler håller småuppgifter i rörelse"
 
-#: features.js:915
+#: features.js:922
 msgid "a balanced rhythm"
 msgstr "en balanserad rytm"
 
-#: features.js:916
+#: features.js:923
 #, javascript-format
 msgid "Focus rhythm %d / %d / %d min — %s."
 msgstr "Fokusrytm %d / %d / %d min — %s."
 
-#: features.js:922
+#: features.js:929
 #, javascript-format
 msgid "Daily goal: %d focus blocks."
 msgstr "Dagligt mål: %d fokuspass."
 
-#: features.js:923
+#: features.js:930
 msgid "No daily goal yet — just getting a feel for it."
 msgstr "Inget dagligt mål än — vi känner bara in det."
 
-#: features.js:934
+#: features.js:941
 msgid "Silent focus — no ticking or chimes."
 msgstr "Tyst fokus — inget tickande eller pling."
 
-#: features.js:938
+#: features.js:945
 msgid "Soft brown-noise ambience while you focus."
 msgstr "Mjukt brunt brus medan du fokuserar."
 
-#: features.js:943
+#: features.js:950
 #, javascript-format
 msgid "A gentle chime every %d min to mark time."
 msgstr "Ett mjukt pling var %d:e min för att markera tiden."
 
-#: features.js:948
+#: features.js:955
 msgid "Quiet, visual-only cues for a shared space."
 msgstr "Tysta, enbart visuella signaler för delade utrymmen."
 
-#: features.js:954
+#: features.js:961
 msgid "Notifications are muted while you focus."
 msgstr "Aviseringar tystas medan du fokuserar."
 
-#: features.js:957
+#: features.js:964
 msgid "Distraction blocking is ready — add sites in Settings → Advanced."
 msgstr ""
 "Distraktionsblockering är klar — lägg till sajter i Inställningar → "
 "Avancerat."
 
-#: features.js:960
+#: features.js:967
 msgid "One-click start and a calm start ritual make it easier to begin."
 msgstr "Start med ett klick och en lugn startritual gör det lättare att börja."
 
-#: features.js:964
+#: features.js:971
 msgid "Breaks start on their own so you don't overwork."
 msgstr "Rasterna startar av sig själva så att du inte överarbetar."
 
-#: features.js:968
+#: features.js:975
 msgid "A calm theme, no ticking seconds and no end-of-timer rush."
 msgstr "Ett lugnt tema, inga tickande sekunder och ingen stress på slutet."
 
-#: features.js:982
+#: features.js:989
 msgid "The Pomodoro technique 🍅"
 msgstr ""
 
-#: features.js:984
+#: features.js:991
 msgid "Work in short, focused sprints with deliberate rest between them:"
 msgstr ""
 
-#: features.js:985
+#: features.js:992
 msgid ""
 "• Focus for about 25 minutes on a single task.\n"
 "• Take a 5-minute break.\n"
 "• After four sprints, take a longer 15–30 minute break."
 msgstr ""
 
-#: features.js:986
+#: features.js:993
 msgid ""
 "Why it works: a finite countdown keeps the task approachable, frequent "
 "breaks protect your attention, and finishing each sprint builds momentum "
 "without burnout."
 msgstr ""
 
-#: features.js:987
+#: features.js:994
 msgid ""
 "Tip: pick one task per sprint. If something distracts you, jot it down and "
 "come back to it on the break."
 msgstr ""
 
-#: features.js:1024
+#: features.js:995 features.js:1595
+msgid "Close"
+msgstr "Stäng"
+
+#: features.js:1031
 msgid "What will you mainly focus on?"
 msgstr "Vad ska du främst fokusera på?"
 
-#: features.js:1025
+#: features.js:1032
 msgid "This shapes how long each focus block should be."
 msgstr "Det avgör hur långt varje fokuspass bör vara."
 
-#: features.js:1027
+#: features.js:1034
 msgid "Deep work or coding"
 msgstr "Djuparbete eller kodning"
 
-#: features.js:1028
+#: features.js:1035
 msgid "Studying or reading"
 msgstr "Studier eller läsning"
 
-#: features.js:1029
+#: features.js:1036
 msgid "Writing or creative work"
 msgstr "Skrivande eller kreativt arbete"
 
-#: features.js:1030
+#: features.js:1037
 msgid "Lots of small tasks"
 msgstr "Många små uppgifter"
 
-#: features.js:1032
+#: features.js:1039
 msgid "How long can you usually concentrate?"
 msgstr "Hur länge kan du oftast koncentrera dig?"
 
-#: features.js:1033
+#: features.js:1040
 msgid "Pick a length you can actually keep — it beats an ideal one."
 msgstr "Välj en längd du faktiskt klarar — det slår en perfekt."
 
-#: features.js:1035
+#: features.js:1042
 msgid "About 15 minutes"
 msgstr "Ungefär 15 minuter"
 
-#: features.js:1036
+#: features.js:1043
 msgid "About 25 minutes"
 msgstr "Ungefär 25 minuter"
 
-#: features.js:1037
+#: features.js:1044
 msgid "45 minutes or more"
 msgstr "45 minuter eller mer"
 
-#: features.js:1038
+#: features.js:1045
 msgid "I lose track of time when I'm in flow"
 msgstr "Jag tappar tidskänslan när jag är i flow"
 
-#: features.js:1040
+#: features.js:1047
 msgid "What gets in your way most?"
 msgstr "Vad står mest i vägen för dig?"
 
-#: features.js:1041
+#: features.js:1048
 msgid "I'll switch on the right help for this."
 msgstr "Jag slår på rätt hjälp för det."
 
-#: features.js:1043
+#: features.js:1050
 msgid "Notifications and pings"
 msgstr "Aviseringar och pling"
 
-#: features.js:1044
+#: features.js:1051
 msgid "Distracting websites"
 msgstr "Distraherande webbplatser"
 
-#: features.js:1045
+#: features.js:1052
 msgid "It's hard to get started"
 msgstr "Det är svårt att komma igång"
 
-#: features.js:1046
+#: features.js:1053
 msgid "I forget to take breaks"
 msgstr "Jag glömmer att ta raster"
 
-#: features.js:1047
+#: features.js:1054
 msgid "Timers make me anxious"
 msgstr "Timers gör mig stressad"
 
-#: features.js:1049
+#: features.js:1056
 msgid "What helps you concentrate?"
 msgstr "Vad hjälper dig att koncentrera dig?"
 
-#: features.js:1050
+#: features.js:1057
 msgid "Sets the focus soundscape — change it anytime in Sounds."
 msgstr "Bestämmer fokusljuden — ändra dem när som helst under Ljud."
 
-#: features.js:1052
+#: features.js:1059
 msgid "Silence"
 msgstr "Tystnad"
 
-#: features.js:1053
+#: features.js:1060
 msgid "Soft background noise"
 msgstr "Mjukt bakgrundsljud"
 
-#: features.js:1054
+#: features.js:1061
 msgid "A gentle chime to mark time"
 msgstr "Ett mjukt pling för att markera tiden"
 
-#: features.js:1055
+#: features.js:1062
 msgid "I share my space — keep it quiet"
 msgstr "Jag delar utrymme — håll det tyst"
 
-#: features.js:1057
+#: features.js:1064
 msgid "How much do you want to get done today?"
 msgstr "Hur mycket vill du hinna idag?"
 
-#: features.js:1058
+#: features.js:1065
 msgid "Sets your daily goal — no pressure, you can change it."
 msgstr "Sätter ditt dagliga mål — ingen press, du kan ändra det."
 
-#: features.js:1060
+#: features.js:1067
 msgid "Just trying it out"
 msgstr "Bara provar"
 
-#: features.js:1061
+#: features.js:1068
 msgid "A light day (about 4)"
 msgstr "En lugn dag (cirka 4)"
 
-#: features.js:1062
+#: features.js:1069
 msgid "A full day (about 6)"
 msgstr "En full dag (cirka 6)"
 
-#: features.js:1063
+#: features.js:1070
 msgid "A big push (about 8)"
 msgstr "En rejäl satsning (cirka 8)"
 
-#: features.js:1079
+#: features.js:1086
 msgid "Smart setup"
 msgstr "Smart konfiguration"
 
-#: features.js:1088
+#: features.js:1095
 msgid "Skip"
 msgstr "Hoppa över"
 
-#: features.js:1091
+#: features.js:1098
 msgid "What is the Pomodoro technique? 🍅"
 msgstr ""
 
-#: features.js:1092
+#: features.js:1099
 msgid ""
 "Focus in short sprints with deliberate rest: about 25 minutes on one task, "
 "then a 5-minute break; after four sprints, take a longer 15–30 minute break. "
@@ -740,29 +724,29 @@ msgid ""
 "protect your attention."
 msgstr ""
 
-#: features.js:1093
+#: features.js:1100
 msgid ""
 "Let's tune it to how you work — five quick questions, and you can change "
 "anything later in Settings."
 msgstr ""
 
-#: features.js:1094
+#: features.js:1101
 msgid "Let's go"
 msgstr "Nu kör vi"
 
-#: features.js:1100 features.js:1116
+#: features.js:1107 features.js:1123
 msgid "Back"
 msgstr "Bakåt"
 
-#: features.js:1101
+#: features.js:1108
 msgid "Next"
 msgstr "Nästa"
 
-#: features.js:1104
+#: features.js:1111
 msgid "Your tailored setup 🍅"
 msgstr "Din skräddarsydda uppsättning 🍅"
 
-#: features.js:1105
+#: features.js:1112
 msgid ""
 "Based on your answers, here's what I'll set up. Apply it now, then tweak "
 "anything in Settings."
@@ -770,269 +754,269 @@ msgstr ""
 "Utifrån dina svar är det här jag ställer in. Tillämpa nu och justera sedan "
 "vad du vill i Inställningar."
 
-#: features.js:1117
+#: features.js:1124
 msgid "Apply"
 msgstr "Tillämpa"
 
-#: features.js:1118
+#: features.js:1125
 msgid "Apply & start"
 msgstr "Tillämpa och starta"
 
-#: features.js:1134 menu.js:345
+#: features.js:1141 menu.js:345
 #, javascript-format
 msgid "%dh %dm"
 msgstr "%d h %d m"
 
-#: features.js:1134 menu.js:345
+#: features.js:1141 menu.js:345
 #, javascript-format
 msgid "%dh"
 msgstr "%d h"
 
-#: features.js:1289
+#: features.js:1296
 msgid "Statistics reset."
 msgstr "Statistik återställd."
 
-#: features.js:1311
+#: features.js:1318
 #, javascript-format
 msgid "%d to go today — at your pace, done by about %s."
 msgstr "%d kvar idag — i ditt tempo klar runt %s."
 
-#: features.js:1312
+#: features.js:1319
 #, javascript-format
 msgid "%d more to reach today's goal of %d."
 msgstr "%d till för att nå dagens mål på %d."
 
-#: features.js:1314
+#: features.js:1321
 #, javascript-format
 msgid "Daily goal reached — %d done today. Nice."
 msgstr "Dagligt mål uppnått — %d klara idag. Snyggt."
 
-#: features.js:1317
+#: features.js:1324
 #, javascript-format
 msgid "%d interruptions this week — what keeps pulling you away?"
 msgstr "%d avbrott denna vecka — vad drar iväg dig?"
 
-#: features.js:1320 features.js:1488
+#: features.js:1327 features.js:1495
 #, javascript-format
 msgid "Most focused around %s — good time for deep work."
 msgstr "Mest fokuserad runt %s — bra tid för djuparbete."
 
-#: features.js:1323
+#: features.js:1330
 #, javascript-format
 msgid "Most focus went to “%s”."
 msgstr "Mest fokus gick till ”%s”."
 
-#: features.js:1325
+#: features.js:1332
 #, javascript-format
 msgid "%d pomodoros this week. Keep it going."
 msgstr "%d Pomodoro denna vecka. Fortsätt så."
 
-#: features.js:1326
+#: features.js:1333
 msgid "Start a focus session — your insights will appear here."
 msgstr "Starta ett fokuspass — dina insikter dyker upp här."
 
-#: features.js:1381 features.js:1451
+#: features.js:1388 features.js:1458
 msgid "Sun"
 msgstr "Sön"
 
-#: features.js:1381 features.js:1451
+#: features.js:1388 features.js:1458
 msgid "Mon"
 msgstr "Mån"
 
-#: features.js:1381 features.js:1451
+#: features.js:1388 features.js:1458
 msgid "Tue"
 msgstr "Tis"
 
-#: features.js:1381 features.js:1451
+#: features.js:1388 features.js:1458
 msgid "Wed"
 msgstr "Ons"
 
-#: features.js:1381 features.js:1451
+#: features.js:1388 features.js:1458
 msgid "Thu"
 msgstr "Tor"
 
-#: features.js:1381 features.js:1451
+#: features.js:1388 features.js:1458
 msgid "Fri"
 msgstr "Fre"
 
-#: features.js:1381 features.js:1451
+#: features.js:1388 features.js:1458
 msgid "Sat"
 msgstr "Lör"
 
-#: features.js:1425
+#: features.js:1432
 msgid "Focus statistics"
 msgstr "Fokusstatistik"
 
-#: features.js:1439
+#: features.js:1446
 #, javascript-format
 msgid "%d / %d goal"
 msgstr "%d / %d mål"
 
-#: features.js:1440
+#: features.js:1447
 msgid "Today"
 msgstr "Idag"
 
-#: features.js:1441
+#: features.js:1448
 msgid "This week"
 msgstr "Denna vecka"
 
-#: features.js:1442
+#: features.js:1449
 msgid "Streak"
 msgstr "Serie"
 
-#: features.js:1442
+#: features.js:1449
 #, javascript-format
 msgid "best %d"
 msgstr "rekord %d"
 
-#: features.js:1443
+#: features.js:1450
 msgid "All time"
 msgstr "Totalt"
 
-#: features.js:1452
+#: features.js:1459
 #, javascript-format
 msgid "This week: %d 🍅 · %s · best day %s"
 msgstr "Denna vecka: %d 🍅 · %s · bästa dag %s"
 
-#: features.js:1458
+#: features.js:1465
 msgid "Nothing harvested yet today"
 msgstr "Inget skördat idag än"
 
-#: features.js:1460
+#: features.js:1467
 msgid "Today's harvest"
 msgstr "Dagens skörd"
 
-#: features.js:1467
+#: features.js:1474
 #, javascript-format
 msgid "Interruptions: %d today · %d this week"
 msgstr "Avbrott: %d idag · %d denna vecka"
 
-#: features.js:1473
+#: features.js:1480
 msgid "When you focus (by hour)"
 msgstr "När du fokuserar (per timme)"
 
-#: features.js:1483
+#: features.js:1490
 msgid "night"
 msgstr "natt"
 
-#: features.js:1483
+#: features.js:1490
 msgid "morning"
 msgstr "morgon"
 
-#: features.js:1483
+#: features.js:1490
 msgid "afternoon"
 msgstr "eftermiddag"
 
-#: features.js:1483
+#: features.js:1490
 msgid "evening"
 msgstr "kväll"
 
-#: features.js:1489
+#: features.js:1496
 msgid "Not enough data yet to spot your best focus time."
 msgstr "Inte tillräckligt med data än för att hitta din bästa fokustid."
 
-#: features.js:1498
+#: features.js:1505
 msgid "Focus time — last 14 days"
 msgstr "Fokustid — senaste 14 dagarna"
 
-#: features.js:1514
+#: features.js:1521
 msgid "Activity — last 12 weeks"
 msgstr "Aktivitet — senaste 12 veckorna"
 
-#: features.js:1534
+#: features.js:1541
 msgid "Less"
 msgstr "Mindre"
 
-#: features.js:1538
+#: features.js:1545
 msgid "More"
 msgstr "Mer"
 
-#: features.js:1551
+#: features.js:1558
 msgid "By task"
 msgstr "Per uppgift"
 
-#: features.js:1574 menu.js:718
+#: features.js:1581 menu.js:726
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Milstolpar: %s"
 
-#: features.js:1582
+#: features.js:1589
 msgid "Delete all statistics"
 msgstr "Radera all statistik"
 
-#: features.js:1587
+#: features.js:1594
 msgid "Reset statistics…"
 msgstr "Återställ statistik…"
 
-#: features.js:1718
+#: features.js:1725
 msgid "No sound backend available for preview."
 msgstr ""
 
-#: features.js:1722
+#: features.js:1729
 msgid "Choose an ambient sound first (it's set to Off)."
 msgstr ""
 
-#: features.js:1972
+#: features.js:1979
 msgid "No task"
 msgstr "Ingen uppgift"
 
-#: features.js:2009
+#: features.js:2016
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "Push-aviseringar kräver libsoup, som inte finns här."
 
-#: features.js:2015
+#: features.js:2022
 msgid "Enter your Pushover user key and app token first."
 msgstr "Ange din Pushover-användarnyckel och app-token först."
 
-#: features.js:2022
+#: features.js:2029
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Testavisering från Zen Pomodoro 🍅"
 
-#: features.js:2044
+#: features.js:2051
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Pushover-test skickat ✓ — kolla din enhet."
 
-#: features.js:2045 features.js:2049
+#: features.js:2052 features.js:2056
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr ""
 "Pushover-testet misslyckades. Kontrollera din användarnyckel och app-token."
 
-#: features.js:2142
+#: features.js:2149
 #, javascript-format
 msgid "Blocking updated — %d site(s)."
 msgstr ""
 
-#: features.js:2149
+#: features.js:2156
 msgid "Site blocking cleared."
 msgstr ""
 
-#: features.js:2198
+#: features.js:2205
 msgid "Passwordless blocking: set up (no prompt)."
 msgstr ""
 
-#: features.js:2199
+#: features.js:2206
 msgid "Passwordless blocking: not set up (asks for a password)."
 msgstr ""
 
-#: features.js:2201
+#: features.js:2208
 #, javascript-format
 msgid "Blocking %d site(s) in /etc/hosts now."
 msgstr ""
 
-#: features.js:2202
+#: features.js:2209
 msgid "Nothing is blocked right now."
 msgstr ""
 
-#: features.js:2203
+#: features.js:2210
 #, javascript-format
 msgid "%d site(s) in your list."
 msgstr ""
 
-#: features.js:2204
+#: features.js:2211
 msgid "Site blocking status"
 msgstr ""
 
-#: features.js:2217
+#: features.js:2224
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -1040,40 +1024,40 @@ msgstr ""
 "För att blockera webbplatser automatiskt under fokus, aktivera lösenordsfri "
 "blockering i inställningarna."
 
-#: features.js:2272
+#: features.js:2279
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Lösenordsfri blockering aktiverad (ingen fråga)."
 
-#: features.js:2276
+#: features.js:2283
 msgid "Passwordless blocking removed."
 msgstr "Lösenordsfri blockering borttagen."
 
-#: features.js:2313
+#: features.js:2320
 msgid "Click to exit Zen"
 msgstr "Klicka för att lämna Zen"
 
 #. settings-schema.json->focus->title
-#: features.js:2348 visual.js:889
+#: features.js:2355 visual.js:889
 msgid "Focus"
 msgstr "Fokus"
 
-#: features.js:2425
+#: features.js:2432
 msgid "Breathe in"
 msgstr "Andas in"
 
-#: features.js:2428 features.js:2434
+#: features.js:2435 features.js:2441
 msgid "Hold"
 msgstr "Håll andan"
 
-#: features.js:2431
+#: features.js:2438
 msgid "Breathe out"
 msgstr "Andas ut"
 
-#: features.js:2461
+#: features.js:2468
 msgid "Focus until"
 msgstr "Fokus till"
 
-#: features.js:2462
+#: features.js:2469
 msgid "Enter a time (HH:MM)"
 msgstr "Ange en tid (TT:MM)"
 
@@ -1085,7 +1069,7 @@ msgstr "Fel: menyn är inte tillgänglig"
 msgid "Ready to start"
 msgstr "Redo att starta"
 
-#: menu.js:277 menu.js:794
+#: menu.js:277 menu.js:802
 msgid "No task yet — tap to choose one"
 msgstr ""
 
@@ -1098,7 +1082,7 @@ msgstr "Byt uppgift"
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:389 menu.js:867
+#: menu.js:389 menu.js:875
 msgid "Start focus"
 msgstr "Starta fokus"
 
@@ -1118,185 +1102,197 @@ msgstr "Återställ räknare"
 msgid "Reset timer and counters"
 msgstr "Återställ timer och räknare"
 
-#: menu.js:446 menu.js:909
+#: menu.js:446 menu.js:978
 msgid "Task list"
 msgstr "Uppgiftslista"
 
-#: menu.js:467
-msgid "Capture distraction…"
+#: menu.js:467 menu.js:961
+msgid "Distractions"
 msgstr ""
 
-#: menu.js:480
+#: menu.js:488
 msgid "Focus until…"
 msgstr "Fokus till…"
 
-#: menu.js:484
+#: menu.js:492
 msgid "Zen mode"
 msgstr "Zen-läge"
 
 #. settings-schema.json->sec_ambient->title
-#: menu.js:488 menu.js:527
+#: menu.js:496 menu.js:535
 msgid "Ambient sound"
 msgstr "Bakgrundsljud"
 
-#: menu.js:493
+#: menu.js:501
 msgid "Site blocking"
 msgstr "Webbplatsblockering"
 
-#: menu.js:496 menu.js:803 menu.js:1098
+#: menu.js:504 menu.js:811 menu.js:1167
 msgid "off"
 msgstr "av"
 
-#: menu.js:499
+#: menu.js:507
 msgid "Manage blocked sites"
 msgstr ""
 
-#: menu.js:504
+#: menu.js:512
 msgid "Statistics"
 msgstr "Statistik"
 
-#: menu.js:510
+#: menu.js:518
 msgid "Open the statistics dashboard"
 msgstr ""
 
-#: menu.js:515
+#: menu.js:523
 msgid "Setup wizard…"
 msgstr "Konfigurationsguide…"
 
-#: menu.js:688
+#: menu.js:696
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "Senaste 7 dagarna: %d"
 
-#: menu.js:697
+#: menu.js:705
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "Senaste 30 dagarna: %d"
 
-#: menu.js:700
+#: menu.js:708
 #, javascript-format
 msgid "All time: %d"
 msgstr "Totalt: %d"
 
-#: menu.js:703
+#: menu.js:711
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Fokustid: %s idag · %s totalt"
 
-#: menu.js:706
+#: menu.js:714
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Bästa dag: %d"
 
-#: menu.js:718
+#: menu.js:726
 msgid "none yet"
 msgstr "ingen än"
 
-#: menu.js:728 menu.js:755
+#: menu.js:736 menu.js:763
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Uppgifterna klara ~%s"
 
-#: menu.js:739
+#: menu.js:747
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d av %d"
 
-#: menu.js:741
+#: menu.js:749
 msgid "Long break"
 msgstr "Lång rast"
 
-#: menu.js:743
+#: menu.js:751
 msgid "Short break"
 msgstr "Kort rast"
 
-#: menu.js:746
+#: menu.js:754
 #, javascript-format
 msgid "until %s"
 msgstr "till %s"
 
-#: menu.js:749
+#: menu.js:757
 #, javascript-format
 msgid "≈ finish %s"
 msgstr "≈ klar %s"
 
-#: menu.js:753
+#: menu.js:761
 msgid "Break finished — press Start for focus"
 msgstr "Rasten är slut — tryck Starta för fokus"
 
-#: menu.js:757
+#: menu.js:765
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "%d min fokus — tryck Starta"
 
-#: menu.js:796
+#: menu.js:804
 msgid "Task: none"
 msgstr "Uppgift: ingen"
 
-#: menu.js:802 menu.js:1097
+#: menu.js:810 menu.js:1166
 #, javascript-format
 msgid "blocking %d"
 msgstr "blockerar %d"
 
-#: menu.js:803 menu.js:1098
+#: menu.js:811 menu.js:1167
 #, javascript-format
 msgid "%d in list"
 msgstr "%d i listan"
 
-#: menu.js:846
+#: menu.js:854
 msgid "Resume break"
 msgstr "Återuppta rast"
 
-#: menu.js:846
+#: menu.js:854
 msgid "Resume focus"
 msgstr "Återuppta fokus"
 
-#: menu.js:853
+#: menu.js:861
 msgid "Focusing — stay with it"
 msgstr "Fokuserar — håll ut"
 
-#: menu.js:858
+#: menu.js:866
 msgid "Pause focus"
 msgstr "Pausa fokus"
 
-#: menu.js:858
+#: menu.js:866
 msgid "Pause break"
 msgstr "Pausa rast"
 
-#: menu.js:863
+#: menu.js:871
 msgid "Start next focus"
 msgstr "Starta nästa fokus"
 
-#: menu.js:924
+#: menu.js:923
+msgid "Jot a distraction, press Enter"
+msgstr ""
+
+#: menu.js:935
+msgid "Nothing captured — stay focused 🍅"
+msgstr ""
+
+#: menu.js:955
+msgid "Clear all"
+msgstr ""
+
+#: menu.js:993
 msgid "Add task…"
 msgstr "Lägg till uppgift…"
 
-#: menu.js:928 menu.js:1040
+#: menu.js:997 menu.js:1109
 msgid "Reorder…"
 msgstr ""
 
-#: menu.js:939
+#: menu.js:1008
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Inga uppgifter än — lägg till det du ska fokusera på, med en 🍅-uppskattning."
 
-#: menu.js:982
+#: menu.js:1051
 msgid "Reopen task"
 msgstr "Återöppna uppgift"
 
-#: menu.js:982
+#: menu.js:1051
 msgid "Mark done"
 msgstr "Markera som klar"
 
-#: menu.js:989
+#: menu.js:1058
 msgid "Delete task"
 msgstr "Ta bort uppgift"
 
-#: menu.js:1036
+#: menu.js:1105
 msgid "Add preset…"
 msgstr "Lägg till förinställning…"
 
-#: menu.js:1072
+#: menu.js:1141
 msgid "Delete preset"
 msgstr "Ta bort förinställning"
 
@@ -1570,6 +1566,16 @@ msgstr "Genväg: hoppa till nästa steg"
 #. settings-schema.json->hotkey_skip->tooltip
 msgid "Keyboard shortcut to skip to the next phase (focus ↔ break)."
 msgstr "Tangentbordsgenväg för att hoppa till nästa fas (fokus ↔ rast)."
+
+#. settings-schema.json->hotkey_distraction->description
+msgid "Shortcut: capture a distraction"
+msgstr ""
+
+#. settings-schema.json->hotkey_distraction->tooltip
+msgid ""
+"Keyboard shortcut to pop up a quick note for a distracting thought, without "
+"opening the menu."
+msgstr ""
 
 #. settings-schema.json->start_on_click->description
 msgid "Start the timer with a single click when idle"

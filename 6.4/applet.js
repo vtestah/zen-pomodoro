@@ -591,9 +591,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 this._showDistractionCapture();
             });
         }
-        // The Distractions submenu hides when nothing is captured and no
-        // shortcut is set, so reflect any hotkey change in the menu.
-        this._refreshDistractions();
     }
 
     _toggleTimerFromHotkey() {
@@ -2512,11 +2509,22 @@ class PomodoroApplet extends Applet.TextIconApplet {
         Main.keybindingManager.removeHotKey(UUID);
         Main.keybindingManager.removeHotKey(UUID + "-toggle");
         Main.keybindingManager.removeHotKey(UUID + "-skip");
+        Main.keybindingManager.removeHotKey(UUID + "-distraction");
         this._reconcileStaleBlock();
         this._stopFocusBlockIfNeeded();
         this._cancelAppearancePreview();
         this._cancelBreathingPreview();
         this._stopConfetti();
+        if (this._capturePopover) {
+            try { Main.popModal(this._capturePopover); } catch (e) {}
+            try { this._capturePopover.destroy(); } catch (e) {}
+            this._capturePopover = null;
+            this._captureEntry = null;
+        }
+        if (this._reorderDialog) {
+            try { this._reorderDialog.destroy(); } catch (e) {}
+            this._reorderDialog = null;
+        }
         this._clearIdleWatches();
         this._stopAllSounds();
         this._disableDnd();

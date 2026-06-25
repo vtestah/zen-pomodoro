@@ -917,9 +917,8 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         return "\u25cf " + fallbackName;
     }
 
-    setDistractions(list, hotkeySet) {
+    setDistractions(list) {
         this._distractions = Array.isArray(list) ? list : [];
-        this._distractHotkeySet = !!hotkeySet;
         if (this._distractSubmenu) { this._populateDistractions(); }
     }
 

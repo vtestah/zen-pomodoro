@@ -69,6 +69,23 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         // text); on a light theme that text is invisible, so recolour the entry
         // and hint from the dialog's own theme foreground when it opens.
         this.connect('opened', () => this._applyEntryTheme());
+
+        // Softer than a hard modal: a click outside the dialog box cancels it
+        // (Esc and Cancel still work). Clicks inside the box are left alone.
+        if (this._eventBlocker) {
+            this._eventBlocker.connect('button-press-event', (actor, event) => {
+                try {
+                    let [x, y] = event.get_coords();
+                    let [bx, by] = this.dialogLayout.get_transformed_position();
+                    let [bw, bh] = this.dialogLayout.get_size();
+                    if (x >= bx && x <= bx + bw && y >= by && y <= by + bh) {
+                        return Clutter.EVENT_PROPAGATE;
+                    }
+                } catch (e) {}
+                this._cancel();
+                return Clutter.EVENT_STOP;
+            });
+        }
     }
 
     _applyEntryTheme() {
@@ -122,15 +139,33 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         if (!active.length) { this._taskListBox.hide(); return; }
         this._taskListBox.show();
         for (let t of active) {
-            let mark = (t.title === this._currentTitle) ? "\u25cf " : "";
+            let selected = (t.title === this._currentTitle);
             let dt = t.doneToday || 0;
             let prog = (t.est > 0) ? (dt + "/" + t.est + " \ud83c\udf45") : (dt > 0 ? (dt + " \ud83c\udf45") : "");
-            let rhythm = (t.preset && t.preset.name) ? ("  \u00b7 " + t.preset.name) : "";
-            let label = mark + t.title + (prog ? "   " + prog : "") + rhythm;
+
+            // Columns: title left (fills), preset dim, 🍅 count right-aligned in a
+            // fixed slot so the counts line up instead of stair-stepping.
+            let row = new St.BoxLayout({ vertical: false, x_expand: true, style: 'spacing: 8px;' });
+            let titleLab = new St.Label({
+                text: this._clipLabel(t.title), x_expand: true,
+                y_align: Clutter.ActorAlign.CENTER,
+                style: selected ? 'font-weight: bold;' : ''
+            });
+            row.add_child(titleLab);
+            if (t.preset && t.preset.name) {
+                let presetLab = new St.Label({ text: t.preset.name, y_align: Clutter.ActorAlign.CENTER });
+                presetLab.set_opacity(140);
+                row.add_child(presetLab);
+            }
+            let progLab = new St.Label({
+                text: prog, y_align: Clutter.ActorAlign.CENTER,
+                style: 'min-width: 64px; text-align: right;'
+            });
+            row.add_child(progLab);
+
             let button = new St.Button({
-                style_class: 'dialog-button',
-                label: this._clipLabel(label),
-                can_focus: true, x_expand: true, reactive: true
+                style_class: 'dialog-button', can_focus: true, x_expand: true, reactive: true, child: row,
+                style: selected ? 'background-color: rgba(227, 90, 60, 0.16); border-radius: 6px;' : ''
             });
             let title = t.title;
             button.connect('clicked', () => { this.close(); this.emit('focus-task-confirmed', title); });

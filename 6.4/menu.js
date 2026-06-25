@@ -601,9 +601,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (this._statTodayItem && runtime.stats) {
             let st = runtime.stats;
             if (this._statValueLabel) {
-                let line = (st.today || 0) + " 🍅";
-                if ((st.streak || 0) >= 2) { line += "  ·  🔥 " + (st.streak || 0); }
-                this._statValueLabel.set_text(line);
+                let parts = [];
+                if ((st.today || 0) > 0) { parts.push((st.today || 0) + " 🍅"); }
+                if ((st.streak || 0) >= 2) { parts.push("🔥 " + (st.streak || 0)); }
+                this._statValueLabel.set_text(parts.join("  ·  "));
             }
             if (this._statTodayItem) {
                 if ((runtime.dailyGoal || 0) > 0) { this._statTodayItem.actor.hide(); } else { this._statTodayItem.actor.show(); }

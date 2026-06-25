@@ -1096,7 +1096,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             } else {
                 let t = {
                     id: this._newTaskId(), title: norm.slice(0, 120),
-                    est: 1, done: 0, doneToday: 0, completed: false,
+                    est: 0, done: 0, doneToday: 0, completed: false,
                     preset: this._currentPresetSnapshot()
                 };
                 this._tasksData.tasks.push(t);

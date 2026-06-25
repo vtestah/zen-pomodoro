@@ -33,6 +33,8 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         this._entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true });
         this._entryHint = new St.Label({ text: _("e.g. Write the report") });
         this._entry.set_hint_actor(this._entryHint);
+        this._entry.clutter_text.connect('key-focus-in', () => this._entryHint.hide());
+        this._entry.clutter_text.connect('key-focus-out', () => { if (!this._entry.get_text()) { this._entryHint.show(); } });
         CinnamonEntry.addContextMenu(this._entry);
         this._entryText = this._entry.clutter_text;
         content.add_child(this._entry);

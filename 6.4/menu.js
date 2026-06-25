@@ -1,4 +1,5 @@
 const St = imports.gi.St;
+const Clutter = imports.gi.Clutter;
 const Applet = imports.ui.applet;
 const PopupMenu = imports.ui.popupMenu;
 const GLib = imports.gi.GLib;
@@ -925,9 +926,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (!this._distractSubmenu) { return; }
         this._distractSubmenu.menu.removeAll();
         let items = this._distractions || [];
-        // Stay out of the way: only show the section once you've opted in
-        // (a shortcut is set) or there's something captured to review.
-        let active = (items.length > 0) || this._distractHotkeySet;
+        // Review surface: only show the section when there's something captured.
+        // Capture itself is the global shortcut, so an empty list means hide.
+        let active = (items.length > 0);
         if (this._distractSubmenu.actor) { this._distractSubmenu.actor.visible = active; }
 
         // Inline capture: type + Enter adds, no modal.
@@ -937,10 +938,21 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         entry.set_hint_actor(hint);
         this._distractEntry = entry;
         this._distractHint = hint;
-        entry.clutter_text.connect('activate', () => {
-            let t = entry.get_text();
-            if (t && t.trim()) { this.emit('add-distraction', t); entry.set_text(""); }
-            entry.grab_key_focus();
+        // Hide the placeholder while focused so the caret isn't drawn over it.
+        entry.clutter_text.connect('key-focus-in', () => hint.hide());
+        entry.clutter_text.connect('key-focus-out', () => { if (!entry.get_text()) { hint.show(); } });
+        // Enter adds and keeps the menu open (deferred so the rebuild is safe).
+        entry.clutter_text.connect('key-press-event', (a, ev) => {
+            let sym = ev.get_key_symbol();
+            if (sym === Clutter.KEY_Return || sym === Clutter.KEY_KP_Enter) {
+                let t = entry.get_text();
+                if (t && t.trim()) {
+                    entry.set_text("");
+                    GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('add-distraction', t); return GLib.SOURCE_REMOVE; });
+                }
+                return true;
+            }
+            return false;
         });
         entryItem.addActor(entry, { expand: true, span: -1 });
         this._distractSubmenu.menu.addMenuItem(entryItem);
@@ -960,7 +972,12 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                     style_class: 'pomodoro-task-btn', can_focus: false,
                     child: new St.Icon({ icon_name: 'edit-delete-symbolic', icon_size: 14 })
                 });
-                del.connect('clicked', () => { this.emit('delete-distraction', id); return true; });
+                del.connect('button-release-event', (a, ev) => {
+                    if (ev.get_button() === 1) {
+                        GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('delete-distraction', id); return GLib.SOURCE_REMOVE; });
+                    }
+                    return true;
+                });
                 row.add_child(del);
                 item.addActor(row, { expand: true, span: -1 });
                 this._distractSubmenu.menu.addMenuItem(item);

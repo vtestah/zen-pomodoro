@@ -638,6 +638,8 @@ function install(proto) {
         let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true, style: 'min-width: 380px;' });
         let hint = new St.Label({ text: _("Type it, press Enter — then back to work") });
         entry.set_hint_actor(hint);
+        entry.clutter_text.connect('key-focus-in', () => hint.hide());
+        entry.clutter_text.connect('key-focus-out', () => { if (!entry.get_text()) { hint.show(); } });
         CinnamonEntry.addContextMenu(entry);
         card.add_child(entry);
         container.add_child(card);
@@ -719,6 +721,8 @@ function install(proto) {
         let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true });
         let entryHint = new St.Label({ text: _("e.g. Write the report") });
         entry.set_hint_actor(entryHint);
+        entry.clutter_text.connect('key-focus-in', () => entryHint.hide());
+        entry.clutter_text.connect('key-focus-out', () => { if (!entry.get_text()) { entryHint.show(); } });
         CinnamonEntry.addContextMenu(entry);
         if (existing && existing.title) { entry.set_text(existing.title); }
         content.add_child(entry);

@@ -288,7 +288,7 @@ function install(proto) {
 
     // ---- Tasks: estimate in pomodoros, per-task progress ----
     proto._defaultTasksData = function() {
-        return { tasks: [], currentId: "", date: this._todayStr(), templates: [] };
+        return { tasks: [], currentId: "", date: this._todayStr(), templates: [], distractions: [] };
     };
 
     proto._newTaskId = function() {
@@ -327,6 +327,18 @@ function install(proto) {
                         if (ttl) { tlist.push({ title: ttl.slice(0, 120), est: Math.max(1, Math.min(99, parseInt(tt.est) || 1)) }); }
                     }
                     if (tlist.length) { data.templates.push({ name: name.slice(0, 80), tasks: tlist }); }
+                }
+            }
+            if (parsed && typeof parsed === "object" && Array.isArray(parsed.distractions)) {
+                for (let d of parsed.distractions) {
+                    if (!d || typeof d !== "object") { continue; }
+                    let text = (d.text || "").toString().trim();
+                    if (!text) { continue; }
+                    data.distractions.push({
+                        id: (d.id || this._newTaskId()).toString(),
+                        text: text.slice(0, 200),
+                        ts: Math.max(0, parseInt(d.ts) || Date.now())
+                    });
                 }
             }
             let today = this._todayStr();
@@ -567,20 +579,113 @@ function install(proto) {
 
     // A short, calm suggestion for what to actually do on a break — the part
     // most timers skip. Rotates so it doesn't feel repetitive.
+    proto._distractionList = function() {
+        return (this._tasksData && Array.isArray(this._tasksData.distractions)) ? this._tasksData.distractions : [];
+    };
+
+    proto._addDistraction = function(text) {
+        let t = (text || "").toString().trim();
+        if (!t) { return; }
+        if (!this._tasksData) { this._tasksData = this._defaultTasksData(); }
+        if (!Array.isArray(this._tasksData.distractions)) { this._tasksData.distractions = []; }
+        this._tasksData.distractions.push({ id: this._newTaskId(), text: t.slice(0, 200), ts: Date.now() });
+        this._saveTasks();
+    };
+
+    proto._deleteDistraction = function(id) {
+        if (!this._tasksData || !Array.isArray(this._tasksData.distractions)) { return; }
+        this._tasksData.distractions = this._tasksData.distractions.filter((d) => d.id !== id);
+        this._saveTasks();
+    };
+
+    proto._clearDistractions = function() {
+        if (!this._tasksData) { return; }
+        this._tasksData.distractions = [];
+        this._saveTasks();
+    };
+
+    // Quick capture for the Pomodoro "write it down and keep working" habit:
+    // jot a distracting thought, keep it out of your head, review it later.
+    proto._showDistractionsDialog = function() {
+        let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
+        let content = new Dialog.MessageDialogContent({
+            title: _("Distractions"),
+            description: _("Jot down what pulled you away, then get back to your task.")
+        });
+        let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true });
+        let entryHint = new St.Label({ text: _("e.g. Reply to Anna later") });
+        entry.set_hint_actor(entryHint);
+        CinnamonEntry.addContextMenu(entry);
+        content.add_child(entry);
+
+        let listBox = new St.BoxLayout({ vertical: true, x_expand: true, style: 'spacing: 4px; padding-top: 10px; min-width: 360px;' });
+        content.add_child(listBox);
+
+        let self = this;
+        let rebuild = function() {
+            for (let c of listBox.get_children()) { c.destroy(); }
+            let items = self._distractionList();
+            if (!items.length) {
+                let empty = new St.Label({ text: _("Nothing captured — stay focused 🍅") });
+                empty.set_opacity(150);
+                listBox.add_child(empty);
+                return;
+            }
+            for (let d of items) {
+                let row = new St.BoxLayout({ vertical: false, x_expand: true, style: 'spacing: 8px; padding: 3px 2px;' });
+                let lab = new St.Label({ text: "• " + d.text, x_expand: true });
+                lab.clutter_text.line_wrap = true;
+                row.add_child(lab);
+                let id = d.id;
+                let del = new St.Button({
+                    style_class: 'pomodoro-task-btn', can_focus: false,
+                    child: new St.Icon({ icon_name: 'edit-delete-symbolic', icon_size: 14 })
+                });
+                del.connect('clicked', () => { self._deleteDistraction(id); rebuild(); });
+                row.add_child(del);
+                listBox.add_child(row);
+            }
+        };
+
+        let addCurrent = function() {
+            let txt = entry.get_text();
+            if (txt && txt.trim()) {
+                self._addDistraction(txt);
+                entry.set_text("");
+                rebuild();
+            }
+            entry.grab_key_focus();
+        };
+
+        rebuild();
+
+        dialog.setButtons([
+            { label: _("Clear all"), action: () => { self._clearDistractions(); rebuild(); } },
+            { label: _("Close"), key: Clutter.KEY_Escape, action: () => dialog.close() },
+            { label: _("Capture"), default: true, action: addCurrent }
+        ]);
+        dialog.open();
+        entry.grab_key_focus();
+    };
+
     proto._restTip = function(isLong) {
         let shortTips = [
             _("Look ~20 ft away for 20 seconds — rest your eyes."),
             _("Stand up and stretch."),
             _("Drink some water."),
             _("Look out a window and relax your shoulders."),
-            _("Close your eyes and take a few slow breaths.")
+            _("Close your eyes and take a few slow breaths."),
+            _("Step away from screens — don't check your phone."),
+            _("Unclench your jaw and drop your shoulders.")
         ];
         let longTips = [
             _("Take a short walk."),
             _("Step outside for some fresh air."),
             _("Stretch and move around a little."),
             _("Grab a snack and some water."),
-            _("Rest your eyes and look into the distance.")
+            _("Rest your eyes and look into the distance."),
+            _("Rest away from screens — no phone, no feeds, no news."),
+            _("Move your body and let your mind wander.")
         ];
         let tips = isLong ? longTips : shortTips;
         // Rotate through tips rather than repeating the same one.

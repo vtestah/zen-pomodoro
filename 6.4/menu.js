@@ -463,6 +463,11 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             });
         }
 
+        // Quick capture: jot a distracting thought and keep working.
+        let distractItem = new PopupMenu.PopupMenuItem(_("Capture distraction…"));
+        distractItem.connect('activate', () => this.emit('open-distractions'));
+        this.addMenuItem(distractItem);
+
         // Session setup — preset (focus + breaks + cycle).
         this._presetSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Preset"));
         this.addMenuItem(this._presetSubmenu);

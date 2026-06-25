@@ -1901,6 +1901,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         menu.connect('reorder-tasks', () => {
             this._openReorderTasks();
         });
+        menu.connect('open-distractions', () => {
+            this._showDistractionsDialog();
+        });
         menu.connect('select-task', (m, id) => {
             this._setCurrentTaskId(id);
         });

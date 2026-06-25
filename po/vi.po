@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 12:46+0700\n"
+"POT-Creation-Date: 2026-06-25 15:47+0700\n"
 "PO-Revision-Date: 2025-10-12 13:07+0700\n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: vi\n"
@@ -18,643 +18,679 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: applet.js:579
+#: applet.js:606
 msgid "Strict focus is on"
 msgstr "Đã bật tập trung nghiêm ngặt"
 
-#: applet.js:579
+#: applet.js:606
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Cứ kiên trì — hoàn thành khối, hoặc đặt lại để làm lại từ đầu."
 
-#: applet.js:645
+#: applet.js:672
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Độ dài tập trung: %d phút"
 
-#: applet.js:929
+#: applet.js:959
 msgid "Focus session restored — resume when ready"
 msgstr "Đã khôi phục phiên tập trung — tiếp tục khi sẵn sàng"
 
-#: applet.js:965
+#: applet.js:995
 msgid "FOCUS"
 msgstr "TẬP TRUNG"
 
-#: applet.js:967
+#: applet.js:997
 msgid "PAUSED FOCUS"
 msgstr "TẠM DỪNG TẬP TRUNG"
 
-#: applet.js:970
+#: applet.js:1000
 msgid "BREAK"
 msgstr "NGHỈ"
 
-#: applet.js:973
+#: applet.js:1003
 msgid "PAUSED BREAK"
 msgstr "TẠM DỪNG NGHỈ"
 
-#: applet.js:975
+#: applet.js:1005
 msgid "BREAK OVER"
 msgstr "HẾT GIỜ NGHỈ"
 
-#: applet.js:978 applet.js:1038 menu.js:238 menu.js:649
+#: applet.js:1008 applet.js:1068 menu.js:252 menu.js:723
 msgid "Ready to focus"
 msgstr "Sẵn sàng tập trung"
 
-#: applet.js:996
+#: applet.js:1026
 msgid "Short break running"
 msgstr "Đang nghỉ ngắn"
 
-#: applet.js:999
+#: applet.js:1029
 msgid "Short break paused"
 msgstr "Đã tạm dừng nghỉ ngắn"
 
-#: applet.js:1002
+#: applet.js:1032
 msgid "Long break running"
 msgstr "Đang nghỉ dài"
 
-#: applet.js:1005
+#: applet.js:1035
 msgid "Long break paused"
 msgstr "Đã tạm dừng nghỉ dài"
 
-#: applet.js:1008 applet.js:1405
+#: applet.js:1038 applet.js:1435
 msgid "Break ended"
 msgstr "Đã hết giờ nghỉ"
 
-#: applet.js:1011
+#: applet.js:1041
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodori %d, set %d đang chạy"
 
-#: applet.js:1016 features.js:475 features.js:1258
+#: applet.js:1046 features.js:479 features.js:1298
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ xong %s · còn %d 🍅"
 
-#: applet.js:1021
+#: applet.js:1051
 msgid "Pomodoro paused"
 msgstr "Đã tạm dừng Pomodoro"
 
-#: applet.js:1024
+#: applet.js:1054
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Sẵn sàng tập trung — cuộn chuột hoặc nhấn nút giữa để bắt đầu"
 
-#: applet.js:1192
+#: applet.js:1222
 msgid "Classic"
 msgstr "Cổ điển"
 
-#: applet.js:1193
+#: applet.js:1223
 msgid "Long focus"
 msgstr "Tập trung dài"
 
-#: applet.js:1385
+#: applet.js:1415
 msgid "Pomodoro started"
 msgstr "Pomodoro đã bắt đầu"
 
-#: applet.js:1463
+#: applet.js:1493
 msgid "Let's go to work!"
 msgstr "Bắt đầu làm việc!"
 
-#: applet.js:1490
+#: applet.js:1520
 msgid "Pomodoro done"
 msgstr "Xong Pomodoro"
 
-#: applet.js:1492
+#: applet.js:1522
 msgid "Take a short break"
 msgstr "Nghỉ ngắn"
 
-#: applet.js:1493 applet.js:1524
+#: applet.js:1523 applet.js:1554
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d phút"
 
-#: applet.js:1494 applet.js:1525
+#: applet.js:1524 applet.js:1555
 msgid "Skip break"
 msgstr "Bỏ qua nghỉ"
 
-#: applet.js:1518
+#: applet.js:1548
 msgid "Set complete!"
 msgstr "Hoàn thành set!"
 
-#: applet.js:1523
+#: applet.js:1553
 msgid "Take a long break"
 msgstr "Nghỉ dài"
 
-#: applet.js:1569
+#: applet.js:1599
 msgid "Pomodoro ended"
 msgstr "Pomodoro kết thúc"
 
-#: applet.js:1759
+#: applet.js:1789
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "http://vi.wikipedia.org/wiki/Kỹ_thuật_Pomodoro"
 
-#: applet.js:1831 features.js:2087
+#: applet.js:1861 features.js:2287
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Hãy dừng bộ đếm trước khi đổi cấu hình Pomodoro"
 
-#: applet.js:1849
+#: applet.js:1879
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Đã áp dụng cấu hình Pomodoro %s"
 
-#: applet.js:1856 features.js:550 menu.js:448 menu.js:738 menu.js:1006
+#: applet.js:1886 features.js:556 menu.js:467 menu.js:814 menu.js:1082
 msgid "Preset"
 msgstr "Cấu hình sẵn"
 
-#: applet.js:1882
+#: applet.js:1912
 msgid "Keep at least one preset"
 msgstr "Giữ ít nhất một cài đặt sẵn"
 
-#: applet.js:1897
+#: applet.js:1927
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Đã kéo dài nghỉ thêm %d phút"
 
-#: dialogs.js:28 dialogs.js:76
+#: dialogs.js:28 dialogs.js:101
 msgid "Focus task"
 msgstr "Việc cần tập trung"
 
-#: dialogs.js:29 dialogs.js:77
+#: dialogs.js:29 dialogs.js:102
 msgid "What are you focusing on?"
 msgstr "Bạn đang tập trung vào điều gì?"
 
-#: dialogs.js:32 features.js:530
+#: dialogs.js:33 features.js:535
 msgid "e.g. Write the report"
 msgstr "vd. viết báo cáo"
 
-#: dialogs.js:38
+#: dialogs.js:40
 msgid "Choose or type a focus task"
 msgstr "Chọn hoặc nhập việc cần tập trung"
 
-#: dialogs.js:64 dialogs.js:79 features.js:2136
+#: dialogs.js:66 dialogs.js:104 features.js:2336
 msgid "Start"
 msgstr "Bắt đầu"
 
-#: dialogs.js:69 features.js:617 features.js:675 features.js:1373
-#: features.js:2135
+#: dialogs.js:94 features.js:637 features.js:698 features.js:1413
+#: features.js:2335
 msgid "Cancel"
 msgstr "Huỷ"
 
-#: dialogs.js:76
+#: dialogs.js:101
 msgid "Current task"
 msgstr "Công việc hiện tại"
 
-#: dialogs.js:77
+#: dialogs.js:102
 msgid "Choose a task to focus on"
 msgstr "Chọn công việc để tập trung"
 
-#: dialogs.js:79
+#: dialogs.js:104
 msgid "Switch"
 msgstr "Đổi"
 
-#: dialogs.js:79
+#: dialogs.js:104
 msgid "Select"
 msgstr "Chọn"
 
-#: dialogs.js:179
+#: dialogs.js:204
 msgid "Hide"
 msgstr "Ẩn"
 
-#: dialogs.js:186
+#: dialogs.js:211
 msgid "Switch Off Pomodoro"
 msgstr "Tắt Pomodoro"
 
-#: dialogs.js:192
+#: dialogs.js:217
 msgid "Start a new Pomodoro"
 msgstr "Bắt đầu Pomodoro mới"
 
-#: dialogs.js:203
+#: dialogs.js:228
 msgid "Pomodoro set finished, you deserve a break!"
 msgstr "Hoàn tất một set Pomodoro, bạn xứng đáng được nghỉ!"
 
-#: dialogs.js:212
+#: dialogs.js:237
 msgid "Your break is over, start another pomodoro!"
 msgstr "Kết thúc nghỉ ngơi, bắt đầu Pomodoro tiếp theo!"
 
-#: dialogs.js:218
+#: dialogs.js:243
 #, javascript-format
 msgid "A new pomodoro begins in %s."
 msgstr "Một Pomodoro mới bắt đầu trong %s."
 
-#: dialogs.js:230
+#: dialogs.js:255
 #, javascript-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d phút"
 
-#: dialogs.js:231
+#: dialogs.js:256
 #, javascript-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d giây"
 
-#: dialogs.js:233
+#: dialogs.js:258
 #, javascript-format
 msgid "%s and %s"
 msgstr "%s và %s"
 
-#: dialogs.js:254 dialogs.js:306
+#: dialogs.js:279 dialogs.js:331
 msgid "Pause Pomodoro"
 msgstr "Tạm dừng Pomodoro"
 
-#: dialogs.js:260
+#: dialogs.js:285
 msgid "Continue Current Pomodoro"
 msgstr "Tiếp tục Pomodoro hiện tại"
 
-#: dialogs.js:272
+#: dialogs.js:297
 msgid "Short break finished, ready to continue?"
 msgstr "Kết thúc nghỉ ngắn, sẵn sàng tiếp tục?"
 
-#: dialogs.js:314
+#: dialogs.js:339
 #, javascript-format
 msgid "Extend +%d min"
 msgstr "Kéo dài +%d phút"
 
-#: dialogs.js:321
+#: dialogs.js:346
 msgid "Start break"
 msgstr "Bắt đầu nghỉ"
 
-#: dialogs.js:331
+#: dialogs.js:356
 msgid "Pomodoro finished, ready to take a break?"
 msgstr "Pomodoro kết thúc, sẵn sàng nghỉ chưa?"
 
-#: features.js:196
+#: features.js:200
 #, javascript-format
 msgid "%d focus blocks today — great work!"
 msgstr "%d khối tập trung hôm nay — làm tốt lắm!"
 
-#: features.js:198
+#: features.js:202
 #, javascript-format
 msgid "🔥 %d-day streak"
 msgstr "🔥 chuỗi %d ngày"
 
-#: features.js:200
+#: features.js:204
 msgid "Daily goal reached 🍅"
 msgstr "Đã đạt mục tiêu ngày 🍅"
 
-#: features.js:466
+#: features.js:470
 #, javascript-format
 msgid "Hit your %d 🍅 estimate for: %s. Mark it done when ready."
 msgstr "Đã đạt ước tính %d 🍅 cho: %s. Đánh dấu hoàn thành khi bạn sẵn sàng."
 
-#: features.js:505
+#: features.js:509
 msgid "Look ~20 ft away for 20 seconds — rest your eyes."
 msgstr "Nhìn ra xa trong 20 giây — cho mắt nghỉ ngơi."
 
-#: features.js:506
+#: features.js:510
 msgid "Stand up and stretch."
 msgstr "Đứng dậy và vươn vai."
 
-#: features.js:507
+#: features.js:511
 msgid "Drink some water."
 msgstr "Uống chút nước."
 
-#: features.js:508
+#: features.js:512
 msgid "Look out a window and relax your shoulders."
 msgstr "Nhìn ra cửa sổ và thả lỏng vai."
 
-#: features.js:509
+#: features.js:513
 msgid "Close your eyes and take a few slow breaths."
 msgstr "Nhắm mắt và hít thở chậm vài hơi."
 
-#: features.js:512
+#: features.js:516
 msgid "Take a short walk."
 msgstr "Đi bộ một chút."
 
-#: features.js:513
+#: features.js:517
 msgid "Step outside for some fresh air."
 msgstr "Ra ngoài hít thở không khí trong lành."
 
-#: features.js:514
+#: features.js:518
 msgid "Stretch and move around a little."
 msgstr "Vươn vai và vận động một chút."
 
-#: features.js:515
+#: features.js:519
 msgid "Grab a snack and some water."
 msgstr "Ăn nhẹ và uống chút nước."
 
-#: features.js:516
+#: features.js:520
 msgid "Rest your eyes and look into the distance."
 msgstr "Cho mắt nghỉ và nhìn ra xa."
 
-#: features.js:527 menu.js:895
+#: features.js:531 menu.js:971
 msgid "Edit task"
 msgstr "Sửa công việc"
 
-#: features.js:527
+#: features.js:531
 msgid "New task"
 msgstr "Việc mới"
 
-#: features.js:528
+#: features.js:532
 msgid "What do you want to work on?"
 msgstr "Bạn muốn làm việc gì?"
 
-#: features.js:540
+#: features.js:546
 #, javascript-format
 msgid "%d h %d min"
 msgstr "%d giờ %d phút"
 
-#: features.js:540
+#: features.js:546
 #, javascript-format
 msgid "%d h"
 msgstr "%d giờ"
 
-#: features.js:541 features.js:642 features.js:922 menu.js:323
+#: features.js:547 features.js:665 features.js:962 menu.js:341
 #, javascript-format
 msgid "%d min"
 msgstr "%d phút"
 
-#: features.js:552
+#: features.js:559
 msgid "Custom"
 msgstr "Tùy chỉnh"
 
-#: features.js:561
+#: features.js:568
 #, javascript-format
 msgid "How many pomodoros? (1 🍅 = %d min)"
 msgstr "Bao nhiêu pomodoro? (1 🍅 = %d phút)"
 
-#: features.js:567
+#: features.js:574
 msgid "No estimate — just counts your 🍅"
 msgstr "Không ước tính — chỉ đếm 🍅"
 
-#: features.js:618 features.js:676
+#: features.js:638 features.js:699
 msgid "Save"
 msgstr "Lưu"
 
-#: features.js:618 features.js:676
+#: features.js:638 features.js:699
 msgid "Add"
 msgstr "Thêm"
 
-#: features.js:628 menu.js:980
+#: features.js:648 menu.js:1056
 msgid "Edit preset"
 msgstr "Sửa cài đặt sẵn"
 
-#: features.js:628
+#: features.js:648
 msgid "New preset"
 msgstr "Cài đặt sẵn mới"
 
-#: features.js:629
+#: features.js:649
 msgid "Name it and set its rhythm."
 msgstr "Đặt tên và thiết lập nhịp độ."
 
-#: features.js:631
+#: features.js:652
 msgid "e.g. Deep work"
 msgstr "vd. Làm việc sâu"
 
 #. settings-schema.json->custom_presets->columns->title
-#: features.js:655
+#: features.js:678
 msgid "Focus (min)"
 msgstr "Tập trung (phút)"
 
 #. settings-schema.json->custom_presets->columns->title
-#: features.js:656
+#: features.js:679
 msgid "Short break (min)"
 msgstr "Nghỉ ngắn (phút)"
 
 #. settings-schema.json->custom_presets->columns->title
-#: features.js:657
+#: features.js:680
 msgid "Long break (min)"
 msgstr "Nghỉ dài (phút)"
 
 #. settings-schema.json->custom_presets->columns->title
-#: features.js:658
+#: features.js:681
 msgid "Pomodori"
 msgstr "Pomodoro"
 
-#: features.js:720
+#: features.js:743
 msgid "longer focus blocks suit deep work"
 msgstr "khối tập trung dài hơn hợp với công việc chuyên sâu"
 
-#: features.js:721
+#: features.js:744
 msgid "the classic rhythm suits studying"
 msgstr "nhịp cổ điển hợp với việc học"
 
-#: features.js:722
+#: features.js:745
 msgid "a little more break time lets ideas settle"
 msgstr "nghỉ thêm chút giúp ý tưởng lắng lại"
 
-#: features.js:723
+#: features.js:746
 msgid "shorter cycles keep small tasks moving"
 msgstr "chu kỳ ngắn giúp việc nhỏ tiến đều"
 
-#: features.js:724
+#: features.js:747
 msgid "a balanced rhythm"
 msgstr "một nhịp cân bằng"
 
-#: features.js:725
+#: features.js:748
 #, javascript-format
 msgid "Focus rhythm %d / %d / %d min — %s."
 msgstr "Nhịp tập trung %d / %d / %d phút — %s."
 
-#: features.js:731
+#: features.js:754
 #, javascript-format
 msgid "Daily goal: %d focus blocks."
 msgstr "Mục tiêu ngày: %d khối tập trung."
 
-#: features.js:732
+#: features.js:755
 msgid "No daily goal yet — just getting a feel for it."
 msgstr "Chưa có mục tiêu ngày — cứ thử làm quen đã."
 
-#: features.js:743
+#: features.js:766
 msgid "Silent focus — no ticking or chimes."
 msgstr "Tập trung yên tĩnh — không tiếng tích tắc hay chuông."
 
-#: features.js:747
+#: features.js:770
 msgid "Soft brown-noise ambience while you focus."
 msgstr "Tiếng ồn nâu nhẹ nhàng trong lúc bạn tập trung."
 
-#: features.js:752
+#: features.js:775
 #, javascript-format
 msgid "A gentle chime every %d min to mark time."
 msgstr "Chuông nhẹ mỗi %d phút để đánh dấu thời gian."
 
-#: features.js:757
+#: features.js:780
 msgid "Quiet, visual-only cues for a shared space."
 msgstr "Gợi ý chỉ bằng hình ảnh, yên tĩnh cho không gian chung."
 
-#: features.js:763
+#: features.js:786
 msgid "Notifications are muted while you focus."
 msgstr "Tắt tiếng thông báo trong lúc bạn tập trung."
 
-#: features.js:766
+#: features.js:789
 msgid "Distraction blocking is ready — add sites in Settings → Advanced."
 msgstr "Đã sẵn sàng chặn xao nhãng — thêm trang trong Cài đặt → Nâng cao."
 
-#: features.js:769
+#: features.js:792
 msgid "One-click start and a calm start ritual make it easier to begin."
 msgstr ""
 "Bắt đầu một chạm và nghi thức khởi đầu nhẹ nhàng giúp bạn dễ bắt tay vào "
 "việc."
 
-#: features.js:773
+#: features.js:796
 msgid "Breaks start on their own so you don't overwork."
 msgstr "Giờ nghỉ tự bắt đầu để bạn không làm việc quá sức."
 
-#: features.js:777
+#: features.js:800
 msgid "A calm theme, no ticking seconds and no end-of-timer rush."
 msgstr "Giao diện nhẹ nhàng, không tiếng đếm giây và không hối hả lúc hết giờ."
 
+#: features.js:814
+msgid "The Pomodoro technique 🍅"
+msgstr ""
+
+#: features.js:816
+msgid "Work in short, focused sprints with deliberate rest between them:"
+msgstr ""
+
 #: features.js:817
+msgid ""
+"• Focus for about 25 minutes on a single task.\n"
+"• Take a 5-minute break.\n"
+"• After four sprints, take a longer 15–30 minute break."
+msgstr ""
+
+#: features.js:818
+msgid ""
+"Why it works: a finite countdown keeps the task approachable, frequent "
+"breaks protect your attention, and finishing each sprint builds momentum "
+"without burnout."
+msgstr ""
+
+#: features.js:819
+msgid ""
+"Tip: pick one task per sprint. If something distracts you, jot it down and "
+"come back to it on the break."
+msgstr ""
+
+#: features.js:820 features.js:1420
+msgid "Close"
+msgstr "Đóng"
+
+#: features.js:856
 msgid "What will you mainly focus on?"
 msgstr "Bạn sẽ chủ yếu tập trung vào điều gì?"
 
-#: features.js:818
+#: features.js:857
 msgid "This shapes how long each focus block should be."
 msgstr "Điều này quyết định độ dài mỗi khối tập trung."
 
-#: features.js:820
+#: features.js:859
 msgid "Deep work or coding"
 msgstr "Làm việc chuyên sâu hoặc lập trình"
 
-#: features.js:821
+#: features.js:860
 msgid "Studying or reading"
 msgstr "Học hoặc đọc"
 
-#: features.js:822
+#: features.js:861
 msgid "Writing or creative work"
 msgstr "Viết lách hoặc công việc sáng tạo"
 
-#: features.js:823
+#: features.js:862
 msgid "Lots of small tasks"
 msgstr "Nhiều việc nhỏ"
 
-#: features.js:825
+#: features.js:864
 msgid "How long can you usually concentrate?"
 msgstr "Bạn thường tập trung được bao lâu?"
 
-#: features.js:826
+#: features.js:865
 msgid "Pick a length you can actually keep — it beats an ideal one."
 msgstr "Chọn độ dài bạn thực sự duy trì được — hơn là chọn mức lý tưởng."
 
-#: features.js:828
+#: features.js:867
 msgid "About 15 minutes"
 msgstr "Khoảng 15 phút"
 
-#: features.js:829
+#: features.js:868
 msgid "About 25 minutes"
 msgstr "Khoảng 25 phút"
 
-#: features.js:830
+#: features.js:869
 msgid "45 minutes or more"
 msgstr "45 phút trở lên"
 
-#: features.js:831
+#: features.js:870
 msgid "I lose track of time when I'm in flow"
 msgstr "Tôi quên cả thời gian khi vào guồng"
 
-#: features.js:833
+#: features.js:872
 msgid "What gets in your way most?"
 msgstr "Điều gì cản trở bạn nhiều nhất?"
 
-#: features.js:834
+#: features.js:873
 msgid "I'll switch on the right help for this."
 msgstr "Tôi sẽ bật trợ giúp phù hợp cho việc này."
 
-#: features.js:836
+#: features.js:875
 msgid "Notifications and pings"
 msgstr "Thông báo và tiếng báo"
 
-#: features.js:837
+#: features.js:876
 msgid "Distracting websites"
 msgstr "Trang web gây xao nhãng"
 
-#: features.js:838
+#: features.js:877
 msgid "It's hard to get started"
 msgstr "Khó bắt đầu"
 
-#: features.js:839
+#: features.js:878
 msgid "I forget to take breaks"
 msgstr "Tôi quên nghỉ ngơi"
 
-#: features.js:840
+#: features.js:879
 msgid "Timers make me anxious"
 msgstr "Bộ đếm khiến tôi lo lắng"
 
-#: features.js:842
+#: features.js:881
 msgid "What helps you concentrate?"
 msgstr "Điều gì giúp bạn tập trung?"
 
-#: features.js:843
+#: features.js:882
 msgid "Sets the focus soundscape — change it anytime in Sounds."
 msgstr "Thiết lập âm thanh tập trung — đổi bất cứ lúc nào trong Âm thanh."
 
-#: features.js:845
+#: features.js:884
 msgid "Silence"
 msgstr "Yên lặng"
 
-#: features.js:846
+#: features.js:885
 msgid "Soft background noise"
 msgstr "Tiếng nền nhẹ nhàng"
 
-#: features.js:847
+#: features.js:886
 msgid "A gentle chime to mark time"
 msgstr "Chuông nhẹ để đánh dấu thời gian"
 
-#: features.js:848
+#: features.js:887
 msgid "I share my space — keep it quiet"
 msgstr "Tôi ở không gian chung — giữ yên tĩnh"
 
-#: features.js:850
+#: features.js:889
 msgid "How much do you want to get done today?"
 msgstr "Hôm nay bạn muốn làm được bao nhiêu?"
 
-#: features.js:851
+#: features.js:890
 msgid "Sets your daily goal — no pressure, you can change it."
 msgstr "Đặt mục tiêu ngày — không áp lực, bạn có thể đổi."
 
-#: features.js:853
+#: features.js:892
 msgid "Just trying it out"
 msgstr "Chỉ thử cho biết"
 
-#: features.js:854
+#: features.js:893
 msgid "A light day (about 4)"
 msgstr "Một ngày nhẹ nhàng (khoảng 4)"
 
-#: features.js:855
+#: features.js:894
 msgid "A full day (about 6)"
 msgstr "Một ngày trọn vẹn (khoảng 6)"
 
-#: features.js:856
+#: features.js:895
 msgid "A big push (about 8)"
 msgstr "Bứt phá lớn (khoảng 8)"
 
-#: features.js:872
+#: features.js:911
 msgid "Smart setup"
 msgstr "Thiết lập thông minh"
 
-#: features.js:881
+#: features.js:920
 msgid "Skip"
 msgstr "Bỏ qua"
 
-#: features.js:884
-msgid "Let's tune Zen Pomodoro to you 🍅"
-msgstr "Hãy điều chỉnh Zen Pomodoro theo bạn 🍅"
-
-#: features.js:885
-msgid ""
-"Answer five quick questions and I'll build a focus setup that fits how you "
-"work — your rhythm, sounds, breaks and the help you need. You can fine-tune "
-"everything later in Settings."
+#: features.js:923
+msgid "What is the Pomodoro technique? 🍅"
 msgstr ""
-"Trả lời năm câu hỏi nhanh và tôi sẽ dựng một thiết lập tập trung hợp với "
-"cách bạn làm việc — nhịp độ, âm thanh, giờ nghỉ và sự trợ giúp bạn cần. Bạn "
-"có thể tinh chỉnh mọi thứ sau trong Cài đặt."
 
-#: features.js:886
+#: features.js:924
+msgid ""
+"Focus in short sprints with deliberate rest: about 25 minutes on one task, "
+"then a 5-minute break; after four sprints, take a longer 15–30 minute break. "
+"The finite countdown keeps a task approachable and the regular breaks "
+"protect your attention."
+msgstr ""
+
+#: features.js:925
+msgid ""
+"Let's tune it to how you work — five quick questions, and you can change "
+"anything later in Settings."
+msgstr ""
+
+#: features.js:926
 msgid "Let's go"
 msgstr "Bắt đầu thôi"
 
-#: features.js:892 features.js:908
+#: features.js:932 features.js:948
 msgid "Back"
 msgstr "Quay lại"
 
-#: features.js:893
+#: features.js:933
 msgid "Next"
 msgstr "Tiếp"
 
-#: features.js:896
+#: features.js:936
 msgid "Your tailored setup 🍅"
 msgstr "Thiết lập riêng cho bạn 🍅"
 
-#: features.js:897
+#: features.js:937
 msgid ""
 "Based on your answers, here's what I'll set up. Apply it now, then tweak "
 "anything in Settings."
@@ -662,229 +698,268 @@ msgstr ""
 "Dựa trên câu trả lời của bạn, đây là những gì tôi sẽ thiết lập. Áp dụng "
 "ngay, rồi tinh chỉnh tuỳ ý trong Cài đặt."
 
-#: features.js:909
+#: features.js:949
 msgid "Apply"
 msgstr "Áp dụng"
 
-#: features.js:910
+#: features.js:950
 msgid "Apply & start"
 msgstr "Áp dụng và bắt đầu"
 
-#: features.js:926 menu.js:327
+#: features.js:966 menu.js:345
 #, javascript-format
 msgid "%dh %dm"
 msgstr "%d giờ %d phút"
 
-#: features.js:926 menu.js:327
+#: features.js:966 menu.js:345
 #, javascript-format
 msgid "%dh"
 msgstr "%d giờ"
 
-#: features.js:1081
+#: features.js:1121
 msgid "Statistics reset."
 msgstr "Đã đặt lại thống kê."
 
-#: features.js:1103
+#: features.js:1143
 #, javascript-format
 msgid "%d to go today — at your pace, done by about %s."
 msgstr "Còn %d hôm nay — với nhịp của bạn, xong khoảng %s."
 
-#: features.js:1104
+#: features.js:1144
 #, javascript-format
 msgid "%d more to reach today's goal of %d."
 msgstr "Còn %d nữa để đạt mục tiêu %d hôm nay."
 
-#: features.js:1106
+#: features.js:1146
 #, javascript-format
 msgid "Daily goal reached — %d done today. Nice."
 msgstr "Đã đạt mục tiêu ngày — %d hôm nay. Tuyệt."
 
-#: features.js:1109
+#: features.js:1149
 #, javascript-format
 msgid "%d interruptions this week — what keeps pulling you away?"
 msgstr "%d lần gián đoạn tuần này — điều gì cứ kéo bạn ra vậy?"
 
-#: features.js:1112 features.js:1280
+#: features.js:1152 features.js:1320
 #, javascript-format
 msgid "Most focused around %s — good time for deep work."
 msgstr "Tập trung nhất quanh %s — thời điểm tốt cho việc chuyên sâu."
 
-#: features.js:1115
+#: features.js:1155
 #, javascript-format
 msgid "Most focus went to “%s”."
 msgstr "Tập trung nhiều nhất vào “%s”."
 
-#: features.js:1117
+#: features.js:1157
 #, javascript-format
 msgid "%d pomodoros this week. Keep it going."
 msgstr "%d pomodoro tuần này. Cứ thế phát huy."
 
-#: features.js:1118
+#: features.js:1158
 msgid "Start a focus session — your insights will appear here."
 msgstr "Bắt đầu một phiên tập trung — thông tin chi tiết sẽ hiện ở đây."
 
-#: features.js:1173 features.js:1243
+#: features.js:1213 features.js:1283
 msgid "Sun"
 msgstr "CN"
 
-#: features.js:1173 features.js:1243
+#: features.js:1213 features.js:1283
 msgid "Mon"
 msgstr "T2"
 
-#: features.js:1173 features.js:1243
+#: features.js:1213 features.js:1283
 msgid "Tue"
 msgstr "T3"
 
-#: features.js:1173 features.js:1243
+#: features.js:1213 features.js:1283
 msgid "Wed"
 msgstr "T4"
 
-#: features.js:1173 features.js:1243
+#: features.js:1213 features.js:1283
 msgid "Thu"
 msgstr "T5"
 
-#: features.js:1173 features.js:1243
+#: features.js:1213 features.js:1283
 msgid "Fri"
 msgstr "T6"
 
-#: features.js:1173 features.js:1243
+#: features.js:1213 features.js:1283
 msgid "Sat"
 msgstr "T7"
 
-#: features.js:1217
+#: features.js:1257
 msgid "Focus statistics"
 msgstr "Thống kê tập trung"
 
-#: features.js:1231
+#: features.js:1271
 #, javascript-format
 msgid "%d / %d goal"
 msgstr "%d / %d mục tiêu"
 
-#: features.js:1232
+#: features.js:1272
 msgid "Today"
 msgstr "Hôm nay"
 
-#: features.js:1233
+#: features.js:1273
 msgid "This week"
 msgstr "Tuần này"
 
-#: features.js:1234
+#: features.js:1274
 msgid "Streak"
 msgstr "Chuỗi"
 
-#: features.js:1234
+#: features.js:1274
 #, javascript-format
 msgid "best %d"
 msgstr "kỷ lục %d"
 
-#: features.js:1235
+#: features.js:1275
 msgid "All time"
 msgstr "Toàn thời gian"
 
-#: features.js:1244
+#: features.js:1284
 #, javascript-format
 msgid "This week: %d 🍅 · %s · best day %s"
 msgstr "Tuần này: %d 🍅 · %s · ngày tốt nhất %s"
 
-#: features.js:1250
+#: features.js:1290
 msgid "Nothing harvested yet today"
 msgstr "Hôm nay chưa thu hoạch gì"
 
-#: features.js:1252
+#: features.js:1292
 msgid "Today's harvest"
 msgstr "Thu hoạch hôm nay"
 
-#: features.js:1259
+#: features.js:1299
 #, javascript-format
 msgid "Interruptions: %d today · %d this week"
 msgstr "Gián đoạn: %d hôm nay · %d tuần này"
 
-#: features.js:1265
+#: features.js:1305
 msgid "When you focus (by hour)"
 msgstr "Khi bạn tập trung (theo giờ)"
 
-#: features.js:1275
+#: features.js:1315
 msgid "night"
 msgstr "đêm"
 
-#: features.js:1275
+#: features.js:1315
 msgid "morning"
 msgstr "sáng"
 
-#: features.js:1275
+#: features.js:1315
 msgid "afternoon"
 msgstr "chiều"
 
-#: features.js:1275
+#: features.js:1315
 msgid "evening"
 msgstr "tối"
 
-#: features.js:1281
+#: features.js:1321
 msgid "Not enough data yet to spot your best focus time."
 msgstr "Chưa đủ dữ liệu để tìm ra khung giờ tập trung tốt nhất."
 
-#: features.js:1290
+#: features.js:1330
 msgid "Focus time — last 14 days"
 msgstr "Thời gian tập trung — 14 ngày qua"
 
-#: features.js:1306
+#: features.js:1346
 msgid "Activity — last 12 weeks"
 msgstr "Hoạt động — 12 tuần qua"
 
-#: features.js:1326
+#: features.js:1366
 msgid "Less"
 msgstr "Ít"
 
-#: features.js:1330
+#: features.js:1370
 msgid "More"
 msgstr "Nhiều"
 
-#: features.js:1343
+#: features.js:1383
 msgid "By task"
 msgstr "Theo việc"
 
-#: features.js:1366 menu.js:645
+#: features.js:1406 menu.js:719
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Cột mốc: %s"
 
-#: features.js:1374
+#: features.js:1414
 msgid "Delete all statistics"
 msgstr "Xoá toàn bộ thống kê"
 
-#: features.js:1379
+#: features.js:1419
 msgid "Reset statistics…"
 msgstr "Đặt lại thống kê…"
 
-#: features.js:1380
-msgid "Close"
-msgstr "Đóng"
+#: features.js:1550
+msgid "No sound backend available for preview."
+msgstr ""
 
-#: features.js:1726
+#: features.js:1554
+msgid "Choose an ambient sound first (it's set to Off)."
+msgstr ""
+
+#: features.js:1804
 msgid "No task"
 msgstr "Không có việc"
 
-#: features.js:1763
+#: features.js:1841
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "Thông báo đẩy cần libsoup, hiện không có ở đây."
 
-#: features.js:1769
+#: features.js:1847
 msgid "Enter your Pushover user key and app token first."
 msgstr "Hãy nhập user key và app token Pushover trước."
 
-#: features.js:1776
+#: features.js:1854
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Thông báo thử từ Zen Pomodoro 🍅"
 
-#: features.js:1798
+#: features.js:1876
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Đã gửi thử Pushover ✓ — kiểm tra thiết bị của bạn."
 
-#: features.js:1799 features.js:1803
+#: features.js:1877 features.js:1881
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr "Gửi thử Pushover thất bại. Hãy kiểm tra lại user key và app token."
 
-#: features.js:1845
+#: features.js:1974
+#, javascript-format
+msgid "Blocking updated — %d site(s)."
+msgstr ""
+
+#: features.js:1981
+msgid "Site blocking cleared."
+msgstr ""
+
+#: features.js:2030
+msgid "Passwordless blocking: set up (no prompt)."
+msgstr ""
+
+#: features.js:2031
+msgid "Passwordless blocking: not set up (asks for a password)."
+msgstr ""
+
+#: features.js:2033
+#, javascript-format
+msgid "Blocking %d site(s) in /etc/hosts now."
+msgstr ""
+
+#: features.js:2034
+msgid "Nothing is blocked right now."
+msgstr ""
+
+#: features.js:2035
+#, javascript-format
+msgid "%d site(s) in your list."
+msgstr ""
+
+#: features.js:2036
+msgid "Site blocking status"
+msgstr ""
+
+#: features.js:2049
 msgid ""
 "To block sites automatically during focus, turn on passwordless blocking in "
 "settings."
@@ -892,253 +967,253 @@ msgstr ""
 "Để tự động chặn trang web trong khi tập trung, hãy bật chặn không cần mật "
 "khẩu trong cài đặt."
 
-#: features.js:1902
+#: features.js:2104
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Đã bật chặn không cần mật khẩu (không hỏi)."
 
-#: features.js:1908
+#: features.js:2108
 msgid "Passwordless blocking removed."
 msgstr "Đã gỡ chặn không cần mật khẩu."
 
-#: features.js:1945
+#: features.js:2145
 msgid "Click to exit Zen"
 msgstr "Nhấn để thoát Zen"
 
 #. settings-schema.json->focus->title
-#: features.js:1980 visual.js:889
+#: features.js:2180 visual.js:889
 msgid "Focus"
 msgstr "Tập trung"
 
-#: features.js:2057
+#: features.js:2257
 msgid "Breathe in"
 msgstr "Hít vào"
 
-#: features.js:2060 features.js:2066
+#: features.js:2260 features.js:2266
 msgid "Hold"
 msgstr "Giữ"
 
-#: features.js:2063
+#: features.js:2263
 msgid "Breathe out"
 msgstr "Thở ra"
 
-#: features.js:2093
+#: features.js:2293
 msgid "Focus until"
 msgstr "Tập trung đến"
 
-#: features.js:2094
+#: features.js:2294
 msgid "Enter a time (HH:MM)"
 msgstr "Nhập thời gian (HH:MM)"
 
-#: menu.js:132
+#: menu.js:146
 msgid "Error: menu unavailable"
 msgstr "Lỗi: menu không khả dụng"
 
-#: menu.js:255
+#: menu.js:269
 msgid "Ready to start"
 msgstr "Sẵn sàng bắt đầu"
 
-#: menu.js:263 menu.js:720
+#: menu.js:277 menu.js:795
 msgid "No task yet — tap to choose one"
 msgstr ""
 
-#: menu.js:269
+#: menu.js:283
 msgid "Change task"
 msgstr "Đổi công việc"
 
-#: menu.js:363
+#: menu.js:381
 #, javascript-format
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:371 menu.js:792
+#: menu.js:389 menu.js:868
 msgid "Start focus"
 msgstr "Bắt đầu tập trung"
 
-#: menu.js:387
+#: menu.js:405
 msgid "Skip phase"
 msgstr "Bỏ qua giai đoạn"
 
-#: menu.js:393
+#: menu.js:411
 msgid "Reset timer"
 msgstr "Đặt lại bộ đếm giờ"
 
-#: menu.js:405
+#: menu.js:423
 msgid "Reset counters"
 msgstr "Đặt lại bộ đếm"
 
-#: menu.js:406
+#: menu.js:424
 msgid "Reset timer and counters"
 msgstr "Đặt lại bộ đếm giờ và bộ đếm"
 
-#: menu.js:427 menu.js:834
+#: menu.js:446 menu.js:910
 msgid "Task list"
 msgstr "Danh sách việc"
 
-#: menu.js:456
+#: menu.js:475
 msgid "Focus until…"
 msgstr "Tập trung đến…"
 
-#: menu.js:460
+#: menu.js:479
 msgid "Zen mode"
 msgstr "Chế độ Zen"
 
-#: menu.js:464 menu.js:505
+#: menu.js:483 menu.js:528
 msgid "Ambient sound"
 msgstr "Âm thanh nền"
 
-#: menu.js:469
+#: menu.js:488
 msgid "Site blocking"
 msgstr "Chặn trang web"
 
-#: menu.js:470 menu.js:727 menu.js:1010
+#: menu.js:491 menu.js:804 menu.js:1089
 msgid "off"
 msgstr "tắt"
 
-#: menu.js:476
+#: menu.js:497
 msgid "Manage blocked sites"
 msgstr ""
 
-#: menu.js:481
+#: menu.js:502
 msgid "Statistics"
 msgstr "Thống kê"
 
-#: menu.js:488
+#: menu.js:511
 msgid "Open the statistics dashboard"
 msgstr ""
 
-#: menu.js:493
+#: menu.js:516
 msgid "Setup wizard…"
 msgstr "Trình hướng dẫn thiết lập…"
 
-#: menu.js:615
+#: menu.js:689
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "7 ngày qua: %d"
 
-#: menu.js:624
+#: menu.js:698
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "30 ngày qua: %d"
 
-#: menu.js:627
+#: menu.js:701
 #, javascript-format
 msgid "All time: %d"
 msgstr "Toàn thời gian: %d"
 
-#: menu.js:630
+#: menu.js:704
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Thời gian tập trung: %s hôm nay · %s tổng"
 
-#: menu.js:633
+#: menu.js:707
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Ngày tốt nhất: %d"
 
-#: menu.js:645
+#: menu.js:719
 msgid "none yet"
 msgstr "chưa có"
 
-#: menu.js:655 menu.js:682
+#: menu.js:729 menu.js:756
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Hoàn thành việc của bạn vào khoảng %s"
 
-#: menu.js:666
+#: menu.js:740
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:668
+#: menu.js:742
 msgid "Long break"
 msgstr "Nghỉ dài"
 
-#: menu.js:670
+#: menu.js:744
 msgid "Short break"
 msgstr "Nghỉ ngắn"
 
-#: menu.js:673
+#: menu.js:747
 #, javascript-format
 msgid "until %s"
 msgstr "đến %s"
 
-#: menu.js:676
+#: menu.js:750
 #, javascript-format
 msgid "≈ finish %s"
 msgstr "≈ xong %s"
 
-#: menu.js:680
+#: menu.js:754
 msgid "Break finished — press Start for focus"
 msgstr "Hết giờ nghỉ — nhấn Bắt đầu để tập trung"
 
-#: menu.js:684
+#: menu.js:758
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "Tập trung %d phút — nhấn Bắt đầu"
 
-#: menu.js:722
+#: menu.js:797
 msgid "Task: none"
 msgstr "Việc: không có"
 
-#: menu.js:728 menu.js:1011
+#: menu.js:803 menu.js:1088
 #, javascript-format
 msgid "blocking %d"
 msgstr "đang chặn %d"
 
-#: menu.js:728 menu.js:1011
+#: menu.js:804 menu.js:1089
 #, javascript-format
 msgid "%d in list"
 msgstr "%d trong danh sách"
 
-#: menu.js:771
+#: menu.js:847
 msgid "Resume break"
 msgstr "Tiếp tục nghỉ"
 
-#: menu.js:771
+#: menu.js:847
 msgid "Resume focus"
 msgstr "Tiếp tục tập trung"
 
-#: menu.js:778
+#: menu.js:854
 msgid "Focusing — stay with it"
 msgstr "Đang tập trung — cứ kiên trì"
 
-#: menu.js:783
+#: menu.js:859
 msgid "Pause focus"
 msgstr "Tạm dừng tập trung"
 
-#: menu.js:783
+#: menu.js:859
 msgid "Pause break"
 msgstr "Tạm dừng nghỉ"
 
-#: menu.js:788
+#: menu.js:864
 msgid "Start next focus"
 msgstr "Bắt đầu tập trung tiếp theo"
 
-#: menu.js:849
+#: menu.js:925
 msgid "Add task…"
 msgstr "Thêm việc…"
 
-#: menu.js:859
+#: menu.js:935
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr "Chưa có việc nào — thêm điều bạn sẽ tập trung, kèm ước lượng 🍅."
 
-#: menu.js:902
+#: menu.js:978
 msgid "Reopen task"
 msgstr "Mở lại công việc"
 
-#: menu.js:902
+#: menu.js:978
 msgid "Mark done"
 msgstr "Đánh dấu hoàn thành"
 
-#: menu.js:909
+#: menu.js:985
 msgid "Delete task"
 msgstr "Xóa công việc"
 
-#: menu.js:956
+#: menu.js:1032
 msgid "Add preset…"
 msgstr "Thêm cài đặt sẵn…"
 
-#: menu.js:987
+#: menu.js:1063
 msgid "Delete preset"
 msgstr "Xóa cài đặt sẵn"
 
@@ -1177,10 +1252,6 @@ msgstr "Thông báo đẩy"
 #. settings-schema.json->advanced->title
 msgid "Advanced"
 msgstr "Nâng cao"
-
-#. settings-schema.json->sec_durations->title
-msgid "Durations"
-msgstr "Thời lượng"
 
 #. settings-schema.json->sec_behavior->title
 msgid "Behavior"
@@ -1229,6 +1300,12 @@ msgstr "Chặn xao nhãng (nâng cao)"
 #. settings-schema.json->sec_shortcuts->title
 msgid "Keyboard shortcuts"
 msgstr "Phím tắt"
+
+#. settings-schema.json->rhythm_hint_label->description
+msgid ""
+"Focus, break and cycle lengths come from presets — switch or edit them from "
+"the menu (Preset ▸)."
+msgstr ""
 
 #. settings-schema.json->pomodoro_duration->description
 msgid "Pomodoro Duration:"
@@ -1554,6 +1631,7 @@ msgid "Corners only"
 msgstr "Chỉ góc"
 
 #. settings-schema.json->frame_style->options
+#. settings-schema.json->focus_ambient_choice->options
 msgid "Off"
 msgstr "Tắt"
 
@@ -1731,6 +1809,36 @@ msgstr "Lượng kéo dài (phút)"
 msgid "How many extra minutes the 'extend focus' option adds."
 msgstr "Tuỳ chọn 'kéo dài tập trung' thêm bao nhiêu phút."
 
+#. settings-schema.json->focus_ambient_choice->description
+msgid "Ambient sound during focus"
+msgstr ""
+
+#. settings-schema.json->focus_ambient_choice->options
+msgid "White noise"
+msgstr ""
+
+#. settings-schema.json->focus_ambient_choice->options
+msgid "Pink noise"
+msgstr ""
+
+#. settings-schema.json->focus_ambient_choice->options
+msgid "Brown noise"
+msgstr ""
+
+#. settings-schema.json->focus_ambient_choice->options
+msgid "Rain"
+msgstr ""
+
+#. settings-schema.json->focus_ambient_choice->options
+msgid "Sea"
+msgstr ""
+
+#. settings-schema.json->focus_ambient_choice->tooltip
+msgid ""
+"Loop a calming sound during focus. White/pink/brown noise and rain/sea are "
+"built in; pick \"Custom file\" to use your own."
+msgstr ""
+
 #. settings-schema.json->focus_ambient_sound->description
 msgid "Play an ambient sound during focus"
 msgstr "Phát âm thanh nền khi tập trung"
@@ -1750,6 +1858,14 @@ msgstr "Âm lượng nền"
 #. settings-schema.json->focus_ambient_volume->tooltip
 msgid "Volume of the ambient sound (0 = silent)."
 msgstr "Âm lượng của âm thanh nền (0 = im lặng)."
+
+#. settings-schema.json->focus_ambient_preview_button->description
+msgid "▶ Preview"
+msgstr ""
+
+#. settings-schema.json->focus_ambient_preview_button->tooltip
+msgid "Play a short sample of the chosen ambient sound at the set volume."
+msgstr ""
 
 #. settings-schema.json->break_breathing->description
 msgid "Show a breathing guide during breaks"
@@ -2151,6 +2267,34 @@ msgstr ""
 "Các cấu hình bộ đếm của bạn — tên + số phút tập trung / ngắn / dài + số "
 "pomodoro. Áp dụng từ menu con Cấu hình sẵn."
 
+#. settings-schema.json->block_apply_button->description
+msgid "Apply blocking now"
+msgstr ""
+
+#. settings-schema.json->block_apply_button->tooltip
+msgid ""
+"Rewrite the blocked-hosts section from the list above. Use this after "
+"changing the list (asks for your password unless passwordless is set up)."
+msgstr ""
+
+#. settings-schema.json->block_clear_button->description
+msgid "Clear blocking now"
+msgstr ""
+
+#. settings-schema.json->block_clear_button->tooltip
+msgid "Remove every site this applet blocks from /etc/hosts right now."
+msgstr ""
+
+#. settings-schema.json->block_status_button->description
+msgid "Check blocking status"
+msgstr ""
+
+#. settings-schema.json->block_status_button->tooltip
+msgid ""
+"Show whether passwordless blocking is set up and which sites are blocked "
+"right now."
+msgstr ""
+
 #. settings-schema.json->setup_passwordless_button->description
 msgid "Set up passwordless blocking (one-time)"
 msgstr "Thiết lập chặn không cần mật khẩu (một lần)"
@@ -2182,6 +2326,14 @@ msgstr "Chạy hướng dẫn bắt đầu nhanh"
 #. settings-schema.json->onboarding_button->tooltip
 msgid "Re-open the step-by-step setup guide."
 msgstr "Mở lại hướng dẫn thiết lập từng bước."
+
+#. settings-schema.json->about_technique_button->description
+msgid "About the Pomodoro technique"
+msgstr ""
+
+#. settings-schema.json->about_technique_button->tooltip
+msgid "A short explanation of how the Pomodoro technique works."
+msgstr ""
 
 #. settings-schema.json->pushover_msg_short_break->description
 msgid "Message when a short break starts"

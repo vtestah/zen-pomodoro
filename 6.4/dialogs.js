@@ -3,6 +3,7 @@ const Clutter = imports.gi.Clutter;
 const GObject = imports.gi.GObject;
 const ModalDialog = imports.ui.modalDialog;
 const Dialog = imports.ui.dialog;
+const DND = imports.ui.dnd;
 const CinnamonEntry = imports.ui.cinnamonEntry;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
@@ -394,5 +395,110 @@ var PomodoroFinishedDialog = GObject.registerClass({
 
     setTip(text) {
         this._content.description = text ? (text + "\n") : '';
+    }
+});
+
+// A modal dialog that lists items as draggable rows; dragging reorders them,
+// and "Done" reports the new order. Reused for tasks and presets.
+var PomodoroReorderDialog = GObject.registerClass({
+    GTypeName: `pomodoro_applet_PomodoroReorderDialog_${Date.now()}`,
+}, class PomodoroReorderDialog extends ModalDialog.ModalDialog {
+    _init() {
+        super._init({ destroyOnClose: false });
+        this._onApply = null;
+
+        this._content = new Dialog.MessageDialogContent({
+            title: _("Reorder"),
+            description: _("Drag the rows to reorder, then press Done.")
+        });
+        this.contentLayout.add(this._content);
+
+        this._listBox = new St.BoxLayout({
+            vertical: true, x_expand: true,
+            style: 'spacing: 4px; padding-top: 10px; min-width: 380px;'
+        });
+        this.contentLayout.add(this._listBox);
+
+        let self = this;
+        // The list is the drop target: on drag-over / drop we move the dragged
+        // row live to the slot under the pointer (the order lives in the children).
+        this._listBox._delegate = {
+            handleDragOver: function (source, actor, x, y, time) {
+                self._moveRowTo(source, y);
+                return DND.DragMotionResult.MOVE_DROP;
+            },
+            acceptDrop: function (source, actor, x, y, time) {
+                self._moveRowTo(source, y);
+                return true;
+            }
+        };
+
+        this.setButtons([
+            { label: _("Cancel"), key: Clutter.KEY_Escape, action: () => this.close() },
+            { label: _("Done"), default: true, action: () => this._apply() }
+        ]);
+    }
+
+    // items: [{ key, label }]; onApply(orderedKeys) is called on Done.
+    openReorder(title, items, onApply) {
+        this._onApply = onApply;
+        if (this._content) { this._content.title = title || _("Reorder"); }
+        this._buildRows(Array.isArray(items) ? items : []);
+        this.open();
+    }
+
+    _buildRows(items) {
+        for (let c of this._listBox.get_children()) { c.destroy(); }
+        for (let it of items) {
+            let row = new St.BoxLayout({
+                vertical: false, reactive: true, x_expand: true,
+                style: 'spacing: 8px; padding: 7px 10px; border-radius: 6px;'
+            });
+            let handle = new St.Label({ text: "\u2261", y_align: Clutter.ActorAlign.CENTER });
+            handle.set_opacity(150);
+            row.add_child(handle);
+            let lab = new St.Label({ text: it.label, x_expand: true, y_align: Clutter.ActorAlign.CENTER });
+            row.add_child(lab);
+            row._reorderKey = it.key;
+            let label = it.label;
+            row._delegate = {
+                _key: it.key,
+                getDragActor: function () {
+                    return new St.Label({
+                        text: label,
+                        style: 'background-color: rgba(227, 90, 60, 0.92); color: #ffffff; padding: 7px 12px; border-radius: 6px;'
+                    });
+                },
+                getDragActorSource: function () { return row; }
+            };
+            row._draggable = DND.makeDraggable(row);
+            row._draggable.connect('drag-begin', () => { row.set_opacity(45); });
+            row._draggable.connect('drag-end', () => { row.set_opacity(255); });
+            row._draggable.connect('drag-cancelled', () => { row.set_opacity(255); });
+            this._listBox.add_child(row);
+        }
+    }
+
+    // Move the dragged row to the slot under pointer-y (list-local coordinates).
+    _moveRowTo(source, y) {
+        if (!source || typeof source.getDragActorSource !== 'function') { return; }
+        let row = source.getDragActorSource();
+        let children = this._listBox.get_children();
+        if (children.indexOf(row) < 0) { return; }
+        let idx = 0;
+        for (let c of children) {
+            if (c === row) { continue; }
+            if (c.y + c.height / 2 < y) { idx++; } else { break; }
+        }
+        if (children.indexOf(row) !== idx) {
+            this._listBox.set_child_at_index(row, idx);
+        }
+    }
+
+    _apply() {
+        let order = this._listBox.get_children().map((c) => c._reorderKey);
+        let cb = this._onApply;
+        this.close();
+        if (typeof cb === 'function') { try { cb(order); } catch (e) {} }
     }
 });

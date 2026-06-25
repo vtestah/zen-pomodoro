@@ -1860,6 +1860,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         menu.connect('preset-delete', (m, index) => {
             this._deletePreset(index);
         });
+        menu.connect('reorder-presets', () => {
+            this._openReorderPresets();
+        });
 
         menu.connect('set-ambient', (m, state) => {
             let choice = state ? (this._ambientLastChoice || 'brown') : 'off';
@@ -1887,6 +1890,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
         menu.connect('add-task', () => {
             this._showAddTaskDialog();
+        });
+        menu.connect('reorder-tasks', () => {
+            this._openReorderTasks();
         });
         menu.connect('select-task', (m, id) => {
             this._setCurrentTaskId(id);

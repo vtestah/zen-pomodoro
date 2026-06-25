@@ -919,6 +919,11 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         let add = new PopupMenu.PopupMenuItem(_("Add task…"));
         add.connect('activate', () => this.emit('add-task'));
         this._tasksSubmenu.menu.addMenuItem(add);
+        if ((this._tasks || []).length >= 2) {
+            let reorder = new PopupMenu.PopupMenuItem(_("Reorder…"));
+            reorder.connect('activate', () => this.emit('reorder-tasks'));
+            this._tasksSubmenu.menu.addMenuItem(reorder);
+        }
         if (this._tasksFinishText) {
             let fin = new PopupMenu.PopupMenuItem(this._tasksFinishText);
             fin.setSensitive(false);
@@ -1026,6 +1031,11 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         let add = new PopupMenu.PopupMenuItem(_("Add preset…"));
         add.connect('activate', () => this.emit('preset-add'));
         this._presetSubmenu.menu.addMenuItem(add);
+        if (list.length >= 2) {
+            let reorderP = new PopupMenu.PopupMenuItem(_("Reorder…"));
+            reorderP.connect('activate', () => this.emit('reorder-presets'));
+            this._presetSubmenu.menu.addMenuItem(reorderP);
+        }
         this._presetSubmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         for (let i = 0; i < list.length; i++) {
             let preset = list[i];

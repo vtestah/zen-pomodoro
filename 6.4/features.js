@@ -467,6 +467,62 @@ function install(proto) {
         this._refreshTasksMenu();
     };
 
+    proto._ensureReorderDialog = function() {
+        if (!this._reorderDialog) {
+            this._reorderDialog = new DialogsModule.PomodoroReorderDialog();
+        }
+        return this._reorderDialog;
+    };
+
+    proto._openReorderTasks = function() {
+        let all = this._taskList() || [];
+        if (all.length < 2) { return; }
+        let items = all.map((t) => ({
+            key: t.id,
+            label: (t.completed ? "\u2713 " : "") + t.title + (t.est > 0 ? ("   " + (t.doneToday || 0) + "/" + t.est + " \ud83c\udf45") : "")
+        }));
+        this._ensureReorderDialog().openReorder(_("Reorder tasks"), items, (order) => this._reorderTasks(order));
+    };
+
+    // Reorder active tasks to match the given id order; completed/other tasks
+    // keep their relative order after them. Pure given _tasksData.tasks.
+    proto._reorderTasks = function(orderedIds) {
+        if (!this._tasksData || !Array.isArray(this._tasksData.tasks)) { return; }
+        let byId = {};
+        for (let t of this._tasksData.tasks) { byId[t.id] = t; }
+        let inSet = new Set(orderedIds);
+        let reordered = orderedIds.map((id) => byId[id]).filter(Boolean);
+        let rest = this._tasksData.tasks.filter((t) => !inSet.has(t.id));
+        this._tasksData.tasks = reordered.concat(rest);
+        this._saveTasks();
+        this._refreshTasksMenu();
+    };
+
+    proto._openReorderPresets = function() {
+        let list = this._presetList() || [];
+        if (list.length < 2) { return; }
+        let items = list.map((p) => ({
+            key: p.name,
+            label: p.name + "   " + p.pomodoro + "/" + p.short_break + "/" + p.long_break + " \u00d7" + p.pomodori
+        }));
+        this._ensureReorderDialog().openReorder(_("Reorder presets"), items, (order) => this._reorderPresets(order));
+    };
+
+    // Reorder presets to match the given name order, materializing the built-in
+    // defaults into custom_presets when none were saved yet.
+    proto._reorderPresets = function(orderedNames) {
+        let base = (this._opt_customPresets && this._opt_customPresets.length)
+            ? this._opt_customPresets.slice() : (this._presetList() || []).slice();
+        let byName = {};
+        for (let p of base) { byName[p.name] = p; }
+        let inSet = new Set(orderedNames);
+        let reordered = orderedNames.map((n) => byName[n]).filter(Boolean);
+        let rest = base.filter((p) => !inSet.has(p.name));
+        let final = reordered.concat(rest);
+        try { this._settingsProvider.setValue('custom_presets', final); } catch (e) {}
+        if (typeof this._updatePresetIndicator === 'function') { this._updatePresetIndicator(); }
+    };
+
     proto._incrementCurrentTaskProgress = function() {
         let t = this._currentTask();
         if (!t) { return; }

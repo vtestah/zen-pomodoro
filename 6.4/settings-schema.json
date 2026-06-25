@@ -141,6 +141,7 @@
             "title": "Goals & flow",
             "keys": [
                 "daily_goal",
+                "task_celebration",
                 "auto_pause_idle",
                 "auto_pause_idle_minutes",
                 "auto_resume_on_activity",
@@ -572,6 +573,17 @@
         "step": 1,
         "description": "Daily focus goal (pomodori, 0 = off)",
         "tooltip": "Target pomodoros per day (0 turns off the goal and streak)."
+    },
+    "task_celebration": {
+        "type": "combobox",
+        "description": "Celebrate when a task is completed",
+        "default": "confetti",
+        "options": {
+            "Off": "off",
+            "Subtle (glow + check)": "subtle",
+            "Confetti": "confetti"
+        },
+        "tooltip": "A short celebration when you complete a task that met its 🍅 estimate (or earned at least one). Confetti respects reduce-motion."
     },
     "auto_pause_idle": {
         "type": "switch",

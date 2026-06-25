@@ -205,6 +205,10 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_menuFontScale = null;
         this._opt_sessionRecovery = null;
         this._opt_dailyGoal = null;
+        this._opt_taskCelebration = null;
+        this._confettiArea = null;
+        this._confettiTimeout = 0;
+        this._confettiParts = null;
         this._opt_autoPauseIdle = null;
         this._opt_autoPauseIdleMinutes = null;
         this._opt_autoResumeOnActivity = null;
@@ -399,6 +403,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "start_automatically_on_load", "_opt_startAutomaticallyOnLoad", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "session_recovery", "_opt_sessionRecovery", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "daily_goal", "_opt_dailyGoal", () => { this._updateMenuRuntime(); });
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "task_celebration", "_opt_taskCelebration", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_pause_idle", "_opt_autoPauseIdle", this._updateIdleWatch.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_pause_idle_minutes", "_opt_autoPauseIdleMinutes", this._updateIdleWatch.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_resume_on_activity", "_opt_autoResumeOnActivity", emptyCallback);
@@ -1363,11 +1368,16 @@ class PomodoroApplet extends Applet.TextIconApplet {
     _playCompletionFlourish(text) {
         // Quick celebratory cue when a pomodoro / set completes.
         this._playGlowBreath();
+        if (this._opt_focusStartRitual) { this._flashRitualLabel(text); }
+    }
 
-        if (!this._opt_focusStartRitual || !this._focusRitualLabel) {
+    // Flash the centred "✓ <text>" chip (fade in, hold, fade out). Used by the
+    // pomodoro flourish and the task-done celebration; works regardless of the
+    // start-ritual setting (callers decide when to show it).
+    _flashRitualLabel(text) {
+        if (!this._focusRitualLabel) {
             return;
         }
-
         this._cancelFocusRitual();
         this._focusRitualLabel.set_text("\u2713  " + text);
 
@@ -1399,6 +1409,108 @@ class PomodoroApplet extends Applet.TextIconApplet {
             });
             this._focusRitualTimeouts.push(holdId);
         });
+    }
+
+    // Celebrate a completed task per the user's setting (Off/Subtle/Confetti).
+    // "Meaningful-only" is decided by the caller; reduce-motion downgrades
+    // Confetti to the Subtle glow.
+    _celebrateTaskDone(task) {
+        let mode = this._opt_taskCelebration || 'confetti';
+        if (mode === 'off') {
+            return;
+        }
+        let text = (task && task.title) ? task.title : _("Task complete");
+        if (mode === 'confetti' && !this._opt_reduceMotion) {
+            this._playConfetti();
+            this._flashRitualLabel(text);
+        } else {
+            this._playGlowBreath();
+            this._flashRitualLabel(text);
+        }
+    }
+
+    // Short, soft confetti burst on the primary monitor — a non-reactive overlay
+    // (never blocks input), animated for ~1.2s, then torn down. No sound.
+    _playConfetti() {
+        let primary = Main.layoutManager ? Main.layoutManager.primaryMonitor : null;
+        if (!primary) {
+            return;
+        }
+        this._stopConfetti();
+
+        let area = new St.DrawingArea({ reactive: false });
+        area.set_position(primary.x, primary.y);
+        area.set_size(primary.width, primary.height);
+        area.connect('repaint', (a) => this._repaintConfetti(a));
+        Main.uiGroup.add_actor(area);
+        if (typeof area.raise_top === 'function') { area.raise_top(); }
+        this._confettiArea = area;
+
+        let palette = [
+            [0.89, 0.35, 0.30], [0.92, 0.69, 0.29], [0.47, 0.80, 0.55],
+            [0.95, 0.78, 0.30], [0.40, 0.62, 0.92], [0.82, 0.52, 0.86]
+        ];
+        let cx = primary.width / 2, cy = primary.height * 0.42;
+        let parts = [];
+        for (let i = 0; i < 28; i++) {
+            let ang = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI * 1.1;
+            let spd = 7 + Math.random() * 9;
+            parts.push({
+                x: cx + (Math.random() - 0.5) * 70, y: cy,
+                vx: Math.cos(ang) * spd, vy: Math.sin(ang) * spd - (3 + Math.random() * 4),
+                size: 4 + Math.random() * 5, rot: Math.random() * Math.PI,
+                vr: (Math.random() - 0.5) * 0.5, color: palette[i % palette.length]
+            });
+        }
+        this._confettiParts = parts;
+
+        let start = Date.now();
+        let DUR = 1200;
+        this._confettiTimeout = Mainloop.timeout_add(16, () => {
+            let elapsed = Date.now() - start;
+            for (let p of parts) {
+                p.vy += 0.9;      // gravity
+                p.vx *= 0.99;
+                p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+            }
+            let fade = (elapsed > DUR * 0.6) ? (1 - (elapsed - DUR * 0.6) / (DUR * 0.4)) : 1;
+            if (this._confettiArea) {
+                this._confettiArea.opacity = Math.round(255 * Math.max(0, Math.min(1, fade)));
+                this._confettiArea.queue_repaint();
+            }
+            if (elapsed >= DUR) { this._confettiTimeout = 0; this._stopConfetti(); return false; }
+            return true;
+        });
+    }
+
+    _repaintConfetti(area) {
+        let cr = area.get_context();
+        try {
+            let parts = this._confettiParts || [];
+            for (let p of parts) {
+                cr.save();
+                cr.translate(p.x, p.y);
+                cr.rotate(p.rot);
+                cr.setSourceRGBA(p.color[0], p.color[1], p.color[2], 0.92);
+                cr.rectangle(-p.size / 2, -p.size / 2, p.size, p.size * 0.62);
+                cr.fill();
+                cr.restore();
+            }
+        } finally {
+            cr.$dispose();
+        }
+    }
+
+    _stopConfetti() {
+        if (this._confettiTimeout) {
+            Mainloop.source_remove(this._confettiTimeout);
+            this._confettiTimeout = 0;
+        }
+        if (this._confettiArea) {
+            this._confettiArea.destroy();
+            this._confettiArea = null;
+        }
+        this._confettiParts = null;
     }
 
     
@@ -2256,6 +2368,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._stopFocusBlockIfNeeded();
         this._cancelAppearancePreview();
         this._cancelBreathingPreview();
+        this._stopConfetti();
         this._clearIdleWatches();
         this._stopAllSounds();
         this._disableDnd();

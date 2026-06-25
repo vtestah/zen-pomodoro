@@ -448,6 +448,13 @@ function install(proto) {
         let t = this._taskList().find((x) => x.id === id);
         if (!t) { return; }
         t.completed = !t.completed;
+        // Celebrate only a meaningful completion: estimate met, or >=1 pomodoro.
+        if (t.completed) {
+            let earned = (t.est > 0) ? ((t.done || 0) >= t.est) : ((t.done || 0) >= 1);
+            if (earned && typeof this._celebrateTaskDone === 'function') {
+                this._celebrateTaskDone(t);
+            }
+        }
         this._saveTasks();
         this._refreshTasksMenu();
     };

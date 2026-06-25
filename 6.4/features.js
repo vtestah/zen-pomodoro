@@ -674,6 +674,15 @@ function install(proto) {
             return false;
         });
         entry.grab_key_focus();
+        // The placeholder must dim the entry's own (white) text colour, not the
+        // dark card's, so it stays legible inside the input field.
+        GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
+            try {
+                let ec = entry.get_theme_node().get_foreground_color();
+                hint.set_style("color: rgba(" + ec.red + ", " + ec.green + ", " + ec.blue + ", 0.55);");
+            } catch (e) {}
+            return GLib.SOURCE_REMOVE;
+        });
     };
 
     proto._restTip = function(isLong) {
@@ -788,9 +797,13 @@ function install(proto) {
             try {
                 let c = content.get_theme_node().get_foreground_color();
                 let dim = "color: rgba(" + c.red + ", " + c.green + ", " + c.blue + ", 0.6);";
-                entryHint.set_style(dim);
                 presetKeyLabel.set_style("padding-top: 3px; " + dim);
                 estReadout.set_style("padding-top: 4px; " + dim);
+                // The placeholder sits inside the entry, which has its own (often
+                // white) background — so dim the ENTRY's text colour, not the
+                // dialog's, or it washes out.
+                let ec = entry.get_theme_node().get_foreground_color();
+                entryHint.set_style("color: rgba(" + ec.red + ", " + ec.green + ", " + ec.blue + ", 0.55);");
             } catch (e) {}
         });
 

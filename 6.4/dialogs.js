@@ -93,11 +93,12 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         if (!this._content) { return; }
         try {
             let c = this._content.get_theme_node().get_foreground_color();
-            if (this._entryHint) {
-                // Placeholder: a dim version of the theme's own text colour, so it
-                // reads on both light and dark dialogs (run-dialog-entry's built-in
-                // hint is tuned for the always-dark run dialog).
-                this._entryHint.set_style("color: rgba(" + c.red + ", " + c.green + ", " + c.blue + ", 0.6);");
+            if (this._entryHint && this._entry) {
+                // Placeholder sits inside the entry (which can have its own, e.g.
+                // white, background), so dim the entry's text colour — not the
+                // dialog's — or it washes out on a light entry.
+                let ec = this._entry.get_theme_node().get_foreground_color();
+                this._entryHint.set_style("color: rgba(" + ec.red + ", " + ec.green + ", " + ec.blue + ", 0.55);");
             }
             let lum = (0.2126 * c.red + 0.7152 * c.green + 0.0722 * c.blue) / 255;
             if (this._hintLabel) {

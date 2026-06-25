@@ -470,7 +470,15 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._distractSubmenu.menu.connect('open-state-changed', (m, isOpen) => {
             if (isOpen && this._distractEntry) {
                 GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
-                    if (this._distractEntry) { this._distractEntry.grab_key_focus(); }
+                    if (this._distractEntry) {
+                        this._distractEntry.grab_key_focus();
+                        if (this._distractHint) {
+                            try {
+                                let ec = this._distractEntry.get_theme_node().get_foreground_color();
+                                this._distractHint.set_style("color: rgba(" + ec.red + ", " + ec.green + ", " + ec.blue + ", 0.55);");
+                            } catch (e) {}
+                        }
+                    }
                     return GLib.SOURCE_REMOVE;
                 });
             }
@@ -928,6 +936,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         let hint = new St.Label({ text: _("Jot a distraction, press Enter") });
         entry.set_hint_actor(hint);
         this._distractEntry = entry;
+        this._distractHint = hint;
         entry.clutter_text.connect('activate', () => {
             let t = entry.get_text();
             if (t && t.trim()) { this.emit('add-distraction', t); entry.set_text(""); }

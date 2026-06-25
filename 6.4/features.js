@@ -1525,6 +1525,24 @@ function install(proto) {
         }
     };
 
+    // Short preview of the chosen ambient sound from settings. Uses a separate
+    // player (preview auto-stops after a couple of seconds) so it never disturbs
+    // a loop that may be running during focus.
+    proto._previewAmbientSound = function() {
+        if (!SoundModule || typeof SoundModule.isPlayable !== 'function' || !SoundModule.isPlayable()) {
+            Main.notify(_("No sound backend available for preview."));
+            return;
+        }
+        if (!this._ambientEnabled()) {
+            Main.notify(_("Choose an ambient sound first (it's set to Off)."));
+            return;
+        }
+        if (this._ambientPreview) { this._ambientPreview.stop(); }
+        this._ambientPreview = new SoundModule.SoundEffect(this._ambientPath());
+        let vol = Math.max(0, Math.min(1, (this._opt_focusAmbientVolume || 40) / 100));
+        this._ambientPreview.play({ volume: vol, preview: true });
+    };
+
     // Live volume: replay the ambient loop at the new level while focusing.
     // Debounced so dragging the slider doesn't stutter the audio.
     // Live update while focusing: apply a new volume or a newly chosen sound by

@@ -164,6 +164,7 @@
                 "focus_ambient_choice",
                 "focus_ambient_file",
                 "focus_ambient_volume",
+                "focus_ambient_preview_button",
                 "break_breathing",
                 "zen_mode_enabled",
                 "focus_until_enabled",
@@ -650,6 +651,13 @@
         "description": "Ambient volume",
         "dependency": "focus_ambient_choice!=off",
         "tooltip": "Volume of the ambient sound (0 = silent)."
+    },
+    "focus_ambient_preview_button": {
+        "type": "button",
+        "description": "▶ Preview",
+        "tooltip": "Play a short sample of the chosen ambient sound at the set volume.",
+        "callback": "_previewAmbientSound",
+        "dependency": "focus_ambient_choice!=off"
     },
     "break_breathing": {
         "type": "switch",

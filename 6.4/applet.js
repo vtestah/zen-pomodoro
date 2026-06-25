@@ -529,10 +529,12 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._updatePresetIndicator();
 
 
-        // One-time migration: the old on/off bool becomes a sound choice.
+        // One-time migration: the old on/off bool becomes a sound choice. Read
+        // the stored value directly — the bound _opt_ may not have loaded yet.
         if (!this._opt_ambientMigrated) {
             try {
-                this._settingsProvider.setValue('focus_ambient_choice', this._opt_focusAmbientSound ? 'brown' : 'off');
+                let wasOn = this._settingsProvider.getValue('focus_ambient_sound');
+                this._settingsProvider.setValue('focus_ambient_choice', wasOn ? 'brown' : 'off');
                 this._settingsProvider.setValue('ambient_migrated', true);
             } catch (e) {}
         }

@@ -429,8 +429,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_pri_resume", "_opt_pushoverPriResume", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_snd_goal", "_opt_pushoverSndGoal", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_pri_goal", "_opt_pushoverPriGoal", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_domains", "_opt_blockDomains", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "enable_blocking", "_opt_enableBlocking", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_domains", "_opt_blockDomains", this._onBlockDomainsChanged.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "enable_blocking", "_opt_enableBlocking", this._onBlockDomainsChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "onboarding_done", "_opt_onboardingDone", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_volume", "_opt_focusAmbientVolume", this._restartAmbientLive.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_file", "_opt_focusAmbientFile", this._restartAmbientLive.bind(this));
@@ -526,6 +526,13 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 return false;
             });
         }
+
+        // Clear a stale block left by a crash/reload (passwordless only — never
+        // prompts). Deferred so any session recovery runs first.
+        imports.gi.GLib.timeout_add(imports.gi.GLib.PRIORITY_DEFAULT, 3000, () => {
+            try { this._reconcileStaleBlock(); } catch (e) { global.logError("Zen Pomodoro reconcile: " + e); }
+            return false;
+        });
     }
 
     _updateHotkey() {
@@ -2222,6 +2229,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         Main.keybindingManager.removeHotKey(UUID);
         Main.keybindingManager.removeHotKey(UUID + "-toggle");
         Main.keybindingManager.removeHotKey(UUID + "-skip");
+        this._reconcileStaleBlock();
         this._stopFocusBlockIfNeeded();
         this._cancelAppearancePreview();
         this._cancelBreathingPreview();

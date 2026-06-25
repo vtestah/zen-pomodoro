@@ -1903,6 +1903,56 @@ function install(proto) {
         };
     };
 
+    // The helper to run a block/unblock with: the installed passwordless one
+    // (no prompt) if present, otherwise the bundled one (interactive pkexec).
+    proto._blockHelperBinary = function() {
+        return this._blockingStatus().passwordlessInstalled
+            ? this._passwordlessHelperPath() : this._bundledHelperPath();
+    };
+
+    // Manually (re)apply the current block list to /etc/hosts now. Removing a
+    // site from the list and pressing Apply rewrites the section without it.
+    proto._applyBlockNow = function() {
+        let domains = this._collectBlockDomains();
+        if (!domains.length) { this._clearBlockNow(); return; }
+        this._runHostsHelper(['pkexec', this._blockHelperBinary(), 'block'].concat(domains),
+            _("Blocking updated — %d site(s).").format(domains.length),
+            () => { if (typeof this._updateMenuRuntime === 'function') { this._updateMenuRuntime(); } });
+    };
+
+    // Remove our section from /etc/hosts now (unblock everything we added).
+    proto._clearBlockNow = function() {
+        this._runHostsHelper(['pkexec', this._blockHelperBinary(), 'unblock'],
+            _("Site blocking cleared."),
+            () => { if (typeof this._updateMenuRuntime === 'function') { this._updateMenuRuntime(); } });
+    };
+
+    // Settings changed (block list or the enable toggle): refresh the menu and,
+    // if a block is live during focus, re-apply it with the new list (or drop
+    // it if blocking was turned off / the list emptied).
+    proto._onBlockDomainsChanged = function() {
+        if (typeof this._updateMenuRuntime === 'function') { this._updateMenuRuntime(); }
+        if (this._focusBlockActive) {
+            if (this._opt_enableBlocking && this._collectBlockDomains().length) {
+                this._applyBuiltinBlock();
+            } else {
+                this._removeBuiltinBlock();
+                this._focusBlockActive = false;
+            }
+        }
+    };
+
+    // Drop a stale block section left by a crash/reload when we are not actively
+    // focusing — but only when passwordless is installed, so we never trigger a
+    // password prompt at startup/exit. Without passwordless the user clears it
+    // once from settings.
+    proto._reconcileStaleBlock = function() {
+        let st = this._blockingStatus();
+        if (st.passwordlessInstalled && st.sectionActive && !this._focusBlockActive) {
+            this._removeBuiltinBlock();
+        }
+    };
+
     // Auto-block the configured domains for the duration of a focus. Returns
     // true if a block was launched. Requires the passwordless helper so it does
     // not prompt on every pomodoro; otherwise it hints once and does nothing.
@@ -1942,7 +1992,7 @@ function install(proto) {
 
     // Block/unblock via a bundled helper run with pkexec (interactive admin
     // prompt). The helper only manages its own marked section of /etc/hosts.
-    proto._runHostsHelper = function(argv, okMessage) {
+    proto._runHostsHelper = function(argv, okMessage, onDone) {
         try {
             let proc = Gio.Subprocess.new(argv,
                 Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE);
@@ -1955,9 +2005,10 @@ function install(proto) {
                     global.logError("Zen Pomodoro: hosts update failed: " + e.message);
                     return;
                 }
-                if (ok) {
+                if (ok && okMessage) {
                     Main.notify(okMessage);
                 }
+                if (typeof onDone === 'function') { try { onDone(ok); } catch (e) {} }
                 // non-zero (e.g. the user dismissed the password prompt): stay silent
             });
         } catch (e) {

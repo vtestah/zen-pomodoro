@@ -500,13 +500,13 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         this._buildPrimaryAction();
 
-        this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         let sr = this._makeSkipResetItems();
         this.addMenuItem(sr.skipItem);
-        this.addMenuItem(sr.resetItem);
         this._ambientItem = new PopupMenu.PopupSwitchMenuItem(_("Ambient sound"), false);
         this._ambientItem.connect('toggled', (item, state) => this.emit('set-ambient', state));
         this.addMenuItem(this._ambientItem);
+        this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+        this.addMenuItem(sr.resetItem);
         this.addMenuItem(this._makeResetAllSubmenu());
     }
 
@@ -781,7 +781,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                     this._primaryActionMode = "none";
                 } else {
                     this._primaryActionItem.setLabel(state === "pomodoro" ? _("Pause focus") : _("Pause break"));
-                    this._primaryActionItem.setOrnament(PopupMenu.OrnamentType.CHECK, true);
+                    this._primaryActionItem.setOrnament(PopupMenu.OrnamentType.NONE);
                     this._primaryActionMode = "pause";
                 }
             } else if (state === "break-over") {

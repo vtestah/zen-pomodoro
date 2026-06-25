@@ -2304,7 +2304,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
     // and a short stem; clean emoji-like flat colours.
     _paintTomatoFlat(cr, cx, cy, R, darkP) {
         let c = this._tomatoColors(darkP);
-        let bw = R * 0.90, bh = R * 0.86, byc = cy + R * 0.12;
+        // Wider than tall (oblate) so it reads as a tomato, not a circle.
+        let bw = R * 0.96, bh = R * 0.74, byc = cy + R * 0.12;
         cr.save();
         cr.translate(cx, byc);
         cr.scale(bw, bh);
@@ -2313,7 +2314,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         cr.fill();
         cr.restore();
         let topY = byc - bh * 0.70;
-        this._tomatoCalyx(cr, cx, topY, R, c, 3, R * 0.52, R * 0.42, 0.8);
+        this._tomatoCalyx(cr, cx, topY, R, c, 3, R * 0.50, R * 0.44, 0.92);
         cr.setSourceRGBA(c.lr * 0.8, c.lg * 0.8, c.lb * 0.8, 0.99);
         cr.setLineWidth(Math.max(1.3, R * 0.18));
         cr.moveTo(cx, topY);

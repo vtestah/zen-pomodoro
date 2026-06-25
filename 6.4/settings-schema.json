@@ -263,6 +263,9 @@
             "keys": [
                 "enable_blocking",
                 "block_domains",
+                "block_apply_button",
+                "block_clear_button",
+                "block_status_button",
                 "setup_passwordless_button",
                 "remove_passwordless_button"
             ]
@@ -1032,6 +1035,24 @@
             }
         ],
         "tooltip": "Your timer presets — name + focus / short / long minutes + pomodori. Apply them from the menu's Preset submenu."
+    },
+    "block_apply_button": {
+        "type": "button",
+        "description": "Apply blocking now",
+        "tooltip": "Rewrite the blocked-hosts section from the list above. Use this after changing the list (asks for your password unless passwordless is set up).",
+        "callback": "_applyBlockNow"
+    },
+    "block_clear_button": {
+        "type": "button",
+        "description": "Clear blocking now",
+        "tooltip": "Remove every site this applet blocks from /etc/hosts right now.",
+        "callback": "_clearBlockNow"
+    },
+    "block_status_button": {
+        "type": "button",
+        "description": "Check blocking status",
+        "tooltip": "Show whether passwordless blocking is set up and which sites are blocked right now.",
+        "callback": "_verifyBlocking"
     },
     "setup_passwordless_button": {
         "type": "button",

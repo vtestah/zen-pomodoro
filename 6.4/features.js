@@ -1953,6 +1953,34 @@ function install(proto) {
         }
     };
 
+    // Cached blocking status for the menu row. /etc/hosts is read only while the
+    // menu is open (the row is only visible then) and cached, so we don't read it
+    // on every tick.
+    proto._menuBlockStatus = function() {
+        if (this._appletMenu && this._appletMenu.isOpen) {
+            this._blockStatusCache = this._blockingStatus();
+        }
+        return this._blockStatusCache || {
+            passwordlessInstalled: false, sectionActive: false,
+            hostsCount: 0, hostsDomains: [], listCount: this._getBlockedSitesCount()
+        };
+    };
+
+    // Notify the current blocking status, so the user can tell whether
+    // passwordless is set up and what is actually blocked right now.
+    proto._verifyBlocking = function() {
+        let st = this._blockingStatus();
+        let lines = [];
+        lines.push(st.passwordlessInstalled
+            ? _("Passwordless blocking: set up (no prompt).")
+            : _("Passwordless blocking: not set up (asks for a password)."));
+        lines.push(st.sectionActive
+            ? _("Blocking %d site(s) in /etc/hosts now.").format(st.hostsCount)
+            : _("Nothing is blocked right now."));
+        lines.push(_("%d site(s) in your list.").format(st.listCount));
+        Main.notify(_("Site blocking status"), lines.join("\n"));
+    };
+
     // Auto-block the configured domains for the duration of a focus. Returns
     // true if a block was launched. Requires the passwordless helper so it does
     // not prompt on every pomodoro; otherwise it hints once and does nothing.

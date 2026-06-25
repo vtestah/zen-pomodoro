@@ -299,6 +299,11 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._createFocusTaskDialog();
         
         this._appletMenu = this._createMenu(orientation);
+        // Refresh the runtime when the menu opens, so the blocking row reflects
+        // the real /etc/hosts state (read only while the menu is open).
+        this._appletMenu.connect('open-state-changed', (m, open) => {
+            if (open) { try { this._updateMenuRuntime(); } catch (e) {} }
+        });
         this._updatePresetIndicator();
         this._createFocusFrame();
 
@@ -764,6 +769,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             if (est) { finishEstimate = { time: est.time, remaining: est.remaining }; }
         } catch (e) {}
 
+        let bstat = this._menuBlockStatus();
         this._appletMenu.updateRuntimeState({
             state: this._currentState,
             stateLabel: this._getPanelStateLabel(),
@@ -782,6 +788,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
             timerPaused: this._isPausedState(),
             focusBlockActive: this._focusBlockActive,
             blockedSitesCount: this._getBlockedSitesCount(),
+            blockingSectionActive: bstat.sectionActive,
+            blockingHostsCount: bstat.hostsCount,
             hotkey: this._opt_hotkey || "",
             pomodoriTotal: this._opt_pomodoriNumber || 4,
             pomodoriDone: this._numPomodoriFinished || 0,

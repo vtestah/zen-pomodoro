@@ -798,9 +798,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             }
         }
 
-        let siteN = (typeof runtime.blockedSitesCount === "number") ? runtime.blockedSitesCount : 0;
-        let sitesText = (siteN <= 0) ? _("off")
-            : (runtime.focusBlockActive ? _("blocking %d").format(siteN) : _("%d in list").format(siteN));
+        let listN = (typeof runtime.blockedSitesCount === "number") ? runtime.blockedSitesCount : 0;
+        let hostsN = (typeof runtime.blockingHostsCount === "number") ? runtime.blockingHostsCount : 0;
+        let sitesText = (runtime.blockingSectionActive && hostsN > 0) ? _("blocking %d").format(hostsN)
+            : (listN > 0 ? _("%d in list").format(listN) : _("off"));
 
         // Idle layout: separate Sites and Preset info rows.
         if (this._sitesLabel) {
@@ -1081,9 +1082,11 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             this._presetSubmenu.label.set_text(_("Preset") + ": " + preset.activePreset + this._activePresetRhythm(preset.activePreset));
         }
         if (this._compactInfoLabel && preset.activePreset && this._lastRuntimeState) {
-            let siteN = (typeof this._lastRuntimeState.blockedSitesCount === "number") ? this._lastRuntimeState.blockedSitesCount : 0;
-            let t = (siteN <= 0) ? _("off")
-                : (this._lastRuntimeState.focusBlockActive ? _("blocking %d").format(siteN) : _("%d in list").format(siteN));
+            let rt = this._lastRuntimeState;
+            let listN = (typeof rt.blockedSitesCount === "number") ? rt.blockedSitesCount : 0;
+            let hostsN = (typeof rt.blockingHostsCount === "number") ? rt.blockingHostsCount : 0;
+            let t = (rt.blockingSectionActive && hostsN > 0) ? _("blocking %d").format(hostsN)
+                : (listN > 0 ? _("%d in list").format(listN) : _("off"));
             this._compactInfoLabel.set_text(`${preset.activePreset} \u00B7 ${t}`);
         }
         let active = preset.activePreset || "";

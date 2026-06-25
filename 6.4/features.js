@@ -668,7 +668,7 @@ function install(proto) {
             let row = new St.BoxLayout({ vertical: false, style: 'spacing: 8px; padding-top: 6px;' });
             row.add(new St.Label({ text: labelText, style: 'min-width: 150px; padding-top: 4px;' }));
             let minus = new St.Button({ label: "\u2212", style_class: 'button', style: 'padding: 2px 12px;' });
-            let valLab = new St.Label({ text: fmt(vals[key]), style: 'min-width: 64px; padding-top: 4px;' });
+            let valLab = new St.Label({ text: fmt(vals[key]), style: 'min-width: 64px; padding-top: 4px; text-align: center;' });
             let plus = new St.Button({ label: "+", style_class: 'button', style: 'padding: 2px 12px;' });
             minus.connect('clicked', () => { vals[key] = Math.max(min, vals[key] - step); valLab.set_text(fmt(vals[key])); });
             plus.connect('clicked', () => { vals[key] = Math.min(max, vals[key] + step); valLab.set_text(fmt(vals[key])); });

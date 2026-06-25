@@ -260,7 +260,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             style_class: "pomodoro-cycle"
         });
         this._taskLabel = new St.Label({
-            text: _("Task will be selected on start"),
+            text: _("No task yet — tap to choose one"),
             style_class: "pomodoro-task"
         });
         this._taskLabel.set_reactive(true);
@@ -473,6 +473,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         sitesChevron.set_opacity(130);
         sitesItem.addActor(sitesChevron);
         sitesItem.connect('activate', () => { this.emit('open-blocking-settings'); });
+        new Tooltips.Tooltip(sitesItem.actor, _("Manage blocked sites"));
         this.addMenuItem(sitesItem);
 
         // Statistics — one compact clickable row that opens the dashboard.
@@ -484,6 +485,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         statChevron.set_opacity(130);
         this._statTodayItem.addActor(statChevron);
         this._statTodayItem.connect('activate', () => { this.emit('open-stats'); });
+        new Tooltips.Tooltip(this._statTodayItem.actor, _("Open the statistics dashboard"));
         this.addMenuItem(this._statTodayItem);
 
         // Less used.
@@ -600,7 +602,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             let st = runtime.stats;
             if (this._statValueLabel) {
                 let line = (st.today || 0) + " 🍅";
-                if ((st.streak || 0) > 0) { line += "  ·  🔥 " + (st.streak || 0); }
+                if ((st.streak || 0) >= 2) { line += "  ·  🔥 " + (st.streak || 0); }
                 this._statValueLabel.set_text(line);
             }
             if (this._statTodayItem) {
@@ -647,7 +649,12 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         if (this._progressLabel) {
             if (state === "pomodoro-stop") {
-                this._progressLabel.hide();
+                if (runtime.finishEstimate) {
+                    this._progressLabel.show();
+                    this._progressLabel.set_text(_("Finish your tasks by ~%s").format(runtime.finishEstimate.time));
+                } else {
+                    this._progressLabel.hide();
+                }
             } else {
                 this._progressLabel.show();
                 if (typeof progressPercent === "number") {
@@ -709,7 +716,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             if (name) {
                 this._taskLabel.set_text(this._taskHeaderText(name));
             } else if (state === "pomodoro-stop") {
-                this._taskLabel.set_text(_("Task will be selected on start"));
+                this._taskLabel.set_text(_("No task yet — tap to choose one"));
             } else {
                 this._taskLabel.set_text(_("Task: none"));
             }
@@ -727,7 +734,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             this._presetSummaryLabel.set_text(activePreset);
         }
         if (this._presetSubmenu && this._presetSubmenu.label) {
-            this._presetSubmenu.label.set_text(_("Preset") + ": " + activePreset);
+            this._presetSubmenu.label.set_text(_("Preset") + ": " + activePreset + this._activePresetRhythm(activePreset));
         }
 
         // Active layout: single compact "preset · status" row.
@@ -921,6 +928,13 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         return p.name + "   " + p.pomodoro + "/" + p.short_break + "/" + p.long_break + "  \u00d7" + p.pomodori;
     }
 
+    // Active preset's "focus/short/long" rhythm, for the collapsed Preset row.
+    _activePresetRhythm(name) {
+        let list = (this._presets && this._presets.length) ? this._presets : [];
+        let p = list.find(x => x.name === name);
+        return p ? ("  \u00b7  " + p.pomodoro + "/" + p.short_break + "/" + p.long_break) : "";
+    }
+
     _populatePresetSubmenu() {
         if (!this._presetSubmenu) {
             return;
@@ -988,7 +1002,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             this._presetSummaryLabel.set_text(preset.activePreset);
         }
         if (this._presetSubmenu && this._presetSubmenu.label && preset.activePreset) {
-            this._presetSubmenu.label.set_text(_("Preset") + ": " + preset.activePreset);
+            this._presetSubmenu.label.set_text(_("Preset") + ": " + preset.activePreset + this._activePresetRhythm(preset.activePreset));
         }
         if (this._compactInfoLabel && preset.activePreset && this._lastRuntimeState) {
             let siteN = (typeof this._lastRuntimeState.blockedSitesCount === "number") ? this._lastRuntimeState.blockedSitesCount : 0;

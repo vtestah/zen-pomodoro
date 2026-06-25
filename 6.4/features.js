@@ -39,6 +39,10 @@ const {
     POMODORO_STATS_FILE,
     POMODORO_TASKS_DATA_FILE,
     POMODORO_HOSTS_HELPER_INSTALLED,
+    POMODORO_HOSTS_POLICY_INSTALLED,
+    POMODORO_HOSTS_FILE,
+    POMODORO_HOSTS_BLOCK_BEGIN,
+    POMODORO_HOSTS_BLOCK_END,
     POMODORO_FOCUS_FRAME_BOTTOM_SAFE,
     POMODORO_FOCUS_FRAME_NORMAL_STYLE,
     POMODORO_FOCUS_FRAME_WARNING_STYLE,
@@ -1851,6 +1855,54 @@ function install(proto) {
         return POMODORO_HOSTS_HELPER_INSTALLED;
     };
 
+    // Bundled (user-dir) helper + setup script, run via interactive pkexec.
+    proto._bundledHelperPath = function() {
+        let base = (this._metadata && this._metadata.path) ? this._metadata.path : '';
+        return base + '/hosts-helper.py';
+    };
+    proto._setupScriptPath = function() {
+        let base = (this._metadata && this._metadata.path) ? this._metadata.path : '';
+        return base + '/setup-passwordless.py';
+    };
+
+    // Snapshot of the blocking state, for UI and decisions:
+    //  - passwordlessInstalled: root helper + polkit policy both present
+    //  - sectionActive: our marked section currently exists in /etc/hosts
+    //  - hostsDomains/hostsCount: domains that section blocks right now
+    //  - listCount: domains configured in settings
+    // /etc/hosts is world-readable, so this needs no privilege.
+    proto._blockingStatus = function() {
+        let passwordless = GLib.file_test(POMODORO_HOSTS_HELPER_INSTALLED, GLib.FileTest.IS_REGULAR)
+            && GLib.file_test(POMODORO_HOSTS_POLICY_INSTALLED, GLib.FileTest.IS_REGULAR);
+        let sectionActive = false;
+        let hostsDomains = [];
+        try {
+            let [ok, contents] = GLib.file_get_contents(POMODORO_HOSTS_FILE);
+            if (ok) {
+                let text = ByteArray.toString(contents);
+                let inSection = false;
+                for (let line of text.split("\n")) {
+                    let s = line.trim();
+                    if (s === POMODORO_HOSTS_BLOCK_BEGIN) { inSection = true; sectionActive = true; continue; }
+                    if (s === POMODORO_HOSTS_BLOCK_END) { inSection = false; continue; }
+                    if (inSection) {
+                        let m = /^0\.0\.0\.0\s+(\S+)/.exec(s);
+                        if (m && m[1].indexOf("www.") !== 0) { hostsDomains.push(m[1]); }
+                    }
+                }
+            }
+        } catch (e) {
+            global.logError("Zen Pomodoro: cannot read hosts for status: " + e.message);
+        }
+        return {
+            passwordlessInstalled: passwordless,
+            sectionActive: sectionActive,
+            hostsCount: hostsDomains.length,
+            hostsDomains: hostsDomains,
+            listCount: this._collectBlockDomains().length
+        };
+    };
+
     // Auto-block the configured domains for the duration of a focus. Returns
     // true if a block was launched. Requires the passwordless helper so it does
     // not prompt on every pomodoro; otherwise it hints once and does nothing.
@@ -1914,17 +1966,12 @@ function install(proto) {
     };
 
     proto._setupPasswordlessBlocking = function() {
-        let base = (this._metadata && this._metadata.path) ? this._metadata.path : '';
-        let setup = base + '/setup-passwordless.py';
-        let src = base + '/hosts-helper.py';
-        this._runHostsHelper(['pkexec', setup, 'install', 'yes', src],
+        this._runHostsHelper(['pkexec', this._setupScriptPath(), 'install', 'yes', this._bundledHelperPath()],
             _("Passwordless blocking enabled (no prompt)."));
     };
 
     proto._removePasswordlessBlocking = function() {
-        let base = (this._metadata && this._metadata.path) ? this._metadata.path : '';
-        let setup = base + '/setup-passwordless.py';
-        this._runHostsHelper(['pkexec', setup, 'uninstall'], _("Passwordless blocking removed."));
+        this._runHostsHelper(['pkexec', this._setupScriptPath(), 'uninstall'], _("Passwordless blocking removed."));
     };
 
     proto._toggleZenMode = function() {

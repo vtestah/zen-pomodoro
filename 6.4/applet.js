@@ -1513,6 +1513,16 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._confettiParts = null;
     }
 
+    // Settings button: play the celebration once so the user can see it.
+    _previewCelebration() {
+        if (this._opt_taskCelebration === 'subtle' || this._opt_reduceMotion) {
+            this._playGlowBreath();
+        } else {
+            this._playConfetti();
+        }
+        this._flashRitualLabel(_("Preview"));
+    }
+
     
     _connectTimerSignals() {
         let timerQueue = this._timerQueue;

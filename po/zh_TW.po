@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 17:30+0700\n"
+"POT-Creation-Date: 2026-06-25 17:39+0700\n"
 "PO-Revision-Date: 2025-07-27 02:35+08:00\n"
 "Last-Translator: Peter Dave Hello <hsu@peterdavehello.org>\n"
 "Language-Team: zh_TW\n"
@@ -73,7 +73,7 @@ msgstr "長時間休息進行中"
 msgid "Long break paused"
 msgstr "長時間休息已暫停"
 
-#: applet.js:1043 applet.js:1547
+#: applet.js:1043 applet.js:1557
 msgid "Break ended"
 msgstr "休息結束"
 
@@ -107,65 +107,70 @@ msgstr "長時間專注"
 msgid "Task complete"
 msgstr ""
 
-#: applet.js:1527
+#. settings-schema.json->sec_preview->title
+#: applet.js:1523 visual.js:567
+msgid "Preview"
+msgstr "預覽"
+
+#: applet.js:1537
 msgid "Pomodoro started"
 msgstr "番茄鐘已開始"
 
-#: applet.js:1605
+#: applet.js:1615
 msgid "Let's go to work!"
 msgstr "開始工作吧！"
 
-#: applet.js:1632
+#: applet.js:1642
 msgid "Pomodoro done"
 msgstr "番茄鐘完成"
 
-#: applet.js:1634
+#: applet.js:1644
 msgid "Take a short break"
 msgstr "來個短暫休息"
 
-#: applet.js:1635 applet.js:1666
+#: applet.js:1645 applet.js:1676
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d 分鐘"
 
-#: applet.js:1636 applet.js:1667
+#: applet.js:1646 applet.js:1677
 msgid "Skip break"
 msgstr "跳過休息"
 
-#: applet.js:1660
+#: applet.js:1670
 msgid "Set complete!"
 msgstr "這組完成了！"
 
-#: applet.js:1665
+#: applet.js:1675
 msgid "Take a long break"
 msgstr "來個長時間休息"
 
-#: applet.js:1711
+#: applet.js:1721
 msgid "Pomodoro ended"
 msgstr "番茄鐘已結束"
 
-#: applet.js:1901
+#: applet.js:1911
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://zh.wikipedia.org/zh-tw/番茄工作法"
 
-#: applet.js:1973 features.js:2294
+#: applet.js:1983 features.js:2294
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "變更番茄鐘預設組合前請先停止計時器"
 
-#: applet.js:1991
+#: applet.js:2001
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "已套用番茄鐘預設組合 %s"
 
-#: applet.js:1998 features.js:563 menu.js:467 menu.js:808 menu.js:1076
+#: applet.js:2008 features.js:563 menu.js:467 menu.js:808 menu.js:1076
 msgid "Preset"
 msgstr "預設組合"
 
-#: applet.js:2024
+#: applet.js:2034
 msgid "Keep at least one preset"
 msgstr "至少保留一個預設"
 
-#: applet.js:2039
+#: applet.js:2049
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "休息已延長 %d 分鐘"
@@ -1215,11 +1220,6 @@ msgstr "新增預設…"
 msgid "Delete preset"
 msgstr "刪除預設"
 
-#. settings-schema.json->sec_preview->title
-#: visual.js:567
-msgid "Preview"
-msgstr "預覽"
-
 #: visual.js:888
 #, javascript-format
 msgid "Focus: %s"
@@ -1758,6 +1758,14 @@ msgstr ""
 msgid ""
 "A short celebration when you complete a task that met its 🍅 estimate (or "
 "earned at least one). Confetti respects reduce-motion."
+msgstr ""
+
+#. settings-schema.json->task_celebration_preview_button->description
+msgid "Preview the celebration"
+msgstr ""
+
+#. settings-schema.json->task_celebration_preview_button->tooltip
+msgid "Play the task-completion celebration once to see how it looks."
 msgstr ""
 
 #. settings-schema.json->auto_pause_idle->description

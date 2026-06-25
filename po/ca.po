@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 17:30+0700\n"
+"POT-Creation-Date: 2026-06-25 17:39+0700\n"
 "PO-Revision-Date: 2024-07-13 03:43+0200\n"
 "Last-Translator: carlos <c.carrizosa@gmx.com>\n"
 "Language-Team: ca\n"
@@ -75,7 +75,7 @@ msgstr "Descans llarg en marxa"
 msgid "Long break paused"
 msgstr "Descans llarg en pausa"
 
-#: applet.js:1043 applet.js:1547
+#: applet.js:1043 applet.js:1557
 msgid "Break ended"
 msgstr "Descans acabat"
 
@@ -109,66 +109,71 @@ msgstr "Focus llarg"
 msgid "Task complete"
 msgstr ""
 
+#. settings-schema.json->sec_preview->title
+#: applet.js:1523 visual.js:567
+msgid "Preview"
+msgstr "Vista prèvia"
+
 # notifications
-#: applet.js:1527
+#: applet.js:1537
 msgid "Pomodoro started"
 msgstr "Inici del pomodoro"
 
-#: applet.js:1605
+#: applet.js:1615
 msgid "Let's go to work!"
 msgstr "A treballar!"
 
-#: applet.js:1632
+#: applet.js:1642
 msgid "Pomodoro done"
 msgstr "Pomodoro fet"
 
-#: applet.js:1634
+#: applet.js:1644
 msgid "Take a short break"
 msgstr "Pren un descans curt"
 
-#: applet.js:1635 applet.js:1666
+#: applet.js:1645 applet.js:1676
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d min"
 
-#: applet.js:1636 applet.js:1667
+#: applet.js:1646 applet.js:1677
 msgid "Skip break"
 msgstr "Omet el descans"
 
-#: applet.js:1660
+#: applet.js:1670
 msgid "Set complete!"
 msgstr "Cicle completat!"
 
-#: applet.js:1665
+#: applet.js:1675
 msgid "Take a long break"
 msgstr "Pren un descans llarg"
 
-#: applet.js:1711
+#: applet.js:1721
 msgid "Pomodoro ended"
 msgstr "Fi del pomodoro"
 
-#: applet.js:1901
+#: applet.js:1911
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 
-#: applet.js:1973 features.js:2294
+#: applet.js:1983 features.js:2294
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Atura el temporitzador abans de canviar el perfil del Pomodoro"
 
-#: applet.js:1991
+#: applet.js:2001
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Perfil de Pomodoro %s aplicat"
 
-#: applet.js:1998 features.js:563 menu.js:467 menu.js:808 menu.js:1076
+#: applet.js:2008 features.js:563 menu.js:467 menu.js:808 menu.js:1076
 msgid "Preset"
 msgstr "Perfil"
 
-#: applet.js:2024
+#: applet.js:2034
 msgid "Keep at least one preset"
 msgstr "Mantén almenys un perfil"
 
-#: applet.js:2039
+#: applet.js:2049
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Descans ampliat %d min"
@@ -1236,11 +1241,6 @@ msgstr "Afegeix un perfil…"
 msgid "Delete preset"
 msgstr "Suprimeix el perfil"
 
-#. settings-schema.json->sec_preview->title
-#: visual.js:567
-msgid "Preview"
-msgstr "Vista prèvia"
-
 #: visual.js:888
 #, javascript-format
 msgid "Focus: %s"
@@ -1818,6 +1818,14 @@ msgstr ""
 msgid ""
 "A short celebration when you complete a task that met its 🍅 estimate (or "
 "earned at least one). Confetti respects reduce-motion."
+msgstr ""
+
+#. settings-schema.json->task_celebration_preview_button->description
+msgid "Preview the celebration"
+msgstr ""
+
+#. settings-schema.json->task_celebration_preview_button->tooltip
+msgid "Play the task-completion celebration once to see how it looks."
 msgstr ""
 
 #. settings-schema.json->auto_pause_idle->description

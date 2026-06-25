@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zen-pomodoro@vtestah\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 17:30+0700\n"
+"POT-Creation-Date: 2026-06-25 17:39+0700\n"
 "PO-Revision-Date: 2026-06-22 17:27+0700\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: ru\n"
@@ -71,7 +71,7 @@ msgstr "Идёт длинный перерыв"
 msgid "Long break paused"
 msgstr "Длинный перерыв на паузе"
 
-#: applet.js:1043 applet.js:1547
+#: applet.js:1043 applet.js:1557
 msgid "Break ended"
 msgstr "Перерыв окончен"
 
@@ -105,65 +105,70 @@ msgstr "Длинный фокус"
 msgid "Task complete"
 msgstr "Задача выполнена"
 
-#: applet.js:1527
+#. settings-schema.json->sec_preview->title
+#: applet.js:1523 visual.js:567
+msgid "Preview"
+msgstr "Превью"
+
+#: applet.js:1537
 msgid "Pomodoro started"
 msgstr "Помидор запущен"
 
-#: applet.js:1605
+#: applet.js:1615
 msgid "Let's go to work!"
 msgstr "За работу!"
 
-#: applet.js:1632
+#: applet.js:1642
 msgid "Pomodoro done"
 msgstr "Помидор готов"
 
-#: applet.js:1634
+#: applet.js:1644
 msgid "Take a short break"
 msgstr "Сделайте короткий перерыв"
 
-#: applet.js:1635 applet.js:1666
+#: applet.js:1645 applet.js:1676
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d мин"
 
-#: applet.js:1636 applet.js:1667
+#: applet.js:1646 applet.js:1677
 msgid "Skip break"
 msgstr "Пропустить перерыв"
 
-#: applet.js:1660
+#: applet.js:1670
 msgid "Set complete!"
 msgstr "Подход завершён!"
 
-#: applet.js:1665
+#: applet.js:1675
 msgid "Take a long break"
 msgstr "Сделайте длинный перерыв"
 
-#: applet.js:1711
+#: applet.js:1721
 msgid "Pomodoro ended"
 msgstr "Помидор завершён"
 
-#: applet.js:1901
+#: applet.js:1911
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "https://ru.wikipedia.org/wiki/Метод_помидора"
 
-#: applet.js:1973 features.js:2294
+#: applet.js:1983 features.js:2294
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Остановите таймер перед сменой пресета Pomodoro"
 
-#: applet.js:1991
+#: applet.js:2001
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Применён пресет Pomodoro %s"
 
-#: applet.js:1998 features.js:563 menu.js:467 menu.js:808 menu.js:1076
+#: applet.js:2008 features.js:563 menu.js:467 menu.js:808 menu.js:1076
 msgid "Preset"
 msgstr "Пресет"
 
-#: applet.js:2024
+#: applet.js:2034
 msgid "Keep at least one preset"
 msgstr "Оставьте хотя бы один пресет"
 
-#: applet.js:2039
+#: applet.js:2049
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Перерыв продлён на %d мин"
@@ -1242,11 +1247,6 @@ msgstr "Добавить пресет…"
 msgid "Delete preset"
 msgstr "Удалить пресет"
 
-#. settings-schema.json->sec_preview->title
-#: visual.js:567
-msgid "Preview"
-msgstr "Превью"
-
 #: visual.js:888
 #, javascript-format
 msgid "Focus: %s"
@@ -1811,6 +1811,14 @@ msgid ""
 msgstr ""
 "Короткое празднование при завершении задачи, которая выполнила свою оценку "
 "🍅 (или набрала хотя бы одну). Конфетти учитывает «уменьшить движение»."
+
+#. settings-schema.json->task_celebration_preview_button->description
+msgid "Preview the celebration"
+msgstr "Показать празднование"
+
+#. settings-schema.json->task_celebration_preview_button->tooltip
+msgid "Play the task-completion celebration once to see how it looks."
+msgstr "Проиграть празднование завершения задачи один раз, чтобы посмотреть."
 
 #. settings-schema.json->auto_pause_idle->description
 msgid "Auto-pause focus when you are away (idle)"

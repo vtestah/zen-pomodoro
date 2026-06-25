@@ -13,7 +13,7 @@ keys) are regular, off‑by‑default features. `build-public.sh` simply package
 this source for Cinnamon Spices — see
 [Publishing to Cinnamon Spices](#publishing-to-cinnamon-spices).
 
-Based on **Pomodoro Timer** by *gfreeau* (GPL).
+Originally based on **Pomodoro Timer** by *gfreeau* (GPLv3); since substantially rewritten.
 
 ## Features
 - **Calm focus cues** — soft edge‑glow progress frame (bottom kept clear for the
@@ -99,7 +99,7 @@ That export goes into a fork of `linuxmint/cinnamon-spices-applets` as a PR
 titled `Zen Pomodoro vX.Y.Z: <summary>` (their convention; PRs are squash‑merged).
 
 ## Credits & License
-Based on **Pomodoro Timer** by *gfreeau*. Licensed under the **GPL**.
+Originally based on **Pomodoro Timer** by *gfreeau* — since substantially rewritten. Licensed under the **GPLv3** (see [LICENSE](LICENSE)).
 
 [Conventional Commits]: https://www.conventionalcommits.org
 [git‑cliff]: https://git-cliff.org

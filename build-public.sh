@@ -40,7 +40,7 @@ cat > "$FILES/metadata.json" <<EOF
 {
     "uuid": "$UUID",
     "name": "$NAME",
-    "description": "A calm, Zen-style Pomodoro timer for focused work. Gentle on-screen cues instead of anxious alarms: a soft glow frame that traces your progress, a quiet start ritual, a calm ending with no last-minute blinking, an optional full-screen Zen mode, a breathing guide on breaks, ambient sound, daily goal and streak, a panel progress ring, a statistics dashboard, customizable theme colors with live preview, and full localization. Optional distraction blocking can block websites you choose during focus by editing /etc/hosts, only after you enable it and grant a one-time administrator authorization. Based on Pomodoro Timer by gfreeau.",
+    "description": "A calm, Zen-style Pomodoro timer for focused work. Gentle on-screen cues instead of anxious alarms: a soft glow frame that traces your progress, a quiet start ritual, a calm ending with no last-minute blinking, an optional full-screen Zen mode, a breathing guide on breaks, ambient sound, daily goal and streak, a panel progress ring, a statistics dashboard, customizable theme colors with live preview, and full localization. Optional distraction blocking can block websites you choose during focus by editing /etc/hosts, only after you enable it and grant a one-time administrator authorization. Originally based on Pomodoro Timer by gfreeau, since substantially rewritten.",
     "version": "$VERSION",
     "max-instances": "1"
 }
@@ -55,7 +55,7 @@ cat > "$OUT/README.md" <<'EOF'
 # Zen Pomodoro
 
 A calm, Zen‑style Pomodoro timer for the Cinnamon panel — gentle on‑screen cues
-instead of anxious alarms. Based on **Pomodoro Timer** by *gfreeau*.
+instead of anxious alarms. Originally based on **Pomodoro Timer** by *gfreeau*, since substantially rewritten.
 
 ![screenshot](screenshot.png)
 
@@ -101,11 +101,14 @@ at any time. Push notifications (Pushover) are also optional and require your
 own credentials.
 
 ## Credits & License
-Based on **Pomodoro Timer** by *gfreeau*. Licensed under the **GPL**.
+Originally based on **Pomodoro Timer** by *gfreeau* — since substantially rewritten. Licensed under the **GPLv3**.
 EOF
 
 echo "==> copy screenshot.png (mandatory for Spices)"
 cp "$REPO/screenshot.png" "$OUT/screenshot.png" 2>/dev/null || true
+
+echo "==> copy LICENSE (GPLv3)"
+cp "$REPO/LICENSE" "$OUT/LICENSE" 2>/dev/null || true
 
 echo "==> VALIDATE"
 fail=0

@@ -1,0 +1,39 @@
+name: release
+on:
+  push:
+    tags:
+      - "v*"
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gjs jq gettext zip
+          # build-public.sh calls `cjs` (Cinnamon's gjs); on Ubuntu the binary
+          # is named `gjs`, so expose it under the expected name.
+          sudo ln -sf "$(command -v gjs)" /usr/local/bin/cjs
+      - name: Verify tag matches metadata version
+        run: |
+          v="$(jq -r .version metadata.json)"
+          tag="${GITHUB_REF_NAME#v}"
+          echo "metadata=$v tag=$tag"
+          test "$v" = "$tag"
+      - name: Build sanitized package
+        run: ./build-public.sh
+      - name: Zip package
+        run: |
+          cd dist
+          zip -r "../zen-pomodoro@vtestah-${GITHUB_REF_NAME}.zip" "zen-pomodoro@vtestah"
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            "zen-pomodoro@vtestah-${GITHUB_REF_NAME}.zip" \
+            --title "Zen Pomodoro ${GITHUB_REF_NAME}" \
+            --generate-notes

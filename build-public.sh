@@ -65,8 +65,16 @@ Most Pomodoro timers interrupt you: a jarring alarm, a popup that demands a
 click, a countdown that piles on pressure. Zen Pomodoro takes the opposite
 approach. Your progress shows as a soft glow at the edge of the screen, focus
 ends calmly instead of blinking at you, and if a block runs out while you're
-mid-thought, soft landing waits for a natural pause instead of cutting you off.
-It stays out of your way, works with a screen reader, and speaks 20 languages.
+mid-thought, **soft landing** waits for a natural pause instead of cutting you
+off. It stays out of your way, works with a screen reader, and speaks 20
+languages.
+
+## Getting started
+
+After enabling the applet, **right-click it → Configure** and run the short
+setup wizard — it asks a few questions and tailors focus length, sounds, breaks
+and optional blocking to your workflow. You can undo it with one click if you
+change your mind.
 
 ## Highlights
 - **Calm focus cues:** a soft edge-glow frame traces your progress (the panel
@@ -80,6 +88,9 @@ It stays out of your way, works with a screen reader, and speaks 20 languages.
 - **Statistics dashboard:** today, this week, this month, streak and all-time,
   an hourly focus pattern, 14-day bars, a 12-week heatmap, a by-task breakdown,
   milestones, and one-click export to a CSV file.
+
+![statistics dashboard](screenshot-stats.png)
+
 - **Goals & flow:** a daily goal and streak, flow-extend, soft landing, idle
   auto-pause and resume, "Focus until" a set time, and an optional strict-focus
   mode.
@@ -90,7 +101,7 @@ It stays out of your way, works with a screen reader, and speaks 20 languages.
   focusing, and a global hotkey to jot a distracting thought without leaving
   your flow.
 - **Sounds:** ticking, phase alerts, an interval chime, and ambient soundscapes
-  (white, pink or brown noise, rain, sea, or your own file).
+  (white, pink or brown noise, rain, sea, fan, wind, stream or your own file).
 - **Push to your phone (optional):** phase changes via Pushover with your own
   keys, and customizable message text, sound and priority.
 - **Automation (optional):** run a command when focus starts, a break starts,
@@ -102,20 +113,12 @@ It stays out of your way, works with a screen reader, and speaks 20 languages.
 - **Resilient and accessible:** session recovery after a Cinnamon restart,
   screen-reader summaries for the charts, and localized into 20 languages.
 
-## Distraction blocking & your system
-The timer, menu and focus overlays never touch anything outside the applet, and
-your stats and tasks live under `$XDG_STATE_HOME/zen-pomodoro/`.
-
-**Distraction blocking is the one feature that changes a system file, and it is
-fully optional and off by default.** When you enable it and pick domains, the
-applet blocks them during focus by editing a clearly marked section of
-`/etc/hosts` (it never touches the rest of the file and validates every
-hostname). Because that file is root-owned, the change runs through a small
-bundled helper invoked with **pkexec** (the standard graphical admin prompt).
-A one-time "Set up passwordless blocking" installs a tightly scoped polkit
-policy so later focus sessions don't prompt every time; you can remove it again
-at any time. Push notifications (Pushover) are also optional and require your
-own credentials.
+## Notes
+Your stats and tasks are stored locally under `~/.local/state/zen-pomodoro/`.
+**Optional distraction blocking** edits a clearly marked section of `/etc/hosts`
+via a pkexec prompt (standard graphical admin dialog) — off by default, and the
+only feature that touches a system file. Pushover notifications require your own
+credentials.
 
 ## Credits & License
 Originally based on **Pomodoro Timer** by *gfreeau*, since substantially rewritten. Licensed under the **GPLv3**.
@@ -123,6 +126,7 @@ EOF
 
 echo "==> copy screenshot.png (mandatory for Spices)"
 cp "$REPO/screenshot.png" "$OUT/screenshot.png" 2>/dev/null || true
+cp "$REPO/screenshot-stats.png" "$OUT/screenshot-stats.png" 2>/dev/null || true
 
 echo "==> copy LICENSE (GPLv3)"
 cp "$REPO/LICENSE" "$OUT/LICENSE" 2>/dev/null || true

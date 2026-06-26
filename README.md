@@ -1,6 +1,6 @@
 # Zen Pomodoro — Cinnamon applet
 
-![tests](https://github.com/vtestah/focus-pomodoro/actions/workflows/tests.yml/badge.svg)
+![tests](https://github.com/vtestah/zen-pomodoro/actions/workflows/tests.yml/badge.svg)
 
 A calm, Zen‑style Pomodoro focus timer for the Cinnamon panel: gentle on‑screen
 cues instead of anxious alarms — a soft glow frame that traces your progress, a
@@ -75,7 +75,7 @@ git config core.hooksPath .githooks
 
 Back up to your own remote:
 ```
-git remote add origin git@github.com:vtestah/focus-pomodoro.git
+git remote add origin git@github.com:vtestah/zen-pomodoro.git
 git push -u origin main
 ```
 

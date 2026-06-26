@@ -252,19 +252,11 @@
         },
         "sec_po_alerts": {
             "type": "section",
-            "title": "Sound & priority per event",
+            "title": "Sound & priority",
             "dependency": "pushover_customize",
             "keys": [
-                "pushover_snd_focus",
-                "pushover_pri_focus",
-                "pushover_snd_short_break",
-                "pushover_pri_short_break",
-                "pushover_snd_long_break",
-                "pushover_pri_long_break",
-                "pushover_snd_resume",
-                "pushover_pri_resume",
-                "pushover_snd_goal",
-                "pushover_pri_goal"
+                "pushover_sound",
+                "pushover_priority"
             ]
         },
         "sec_blocking": {
@@ -1182,9 +1174,9 @@
         "tooltip": "Sent once when you hit your daily pomodoro goal. {task} and {minutes} are substituted. Leave empty to send nothing.",
         "dependency": "pushover_enabled"
     },
-    "pushover_snd_focus": {
+    "pushover_sound": {
         "type": "combobox",
-        "description": "Focus start — sound",
+        "description": "Notification sound",
         "default": "pushover",
         "options": {
             "Default": "pushover",
@@ -1198,117 +1190,9 @@
         },
         "dependency": "pushover_enabled"
     },
-    "pushover_pri_focus": {
+    "pushover_priority": {
         "type": "combobox",
-        "description": "Focus start — priority",
-        "default": "0",
-        "options": {
-            "Low": "-1",
-            "Normal": "0",
-            "High": "1"
-        },
-        "dependency": "pushover_enabled"
-    },
-    "pushover_snd_short_break": {
-        "type": "combobox",
-        "description": "Short break — sound",
-        "default": "pushover",
-        "options": {
-            "Default": "pushover",
-            "Magic": "magic",
-            "Bike": "bike",
-            "Cosmic": "cosmic",
-            "Gamelan": "gamelan",
-            "Incoming": "incoming",
-            "Intermission": "intermission",
-            "None": "none"
-        },
-        "dependency": "pushover_enabled"
-    },
-    "pushover_pri_short_break": {
-        "type": "combobox",
-        "description": "Short break — priority",
-        "default": "0",
-        "options": {
-            "Low": "-1",
-            "Normal": "0",
-            "High": "1"
-        },
-        "dependency": "pushover_enabled"
-    },
-    "pushover_snd_long_break": {
-        "type": "combobox",
-        "description": "Long break — sound",
-        "default": "pushover",
-        "options": {
-            "Default": "pushover",
-            "Magic": "magic",
-            "Bike": "bike",
-            "Cosmic": "cosmic",
-            "Gamelan": "gamelan",
-            "Incoming": "incoming",
-            "Intermission": "intermission",
-            "None": "none"
-        },
-        "dependency": "pushover_enabled"
-    },
-    "pushover_pri_long_break": {
-        "type": "combobox",
-        "description": "Long break — priority",
-        "default": "0",
-        "options": {
-            "Low": "-1",
-            "Normal": "0",
-            "High": "1"
-        },
-        "dependency": "pushover_enabled"
-    },
-    "pushover_snd_resume": {
-        "type": "combobox",
-        "description": "Back to focus — sound",
-        "default": "pushover",
-        "options": {
-            "Default": "pushover",
-            "Magic": "magic",
-            "Bike": "bike",
-            "Cosmic": "cosmic",
-            "Gamelan": "gamelan",
-            "Incoming": "incoming",
-            "Intermission": "intermission",
-            "None": "none"
-        },
-        "dependency": "pushover_enabled"
-    },
-    "pushover_pri_resume": {
-        "type": "combobox",
-        "description": "Back to focus — priority",
-        "default": "0",
-        "options": {
-            "Low": "-1",
-            "Normal": "0",
-            "High": "1"
-        },
-        "dependency": "pushover_enabled"
-    },
-    "pushover_snd_goal": {
-        "type": "combobox",
-        "description": "Daily goal — sound",
-        "default": "pushover",
-        "options": {
-            "Default": "pushover",
-            "Magic": "magic",
-            "Bike": "bike",
-            "Cosmic": "cosmic",
-            "Gamelan": "gamelan",
-            "Incoming": "incoming",
-            "Intermission": "intermission",
-            "None": "none"
-        },
-        "dependency": "pushover_enabled"
-    },
-    "pushover_pri_goal": {
-        "type": "combobox",
-        "description": "Daily goal — priority",
+        "description": "Priority",
         "default": "0",
         "options": {
             "Low": "-1",

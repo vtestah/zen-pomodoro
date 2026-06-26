@@ -206,7 +206,7 @@ function install(proto) {
                 body += "  " + _("\ud83d\udd25 %d-day streak").format(s.streak);
             }
             Main.notify(_("Daily goal reached \ud83c\udf45"), body);
-            this._sendPushover(this._opt_pushoverMsgGoal, this._opt_pushoverSndGoal, this._opt_pushoverPriGoal);
+            this._sendPushover(this._opt_pushoverMsgGoal);
             this._runEventCommand('goal');
         }
         this._dailyStatsData = s;
@@ -2564,7 +2564,7 @@ function install(proto) {
 
     // Optional push notification (Pushover) on key events, opt-in. Uses the
     // user's own credentials and posts only to the official Pushover API.
-    proto._sendPushover = function(message, sound, priority) {
+    proto._sendPushover = function(message) {
         if (!this._opt_pushoverEnabled || !Soup) {
             return;
         }
@@ -2595,8 +2595,8 @@ function install(proto) {
                 '&title=' + encodeURIComponent(title) +
                 '&message=' + encodeURIComponent(message) +
                 '&html=1' +
-                '&priority=' + encodeURIComponent(priority || '0') +
-                '&sound=' + encodeURIComponent(sound || 'pushover');
+                '&priority=' + encodeURIComponent(this._opt_pushoverPriority || '0') +
+                '&sound=' + encodeURIComponent(this._opt_pushoverSound || 'pushover');
             msg.set_request_body_from_bytes('application/x-www-form-urlencoded',
                 new GLib.Bytes(ByteArray.fromString(body)));
             this._pushoverSession.send_and_read_async(msg, GLib.PRIORITY_DEFAULT, null, (s, res) => {

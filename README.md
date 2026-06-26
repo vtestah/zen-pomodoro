@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="icon.png" alt="Zen Pomodoro" width="96" height="96">
+</p>
+
 # Zen Pomodoro — Cinnamon applet
 
 [![tests](https://github.com/vtestah/zen-pomodoro/actions/workflows/tests.yml/badge.svg)](https://github.com/vtestah/zen-pomodoro/actions/workflows/tests.yml) [![release](https://img.shields.io/github/v/tag/vtestah/zen-pomodoro?label=release)](https://github.com/vtestah/zen-pomodoro/releases) [![License: GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)

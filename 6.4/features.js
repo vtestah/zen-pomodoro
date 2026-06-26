@@ -2176,19 +2176,32 @@ function install(proto) {
             () => { if (typeof this._updateMenuRuntime === 'function') { this._updateMenuRuntime(); } });
     };
 
-    // Settings changed (block list or the enable toggle): refresh the menu and,
-    // if a block is live during focus, re-apply it with the new list (or drop
-    // it if blocking was turned off / the list emptied).
+    // The toggle (and the domain list) drive blocking directly: on => block now,
+    // off => unblock now. Skip until init has settled so we never prompt at login.
     proto._onBlockDomainsChanged = function() {
         if (typeof this._updateMenuRuntime === 'function') { this._updateMenuRuntime(); }
-        if (this._focusBlockActive) {
-            if (this._opt_enableBlocking && this._collectBlockDomains().length) {
-                this._applyBuiltinBlock();
-            } else {
-                this._removeBuiltinBlock();
-                this._focusBlockActive = false;
-            }
+        if (!this._blockingReady) { return; }
+        this._syncBlocking(true);
+    };
+
+    // Bring /etc/hosts to the desired state: blocked with exactly the listed
+    // domains when the toggle is on, otherwise unblocked. Idempotent — only runs
+    // the helper when the live state differs, so it won't re-prompt needlessly.
+    // interactive=false suppresses the password prompt (startup/background): it
+    // then only reconciles when passwordless blocking is set up.
+    proto._syncBlocking = function(interactive) {
+        let domains = this._opt_enableBlocking ? this._collectBlockDomains() : [];
+        let want = domains.length > 0;
+        let st = this._blockingStatus();
+        if (want) {
+            let cur = st.hostsDomains.slice().sort().join(",");
+            let desired = domains.slice().sort().join(",");
+            if (st.sectionActive && cur === desired) { return; }
+        } else if (!st.sectionActive) {
+            return;
         }
+        if (!st.passwordlessInstalled && !interactive) { return; }
+        if (want) { this._applyBlockNow(); } else { this._clearBlockNow(); }
     };
 
     // Drop a stale block section left by a crash/reload when we are not actively
@@ -2196,10 +2209,8 @@ function install(proto) {
     // password prompt at startup/exit. Without passwordless the user clears it
     // once from settings.
     proto._reconcileStaleBlock = function() {
-        let st = this._blockingStatus();
-        if (st.passwordlessInstalled && st.sectionActive && !this._focusBlockActive) {
-            this._removeBuiltinBlock();
-        }
+        // Variant 1: blocking persists while the toggle is on, so there is no
+        // "stale" block to clear on remove. Reconciliation runs via _syncBlocking.
     };
 
     // Cached blocking status for the menu row. /etc/hosts is read only while the

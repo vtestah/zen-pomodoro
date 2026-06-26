@@ -558,7 +558,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         // Clear a stale block left by a crash/reload (passwordless only — never
         // prompts). Deferred so any session recovery runs first.
         imports.gi.GLib.timeout_add(imports.gi.GLib.PRIORITY_DEFAULT, 3000, () => {
-            try { this._reconcileStaleBlock(); } catch (e) { global.logError("Zen Pomodoro reconcile: " + e); }
+            try { this._syncBlocking(false); this._blockingReady = true; } catch (e) { global.logError("Zen Pomodoro reconcile: " + e); }
             return false;
         });
     }
@@ -1768,25 +1768,14 @@ class PomodoroApplet extends Applet.TextIconApplet {
     
 
     _startFocusBlockIfNeeded() {
-        if (this._focusBlockActive) {
-            return false;
-        }
-        if (!this._opt_enableBlocking) {
-            return false;
-        }
-        if (this._applyBuiltinBlock()) {
-            this._focusBlockActive = true;
-            return true;
-        }
+        // Blocking is driven by the toggle now (blocked while it's on), not by
+        // the focus state, so there's nothing to do on focus start.
         return false;
     }
 
     _stopFocusBlockIfNeeded() {
-        if (!this._focusBlockActive) {
-            return false;
-        }
-        this._focusBlockActive = false;
-        return this._removeBuiltinBlock();
+        // Toggle-driven blocking persists regardless of focus; nothing to do.
+        return false;
     }
 
     _pauseTimerFromMenu() {

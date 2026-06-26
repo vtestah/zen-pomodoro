@@ -25,3 +25,32 @@ jobs:
       # Dependency-free pure-logic tests (no package.json needed).
       - run: node tests/js/recommend.test.js
       - run: node tests/js/flow.test.js
+  applet:
+    # Guards the shipped applet itself: syntax, config validity, translation
+    # catalogs, and that no private/dev remnants leak into the source.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Parse-check applet JavaScript
+        run: |
+          for f in 6.4/*.js; do echo "checking $f"; node --check "$f"; done
+      - name: Validate JSON (metadata + settings schema)
+        run: |
+          python3 -m json.tool metadata.json > /dev/null
+          python3 -m json.tool 6.4/settings-schema.json > /dev/null
+      - name: Check translation catalogs (msgfmt)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext
+          for p in po/*.po; do msgfmt --check -o /dev/null "$p"; done
+      - name: Guard against private remnants
+        run: |
+          if grep -rInE --exclude-dir=__pycache__ --binary-files=without-match \
+            "/home/[A-Za-z0-9._-]+/|(^|[^A-Za-z])sudo([^A-Za-z]|$)|PUBLIC_STRIP" 6.4/; then
+            echo "::error::Forbidden pattern in 6.4/ (personal path, sudo, or leftover marker)"
+            exit 1
+          fi
+          echo "clean"

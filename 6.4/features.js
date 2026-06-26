@@ -2280,8 +2280,8 @@ function install(proto) {
         try { this._settingsProvider.setValue("zen_intro_shown", true); } catch (e) {}
         let isFocus = (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused');
         let body = isFocus
-            ? _("Your screen is now a calm, distraction-free focus view — just the timer, nothing else. Click it or press Esc to exit.")
-            : _("Zen mode is armed. When your next focus session starts, the screen turns into a calm, distraction-free view with only the timer. Click it or press Esc to exit.");
+            ? _("Focus spotlight is on — every other window is dimmed so the one you're working in stands out. Click the on-screen pill (or switch Zen off) to exit.")
+            : _("Focus spotlight is armed. When your next focus session starts, every window except the one you're working in dims, so your task stands out. Click the on-screen pill to exit.");
         try { Main.notify(_("Zen mode"), body); } catch (e) {}
     };
 
@@ -2289,69 +2289,108 @@ function install(proto) {
         let isFocus = (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused');
         let show = this._zenActive && this._opt_zenModeEnabled && isFocus;
         if (!show) {
-            if (this._zenOverlay) {
-                this._zenOverlay.hide();
-            }
+            this._teardownZenSpotlight();
             return;
         }
-
-        if (!this._zenOverlay) {
-            this._zenOverlay = new St.BoxLayout({
-                vertical: true,
-                reactive: true,
-                style: "background-color: rgba(8, 8, 8, 0.93);"
+        this._ensureZenHud();
+        if (!this._zenFocusSignal) {
+            this._zenFocusSignal = global.display.connect('notify::focus-window', () => {
+                this._applyZenDim();
+                this._positionZenHud();
             });
-            let box = new St.BoxLayout({
-                vertical: true,
-                x_expand: true,
-                y_expand: true,
-                x_align: Clutter.ActorAlign.CENTER,
-                y_align: Clutter.ActorAlign.CENTER,
-                style: "spacing: 16px;"
-            });
-            this._zenTaskLabel = new St.Label({ style: "color: rgba(235, 235, 235, 0.9); font-size: 1.5em;" });
-            this._zenTimeLabel = new St.Label({ style: "color: rgba(255, 255, 255, 0.96); font-size: 6em; font-weight: bold;" });
-            let hint = new St.Label({ text: _("Click or press Esc to exit"), style: "color: rgba(160, 160, 160, 0.65); padding-top: 10px;" });
-            box.add_actor(this._zenTaskLabel);
-            box.add_actor(this._zenTimeLabel);
-            box.add_actor(hint);
-            this._zenOverlay.add_actor(box);
-            let exitZen = () => {
-                this._zenActive = false;
-                this._updateZenOverlay();
-                this._updateMenuRuntime();
-            };
-            this._zenOverlay.connect('button-press-event', () => {
-                exitZen();
-                return Clutter.EVENT_STOP;
-            });
-            this._zenOverlay.connect('key-press-event', (actor, event) => {
-                if (event.get_key_symbol() === Clutter.KEY_Escape) {
-                    exitZen();
-                    return Clutter.EVENT_STOP;
-                }
-                return Clutter.EVENT_PROPAGATE;
-            });
-            this._zenOverlay.can_focus = true;
-            Main.uiGroup.add_actor(this._zenOverlay);
         }
-
-        let primary = Main.layoutManager ? Main.layoutManager.primaryMonitor : null;
-        if (primary) {
-            this._zenOverlay.set_position(primary.x, primary.y);
-            this._zenOverlay.set_size(primary.width, primary.height);
-        }
+        this._applyZenDim();
+        this._zenHud.show();
+        if (typeof this._zenHud.raise_top === 'function') { this._zenHud.raise_top(); }
         this._refreshZenLabels();
-        if (typeof this._zenOverlay.raise_top === 'function') {
-            this._zenOverlay.raise_top();
+    };
+
+    // Focus spotlight: darken every other window so the one you're working in
+    // stays bright. Keyed by a named effect we can always strip back off.
+    proto._applyZenDim = function() {
+        let focus = global.display.get_focus_window ? global.display.get_focus_window() : null;
+        let actors = global.get_window_actors ? global.get_window_actors() : [];
+        for (let i = 0; i < actors.length; i++) {
+            let a = actors[i];
+            let mw = a.meta_window || (a.get_meta_window && a.get_meta_window());
+            let dimThis = false;
+            if (mw && mw !== focus) {
+                dimThis = true;
+                // Leave panels/docks/desktop alone — only recede real windows.
+                try { if (mw.is_skip_taskbar && mw.is_skip_taskbar()) { dimThis = false; } } catch (e) {}
+            }
+            try {
+                if (dimThis) {
+                    if (!a.get_effect("zen-spotlight")) {
+                        let fx = new Clutter.BrightnessContrastEffect();
+                        fx.set_brightness(-0.5);
+                        a.add_effect_with_name("zen-spotlight", fx);
+                    }
+                } else {
+                    a.remove_effect_by_name("zen-spotlight");
+                }
+            } catch (e) {}
         }
-        this._zenOverlay.show();
-        // Take key focus so Esc exits even without a modal grab.
-        try { this._zenOverlay.grab_key_focus(); } catch (e) {}
+    };
+
+    // Always strip the dim from every window — used on exit/break/disable so the
+    // screen can never get stuck dark.
+    proto._clearZenDim = function() {
+        let actors = global.get_window_actors ? global.get_window_actors() : [];
+        for (let i = 0; i < actors.length; i++) {
+            try { actors[i].remove_effect_by_name("zen-spotlight"); } catch (e) {}
+        }
+    };
+
+    proto._teardownZenSpotlight = function() {
+        if (this._zenFocusSignal) {
+            try { global.display.disconnect(this._zenFocusSignal); } catch (e) {}
+            this._zenFocusSignal = 0;
+        }
+        this._clearZenDim();
+        if (this._zenHud) {
+            try { this._zenHud.hide(); } catch (e) {}
+        }
+    };
+
+    proto._ensureZenHud = function() {
+        if (this._zenHud) { return; }
+        this._zenHud = new St.BoxLayout({
+            reactive: true,
+            track_hover: true,
+            style: "background-color: rgba(8,8,8,0.82); border-radius: 14px; padding: 6px 16px; spacing: 12px;"
+        });
+        this._zenTimeLabel = new St.Label({
+            y_align: Clutter.ActorAlign.CENTER,
+            style: "color: rgba(255,255,255,0.96); font-size: 1.25em; font-weight: bold;"
+        });
+        let exit = new St.Label({
+            text: "\u2715  " + _("Exit focus"),
+            y_align: Clutter.ActorAlign.CENTER,
+            style: "color: rgba(235,175,75,0.95);"
+        });
+        this._zenHud.add_actor(this._zenTimeLabel);
+        this._zenHud.add_actor(exit);
+        this._zenHud.connect('button-press-event', () => {
+            this._zenActive = false;
+            this._updateZenOverlay();
+            this._updateMenuRuntime();
+            return Clutter.EVENT_STOP;
+        });
+        Main.uiGroup.add_actor(this._zenHud);
+    };
+
+    proto._positionZenHud = function() {
+        if (!this._zenHud) { return; }
+        let mon = Main.layoutManager ? Main.layoutManager.primaryMonitor : null;
+        if (!mon) { return; }
+        let natW = 200;
+        try { natW = this._zenHud.get_preferred_width(-1)[1] || 200; } catch (e) {}
+        this._zenHud.set_position(mon.x + Math.round((mon.width - natW) / 2), mon.y + 12);
     };
 
     proto._refreshZenLabels = function() {
-        if (!this._zenOverlay || !this._zenOverlay.visible) {
+        if (!this._zenHud || !this._zenHud.visible) {
             return;
         }
         let timer = this._timerQueue ? this._timerQueue.getCurrentTimer() : null;
@@ -2359,9 +2398,7 @@ function install(proto) {
         if (this._zenTimeLabel) {
             this._zenTimeLabel.set_text(this._getFormattedTimeLeft(ticks) || "--:--");
         }
-        if (this._zenTaskLabel) {
-            this._zenTaskLabel.set_text(this._currentFocusTask ? this._currentFocusTask : _("Focus"));
-        }
+        this._positionZenHud();
     };
 
     proto._updateBreathingGuide = function() {

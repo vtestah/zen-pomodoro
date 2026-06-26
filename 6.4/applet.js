@@ -267,6 +267,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._ambientSoundPath = null;
         this._ambientVolTimeout = 0;
         this._zenOverlay = null;
+        this._zenHud = null;
+        this._zenFocusSignal = 0;
         this._zenTimeLabel = null;
         this._zenTaskLabel = null;
         this._zenActive = false;
@@ -2515,6 +2517,11 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._disableDnd();
         this._resumePausedMedia();
         this._stopBreathing();
+        this._teardownZenSpotlight();
+        if (this._zenHud) {
+            this._zenHud.destroy();
+            this._zenHud = null;
+        }
         if (this._zenOverlay) {
             this._zenOverlay.destroy();
             this._zenOverlay = null;

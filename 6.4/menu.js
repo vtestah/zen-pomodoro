@@ -462,7 +462,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         this._zenItem = new PopupMenu.PopupSwitchMenuItem(_("Zen mode"), false);
         this._zenItem.connect('toggled', (item, state) => this.emit('toggle-zen', state));
-        new Tooltips.Tooltip(this._zenItem.actor, _("Full-screen, distraction-free focus: the desktop dims to a calm black with just the timer. It appears while a focus session is running — click it or press Esc to exit."));
+        new Tooltips.Tooltip(this._zenItem.actor, _("Focus spotlight: while a focus session runs, every other window dims so the one you're working in stands out. Click the on-screen pill to exit."));
         this.addMenuItem(this._zenItem);
 
         this._ambientItem = new PopupMenu.PopupSwitchMenuItem(_("Ambient sound"), false);
@@ -506,7 +506,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this.addMenuItem(sr.skipItem);
         this._zenItem = new PopupMenu.PopupSwitchMenuItem(_("Zen mode"), false);
         this._zenItem.connect('toggled', (item, state) => this.emit('toggle-zen', state));
-        new Tooltips.Tooltip(this._zenItem.actor, _("Full-screen, distraction-free focus: the desktop dims to a calm black with just the timer. It appears while a focus session is running — click it or press Esc to exit."));
+        new Tooltips.Tooltip(this._zenItem.actor, _("Focus spotlight: while a focus session runs, every other window dims so the one you're working in stands out. Click the on-screen pill to exit."));
         this.addMenuItem(this._zenItem);
         this._ambientItem = new PopupMenu.PopupSwitchMenuItem(_("Ambient sound"), false);
         this._ambientItem.connect('toggled', (item, state) => this.emit('set-ambient', state));

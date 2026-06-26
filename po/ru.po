@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zen-pomodoro@vtestah\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-26 22:35+0700\n"
+"POT-Creation-Date: 2026-06-26 22:41+0700\n"
 "PO-Revision-Date: 2026-06-22 17:27+0700\n"
 "Last-Translator: Zen Pomodoro contributors\n"
 "Language-Team: ru\n"
@@ -11,7 +11,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: applet.js:625
 msgid "Strict focus is on"
@@ -548,8 +549,8 @@ msgstr "Техника Pomodoro 🍅"
 msgid ""
 "In the late 1980s, university student Francesco Cirillo couldn't focus on "
 "his studies. He bet himself he could stay concentrated for just a few "
-"minutes and reached for the first timer he could find — a kitchen one shaped"
-" like a tomato. In Italian, a tomato is a “pomodoro”, and that's how the "
+"minutes and reached for the first timer he could find — a kitchen one shaped "
+"like a tomato. In Italian, a tomato is a “pomodoro”, and that's how the "
 "method got its name."
 msgstr ""
 "В конце 1980-х студент Франческо Чирилло никак не мог сосредоточиться над "
@@ -563,8 +564,8 @@ msgid ""
 "Promise yourself just 25 minutes of focus on one task, and starting becomes "
 "easy."
 msgstr ""
-"Идея проста: большие дела пугают, а один помидор — нет. Договоритесь с собой"
-" всего на 25 минут фокуса на одной задаче, и начать станет легко."
+"Идея проста: большие дела пугают, а один помидор — нет. Договоритесь с собой "
+"всего на 25 минут фокуса на одной задаче, и начать станет легко."
 
 #: features.js:1015
 msgid ""
@@ -603,12 +604,12 @@ msgstr ""
 #: features.js:1018
 msgid ""
 "Tip: when something distracts you, don't drop what you're doing — jot the "
-"thought down and come back to it on your break. Every finished pomodoro is a"
-" small win that keeps your momentum going."
+"thought down and come back to it on your break. Every finished pomodoro is a "
+"small win that keeps your momentum going."
 msgstr ""
 "Совет: отвлеклись — не бросайте дело, а запишите мысль и вернитесь к ней на "
-"перерыве. Каждый завершённый помидор — маленькая победа, которая держит темп"
-" без выгорания."
+"перерыве. Каждый завершённый помидор — маленькая победа, которая держит темп "
+"без выгорания."
 
 #: features.js:1019 features.js:1619
 msgid "Close"
@@ -755,8 +756,8 @@ msgstr "Что такое техника Pomodoro? 🍅"
 #: features.js:1123
 msgid ""
 "Focus in short sprints with deliberate rest: about 25 minutes on one task, "
-"then a 5-minute break; after four sprints, take a longer 15–30 minute break."
-" The finite countdown keeps a task approachable and the regular breaks "
+"then a 5-minute break; after four sprints, take a longer 15–30 minute break. "
+"The finite countdown keeps a task approachable and the regular breaks "
 "protect your attention."
 msgstr ""
 "Работайте короткими спринтами с осознанным отдыхом: около 25 минут на одной "
@@ -1053,14 +1054,15 @@ msgstr ""
 #: features.js:2289
 msgid ""
 "Focus spotlight is armed. When your next focus session starts, every window "
-"except the one you're working in dims, so your task stands out. Click the "
-"on-screen pill to exit."
+"except the one you're working in dims, so your task stands out. Click the on-"
+"screen pill to exit."
 msgstr ""
 "Прожектор фокуса взведён. Когда начнётся следующая фокус‑сессия, все окна, "
 "кроме рабочего, затемнятся, чтобы выделить твою задачу. Нажми плашку на "
 "экране, чтобы выйти."
 
 # --- Zen / Focus until / Breathing ---
+#. settings-schema.json->sec_zen->title
 #: features.js:2290 menu.js:463 menu.js:507
 msgid "Zen mode"
 msgstr "Режим Дзен"
@@ -1450,8 +1452,7 @@ msgid "Long Break Duration:"
 msgstr "Длительность длинного перерыва:"
 
 #. settings-schema.json->long_break_duration->tooltip
-msgid ""
-"Length of the longer break after a set of pomodoros (classic is 15–30)."
+msgid "Length of the longer break after a set of pomodoros (classic is 15–30)."
 msgstr ""
 "Длительность длинного перерыва после серии помидоров (классически 15–30)."
 
@@ -1460,8 +1461,7 @@ msgid "Number of pomodori before long break:"
 msgstr "Помидоров до длинного перерыва:"
 
 #. settings-schema.json->pomodori_number->tooltip
-msgid ""
-"How many focus blocks to complete before the long break (classic is 4)."
+msgid "How many focus blocks to complete before the long break (classic is 4)."
 msgstr "Сколько блоков фокуса до длинного перерыва (классически — 4)."
 
 #. settings-schema.json->start_automatically_on_load->description
@@ -1617,8 +1617,7 @@ msgstr "Горячая клавиша: записать отвлечение"
 msgid ""
 "Keyboard shortcut to pop up a quick note for a distracting thought, without "
 "opening the menu."
-msgstr ""
-"Горячая клавиша для быстрой заметки об отвлечении — без открытия меню."
+msgstr "Горячая клавиша для быстрой заметки об отвлечении — без открытия меню."
 
 #. settings-schema.json->start_on_click->description
 msgid "Start the timer with a single click when idle"
@@ -1638,9 +1637,9 @@ msgstr "Управлять таймером мышью на панели"
 
 #. settings-schema.json->panel_scroll_control->tooltip
 msgid ""
-"Scroll up on the applet to start or resume, scroll down to pause, and "
-"middle-click to skip the phase. Turn this off if you sometimes scroll over "
-"the panel by accident."
+"Scroll up on the applet to start or resume, scroll down to pause, and middle-"
+"click to skip the phase. Turn this off if you sometimes scroll over the "
+"panel by accident."
 msgstr ""
 "Прокрутка вверх по апплету — старт или продолжить, вниз — пауза, средний "
 "клик — пропустить фазу. Отключите, если иногда случайно прокручиваете над "
@@ -1672,8 +1671,7 @@ msgstr "Показывать текущую задачу плашкой на э�
 
 #. settings-schema.json->focus_show_task_chip->tooltip
 msgid "Show the current task in a small on-screen chip while focusing."
-msgstr ""
-"Показывать текущую задачу маленькой плашкой на экране во время фокуса."
+msgstr "Показывать текущую задачу маленькой плашкой на экране во время фокуса."
 
 #. settings-schema.json->focus_calm_ending->description
 msgid "Calm ending: no anxious pulsing near the end of a timer"
@@ -1685,8 +1683,8 @@ msgstr "Без тревожного мигания в конце — споко�
 
 #. settings-schema.json->focus_start_ritual->description
 msgid ""
-"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus"
-" begins"
+"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus "
+"begins"
 msgstr ""
 "Ритуал старта: короткая надпись «Фокус: <задача>» по центру и плавное "
 "появление в начале фокуса"
@@ -1780,8 +1778,8 @@ msgstr "Интенсивность свечения"
 
 #. settings-schema.json->glow_intensity->tooltip
 msgid ""
-"How bright the on-screen edge glow is during focus — higher is more visible,"
-" lower is subtler."
+"How bright the on-screen edge glow is during focus — higher is more visible, "
+"lower is subtler."
 msgstr ""
 "Насколько ярко светится край экрана во время фокуса — выше заметнее, ниже "
 "мягче."
@@ -1813,11 +1811,11 @@ msgstr "Расслабление 4-6"
 
 #. settings-schema.json->breathing_pattern->tooltip
 msgid ""
-"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6"
-" — seconds per phase."
+"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 "
+"— seconds per phase."
 msgstr ""
-"Ритм дыхания для гайда: Box (4-4-4-4), успокаивающий 4-7-8 или расслабленный"
-" 4-6 — секунды на фазу."
+"Ритм дыхания для гайда: Box (4-4-4-4), успокаивающий 4-7-8 или расслабленный "
+"4-6 — секунды на фазу."
 
 #. settings-schema.json->chip_position->description
 msgid "Task chip position"
@@ -1873,8 +1871,8 @@ msgstr "Превью рамки фокуса"
 
 #. settings-schema.json->preview_appearance_button->tooltip
 msgid ""
-"Briefly show the on-screen focus frame and task chip with the current colors"
-" and style (works when no timer is running)."
+"Briefly show the on-screen focus frame and task chip with the current colors "
+"and style (works when no timer is running)."
 msgstr ""
 "Кратко показать экранную рамку фокуса и плашку задачи с текущими цветами и "
 "стилем (работает, когда таймер не запущен)."
@@ -1912,8 +1910,8 @@ msgid ""
 "A short celebration when you complete a task that met its 🍅 estimate (or "
 "earned at least one). Confetti respects reduce-motion."
 msgstr ""
-"Короткое празднование при завершении задачи, которая выполнила свою оценку 🍅"
-" (или набрала хотя бы одну). Конфетти учитывает «уменьшить движение»."
+"Короткое празднование при завершении задачи, которая выполнила свою оценку "
+"🍅 (или набрала хотя бы одну). Конфетти учитывает «уменьшить движение»."
 
 #. settings-schema.json->task_celebration_preview_button->description
 msgid "Preview the celebration"
@@ -2034,16 +2032,15 @@ msgid ""
 "During breaks, show an expanding and contracting circle that paces your "
 "breathing to help you unwind."
 msgstr ""
-"Во время перерыва показывает расширяющийся и сжимающийся круг, задающий ритм"
-" дыхания, чтобы расслабиться."
+"Во время перерыва показывает расширяющийся и сжимающийся круг, задающий ритм "
+"дыхания, чтобы расслабиться."
 
 #. settings-schema.json->zen_mode_enabled->description
 msgid ""
-"Enable Zen mode (focus spotlight — dims other windows, toggled from the "
-"menu)"
+"Enable Zen mode (focus spotlight — dims other windows, toggled from the menu)"
 msgstr ""
-"Включить режим дзен (прожектор фокуса — затемняет остальные окна, включается"
-" из меню)"
+"Включить режим дзен (прожектор фокуса — затемняет остальные окна, включается "
+"из меню)"
 
 #. settings-schema.json->zen_mode_enabled->tooltip
 msgid ""
@@ -2082,8 +2079,8 @@ msgstr "Строгий фокус: без паузы и пропуска во в
 
 #. settings-schema.json->strict_focus->tooltip
 msgid ""
-"While a focus block is running, hide pause and skip so you commit to it. You"
-" can still Reset to abandon the session — it's never a hard lock."
+"While a focus block is running, hide pause and skip so you commit to it. You "
+"can still Reset to abandon the session — it's never a hard lock."
 msgstr ""
 "Пока идёт блок фокуса, пауза и пропуск скрыты, чтобы вы не отвлекались. "
 "Сессию всё равно можно сбросить — это не жёсткая блокировка."
@@ -2131,8 +2128,8 @@ msgstr "Команда при старте фокуса"
 
 #. settings-schema.json->focus_start_command->tooltip
 msgid ""
-"Pick a script to run when a focus block starts (e.g. enable Do Not Disturb)."
-" You can also type a command."
+"Pick a script to run when a focus block starts (e.g. enable Do Not Disturb). "
+"You can also type a command."
 msgstr ""
 "Выберите скрипт для запуска при старте фокуса (напр. включить «Не "
 "беспокоить»). Можно и вписать команду."
@@ -2175,8 +2172,7 @@ msgstr ""
 
 #. settings-schema.json->pushover_help->description
 msgid ""
-"Free phone/desktop alerts. Sign up at pushover.net and paste your keys "
-"below."
+"Free phone/desktop alerts. Sign up at pushover.net and paste your keys below."
 msgstr ""
 "Бесплатные уведомления на телефон/ПК. Зарегистрируйтесь на pushover.net и "
 "вставьте ключи ниже."
@@ -2213,11 +2209,11 @@ msgstr "Настроить тексты, звуки и приоритет"
 
 #. settings-schema.json->pushover_customize->tooltip
 msgid ""
-"Show options to change the text, sound and priority for each event. Off uses"
-" sensible defaults."
+"Show options to change the text, sound and priority for each event. Off uses "
+"sensible defaults."
 msgstr ""
-"Показать параметры изменения текста, звука и приоритета для каждого события."
-" Если выключено — используются разумные значения по умолчанию."
+"Показать параметры изменения текста, звука и приоритета для каждого события. "
+"Если выключено — используются разумные значения по умолчанию."
 
 #. settings-schema.json->pushover_title->description
 msgid "Notification title"
@@ -2254,12 +2250,12 @@ msgstr "Блокировать отвлекающие сайты"
 #. settings-schema.json->enable_blocking->tooltip
 msgid ""
 "When on, the sites below are blocked right now and stay blocked until you "
-"turn this off. Run \"Set up passwordless blocking\" once so toggling doesn't"
-" ask for a password."
+"turn this off. Run \"Set up passwordless blocking\" once so toggling doesn't "
+"ask for a password."
 msgstr ""
 "Когда включено, сайты ниже блокируются прямо сейчас и остаются "
-"заблокированы, пока не выключишь. Один раз настрой "
-"«passwordless»-блокировку, чтобы переключение не спрашивало пароль."
+"заблокированы, пока не выключишь. Один раз настрой «passwordless»-"
+"блокировку, чтобы переключение не спрашивало пароль."
 
 #. settings-schema.json->block_domains->description
 msgid "Domains to block (e.g. youtube.com)"
@@ -2271,8 +2267,8 @@ msgstr "Домен"
 
 #. settings-schema.json->block_domains->tooltip
 msgid ""
-"Domains to block while blocking is on, one per row (e.g. youtube.com, "
-"www.youtube.com)."
+"Domains to block while blocking is on, one per row (e.g. youtube.com, www."
+"youtube.com)."
 msgstr ""
 "Домены для блокировки, пока блокировка включена, по одному в строке (напр. "
 "youtube.com, www.youtube.com)."
@@ -2483,8 +2479,8 @@ msgid ""
 "Removes the system policy and the root helper, so blocking asks for your "
 "password again each time."
 msgstr ""
-"Удаляет системную политику и root-хелпер — блокировка снова будет спрашивать"
-" пароль каждый раз."
+"Удаляет системную политику и root-хелпер — блокировка снова будет спрашивать "
+"пароль каждый раз."
 
 #. settings-schema.json->onboarding_button->description
 msgid "Run the quick-start guide"
@@ -2523,8 +2519,8 @@ msgid ""
 "Sent when a long break begins. {task} and {minutes} are substituted. Leave "
 "empty to send nothing."
 msgstr ""
-"Отправляется при старте длинного перерыва. {task} и {minutes} подставляются."
-" Пусто — не слать."
+"Отправляется при старте длинного перерыва. {task} и {minutes} подставляются. "
+"Пусто — не слать."
 
 #. settings-schema.json->pushover_msg_goal->description
 msgid "Message when the daily goal is reached"
@@ -2672,8 +2668,8 @@ msgstr "Файл фонового звука"
 
 #. settings-schema.json->focus_ambient_file->tooltip
 msgid ""
-"Pick your own looping ambient sound. Leave empty for the built-in soft brown"
-" noise."
+"Pick your own looping ambient sound. Leave empty for the built-in soft brown "
+"noise."
 msgstr ""
 "Выберите свой зацикленный фоновый звук. Оставьте пустым для встроенного "
 "коричневого шума."

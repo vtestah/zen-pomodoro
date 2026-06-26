@@ -40,7 +40,8 @@
             "title": "Focus",
             "sections": [
                 "sec_goals",
-                "sec_modes"
+                "sec_modes",
+                "sec_zen"
             ]
         },
         "sounds": {
@@ -166,13 +167,19 @@
             "title": "Modes",
             "keys": [
                 "break_breathing",
-                "zen_mode_enabled",
-                "zen_dim_strength",
-                "zen_dim_desktop",
                 "focus_until_enabled",
                 "focus_dnd",
                 "pause_media",
                 "strict_focus"
+            ]
+        },
+        "sec_zen": {
+            "type": "section",
+            "title": "Zen mode",
+            "keys": [
+                "zen_mode_enabled",
+                "zen_dim_strength",
+                "zen_dim_desktop"
             ]
         },
         "sec_sounds": {

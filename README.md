@@ -84,10 +84,10 @@ regenerates `CHANGELOG.md`, makes a `chore(release): vX.Y.Z` commit and tag, and
 offers to build the public package. Full steps in **[RELEASING.md](RELEASING.md)**.
 
 ## Translations
-All catalogs in `po/` are complete (20 languages). To pick up new strings:
+Eight of the 20 catalogs are fully translated (`ru`, `de`, `es`, `fr`, `it`, `nl`, `pt`, `pt_BR`); the rest are partial and fall back to English for untranslated strings. To pick up new strings:
 regenerate the `.pot` (`cinnamon-xlet-makepot` run from `6.4/`), `msgmerge` the
 `.po` files, fill the gaps, and `msgfmt --check`. `ru` is hand‑maintained; the
-others are machine translations — native review welcome.
+remaining catalogs are machine translations — native review welcome.
 
 ## Publishing to Cinnamon Spices
 `./build-public.sh` packages this source into `dist/zen-pomodoro@vtestah/`: it

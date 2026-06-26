@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
 # Generate the built-in ambient loops for Zen Pomodoro.
 #
-# White / pink / brown noise and the rain / sea ambiences are SYNTHESIZED from
-# noise with ffmpeg. Noise is not a work of authorship, so these generated files
-# are public domain (CC0) — no third-party licensing. Re-run to regenerate.
+# The noise ambiences (white/pink/brown noise, rain, sea, wind, stream) are
+# SYNTHESIZED from noise with ffmpeg. Noise is not a work of authorship, so
+# these generated files are public domain (CC0) — no third-party licensing.
+# Re-run to regenerate.
 #
-# Requires: ffmpeg (with the anoisesrc source filter).
+# (fan and street are real field recordings, also CC0 — fetched + looped by
+# tools/fetch-recordings.sh, NOT generated here.)
 #
-# Loop notes: pure noise loops without an audible seam (broadband). The rain and
-# sea tremolo periods divide their file length evenly (rain 0.5 Hz x 10 s = 5;
-# sea 0.1 Hz x 20 s = 2) so the amplitude matches at the loop point.
+# Requires: ffmpeg + ffprobe (with the anoisesrc source filter).
+#
+# Loop notes: white/pink/brown/rain/sea rely on broadband noise masking the
+# loop point; wind and stream are additionally wrapped with a short equal-power
+# crossfade (seamless(): the last <xf>s blends into the first <xf>s) so the
+# seam is inaudible.
 set -euo pipefail
 
 cd "$(dirname "$0")/../sounds"
@@ -21,6 +26,24 @@ fi
 
 FF=(ffmpeg -hide_banner -loglevel error -y)
 COMMON=(-ac 1 -ar 44100 -c:a libvorbis -b:a 56k)
+
+# Wrap a clip into a seamless loop: fold its last <xf> seconds over the first
+# <xf> (equal-power crossfade), so the end flows into the start with no seam.
+seamless() {  # in out xf
+    local in="$1" out="$2" xf="$3" L Lmxf
+    L=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 "$in")
+    Lmxf=$(awk "BEGIN{printf \"%.3f\", $L-$xf}")
+    "${FF[@]}" -i "$in" -filter_complex \
+"[0:a]aresample=44100,aformat=channel_layouts=mono,asplit=3[s1][s2][s3];\
+[s1]atrim=start=$Lmxf,asetpts=N/SR/TB,afade=t=out:st=0:d=$xf:curve=qsin[tail];\
+[s2]atrim=0:$xf,asetpts=N/SR/TB,afade=t=in:st=0:d=$xf:curve=qsin[head];\
+[tail][head]amix=inputs=2:normalize=0[seg1];\
+[s3]atrim=$xf:$Lmxf,asetpts=N/SR/TB[seg2];\
+[seg1][seg2]concat=n=2:v=0:a=1,alimiter=limit=0.95[out]" \
+        -map "[out]" -ac 1 -ar 44100 -c:a libvorbis -b:a 64k "$out"
+}
+
+TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT
 
 # Plain noises.
 "${FF[@]}" -f lavfi -i "anoisesrc=color=white:a=0.40:d=8"  -af "lowpass=f=12000"        "${COMMON[@]}" white.ogg
@@ -35,5 +58,17 @@ COMMON=(-ac 1 -ar 44100 -c:a libvorbis -b:a 56k)
 "${FF[@]}" -f lavfi -i "anoisesrc=color=brown:a=0.92:d=20" \
     -af "lowpass=f=1800,tremolo=f=0.1:d=0.6" "${COMMON[@]}" sea.ogg
 
+# Wind: band-passed pink noise with gentle gusts, then wrapped seamless (15 s).
+"${FF[@]}" -f lavfi -i "anoisesrc=color=pink:a=0.80:d=15" \
+    -af "highpass=f=180,lowpass=f=3200,tremolo=f=0.2:d=0.35,alimiter=limit=0.9" "${COMMON[@]}" "$TMP/wind.ogg"
+seamless "$TMP/wind.ogg" wind.ogg 1.5
+
+# Stream: high-passed white noise, a fast bubbling shimmer (8 Hz) under a slow
+# swell (0.5 Hz), then wrapped seamless (10 s).
+"${FF[@]}" -f lavfi -i "anoisesrc=color=white:a=0.55:d=10" \
+    -af "highpass=f=500,lowpass=f=8500,tremolo=f=8:d=0.10,tremolo=f=0.5:d=0.15,alimiter=limit=0.9" "${COMMON[@]}" "$TMP/stream.ogg"
+seamless "$TMP/stream.ogg" stream.ogg 1.0
+
 echo "Generated:"
-ls -la white.ogg pink.ogg brown.ogg rain.ogg sea.ogg
+ls -la white.ogg pink.ogg brown.ogg rain.ogg sea.ogg wind.ogg stream.ogg
+echo "(fan.ogg / street.ogg are CC0 recordings — run tools/fetch-recordings.sh)"

@@ -1009,22 +1009,30 @@ function install(proto) {
         // choice; multi-select (obstacles) toggles up to `cap` with a "Selected n
         // of cap" hint, refusing further picks at the cap. Returns a controller so
         // the keyboard accelerators can select and move focus by index.
-        let ask = (key, opts, multi, cap) => {
+        let ask = (key, opts, multi, cap, onNext) => {
             let col = new St.BoxLayout({ vertical: true, style: 'spacing: 2px;' });
             let btns = [];
             if (multi && !Array.isArray(answers[key])) {
                 answers[key] = (answers[key] === undefined || answers[key] === null) ? [] : [answers[key]];
             }
             let isSel = (v) => multi ? (answers[key].indexOf(v) !== -1) : (answers[key] === v);
+            let RING = ' border: 2px solid rgba(255,255,255,0.92);'; // visible keyboard-focus ring
+            let focusedIdx = -1;
             let hint = null;
+            let styleOne = (i) => {
+                let x = btns[i];
+                if (!x) { return; }
+                let s = isSel(x.v) ? SEL : BASE;
+                if (i === focusedIdx) { s += RING; }
+                x.b.set_style(s);
+            };
             let repaint = () => {
-                btns.forEach((x, i) => {
-                    x.b.set_style(isSel(x.v) ? SEL : BASE);
-                    this._dashSetA11y(x.b, opts[i].label);
-                });
+                btns.forEach((x, i) => { styleOne(i); this._dashSetA11y(x.b, opts[i].label); });
                 if (hint) { hint.set_text(_("Selected %d of %d").format(answers[key].length, cap)); }
             };
-            let activate = (i) => {
+            // Select (single) or toggle (multi) an option — click / Space / number.
+            // Never changes step; advancing is Enter or the Next button.
+            let select = (i) => {
                 let o = opts[i];
                 if (!o) { return; }
                 if (multi) {
@@ -1042,7 +1050,21 @@ function install(proto) {
                 let b = new St.Button({ x_expand: true, style_class: 'button' });
                 b.can_focus = true;   // St.Button ignores the constructor arg; set it so Tab/AT reach it
                 b.set_label(o.label);
-                b.connect('clicked', () => activate(i));
+                // Click / Space select (toggle for multi) — never change step.
+                b.connect('clicked', () => select(i));
+                // Enter on a focused option advances instead of toggling it, so the
+                // model stays consistent: Space = select, Enter = next.
+                b.connect('key-press-event', (actor, ev) => {
+                    let s = ev.get_key_symbol();
+                    if (s === Clutter.KEY_Return || s === Clutter.KEY_KP_Enter || s === Clutter.KEY_ISO_Enter) {
+                        if (onNext) { onNext(); }
+                        return true; // stop: don't let the button toggle on Enter
+                    }
+                    return false; // Space (and others) fall through to native activation
+                });
+                // Visible ring on the keyboard-focused option, so arrows/Tab read clearly.
+                b.connect('key-focus-in', () => { focusedIdx = i; styleOne(i); });
+                b.connect('key-focus-out', () => { if (focusedIdx === i) { focusedIdx = -1; } styleOne(i); });
                 btns.push({ b: b, v: o.value });
                 col.add(b);
             });
@@ -1054,12 +1076,14 @@ function install(proto) {
             return {
                 actor: col,
                 count: opts.length,
-                activate: activate,
+                select: select,
                 move: (d) => {
+                    // Arrows just move the visible focus ring (Space selects, Enter advances).
                     let cur = global.stage.get_key_focus();
                     let i = btns.findIndex((x) => x.b === cur);
-                    i = (i === -1) ? 0 : Math.max(0, Math.min(btns.length - 1, i + d));
-                    if (btns[i]) { btns[i].b.grab_key_focus(); }
+                    if (i === -1) { i = 0; }
+                    let ni = Math.max(0, Math.min(btns.length - 1, i + d));
+                    if (btns[ni]) { btns[ni].b.grab_key_focus(); }
                 },
                 focusFirst: () => {
                     let i = 0;
@@ -1124,29 +1148,43 @@ function install(proto) {
                 buttons.push({ label: _("Let's go"), default: true, action: () => { st.step++; build(); } });
             } else if (s <= nQ) {
                 let q = flow[s - 1];
+                let isMulti = q.type === 'multi';
                 content.add(title(q.title));
                 if (q.help) { content.add(para(q.help)); }
-                let ctrl = ask(q.key, q.opts, q.type === 'multi', q.cap);
+                // Advancing to the next step (Enter or Next), deferred to idle so we
+                // never tear the row down from inside its own key/click handler.
+                // `committed` guards against a double-advance on rapid input.
+                let committed = false;
+                let advance = () => {
+                    if (committed) { return; }
+                    committed = true;
+                    GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { st.step++; build(); return GLib.SOURCE_REMOVE; });
+                };
+                let ctrl = ask(q.key, q.opts, isMulti, q.cap, advance);
                 content.add(ctrl.actor);
-                let kbHint = new St.Label({ text: _("Tip: press 1–%d to choose, or use Tab and the arrow keys.").format(q.opts.length),
+                let hintText = isMulti
+                    ? _("Space or 1–%d to toggle · ↑↓ to move · Enter for next").format(q.opts.length)
+                    : _("Space or 1–%d to choose · ↑↓ to move · Enter for next").format(q.opts.length);
+                let kbHint = new St.Label({ text: hintText,
                     style: 'font-size: 0.78em; padding: 8px 2px 0 2px; color: rgba(150,150,150,0.9);' });
                 kbHint.clutter_text.line_wrap = true;
                 content.add(kbHint);
                 st.nav = {
                     count: ctrl.count,
-                    selectIndex: (i) => ctrl.activate(i),
+                    selectIndex: (i) => ctrl.select(i),
                     move: (d) => ctrl.move(d),
                     back: () => { st.step--; build(); }
                 };
                 st.focusFirst = ctrl.focusFirst;
                 buttons.push({ label: _("Back"), action: () => { st.step--; build(); } });
-                buttons.push({ label: _("Next"), default: true, action: () => { st.step++; build(); } });
+                buttons.push({ label: _("Next"), default: true, action: advance });
             } else {
                 let plan = this._computeFocusPlan(answers);
                 content.add(title(_("Your tailored setup \ud83c\udf45")));
                 content.add(para(_("Based on your answers, here's what I'll set up. Untick anything you'd rather skip, then apply.")));
                 let list = new St.BoxLayout({ vertical: true, style: 'spacing: 4px; padding: 6px 0 2px 0;' });
                 let toggles = [];           // optional items, in display order
+                let focusedBox = null;
                 plan.items.filter((it) => it.label).forEach((it) => {
                     if (it.core) {
                         // Core recommendation (the focus rhythm) — always applied.
@@ -1159,7 +1197,7 @@ function install(proto) {
                     } else {
                         // Optional recommendation — a focusable checkbox the user can untick.
                         if (it.enabled === undefined) { it.enabled = true; }
-                        let box = new St.Button({ x_expand: true, style_class: 'button', style: 'padding: 5px 6px; border-radius: 6px;' });
+                        let box = new St.Button({ x_expand: true, style_class: 'button' });
                         box.can_focus = true;   // St.Button ignores the constructor arg; set it so Tab/AT reach it
                         let inner = new St.BoxLayout({ vertical: false, x_expand: true, style: 'spacing: 8px;' });
                         let check = new St.Label({ y_align: Clutter.ActorAlign.START });
@@ -1172,16 +1210,37 @@ function install(proto) {
                             check.set_text(it.enabled ? "\u2611" : "\u2610");
                             check.set_style((it.enabled ? 'color: #6fcf97;' : 'color: rgba(150,150,150,0.9);') + ' font-weight: bold;');
                             label.set_opacity(it.enabled ? 255 : 120);
-                            // Accessible name carries the checkbox state (glyph is language-neutral).
+                            // Visible ring on the keyboard-focused row, plus an accessible
+                            // name that carries the checkbox state (glyph is language-neutral).
+                            let ring = (focusedBox === box) ? ' border: 2px solid rgba(255,255,255,0.92);' : '';
+                            box.set_style('padding: 5px 6px; border-radius: 6px;' + ring);
                             this._dashSetA11y(box, (it.enabled ? "\u2611 " : "\u2610 ") + it.label);
                         };
                         box.connect('clicked', () => { it.enabled = !it.enabled; paint(); });
+                        box.connect('key-focus-in', () => { focusedBox = box; paint(); });
+                        box.connect('key-focus-out', () => { if (focusedBox === box) { focusedBox = null; } paint(); });
+                        // Space toggles (native click); Enter applies, consistent with the
+                        // questions where Enter means "proceed".
+                        box.connect('key-press-event', (actor, ev) => {
+                            let s = ev.get_key_symbol();
+                            if (s === Clutter.KEY_Return || s === Clutter.KEY_KP_Enter || s === Clutter.KEY_ISO_Enter) {
+                                applyPlan(plan, true);
+                                return true;
+                            }
+                            return false;
+                        });
                         paint();
                         toggles.push({ it: it, box: box });
                         list.add(box);
                     }
                 });
                 content.add(list);
+                if (toggles.length) {
+                    let rHint = new St.Label({ text: _("Space to toggle · ↑↓ to move · Enter to apply"),
+                        style: 'font-size: 0.78em; padding: 8px 2px 0 2px; color: rgba(150,150,150,0.9);' });
+                    rHint.clutter_text.line_wrap = true;
+                    content.add(rHint);
+                }
                 let toggleAt = (i) => { if (toggles[i]) { toggles[i].box.emit('clicked', 1); toggles[i].box.grab_key_focus(); } };
                 st.nav = {
                     count: toggles.length,
@@ -2144,7 +2203,7 @@ function install(proto) {
     // Resolve the ambient sound path from the chosen built-in noise, or the
     // user's own file when "Custom file" is selected.
     proto._ambientPath = function() {
-        let map = { white: 'white.ogg', pink: 'pink.ogg', brown: 'brown.ogg', rain: 'rain.ogg', sea: 'sea.ogg' };
+        let map = { white: 'white.ogg', pink: 'pink.ogg', brown: 'brown.ogg', rain: 'rain.ogg', sea: 'sea.ogg', fan: 'fan.ogg', wind: 'wind.ogg', stream: 'stream.ogg', street: 'street.ogg' };
         let choice = this._opt_focusAmbientChoice || 'off';
         let f;
         if (choice === 'custom') {
@@ -2159,7 +2218,9 @@ function install(proto) {
         let path = this._ambientPath();
         if (!this._ambientSound || this._ambientSoundPath !== path) {
             if (this._ambientSound) { this._ambientSound.stop(); }
-            this._ambientSound = new SoundModule.SoundEffect(path);
+            // Gapless looping background player (GStreamer), so the loop has no
+            // restart gap; falls back to a looping SoundEffect without GStreamer.
+            this._ambientSound = new SoundModule.AmbientLoop(path);
             this._ambientSoundPath = path;
         }
         return this._ambientSound;
@@ -2200,9 +2261,10 @@ function install(proto) {
             return;
         }
         if (this._ambientPreview) { this._ambientPreview.stop(); }
-        this._ambientPreview = new SoundModule.SoundEffect(this._ambientPath());
+        this._ambientPreview = new SoundModule.AmbientLoop(this._ambientPath());
         let vol = Math.max(0, Math.min(1, (this._opt_focusAmbientVolume || 40) / 100));
-        this._ambientPreview.play({ volume: vol, preview: true });
+        // ~6 s preview with a soft fade-out (gapless), not a hard 2 s cut.
+        this._ambientPreview.previewFor(vol, 6000, 600);
     };
 
     // Live volume: replay the ambient loop at the new level while focusing.
@@ -2434,10 +2496,7 @@ function install(proto) {
     // screen so you actually step away. Only on breaks (never focus); the lock
     // is cancelled if the break ends/pauses before the grace period elapses.
     proto._maybeLockForBreak = function() {
-        if (this._breakLockTimeoutId) {
-            try { GLib.source_remove(this._breakLockTimeoutId); } catch (e) {}
-            this._breakLockTimeoutId = 0;
-        }
+        this._cancelBreakLock();
         if (!this._opt_breakLockEnabled) {
             return;
         }
@@ -2449,27 +2508,58 @@ function install(proto) {
             return;
         }
         let lockState = s;
-        try {
-            Main.notify(_("Break — locking the screen"),
-                _("Locking in a few seconds so you can step away. Skip the break to cancel."));
-        } catch (e) {}
+        // A clearly cancellable warning, so the lock never feels like a trap.
+        this._notifyWithActions(
+            _("Break — locking the screen"),
+            _("Locking in a few seconds so you can step away."),
+            [{ id: 'zen-no-lock', label: _("Don't lock now"), fn: () => this._cancelBreakLock() }]
+        );
         this._breakLockTimeoutId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 6, () => {
             this._breakLockTimeoutId = 0;
-            // Only lock if we're still in the same break (not skipped/resumed).
-            if (this._currentState === lockState) {
+            // Lock only if still in the same break and nothing full-screen is
+            // playing (a video/call/presentation) — don't interrupt that.
+            if (this._currentState === lockState && !this._anyMonitorFullscreen()) {
                 this._lockScreen();
             }
             return GLib.SOURCE_REMOVE;
         });
     };
 
-    proto._lockScreen = function() {
-        try {
-            Gio.Subprocess.new(['cinnamon-screensaver-command', '--lock'],
-                Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE);
-        } catch (e) {
-            global.logError("Zen Pomodoro: screen lock failed: " + e.message);
+    proto._cancelBreakLock = function() {
+        if (this._breakLockTimeoutId) {
+            try { GLib.source_remove(this._breakLockTimeoutId); } catch (e) {}
+            this._breakLockTimeoutId = 0;
         }
+    };
+
+    proto._anyMonitorFullscreen = function() {
+        try {
+            let n = global.display.get_n_monitors();
+            for (let i = 0; i < n; i++) {
+                if (global.display.get_monitor_in_fullscreen(i)) { return true; }
+            }
+        } catch (e) {}
+        return false;
+    };
+
+    proto._lockScreen = function() {
+        // Try the Cinnamon locker first, then a generic logind fallback so the
+        // option works beyond cinnamon-screensaver.
+        let tries = [
+            ['cinnamon-screensaver-command', '--lock'],
+            ['loginctl', 'lock-session']
+        ];
+        for (let i = 0; i < tries.length; i++) {
+            try {
+                Gio.Subprocess.new(tries[i], Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE);
+                return;
+            } catch (e) {
+                global.logError("Zen Pomodoro: lock via " + tries[i][0] + " failed: " + e.message);
+            }
+        }
+        try {
+            Main.notify(_("Couldn't lock the screen"), _("No screen locker was available."));
+        } catch (e) {}
     };
 
     // Optional push notification (Pushover) on key events, opt-in. Uses the

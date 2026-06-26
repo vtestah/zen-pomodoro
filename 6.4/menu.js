@@ -242,6 +242,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._taskLabel.set_reactive(true);
         this._taskLabel.set_track_hover(true);
         this._taskLabel.connect('button-press-event', () => { this.emit('choose-task'); return true; });
+        this._taskLabel.connect('notify::hover', () => this._refreshTaskLabelColor());
         new Tooltips.Tooltip(this._taskLabel, _("Change task"));
         this._dailyLabel = new St.Label({
             text: "",
@@ -606,6 +607,19 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 try { l.set_style("color: " + dim + ";"); } catch (e) {}
             }
         }
+        // The current-task line is hoverable: brighten it on hover. Re-applied
+        // here so the per-tick recolour above doesn't fight the hover state.
+        this._refreshTaskLabelColor();
+    }
+
+    // Brighten the clickable current-task line on hover; dim otherwise.
+    _refreshTaskLabelColor() {
+        if (!this._taskLabel) { return; }
+        let hovered = false;
+        try { hovered = this._taskLabel.hover; } catch (e) {}
+        try {
+            this._taskLabel.set_style("color: " + (hovered ? this._brightTextColor() : this._dimText()) + ";");
+        } catch (e) {}
     }
 
     _applyRuntimeToWidgets(runtime) {
@@ -892,7 +906,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
     // Returns Pango markup: the leading focus dot is rendered smaller, to match
     // the dot used in the task and preset lists. Dynamic text is markup-escaped.
     _taskHeaderText(fallbackName) {
-        let dot = "<span size='60%'>\u25cf</span> ";
+        let dot = "<span size='60%' rise='1700'>\u25cf</span> ";
         let cur = this._tasks && this._tasks.find((t) => t.id === this._tasksCurrentId);
         if (cur) {
             let s = dot + GLib.markup_escape_text(cur.title || "", -1);
@@ -1164,13 +1178,14 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             let isActive = (preset.name === active);
             // Mirror the task list: a fixed 14px slot with a centred, smaller dot
             // keeps preset names aligned and the marker vertically centred.
-            let markSlot = new St.BoxLayout({ style: "width: 14px;", y_align: Clutter.ActorAlign.CENTER });
+            let markSlot = new St.BoxLayout({ style: "min-width: 14px;", y_align: Clutter.ActorAlign.CENTER });
+            // Dot is always present (transparent when inactive) so active and
+            // inactive rows are exactly the same width — no indent jump.
             let mark = new St.Label({
                 text: "●", x_expand: true,
                 x_align: Clutter.ActorAlign.CENTER, y_align: Clutter.ActorAlign.CENTER,
-                style: "font-size: 0.6em; color: " + this._accentColor("rgb(235, 175, 75)") + ";"
+                style: "font-size: 0.6em; color: " + (isActive ? this._accentColor("rgb(235, 175, 75)") : "rgba(0,0,0,0)") + ";"
             });
-            mark.visible = isActive;
             markSlot.add_child(mark);
             row.add_child(markSlot);
             let label = new St.Label({ x_expand: true, text: this._presetItemLabel(preset) });
@@ -1228,7 +1243,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         let active = preset.activePreset || "";
         for (let entry of (this._presetItems || [])) {
             let on = entry.preset.name === active;
-            if (entry.mark) { entry.mark.visible = on; }
+            if (entry.mark) {
+                entry.mark.set_style("font-size: 0.6em; color: " + (on ? this._accentColor("rgb(235, 175, 75)") : "rgba(0,0,0,0)") + ";");
+            }
             if (entry.label) {
                 entry.label.set_style(on
                     ? ("font-weight: bold; color: " + this._accentColor("rgb(235, 175, 75)") + ";")

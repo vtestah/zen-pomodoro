@@ -156,9 +156,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_pomodoriNumber = null;
         this._opt_startAutomaticallyOnLoad = null;
         this._opt_showDialogMessages = null;
-        this._opt_autoContinueAfterPomodoro = null;
-        this._opt_autoContinueAfterShortBreak = null;
-        this._opt_autoStartNewAfterFinish = null;
+        this._opt_autoStartNext = null;
         this._opt_panelIconStyle = null;
         this._opt_panelCustomIcon = null;
         this._opt_showTimerInPanel = null;
@@ -469,9 +467,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "zen_dim_strength", "_opt_zenDimStrength", () => this._reapplyZenDim());
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "zen_dim_desktop", "_opt_zenDimDesktop", () => this._reapplyZenDim());
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "show_dialog_messages", "_opt_showDialogMessages", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_start_after_pomodoro_ends", "_opt_autoContinueAfterPomodoro", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_start_after_short_break_ends", "_opt_autoContinueAfterShortBreak", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_start_after_break_ends", "_opt_autoStartNewAfterFinish", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_start_next", "_opt_autoStartNext", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_show_task_chip", "_opt_focusShowTaskChip", () => { this._updateFocusFrame(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_start_ritual", "_opt_focusStartRitual", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "require_focus_task", "_opt_requireFocusTask", emptyCallback);
@@ -1573,7 +1569,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._numPomodoroSetFinished++;
             this._appletMenu.updateCounts(this._numPomodoroSetFinished, this._numPomodoriFinished);
     
-            if (this._opt_autoStartNewAfterFinish) {
+            if (this._opt_autoStartNext) {
                 if (this._longBreakdialog.state === ModalDialog.State.OPENED) {
                     this._longBreakdialog.close();
                 }
@@ -1595,7 +1591,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
     
         timerQueue.connect('timer-queue-before-next-timer', () => {
             let timer = timerQueue.getCurrentTimer();
-            if (!this._opt_autoContinueAfterPomodoro && timer === shortBreakTimer) {
+            if (!this._opt_autoStartNext && timer === shortBreakTimer) {
                 timerQueue.preventStart(true);
                 timerQueue.stop();
                 this._appletMenu.toggleTimerState(false);
@@ -1605,7 +1601,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 }
                 this._openPomodoroFinishedPrompt();
             }
-            else if (!this._opt_autoContinueAfterShortBreak && timer === pomodoroTimer) {
+            else if (!this._opt_autoStartNext && timer === pomodoroTimer) {
                 timerQueue.preventStart(true);
                 timerQueue.stop();
                 this._setBreakOverState('short-break');
@@ -1944,7 +1940,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             let timer = this._timerQueue.getCurrentTimer();
             this._timerQueue.skip();
             if (timer === this._timers.longBreak) {
-                if (!this._opt_autoStartNewAfterFinish) {
+                if (!this._opt_autoStartNext) {
                     this._longBreakdialog.close();
                     this._startNewTimerQueue();
                 }
@@ -2107,7 +2103,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._longBreakdialog = new DialogsModule.PomodoroSetFinishedDialog();
     
         this._longBreakdialog.connect('switch-off-pomodoro', () => {
-            if (!this._timerQueue.isRunning() && !this._opt_autoStartNewAfterFinish) {
+            if (!this._timerQueue.isRunning() && !this._opt_autoStartNext) {
                 this._turnOff();
             } else {
                 this._timerQueue.stop();
@@ -2119,14 +2115,14 @@ class PomodoroApplet extends Applet.TextIconApplet {
     
         this._longBreakdialog.connect('start-new-pomodoro', () => {
             this._timerQueue.skip();
-            if (!this._opt_autoStartNewAfterFinish) {
+            if (!this._opt_autoStartNext) {
                 this._longBreakdialog.close();
                 this._startNewTimerQueue();
             }
         });
     
         this._longBreakdialog.connect('hide-pomodoro-modal', () => {
-            if (!this._timerQueue.isRunning() && !this._opt_autoStartNewAfterFinish) {
+            if (!this._timerQueue.isRunning() && !this._opt_autoStartNext) {
                 this._turnOff();
             }
             this._longBreakdialog.close();

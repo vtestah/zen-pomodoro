@@ -86,7 +86,7 @@ function _recoAssistItem(key, _) {
                 label: _("One-click start and a calm start ritual make it easier to begin.") };
         case 'overwork':
             return { id: 'assist:overwork', core: false, group: 'assist',
-                keys: { auto_start_after_pomodoro_ends: true, show_dialog_messages: true,
+                keys: { auto_start_next: true, show_dialog_messages: true,
                         break_breathing: true, flow_extend: false },
                 label: _("Breaks start on their own so you don't overwork.") };
         case 'anxiety':
@@ -213,7 +213,7 @@ var computeFocusPlan = function(answers, deps) {
     if (answers.autobreak === 'yes') {
         items.push({
             id: 'autobreak', core: false, group: 'assist',
-            keys: { auto_start_after_pomodoro_ends: true, flow_extend: false, break_breathing: true },
+            keys: { auto_start_next: true, flow_extend: false, break_breathing: true },
             label: _("Breaks start on their own so you don't overrun.")
         });
     }

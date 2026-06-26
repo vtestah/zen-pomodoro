@@ -77,9 +77,7 @@
                 "start_automatically_on_load",
                 "session_recovery",
                 "show_dialog_messages",
-                "auto_start_after_pomodoro_ends",
-                "auto_start_after_short_break_ends",
-                "auto_start_after_break_ends",
+                "auto_start_next",
                 "onboarding_button",
                 "about_technique_button",
                 "restore_onboarding_button"
@@ -351,23 +349,11 @@
         "default": true,
         "tooltip": "Show pop-up dialogs at the end of each phase (off keeps it quiet — only on-screen cues)."
     },
-    "auto_start_after_pomodoro_ends": {
+    "auto_start_next": {
         "type": "switch",
-        "description": "Auto start after a pomodoro ends",
+        "description": "Automatically start the next phase",
         "default": true,
-        "tooltip": "When a focus block ends, start its break automatically."
-    },
-    "auto_start_after_short_break_ends": {
-        "type": "switch",
-        "description": "Auto start after a short break ends",
-        "default": true,
-        "tooltip": "When a short break ends, start the next focus block automatically."
-    },
-    "auto_start_after_break_ends": {
-        "type": "switch",
-        "description": "Auto start a new pomodoro after the long break ends",
-        "default": true,
-        "tooltip": "When the long break ends, start a new pomodoro cycle automatically."
+        "tooltip": "When a phase ends, start the next one (focus or break) automatically instead of waiting."
     },
     "panel_icon_style": {
         "type": "combobox",

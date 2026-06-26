@@ -366,12 +366,14 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
     _makeSkipResetItems() {
         let skipItem = new PopupMenu.PopupMenuItem(_("Skip phase"));
         this._skipTimerItem = skipItem;
+        new Tooltips.Tooltip(skipItem.actor, _("Skip the current phase and move on to the next."));
         skipItem.connect('activate', () => {
             this.emit('skip-timer');
         });
 
         let resetItem = new PopupMenu.PopupMenuItem(_("Reset timer"));
         this._resetTimerItem = resetItem;
+        new Tooltips.Tooltip(resetItem.actor, _("Stop the current timer and return to the start. Your pomodoro count for this set is kept."));
         resetItem.connect('activate', () => {
             this.toggleTimerState(false);
             this.emit('reset-timer');
@@ -381,9 +383,11 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
     }
 
     _makeResetAllSubmenu() {
-        // Confirmation submenu to prevent accidental loss of completed counts.
-        let submenu = new PopupMenu.PopupSubMenuMenuItem(_("Reset counters"));
-        let confirm = new PopupMenu.PopupMenuItem(_("Reset timer and counters"));
+        // A submenu acts as the confirmation step, guarding the more destructive
+        // reset (it also clears this set's pomodoro count, not just the timer).
+        let submenu = new PopupMenu.PopupSubMenuMenuItem(_("Reset timer & count"));
+        new Tooltips.Tooltip(submenu.actor, _("Reset the timer and clear this set's pomodoro count. Your saved statistics aren't affected."));
+        let confirm = new PopupMenu.PopupMenuItem(_("Confirm reset"));
         if (confirm.label) {
             confirm.label.set_style_class_name("pomodoro-reset-confirm");
             confirm.label.set_style("color: " + this._accentColor("rgb(220, 120, 120)") + ";");

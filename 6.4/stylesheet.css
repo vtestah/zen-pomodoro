@@ -53,14 +53,6 @@
 /* The focus-task header keeps its theme-driven colour on hover; a fixed white
  * here was invisible on light themes, and the row highlight already shows hover. */
 
-/* Section headers (PRESETS / SESSION). */
-.pomodoro-section {
-    font-size: 0.82em;
-    font-weight: bold;
-    color: rgba(225, 170, 95, 0.72);
-    padding: 8px 0 3px 0;
-}
-
 /* Info rows (label left, value right). */
 .pomodoro-info-label {
     color: rgba(150, 150, 150, 0.95);
@@ -68,12 +60,6 @@
 }
 .pomodoro-info-value {
     font-weight: bold;
-    padding: 2px 0;
-}
-
-/* Compact "preset · status" row (active layout). */
-.pomodoro-compact {
-    color: rgba(150, 150, 150, 0.95);
     padding: 2px 0;
 }
 

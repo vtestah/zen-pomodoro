@@ -50,32 +50,44 @@ and reload the applet (or restart Cinnamon with `Ctrl+Alt+Esc`). Requires
 Cinnamon 6.x; the applet keeps its data under `~/.local/state/zen-pomodoro/`.
 
 ## Features
-- **Calm focus cues:** soft edge-glow progress frame (bottom kept clear for the
-  panel), calm ending (no last-minute blinking), start ritual, optional Zen
-  full-screen overlay, breathing guide on breaks, panel progress ring.
-- **Smart onboarding:** a short wizard tailors a setup from a few questions.
-- **Tasks:** list with pomodoro estimates and per-task progress, templates, a
-  focus-task picker, and quick *Current task* / *Task list* menu access.
-- **Statistics dashboard:** today / week / streak / all-time, hourly pattern,
-  14-day bars, 12-week heatmap, by-task breakdown, milestones, finish-time
-  estimate, and a reset action.
-- **Meaningful breaks:** rotating rest tips, with *+5 min* and *Skip break*
-  actions right in the notification.
-- **Goals & flow:** daily goal + streak with a local celebration, flow-extend,
-  **soft landing** (when focus ends while you're still working, hold the break
-  until a natural pause, or quietly extend, instead of interrupting you; off
-  by default), idle auto-pause, *Focus until...*, optional **strict focus** mode.
-- **Sounds:** ticking, alerts, interval chime, ambient brown noise;
-  Do-Not-Disturb while focusing.
-- **Optional distraction blocking:** block sites you choose during focus by
-  editing `/etc/hosts` with your permission (polkit/pkexec); off by default.
-- **Optional push notifications:** phase changes on your phone via Pushover,
-  using your own user key and app token.
-- **Quick control:** panel mouse wheel (start/pause or adjust focus length),
-  middle-click to skip, start-on-click, keyboard shortcuts.
-- **Appearance:** theme presets + custom accent colours, frame style, glow
-  intensity, font scale, breathing pattern, reduce-motion, with live preview.
-- **Localized** into 20 languages.
+- **Calm focus cues:** a soft edge-glow frame traces your progress (the panel
+  edge stays clear), with a calm ending (no last-minute blinking), a quiet start
+  ritual, an optional full-screen Zen spotlight, a breathing guide on breaks, and
+  a panel progress ring.
+- **Adaptive onboarding:** a short wizard tailors focus length, sounds, breaks
+  and blocking from a few questions, with a review step, keyboard and
+  screen-reader navigation, and a one-click "Undo last setup".
+- **Tasks:** a list with pomodoro estimates and per-task progress, templates, a
+  focus-task picker, and quick *Current task* / *Task list* access from the menu.
+- **Statistics dashboard:** today, this week, this month, streak and all-time, an
+  hourly focus pattern, 14-day bars, a 12-week heatmap, a by-task breakdown,
+  milestones, a finish-time estimate, and one-click export to a CSV file.
+- **Goals & flow:** a daily goal with a streak and a local celebration,
+  flow-extend at the end of a pomodoro, **soft landing** (when a focus block ends
+  while you're still working, it waits for a natural pause instead of cutting you
+  off), idle auto-pause and resume, *Focus until...* a set time, and an optional
+  **strict focus** mode with no pause or skip mid-block.
+- **Calmer breaks:** rotating rest tips with *+5 min* and *Skip break* right in
+  the notification, an optional breathing guide, an optional **lock screen on
+  breaks** (long breaks only, if you prefer), and **auto-pause and resume of
+  music and video** (MPRIS) while you step away.
+- **Stay focused:** optional **site blocking** during focus (edits a clearly
+  marked block of `/etc/hosts` via a one-time polkit/pkexec authorization),
+  **Do-Not-Disturb** while focusing, and a global hotkey to **jot a distracting
+  thought** without leaving your flow.
+- **Sounds:** a ticking option, phase alerts, an interval chime, and ambient
+  soundscapes (white, pink or brown noise, rain, sea, or your own file).
+- **Push to your phone (optional):** phase changes via Pushover with your own
+  keys, and customizable message text, sound and priority.
+- **Automation (optional):** run a command of your choice when focus starts, a
+  break starts, or you reach your daily goal.
+- **Your look and controls:** theme presets and custom accent colours, frame
+  style (glow, border, corners or off), glow intensity, breathing pattern, menu
+  font scale and reduce-motion, all with a live preview; drive the timer from the
+  panel (scroll to start/pause or change focus length, middle-click to skip,
+  start-on-click) or with keyboard shortcuts.
+- **Resilient and accessible:** session recovery after a Cinnamon restart,
+  screen-reader summaries for the charts, and **localized into 20 languages**.
 
 ## Layout
 - `6.4/`: the applet code for Cinnamon 6.x (`applet.js`, `menu.js`,

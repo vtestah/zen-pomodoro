@@ -843,10 +843,12 @@ function install(proto) {
         let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true });
         let entryHint = new St.Label({ text: _("e.g. Deep work") });
         entry.set_hint_actor(entryHint);
+        entry.clutter_text.connect('key-focus-in', () => entryHint.hide());
+        entry.clutter_text.connect('key-focus-out', () => { if (!entry.get_text()) { entryHint.show(); } });
         CinnamonEntry.addContextMenu(entry);
         if (existing && existing.name) { entry.set_text(existing.name); }
         content.add_child(entry);
-        dialog.connect('opened', () => { try { let c = content.get_theme_node().get_foreground_color(); entryHint.set_style("color: rgba(" + c.red + ", " + c.green + ", " + c.blue + ", 0.6);"); } catch (e) {} });
+        dialog.connect('opened', () => { try { let ec = entry.get_theme_node().get_foreground_color(); entryHint.set_style("color: rgba(" + ec.red + ", " + ec.green + ", " + ec.blue + ", 0.55);"); } catch (e) {} });
 
         let vals = {
             pomodoro: existing ? (parseInt(existing.pomodoro) || 25) : 25,

@@ -2261,9 +2261,28 @@ function install(proto) {
         this._runHostsHelper(['pkexec', this._setupScriptPath(), 'uninstall'], _("Passwordless blocking removed."));
     };
 
-    proto._toggleZenMode = function() {
-        this._zenActive = !this._zenActive;
+    proto._toggleZenMode = function(forceState) {
+        this._zenActive = (typeof forceState === "boolean") ? forceState : !this._zenActive;
         this._updateZenOverlay();
+        // Keep the menu switch in sync (e.g. after the overlay is dismissed too).
+        this._updateMenuRuntime();
+        if (this._zenActive) {
+            this._maybeShowZenIntro();
+        }
+    };
+
+    // First time Zen is switched on, explain what it does — and, crucially, why
+    // nothing seems to happen when it's armed outside a focus session.
+    proto._maybeShowZenIntro = function() {
+        let shown = false;
+        try { shown = this._settingsProvider.getValue("zen_intro_shown"); } catch (e) {}
+        if (shown) { return; }
+        try { this._settingsProvider.setValue("zen_intro_shown", true); } catch (e) {}
+        let isFocus = (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused');
+        let body = isFocus
+            ? _("Your screen is now a calm, distraction-free focus view — just the timer, nothing else. Click it or press Esc to exit.")
+            : _("Zen mode is armed. When your next focus session starts, the screen turns into a calm, distraction-free view with only the timer. Click it or press Esc to exit.");
+        try { Main.notify(_("Zen mode"), body); } catch (e) {}
     };
 
     proto._updateZenOverlay = function() {
@@ -2292,16 +2311,28 @@ function install(proto) {
             });
             this._zenTaskLabel = new St.Label({ style: "color: rgba(235, 235, 235, 0.9); font-size: 1.5em;" });
             this._zenTimeLabel = new St.Label({ style: "color: rgba(255, 255, 255, 0.96); font-size: 6em; font-weight: bold;" });
-            let hint = new St.Label({ text: _("Click to exit Zen"), style: "color: rgba(160, 160, 160, 0.65); padding-top: 10px;" });
+            let hint = new St.Label({ text: _("Click or press Esc to exit"), style: "color: rgba(160, 160, 160, 0.65); padding-top: 10px;" });
             box.add_actor(this._zenTaskLabel);
             box.add_actor(this._zenTimeLabel);
             box.add_actor(hint);
             this._zenOverlay.add_actor(box);
-            this._zenOverlay.connect('button-press-event', () => {
+            let exitZen = () => {
                 this._zenActive = false;
                 this._updateZenOverlay();
+                this._updateMenuRuntime();
+            };
+            this._zenOverlay.connect('button-press-event', () => {
+                exitZen();
                 return Clutter.EVENT_STOP;
             });
+            this._zenOverlay.connect('key-press-event', (actor, event) => {
+                if (event.get_key_symbol() === Clutter.KEY_Escape) {
+                    exitZen();
+                    return Clutter.EVENT_STOP;
+                }
+                return Clutter.EVENT_PROPAGATE;
+            });
+            this._zenOverlay.can_focus = true;
             Main.uiGroup.add_actor(this._zenOverlay);
         }
 
@@ -2315,6 +2346,8 @@ function install(proto) {
             this._zenOverlay.raise_top();
         }
         this._zenOverlay.show();
+        // Take key focus so Esc exits even without a modal grab.
+        try { this._zenOverlay.grab_key_focus(); } catch (e) {}
     };
 
     proto._refreshZenLabels = function() {

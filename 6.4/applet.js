@@ -833,6 +833,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             streak: this._dailyStreak || 0,
             stats: this._computeStats(),
             zenEnabled: Boolean(this._opt_zenModeEnabled),
+            zenActive: Boolean(this._zenActive),
             focusUntilEnabled: Boolean(this._opt_focusUntilEnabled)
         });
     }
@@ -1840,8 +1841,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._chooseFocusTaskFromMenu();
         });
 
-        menu.connect('toggle-zen', () => {
-            this._toggleZenMode();
+        menu.connect('toggle-zen', (m, state) => {
+            this._toggleZenMode(state);
         });
 
         menu.connect('focus-until', () => {

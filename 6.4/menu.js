@@ -460,8 +460,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._focusUntilItem.connect('activate', () => { this.emit('focus-until'); });
         this.addMenuItem(this._focusUntilItem);
 
-        this._zenItem = new PopupMenu.PopupMenuItem(_("Zen mode"));
-        this._zenItem.connect('activate', () => { this.emit('toggle-zen'); });
+        this._zenItem = new PopupMenu.PopupSwitchMenuItem(_("Zen mode"), false);
+        this._zenItem.connect('toggled', (item, state) => this.emit('toggle-zen', state));
+        new Tooltips.Tooltip(this._zenItem.actor, _("Full-screen, distraction-free focus: the desktop dims to a calm black with just the timer. It appears while a focus session is running — click it or press Esc to exit."));
         this.addMenuItem(this._zenItem);
 
         this._ambientItem = new PopupMenu.PopupSwitchMenuItem(_("Ambient sound"), false);
@@ -503,8 +504,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         let sr = this._makeSkipResetItems();
         this.addMenuItem(sr.skipItem);
-        this._zenItem = new PopupMenu.PopupMenuItem(_("Zen mode"));
-        this._zenItem.connect('activate', () => { this.emit('toggle-zen'); });
+        this._zenItem = new PopupMenu.PopupSwitchMenuItem(_("Zen mode"), false);
+        this._zenItem.connect('toggled', (item, state) => this.emit('toggle-zen', state));
+        new Tooltips.Tooltip(this._zenItem.actor, _("Full-screen, distraction-free focus: the desktop dims to a calm black with just the timer. It appears while a focus session is running — click it or press Esc to exit."));
         this.addMenuItem(this._zenItem);
         this._ambientItem = new PopupMenu.PopupSwitchMenuItem(_("Ambient sound"), false);
         this._ambientItem.connect('toggled', (item, state) => this.emit('set-ambient', state));
@@ -647,6 +649,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         // Reflect quick-access state (idle-layout widgets only).
         if (this._ambientItem && typeof runtime.ambientOn === "boolean") {
             this._ambientItem.setToggleState(runtime.ambientOn);
+        }
+        if (this._zenItem && typeof this._zenItem.setToggleState === "function" &&
+            typeof runtime.zenActive === "boolean") {
+            this._zenItem.setToggleState(runtime.zenActive);
         }
         if (typeof runtime.focusLength === "number" &&
             runtime.focusLength !== this._focusLength) {

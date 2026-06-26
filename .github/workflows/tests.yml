@@ -3,7 +3,7 @@ on:
   push:
   pull_request:
 jobs:
-  test:
+  python:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -15,3 +15,13 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: pip install -r requirements-dev.txt
       - run: pytest
+  js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      # Dependency-free pure-logic tests (no package.json needed).
+      - run: node tests/js/recommend.test.js
+      - run: node tests/js/flow.test.js

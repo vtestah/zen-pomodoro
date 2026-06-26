@@ -22,6 +22,7 @@ const {
     POMODORO_FOCUS_FRAME_NORMAL_STYLE,
     POMODORO_FOCUS_FRAME_WARNING_STYLE,
     POMODORO_BREAK_OVER_FRAME_STYLE,
+    POMODORO_OVERRUN_FRAME_STYLE,
     POMODORO_FOCUS_FRAME_PULSE_INTERVAL_MS,
     POMODORO_FOCUS_FRAME_TRANSITION,
     POMODORO_FOCUS_FRAME_PULSE_STYLES,
@@ -114,6 +115,13 @@ function install(proto) {
     proto._getFocusFrameStyle = function(ticks) {
         if (this._currentState === 'break-over') {
             return POMODORO_BREAK_OVER_FRAME_STYLE;
+        }
+
+        // Soft landing "overrun": a finished focus pomodoro held while the user
+        // is still working (wait mode). A calm, steady wrap-up frame — distinct
+        // from the warning/pulse the classic ending would show.
+        if (this._currentState === 'pomodoro-overrun') {
+            return POMODORO_OVERRUN_FRAME_STYLE;
         }
 
         let remainingRatio = this._getTimerRemainingRatio(ticks);

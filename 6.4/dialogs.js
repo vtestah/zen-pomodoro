@@ -1,5 +1,6 @@
 const St = imports.gi.St;
 const Clutter = imports.gi.Clutter;
+const Pango = imports.gi.Pango;
 const GObject = imports.gi.GObject;
 const ModalDialog = imports.ui.modalDialog;
 const Dialog = imports.ui.dialog;
@@ -25,6 +26,12 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
     _init() {
         super._init({destroyOnClose: false});
 
+        // Effective accent (overridden per-open via setTaskList); selection title
+        // for the live highlight; and the rows we restyle as it changes.
+        this._accentRgb = [227, 90, 60];
+        this._selectedTitle = "";
+        this._taskRows = [];
+
         let content = new Dialog.MessageDialogContent({
             title: _("Focus task"),
             description: _("What are you focusing on?")
@@ -37,6 +44,9 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         this._entry.clutter_text.connect('key-focus-out', () => { if (!this._entry.get_text()) { this._entryHint.show(); } });
         CinnamonEntry.addContextMenu(this._entry);
         this._entryText = this._entry.clutter_text;
+        // Live link between the text field and the list: typing a name that
+        // matches a task highlights that row, so field and list stay in sync.
+        this._entryText.connect('text-changed', () => this._syncSelectionFromEntry());
         content.add_child(this._entry);
 
         this._hintLabel = new St.Label({
@@ -49,9 +59,14 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         this._taskListBox = new St.BoxLayout({
             vertical: true,
             x_expand: true,
-            style: 'spacing: 4px; padding-top: 8px;'
+            style: 'spacing: 6px; padding-top: 8px;'
         });
-        content.add_child(this._taskListBox);
+        // Cap the list height and scroll instead of letting a long task list
+        // push the dialog past the screen edge.
+        this._taskScroll = new St.ScrollView({ x_expand: true, style: 'max-height: 280px;' });
+        this._taskScroll.set_policy(St.PolicyType.NEVER, St.PolicyType.AUTOMATIC);
+        this._taskScroll.add_actor(this._taskListBox);
+        content.add_child(this._taskScroll);
 
         this._content = content;
         this.contentLayout.add(content);
@@ -125,10 +140,15 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
         this._setDialogButtons(selectOnly ? (running ? _("Switch") : _("Select")) : _("Start"));
     }
 
-    setTaskList(tasks, currentTitle, requireTask, selectOnly, running) {
+    setTaskList(tasks, currentTitle, requireTask, selectOnly, running, accentRgb) {
         this._taskItems = Array.isArray(tasks) ? tasks : [];
         this._currentTitle = currentTitle || "";
         this._requireTask = Boolean(requireTask);
+        if (Array.isArray(accentRgb) && accentRgb.length >= 3) {
+            this._accentRgb = [accentRgb[0], accentRgb[1], accentRgb[2]];
+        }
+        // On open the active task is the highlighted one; typing re-targets it.
+        this._selectedTitle = this._currentTitle;
         this._applyMode(Boolean(selectOnly), Boolean(running));
         this._reloadTaskList();
         this._hideTaskRequiredHint();
@@ -138,12 +158,13 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
     _reloadTaskList() {
         if (!this._taskListBox) { return; }
         for (let child of this._taskListBox.get_children()) { child.destroy(); }
+        this._taskRows = [];
         let tasks = Array.isArray(this._taskItems) ? this._taskItems : [];
         let active = tasks.filter((t) => !t.completed);
-        if (!active.length) { this._taskListBox.hide(); return; }
-        this._taskListBox.show();
+        let container = this._taskScroll || this._taskListBox;
+        if (!active.length) { container.hide(); return; }
+        container.show();
         for (let t of active) {
-            let selected = (t.title === this._currentTitle);
             let dt = t.doneToday || 0;
             let prog = (t.est > 0) ? (dt + "/" + t.est + " \ud83c\udf45") : (dt > 0 ? (dt + " \ud83c\udf45") : "");
 
@@ -152,13 +173,20 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
             let row = new St.BoxLayout({ vertical: false, x_expand: true, style: 'spacing: 8px;' });
             let titleLab = new St.Label({
                 text: this._clipLabel(t.title), x_expand: true,
-                y_align: Clutter.ActorAlign.CENTER,
-                style: selected ? 'font-weight: bold;' : ''
+                y_align: Clutter.ActorAlign.CENTER
             });
+            // Ellipsize on width (not only the 48-char clip), so long titles
+            // degrade to "…" gracefully on any dialog width instead of a hard cut.
+            titleLab.clutter_text.set_ellipsize(Pango.EllipsizeMode.END);
             row.add_child(titleLab);
             if (t.preset && t.preset.name) {
-                let presetLab = new St.Label({ text: t.preset.name, y_align: Clutter.ActorAlign.CENTER });
+                let presetLab = new St.Label({
+                    text: t.preset.name, y_align: Clutter.ActorAlign.CENTER,
+                    style: 'max-width: 9em;'
+                });
                 presetLab.set_opacity(140);
+                // Cap + ellipsize so a long preset name can't shove the 🍅 column.
+                presetLab.clutter_text.set_ellipsize(Pango.EllipsizeMode.END);
                 row.add_child(presetLab);
             }
             let progLab = new St.Label({
@@ -169,12 +197,55 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
 
             let button = new St.Button({
                 style_class: 'dialog-button', can_focus: true, x_expand: true, reactive: true, child: row,
-                style: selected ? 'background-color: rgba(227, 90, 60, 0.16); border-radius: 6px;' : ''
+                style: 'border-radius: 6px;'
             });
             let title = t.title;
             button.connect('clicked', () => { this.close(); this.emit('focus-task-confirmed', title); });
+            // Hover gives the rows a clear "clickable" cue without relying on the
+            // theme's dialog-button hover, which varies between themes.
+            button.connect('notify::hover', () => this._refreshSelection());
             this._taskListBox.add_child(button);
+            this._taskRows.push({ button: button, titleLab: titleLab, title: title });
         }
+        this._refreshSelection();
+    }
+
+    // rgba() built from the applet's effective accent, so the highlight matches
+    // the rest of the applet (including a user's custom accent colour).
+    _accentTint(alpha) {
+        let c = (Array.isArray(this._accentRgb) && this._accentRgb.length >= 3) ? this._accentRgb : [227, 90, 60];
+        return 'rgba(' + Math.round(c[0]) + ', ' + Math.round(c[1]) + ', ' + Math.round(c[2]) + ', ' + alpha + ')';
+    }
+
+    // Re-style every row from the current selection + hover state. Active and
+    // inactive rows share one border-radius; only the background differs.
+    _refreshSelection() {
+        let rows = this._taskRows || [];
+        for (let r of rows) {
+            if (!r || !r.button) { continue; }
+            let selected = (r.title === this._selectedTitle);
+            let hovered = false;
+            try { hovered = r.button.hover; } catch (e) {}
+            let bg = selected ? (' background-color: ' + this._accentTint(0.16) + ';')
+                              : (hovered ? ' background-color: rgba(150, 150, 150, 0.16);' : '');
+            r.button.set_style('border-radius: 6px;' + bg);
+            if (r.titleLab) { r.titleLab.set_style(selected ? 'font-weight: bold;' : ''); }
+        }
+    }
+
+    // Keep the list highlight in step with the text field: an exact (case-
+    // insensitive) title match selects that row; an empty field falls back to
+    // the active task so it stays cued.
+    _syncSelectionFromEntry() {
+        let text = (this._entry ? this._entry.get_text() : "").replace(/\s+/g, " ").trim();
+        if (!text) {
+            this._selectedTitle = this._currentTitle || "";
+        } else {
+            let rows = this._taskRows || [];
+            let match = rows.find((r) => r.title && r.title.toLowerCase() === text.toLowerCase());
+            this._selectedTitle = match ? match.title : "";
+        }
+        this._refreshSelection();
     }
 
     _isTaskRequired() {
@@ -211,9 +282,23 @@ var PomodoroFocusTaskDialog = GObject.registerClass({
             this._showTaskRequiredHint();
             return;
         }
-
+        // Match the live highlight: a case-insensitive hit on an existing task
+        // confirms that task's canonical title, so e.g. "write report" selects
+        // "Write Report" instead of creating a case-variant duplicate.
+        task = this._canonicalTitle(task);
         this.close();
         this.emit('focus-task-confirmed', task);
+    }
+
+    // Resolve typed text to an existing active task's exact title when it matches
+    // case-insensitively (the same set the highlight considers); otherwise return
+    // the text unchanged so brand-new tasks are still created as typed.
+    _canonicalTitle(text) {
+        let t = (text || "").replace(/\s+/g, " ").trim();
+        if (!t) { return text; }
+        let rows = this._taskRows || [];
+        let match = rows.find((r) => r.title && r.title.toLowerCase() === t.toLowerCase());
+        return match ? match.title : text;
     }
 
     _cancel() {

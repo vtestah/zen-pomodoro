@@ -634,7 +634,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             if (goal > 0) {
                 let count = runtime.dailyCount || 0;
                 let cap = Math.min(goal, 8);
-                let filled = Math.max(0, Math.min(count, cap));
+                // Scale the bar to the goal so it only reads "full" when the goal
+                // is actually met. The old 1:1 fill saturated at 8 for goals > 8
+                // (e.g. a full bar already at 8/20); for goals <= 8 this stays 1:1.
+                let filled = (count >= goal) ? cap : Math.max(0, Math.min(cap, Math.floor((count / goal) * cap)));
                 let bar = "🍅".repeat(filled) + "⚪".repeat(Math.max(0, cap - filled));
                 let text = bar + "  " + count + " / " + goal;
                 if (count >= goal) {
@@ -665,14 +668,21 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         if (this._statTodayItem && runtime.stats) {
             let st = runtime.stats;
+            let hasGoal = (runtime.dailyGoal || 0) > 0;
             if (this._statValueLabel) {
+                // When a daily goal is set, the goal-progress line already shows
+                // today's count + streak, so keep this row's value clear to avoid
+                // duplication — but the row itself stays visible and clickable so
+                // the statistics dashboard is always reachable from the menu.
                 let parts = [];
-                if ((st.today || 0) > 0) { parts.push((st.today || 0) + " 🍅"); }
-                if ((st.streak || 0) >= 2) { parts.push("🔥 " + (st.streak || 0)); }
+                if (!hasGoal) {
+                    if ((st.today || 0) > 0) { parts.push((st.today || 0) + " 🍅"); }
+                    if ((st.streak || 0) >= 2) { parts.push("🔥 " + (st.streak || 0)); }
+                }
                 this._statValueLabel.set_text(parts.join("  ·  "));
             }
             if (this._statTodayItem) {
-                if ((runtime.dailyGoal || 0) > 0) { this._statTodayItem.actor.hide(); } else { this._statTodayItem.actor.show(); }
+                this._statTodayItem.actor.show();
             }
             if (this._statWeekItem) {
                 let wk = st.week || 0;
@@ -781,10 +791,13 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (this._taskLabel) {
             let name = task || ((selectedTask && isIdle) ? selectedTask : "");
             if (name) {
-                this._taskLabel.set_text(this._taskHeaderText(name));
+                // Markup so the leading focus dot can be rendered smaller.
+                this._taskLabel.clutter_text.set_markup(this._taskHeaderText(name));
             } else if (state === "pomodoro-stop") {
+                this._taskLabel.clutter_text.set_use_markup(false);
                 this._taskLabel.set_text(_("No task yet — tap to choose one"));
             } else {
+                this._taskLabel.clutter_text.set_use_markup(false);
                 this._taskLabel.set_text(_("Task: none"));
             }
         }
@@ -876,10 +889,13 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
     }
 
+    // Returns Pango markup: the leading focus dot is rendered smaller, to match
+    // the dot used in the task and preset lists. Dynamic text is markup-escaped.
     _taskHeaderText(fallbackName) {
+        let dot = "<span size='60%'>\u25cf</span> ";
         let cur = this._tasks && this._tasks.find((t) => t.id === this._tasksCurrentId);
         if (cur) {
-            let s = "\u25cf " + cur.title;
+            let s = dot + GLib.markup_escape_text(cur.title || "", -1);
             let dt = cur.doneToday || 0;
             if (cur.est > 0) {
                 s += "   " + dt + "/" + cur.est + " \ud83c\udf45";
@@ -888,7 +904,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             }
             return s;
         }
-        return "\u25cf " + fallbackName;
+        return dot + GLib.markup_escape_text(fallbackName || "", -1);
     }
 
     setDistractions(list) {
@@ -1025,16 +1041,39 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             let t = task;
             let item = new PopupMenu.PopupBaseMenuItem();
             let row = new St.BoxLayout({ vertical: false, x_expand: true });
-            let mark = new St.Label({ text: t.completed ? "✓" : (t.id === this._tasksCurrentId ? "●" : "  ") });
+            let isCurrent = (!t.completed && t.id === this._tasksCurrentId);
+            // Fixed-width leading slot keeps every title aligned regardless of
+            // which marker (dot / ✓ / none) the row shows.
+            let markSlot = new St.BoxLayout({ style: "width: 14px;", y_align: Clutter.ActorAlign.CENTER });
             if (t.completed) {
-                mark.set_style("color: " + this._accentColor("rgb(120, 205, 155)") + ";");
-            } else if (t.id === this._tasksCurrentId) {
-                mark.set_style("color: " + this._accentColor("rgb(235, 175, 75)") + ";");
+                let chk = new St.Label({
+                    text: "✓", x_expand: true,
+                    x_align: Clutter.ActorAlign.CENTER, y_align: Clutter.ActorAlign.CENTER
+                });
+                chk.set_style("color: " + this._accentColor("rgb(120, 205, 155)") + ";");
+                markSlot.add_child(chk);
+            } else if (isCurrent) {
+                // The familiar dot, just a touch smaller, in the accent colour;
+                // it pairs with the bold accent title below.
+                let dot = new St.Label({
+                    text: "●", x_expand: true,
+                    x_align: Clutter.ActorAlign.CENTER, y_align: Clutter.ActorAlign.CENTER,
+                    style: "font-size: 0.6em; color: " + this._accentColor("rgb(235, 175, 75)") + ";"
+                });
+                markSlot.add_child(dot);
             }
-            row.add_child(mark);
+            row.add_child(markSlot);
             let dt = t.doneToday || 0;
             let prog = (t.est > 0) ? (dt + "/" + t.est + " 🍅") : (dt > 0 ? (dt + " 🍅") : "");
-            let label = new St.Label({ x_expand: true, text: " " + t.title + (prog ? "   " + prog : "") });
+            let label = new St.Label({ x_expand: true, text: t.title + (prog ? "   " + prog : "") });
+            if (isCurrent) {
+                // The current focus task: bold + accent so it stands out by weight
+                // and colour, matching how it's highlighted in the task dialog.
+                label.set_style("font-weight: bold; color: " + this._accentColor("rgb(235, 175, 75)") + ";");
+            } else if (t.completed) {
+                // Done tasks recede so the live ones read first.
+                label.set_style("color: " + this._faintText() + ";");
+            }
             row.add_child(label);
             if (t.preset && t.preset.name) {
                 let rlab = new St.Label({ text: t.preset.name + " " });
@@ -1122,10 +1161,23 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             let idx = i;
             let item = new PopupMenu.PopupBaseMenuItem();
             let row = new St.BoxLayout({ vertical: false, x_expand: true });
-            let mark = new St.Label({ text: (preset.name === active) ? "● " : "  " });
-            if (preset.name === active) { mark.set_style("color: " + this._accentColor("rgb(235, 175, 75)") + ";"); }
-            row.add_child(mark);
+            let isActive = (preset.name === active);
+            // Mirror the task list: a fixed 14px slot with a centred, smaller dot
+            // keeps preset names aligned and the marker vertically centred.
+            let markSlot = new St.BoxLayout({ style: "width: 14px;", y_align: Clutter.ActorAlign.CENTER });
+            let mark = new St.Label({
+                text: "●", x_expand: true,
+                x_align: Clutter.ActorAlign.CENTER, y_align: Clutter.ActorAlign.CENTER,
+                style: "font-size: 0.6em; color: " + this._accentColor("rgb(235, 175, 75)") + ";"
+            });
+            mark.visible = isActive;
+            markSlot.add_child(mark);
+            row.add_child(markSlot);
             let label = new St.Label({ x_expand: true, text: this._presetItemLabel(preset) });
+            if (isActive) {
+                // Same emphasis as the current task in the task list.
+                label.set_style("font-weight: bold; color: " + this._accentColor("rgb(235, 175, 75)") + ";");
+            }
             row.add_child(label);
             let editBtn = new St.Button({
                 style_class: "pomodoro-task-btn", can_focus: false,
@@ -1152,7 +1204,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 this.emit('apply-preset', preset);
             });
             this._presetSubmenu.menu.addMenuItem(item);
-            this._presetItems.push({ item: item, preset: preset, mark: mark });
+            this._presetItems.push({ item: item, preset: preset, mark: mark, label: label });
         }
     }
 
@@ -1176,9 +1228,11 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         let active = preset.activePreset || "";
         for (let entry of (this._presetItems || [])) {
             let on = entry.preset.name === active;
-            if (entry.mark) {
-                entry.mark.set_text(on ? "● " : "  ");
-                entry.mark.set_style(on ? ("color: " + this._accentColor("rgb(235, 175, 75)") + ";") : "");
+            if (entry.mark) { entry.mark.visible = on; }
+            if (entry.label) {
+                entry.label.set_style(on
+                    ? ("font-weight: bold; color: " + this._accentColor("rgb(235, 175, 75)") + ";")
+                    : "font-weight: normal;");
             }
         }
     }

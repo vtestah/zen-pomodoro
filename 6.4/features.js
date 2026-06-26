@@ -22,18 +22,20 @@ const CinnamonEntry = imports.ui.cinnamonEntry;
 const UUID = "zen-pomodoro@vtestah";
 function _(str) { return Gettext.dgettext(UUID, str); }
 
-let C, SoundModule, DialogsModule, RecommendModule;
+let C, SoundModule, DialogsModule, RecommendModule, FlowModule;
 if (typeof require !== 'undefined') {
     C = require('./constants');
     SoundModule = require('./sound');
     DialogsModule = require('./dialogs');
     RecommendModule = require('./recommend');
+    FlowModule = require('./flow');
 } else {
     const AppletDir = imports.ui.appletManager.applets[UUID];
     C = AppletDir.constants;
     SoundModule = AppletDir.sound;
     DialogsModule = AppletDir.dialogs;
     RecommendModule = AppletDir.recommend;
+    FlowModule = AppletDir.flow;
 }
 const {
     POMODORO_STATE_FILE,
@@ -978,76 +980,94 @@ function install(proto) {
         let sp = this._settingsProvider;
         let answers = {};
         let st = { step: 0 };
-        let content = new St.BoxLayout({ vertical: true, style: 'spacing: 10px; width: 560px; padding: 6px 14px;' });
+        let content = new St.BoxLayout({ vertical: true, reactive: true, can_focus: true, style: 'spacing: 10px; width: 560px; padding: 6px 14px;' });
         dialog.contentLayout.add(content);
 
         let title = (s) => new St.Label({ text: s, style: 'font-size: 1.35em; font-weight: bold;' });
         let para = (s) => { let l = new St.Label({ text: s }); l.clutter_text.line_wrap = true; return l; };
         let BASE = 'margin: 5px 0 0 0; padding: 9px 14px; border-radius: 8px;';
         let SEL = BASE + ' background-color: rgba(227,90,60,0.92); color: #ffffff; font-weight: bold; border: 1px solid #e3593c;';
+        let HILITE = ' border: 1px solid rgba(255,255,255,0.85);'; // keyboard highlight ring
 
-        // A single-select question: full-width option rows, highlight in place.
-        let ask = (key, opts) => {
+        // Keyboard navigation. Enter (default button) and Escape (Skip) are wired
+        // through the dialog buttons; here we add: digits 1-9 select/toggle the
+        // matching option, Up/Down move a highlight, Space activates it, and
+        // Backspace goes Back. Each build() refreshes st.nav with the handlers for
+        // the current step and parks key focus on `content`.
+        let onKey = (actor, ev) => {
+            let sym = ev.get_key_symbol();
+            let nav = st.nav || {};
+            if (sym === Clutter.KEY_BackSpace) { if (nav.back) { nav.back(); return true; } return false; }
+            if (sym === Clutter.KEY_Up) { if (nav.move) { nav.move(-1); return true; } return false; }
+            if (sym === Clutter.KEY_Down) { if (nav.move) { nav.move(1); return true; } return false; }
+            if (sym === Clutter.KEY_space) { if (nav.activateCursor) { nav.activateCursor(); return true; } return false; }
+            let n = RecommendModule.keysymToOptionIndex(sym);
+            if (n >= 0 && nav.selectIndex && n < (nav.count || 0)) { nav.selectIndex(n); return true; }
+            return false;
+        };
+        content.connect('key-press-event', onKey);
+
+        // A question's option rows. Single-select highlights one choice in
+        // place; multi-select (obstacles) toggles up to `cap` with a "Selected n
+        // of cap" hint, refusing further picks at the cap. Returns a controller
+        // so the keyboard handler can select/move by index. A cursor ring shows
+        // the keyboard position. Option buttons are not focusable, so key focus
+        // stays on `content` and Enter still reaches the dialog's default button.
+        let ask = (key, opts, multi, cap) => {
             let col = new St.BoxLayout({ vertical: true, style: 'spacing: 2px;' });
             let btns = [];
-            opts.forEach((o) => {
-                let b = new St.Button({ x_expand: true, style_class: 'button' });
-                b.set_label(o.label);
-                b.set_style(answers[key] === o.value ? SEL : BASE);
-                b.connect('clicked', () => {
-                    answers[key] = o.value;
-                    btns.forEach((x) => x.b.set_style(x.v === o.value ? SEL : BASE));
+            if (multi && !Array.isArray(answers[key])) {
+                answers[key] = (answers[key] === undefined || answers[key] === null) ? [] : [answers[key]];
+            }
+            let cursor = 0;
+            if (!multi) { let i = opts.findIndex((o) => o.value === answers[key]); if (i >= 0) { cursor = i; } }
+            let isSel = (v) => multi ? (answers[key].indexOf(v) !== -1) : (answers[key] === v);
+            let hint = null;
+            let repaint = () => {
+                btns.forEach((x, i) => {
+                    let style = isSel(x.v) ? SEL : BASE;
+                    if (i === cursor) { style += HILITE; }
+                    x.b.set_style(style);
                 });
+                if (hint) { hint.set_text(_("Selected %d of %d").format(answers[key].length, cap)); }
+            };
+            let activate = (i) => {
+                let o = opts[i];
+                if (!o) { return; }
+                cursor = i;
+                if (multi) {
+                    let arr = answers[key];
+                    let idx = arr.indexOf(o.value);
+                    if (idx !== -1) { arr.splice(idx, 1); }
+                    else if (arr.length < cap) { arr.push(o.value); }
+                } else {
+                    answers[key] = o.value;
+                }
+                repaint();
+            };
+            opts.forEach((o, i) => {
+                let b = new St.Button({ x_expand: true, style_class: 'button', can_focus: false });
+                b.set_label(o.label);
+                b.connect('clicked', () => activate(i));
                 btns.push({ b: b, v: o.value });
                 col.add(b);
             });
-            return col;
+            if (multi) {
+                hint = new St.Label({ style: 'font-size: 0.8em; padding: 4px 2px 0 2px; color: rgba(160,160,160,0.95);' });
+                col.add(hint);
+            }
+            repaint();
+            return {
+                actor: col,
+                count: opts.length,
+                activate: activate,
+                move: (d) => { cursor = Math.max(0, Math.min(opts.length - 1, cursor + d)); repaint(); },
+                activateCursor: () => activate(cursor)
+            };
         };
 
-        let QUESTIONS = [
-            { key: 'work', title: _("What will you mainly focus on?"),
-              help: _("This shapes how long each focus block should be."),
-              opts: [
-                { value: 'deep',     label: _("Deep work or coding") },
-                { value: 'study',    label: _("Studying or reading") },
-                { value: 'creative', label: _("Writing or creative work") },
-                { value: 'admin',    label: _("Lots of small tasks") }
-              ] },
-            { key: 'attention', title: _("How long can you usually concentrate?"),
-              help: _("Pick a length you can actually keep — it beats an ideal one."),
-              opts: [
-                { value: 'short',  label: _("About 15 minutes") },
-                { value: 'medium', label: _("About 25 minutes") },
-                { value: 'long',   label: _("45 minutes or more") },
-                { value: 'flow',   label: _("I lose track of time when I'm in flow") }
-              ] },
-            { key: 'struggle', title: _("What gets in your way most?"),
-              help: _("I'll switch on the right help for this."),
-              opts: [
-                { value: 'notifications', label: _("Notifications and pings") },
-                { value: 'websites',      label: _("Distracting websites") },
-                { value: 'starting',      label: _("It's hard to get started") },
-                { value: 'overwork',      label: _("I forget to take breaks") },
-                { value: 'anxiety',       label: _("Timers make me anxious") }
-              ] },
-            { key: 'sound', title: _("What helps you concentrate?"),
-              help: _("Sets the focus soundscape — change it anytime in Sounds."),
-              opts: [
-                { value: 'silence', label: _("Silence") },
-                { value: 'ambient', label: _("Soft background noise") },
-                { value: 'chime',   label: _("A gentle chime to mark time") },
-                { value: 'shared',  label: _("I share my space — keep it quiet") }
-              ] },
-            { key: 'load', title: _("How much do you want to get done today?"),
-              help: _("Sets your daily goal — no pressure, you can change it."),
-              opts: [
-                { value: 'try',   label: _("Just trying it out") },
-                { value: 'light', label: _("A light day (about 4)") },
-                { value: 'full',  label: _("A full day (about 6)") },
-                { value: 'push',  label: _("A big push (about 8)") }
-              ] }
-        ];
-        let TOTAL = QUESTIONS.length + 2; // intro + questions + review
+        // The question set is computed adaptively per answer by the engine's
+        // buildQuestionFlow(); see build() below. No static list lives here.
 
         let finish = () => { try { sp.setValue('onboarding_done', true); } catch (e) {} dialog.close(); };
         let applyPlan = (plan, thenStart) => {
@@ -1071,28 +1091,45 @@ function install(proto) {
 
         let build = () => {
             content.destroy_all_children();
-            let head = new St.BoxLayout({ vertical: false, style: 'spacing: 4px; padding-bottom: 2px;' });
-            head.add(new St.Label({ text: _("Smart setup"), style: 'font-size: 0.8em; padding-right: 6px;' }));
-            for (let i = 0; i < TOTAL; i++) {
-                let dot = new St.Label({ text: "\ud83c\udf45", style: 'font-size: 0.95em;' });
-                dot.set_opacity(i <= st.step ? 255 : 70);
-                head.add(dot);
-            }
+            // Recompute the adaptive flow each time — branches appear/disappear as
+            // answers change. Steps: 0 = intro, 1..nQ = questions, nQ+1 = review.
+            let flow = RecommendModule.buildQuestionFlow(answers, this._recoDeps());
+            let nQ = flow.length;
+            let reviewStep = nQ + 1;
+            if (st.step > reviewStep) { st.step = reviewStep; } // a branch vanished
+            if (st.step < 0) { st.step = 0; }
+            let s = st.step;
+
+            let phase = (s === 0) ? _("Intro")
+                      : (s <= nQ) ? _("Step %d of %d").format(s, nQ)
+                      : _("Review");
+            let head = new St.BoxLayout({ vertical: false, style: 'padding-bottom: 2px;' });
+            head.add(new St.Label({ text: "\ud83c\udf45 " + _("Smart setup") + "  \u00b7  " + phase,
+                style: 'font-size: 0.8em; color: rgba(160,160,160,0.95);' }));
             content.add(head);
 
-            let s = st.step;
-            let buttons = [{ label: _("Skip"), action: finish }];
+            let buttons = [{ label: _("Skip"), action: finish, key: Clutter.KEY_Escape }];
 
             if (s === 0) {
                 content.add(title(_("What is the Pomodoro technique? \ud83c\udf45")));
                 content.add(para(_("Focus in short sprints with deliberate rest: about 25 minutes on one task, then a 5-minute break; after four sprints, take a longer 15–30 minute break. The finite countdown keeps a task approachable and the regular breaks protect your attention.")));
-                content.add(para(_("Let's tune it to how you work — five quick questions, and you can change anything later in Settings.")));
+                content.add(para(_("Let's tune it to how you work — a few quick questions, and you can change anything later in Settings.")));
+                st.nav = { count: 0 };
+                buttons.push({ label: _("About the Pomodoro technique"), action: () => { this._showAboutTechnique(); } });
                 buttons.push({ label: _("Let's go"), default: true, action: () => { st.step++; build(); } });
-            } else if (s >= 1 && s <= QUESTIONS.length) {
-                let q = QUESTIONS[s - 1];
+            } else if (s <= nQ) {
+                let q = flow[s - 1];
                 content.add(title(q.title));
                 if (q.help) { content.add(para(q.help)); }
-                content.add(ask(q.key, q.opts));
+                let ctrl = ask(q.key, q.opts, q.type === 'multi', q.cap);
+                content.add(ctrl.actor);
+                st.nav = {
+                    count: ctrl.count,
+                    selectIndex: (i) => ctrl.activate(i),
+                    move: (d) => ctrl.move(d),
+                    activateCursor: () => ctrl.activateCursor(),
+                    back: () => { st.step--; build(); }
+                };
                 buttons.push({ label: _("Back"), action: () => { st.step--; build(); } });
                 buttons.push({ label: _("Next"), default: true, action: () => { st.step++; build(); } });
             } else {
@@ -1100,6 +1137,9 @@ function install(proto) {
                 content.add(title(_("Your tailored setup \ud83c\udf45")));
                 content.add(para(_("Based on your answers, here's what I'll set up. Untick anything you'd rather skip, then apply.")));
                 let list = new St.BoxLayout({ vertical: true, style: 'spacing: 4px; padding: 6px 0 2px 0;' });
+                let toggles = [];           // optional items, in display order
+                let cursor = { i: 0 };
+                let repaintAll = () => { toggles.forEach((t) => t.paint()); };
                 plan.items.filter((it) => it.label).forEach((it) => {
                     if (it.core) {
                         // Core recommendation (the focus rhythm) — always applied.
@@ -1112,7 +1152,8 @@ function install(proto) {
                     } else {
                         // Optional recommendation — a checkbox the user can untick.
                         if (it.enabled === undefined) { it.enabled = true; }
-                        let box = new St.Button({ x_expand: true, style_class: 'button', style: 'padding: 5px 6px; border-radius: 6px;' });
+                        let myIndex = toggles.length;
+                        let box = new St.Button({ x_expand: true, style_class: 'button', can_focus: false });
                         let inner = new St.BoxLayout({ vertical: false, x_expand: true, style: 'spacing: 8px;' });
                         let check = new St.Label({ y_align: Clutter.ActorAlign.START });
                         let label = new St.Label({ text: it.label, x_expand: true });
@@ -1124,18 +1165,29 @@ function install(proto) {
                             check.set_text(it.enabled ? "\u2611" : "\u2610");
                             check.set_style((it.enabled ? 'color: #6fcf97;' : 'color: rgba(150,150,150,0.9);') + ' font-weight: bold;');
                             label.set_opacity(it.enabled ? 255 : 120);
+                            box.set_style('padding: 5px 6px; border-radius: 6px;' + (myIndex === cursor.i ? HILITE : ''));
                         };
-                        paint();
-                        box.connect('clicked', () => { it.enabled = !it.enabled; paint(); });
+                        box.connect('clicked', () => { it.enabled = !it.enabled; cursor.i = myIndex; repaintAll(); });
+                        toggles.push({ it: it, paint: paint });
                         list.add(box);
                     }
                 });
+                repaintAll();
                 content.add(list);
+                let toggleAt = (i) => { if (toggles[i]) { toggles[i].it.enabled = !toggles[i].it.enabled; cursor.i = i; repaintAll(); } };
+                st.nav = {
+                    count: toggles.length,
+                    selectIndex: (i) => toggleAt(i),
+                    move: (d) => { if (toggles.length) { cursor.i = Math.max(0, Math.min(toggles.length - 1, cursor.i + d)); repaintAll(); } },
+                    activateCursor: () => toggleAt(cursor.i),
+                    back: () => { st.step--; build(); }
+                };
                 buttons.push({ label: _("Back"), action: () => { st.step--; build(); } });
                 buttons.push({ label: _("Apply"), action: () => applyPlan(plan, false) });
                 buttons.push({ label: "\ud83c\udf45  " + _("Apply & start"), default: true, action: () => applyPlan(plan, true) });
             }
             dialog.setButtons(buttons);
+            content.grab_key_focus();
         };
         build();
         dialog.open();
@@ -1471,34 +1523,25 @@ function install(proto) {
     };
 
     // A visible, user-owned destination for the export: the Documents folder,
-    // falling back to the home directory. Filename is date-stamped.
+    // falling back to the home directory. The filename is time-stamped so
+    // repeated exports never silently overwrite each other.
     proto._statsExportPath = function() {
         let dir = null;
         try { dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DOCUMENTS); } catch (e) { dir = null; }
         if (!dir) { dir = GLib.get_home_dir(); }
         let now = GLib.DateTime.new_now_local();
-        let stamp = now ? now.format("%Y%m%d") : "export";
+        let stamp = now ? now.format("%Y%m%d-%H%M%S") : "export";
         return GLib.build_filenamev([dir, "zen-pomodoro-stats-" + stamp + ".csv"]);
     };
 
-    // Machine-readable CSV of the full daily history, with a human-readable
-    // summary as leading comment lines. Column headers stay in English so the
-    // file is consistent for spreadsheets / scripts regardless of UI language.
+    // Pure, machine-readable CSV of the full daily history (header + rows only,
+    // so it opens cleanly in any spreadsheet / parser). The human-readable
+    // summary lives in the clipboard "Copy" action instead, to keep this a valid
+    // CSV. Column headers stay in English for consistent parsing across locales.
     proto._statsExportCsv = function() {
-        let st = this._computeStats();
         let h = (this._dailyStatsData && this._dailyStatsData.history) ? this._dailyStatsData.history : {};
         let dates = Object.keys(h).filter((k) => /^\d{4}-\d{2}-\d{2}$/.test(k)).sort();
-        let now = GLib.DateTime.new_now_local();
-        let lines = [];
-        lines.push("# Zen Pomodoro statistics export");
-        lines.push("# generated: " + (now ? now.format("%Y-%m-%d %H:%M") : ""));
-        lines.push("# today: " + (st.today || 0) + " pomodoros, " + (st.todayMin || 0) + " min");
-        lines.push("# this week: " + (st.week || 0) + " pomodoros, " + (st.weekMin || 0) + " min");
-        lines.push("# this month: " + (st.month || 0) + " pomodoros, " + (st.monthMin || 0) + " min");
-        lines.push("# all time: " + (st.total || 0) + " pomodoros, " + (st.totalMinutes || 0) + " min");
-        lines.push("# streak: " + (st.streak || 0) + " (best " + (st.longestStreak || 0) + ")");
-        lines.push("# best day: " + (st.bestDay || 0) + " pomodoros");
-        lines.push("date,pomodoros,minutes,interruptions");
+        let lines = ["date,pomodoros,minutes,interruptions"];
         for (let d of dates) {
             let c = h[d] || {};
             lines.push([d, (c.c || 0), (c.m || 0), (c.i || 0)].join(","));
@@ -1506,43 +1549,51 @@ function install(proto) {
         return lines.join("\n") + "\n";
     };
 
-    // Short, localized, human-readable summary for the clipboard.
-    proto._statsExportSummaryText = function() {
-        let st = this._computeStats();
-        let lines = [];
-        lines.push(_("Zen Pomodoro \u2014 focus statistics"));
-        lines.push(_("Today: %d \ud83c\udf45 (%s)").format(st.today || 0, this._dashFmtMin(st.todayMin || 0)));
-        lines.push(_("This week: %d \ud83c\udf45 (%s)").format(st.week || 0, this._dashFmtMin(st.weekMin || 0)));
-        lines.push(_("This month: %d \ud83c\udf45 (%s)").format(st.month || 0, this._dashFmtMin(st.monthMin || 0)));
-        lines.push(_("All time: %d \ud83c\udf45 (%s)").format(st.total || 0, this._dashFmtMin(st.totalMinutes || 0)));
-        lines.push(_("Streak: %d \u00b7 best %d").format(st.streak || 0, st.longestStreak || 0));
-        lines.push(_("Best day: %d \ud83c\udf45").format(st.bestDay || 0));
-        return lines.join("\n");
-    };
-
-    // Copy a localized summary to the clipboard.
-    proto._dashCopyStats = function() {
-        let msg;
-        try {
-            St.Clipboard.get_default().set_text(St.ClipboardType.CLIPBOARD, this._statsExportSummaryText());
-            msg = _("Statistics copied to clipboard.");
-        } catch (e) {
-            msg = _("Could not copy statistics.");
-        }
-        this._dashFlashStatus(msg);
-        Main.notify("Zen Pomodoro", msg);
-    };
-
     // Export the full history as a CSV file under Documents (or home). The exact
-    // destination path is shown both in the dialog and in the notification so
-    // it's always clear where the file went.
-    proto._dashExportStats = function() {
+    // destination is shown in the dialog (status line) and reachable via the
+    // "Open folder" button — no pop-up notification, to keep things calm.
+    // onSaved(path) runs on success.
+    proto._dashExportStats = function(onSaved) {
         let path = this._statsExportPath();
         this._writeTextAsync(path, this._statsExportCsv(), (ok) => {
-            let msg = ok ? _("Saved to %s").format(path) : _("Could not save statistics export.");
-            this._dashFlashStatus(msg);
-            Main.notify("Zen Pomodoro", msg);
+            if (ok) {
+                this._dashFlashStatus(_("Saved \u2713 \u2014 %s").format(GLib.path_get_basename(path)));
+                if (typeof onSaved === 'function') { onSaved(path); }
+            } else {
+                this._dashFlashStatus(_("Could not save statistics export."));
+            }
         });
+    };
+
+    // Reveal an exported file in the file manager: open its folder with the file
+    // selected, via the freedesktop FileManager1 D-Bus API (supported by Nemo and
+    // others). Falls back to just opening the containing folder if unavailable.
+    proto._revealInFileManager = function(path) {
+        try {
+            let uri = Gio.File.new_for_path(path).get_uri();
+            Gio.DBus.session.call(
+                'org.freedesktop.FileManager1', '/org/freedesktop/FileManager1',
+                'org.freedesktop.FileManager1', 'ShowItems',
+                new GLib.Variant('(ass)', [[uri], '']),
+                null, Gio.DBusCallFlags.NONE, -1, null,
+                (conn, res) => {
+                    try { conn.call_finish(res); }
+                    catch (e) { this._openFolder(path); }
+                }
+            );
+        } catch (e) {
+            this._openFolder(path);
+        }
+    };
+
+    // Open the folder that contains the given file in the default file manager.
+    proto._openFolder = function(path) {
+        try {
+            let uri = Gio.File.new_for_path(GLib.path_get_dirname(path)).get_uri();
+            Gio.AppInfo.launch_default_for_uri(uri, null);
+        } catch (e) {
+            this._dashFlashStatus(_("Could not open the folder."));
+        }
     };
 
     proto._showStatsDashboard = function() {
@@ -1795,7 +1846,7 @@ function install(proto) {
         root.add(dashStatus);
 
         dialog.contentLayout.add(root);
-        let setDashButtons, confirmReset;
+        let setDashButtons, confirmReset, lastExportPath = null;
         confirmReset = () => {
             dialog.setButtons([
                 { label: _("Cancel"), action: () => setDashButtons() },
@@ -1803,12 +1854,15 @@ function install(proto) {
             ]);
         };
         setDashButtons = () => {
-            dialog.setButtons([
-                { label: _("Copy"), action: () => this._dashCopyStats() },
-                { label: _("Export\u2026"), action: () => this._dashExportStats() },
-                { label: _("Reset statistics\u2026"), action: () => confirmReset() },
-                { label: _("Close"), key: Clutter.KEY_Escape, default: true, action: () => dialog.close() }
-            ]);
+            let buttons = [
+                { label: _("Export\u2026"), action: () => this._dashExportStats((p) => { lastExportPath = p; setDashButtons(); }) }
+            ];
+            if (lastExportPath) {
+                buttons.push({ label: _("Open folder"), action: () => this._revealInFileManager(lastExportPath) });
+            }
+            buttons.push({ label: _("Reset statistics\u2026"), action: () => confirmReset() });
+            buttons.push({ label: _("Close"), key: Clutter.KEY_Escape, default: true, action: () => dialog.close() });
+            dialog.setButtons(buttons);
         };
         setDashButtons();
         dialog.connect('closed', () => { this._dashStatusLabel = null; try { dashTip.destroy(); } catch (e) {} });
@@ -1864,6 +1918,188 @@ function install(proto) {
         });
     };
 
+    // --- Flow Soft Landing: activity probe + watch/cap arming ------------
+    //
+    // These are deliberately separate from the auto-pause idle watch above
+    // (_updateIdleWatch / _clearIdleWatches). They are NOT cleared by
+    // _clearIdleWatches, because that runs on every _setCurrentState and would
+    // otherwise cancel an armed soft landing the moment we enter the overrun
+    // state. Disarm happens from the explicit transition/cancel paths and on
+    // teardown instead.
+
+    // Current user idle time in ms. 0 (treated as "active" by the decision) if
+    // the idle monitor is unavailable, so a missing monitor never silently
+    // holds a finished pomodoro forever.
+    proto._flowProbeIdleMs = function() {
+        try {
+            if (!this._idleMonitor) {
+                this._idleMonitor = Meta.IdleMonitor.get_core();
+            }
+            if (this._idleMonitor) {
+                return this._idleMonitor.get_idletime();
+            }
+        } catch (e) {}
+        return 0;
+    };
+
+    // Arm the soft-landing watches: a one-shot pause-watch that fires once the
+    // user has been idle for the natural-pause threshold, and a hard cap
+    // timeout measured cumulatively from _flowGraceStartMs. Both callbacks fire
+    // at most once. Idempotent: any previously armed watches are disarmed first.
+    proto._armSoftLanding = function(onPause, onCap) {
+        this._disarmSoftLanding();
+
+        let capMs = FlowModule.flowGraceCapMs(this._opt_flowSoftLandingMaxMinutes);
+        let remainingMs = capMs;
+        if (typeof this._flowGraceStartMs === 'number') {
+            remainingMs = Math.max(0, capMs - (Date.now() - this._flowGraceStartMs));
+        }
+        this._flowCapTimeoutId = Mainloop.timeout_add(Math.max(1, Math.round(remainingMs)), () => {
+            this._flowCapTimeoutId = 0;
+            if (typeof onCap === 'function') {
+                try { onCap(); } catch (e) { global.logError('zen-pomodoro flow cap: ' + e); }
+            }
+            return false; // one-shot
+        });
+
+        try {
+            if (!this._idleMonitor) {
+                this._idleMonitor = Meta.IdleMonitor.get_core();
+            }
+        } catch (e) {
+            this._idleMonitor = null;
+        }
+        if (this._idleMonitor) {
+            let thresholdMs = FlowModule.flowPauseThresholdMs(this._opt_flowSoftLandingPauseSeconds);
+            this._flowPauseWatchId = this._idleMonitor.add_idle_watch(thresholdMs, () => {
+                if (typeof onPause === 'function') {
+                    try { onPause(); } catch (e) { global.logError('zen-pomodoro flow pause: ' + e); }
+                }
+            });
+        }
+    };
+
+    // Tear down any armed soft-landing watches/timeouts. Safe to call any
+    // number of times (e.g. from cancel paths and from teardown).
+    proto._disarmSoftLanding = function() {
+        if (this._flowCapTimeoutId) {
+            try { Mainloop.source_remove(this._flowCapTimeoutId); } catch (e) {}
+            this._flowCapTimeoutId = 0;
+        }
+        if (this._flowPauseWatchId) {
+            if (this._idleMonitor) {
+                try { this._idleMonitor.remove_watch(this._flowPauseWatchId); } catch (e) {}
+            }
+            this._flowPauseWatchId = 0;
+        }
+    };
+
+    // --- Flow Soft Landing: orchestration at the pomodoro -> break boundary --
+
+    // Called from the timer-queue handler when a focus pomodoro has just ended
+    // and a short break is pending. Returns true if soft landing has taken over
+    // (the caller must NOT open the break prompt); false to proceed as classic.
+    proto._maybeSoftLanding = function() {
+        if (!this._opt_flowSoftLanding) {
+            return false;
+        }
+        // Start the grace clock on the first boundary and keep it across
+        // extensions, so the cap is measured cumulatively.
+        if (typeof this._flowGraceStartMs !== 'number') {
+            this._flowGraceStartMs = Date.now();
+        }
+        return this._evaluateSoftLanding();
+    };
+
+    proto._evaluateSoftLanding = function() {
+        let graceElapsedMs = (typeof this._flowGraceStartMs === 'number')
+            ? (Date.now() - this._flowGraceStartMs) : 0;
+        let decision = FlowModule.flowLandingDecision({
+            enabled: this._opt_flowSoftLanding,
+            behavior: this._opt_flowSoftLandingBehavior || 'wait',
+            idleMs: this._flowProbeIdleMs(),
+            pauseThresholdMs: FlowModule.flowPauseThresholdMs(this._opt_flowSoftLandingPauseSeconds),
+            graceElapsedMs: graceElapsedMs,
+            graceCapMs: FlowModule.flowGraceCapMs(this._opt_flowSoftLandingMaxMinutes)
+        });
+
+        if (decision === 'break-now') {
+            this._flowGraceStartMs = null;
+            this._disarmSoftLanding();
+            return false; // caller opens the break prompt as usual
+        }
+
+        let onPause = () => this._concludeSoftLanding();
+        let onCap = () => this._concludeSoftLanding();
+
+        if (decision === 'extend') {
+            // Quietly add focus time and keep counting down (reuses the proven
+            // "extend focus" path). Re-arm so a mid-block pause or the cap still
+            // lands us in a break.
+            this._extendFocusFromDialog();
+            this._armSoftLanding(onPause, onCap);
+            return true;
+        }
+
+        // 'wait': hold quietly in the overrun state until a pause or the cap.
+        this._setCurrentState('pomodoro-overrun');
+        this._setTimerLabel(0);
+        this._armSoftLanding(onPause, onCap);
+        return true;
+    };
+
+    // A natural pause or the cap ended the soft landing: stop any still-running
+    // focus block, position the queue at the pending short break, and open the
+    // normal end-of-pomodoro break prompt.
+    proto._concludeSoftLanding = function() {
+        this._disarmSoftLanding();
+        // Phase 2 hook: the soft-landing duration is (Date.now() -
+        // this._flowGraceStartMs) here — the place to record flow-session stats
+        // (longest unbroken focus, number of flow sessions). v1 records nothing.
+        this._flowGraceStartMs = null;
+
+        if (this._timerQueue && this._timerQueue.isRunning()) {
+            // extend mode: a focus block is still counting down. Stop it and
+            // step the queue to the short break that follows this pomodoro.
+            this._timerQueue.stop();
+            if (typeof this._timerQueue.getPosition === 'function' &&
+                typeof this._timerQueue.setPosition === 'function') {
+                this._timerQueue.setPosition(this._timerQueue.getPosition() + 1);
+            }
+        }
+        this._timerQueue.preventStart(true);
+        this._appletMenu.toggleTimerState(false);
+        this._setAppletTooltip(0);
+        this._openPomodoroFinishedPrompt();
+    };
+
+    // Open the end-of-pomodoro break prompt. Extracted from the queue handler so
+    // soft landing can defer it; mirrors the classic behaviour exactly.
+    proto._openPomodoroFinishedPrompt = function() {
+        if (this._currentState !== 'pomodoro-stop') {
+            this._setCurrentState('pomodoro-stop');
+        }
+        if (this._opt_showDialogMessages) {
+            this._playStartSound();
+            this._pomodoroFinishedDialog.setExtend(this._opt_flowExtend ? (this._opt_flowExtendMinutes || 5) : 0);
+            this._pomodoroFinishedDialog.setTip(this._restTip(false));
+            this._pomodoroFinishedDialog.open();
+        }
+    };
+
+    // Abort an in-progress soft landing (manual start / pause / skip / reset /
+    // turn off). Safe to call when no soft landing is active.
+    proto._cancelSoftLanding = function() {
+        let wasArmed = (this._flowPauseWatchId || this._flowCapTimeoutId ||
+            this._currentState === 'pomodoro-overrun');
+        this._disarmSoftLanding();
+        this._flowGraceStartMs = null;
+        if (this._currentState === 'pomodoro-overrun') {
+            this._setCurrentState('pomodoro-stop');
+        }
+        return !!wasArmed;
+    };
+
     // Ambient is on when a sound (not "off") is chosen.
     proto._ambientEnabled = function() {
         let c = this._opt_focusAmbientChoice;
@@ -1879,7 +2115,7 @@ function install(proto) {
     };
 
     proto._updateAmbientSound = function() {
-        if (this._ambientEnabled() && this._currentState === 'pomodoro') {
+        if (this._ambientEnabled() && (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-overrun')) {
             this._startAmbientSound();
         } else {
             this._stopAmbientSound();
@@ -1991,7 +2227,7 @@ function install(proto) {
     };
 
     proto._updateDnd = function() {
-        if (this._opt_focusDnd && this._currentState === 'pomodoro') {
+        if (this._opt_focusDnd && (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-overrun')) {
             this._enableDnd();
         } else {
             this._disableDnd();
@@ -2482,7 +2718,7 @@ function install(proto) {
     };
 
     proto._updateZenOverlay = function() {
-        let isFocus = (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused');
+        let isFocus = (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused' || this._currentState === 'pomodoro-overrun');
         let show = this._zenActive && this._opt_zenModeEnabled && isFocus;
         if (!show) {
             this._teardownZenSpotlight();
@@ -2585,7 +2821,7 @@ function install(proto) {
 
     // Re-apply live when the dim settings change (only while the spotlight is up).
     proto._reapplyZenDim = function() {
-        let isFocus = (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused');
+        let isFocus = (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused' || this._currentState === 'pomodoro-overrun');
         if (this._zenActive && this._opt_zenModeEnabled && isFocus) {
             this._applyZenDim();
         }

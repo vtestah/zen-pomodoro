@@ -30,7 +30,9 @@ Originally based on **Pomodoro Timer** by *gfreeau* (GPLv3); since substantially
 - **Meaningful breaks** — rotating rest tips, with *+5 min* and *Skip break*
   actions right in the notification.
 - **Goals & flow** — daily goal + streak with a local celebration, flow‑extend,
-  idle auto‑pause, *Focus until…*, optional **strict focus** mode.
+  **soft landing** (when focus ends while you're still working, hold the break
+  until a natural pause — or quietly extend — instead of interrupting you; off
+  by default), idle auto‑pause, *Focus until…*, optional **strict focus** mode.
 - **Sounds** — ticking, alerts, interval chime, ambient brown noise;
   Do‑Not‑Disturb while focusing.
 - **Optional distraction blocking** — block sites you choose during focus by

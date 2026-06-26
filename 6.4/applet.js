@@ -17,7 +17,7 @@ const MessageTray = imports.ui.messageTray;
 
 const UUID = "zen-pomodoro@vtestah";
 
-let TimerModule, SoundModule, DialogsModule, MenuModule, ConstantsModule, VisualModule, FeaturesModule, SoundFxModule;
+let TimerModule, SoundModule, DialogsModule, MenuModule, ConstantsModule, VisualModule, FeaturesModule, SoundFxModule, FlowModule;
 
 if (typeof require !== 'undefined') {
     TimerModule = require('./timer');
@@ -28,6 +28,7 @@ if (typeof require !== 'undefined') {
     VisualModule = require('./visual');
     FeaturesModule = require('./features');
     SoundFxModule = require('./soundfx');
+    FlowModule = require('./flow');
 } else {
     const AppletDir = imports.ui.appletManager.applets[UUID];
     TimerModule = AppletDir.timer;
@@ -38,6 +39,7 @@ if (typeof require !== 'undefined') {
     VisualModule = AppletDir.visual;
     FeaturesModule = AppletDir.features;
     SoundFxModule = AppletDir.soundfx;
+    FlowModule = AppletDir.flow;
 }
 
 const Gettext = imports.gettext;
@@ -213,6 +215,10 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_autoResumeOnActivity = null;
         this._opt_flowExtend = null;
         this._opt_flowExtendMinutes = null;
+        this._opt_flowSoftLanding = null;
+        this._opt_flowSoftLandingBehavior = null;
+        this._opt_flowSoftLandingMaxMinutes = null;
+        this._opt_flowSoftLandingPauseSeconds = null;
         this._opt_focusAmbientSound = null;
         this._opt_focusAmbientChoice = null;
         this._opt_ambientMigrated = null;
@@ -265,6 +271,11 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._idleMonitor = null;
         this._idleWatchId = 0;
         this._activeWatchId = 0;
+        // Flow Soft Landing: pause-watch + cap-timeout source ids, and the
+        // timestamp the current overrun (grace period) started at.
+        this._flowPauseWatchId = 0;
+        this._flowCapTimeoutId = 0;
+        this._flowGraceStartMs = null;
         this._ambientSound = null;
         this._ambientSoundPath = null;
         this._ambientVolTimeout = 0;
@@ -412,6 +423,10 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_resume_on_activity", "_opt_autoResumeOnActivity", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_extend", "_opt_flowExtend", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_extend_minutes", "_opt_flowExtendMinutes", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_soft_landing", "_opt_flowSoftLanding", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_soft_landing_behavior", "_opt_flowSoftLandingBehavior", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_soft_landing_max_minutes", "_opt_flowSoftLandingMaxMinutes", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_soft_landing_pause_seconds", "_opt_flowSoftLandingPauseSeconds", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_sound", "_opt_focusAmbientSound", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_choice", "_opt_focusAmbientChoice", this._onAmbientChoiceChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "ambient_migrated", "_opt_ambientMigrated", emptyCallback);
@@ -996,7 +1011,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         let labelStyle = "";
         let dark = this._panelIsDark();
 
-        if (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused') {
+        if (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused' || this._currentState === 'pomodoro-overrun') {
             actorStyle = dark ? POMODORO_PANEL_FOCUS_CUE_STYLE : POMODORO_PANEL_FOCUS_CUE_STYLE_LIGHT;
             labelStyle = dark ? POMODORO_PANEL_FOCUS_LABEL_STYLE : POMODORO_PANEL_FOCUS_LABEL_STYLE_LIGHT;
         } else if (this._currentState === 'short-break' || this._currentState === 'long-break' ||
@@ -1017,6 +1032,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
     _getPanelStateLabel() {
         switch (this._currentState) {
+        case 'pomodoro-overrun':
         case 'pomodoro':
             return _('FOCUS');
         case 'pomodoro-paused':
@@ -1375,7 +1391,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
     _isSessionActive() {
         let s = this._currentState;
-        return (s === 'pomodoro' || s === 'pomodoro-paused' ||
+        return (s === 'pomodoro' || s === 'pomodoro-paused' || s === 'pomodoro-overrun' ||
             s === 'short-break' || s === 'long-break' ||
             s === 'short-break-paused' || s === 'long-break-paused' ||
             s === 'break-over');
@@ -1590,12 +1606,10 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 timerQueue.stop();
                 this._appletMenu.toggleTimerState(false);
                 this._setAppletTooltip(0);
-                if (this._opt_showDialogMessages) {
-                    this._playStartSound();
-                    this._pomodoroFinishedDialog.setExtend(this._opt_flowExtend ? (this._opt_flowExtendMinutes || 5) : 0);
-                    this._pomodoroFinishedDialog.setTip(this._restTip(false));
-                    this._pomodoroFinishedDialog.open();
+                if (this._maybeSoftLanding()) {
+                    return; // soft landing deferred the break; it will prompt later
                 }
+                this._openPomodoroFinishedPrompt();
             }
             else if (!this._opt_autoContinueAfterShortBreak && timer === pomodoroTimer) {
                 timerQueue.preventStart(true);
@@ -1732,6 +1746,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
     }
     
     _turnOff() {
+        this._cancelSoftLanding();
         this._stopFocusBlockIfNeeded();
         this._clearCurrentFocusTask();
         this._resetTimerQueueState();
@@ -1784,6 +1799,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
     }
 
     _pauseTimerFromMenu() {
+        this._cancelSoftLanding();
         let timer = this._timerQueue.getCurrentTimer();
         if (!timer || !timer.isRunning()) {
             return;
@@ -1829,6 +1845,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         });
     
         menu.connect('reset-timer', () => {
+            this._cancelSoftLanding();
             this._timerQueue.reset();
             this._stopFocusBlockIfNeeded();
             this._clearCurrentFocusTask();
@@ -1929,6 +1946,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
         menu.connect('skip-timer', () => {
             if (this._strictFocusBlocks()) { this._strictFocusNotice(); return; }
+            this._cancelSoftLanding();
             let timer = this._timerQueue.getCurrentTimer();
             this._timerQueue.skip();
             if (timer === this._timers.longBreak) {
@@ -1945,6 +1963,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
     }
 
     _startTimerFromMenu() {
+        this._cancelSoftLanding();
         this._timerQueue.preventStart(false);
         if (this._resumePausedTimerFromMenu()) {
             return;
@@ -1960,13 +1979,19 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._timerQueue.start();
     }
 
+    // Effective focus accent (theme preset or the user's custom colour) as an
+    // [r, g, b] array, for the focus-task dialog's selection highlight.
+    _focusAccentRgb() {
+        try { return this._accentRgb(false); } catch (e) { return [227, 90, 60]; }
+    }
+
     _promptFocusTaskBeforeStart() {
         if (!this._focusTaskDialog) {
             this._startTimerAfterFocusTask("");
             return;
         }
 
-        this._focusTaskDialog.setTaskList(this._taskList(), this._currentFocusTask, Boolean(this._opt_requireFocusTask), false, false);
+        this._focusTaskDialog.setTaskList(this._taskList(), this._currentFocusTask, Boolean(this._opt_requireFocusTask), false, false, this._focusAccentRgb());
         this._focusTaskDialog.open();
     }
 
@@ -1978,7 +2003,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._taskSelectOnly = true;
         let cur = this._timerQueue ? this._timerQueue.getCurrentTimer() : null;
         let focusRunning = Boolean(cur && cur === this._timers.pomodoro && cur.isRunning());
-        this._focusTaskDialog.setTaskList(this._taskList(), this._currentFocusTask, Boolean(this._opt_requireFocusTask), true, focusRunning);
+        this._focusTaskDialog.setTaskList(this._taskList(), this._currentFocusTask, Boolean(this._opt_requireFocusTask), true, focusRunning, this._focusAccentRgb());
         this._focusTaskDialog.open();
     }
 
@@ -2517,6 +2542,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         if (this._onboardingTimeoutId) { try { imports.gi.GLib.source_remove(this._onboardingTimeoutId); } catch (e) {} this._onboardingTimeoutId = 0; }
         if (this._blockReconcileTimeoutId) { try { imports.gi.GLib.source_remove(this._blockReconcileTimeoutId); } catch (e) {} this._blockReconcileTimeoutId = 0; }
         this._clearIdleWatches();
+        this._disarmSoftLanding();
         this._stopAllSounds();
         this._disableDnd();
         this._resumePausedMedia();

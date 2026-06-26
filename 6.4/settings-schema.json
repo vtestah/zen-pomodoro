@@ -30,7 +30,6 @@
             "title": "Appearance",
             "sections": [
                 "sec_theme",
-                "sec_hud",
                 "sec_motion",
                 "sec_preview"
             ]
@@ -41,6 +40,7 @@
             "sections": [
                 "sec_goals",
                 "sec_modes",
+                "sec_hud",
                 "sec_zen"
             ]
         },
@@ -81,7 +81,8 @@
                 "auto_start_after_short_break_ends",
                 "auto_start_after_break_ends",
                 "onboarding_button",
-                "about_technique_button"
+                "about_technique_button",
+                "restore_onboarding_button"
             ]
         },
         "sec_panel": {
@@ -149,7 +150,11 @@
                 "auto_pause_idle_minutes",
                 "auto_resume_on_activity",
                 "flow_extend",
-                "flow_extend_minutes"
+                "flow_extend_minutes",
+                "flow_soft_landing",
+                "flow_soft_landing_behavior",
+                "flow_soft_landing_max_minutes",
+                "flow_soft_landing_pause_seconds"
             ]
         },
         "sec_ambient": {
@@ -363,7 +368,7 @@
     },
     "auto_start_after_break_ends": {
         "type": "switch",
-        "description": "Auto start a new pomodoro after a break ends",
+        "description": "Auto start a new pomodoro after the long break ends",
         "default": true,
         "tooltip": "When the long break ends, start a new pomodoro cycle automatically."
     },
@@ -651,6 +656,43 @@
         "description": "Extend amount (minutes)",
         "dependency": "flow_extend",
         "tooltip": "How many extra minutes the 'extend focus' option adds."
+    },
+    "flow_soft_landing": {
+        "type": "switch",
+        "description": "Soft landing: don't break focus while you're still working",
+        "default": false,
+        "tooltip": "When a focus pomodoro ends while you're actively working, hold the break until a natural pause instead of interrupting you. Off by default; only applies when 'auto-continue to break' is off."
+    },
+    "flow_soft_landing_behavior": {
+        "type": "combobox",
+        "description": "When focus ends and you're still working",
+        "default": "wait",
+        "options": {
+            "Wait for a natural pause": "wait",
+            "Quietly extend focus": "extend"
+        },
+        "dependency": "flow_soft_landing",
+        "tooltip": "Wait: hold quietly at the end until you pause, then offer the break. Quietly extend: silently add focus time (the 'Extend amount' above) and keep going, re-checking each time."
+    },
+    "flow_soft_landing_max_minutes": {
+        "type": "scale",
+        "default": 10,
+        "min": 1,
+        "max": 30,
+        "step": 1,
+        "description": "Soft landing limit (minutes)",
+        "dependency": "flow_soft_landing",
+        "tooltip": "The most extra time soft landing will hold or extend before the break begins anyway."
+    },
+    "flow_soft_landing_pause_seconds": {
+        "type": "scale",
+        "default": 20,
+        "min": 5,
+        "max": 120,
+        "step": 5,
+        "description": "Natural pause length (seconds)",
+        "dependency": "flow_soft_landing",
+        "tooltip": "How long you need to stop typing and moving the mouse for soft landing to treat it as a natural pause and offer the break."
     },
     "focus_ambient_choice": {
         "type": "combobox",
@@ -1149,6 +1191,16 @@
         "description": "About the Pomodoro technique",
         "tooltip": "A short explanation of how the Pomodoro technique works.",
         "callback": "_showAboutTechnique"
+    },
+    "restore_onboarding_button": {
+        "type": "button",
+        "description": "Undo last setup",
+        "tooltip": "Restore your settings from just before the last time you applied a setup from the guide.",
+        "callback": "_restoreOnboardingBackup"
+    },
+    "onboarding_backup": {
+        "type": "generic",
+        "default": null
     },
     "pushover_msg_short_break": {
         "type": "entry",

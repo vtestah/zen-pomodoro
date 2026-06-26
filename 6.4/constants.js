@@ -34,6 +34,12 @@ var POMODORO_BREAK_FRAME_PULSE_STYLES = [
     `border: 2px solid rgba(82, 198, 125, 0.72); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: rgba(96, 214, 139, 0.008); ${POMODORO_FOCUS_FRAME_TRANSITION}`
 ];
 var POMODORO_FOCUS_FRAME_STYLE = POMODORO_FOCUS_FRAME_NORMAL_STYLE;
+// Flow Soft Landing "overrun": a focus pomodoro has ended but the user is still
+// working, so we hold instead of breaking. A calm, dimmed sage frame — gentler
+// than the focus gold and distinct from the break green — that reads as a quiet
+// "wrap up when you're ready". Static (no pulse / no transition) so it stays
+// calm and is inherently reduce-motion-safe, like the other steady frames.
+var POMODORO_OVERRUN_FRAME_STYLE = `border: 2px solid rgba(170, 200, 160, 0.52); ${POMODORO_FOCUS_FRAME_BOTTOM_SAFE} background-color: rgba(150, 200, 160, 0.010);`;
 var POMODORO_PANEL_FOCUS_CUE_STYLE = "background-color: rgba(214, 152, 48, 0.22); border-radius: 4px; padding-left: 6px; padding-right: 6px;";
 var POMODORO_PANEL_BREAK_CUE_STYLE = "background-color: rgba(62, 180, 111, 0.18); border-radius: 4px; padding-left: 6px; padding-right: 6px;";
 var POMODORO_PANEL_FOCUS_LABEL_STYLE = "font-weight: bold; color: rgb(255, 224, 153);";

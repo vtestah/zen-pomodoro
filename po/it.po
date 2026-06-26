@@ -107,7 +107,7 @@ msgstr "Focus lungo"
 
 #: applet.js:1443
 msgid "Task complete"
-msgstr ""
+msgstr "Attività completata"
 
 #. settings-schema.json->sec_preview->title
 #: applet.js:1544 visual.js:585
@@ -285,15 +285,15 @@ msgstr "Pomodoro finito, pronti a fare una pausa?"
 
 #: dialogs.js:414 dialogs.js:448
 msgid "Reorder"
-msgstr ""
+msgstr "Riordina"
 
 #: dialogs.js:415
 msgid "Drag the rows to reorder, then press Done."
-msgstr ""
+msgstr "Trascina le righe per riordinarle, poi premi Fatto."
 
 #: dialogs.js:441
 msgid "Done"
-msgstr ""
+msgstr "Fatto"
 
 #: features.js:200
 #, javascript-format
@@ -311,11 +311,11 @@ msgstr "Obiettivo giornaliero raggiunto 🍅"
 
 #: features.js:491
 msgid "Reorder tasks"
-msgstr ""
+msgstr "Riordina attività"
 
 #: features.js:515
 msgid "Reorder presets"
-msgstr ""
+msgstr "Riordina preimpostazioni"
 
 #: features.js:540
 #, javascript-format
@@ -325,11 +325,11 @@ msgstr ""
 
 #: features.js:631
 msgid "Capture distraction"
-msgstr ""
+msgstr "Annota distrazione"
 
 #: features.js:633
 msgid "Type it, press Enter — then back to work"
-msgstr ""
+msgstr "Scrivila, premi Invio — poi torna al lavoro"
 
 #: features.js:686
 msgid "Look ~20 ft away for 20 seconds — rest your eyes."
@@ -353,11 +353,11 @@ msgstr "Chiudi gli occhi e fai qualche respiro lento."
 
 #: features.js:691
 msgid "Step away from screens — don't check your phone."
-msgstr ""
+msgstr "Allontanati dagli schermi — non guardare il telefono."
 
 #: features.js:692
 msgid "Unclench your jaw and drop your shoulders."
-msgstr ""
+msgstr "Rilassa la mascella e abbassa le spalle."
 
 #: features.js:695
 msgid "Take a short walk."
@@ -382,10 +382,11 @@ msgstr "Riposa gli occhi e guarda lontano."
 #: features.js:700
 msgid "Rest away from screens — no phone, no feeds, no news."
 msgstr ""
+"Riposa lontano dagli schermi — niente telefono, niente feed, niente notizie."
 
 #: features.js:701
 msgid "Move your body and let your mind wander."
-msgstr ""
+msgstr "Muovi il corpo e lascia vagare la mente."
 
 #: features.js:712 menu.js:1050
 msgid "Edit task"
@@ -529,7 +530,8 @@ msgstr "Le notifiche sono silenziate mentre ti concentri."
 #: features.js:978 recommend.js:34
 msgid "Distraction blocking is ready — add sites in Settings → Advanced."
 msgstr ""
-"Blocco delle distrazioni pronto — aggiungi i siti in Impostazioni → Avanzate."
+"Blocco delle distrazioni pronto — aggiungi i siti in Impostazioni → "
+"Avanzate."
 
 #: features.js:981 recommend.js:38
 msgid "One-click start and a calm start ritual make it easier to begin."
@@ -554,8 +556,8 @@ msgstr "La tecnica del pomodoro 🍅"
 msgid ""
 "In the late 1980s, university student Francesco Cirillo couldn't focus on "
 "his studies. He bet himself he could stay concentrated for just a few "
-"minutes and reached for the first timer he could find — a kitchen one shaped "
-"like a tomato. In Italian, a tomato is a “pomodoro”, and that's how the "
+"minutes and reached for the first timer he could find — a kitchen one shaped"
+" like a tomato. In Italian, a tomato is a “pomodoro”, and that's how the "
 "method got its name."
 msgstr ""
 "Alla fine degli anni '80, lo studente universitario Francesco Cirillo non "
@@ -612,12 +614,12 @@ msgstr ""
 #: features.js:1013
 msgid ""
 "Tip: when something distracts you, don't drop what you're doing — jot the "
-"thought down and come back to it on your break. Every finished pomodoro is a "
-"small win that keeps your momentum going."
+"thought down and come back to it on your break. Every finished pomodoro is a"
+" small win that keeps your momentum going."
 msgstr ""
 "Consiglio: quando qualcosa ti distrae, non abbandonare ciò che stai facendo "
-"— annota il pensiero e riprendilo durante la pausa. Ogni pomodoro completato "
-"è una piccola vittoria che mantiene lo slancio."
+"— annota il pensiero e riprendilo durante la pausa. Ogni pomodoro completato"
+" è una piccola vittoria che mantiene lo slancio."
 
 #: features.js:1014 features.js:1803
 msgid "Close"
@@ -759,21 +761,27 @@ msgstr "Salta"
 
 #: features.js:1117
 msgid "What is the Pomodoro technique? 🍅"
-msgstr ""
+msgstr "Cos'è la tecnica del Pomodoro? 🍅"
 
 #: features.js:1118
 msgid ""
 "Focus in short sprints with deliberate rest: about 25 minutes on one task, "
-"then a 5-minute break; after four sprints, take a longer 15–30 minute break. "
-"The finite countdown keeps a task approachable and the regular breaks "
+"then a 5-minute break; after four sprints, take a longer 15–30 minute break."
+" The finite countdown keeps a task approachable and the regular breaks "
 "protect your attention."
 msgstr ""
+"Concentrati in brevi sessioni con riposo deliberato: circa 25 minuti su "
+"un'attività, poi una pausa di 5 minuti; dopo quattro sessioni, fai una pausa"
+" più lunga di 15–30 minuti. Il conto alla rovescia limitato rende "
+"un'attività affrontabile e le pause regolari proteggono la tua attenzione."
 
 #: features.js:1119
 msgid ""
 "Let's tune it to how you work — five quick questions, and you can change "
 "anything later in Settings."
 msgstr ""
+"Adattiamolo al tuo modo di lavorare — cinque domande veloci, e potrai "
+"cambiare tutto in seguito nelle Impostazioni."
 
 #: features.js:1120
 msgid "Let's go"
@@ -863,60 +871,58 @@ msgstr "Avvia una sessione di focus — qui appariranno i tuoi dati."
 
 #: features.js:1417
 msgid "%d.%m"
-msgstr ""
+msgstr "%d.%m"
 
 #: features.js:1512
-#, fuzzy
 msgid "Zen Pomodoro — focus statistics"
-msgstr "Statistiche del focus"
+msgstr "Zen Pomodoro — statistiche di focus"
 
 #: features.js:1513
 #, javascript-format
 msgid "Today: %d 🍅 (%s)"
-msgstr ""
+msgstr "Oggi: %d 🍅 (%s)"
 
 #: features.js:1514
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "This week: %d 🍅 (%s)"
-msgstr "Questa settimana: %d 🍅 · %s · giorno migliore %s"
+msgstr "Questa settimana: %d 🍅 (%s)"
 
 #: features.js:1515
 #, javascript-format
 msgid "This month: %d 🍅 (%s)"
-msgstr ""
+msgstr "Questo mese: %d 🍅 (%s)"
 
 #: features.js:1516
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "All time: %d 🍅 (%s)"
-msgstr "Totale: %d"
+msgstr "Totale: %d 🍅 (%s)"
 
 #: features.js:1517
 #, javascript-format
 msgid "Streak: %d · best %d"
-msgstr ""
+msgstr "Serie: %d · record %d"
 
 #: features.js:1518
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "Best day: %d 🍅"
-msgstr "Giorno migliore: %d"
+msgstr "Miglior giorno: %d 🍅"
 
 #: features.js:1526
 msgid "Statistics copied to clipboard."
-msgstr ""
+msgstr "Statistiche copiate negli appunti."
 
 #: features.js:1528
-#, fuzzy
 msgid "Could not copy statistics."
-msgstr "Statistiche del focus"
+msgstr "Impossibile copiare le statistiche."
 
 #: features.js:1536
 #, javascript-format
 msgid "Saved to %s"
-msgstr ""
+msgstr "Salvato in %s"
 
 #: features.js:1536
 msgid "Could not save statistics export."
-msgstr ""
+msgstr "Impossibile salvare l'esportazione delle statistiche."
 
 #: features.js:1561 features.js:1634
 msgid "Sun"
@@ -982,9 +988,9 @@ msgid "This week: %d 🍅 · %s · best day %s"
 msgstr "Questa settimana: %d 🍅 · %s · giorno migliore %s"
 
 #: features.js:1639
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "This month: %d 🍅 · %s · best day %d 🍅"
-msgstr "Questa settimana: %d 🍅 · %s · giorno migliore %s"
+msgstr "Questo mese: %d 🍅 · %s · miglior giorno %d 🍅"
 
 #: features.js:1645
 msgid "Nothing harvested yet today"
@@ -1006,11 +1012,11 @@ msgstr "Quando ti concentri (per ora)"
 #: features.js:1669
 #, javascript-format
 msgid "Focus by hour; most focused around %s"
-msgstr ""
+msgstr "Focus per ora; più concentrato intorno alle %s"
 
 #: features.js:1670
 msgid "Focus by hour; not enough data yet"
-msgstr ""
+msgstr "Focus per ora; dati ancora insufficienti"
 
 #: features.js:1673
 msgid "night"
@@ -1037,18 +1043,18 @@ msgid "Focus time — last 14 days"
 msgstr "Tempo di focus — ultimi 14 giorni"
 
 #: features.js:1690
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "┄┄ daily goal (%d 🍅)"
-msgstr "Obiettivo giornaliero raggiunto 🍅"
+msgstr "┄┄ obiettivo giornaliero (%d 🍅)"
 
 #: features.js:1709
 #, javascript-format
 msgid "Last 14 days: %d 🍅 · best %s (%d 🍅)"
-msgstr ""
+msgstr "Ultimi 14 giorni: %d 🍅 · migliore %s (%d 🍅)"
 
 #: features.js:1710
 msgid "Last 14 days: no focus yet"
-msgstr ""
+msgstr "Ultimi 14 giorni: ancora nessun focus"
 
 #: features.js:1716
 msgid "Activity — last 12 weeks"
@@ -1065,11 +1071,11 @@ msgstr "Più"
 #: features.js:1746
 #, javascript-format
 msgid "Last 12 weeks: %d active days · busiest %s (%d 🍅)"
-msgstr ""
+msgstr "Ultime 12 settimane: %d giorni attivi · più intenso %s (%d 🍅)"
 
 #: features.js:1747
 msgid "Last 12 weeks: no focus yet"
-msgstr ""
+msgstr "Ultime 12 settimane: ancora nessun focus"
 
 #: features.js:1763
 msgid "By task"
@@ -1078,7 +1084,7 @@ msgstr "Per attività"
 #: features.js:1774
 #, javascript-format
 msgid "%s: %d 🍅"
-msgstr ""
+msgstr "%s: %d 🍅"
 
 #: features.js:1787 menu.js:710
 #, javascript-format
@@ -1091,11 +1097,11 @@ msgstr "Elimina tutte le statistiche"
 
 #: features.js:1800
 msgid "Copy"
-msgstr ""
+msgstr "Copia"
 
 #: features.js:1801
 msgid "Export…"
-msgstr ""
+msgstr "Esporta…"
 
 #: features.js:1802
 msgid "Reset statistics…"
@@ -1103,11 +1109,11 @@ msgstr "Azzera statistiche…"
 
 #: features.js:1933
 msgid "No sound backend available for preview."
-msgstr ""
+msgstr "Nessun motore audio disponibile per l'anteprima."
 
 #: features.js:1937
 msgid "Choose an ambient sound first (it's set to Off)."
-msgstr ""
+msgstr "Scegli prima un suono ambientale (è impostato su Off)."
 
 #: features.js:2187
 msgid "No task"
@@ -1132,16 +1138,17 @@ msgstr "Test Pushover inviato ✓ — controlla il dispositivo."
 #: features.js:2260 features.js:2264
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr ""
-"Test Pushover non riuscito. Ricontrolla la chiave utente e il token dell'app."
+"Test Pushover non riuscito. Ricontrolla la chiave utente e il token "
+"dell'app."
 
 #: features.js:2357
 #, javascript-format
 msgid "Blocking updated — %d site(s)."
-msgstr ""
+msgstr "Blocco aggiornato — %d sito/i."
 
 #: features.js:2364
 msgid "Site blocking cleared."
-msgstr ""
+msgstr "Blocco dei siti rimosso."
 
 #: features.js:2446
 msgid "Passwordless blocking enabled (no prompt)."
@@ -1156,13 +1163,19 @@ msgid ""
 "Focus spotlight is on — every other window is dimmed so the one you're "
 "working in stands out. Click the on-screen pill (or switch Zen off) to exit."
 msgstr ""
+"Il faro di focus è attivo — tutte le altre finestre sono attenuate per far "
+"risaltare quella in cui stai lavorando. Fai clic sulla pillola a schermo (o "
+"disattiva Zen) per uscire."
 
 #: features.js:2473
 msgid ""
 "Focus spotlight is armed. When your next focus session starts, every window "
-"except the one you're working in dims, so your task stands out. Click the on-"
-"screen pill to exit."
+"except the one you're working in dims, so your task stands out. Click the "
+"on-screen pill to exit."
 msgstr ""
+"Il faro di focus è pronto. All'inizio della prossima sessione di focus, "
+"tutte le finestre tranne quella in cui stai lavorando si attenuano, facendo "
+"risaltare la tua attività. Fai clic sulla pillola a schermo per uscire."
 
 #. settings-schema.json->sec_zen->title
 #: features.js:2474 menu.js:467 menu.js:511
@@ -1171,7 +1184,7 @@ msgstr "Modalità Zen"
 
 #: features.js:2624
 msgid "Exit focus"
-msgstr ""
+msgstr "Esci dal focus"
 
 #: features.js:2733
 msgid "Breathe in"
@@ -1203,7 +1216,7 @@ msgstr "Pronto per iniziare"
 
 #: menu.js:239 menu.js:786
 msgid "No task yet — tap to choose one"
-msgstr ""
+msgstr "Ancora nessuna attività — tocca per sceglierne una"
 
 #: menu.js:245
 msgid "Change task"
@@ -1224,7 +1237,7 @@ msgstr "Salta fase"
 
 #: menu.js:369
 msgid "Skip the current phase and move on to the next."
-msgstr ""
+msgstr "Salta la fase attuale e passa alla successiva."
 
 #: menu.js:374
 msgid "Reset timer"
@@ -1232,24 +1245,27 @@ msgstr "Reimposta timer"
 
 #: menu.js:376
 msgid ""
-"Stop the current timer and return to the start. Your pomodoro count for this "
-"set is kept."
+"Stop the current timer and return to the start. Your pomodoro count for this"
+" set is kept."
 msgstr ""
+"Ferma il timer attuale e torna all'inizio. Il conteggio dei pomodori di "
+"questa serie viene mantenuto."
 
 #: menu.js:388
-#, fuzzy
 msgid "Reset timer & count"
-msgstr "Reimposta timer e contatori"
+msgstr "Reimposta timer e conteggio"
 
 #: menu.js:389
 msgid ""
 "Reset the timer and clear this set's pomodoro count. Your saved statistics "
 "aren't affected."
 msgstr ""
+"Reimposta il timer e azzera il conteggio dei pomodori di questa serie. Le "
+"statistiche salvate non vengono toccate."
 
 #: menu.js:390
 msgid "Confirm reset"
-msgstr ""
+msgstr "Conferma reimpostazione"
 
 #: menu.js:412 menu.js:984
 msgid "Task list"
@@ -1257,7 +1273,7 @@ msgstr "Elenco attività"
 
 #: menu.js:433 menu.js:973
 msgid "Distractions"
-msgstr ""
+msgstr "Distrazioni"
 
 #: menu.js:463
 msgid "Focus until…"
@@ -1268,6 +1284,9 @@ msgid ""
 "Focus spotlight: while a focus session runs, every other window dims so the "
 "one you're working in stands out. Click the on-screen pill to exit."
 msgstr ""
+"Faro di focus: durante una sessione di focus, tutte le altre finestre si "
+"attenuano per far risaltare quella in cui stai lavorando. Fai clic sulla "
+"pillola a schermo per uscire."
 
 #. settings-schema.json->sec_ambient->title
 #: menu.js:472 menu.js:515
@@ -1284,7 +1303,7 @@ msgstr "disattivato"
 
 #: menu.js:483
 msgid "Manage blocked sites"
-msgstr ""
+msgstr "Gestisci siti bloccati"
 
 #: menu.js:488
 msgid "Statistics"
@@ -1292,7 +1311,7 @@ msgstr "Statistiche"
 
 #: menu.js:494
 msgid "Open the statistics dashboard"
-msgstr ""
+msgstr "Apri il pannello delle statistiche"
 
 #: menu.js:499
 msgid "Setup wizard…"
@@ -1404,15 +1423,15 @@ msgstr "Avvia il prossimo focus"
 
 #: menu.js:904
 msgid "Jot a distraction, press Enter"
-msgstr ""
+msgstr "Annota una distrazione, premi Invio"
 
 #: menu.js:950
 msgid "Delete"
-msgstr ""
+msgstr "Elimina"
 
 #: menu.js:967
 msgid "Clear all"
-msgstr ""
+msgstr "Cancella tutto"
 
 #: menu.js:999
 msgid "Add task…"
@@ -1420,7 +1439,7 @@ msgstr "Aggiungi attività…"
 
 #: menu.js:1003 menu.js:1115
 msgid "Reorder…"
-msgstr ""
+msgstr "Riordina…"
 
 #: menu.js:1014
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
@@ -1459,7 +1478,7 @@ msgstr "Focus"
 
 #. settings-schema.json->timer->title
 msgid "General"
-msgstr ""
+msgstr "Generale"
 
 #. settings-schema.json->panel->title
 #. settings-schema.json->sec_panel->title
@@ -1504,11 +1523,11 @@ msgstr "Obiettivi e flusso"
 
 #. settings-schema.json->sec_modes->title
 msgid "Modes"
-msgstr ""
+msgstr "Modalità"
 
 #. settings-schema.json->sec_sounds->title
 msgid "Alerts & effects"
-msgstr ""
+msgstr "Avvisi ed effetti"
 
 #. settings-schema.json->sec_tools->title
 msgid "Run a command"
@@ -1539,6 +1558,8 @@ msgid ""
 "Focus, break and cycle lengths come from presets — switch or edit them from "
 "the menu (Preset ▸)."
 msgstr ""
+"Le durate di focus, pausa e ciclo provengono dalle preimpostazioni — "
+"cambiale o modificale dal menu (Preimpostazione ▸)."
 
 #. settings-schema.json->pomodoro_duration->description
 msgid "Pomodoro Duration:"
@@ -1567,15 +1588,18 @@ msgid "Long Break Duration:"
 msgstr "Durata Pausa Lunga:"
 
 #. settings-schema.json->long_break_duration->tooltip
-msgid "Length of the longer break after a set of pomodoros (classic is 15–30)."
-msgstr "Durata della pausa lunga dopo una serie di pomodori (classico: 15–30)."
+msgid ""
+"Length of the longer break after a set of pomodoros (classic is 15–30)."
+msgstr ""
+"Durata della pausa lunga dopo una serie di pomodori (classico: 15–30)."
 
 #. settings-schema.json->pomodori_number->description
 msgid "Number of pomodori before long break:"
 msgstr "Numero di pomodori prima della lunga pausa:"
 
 #. settings-schema.json->pomodori_number->tooltip
-msgid "How many focus blocks to complete before the long break (classic is 4)."
+msgid ""
+"How many focus blocks to complete before the long break (classic is 4)."
 msgstr ""
 "Quanti blocchi di focus completare prima della pausa lunga (classico: 4)."
 
@@ -1624,7 +1648,8 @@ msgstr "Avvio automatico al termine di un pomodoro"
 
 #. settings-schema.json->auto_start_after_pomodoro_ends->tooltip
 msgid "When a focus block ends, start its break automatically."
-msgstr "Quando un blocco di focus finisce, avvia automaticamente la sua pausa."
+msgstr ""
+"Quando un blocco di focus finisce, avvia automaticamente la sua pausa."
 
 #. settings-schema.json->auto_start_after_short_break_ends->description
 msgid "Auto start after a short break ends"
@@ -1733,13 +1758,15 @@ msgstr ""
 
 #. settings-schema.json->hotkey_distraction->description
 msgid "Shortcut: capture a distraction"
-msgstr ""
+msgstr "Scorciatoia: annota una distrazione"
 
 #. settings-schema.json->hotkey_distraction->tooltip
 msgid ""
 "Keyboard shortcut to pop up a quick note for a distracting thought, without "
 "opening the menu."
 msgstr ""
+"Scorciatoia da tastiera per far comparire una nota rapida per un pensiero "
+"che distrae, senza aprire il menu."
 
 #. settings-schema.json->start_on_click->description
 msgid "Start the timer with a single click when idle"
@@ -1759,12 +1786,12 @@ msgstr "Controlla il timer con il mouse sul pannello"
 
 #. settings-schema.json->panel_scroll_control->tooltip
 msgid ""
-"Scroll up on the applet to start or resume, scroll down to pause, and middle-"
-"click to skip the phase. Turn this off if you sometimes scroll over the "
-"panel by accident."
+"Scroll up on the applet to start or resume, scroll down to pause, and "
+"middle-click to skip the phase. Turn this off if you sometimes scroll over "
+"the panel by accident."
 msgstr ""
-"Scorri verso l'alto sull'applet per avviare o riprendere, verso il basso per "
-"sospendere e fai clic centrale per saltare la fase. Disattiva se a volte "
+"Scorri verso l'alto sull'applet per avviare o riprendere, verso il basso per"
+" sospendere e fai clic centrale per saltare la fase. Disattiva se a volte "
 "scorri sul pannello per sbaglio."
 
 #. settings-schema.json->scroll_action->description
@@ -1784,9 +1811,9 @@ msgid ""
 "What the mouse wheel does on the applet: start/pause the timer, or change "
 "the focus length (when idle). Middle-click always skips to the next phase."
 msgstr ""
-"Cosa fa la rotellina del mouse sull'applet: avvia/sospendi il timer o cambia "
-"la durata del focus (quando è inattivo). Il clic centrale salta sempre alla "
-"fase successiva."
+"Cosa fa la rotellina del mouse sull'applet: avvia/sospendi il timer o cambia"
+" la durata del focus (quando è inattivo). Il clic centrale salta sempre alla"
+" fase successiva."
 
 #. settings-schema.json->focus_show_task_chip->description
 msgid "Show the current task as an on-screen chip during focus"
@@ -1809,8 +1836,8 @@ msgstr ""
 
 #. settings-schema.json->focus_start_ritual->description
 msgid ""
-"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus "
-"begins"
+"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus"
+" begins"
 msgstr ""
 "Rituale di inizio: breve 'Focus: <task>' al centro e una comparsa graduale "
 "quando inizia il focus"
@@ -1818,8 +1845,8 @@ msgstr ""
 #. settings-schema.json->focus_start_ritual->tooltip
 msgid "Briefly show 'Focus: <task>' with a smooth fade-in when focus begins."
 msgstr ""
-"Mostra brevemente 'Focus: <task>' con una comparsa graduale quando inizia il "
-"focus."
+"Mostra brevemente 'Focus: <task>' con una comparsa graduale quando inizia il"
+" focus."
 
 #. settings-schema.json->require_focus_task->description
 msgid "Require a focus task before starting"
@@ -1907,11 +1934,11 @@ msgstr "Intensità del bagliore"
 
 #. settings-schema.json->glow_intensity->tooltip
 msgid ""
-"How bright the on-screen edge glow is during focus — higher is more visible, "
-"lower is subtler."
+"How bright the on-screen edge glow is during focus — higher is more visible,"
+" lower is subtler."
 msgstr ""
-"Quanto è luminoso il bagliore sui bordi dello schermo durante il focus — più "
-"alto è più visibile, più basso è più tenue."
+"Quanto è luminoso il bagliore sui bordi dello schermo durante il focus — più"
+" alto è più visibile, più basso è più tenue."
 
 #. settings-schema.json->glow_progress_width->description
 msgid "Progress line thickness"
@@ -1942,11 +1969,11 @@ msgstr "Rilassante 4-6"
 
 #. settings-schema.json->breathing_pattern->tooltip
 msgid ""
-"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 "
-"— seconds per phase."
+"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6"
+" — seconds per phase."
 msgstr ""
-"Ritmo di respirazione della guida: Box (4-4-4-4), calmante 4-7-8 o rilassato "
-"4-6 — secondi per fase."
+"Ritmo di respirazione della guida: Box (4-4-4-4), calmante 4-7-8 o rilassato"
+" 4-6 — secondi per fase."
 
 #. settings-schema.json->chip_position->description
 msgid "Task chip position"
@@ -2006,8 +2033,8 @@ msgstr "Anteprima cornice di focus"
 
 #. settings-schema.json->preview_appearance_button->tooltip
 msgid ""
-"Briefly show the on-screen focus frame and task chip with the current colors "
-"and style (works when no timer is running)."
+"Briefly show the on-screen focus frame and task chip with the current colors"
+" and style (works when no timer is running)."
 msgstr ""
 "Mostra brevemente la cornice di focus e l'etichetta dell'attività con i "
 "colori e lo stile attuali (funziona quando nessun timer è in esecuzione)."
@@ -2031,29 +2058,33 @@ msgstr "Pomodori obiettivo al giorno (0 disattiva obiettivo e serie)."
 
 #. settings-schema.json->task_celebration->description
 msgid "Celebrate when a task is completed"
-msgstr ""
+msgstr "Festeggia al completamento di un'attività"
 
 #. settings-schema.json->task_celebration->options
 msgid "Subtle (glow + check)"
-msgstr ""
+msgstr "Discreto (bagliore + spunta)"
 
 #. settings-schema.json->task_celebration->options
 msgid "Confetti"
-msgstr ""
+msgstr "Coriandoli"
 
 #. settings-schema.json->task_celebration->tooltip
 msgid ""
 "A short celebration when you complete a task that met its 🍅 estimate (or "
 "earned at least one). Confetti respects reduce-motion."
 msgstr ""
+"Una breve celebrazione quando completi un'attività che ha raggiunto la sua "
+"stima di 🍅 (o ne ha ottenuta almeno una). I coriandoli rispettano la "
+"riduzione del movimento."
 
 #. settings-schema.json->task_celebration_preview_button->description
 msgid "Preview the celebration"
-msgstr ""
+msgstr "Anteprima della celebrazione"
 
 #. settings-schema.json->task_celebration_preview_button->tooltip
 msgid "Play the task-completion celebration once to see how it looks."
 msgstr ""
+"Riproduci una volta la celebrazione di completamento per vedere come appare."
 
 #. settings-schema.json->auto_pause_idle->description
 msgid "Auto-pause focus when you are away (idle)"
@@ -2070,7 +2101,8 @@ msgstr "Minuti di inattività prima della pausa automatica"
 #. settings-schema.json->auto_pause_idle_minutes->tooltip
 msgid "How long you can be away before focus auto-pauses, in minutes."
 msgstr ""
-"Per quanti minuti puoi essere assente prima che il focus si sospenda da solo."
+"Per quanti minuti puoi essere assente prima che il focus si sospenda da "
+"solo."
 
 #. settings-schema.json->auto_resume_on_activity->description
 msgid "Resume automatically when you return"
@@ -2103,33 +2135,36 @@ msgstr "Quanti minuti extra aggiunge l'opzione 'estendi focus'."
 
 #. settings-schema.json->focus_ambient_choice->description
 msgid "Ambient sound during focus"
-msgstr ""
+msgstr "Suono ambientale durante il focus"
 
 #. settings-schema.json->focus_ambient_choice->options
 msgid "White noise"
-msgstr ""
+msgstr "Rumore bianco"
 
 #. settings-schema.json->focus_ambient_choice->options
 msgid "Pink noise"
-msgstr ""
+msgstr "Rumore rosa"
 
 #. settings-schema.json->focus_ambient_choice->options
 msgid "Brown noise"
-msgstr ""
+msgstr "Rumore marrone"
 
 #. settings-schema.json->focus_ambient_choice->options
 msgid "Rain"
-msgstr ""
+msgstr "Pioggia"
 
 #. settings-schema.json->focus_ambient_choice->options
 msgid "Sea"
-msgstr ""
+msgstr "Mare"
 
 #. settings-schema.json->focus_ambient_choice->tooltip
 msgid ""
 "Loop a calming sound during focus. White/pink/brown noise and rain/sea are "
 "built in; pick \"Custom file\" to use your own."
 msgstr ""
+"Riproduci in loop un suono rilassante durante il focus. I rumori "
+"bianco/rosa/marrone e pioggia/mare sono integrati; scegli «File "
+"personalizzato» per usare il tuo."
 
 #. settings-schema.json->focus_ambient_sound->description
 msgid "Play an ambient sound during focus"
@@ -2153,11 +2188,12 @@ msgstr "Volume del suono ambientale (0 = silenzioso)."
 
 #. settings-schema.json->focus_ambient_preview_button->description
 msgid "▶ Preview"
-msgstr ""
+msgstr "▶ Anteprima"
 
 #. settings-schema.json->focus_ambient_preview_button->tooltip
 msgid "Play a short sample of the chosen ambient sound at the set volume."
 msgstr ""
+"Riproduci un breve campione del suono ambientale scelto al volume impostato."
 
 #. settings-schema.json->break_breathing->description
 msgid "Show a breathing guide during breaks"
@@ -2173,36 +2209,43 @@ msgstr ""
 
 #. settings-schema.json->zen_mode_enabled->description
 msgid ""
-"Enable Zen mode (focus spotlight — dims other windows, toggled from the menu)"
+"Enable Zen mode (focus spotlight — dims other windows, toggled from the "
+"menu)"
 msgstr ""
+"Abilita la modalità Zen (faro di focus — attenua le altre finestre, "
+"attivabile dal menu)"
 
 #. settings-schema.json->zen_mode_enabled->tooltip
 msgid ""
 "Allow the focus spotlight, toggled from the menu: while focusing, the other "
 "windows dim so the one you're working in stands out."
 msgstr ""
+"Consenti il faro di focus, attivabile dal menu: durante il focus le altre "
+"finestre si attenuano per far risaltare quella in cui stai lavorando."
 
 #. settings-schema.json->zen_dim_strength->units
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #. settings-schema.json->zen_dim_strength->description
 msgid "Zen spotlight: dim strength"
-msgstr ""
+msgstr "Faro Zen: intensità di attenuazione"
 
 #. settings-schema.json->zen_dim_strength->tooltip
 msgid ""
 "How much to darken the other windows while a focus session runs (higher = "
 "darker)."
 msgstr ""
+"Quanto scurire le altre finestre durante una sessione di focus (più alto = "
+"più scuro)."
 
 #. settings-schema.json->zen_dim_desktop->description
 msgid "Zen spotlight: also dim the desktop wallpaper"
-msgstr ""
+msgstr "Faro Zen: attenua anche lo sfondo del desktop"
 
 #. settings-schema.json->zen_dim_desktop->tooltip
 msgid "Darken the desktop background too, not just the other windows."
-msgstr ""
+msgstr "Scurisci anche lo sfondo del desktop, non solo le altre finestre."
 
 #. settings-schema.json->strict_focus->description
 msgid "Strict focus: no pause or skip during a focus block"
@@ -2210,8 +2253,8 @@ msgstr "Focus rigoroso: niente pausa o salto durante un blocco di focus"
 
 #. settings-schema.json->strict_focus->tooltip
 msgid ""
-"While a focus block is running, hide pause and skip so you commit to it. You "
-"can still Reset to abandon the session — it's never a hard lock."
+"While a focus block is running, hide pause and skip so you commit to it. You"
+" can still Reset to abandon the session — it's never a hard lock."
 msgstr ""
 "Mentre un blocco di focus è in esecuzione, nasconde pausa e salto per "
 "aiutarti a impegnarti. Puoi sempre usare Reimposta per abbandonare la "
@@ -2261,9 +2304,11 @@ msgstr "Comando da eseguire all'inizio del focus"
 
 #. settings-schema.json->focus_start_command->tooltip
 msgid ""
-"Pick a script to run when a focus block starts (e.g. enable Do Not Disturb). "
-"You can also type a command."
+"Pick a script to run when a focus block starts (e.g. enable Do Not Disturb)."
+" You can also type a command."
 msgstr ""
+"Scegli uno script da eseguire all'inizio di un blocco di focus (es. attivare"
+" Non disturbare). Puoi anche digitare un comando."
 
 #. settings-schema.json->break_start_command->description
 msgid "Command to run when a break starts"
@@ -2274,16 +2319,20 @@ msgid ""
 "Pick a script to run when a break starts (e.g. clear your status). You can "
 "also type a command."
 msgstr ""
+"Scegli uno script da eseguire all'inizio di una pausa (es. azzerare il tuo "
+"stato). Puoi anche digitare un comando."
 
 #. settings-schema.json->goal_command->description
 msgid "Command to run when the daily goal is reached"
-msgstr ""
+msgstr "Comando da eseguire al raggiungimento dell'obiettivo giornaliero"
 
 #. settings-schema.json->goal_command->tooltip
 msgid ""
 "Pick a script to run when you reach your daily goal (e.g. a small "
 "celebration). You can also type a command."
 msgstr ""
+"Scegli uno script da eseguire quando raggiungi il tuo obiettivo giornaliero "
+"(es. una piccola celebrazione). Puoi anche digitare un comando."
 
 #. settings-schema.json->pushover_enabled->description
 msgid "Send push notifications to your phone (Pushover)"
@@ -2299,10 +2348,11 @@ msgstr ""
 
 #. settings-schema.json->pushover_help->description
 msgid ""
-"Free phone/desktop alerts. Sign up at pushover.net and paste your keys below."
+"Free phone/desktop alerts. Sign up at pushover.net and paste your keys "
+"below."
 msgstr ""
-"Avvisi gratuiti su telefono/desktop. Registrati su pushover.net e incolla le "
-"tue chiavi qui sotto."
+"Avvisi gratuiti su telefono/desktop. Registrati su pushover.net e incolla le"
+" tue chiavi qui sotto."
 
 #. settings-schema.json->pushover_user_key->description
 msgid "Pushover user key"
@@ -2337,8 +2387,8 @@ msgstr "Personalizza messaggi, suoni e priorità"
 
 #. settings-schema.json->pushover_customize->tooltip
 msgid ""
-"Show options to change the text, sound and priority for each event. Off uses "
-"sensible defaults."
+"Show options to change the text, sound and priority for each event. Off uses"
+" sensible defaults."
 msgstr ""
 "Mostra le opzioni per cambiare testo, suono e priorità di ogni evento. "
 "Disattivato usa valori predefiniti sensati."
@@ -2375,14 +2425,17 @@ msgstr ""
 
 #. settings-schema.json->enable_blocking->description
 msgid "Block distracting sites"
-msgstr ""
+msgstr "Blocca i siti che distraggono"
 
 #. settings-schema.json->enable_blocking->tooltip
 msgid ""
 "When on, the sites below are blocked right now and stay blocked until you "
-"turn this off. Run \"Set up passwordless blocking\" once so toggling doesn't "
-"ask for a password."
+"turn this off. Run \"Set up passwordless blocking\" once so toggling doesn't"
+" ask for a password."
 msgstr ""
+"Quando attivo, i siti qui sotto vengono bloccati subito e restano bloccati "
+"finché non lo disattivi. Esegui una volta «Configura il blocco senza "
+"password» così l'attivazione non chiede la password."
 
 #. settings-schema.json->block_domains->description
 msgid "Domains to block (e.g. youtube.com)"
@@ -2394,9 +2447,11 @@ msgstr "Dominio"
 
 #. settings-schema.json->block_domains->tooltip
 msgid ""
-"Domains to block while blocking is on, one per row (e.g. youtube.com, www."
-"youtube.com)."
+"Domains to block while blocking is on, one per row (e.g. youtube.com, "
+"www.youtube.com)."
 msgstr ""
+"Domini da bloccare quando il blocco è attivo, uno per riga (es. youtube.com,"
+" www.youtube.com)."
 
 #. settings-schema.json->sox-info->description
 msgid ""
@@ -2583,8 +2638,8 @@ msgid ""
 "Your timer presets — name + focus / short / long minutes + pomodori. Apply "
 "them from the menu's Preset submenu."
 msgstr ""
-"I tuoi preset del timer — nome + minuti di focus / breve / lunga + pomodori. "
-"Applicali dal sottomenu Preset del menu."
+"I tuoi preset del timer — nome + minuti di focus / breve / lunga + pomodori."
+" Applicali dal sottomenu Preset del menu."
 
 #. settings-schema.json->setup_passwordless_button->description
 msgid "Set up passwordless blocking (one-time)"
@@ -2620,11 +2675,11 @@ msgstr "Riapre la guida di configurazione passo passo."
 
 #. settings-schema.json->about_technique_button->description
 msgid "About the Pomodoro technique"
-msgstr ""
+msgstr "Informazioni sulla tecnica del Pomodoro"
 
 #. settings-schema.json->about_technique_button->tooltip
 msgid "A short explanation of how the Pomodoro technique works."
-msgstr ""
+msgstr "Una breve spiegazione di come funziona la tecnica del Pomodoro."
 
 #. settings-schema.json->pushover_msg_short_break->description
 msgid "Message when a short break starts"
@@ -2796,8 +2851,8 @@ msgstr "File del suono ambientale"
 
 #. settings-schema.json->focus_ambient_file->tooltip
 msgid ""
-"Pick your own looping ambient sound. Leave empty for the built-in soft brown "
-"noise."
+"Pick your own looping ambient sound. Leave empty for the built-in soft brown"
+" noise."
 msgstr ""
 "Scegli un tuo suono ambientale in loop. Lascia vuoto per il rumore marrone "
 "integrato."

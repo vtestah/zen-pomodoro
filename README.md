@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="icon.png" alt="Zen Pomodoro" width="96" height="96">
+  <img src="logo.svg" alt="Zen Pomodoro" width="120" height="120">
 </p>
 
 # Zen Pomodoro — Cinnamon applet

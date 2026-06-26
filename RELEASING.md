@@ -38,8 +38,14 @@ It runs for every commit, including from GUIs (VS Code, etc.). To bypass once
 
 ## 2. Cut a release (local)
 
-One-time prerequisite — install git-cliff: <https://git-cliff.org/docs/installation>
-(e.g. `cargo install git-cliff`, or your distro package).
+One-time prerequisite — install git-cliff. It ships as an npm devDependency:
+
+```bash
+npm install          # installs git-cliff (and the other dev tools)
+```
+
+(or install it globally — see <https://git-cliff.org/docs/installation>). The
+`./release.sh` flow finds it automatically (PATH → `node_modules/.bin` → npx).
 
 With a **clean working tree**:
 

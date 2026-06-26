@@ -5,9 +5,12 @@
   "license": "GPL-3.0-or-later",
   "scripts": {
     "lint": "eslint 6.4 tests/js",
-    "test": "node tests/js/recommend.test.js && node tests/js/flow.test.js"
+    "test": "node tests/js/recommend.test.js && node tests/js/flow.test.js",
+    "changelog": "git-cliff -o CHANGELOG.md",
+    "release": "bash release.sh"
   },
   "devDependencies": {
-    "eslint": "^9.0.0"
+    "eslint": "^9.0.0",
+    "git-cliff": "^2.13.1"
   }
 }

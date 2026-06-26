@@ -16,12 +16,19 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 # --- preflight ---------------------------------------------------------------
-command -v git-cliff >/dev/null 2>&1 || {
-    echo "ERROR: git-cliff not found."
-    echo "Install it: https://git-cliff.org/docs/installation"
-    echo "  e.g.  cargo install git-cliff   (or your distro's package)"
+# Resolve git-cliff: prefer one on PATH, then the npm devDependency
+# (node_modules/.bin after `npm install`), then npx as a last resort.
+if command -v git-cliff >/dev/null 2>&1; then
+    GIT_CLIFF="git-cliff"
+elif [ -x "node_modules/.bin/git-cliff" ]; then
+    GIT_CLIFF="node_modules/.bin/git-cliff"
+elif command -v npx >/dev/null 2>&1; then
+    GIT_CLIFF="npx --no-install git-cliff"
+else
+    echo "ERROR: git-cliff not found. Install it with:  npm install"
+    echo "  (it is a devDependency) — or see https://git-cliff.org/docs/installation"
     exit 1
-}
+fi
 command -v jq >/dev/null 2>&1 || { echo "ERROR: jq not found."; exit 1; }
 [ -f metadata.json ] || { echo "ERROR: run from the repo root (metadata.json missing)."; exit 1; }
 
@@ -37,7 +44,7 @@ CURRENT="$(jq -r '.version' metadata.json)"
 if [ "${1:-}" != "" ]; then
     NEXT="v${1#v}"
 else
-    NEXT="$(git-cliff --bumped-version)"
+    NEXT="$($GIT_CLIFF --bumped-version)"
 fi
 VER="${NEXT#v}"
 
@@ -49,7 +56,7 @@ fi
 
 echo "Release: $CURRENT -> $VER   (tag $NEXT)"
 echo "------------------ changelog preview ------------------"
-git-cliff --unreleased --tag "$NEXT" || true
+$GIT_CLIFF --unreleased --tag "$NEXT" || true
 echo "-------------------------------------------------------"
 read -r -p "Proceed with commit + tag $NEXT? [y/N] " ans
 case "$ans" in
@@ -65,7 +72,7 @@ jq --arg v "$VER" --argjson t "$(date +%s)" \
    '.version = $v | ."last-edited" = $t' metadata.json > "$tmp" && mv "$tmp" metadata.json
 
 # Regenerate the changelog through the new tag.
-git-cliff --tag "$NEXT" -o CHANGELOG.md
+$GIT_CLIFF --tag "$NEXT" -o CHANGELOG.md
 
 git add metadata.json CHANGELOG.md
 git commit -m "chore(release): $NEXT"

@@ -1,5 +1,7 @@
 # Zen Pomodoro — Cinnamon applet
 
+![tests](https://github.com/vtestah/focus-pomodoro/actions/workflows/tests.yml/badge.svg)
+
 A calm, Zen‑style Pomodoro focus timer for the Cinnamon panel: gentle on‑screen
 cues instead of anxious alarms — a soft glow frame that traces your progress, a
 quiet start ritual, a calm ending, an optional full‑screen Zen mode and a

@@ -6,8 +6,14 @@
   "scripts": {
     "lint": "eslint 6.4 tests/js",
     "test": "node tests/js/recommend.test.js && node tests/js/flow.test.js",
+    "test:py": "pytest",
+    "test:all": "npm run test && npm run test:py",
     "changelog": "git-cliff -o CHANGELOG.md",
-    "release": "bash release.sh"
+    "release": "bash release.sh",
+    "build": "bash build-public.sh",
+    "sounds:gen": "bash tools/gen-ambient-sounds.sh",
+    "sounds:fetch": "bash tools/fetch-recordings.sh",
+    "sounds:normalize": "bash tools/normalize-sounds.sh"
   },
   "devDependencies": {
     "eslint": "^9.0.0",

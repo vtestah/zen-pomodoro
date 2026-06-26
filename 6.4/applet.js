@@ -228,6 +228,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._pausedMediaPlayers = [];
         this._mediaPauseInFlight = false;
         this._opt_runCommandEnabled = null;
+        this._opt_breakLockEnabled = null;
+        this._opt_breakLockLongOnly = null;
+        this._breakLockTimeoutId = 0;
         this._opt_focusStartCommand = null;
         this._opt_breakStartCommand = null;
         this._opt_goalCommand = null;
@@ -433,6 +436,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_dnd", "_opt_focusDnd", () => this._updateDnd());
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pause_media", "_opt_pauseMedia", () => this._updateMediaPause());
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "run_command_enabled", "_opt_runCommandEnabled", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_lock_enabled", "_opt_breakLockEnabled", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_lock_long_only", "_opt_breakLockLongOnly", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_start_command", "_opt_focusStartCommand", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_start_command", "_opt_breakStartCommand", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "goal_command", "_opt_goalCommand", emptyCallback);
@@ -1325,6 +1330,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._updateMediaPause();
         this._updateBreathingGuide();
         this._updateZenOverlay();
+        this._maybeLockForBreak();
     }
 
     _setBreakOverState(fromState) {
@@ -2547,6 +2553,10 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._disableDnd();
         this._resumePausedMedia();
         this._stopBreathing();
+        if (this._breakLockTimeoutId) {
+            try { GLib.source_remove(this._breakLockTimeoutId); } catch (e) {}
+            this._breakLockTimeoutId = 0;
+        }
         this._teardownZenSpotlight();
         if (this._zenHud) {
             this._zenHud.destroy();

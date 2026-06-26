@@ -913,12 +913,7 @@ function install(proto) {
     // side effects — the wizard applies the result only when the user accepts.
     proto._computeFocusPlan = function(a) {
         let plan = RecommendModule.computeFocusPlan(a || {}, this._recoDeps());
-        let items = plan.items || [];
-        return {
-            items: items,
-            settings: RecommendModule.selectKeys(items),
-            reasons: items.filter((it) => it && it.label).map((it) => it.label)
-        };
+        return { items: plan.items || [] };
     };
 
     // Smart, adaptive onboarding: ask a few diagnostic questions, then compute
@@ -980,61 +975,58 @@ function install(proto) {
         let sp = this._settingsProvider;
         let answers = {};
         let st = { step: 0 };
-        let content = new St.BoxLayout({ vertical: true, reactive: true, can_focus: true, style: 'spacing: 10px; width: 560px; padding: 6px 14px;' });
+        let content = new St.BoxLayout({ vertical: true, style: 'spacing: 10px; width: 560px; padding: 6px 14px;' });
         dialog.contentLayout.add(content);
 
         let title = (s) => new St.Label({ text: s, style: 'font-size: 1.35em; font-weight: bold;' });
         let para = (s) => { let l = new St.Label({ text: s }); l.clutter_text.line_wrap = true; return l; };
         let BASE = 'margin: 5px 0 0 0; padding: 9px 14px; border-radius: 8px;';
         let SEL = BASE + ' background-color: rgba(227,90,60,0.92); color: #ffffff; font-weight: bold; border: 1px solid #e3593c;';
-        let HILITE = ' border: 1px solid rgba(255,255,255,0.85);'; // keyboard highlight ring
 
-        // Keyboard navigation. Enter (default button) and Escape (Skip) are wired
-        // through the dialog buttons; here we add: digits 1-9 select/toggle the
-        // matching option, Up/Down move a highlight, Space activates it, and
-        // Backspace goes Back. Each build() refreshes st.nav with the handlers for
-        // the current step and parks key focus on `content`.
+        // Keyboard navigation, layered on top of native focus so it stays
+        // accessible: options/checkboxes are real focusable buttons, so Tab moves
+        // between them and Space/Enter activate the focused one (handled by St),
+        // and screen readers announce their labels. On top of that we add
+        // accelerators — digits 1-9 select/toggle the matching option, Up/Down
+        // move focus between options, Backspace goes Back. Enter (default button),
+        // Escape (Skip) and Tab are left to the dialog's own handling. The handler
+        // sits on `content`, an ancestor of the options, so it catches these keys
+        // as they bubble up from the focused option.
         let onKey = (actor, ev) => {
             let sym = ev.get_key_symbol();
             let nav = st.nav || {};
             if (sym === Clutter.KEY_BackSpace) { if (nav.back) { nav.back(); return true; } return false; }
             if (sym === Clutter.KEY_Up) { if (nav.move) { nav.move(-1); return true; } return false; }
             if (sym === Clutter.KEY_Down) { if (nav.move) { nav.move(1); return true; } return false; }
-            if (sym === Clutter.KEY_space) { if (nav.activateCursor) { nav.activateCursor(); return true; } return false; }
             let n = RecommendModule.keysymToOptionIndex(sym);
             if (n >= 0 && nav.selectIndex && n < (nav.count || 0)) { nav.selectIndex(n); return true; }
             return false;
         };
         content.connect('key-press-event', onKey);
 
-        // A question's option rows. Single-select highlights one choice in
-        // place; multi-select (obstacles) toggles up to `cap` with a "Selected n
-        // of cap" hint, refusing further picks at the cap. Returns a controller
-        // so the keyboard handler can select/move by index. A cursor ring shows
-        // the keyboard position. Option buttons are not focusable, so key focus
-        // stays on `content` and Enter still reaches the dialog's default button.
+        // A question's option rows: real focusable buttons (Tab/AT reach them,
+        // Space/Enter activate the focused one). Single-select highlights one
+        // choice; multi-select (obstacles) toggles up to `cap` with a "Selected n
+        // of cap" hint, refusing further picks at the cap. Returns a controller so
+        // the keyboard accelerators can select and move focus by index.
         let ask = (key, opts, multi, cap) => {
             let col = new St.BoxLayout({ vertical: true, style: 'spacing: 2px;' });
             let btns = [];
             if (multi && !Array.isArray(answers[key])) {
                 answers[key] = (answers[key] === undefined || answers[key] === null) ? [] : [answers[key]];
             }
-            let cursor = 0;
-            if (!multi) { let i = opts.findIndex((o) => o.value === answers[key]); if (i >= 0) { cursor = i; } }
             let isSel = (v) => multi ? (answers[key].indexOf(v) !== -1) : (answers[key] === v);
             let hint = null;
             let repaint = () => {
                 btns.forEach((x, i) => {
-                    let style = isSel(x.v) ? SEL : BASE;
-                    if (i === cursor) { style += HILITE; }
-                    x.b.set_style(style);
+                    x.b.set_style(isSel(x.v) ? SEL : BASE);
+                    this._dashSetA11y(x.b, opts[i].label);
                 });
                 if (hint) { hint.set_text(_("Selected %d of %d").format(answers[key].length, cap)); }
             };
             let activate = (i) => {
                 let o = opts[i];
                 if (!o) { return; }
-                cursor = i;
                 if (multi) {
                     let arr = answers[key];
                     let idx = arr.indexOf(o.value);
@@ -1044,9 +1036,10 @@ function install(proto) {
                     answers[key] = o.value;
                 }
                 repaint();
+                if (btns[i]) { btns[i].b.grab_key_focus(); }
             };
             opts.forEach((o, i) => {
-                let b = new St.Button({ x_expand: true, style_class: 'button', can_focus: false });
+                let b = new St.Button({ x_expand: true, style_class: 'button', can_focus: true });
                 b.set_label(o.label);
                 b.connect('clicked', () => activate(i));
                 btns.push({ b: b, v: o.value });
@@ -1061,8 +1054,18 @@ function install(proto) {
                 actor: col,
                 count: opts.length,
                 activate: activate,
-                move: (d) => { cursor = Math.max(0, Math.min(opts.length - 1, cursor + d)); repaint(); },
-                activateCursor: () => activate(cursor)
+                move: (d) => {
+                    let cur = global.stage.get_key_focus();
+                    let i = btns.findIndex((x) => x.b === cur);
+                    i = (i === -1) ? 0 : Math.max(0, Math.min(btns.length - 1, i + d));
+                    if (btns[i]) { btns[i].b.grab_key_focus(); }
+                },
+                focusFirst: () => {
+                    let i = 0;
+                    if (!multi) { let j = opts.findIndex((o) => o.value === answers[key]); if (j >= 0) { i = j; } }
+                    else { let j = opts.findIndex((o) => answers[key].indexOf(o.value) !== -1); if (j >= 0) { i = j; } }
+                    if (btns[i]) { btns[i].b.grab_key_focus(); }
+                }
             };
         };
 
@@ -1109,6 +1112,7 @@ function install(proto) {
             content.add(head);
 
             let buttons = [{ label: _("Skip"), action: finish, key: Clutter.KEY_Escape }];
+            st.focusFirst = null;
 
             if (s === 0) {
                 content.add(title(_("What is the Pomodoro technique? \ud83c\udf45")));
@@ -1127,9 +1131,9 @@ function install(proto) {
                     count: ctrl.count,
                     selectIndex: (i) => ctrl.activate(i),
                     move: (d) => ctrl.move(d),
-                    activateCursor: () => ctrl.activateCursor(),
                     back: () => { st.step--; build(); }
                 };
+                st.focusFirst = ctrl.focusFirst;
                 buttons.push({ label: _("Back"), action: () => { st.step--; build(); } });
                 buttons.push({ label: _("Next"), default: true, action: () => { st.step++; build(); } });
             } else {
@@ -2408,6 +2412,48 @@ function install(proto) {
             });
         } catch (e) {
             global.logError("Zen Pomodoro: failed to run command: " + e.message);
+        }
+    };
+
+    // Optional, opt-in: when a break starts, warn briefly and then lock the
+    // screen so you actually step away. Only on breaks (never focus); the lock
+    // is cancelled if the break ends/pauses before the grace period elapses.
+    proto._maybeLockForBreak = function() {
+        if (this._breakLockTimeoutId) {
+            try { GLib.source_remove(this._breakLockTimeoutId); } catch (e) {}
+            this._breakLockTimeoutId = 0;
+        }
+        if (!this._opt_breakLockEnabled) {
+            return;
+        }
+        let s = this._currentState;
+        if (s !== 'short-break' && s !== 'long-break') {
+            return;
+        }
+        if (this._opt_breakLockLongOnly && s !== 'long-break') {
+            return;
+        }
+        let lockState = s;
+        try {
+            Main.notify(_("Break — locking the screen"),
+                _("Locking in a few seconds so you can step away. Skip the break to cancel."));
+        } catch (e) {}
+        this._breakLockTimeoutId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 6, () => {
+            this._breakLockTimeoutId = 0;
+            // Only lock if we're still in the same break (not skipped/resumed).
+            if (this._currentState === lockState) {
+                this._lockScreen();
+            }
+            return GLib.SOURCE_REMOVE;
+        });
+    };
+
+    proto._lockScreen = function() {
+        try {
+            Gio.Subprocess.new(['cinnamon-screensaver-command', '--lock'],
+                Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE);
+        } catch (e) {
+            global.logError("Zen Pomodoro: screen lock failed: " + e.message);
         }
     };
 

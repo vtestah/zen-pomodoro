@@ -172,6 +172,8 @@
             "title": "Modes",
             "keys": [
                 "break_breathing",
+                "break_lock_enabled",
+                "break_lock_long_only",
                 "focus_until_enabled",
                 "focus_dnd",
                 "pause_media",
@@ -741,6 +743,19 @@
         "description": "Show a breathing guide during breaks",
         "default": false,
         "tooltip": "During breaks, show an expanding and contracting circle that paces your breathing to help you unwind."
+    },
+    "break_lock_enabled": {
+        "type": "switch",
+        "description": "Lock the screen during breaks",
+        "default": false,
+        "tooltip": "When a break starts, show a brief warning and then lock the screen so you actually step away. Never locks during focus; off by default."
+    },
+    "break_lock_long_only": {
+        "type": "switch",
+        "description": "Lock only on long breaks",
+        "default": true,
+        "dependency": "break_lock_enabled",
+        "tooltip": "Only lock for the longer breaks, not every short break."
     },
     "zen_mode_enabled": {
         "type": "switch",

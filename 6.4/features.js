@@ -942,6 +942,37 @@ function install(proto) {
         dialog.open();
     };
 
+    // A tiny one-message modal used by the onboarding undo flow.
+    proto._onboardingNotice = function(heading, body) {
+        let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
+        let box = new St.BoxLayout({ vertical: true, style: 'spacing: 8px; width: 460px; padding: 8px 16px;' });
+        box.add(new St.Label({ text: heading, style: 'font-size: 1.2em; font-weight: bold;' }));
+        let p = new St.Label({ text: body });
+        p.clutter_text.line_wrap = true;
+        box.add(p);
+        dialog.contentLayout.add(box);
+        dialog.setButtons([{ label: _("OK"), default: true, action: () => dialog.close() }]);
+        dialog.open();
+        return dialog;
+    };
+
+    // Undo the last applied setup: restore each setting captured in the
+    // onboarding_backup snapshot, then clear the snapshot so a repeat click is
+    // a harmless no-op. Wired to the "Undo last setup" button in Settings.
+    proto._restoreOnboardingBackup = function() {
+        let sp = this._settingsProvider;
+        let backup = null;
+        try { backup = sp.getValue('onboarding_backup'); } catch (e) {}
+        if (!backup || !backup.values || typeof backup.values !== 'object' || !Object.keys(backup.values).length) {
+            return this._onboardingNotice(_("Nothing to undo"),
+                _("Apply a setup from the guide first — then you can undo it here."));
+        }
+        Object.keys(backup.values).forEach((k) => { try { sp.setValue(k, backup.values[k]); } catch (e) {} });
+        try { sp.setValue('onboarding_backup', null); } catch (e) {}
+        return this._onboardingNotice(_("Previous settings restored \u2713"),
+            _("Your settings from just before the last setup have been put back."));
+    };
+
     proto._showOnboardingWizard = function() {
         let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
         let sp = this._settingsProvider;
@@ -1020,6 +1051,16 @@ function install(proto) {
 
         let finish = () => { try { sp.setValue('onboarding_done', true); } catch (e) {} dialog.close(); };
         let applyPlan = (plan, thenStart) => {
+            // Snapshot the current value of every key this plan could touch (even
+            // ones the user unticked) so the whole setup can be undone later via
+            // Settings → "Undo last setup".
+            try {
+                let values = {};
+                RecommendModule.collectBackupKeys(plan.items).forEach((k) => {
+                    try { values[k] = sp.getValue(k); } catch (e) {}
+                });
+                sp.setValue('onboarding_backup', { ts: Date.now(), values: values });
+            } catch (e) {}
             // Apply only the core items plus the ones still ticked on the review.
             let settings = RecommendModule.selectKeys(plan.items);
             Object.keys(settings).forEach((k) => { try { sp.setValue(k, settings[k]); } catch (e) {} });
@@ -1660,9 +1701,6 @@ function install(proto) {
             ? _("Last 14 days: %d \ud83c\udf45 \u00b7 best %s (%d \ud83c\udf45)").format(bars14Total, bestBar.dateLabel, bestBar.count || 0)
             : _("Last 14 days: no focus yet");
         this._dashSetA11y(barArea, barsSummary);
-        let barsSummaryLabel = new St.Label({ text: barsSummary, style: 'font-size: 0.72em; opacity: 0.7;' });
-        barsSummaryLabel.clutter_text.line_wrap = true;
-        colA.add(barsSummaryLabel);
 
         colB.add(new St.Label({ text: _("Activity \u2014 last 12 weeks"), style: 'font-weight: bold;' }));
         let heatArea = new St.DrawingArea({ x_expand: true, style: 'height: 74px;' });
@@ -1697,9 +1735,6 @@ function install(proto) {
             ? _("Last 12 weeks: %d active days \u00b7 busiest %s (%d \ud83c\udf45)").format(activeDays, busiest.label, busiest.value || 0)
             : _("Last 12 weeks: no focus yet");
         this._dashSetA11y(heatArea, heatSummary);
-        let heatSummaryLabel = new St.Label({ text: heatSummary, style: 'font-size: 0.72em; opacity: 0.7;' });
-        heatSummaryLabel.clutter_text.line_wrap = true;
-        colB.add(heatSummaryLabel);
 
         cols.add(colA);
         cols.add(colB);

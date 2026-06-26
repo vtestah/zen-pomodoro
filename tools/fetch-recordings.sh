@@ -1,16 +1,20 @@
 #!/usr/bin/env bash
-# Fetch + process the two RECORDED ambiences (fan, street) for Zen Pomodoro.
+# Fetch + process the RECORDED ambiences (fan, street, sea, stream) for Zen
+# Pomodoro.
 #
 # Unlike the synthesized ambiences (see gen-ambient-sounds.sh), these are real
-# field recordings. Both are CC0 / public domain — no attribution required and
+# field recordings. All are CC0 / public domain — no attribution required and
 # free to redistribute, which keeps them compatible with this GPLv3 package.
 # Source: BigSoundBank (Joseph Sardin), CC0:
 #   fan    #0078  https://bigsoundbank.com/electric-fan-1-s0078.html
 #   street #1080  https://bigsoundbank.com/sound-1080-parisian-ring-road.html
+#   sea    #1047  https://bigsoundbank.com/sound-1047-petites-vagues-dos-ocean.html
+#   stream #3222  https://bigsoundbank.com/mountain-stream-7-s3222.html
 #
 # Each is downmixed to mono 44.1 kHz and wrapped into a seamless loop with an
 # equal-power crossfade (the end blends into the start) so it loops with no
-# audible seam. Re-run to refresh sounds/fan.ogg and sounds/street.ogg.
+# audible seam. Re-run to refresh the clips, then run tools/normalize-sounds.sh
+# to level the volume against the other ambiences.
 #
 # Requires: curl, ffmpeg + ffprobe.
 set -euo pipefail
@@ -45,5 +49,17 @@ curl -sSL --max-time 120 -A "$UA" -o "$TMP/street.mp3" "https://bigsoundbank.com
 ffmpeg -hide_banner -loglevel error -y -ss 15 -t 25 -i "$TMP/street.mp3" -ac 1 -ar 44100 "$TMP/street_trim.wav"
 seamless "$TMP/street_trim.wav" street.ogg 2.0
 
+echo "==> sea (BigSoundBank #1047 small ocean waves, CC0)"
+curl -sSL --max-time 120 -A "$UA" -o "$TMP/sea.mp3" "https://bigsoundbank.com/UPLOAD/mp3/1047.mp3"
+# Take a steady 30 s segment of gentle waves, then loop it.
+ffmpeg -hide_banner -loglevel error -y -ss 20 -t 30 -i "$TMP/sea.mp3" -ac 1 -ar 44100 "$TMP/sea_trim.wav"
+seamless "$TMP/sea_trim.wav" sea.ogg 3.0
+
+echo "==> stream (BigSoundBank #3222 mountain stream, CC0)"
+curl -sSL --max-time 120 -A "$UA" -o "$TMP/stream.mp3" "https://bigsoundbank.com/UPLOAD/mp3/3222.mp3"
+# Take a steady 25 s segment of continuous flowing water, then loop it.
+ffmpeg -hide_banner -loglevel error -y -ss 30 -t 25 -i "$TMP/stream.mp3" -ac 1 -ar 44100 "$TMP/stream_trim.wav"
+seamless "$TMP/stream_trim.wav" stream.ogg 2.0
+
 echo "Done:"
-ls -la fan.ogg street.ogg
+ls -la fan.ogg street.ogg sea.ogg stream.ogg

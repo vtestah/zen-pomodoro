@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 # Generate the built-in ambient loops for Zen Pomodoro.
 #
-# The noise ambiences (white/pink/brown noise, rain, sea, wind, stream) are
-# SYNTHESIZED from noise with ffmpeg. Noise is not a work of authorship, so
-# these generated files are public domain (CC0) — no third-party licensing.
-# Re-run to regenerate.
+# The noise ambiences (white/pink/brown noise, rain, wind) are SYNTHESIZED from
+# noise with ffmpeg. Noise is not a work of authorship, so these generated
+# files are public domain (CC0) — no third-party licensing. Re-run to
+# regenerate, then run tools/normalize-sounds.sh to level the volume.
 #
-# (fan and street are real field recordings, also CC0 — fetched + looped by
-# tools/fetch-recordings.sh, NOT generated here.)
+# (fan, street, sea and stream are real field recordings, also CC0 — fetched +
+# looped by tools/fetch-recordings.sh, NOT generated here.)
 #
 # Requires: ffmpeg + ffprobe (with the anoisesrc source filter).
 #
-# Loop notes: white/pink/brown/rain/sea rely on broadband noise masking the
-# loop point; wind and stream are additionally wrapped with a short equal-power
-# crossfade (seamless(): the last <xf>s blends into the first <xf>s) so the
-# seam is inaudible.
+# Loop notes: white/pink/brown/rain rely on broadband noise masking the loop
+# point; wind is additionally wrapped with a short equal-power crossfade
+# (seamless(): the last <xf>s blends into the first <xf>s) so the seam is
+# inaudible.
 set -euo pipefail
 
 cd "$(dirname "$0")/../sounds"
@@ -54,21 +54,12 @@ TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT
 "${FF[@]}" -f lavfi -i "anoisesrc=color=white:a=0.52:d=10" \
     -af "highpass=f=620,lowpass=f=9000,tremolo=f=0.5:d=0.12,alimiter=limit=0.9" "${COMMON[@]}" rain.ogg
 
-# Sea: low-passed brown noise with a slow wave swell (0.1 Hz).
-"${FF[@]}" -f lavfi -i "anoisesrc=color=brown:a=0.92:d=20" \
-    -af "lowpass=f=1800,tremolo=f=0.1:d=0.6" "${COMMON[@]}" sea.ogg
-
 # Wind: band-passed pink noise with gentle gusts, then wrapped seamless (15 s).
 "${FF[@]}" -f lavfi -i "anoisesrc=color=pink:a=0.80:d=15" \
     -af "highpass=f=180,lowpass=f=3200,tremolo=f=0.2:d=0.35,alimiter=limit=0.9" "${COMMON[@]}" "$TMP/wind.ogg"
 seamless "$TMP/wind.ogg" wind.ogg 1.5
 
-# Stream: high-passed white noise, a fast bubbling shimmer (8 Hz) under a slow
-# swell (0.5 Hz), then wrapped seamless (10 s).
-"${FF[@]}" -f lavfi -i "anoisesrc=color=white:a=0.55:d=10" \
-    -af "highpass=f=500,lowpass=f=8500,tremolo=f=8:d=0.10,tremolo=f=0.5:d=0.15,alimiter=limit=0.9" "${COMMON[@]}" "$TMP/stream.ogg"
-seamless "$TMP/stream.ogg" stream.ogg 1.0
-
 echo "Generated:"
-ls -la white.ogg pink.ogg brown.ogg rain.ogg sea.ogg wind.ogg stream.ogg
-echo "(fan.ogg / street.ogg are CC0 recordings — run tools/fetch-recordings.sh)"
+ls -la white.ogg pink.ogg brown.ogg rain.ogg wind.ogg
+echo "(fan/street/sea/stream are CC0 recordings — run tools/fetch-recordings.sh)"
+echo "(then run tools/normalize-sounds.sh to level all the volumes)"

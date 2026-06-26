@@ -30,7 +30,7 @@ echo "==> copy code + assets + root helpers (no .mo)"
 cp "$SRC"/*.js "$SRC/hosts-helper.py" "$SRC/setup-passwordless.py" "$SRC/stylesheet.css" "$SRC/settings-schema.json" "$FILES/"
 chmod +x "$FILES/hosts-helper.py" "$FILES/setup-passwordless.py"
 cp "$REPO"/*.png "$REPO"/*.svg "$FILES/" 2>/dev/null || true
-rm -f "$FILES/screenshot.png"  # screenshot belongs at the package root only
+rm -f "$FILES/screenshot"*.png  # store screenshots belong at the package root, not shipped with the applet
 [ -d "$REPO/sounds" ] && cp -r "$REPO/sounds" "$FILES/"
 cp "$REPO/po/"*.po "$FILES/po/"
 cp "$REPO/po/"*.pot "$FILES/po/" 2>/dev/null || true

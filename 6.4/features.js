@@ -1128,6 +1128,10 @@ function install(proto) {
                 if (q.help) { content.add(para(q.help)); }
                 let ctrl = ask(q.key, q.opts, q.type === 'multi', q.cap);
                 content.add(ctrl.actor);
+                let kbHint = new St.Label({ text: _("Tip: press 1–%d to choose, or use Tab and the arrow keys.").format(q.opts.length),
+                    style: 'font-size: 0.78em; padding: 8px 2px 0 2px; color: rgba(150,150,150,0.9);' });
+                kbHint.clutter_text.line_wrap = true;
+                content.add(kbHint);
                 st.nav = {
                     count: ctrl.count,
                     selectIndex: (i) => ctrl.activate(i),

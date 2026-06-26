@@ -240,10 +240,6 @@ function install(proto) {
             monthC += cl.c; monthM += cl.m;
             if (i < 7) { weekC += cl.c; weekM += cl.m; weekI += (cl.i || 0); }
         }
-        let heatmap = [];
-        for (let i = 83; i >= 0; i--) {
-            heatmap.push(cellOf(this._todayStr(new Date(Date.now() - i * 86400000))).c);
-        }
         let lastWeek = 0;
         for (let i = 7; i < 14; i++) {
             lastWeek += cellOf(this._todayStr(new Date(Date.now() - i * 86400000))).c;
@@ -281,7 +277,6 @@ function install(proto) {
             streak: cur,
             longestStreak: longest,
             bestDay: best,
-            heatmap: heatmap,
             hours: (this._dailyStatsData && Array.isArray(this._dailyStatsData.hours) && this._dailyStatsData.hours.length === 24) ? this._dailyStatsData.hours : new Array(24).fill(0)
         };
     };
@@ -1483,6 +1478,10 @@ function install(proto) {
             let review = new St.Label({ text: _("This week: %d \ud83c\udf45 \u00b7 %s \u00b7 best day %s").format(st.week || 0, this._dashFmtMin(st.weekMin || 0), dowNames[bestDow]) });
             review.clutter_text.line_wrap = true;
             root.add(review);
+
+            let monthReview = new St.Label({ text: _("This month: %d \ud83c\udf45 \u00b7 %s \u00b7 best day %d \ud83c\udf45").format(st.month || 0, this._dashFmtMin(st.monthMin || 0), st.bestDay || 0) });
+            monthReview.clutter_text.line_wrap = true;
+            root.add(monthReview);
         }
 
         let harvestN = Math.min(st.today || 0, 20);
@@ -2312,6 +2311,24 @@ function install(proto) {
 
     // Focus spotlight: darken every other window so the one you're working in
     // stays bright. Keyed by a named effect we can always strip back off.
+    proto._setZenDimOnActor = function(actor, on, brightness) {
+        if (!actor) { return; }
+        try {
+            if (on) {
+                let fx = actor.get_effect("zen-spotlight");
+                if (fx && typeof fx.set_brightness === 'function') {
+                    fx.set_brightness(brightness);
+                } else if (!fx) {
+                    fx = new Clutter.BrightnessContrastEffect();
+                    fx.set_brightness(brightness);
+                    actor.add_effect_with_name("zen-spotlight", fx);
+                }
+            } else {
+                actor.remove_effect_by_name("zen-spotlight");
+            }
+        } catch (e) {}
+    };
+
     proto._applyZenDim = function() {
         let focus = global.display.get_focus_window ? global.display.get_focus_window() : null;
         let strength = (typeof this._opt_zenDimStrength === 'number' && this._opt_zenDimStrength > 0) ? this._opt_zenDimStrength : 50;
@@ -2320,22 +2337,11 @@ function install(proto) {
         for (let i = 0; i < actors.length; i++) {
             let a = actors[i];
             let mw = a.meta_window || (a.get_meta_window && a.get_meta_window());
-            let dimThis = this._zenShouldDim(mw, focus);
-            try {
-                if (dimThis) {
-                    let fx = a.get_effect("zen-spotlight");
-                    if (fx && typeof fx.set_brightness === 'function') {
-                        fx.set_brightness(brightness);
-                    } else if (!fx) {
-                        fx = new Clutter.BrightnessContrastEffect();
-                        fx.set_brightness(brightness);
-                        a.add_effect_with_name("zen-spotlight", fx);
-                    }
-                } else {
-                    a.remove_effect_by_name("zen-spotlight");
-                }
-            } catch (e) {}
+            this._setZenDimOnActor(a, this._zenShouldDim(mw, focus), brightness);
         }
+        // Also dim the compositor wallpaper layer so the desktop option works
+        // even when the wallpaper isn't painted by the Nemo desktop window.
+        this._setZenDimOnActor(global.background_actor, Boolean(this._opt_zenDimDesktop), brightness);
     };
 
     // Which windows recede: never panels/docks; the desktop only if the user
@@ -2367,6 +2373,7 @@ function install(proto) {
         for (let i = 0; i < actors.length; i++) {
             try { actors[i].remove_effect_by_name("zen-spotlight"); } catch (e) {}
         }
+        try { if (global.background_actor) { global.background_actor.remove_effect_by_name("zen-spotlight"); } } catch (e) {}
     };
 
     proto._teardownZenSpotlight = function() {

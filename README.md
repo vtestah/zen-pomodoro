@@ -22,6 +22,16 @@ It gives you gentle on-screen cues instead of anxious alarms: a soft glow frame
 that traces your progress, a quiet start ritual, a calm ending, an optional
 full-screen Zen mode, and a breathing guide on breaks.
 
+## Why Zen Pomodoro?
+
+Most Pomodoro timers interrupt you: a jarring alarm, a popup that demands a
+click, a countdown that quietly piles on pressure. Zen Pomodoro takes the
+opposite approach. Your progress shows as a soft glow at the edge of the screen,
+focus ends calmly instead of blinking at you, and if a block runs out while
+you're mid-thought, **soft landing** waits for a natural pause instead of cutting
+you off. It stays out of your way, works with a screen reader, and speaks 20
+languages.
+
 This repository is the **single source of truth**, and the code in `6.4/` is the
 public applet exactly as published. There is no personal/public split. Optional
 **site blocking** (edits a clearly-marked section of `/etc/hosts` via a

@@ -862,9 +862,8 @@ msgid "%d.%m"
 msgstr "%d.%m"
 
 #: features.js:1512
-#, fuzzy
 msgid "Zen Pomodoro — focus statistics"
-msgstr "Статистика фокуса"
+msgstr "Zen Pomodoro — статистика фокуса"
 
 #: features.js:1513
 #, javascript-format
@@ -872,9 +871,9 @@ msgid "Today: %d 🍅 (%s)"
 msgstr "Сегодня: %d 🍅 (%s)"
 
 #: features.js:1514
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "This week: %d 🍅 (%s)"
-msgstr "За неделю: %d 🍅 · %s · лучший день %s"
+msgstr "За неделю: %d 🍅 (%s)"
 
 #: features.js:1515
 #, javascript-format
@@ -882,9 +881,9 @@ msgid "This month: %d 🍅 (%s)"
 msgstr "За месяц: %d 🍅 (%s)"
 
 #: features.js:1516
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "All time: %d 🍅 (%s)"
-msgstr "За всё время: %d"
+msgstr "За всё время: %d 🍅 (%s)"
 
 #: features.js:1517
 #, javascript-format
@@ -892,18 +891,17 @@ msgid "Streak: %d · best %d"
 msgstr "Серия: %d · рекорд %d"
 
 #: features.js:1518
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "Best day: %d 🍅"
-msgstr "Лучший день: %d"
+msgstr "Лучший день: %d 🍅"
 
 #: features.js:1526
 msgid "Statistics copied to clipboard."
 msgstr "Статистика скопирована в буфер обмена."
 
 #: features.js:1528
-#, fuzzy
 msgid "Could not copy statistics."
-msgstr "Статистика фокуса"
+msgstr "Не удалось скопировать статистику."
 
 #: features.js:1536
 #, javascript-format
@@ -978,9 +976,9 @@ msgid "This week: %d 🍅 · %s · best day %s"
 msgstr "За неделю: %d 🍅 · %s · лучший день %s"
 
 #: features.js:1639
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "This month: %d 🍅 · %s · best day %d 🍅"
-msgstr "За неделю: %d 🍅 · %s · лучший день %s"
+msgstr "За месяц: %d 🍅 · %s · лучший день %d 🍅"
 
 #: features.js:1645
 msgid "Nothing harvested yet today"
@@ -1033,9 +1031,9 @@ msgid "Focus time — last 14 days"
 msgstr "Время фокуса — последние 14 дней"
 
 #: features.js:1690
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "┄┄ daily goal (%d 🍅)"
-msgstr "Дневная цель достигнута 🍅"
+msgstr "┄┄ дневная цель (%d 🍅)"
 
 #: features.js:1709
 #, javascript-format

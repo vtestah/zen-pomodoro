@@ -1443,6 +1443,15 @@ function install(proto) {
         } catch (e) {}
     };
 
+    // Immediate in-dialog feedback for Copy / Export. Stays visible until the
+    // next action, and works even when system notifications are suppressed
+    // (e.g. Do-Not-Disturb during a focus session).
+    proto._dashFlashStatus = function(text) {
+        let l = this._dashStatusLabel;
+        if (!l) { return; }
+        try { l.set_text(text); l.show(); } catch (e) {}
+    };
+
     // Write a text file asynchronously (mirrors _writeJsonAsync's IO style).
     // Calls onDone(true|false) when finished. Best-effort: never throws.
     proto._writeTextAsync = function(path, text, onDone) {
@@ -1513,19 +1522,26 @@ function install(proto) {
 
     // Copy a localized summary to the clipboard.
     proto._dashCopyStats = function() {
+        let msg;
         try {
             St.Clipboard.get_default().set_text(St.ClipboardType.CLIPBOARD, this._statsExportSummaryText());
-            Main.notify(_("Statistics copied to clipboard."));
+            msg = _("Statistics copied to clipboard.");
         } catch (e) {
-            Main.notify(_("Could not copy statistics."));
+            msg = _("Could not copy statistics.");
         }
+        this._dashFlashStatus(msg);
+        Main.notify("Zen Pomodoro", msg);
     };
 
-    // Export the full history as a CSV file under Documents (or home).
+    // Export the full history as a CSV file under Documents (or home). The exact
+    // destination path is shown both in the dialog and in the notification so
+    // it's always clear where the file went.
     proto._dashExportStats = function() {
         let path = this._statsExportPath();
         this._writeTextAsync(path, this._statsExportCsv(), (ok) => {
-            Main.notify(ok ? _("Saved to %s").format(path) : _("Could not save statistics export."));
+            let msg = ok ? _("Saved to %s").format(path) : _("Could not save statistics export.");
+            this._dashFlashStatus(msg);
+            Main.notify("Zen Pomodoro", msg);
         });
     };
 
@@ -1773,6 +1789,11 @@ function install(proto) {
             root.add(new St.Label({ text: _("Milestones: %s").format(badges.join("    ")), style: 'padding-top: 4px;' }));
         }
 
+        let dashStatus = new St.Label({ visible: false, style: 'font-size: 0.82em; opacity: 0.85; padding-top: 6px;' });
+        dashStatus.clutter_text.line_wrap = true;
+        this._dashStatusLabel = dashStatus;
+        root.add(dashStatus);
+
         dialog.contentLayout.add(root);
         let setDashButtons, confirmReset;
         confirmReset = () => {
@@ -1790,7 +1811,7 @@ function install(proto) {
             ]);
         };
         setDashButtons();
-        dialog.connect('closed', () => { try { dashTip.destroy(); } catch (e) {} });
+        dialog.connect('closed', () => { this._dashStatusLabel = null; try { dashTip.destroy(); } catch (e) {} });
         dialog.open();
         return dialog;
     };

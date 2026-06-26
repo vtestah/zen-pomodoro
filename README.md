@@ -8,8 +8,6 @@
   <strong>A calm, Zen-style Pomodoro timer for the Cinnamon panel.</strong>
 </p>
 
-<hr>
-
 <p align="center">
   <a href="https://github.com/vtestah/zen-pomodoro/actions/workflows/tests.yml"><img alt="tests" src="https://img.shields.io/github/actions/workflow/status/vtestah/zen-pomodoro/tests.yml?branch=main&style=flat-square&logo=githubactions&logoColor=white&label=tests"></a>
   <a href="https://github.com/vtestah/zen-pomodoro/releases"><img alt="release" src="https://img.shields.io/github/v/tag/vtestah/zen-pomodoro?style=flat-square&logo=github&logoColor=white&label=release&color=e35a3c"></a>

@@ -6,7 +6,6 @@ const Clutter = imports.gi.Clutter;
 const ModalDialog = imports.ui.modalDialog;
 const PopupMenu = imports.ui.popupMenu;
 const Settings = imports.ui.settings;
-const Util = imports.misc.util;
 const CinnamonEntry = imports.ui.cinnamonEntry;
 const ByteArray = imports.byteArray;
 const GLib = imports.gi.GLib;
@@ -547,7 +546,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
         // First-run onboarding wizard.
         if (!this._opt_onboardingDone) {
-            imports.gi.GLib.timeout_add(imports.gi.GLib.PRIORITY_DEFAULT, 2500, () => {
+            this._onboardingTimeoutId = imports.gi.GLib.timeout_add(imports.gi.GLib.PRIORITY_DEFAULT, 2500, () => {
+                this._onboardingTimeoutId = 0;
                 try { this._showOnboardingWizard(); } catch (e) { global.logError("Zen Pomodoro onboarding: " + e); }
                 return false;
             });
@@ -555,7 +555,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
         // Clear a stale block left by a crash/reload (passwordless only — never
         // prompts). Deferred so any session recovery runs first.
-        imports.gi.GLib.timeout_add(imports.gi.GLib.PRIORITY_DEFAULT, 3000, () => {
+        this._blockReconcileTimeoutId = imports.gi.GLib.timeout_add(imports.gi.GLib.PRIORITY_DEFAULT, 3000, () => {
+            this._blockReconcileTimeoutId = 0;
             try { this._syncBlocking(false); this._blockingReady = true; } catch (e) { global.logError("Zen Pomodoro reconcile: " + e); }
             return false;
         });
@@ -1931,11 +1932,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
             }
         });
     
-        menu.connect('what-is-this', () => {
-            let command = `xdg-open '${_("http://en.wikipedia.org/wiki/Pomodoro_Technique")}'`;
-            Util.trySpawnCommandLine(command);
-        });
-    
         menuManager.addMenu(menu);
     
         return menu;
@@ -2511,6 +2507,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
             try { this._reorderDialog.destroy(); } catch (e) {}
             this._reorderDialog = null;
         }
+        if (this._onboardingTimeoutId) { try { imports.gi.GLib.source_remove(this._onboardingTimeoutId); } catch (e) {} this._onboardingTimeoutId = 0; }
+        if (this._blockReconcileTimeoutId) { try { imports.gi.GLib.source_remove(this._blockReconcileTimeoutId); } catch (e) {} this._blockReconcileTimeoutId = 0; }
         this._clearIdleWatches();
         this._stopAllSounds();
         this._disableDnd();

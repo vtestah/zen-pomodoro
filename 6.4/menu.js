@@ -976,6 +976,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 style_class: 'pomodoro-task-btn', can_focus: false,
                 child: new St.Icon({ icon_name: 'edit-delete-symbolic', icon_size: 14 })
             });
+            new Tooltips.Tooltip(del, _("Delete"));
             del.connect('button-press-event', () => true);
             del.connect('button-release-event', (a, ev) => {
                 if (ev.get_button() === 1) {

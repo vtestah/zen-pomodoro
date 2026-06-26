@@ -18,6 +18,10 @@
   <img src="screenshot.png" alt="Zen Pomodoro in action" width="760">
 </p>
 
+<p align="center">
+  <img src="screenshot-stats.png" alt="The Zen Pomodoro statistics dashboard" width="760">
+</p>
+
 It gives you gentle on-screen cues instead of anxious alarms: a soft glow frame
 that traces your progress, a quiet start ritual, a calm ending, an optional
 full-screen Zen mode, and a breathing guide on breaks.

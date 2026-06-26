@@ -198,10 +198,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_accentBreakColor = null;
         this._opt_frameStyle = null;
         this._opt_glowIntensity = null;
-        this._opt_glowProgressWidth = null;
         this._opt_breathingPattern = null;
         this._opt_chipPosition = null;
-        this._opt_ritualSeconds = null;
         this._opt_reduceMotion = null;
         this._opt_menuFontScale = null;
         this._opt_sessionRecovery = null;
@@ -490,10 +488,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "accent_break_color", "_opt_accentBreakColor", () => { this._applyAppearance(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "frame_style", "_opt_frameStyle", () => { this._updateFocusFrame(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "glow_intensity", "_opt_glowIntensity", () => { this._updateFocusFrame(); });
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "glow_progress_width", "_opt_glowProgressWidth", () => { this._updateFocusFrame(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "breathing_pattern", "_opt_breathingPattern", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "chip_position", "_opt_chipPosition", () => { this._updateFocusFrame(); });
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "ritual_seconds", "_opt_ritualSeconds", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "reduce_motion", "_opt_reduceMotion", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "menu_font_scale", "_opt_menuFontScale", () => { this._applyAppearance(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "panel_icon_style", "_opt_panelIconStyle", this._onAppletIconChanged.bind(this));

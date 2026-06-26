@@ -708,8 +708,7 @@ function install(proto) {
             depth = Math.max(POMODORO_FOCUS_GLOW_DEPTH_MIN, Math.min(POMODORO_FOCUS_GLOW_DEPTH_MAX, depth));
             let baseAlpha = (typeof this._opt_glowIntensity === 'number' && this._opt_glowIntensity > 0)
                 ? this._opt_glowIntensity / 100 : POMODORO_FOCUS_GLOW_MAX_ALPHA;
-            let pw = (typeof this._opt_glowProgressWidth === 'number' && this._opt_glowProgressWidth > 0)
-                ? this._opt_glowProgressWidth : POMODORO_FOCUS_GLOW_PROGRESS_WIDTH;
+            let pw = POMODORO_FOCUS_GLOW_PROGRESS_WIDTH;
             let maxA = baseAlpha * (1 + (this._glowBreathBoost || 0));
             let cornersOnly = (this._opt_frameStyle === 'corners');
             cr.setLineWidth(1);
@@ -933,8 +932,8 @@ function install(proto) {
         let fstyleFade = this._opt_frameStyle || 'glow';
         let framesToFade = (fstyleFade === 'glow' || fstyleFade === 'corners') ? this._focusGlowFrames : this._focusFrames;
 
-        // Hold duration derived from ritual_seconds (fade-in + fade-out ≈ 1.1s).
-        let holdMs = Math.max(0, ((this._opt_ritualSeconds || 4) * 1000) - 1100);
+        // Hold duration for the start ritual (fade-in + fade-out ≈ 1.1s).
+        let holdMs = Math.max(0, (4 * 1000) - 1100);
 
         if (this._opt_reduceMotion) {
             // No motion: show frame + label instantly, hold, then hide.

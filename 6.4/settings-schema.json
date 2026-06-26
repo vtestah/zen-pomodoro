@@ -116,8 +116,7 @@
                 "accent_focus_color",
                 "accent_break_color",
                 "frame_style",
-                "glow_intensity",
-                "glow_progress_width"
+                "glow_intensity"
             ]
         },
         "sec_motion": {
@@ -126,7 +125,6 @@
             "keys": [
                 "breathing_pattern",
                 "chip_position",
-                "ritual_seconds",
                 "reduce_motion",
                 "menu_font_scale"
             ]
@@ -525,15 +523,6 @@
         "description": "Glow intensity",
         "tooltip": "How bright the on-screen edge glow is during focus — higher is more visible, lower is subtler."
     },
-    "glow_progress_width": {
-        "type": "scale",
-        "default": 2,
-        "min": 1,
-        "max": 6,
-        "step": 1,
-        "description": "Progress line thickness",
-        "tooltip": "Thickness of the progress line drawn around the screen edge during focus."
-    },
     "breathing_pattern": {
         "type": "combobox",
         "description": "Breathing pattern",
@@ -556,15 +545,6 @@
             "Top-left": "tl"
         },
         "tooltip": "Which screen corner the on-screen task chip appears in."
-    },
-    "ritual_seconds": {
-        "type": "scale",
-        "default": 4,
-        "min": 1,
-        "max": 8,
-        "step": 1,
-        "description": "Start ritual duration (seconds)",
-        "tooltip": "How long the 'Focus: <task>' start ritual stays on screen, in seconds."
     },
     "reduce_motion": {
         "type": "switch",

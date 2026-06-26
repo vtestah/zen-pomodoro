@@ -264,8 +264,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_zenModeEnabled = null;
         this._opt_zenDimStrength = null;
         this._opt_zenDimDesktop = null;
-        this._opt_focusUntilEnabled = null;
-
         this._dailyCount = 0;
         this._dailyStreak = 0;
         this._dailyStatsData = null;
@@ -474,7 +472,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "zen_mode_enabled", "_opt_zenModeEnabled", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "zen_dim_strength", "_opt_zenDimStrength", () => this._reapplyZenDim());
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "zen_dim_desktop", "_opt_zenDimDesktop", () => this._reapplyZenDim());
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_until_enabled", "_opt_focusUntilEnabled", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "show_dialog_messages", "_opt_showDialogMessages", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_start_after_pomodoro_ends", "_opt_autoContinueAfterPomodoro", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_start_after_short_break_ends", "_opt_autoContinueAfterShortBreak", emptyCallback);
@@ -855,8 +852,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             streak: this._dailyStreak || 0,
             stats: this._computeStats(),
             zenEnabled: Boolean(this._opt_zenModeEnabled),
-            zenActive: Boolean(this._zenActive),
-            focusUntilEnabled: Boolean(this._opt_focusUntilEnabled)
+            zenActive: Boolean(this._zenActive)
         });
     }
 

@@ -172,7 +172,6 @@
                 "break_breathing",
                 "break_lock_enabled",
                 "break_lock_long_only",
-                "focus_until_enabled",
                 "focus_dnd",
                 "pause_media",
                 "strict_focus"
@@ -350,7 +349,7 @@
     },
     "show_dialog_messages": {
         "type": "switch",
-        "description": "Show Dialog Messages",
+        "description": "Show a pop-up prompt at each phase change",
         "default": true,
         "tooltip": "Show pop-up dialogs at the end of each phase (off keeps it quiet — only on-screen cues)."
     },
@@ -770,12 +769,6 @@
         "description": "Strict focus: no pause or skip during a focus block",
         "default": false,
         "tooltip": "While a focus block is running, hide pause and skip so you commit to it. You can still Reset to abandon the session — it's never a hard lock."
-    },
-    "focus_until_enabled": {
-        "type": "switch",
-        "description": "Show 'Focus until…' in the menu (focus until a clock time)",
-        "default": false,
-        "tooltip": "Add a 'Focus until…' option (focus until a clock time)."
     },
     "focus_dnd": {
         "type": "switch",

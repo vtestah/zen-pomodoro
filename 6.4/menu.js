@@ -851,11 +851,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             }
         }
         if (this._focusUntilItem && this._focusUntilItem.actor) {
-            if (runtime.focusUntilEnabled) {
-                this._focusUntilItem.actor.show();
-            } else {
-                this._focusUntilItem.actor.hide();
-            }
+            this._focusUntilItem.actor.show();
         }
 
         if (this._primaryActionItem) {

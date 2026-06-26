@@ -419,7 +419,25 @@ function install(proto) {
                 }
             }
 
-            for (let glow of this._focusGlowFrames) {
+            let zenSpot = this._zenActive && this._opt_zenModeEnabled &&
+                (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused');
+            let zenMon = -1;
+            if (zenSpot) {
+                let fw = (global.display && global.display.get_focus_window) ? global.display.get_focus_window() : null;
+                if (fw && typeof fw.get_monitor === 'function') { zenMon = fw.get_monitor(); }
+                if (zenMon < 0 && Main.layoutManager && Main.layoutManager.focusMonitor) {
+                    zenMon = Main.layoutManager.focusMonitor.index;
+                }
+            }
+            let gmons = this._getFocusFrameMonitors();
+            for (let gi = 0; gi < this._focusGlowFrames.length; gi++) {
+                let glow = this._focusGlowFrames[gi];
+                let gmon = gmons[gi];
+                // In Zen, only the monitor you're working on keeps its frame.
+                if (zenSpot && zenMon >= 0 && gmon && gmon.index !== zenMon) {
+                    glow.hide();
+                    continue;
+                }
                 if (typeof glow.raise_top === 'function') {
                     glow.raise_top();
                 }

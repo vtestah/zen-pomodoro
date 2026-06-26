@@ -1211,6 +1211,19 @@ function install(proto) {
                     cr.fill();
                 }
             }
+            // Daily-goal reference line, drawn on top of the bars. Only shown when
+            // it falls within the current chart scale (hidden if no day reached it).
+            let goalMin = this._dashGoalMin || 0;
+            if (goalMin > 0 && goalMin <= maxv) {
+                let gy = Math.round(chartH - (goalMin / maxv) * (chartH - 2)) + 0.5;
+                cr.setSourceRGBA(0.55, 0.55, 0.55, 0.9);
+                cr.setLineWidth(1);
+                cr.setDash([3, 3], 0);
+                cr.moveTo(0, gy);
+                cr.lineTo(w, gy);
+                cr.stroke();
+                cr.setDash([], 0);
+            }
         } finally {
             cr.$dispose();
         }
@@ -1382,6 +1395,16 @@ function install(proto) {
     };
 
     proto._dashDateLabel = function(d) {
+        try {
+            // Translators: short date used on chart axes and tooltips (strftime
+            // tokens). Reorder for your locale, e.g. "%m/%d". %d = day, %m = month.
+            let dt = GLib.DateTime.new_local(d.getFullYear(), d.getMonth() + 1, d.getDate(), 0, 0, 0);
+            if (dt) {
+                let s = dt.format(_("%d.%m"));
+                if (s) { return s; }
+            }
+        } catch (e) {}
+        // Fallback to numeric DD.MM if GLib date formatting is unavailable.
         let dd = d.getDate(), mm = d.getMonth() + 1;
         return (dd < 10 ? "0" : "") + dd + "." + (mm < 10 ? "0" : "") + mm;
     };
@@ -1401,6 +1424,9 @@ function install(proto) {
             bars.push({ min: cell.m, count: cell.c, today: (i === 0), dateLabel: this._dashDateLabel(bd) });
         }
         this._dashBars = bars;
+        // Daily goal is configured in pomodoros, but the 14-day bars are scaled
+        // by minutes — convert via the configured focus length for the goal line.
+        this._dashGoalMin = (this._opt_dailyGoal > 0) ? this._opt_dailyGoal * (this._opt_pomodoroTimeMinutes || 25) : 0;
         let hmMeta = [];
         let now0 = new Date(); now0.setHours(0, 0, 0, 0);
         let dow0 = now0.getDay();
@@ -1526,6 +1552,9 @@ function install(proto) {
         let colB = new St.BoxLayout({ vertical: true, x_expand: true, style: 'spacing: 5px;' });
 
         colA.add(new St.Label({ text: _("Focus time \u2014 last 14 days"), style: 'font-weight: bold;' }));
+        if (this._dashGoalMin > 0) {
+            colA.add(new St.Label({ text: _("\u2504\u2504 daily goal (%d \ud83c\udf45)").format(this._opt_dailyGoal || 0), style: 'font-size: 0.72em; opacity: 0.7;' }));
+        }
         let barArea = new St.DrawingArea({ x_expand: true, style: 'height: 92px;' });
         barArea.connect('repaint', (a) => this._paintDashBars(a));
         wireHover(barArea, (x, y, w, hh) => {
@@ -2301,6 +2330,7 @@ function install(proto) {
             this._zenFocusSignal = global.display.connect('notify::focus-window', () => {
                 this._applyZenDim();
                 this._positionZenHud();
+                this._updateFocusFrame();
             });
         }
         this._applyZenDim();
@@ -2314,19 +2344,51 @@ function install(proto) {
     proto._setZenDimOnActor = function(actor, on, brightness) {
         if (!actor) { return; }
         try {
-            if (on) {
-                let fx = actor.get_effect("zen-spotlight");
-                if (fx && typeof fx.set_brightness === 'function') {
-                    fx.set_brightness(brightness);
-                } else if (!fx) {
-                    fx = new Clutter.BrightnessContrastEffect();
-                    fx.set_brightness(brightness);
-                    actor.add_effect_with_name("zen-spotlight", fx);
-                }
-            } else {
-                actor.remove_effect_by_name("zen-spotlight");
+            let fx = actor.get_effect("zen-spotlight");
+            let target = on ? brightness : 0;
+            if (!on && !fx) { return; }
+            if (on && fx && !fx._zenTweenId && typeof fx._zenB === 'number' && Math.abs(fx._zenB - target) < 0.005) {
+                return; // already where it should be — don't restart a tween
             }
+            if (on && !fx) {
+                fx = new Clutter.BrightnessContrastEffect();
+                fx._zenB = 0;
+                fx.set_brightness(0);
+                actor.add_effect_with_name("zen-spotlight", fx);
+            }
+            if (!fx) { return; }
+            this._tweenZenEffect(actor, fx, target, !on);
         } catch (e) {}
+    };
+
+    // Fade an effect's brightness toward target over ~180ms (Mainloop-stepped to
+    // match the rest of the applet). When fading out, drop the effect at the end.
+    proto._tweenZenEffect = function(actor, fx, target, removeAtEnd) {
+        if (fx._zenTweenId) {
+            try { Mainloop.source_remove(fx._zenTweenId); } catch (e) {}
+            fx._zenTweenId = 0;
+        }
+        let start = (typeof fx._zenB === 'number') ? fx._zenB : 0;
+        let steps = 9;
+        let i = 0;
+        fx._zenTweenId = Mainloop.timeout_add(20, () => {
+            i++;
+            let t = i / steps;
+            let eased = 1 - (1 - t) * (1 - t); // easeOutQuad
+            let v = start + (target - start) * eased;
+            fx._zenB = v;
+            try { fx.set_brightness(v); } catch (e) {}
+            if (i >= steps) {
+                fx._zenTweenId = 0;
+                fx._zenB = target;
+                try { fx.set_brightness(target); } catch (e) {}
+                if (removeAtEnd && Math.abs(target) < 0.001) {
+                    try { actor.remove_effect_by_name("zen-spotlight"); } catch (e) {}
+                }
+                return false;
+            }
+            return true;
+        });
     };
 
     proto._applyZenDim = function() {
@@ -2369,11 +2431,15 @@ function install(proto) {
     // Always strip the dim from every window — used on exit/break/disable so the
     // screen can never get stuck dark.
     proto._clearZenDim = function() {
-        let actors = global.get_window_actors ? global.get_window_actors() : [];
-        for (let i = 0; i < actors.length; i++) {
-            try { actors[i].remove_effect_by_name("zen-spotlight"); } catch (e) {}
+        let list = global.get_window_actors ? global.get_window_actors().slice() : [];
+        if (global.background_actor) { list.push(global.background_actor); }
+        for (let i = 0; i < list.length; i++) {
+            try {
+                let fx = list[i].get_effect("zen-spotlight");
+                if (fx && fx._zenTweenId) { try { Mainloop.source_remove(fx._zenTweenId); } catch (e) {} fx._zenTweenId = 0; }
+                list[i].remove_effect_by_name("zen-spotlight");
+            } catch (e) {}
         }
-        try { if (global.background_actor) { global.background_actor.remove_effect_by_name("zen-spotlight"); } } catch (e) {}
     };
 
     proto._teardownZenSpotlight = function() {

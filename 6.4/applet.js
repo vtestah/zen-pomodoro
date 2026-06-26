@@ -215,8 +215,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_flowExtendMinutes = null;
         this._opt_flowSoftLanding = null;
         this._opt_flowSoftLandingBehavior = null;
-        this._opt_flowSoftLandingMaxMinutes = null;
-        this._opt_flowSoftLandingPauseSeconds = null;
         this._opt_focusAmbientSound = null;
         this._opt_focusAmbientChoice = null;
         this._opt_ambientMigrated = null;
@@ -424,8 +422,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_extend_minutes", "_opt_flowExtendMinutes", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_soft_landing", "_opt_flowSoftLanding", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_soft_landing_behavior", "_opt_flowSoftLandingBehavior", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_soft_landing_max_minutes", "_opt_flowSoftLandingMaxMinutes", emptyCallback);
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "flow_soft_landing_pause_seconds", "_opt_flowSoftLandingPauseSeconds", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_sound", "_opt_focusAmbientSound", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_choice", "_opt_focusAmbientChoice", this._onAmbientChoiceChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "ambient_migrated", "_opt_ambientMigrated", emptyCallback);

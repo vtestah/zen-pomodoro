@@ -150,9 +150,7 @@
                 "flow_extend",
                 "flow_extend_minutes",
                 "flow_soft_landing",
-                "flow_soft_landing_behavior",
-                "flow_soft_landing_max_minutes",
-                "flow_soft_landing_pause_seconds"
+                "flow_soft_landing_behavior"
             ]
         },
         "sec_ambient": {
@@ -654,26 +652,6 @@
         },
         "dependency": "flow_soft_landing",
         "tooltip": "Wait: hold quietly at the end until you pause, then offer the break. Quietly extend: silently add focus time (the 'Extend amount' above) and keep going, re-checking each time."
-    },
-    "flow_soft_landing_max_minutes": {
-        "type": "scale",
-        "default": 10,
-        "min": 1,
-        "max": 30,
-        "step": 1,
-        "description": "Soft landing limit (minutes)",
-        "dependency": "flow_soft_landing",
-        "tooltip": "The most extra time soft landing will hold or extend before the break begins anyway."
-    },
-    "flow_soft_landing_pause_seconds": {
-        "type": "scale",
-        "default": 20,
-        "min": 5,
-        "max": 120,
-        "step": 5,
-        "description": "Natural pause length (seconds)",
-        "dependency": "flow_soft_landing",
-        "tooltip": "How long you need to stop typing and moving the mouse for soft landing to treat it as a natural pause and offer the break."
     },
     "focus_ambient_choice": {
         "type": "combobox",

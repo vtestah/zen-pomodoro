@@ -2027,7 +2027,7 @@ function install(proto) {
     proto._armSoftLanding = function(onPause, onCap) {
         this._disarmSoftLanding();
 
-        let capMs = FlowModule.flowGraceCapMs(this._opt_flowSoftLandingMaxMinutes);
+        let capMs = FlowModule.flowGraceCapMs(10);
         let remainingMs = capMs;
         if (typeof this._flowGraceStartMs === 'number') {
             remainingMs = Math.max(0, capMs - (Date.now() - this._flowGraceStartMs));
@@ -2048,7 +2048,7 @@ function install(proto) {
             this._idleMonitor = null;
         }
         if (this._idleMonitor) {
-            let thresholdMs = FlowModule.flowPauseThresholdMs(this._opt_flowSoftLandingPauseSeconds);
+            let thresholdMs = FlowModule.flowPauseThresholdMs(20);
             this._flowPauseWatchId = this._idleMonitor.add_idle_watch(thresholdMs, () => {
                 if (typeof onPause === 'function') {
                     try { onPause(); } catch (e) { global.logError('zen-pomodoro flow pause: ' + e); }
@@ -2096,9 +2096,9 @@ function install(proto) {
             enabled: this._opt_flowSoftLanding,
             behavior: this._opt_flowSoftLandingBehavior || 'wait',
             idleMs: this._flowProbeIdleMs(),
-            pauseThresholdMs: FlowModule.flowPauseThresholdMs(this._opt_flowSoftLandingPauseSeconds),
+            pauseThresholdMs: FlowModule.flowPauseThresholdMs(20),
             graceElapsedMs: graceElapsedMs,
-            graceCapMs: FlowModule.flowGraceCapMs(this._opt_flowSoftLandingMaxMinutes)
+            graceCapMs: FlowModule.flowGraceCapMs(10)
         });
 
         if (decision === 'break-now') {

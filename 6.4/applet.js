@@ -255,6 +255,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_focusAmbientFile = null;
         this._opt_breakBreathing = null;
         this._opt_zenModeEnabled = null;
+        this._opt_zenDimStrength = null;
+        this._opt_zenDimDesktop = null;
         this._opt_focusUntilEnabled = null;
 
         this._dailyCount = 0;
@@ -452,6 +454,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_file", "_opt_focusAmbientFile", this._restartAmbientLive.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "break_breathing", "_opt_breakBreathing", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "zen_mode_enabled", "_opt_zenModeEnabled", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "zen_dim_strength", "_opt_zenDimStrength", () => this._reapplyZenDim());
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "zen_dim_desktop", "_opt_zenDimDesktop", () => this._reapplyZenDim());
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_until_enabled", "_opt_focusUntilEnabled", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "show_dialog_messages", "_opt_showDialogMessages", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_start_after_pomodoro_ends", "_opt_autoContinueAfterPomodoro", emptyCallback);

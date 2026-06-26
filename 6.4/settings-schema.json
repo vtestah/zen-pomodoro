@@ -167,6 +167,8 @@
             "keys": [
                 "break_breathing",
                 "zen_mode_enabled",
+                "zen_dim_strength",
+                "zen_dim_desktop",
                 "focus_until_enabled",
                 "focus_dnd",
                 "pause_media",
@@ -693,9 +695,27 @@
     },
     "zen_mode_enabled": {
         "type": "switch",
-        "description": "Enable Zen mode (full-screen focus overlay, toggled from the menu)",
+        "description": "Enable Zen mode (focus spotlight — dims other windows, toggled from the menu)",
         "default": false,
-        "tooltip": "Allow a full-screen Zen overlay, toggled from the menu."
+        "tooltip": "Allow the focus spotlight, toggled from the menu: while focusing, the other windows dim so the one you're working in stands out."
+    },
+    "zen_dim_strength": {
+        "type": "spinbutton",
+        "default": 50,
+        "min": 20,
+        "max": 80,
+        "step": 5,
+        "units": "%",
+        "dependency": "zen_mode_enabled",
+        "description": "Zen spotlight: dim strength",
+        "tooltip": "How much to darken the other windows while a focus session runs (higher = darker)."
+    },
+    "zen_dim_desktop": {
+        "type": "switch",
+        "default": false,
+        "dependency": "zen_mode_enabled",
+        "description": "Zen spotlight: also dim the desktop wallpaper",
+        "tooltip": "Darken the desktop background too, not just the other windows."
     },
     "strict_focus": {
         "type": "switch",

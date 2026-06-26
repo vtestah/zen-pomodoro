@@ -1003,14 +1003,19 @@ function install(proto) {
     // is available without re-running the onboarding wizard.
     proto._showAboutTechnique = function() {
         let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
+        let scroll = new St.ScrollView({ style: 'max-height: 460px;' });
+        scroll.set_policy(St.PolicyType.NEVER, St.PolicyType.AUTOMATIC);
         let box = new St.BoxLayout({ vertical: true, style: 'spacing: 9px; width: 540px; padding: 8px 16px;' });
-        dialog.contentLayout.add(box);
+        scroll.add_actor(box);
+        dialog.contentLayout.add(scroll);
         box.add(new St.Label({ text: _("The Pomodoro technique \ud83c\udf45"), style: 'font-size: 1.35em; font-weight: bold;' }));
         let para = (s) => { let l = new St.Label({ text: s }); l.clutter_text.line_wrap = true; box.add(l); };
-        para(_("Work in short, focused sprints with deliberate rest between them:"));
-        para(_("\u2022 Focus for about 25 minutes on a single task.\n\u2022 Take a 5-minute break.\n\u2022 After four sprints, take a longer 15–30 minute break."));
-        para(_("Why it works: a finite countdown keeps the task approachable, frequent breaks protect your attention, and finishing each sprint builds momentum without burnout."));
-        para(_("Tip: pick one task per sprint. If something distracts you, jot it down and come back to it on the break."));
+        para(_("In the late 1980s, university student Francesco Cirillo couldn't focus on his studies. He bet himself he could stay concentrated for just a few minutes and reached for the first timer he could find — a kitchen one shaped like a tomato. In Italian, a tomato is a \u201cpomodoro\u201d, and that's how the method got its name."));
+        para(_("The idea is simple: big tasks feel daunting, but a single pomodoro doesn't. Promise yourself just 25 minutes of focus on one task, and starting becomes easy."));
+        para(_("The classic rhythm:\n\u2022 About 25 minutes — one task, nothing else.\n\u2022 A 5-minute breather — step away from the screen.\n\u2022 After four pomodoros, take a longer 15–30 minute break."));
+        para(_("This is a starting point, not a rule — the applet lets you change any interval and save your own presets."));
+        para(_("And it's not just a productivity fad: the exact numbers are flexible, but the principles behind them are backed by attention research. Staying on one task without switching saves energy — getting back on track after an interruption takes about 23 minutes on average. And regular pauses help you hold focus for longer without burning out."));
+        para(_("Tip: when something distracts you, don't drop what you're doing — jot the thought down and come back to it on your break. Every finished pomodoro is a small win that keeps your momentum going."));
         dialog.setButtons([{ label: _("Close"), default: true, action: () => dialog.close() }]);
         dialog.open();
     };
@@ -2309,27 +2314,49 @@ function install(proto) {
     // stays bright. Keyed by a named effect we can always strip back off.
     proto._applyZenDim = function() {
         let focus = global.display.get_focus_window ? global.display.get_focus_window() : null;
+        let strength = (typeof this._opt_zenDimStrength === 'number' && this._opt_zenDimStrength > 0) ? this._opt_zenDimStrength : 50;
+        let brightness = -(Math.max(5, Math.min(90, strength)) / 100);
         let actors = global.get_window_actors ? global.get_window_actors() : [];
         for (let i = 0; i < actors.length; i++) {
             let a = actors[i];
             let mw = a.meta_window || (a.get_meta_window && a.get_meta_window());
-            let dimThis = false;
-            if (mw && mw !== focus) {
-                dimThis = true;
-                // Leave panels/docks/desktop alone — only recede real windows.
-                try { if (mw.is_skip_taskbar && mw.is_skip_taskbar()) { dimThis = false; } } catch (e) {}
-            }
+            let dimThis = this._zenShouldDim(mw, focus);
             try {
                 if (dimThis) {
-                    if (!a.get_effect("zen-spotlight")) {
-                        let fx = new Clutter.BrightnessContrastEffect();
-                        fx.set_brightness(-0.5);
+                    let fx = a.get_effect("zen-spotlight");
+                    if (fx && typeof fx.set_brightness === 'function') {
+                        fx.set_brightness(brightness);
+                    } else if (!fx) {
+                        fx = new Clutter.BrightnessContrastEffect();
+                        fx.set_brightness(brightness);
                         a.add_effect_with_name("zen-spotlight", fx);
                     }
                 } else {
                     a.remove_effect_by_name("zen-spotlight");
                 }
             } catch (e) {}
+        }
+    };
+
+    // Which windows recede: never panels/docks; the desktop only if the user
+    // opted in; everything else (except the one in focus) dims.
+    proto._zenShouldDim = function(mw, focus) {
+        if (!mw || mw === focus) { return false; }
+        try {
+            let wt = mw.get_window_type();
+            if (wt === Meta.WindowType.DOCK) { return false; }
+            if (wt === Meta.WindowType.DESKTOP) { return Boolean(this._opt_zenDimDesktop); }
+            return true;
+        } catch (e) {
+            try { return !(mw.is_skip_taskbar && mw.is_skip_taskbar()); } catch (e2) { return true; }
+        }
+    };
+
+    // Re-apply live when the dim settings change (only while the spotlight is up).
+    proto._reapplyZenDim = function() {
+        let isFocus = (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused');
+        if (this._zenActive && this._opt_zenModeEnabled && isFocus) {
+            this._applyZenDim();
         }
     };
 

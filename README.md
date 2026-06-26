@@ -1,6 +1,6 @@
 # Zen Pomodoro — Cinnamon applet
 
-![tests](https://github.com/vtestah/zen-pomodoro/actions/workflows/tests.yml/badge.svg)
+[![tests](https://github.com/vtestah/zen-pomodoro/actions/workflows/tests.yml/badge.svg)](https://github.com/vtestah/zen-pomodoro/actions/workflows/tests.yml) [![release](https://img.shields.io/github/v/tag/vtestah/zen-pomodoro?label=release)](https://github.com/vtestah/zen-pomodoro/releases) [![License: GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
 
 A calm, Zen‑style Pomodoro focus timer for the Cinnamon panel: gentle on‑screen
 cues instead of anxious alarms — a soft glow frame that traces your progress, a
@@ -16,6 +16,23 @@ this source for Cinnamon Spices — see
 [Publishing to Cinnamon Spices](#publishing-to-cinnamon-spices).
 
 Originally based on **Pomodoro Timer** by *gfreeau* (GPLv3); since substantially rewritten.
+
+## Install
+
+**From Cinnamon (once published on Spices):** right‑click the panel → *Applets*
+→ *Download* tab → search **“Zen Pomodoro”** → install, then enable it on the
+*Manage* tab.
+
+**Manual install (works today):**
+```bash
+git clone https://github.com/vtestah/zen-pomodoro.git \
+  ~/.local/share/cinnamon/applets/zen-pomodoro@vtestah
+```
+The folder **must** be named `zen-pomodoro@vtestah` (the applet UUID); Cinnamon
+loads the matching version from `6.4/`. Then right‑click the panel → *Applets* →
+*Manage* and enable **Zen Pomodoro**. To update later, `git pull` in that folder
+and reload the applet (or restart Cinnamon with `Ctrl+Alt+Esc`). Requires
+Cinnamon 6.x; the applet keeps its data under `~/.local/state/zen-pomodoro/`.
 
 ## Features
 - **Calm focus cues** — soft edge‑glow progress frame (bottom kept clear for the

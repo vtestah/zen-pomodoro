@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-27 00:22+0700\n"
+"POT-Creation-Date: 2026-06-27 01:02+0700\n"
 "PO-Revision-Date: 2018-11-06 02:05+0300\n"
 "Last-Translator: Gökhan GÖKKAYA <gokhanlnx@gmail.com>\n"
 "Language-Team: Linux Mint Türkiye <gokhanlnx@gmail.com>\n"
@@ -18,157 +18,157 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: applet.js:640
+#: applet.js:645
 msgid "Strict focus is on"
 msgstr "Sıkı odak açık"
 
-#: applet.js:640
+#: applet.js:645
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Devam et — bloğu bitir ya da baştan başlamak için sıfırla."
 
-#: applet.js:706
+#: applet.js:711
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Odak uzunluğu: %d dk"
 
-#: applet.js:1000
+#: applet.js:1005
 msgid "Focus session restored — resume when ready"
 msgstr "Odak oturumu geri yüklendi — hazır olunca devam et"
 
-#: applet.js:1037
+#: applet.js:1042
 msgid "FOCUS"
 msgstr "ODAK"
 
-#: applet.js:1039
+#: applet.js:1044
 msgid "PAUSED FOCUS"
 msgstr "ODAK DURAKLATILDI"
 
-#: applet.js:1042
+#: applet.js:1047
 msgid "BREAK"
 msgstr "MOLA"
 
-#: applet.js:1045
+#: applet.js:1050
 msgid "PAUSED BREAK"
 msgstr "MOLA DURAKLATILDI"
 
-#: applet.js:1047
+#: applet.js:1052
 msgid "BREAK OVER"
 msgstr "MOLA BİTTİ"
 
-#: applet.js:1050 applet.js:1110 menu.js:214 menu.js:724
+#: applet.js:1055 applet.js:1115 menu.js:214 menu.js:724
 msgid "Ready to focus"
 msgstr "Odaklanmaya hazır"
 
-#: applet.js:1068
+#: applet.js:1073
 msgid "Short break running"
 msgstr "Kısa mola yürütülüyor"
 
-#: applet.js:1071
+#: applet.js:1076
 msgid "Short break paused"
 msgstr "Kısa mola duraklatıldı"
 
-#: applet.js:1074
+#: applet.js:1079
 msgid "Long break running"
 msgstr "Uzun mola yürütülüyor"
 
-#: applet.js:1077
+#: applet.js:1082
 msgid "Long break paused"
 msgstr "Uzun mola duraklatıldı"
 
-#: applet.js:1080 applet.js:1594
+#: applet.js:1085 applet.js:1600
 msgid "Break ended"
 msgstr "Mola bitti"
 
-#: applet.js:1083
+#: applet.js:1088
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodori %d, set %d çalışıyor"
 
-#: applet.js:1088 features.js:553 features.js:1712
+#: applet.js:1093 features.js:553 features.js:1705
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ bitiş %s · %d 🍅 kaldı"
 
-#: applet.js:1093
+#: applet.js:1098
 msgid "Pomodoro paused"
 msgstr "Pomodoro duraklatıldı"
 
-#: applet.js:1096
+#: applet.js:1101
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Odaklanmaya hazır — başlamak için kaydır ya da orta tıkla"
 
-#: applet.js:1264
+#: applet.js:1269
 msgid "Classic"
 msgstr "Klasik"
 
-#: applet.js:1265
+#: applet.js:1270
 msgid "Long focus"
 msgstr "Uzun odak"
 
-#: applet.js:1459
+#: applet.js:1465
 msgid "Task complete"
 msgstr ""
 
 #. settings-schema.json->sec_preview->title
-#: applet.js:1560 visual.js:593
+#: applet.js:1566 visual.js:593
 msgid "Preview"
 msgstr "Önizleme"
 
-#: applet.js:1574
+#: applet.js:1580
 msgid "Pomodoro started"
 msgstr "Pomodoro başlatıldı"
 
-#: applet.js:1650
+#: applet.js:1656
 msgid "Let's go to work!"
 msgstr "Haydi çalışma başlayalım!"
 
-#: applet.js:1677
+#: applet.js:1683
 msgid "Pomodoro done"
 msgstr "Pomodoro tamamlandı"
 
-#: applet.js:1679
+#: applet.js:1685
 msgid "Take a short break"
 msgstr "Kısa bir mola ver"
 
-#: applet.js:1680 applet.js:1711
+#: applet.js:1686 applet.js:1717
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d dk"
 
-#: applet.js:1681 applet.js:1712
+#: applet.js:1687 applet.js:1718
 msgid "Skip break"
 msgstr "Molayı atla"
 
-#: applet.js:1705
+#: applet.js:1711
 msgid "Set complete!"
 msgstr "Set tamamlandı!"
 
-#: applet.js:1710
+#: applet.js:1716
 msgid "Take a long break"
 msgstr "Uzun bir mola ver"
 
-#: applet.js:1757
+#: applet.js:1763
 msgid "Pomodoro ended"
 msgstr "Pomodoro sona erdi"
 
-#: applet.js:2035 features.js:3006
+#: applet.js:2041 features.js:3041
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Pomodoro hazır ayarını değiştirmeden önce zamanlayıcıyı durdur"
 
-#: applet.js:2053
+#: applet.js:2059
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Pomodoro hazır ayarı %s uygulandı"
 
-#: applet.js:2060 features.js:743 menu.js:455 menu.js:815 menu.js:1199
+#: applet.js:2066 features.js:743 menu.js:455 menu.js:818 menu.js:1219
 msgid "Preset"
 msgstr "Hazır ayar"
 
-#: applet.js:2086
+#: applet.js:2092
 msgid "Keep at least one preset"
 msgstr "En az bir ön ayar bırakın"
 
-#: applet.js:2101
+#: applet.js:2107
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Mola %d dk uzatıldı"
@@ -189,12 +189,12 @@ msgstr "örn. raporu yaz"
 msgid "Choose or type a focus task"
 msgstr "Bir odak görevi seç ya da yaz"
 
-#: dialogs.js:84 dialogs.js:140 features.js:3055
+#: dialogs.js:84 dialogs.js:140 features.js:3090
 msgid "Start"
 msgstr "Başlat"
 
 #: dialogs.js:130 dialogs.js:525 features.js:828 features.js:891
-#: features.js:1852 features.js:3054
+#: features.js:1845 features.js:3089
 msgid "Cancel"
 msgstr "İptal"
 
@@ -388,7 +388,7 @@ msgstr ""
 msgid "Move your body and let your mind wander."
 msgstr ""
 
-#: features.js:716 menu.js:1083
+#: features.js:716 menu.js:1089
 msgid "Edit task"
 msgstr "Görevi düzenle"
 
@@ -410,7 +410,7 @@ msgstr "%d sa %d dk"
 msgid "%d h"
 msgstr "%d sa"
 
-#: features.js:734 features.js:858 features.js:1200 menu.js:303
+#: features.js:734 features.js:858 features.js:1193 menu.js:303
 #, javascript-format
 msgid "%d min"
 msgstr "%d dk"
@@ -436,7 +436,7 @@ msgstr "Kaydet"
 msgid "Add"
 msgstr "Ekle"
 
-#: features.js:839 menu.js:1173
+#: features.js:839 menu.js:1193
 msgid "Edit preset"
 msgstr "Ön ayarı düzenle"
 
@@ -472,25 +472,25 @@ msgstr "Uzun mola (dk)"
 msgid "Pomodori"
 msgstr "Pomodori"
 
-#: features.js:935
+#: features.js:930
 msgid "The Pomodoro technique 🍅"
 msgstr "Pomodoro tekniği 🍅"
 
-#: features.js:937
+#: features.js:932
 msgid ""
 "In the late 1980s, university student Francesco Cirillo couldn't focus on "
 "his studies. He bet himself he could stay concentrated for just a few "
-"minutes and reached for the first timer he could find — a kitchen one shaped"
-" like a tomato. In Italian, a tomato is a “pomodoro”, and that's how the "
+"minutes and reached for the first timer he could find — a kitchen one shaped "
+"like a tomato. In Italian, a tomato is a “pomodoro”, and that's how the "
 "method got its name."
 msgstr ""
 "1980'lerin sonunda üniversite öğrencisi Francesco Cirillo derslerine "
 "odaklanamıyordu. Kendisiyle, yalnızca birkaç dakika bile olsa "
-"odaklanabileceğine dair iddiaya girdi ve bulabildiği ilk zamanlayıcıyı kaptı"
-" — domates şeklinde bir mutfak zamanlayıcısı. İtalyancada domates “pomodoro”"
-" demektir; yöntem adını böyle aldı."
+"odaklanabileceğine dair iddiaya girdi ve bulabildiği ilk zamanlayıcıyı kaptı "
+"— domates şeklinde bir mutfak zamanlayıcısı. İtalyancada domates “pomodoro” "
+"demektir; yöntem adını böyle aldı."
 
-#: features.js:938
+#: features.js:933
 msgid ""
 "The idea is simple: big tasks feel daunting, but a single pomodoro doesn't. "
 "Promise yourself just 25 minutes of focus on one task, and starting becomes "
@@ -499,7 +499,7 @@ msgstr ""
 "Fikir basit: büyük işler göz korkutur, tek bir pomodoro korkutmaz. Kendine "
 "yalnızca tek bir göreve 25 dakika odaklanma sözü ver; başlamak kolaylaşır."
 
-#: features.js:939
+#: features.js:934
 msgid ""
 "The classic rhythm:\n"
 "• About 25 minutes — one task, nothing else.\n"
@@ -511,7 +511,7 @@ msgstr ""
 "• 5 dakikalık bir nefes molası — ekrandan uzaklaş.\n"
 "• Dört pomodorodan sonra 15–30 dakikalık daha uzun bir mola ver."
 
-#: features.js:940
+#: features.js:935
 msgid ""
 "This is a starting point, not a rule — the applet lets you change any "
 "interval and save your own presets."
@@ -519,7 +519,7 @@ msgstr ""
 "Bu bir başlangıç noktasıdır, kural değil — uygulamacık herhangi bir aralığı "
 "değiştirmene ve kendi ön ayarlarını kaydetmene olanak tanır."
 
-#: features.js:941
+#: features.js:936
 msgid ""
 "And it's not just a productivity fad: the exact numbers are flexible, but "
 "the principles behind them are backed by attention research. Staying on one "
@@ -533,79 +533,79 @@ msgstr ""
 "yeniden dönmek ortalama yaklaşık 23 dakika sürer. Düzenli molalar da "
 "tükenmeden daha uzun süre odaklı kalmana yardımcı olur."
 
-#: features.js:942
+#: features.js:937
 msgid ""
 "Tip: when something distracts you, don't drop what you're doing — jot the "
-"thought down and come back to it on your break. Every finished pomodoro is a"
-" small win that keeps your momentum going."
+"thought down and come back to it on your break. Every finished pomodoro is a "
+"small win that keeps your momentum going."
 msgstr ""
 "İpucu: bir şey dikkatini dağıttığında yaptığın işi bırakma — düşünceyi not "
-"al ve molada ona geri dön. Tamamlanan her pomodoro, ivmeni koruyan küçük bir"
-" zaferdir."
+"al ve molada ona geri dön. Tamamlanan her pomodoro, ivmeni koruyan küçük bir "
+"zaferdir."
 
-#: features.js:943 features.js:1864
+#: features.js:938 features.js:1857
 msgid "Close"
 msgstr "Kapat"
 
-#: features.js:956
+#: features.js:951
 msgid "OK"
 msgstr "Tamam"
 
-#: features.js:969
+#: features.js:964
 msgid "Nothing to undo"
 msgstr "Geri alınacak bir şey yok"
 
-#: features.js:970
+#: features.js:965
 msgid "Apply a setup from the guide first — then you can undo it here."
 msgstr "Önce sihirbazdan bir kurulum uygula — sonra burada geri alabilirsin."
 
-#: features.js:974
+#: features.js:969
 msgid "Previous settings restored ✓"
 msgstr "Önceki ayarlar geri yüklendi ✓"
 
-#: features.js:975
+#: features.js:970
 msgid "Your settings from just before the last setup have been put back."
 msgstr "Son kurulumdan hemen önceki ayarların geri yüklendi."
 
-#: features.js:1032
+#: features.js:1025
 #, javascript-format
 msgid "Selected %d of %d"
 msgstr "%d / %d seçildi"
 
-#: features.js:1103
+#: features.js:1096
 msgid "Intro"
 msgstr "Giriş"
 
-#: features.js:1104
+#: features.js:1097
 #, javascript-format
 msgid "Step %d of %d"
 msgstr "Adım %d / %d"
 
-#: features.js:1105
+#: features.js:1098
 msgid "Review"
 msgstr "Özet"
 
-#: features.js:1107
+#: features.js:1100
 msgid "Smart setup"
 msgstr "Akıllı kurulum"
 
-#: features.js:1111
+#: features.js:1104
 msgid "Skip"
 msgstr "Atla"
 
-#: features.js:1114
+#: features.js:1107
 msgid "What is the Pomodoro technique? 🍅"
 msgstr ""
 
-#: features.js:1115
+#: features.js:1108
 msgid ""
 "Focus in short sprints with deliberate rest: about 25 minutes on one task, "
-"then a 5-minute break; after four sprints, take a longer 15–30 minute break."
-" The finite countdown keeps a task approachable and the regular breaks "
+"then a 5-minute break; after four sprints, take a longer 15–30 minute break. "
+"The finite countdown keeps a task approachable and the regular breaks "
 "protect your attention."
 msgstr ""
 
-#: features.js:1116
+#: features.js:1109
 msgid ""
 "Let's tune it to how you work — a few quick questions, and you can change "
 "anything later in Settings."
@@ -614,386 +614,394 @@ msgstr ""
 "Ayarlar'dan değiştirebilirsin."
 
 #. settings-schema.json->about_technique_button->description
-#: features.js:1118
+#: features.js:1111
 msgid "About the Pomodoro technique"
 msgstr ""
 
-#: features.js:1119
+#: features.js:1112
 msgid "Let's go"
 msgstr "Başlayalım"
 
-#: features.js:1133 features.js:1185
+#: features.js:1126 features.js:1178
 msgid "Back"
 msgstr "Geri"
 
-#: features.js:1134
+#: features.js:1127
 msgid "Next"
 msgstr "İleri"
 
-#: features.js:1137
+#: features.js:1130
 msgid "Your tailored setup 🍅"
 msgstr "Sana özel kurulumun 🍅"
 
-#: features.js:1138
+#: features.js:1131
 msgid ""
-"Based on your answers, here's what I'll set up. Untick anything you'd rather"
-" skip, then apply."
+"Based on your answers, here's what I'll set up. Untick anything you'd rather "
+"skip, then apply."
 msgstr ""
 "Yanıtlarına göre kuracağım ayarlar şunlar. Atlamak istediğinin işaretini "
 "kaldır ve uygula."
 
-#: features.js:1186
+#: features.js:1179
 msgid "Apply"
 msgstr "Uygula"
 
-#: features.js:1187
+#: features.js:1180
 msgid "Apply & start"
 msgstr "Uygula ve başla"
 
-#: features.js:1204 menu.js:307
+#: features.js:1197 menu.js:307
 #, javascript-format
 msgid "%dh %dm"
 msgstr "%d sa %d dk"
 
-#: features.js:1204 menu.js:307
+#: features.js:1197 menu.js:307
 #, javascript-format
 msgid "%dh"
 msgstr "%d sa"
 
-#: features.js:1386
+#: features.js:1379
 msgid "Statistics reset."
 msgstr "İstatistikler sıfırlandı."
 
-#: features.js:1408
+#: features.js:1401
 #, javascript-format
 msgid "%d to go today — at your pace, done by about %s."
 msgstr "Bugün %d kaldı — bu tempoyla yaklaşık %s civarında biter."
 
-#: features.js:1409
+#: features.js:1402
 #, javascript-format
 msgid "%d more to reach today's goal of %d."
 msgstr "%d tane daha — bugünkü hedef %d."
 
-#: features.js:1411
+#: features.js:1404
 #, javascript-format
 msgid "Daily goal reached — %d done today. Nice."
 msgstr "Günlük hedefe ulaşıldı — bugün %d tamamlandı. Güzel."
 
-#: features.js:1414
+#: features.js:1407
 #, javascript-format
 msgid "%d interruptions this week — what keeps pulling you away?"
 msgstr "Bu hafta %d kesinti — dikkatini ne dağıtıyor?"
 
-#: features.js:1417 features.js:1737
+#: features.js:1410 features.js:1730
 #, javascript-format
 msgid "Most focused around %s — good time for deep work."
-msgstr ""
-"En çok %s civarında odaklanıyorsun — derin çalışma için iyi bir zaman."
+msgstr "En çok %s civarında odaklanıyorsun — derin çalışma için iyi bir zaman."
 
-#: features.js:1420
+#: features.js:1413
 #, javascript-format
 msgid "Most focus went to “%s”."
 msgstr "En çok odak “%s” görevine ayrıldı."
 
-#: features.js:1422
+#: features.js:1415
 #, javascript-format
 msgid "%d pomodoros this week. Keep it going."
 msgstr "Bu hafta %d pomodoro. Böyle devam et."
 
-#: features.js:1423
+#: features.js:1416
 msgid "Start a focus session — your insights will appear here."
 msgstr "Bir odak oturumu başlat — içgörülerin burada görünecek."
 
-#: features.js:1461
+#: features.js:1454
 msgid "%d.%m"
 msgstr ""
 
-#: features.js:1560
+#: features.js:1553
 #, javascript-format
 msgid "Saved ✓ — %s"
 msgstr ""
 
-#: features.js:1563
+#: features.js:1556
 msgid "Could not save statistics export."
 msgstr ""
 
-#: features.js:1595
+#: features.js:1588
 msgid "Could not open the folder."
 msgstr ""
 
-#: features.js:1620 features.js:1693
+#: features.js:1613 features.js:1686
 msgid "Sun"
 msgstr "Paz"
 
-#: features.js:1620 features.js:1693
+#: features.js:1613 features.js:1686
 msgid "Mon"
 msgstr "Pzt"
 
-#: features.js:1620 features.js:1693
+#: features.js:1613 features.js:1686
 msgid "Tue"
 msgstr "Sal"
 
-#: features.js:1620 features.js:1693
+#: features.js:1613 features.js:1686
 msgid "Wed"
 msgstr "Çar"
 
-#: features.js:1620 features.js:1693
+#: features.js:1613 features.js:1686
 msgid "Thu"
 msgstr "Per"
 
-#: features.js:1620 features.js:1693
+#: features.js:1613 features.js:1686
 msgid "Fri"
 msgstr "Cum"
 
-#: features.js:1620 features.js:1693
+#: features.js:1613 features.js:1686
 msgid "Sat"
 msgstr "Cmt"
 
-#: features.js:1667
+#: features.js:1660
 msgid "Focus statistics"
 msgstr "Odak istatistikleri"
 
-#: features.js:1681
+#: features.js:1674
 #, javascript-format
 msgid "%d / %d goal"
 msgstr "%d / %d hedef"
 
-#: features.js:1682
+#: features.js:1675
 msgid "Today"
 msgstr "Bugün"
 
-#: features.js:1683
+#: features.js:1676
 msgid "This week"
 msgstr "Bu hafta"
 
-#: features.js:1684
+#: features.js:1677
 msgid "Streak"
 msgstr "Seri"
 
-#: features.js:1684
+#: features.js:1677
 #, javascript-format
 msgid "best %d"
 msgstr "rekor %d"
 
-#: features.js:1685
+#: features.js:1678
 msgid "All time"
 msgstr "Tüm zamanlar"
 
-#: features.js:1694
+#: features.js:1687
 #, javascript-format
 msgid "This week: %d 🍅 · %s · best day %s"
 msgstr "Bu hafta: %d 🍅 · %s · en iyi gün %s"
 
-#: features.js:1698
+#: features.js:1691
 #, fuzzy, javascript-format
 msgid "This month: %d 🍅 · %s · best day %d 🍅"
 msgstr "Bu hafta: %d 🍅 · %s · en iyi gün %s"
 
-#: features.js:1704
+#: features.js:1697
 msgid "Nothing harvested yet today"
 msgstr "Bugün henüz hasat yok"
 
-#: features.js:1706
+#: features.js:1699
 msgid "Today's harvest"
 msgstr "Bugünkü hasat"
 
-#: features.js:1713
+#: features.js:1706
 #, javascript-format
 msgid "Interruptions: %d today · %d this week"
 msgstr "Kesintiler: bugün %d · bu hafta %d"
 
-#: features.js:1719
+#: features.js:1712
 msgid "When you focus (by hour)"
 msgstr "Ne zaman odaklanıyorsun (saate göre)"
 
-#: features.js:1728
+#: features.js:1721
 #, javascript-format
 msgid "Focus by hour; most focused around %s"
 msgstr ""
 
-#: features.js:1729
+#: features.js:1722
 msgid "Focus by hour; not enough data yet"
 msgstr ""
 
-#: features.js:1732
+#: features.js:1725
 msgid "night"
 msgstr "gece"
 
-#: features.js:1732
+#: features.js:1725
 msgid "morning"
 msgstr "sabah"
 
-#: features.js:1732
+#: features.js:1725
 msgid "afternoon"
 msgstr "öğleden sonra"
 
-#: features.js:1732
+#: features.js:1725
 msgid "evening"
 msgstr "akşam"
 
-#: features.js:1738
+#: features.js:1731
 msgid "Not enough data yet to spot your best focus time."
 msgstr "En iyi odak zamanını belirlemek için henüz yeterli veri yok."
 
-#: features.js:1747
+#: features.js:1740
 msgid "Focus time — last 14 days"
 msgstr "Odak süresi — son 14 gün"
 
-#: features.js:1749
+#: features.js:1742
 #, fuzzy, javascript-format
 msgid "┄┄ daily goal (%d 🍅)"
 msgstr "Günlük hedefe ulaşıldı 🍅"
 
-#: features.js:1768
+#: features.js:1761
 #, javascript-format
 msgid "Last 14 days: %d 🍅 · best %s (%d 🍅)"
 msgstr ""
 
-#: features.js:1769
+#: features.js:1762
 msgid "Last 14 days: no focus yet"
 msgstr ""
 
-#: features.js:1772
+#: features.js:1765
 msgid "Activity — last 12 weeks"
 msgstr "Etkinlik — son 12 hafta"
 
-#: features.js:1792
+#: features.js:1785
 msgid "Less"
 msgstr "Az"
 
-#: features.js:1796
+#: features.js:1789
 msgid "More"
 msgstr "Çok"
 
-#: features.js:1802
+#: features.js:1795
 #, javascript-format
 msgid "Last 12 weeks: %d active days · busiest %s (%d 🍅)"
 msgstr ""
 
-#: features.js:1803
+#: features.js:1796
 msgid "Last 12 weeks: no focus yet"
 msgstr ""
 
-#: features.js:1816
+#: features.js:1809
 msgid "By task"
 msgstr "Göreve göre"
 
-#: features.js:1827
+#: features.js:1820
 #, javascript-format
 msgid "%s: %d 🍅"
 msgstr ""
 
-#: features.js:1840 menu.js:720
+#: features.js:1833 menu.js:720
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Kilometre taşları: %s"
 
-#: features.js:1853
+#: features.js:1846
 msgid "Delete all statistics"
 msgstr "Tüm istatistikleri sil"
 
-#: features.js:1858
+#: features.js:1851
 msgid "Export…"
 msgstr ""
 
-#: features.js:1861
+#: features.js:1854
 msgid "Open folder"
 msgstr ""
 
-#: features.js:1863
+#: features.js:1856
 msgid "Reset statistics…"
 msgstr "İstatistikleri sıfırla…"
 
-#: features.js:2176
+#: features.js:2169
 msgid "No sound backend available for preview."
 msgstr ""
 
-#: features.js:2180
+#: features.js:2173
 msgid "Choose an ambient sound first (it's set to Off)."
 msgstr ""
 
-#: features.js:2430
+#: features.js:2427
+msgid "Break — locking the screen"
+msgstr ""
+
+#: features.js:2428
+msgid ""
+"Locking in a few seconds so you can step away. Skip the break to cancel."
+msgstr ""
+
+#: features.js:2465
 msgid "No task"
 msgstr "Görev yok"
 
-#: features.js:2467
+#: features.js:2502
 msgid "Push notifications need libsoup, which isn't available here."
 msgstr "Push bildirimleri için libsoup gerekir, ancak burada mevcut değil."
 
-#: features.js:2473
+#: features.js:2508
 msgid "Enter your Pushover user key and app token first."
 msgstr "Önce Pushover kullanıcı anahtarını ve uygulama belirtecini gir."
 
-#: features.js:2480
+#: features.js:2515
 msgid "Test notification from Zen Pomodoro 🍅"
 msgstr "Zen Pomodoro'dan test bildirimi 🍅"
 
-#: features.js:2502
+#: features.js:2537
 msgid "Pushover test sent ✓ — check your device."
 msgstr "Pushover testi gönderildi ✓ — cihazını kontrol et."
 
-#: features.js:2503 features.js:2507
+#: features.js:2538 features.js:2542
 msgid "Pushover test failed. Double-check your user key and app token."
 msgstr ""
 "Pushover testi başarısız. Kullanıcı anahtarını ve uygulama belirtecini "
 "kontrol et."
 
-#: features.js:2600
+#: features.js:2635
 #, javascript-format
 msgid "Blocking updated — %d site(s)."
 msgstr ""
 
-#: features.js:2607
+#: features.js:2642
 msgid "Site blocking cleared."
 msgstr ""
 
-#: features.js:2689
+#: features.js:2724
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Parolasız engelleme etkin (hiç sormaz)."
 
-#: features.js:2693
+#: features.js:2728
 msgid "Passwordless blocking removed."
 msgstr "Parolasız engelleme kaldırıldı."
 
-#: features.js:2715
+#: features.js:2750
 msgid ""
 "Focus spotlight is on — every other window is dimmed so the one you're "
 "working in stands out. Click the on-screen pill (or switch Zen off) to exit."
 msgstr ""
 
-#: features.js:2716
+#: features.js:2751
 msgid ""
 "Focus spotlight is armed. When your next focus session starts, every window "
-"except the one you're working in dims, so your task stands out. Click the "
-"on-screen pill to exit."
+"except the one you're working in dims, so your task stands out. Click the on-"
+"screen pill to exit."
 msgstr ""
 
 #. settings-schema.json->sec_zen->title
-#: features.js:2717 menu.js:467 menu.js:511
+#: features.js:2752 menu.js:467 menu.js:511
 msgid "Zen mode"
 msgstr "Zen modu"
 
-#: features.js:2867
+#: features.js:2902
 msgid "Exit focus"
 msgstr ""
 
-#: features.js:2976
+#: features.js:3011
 msgid "Breathe in"
 msgstr "Nefes al"
 
-#: features.js:2979 features.js:2985
+#: features.js:3014 features.js:3020
 msgid "Hold"
 msgstr "Tut"
 
-#: features.js:2982
+#: features.js:3017
 msgid "Breathe out"
 msgstr "Nefes ver"
 
-#: features.js:3012
+#: features.js:3047
 msgid "Focus until"
 msgstr "Şu saate kadar odak"
 
-#: features.js:3013
+#: features.js:3048
 msgid "Enter a time (HH:MM)"
 msgstr "Bir saat gir (SS:DD)"
 
@@ -1005,7 +1013,7 @@ msgstr "Hata: menü kullanılamıyor"
 msgid "Ready to start"
 msgstr "Başlamaya hazır"
 
-#: menu.js:239 menu.js:796
+#: menu.js:239 menu.js:798
 msgid "No task yet — tap to choose one"
 msgstr ""
 
@@ -1018,7 +1026,7 @@ msgstr "Görevi değiştir"
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:351 menu.js:869
+#: menu.js:351 menu.js:872
 msgid "Start focus"
 msgstr "Odağa başla"
 
@@ -1036,8 +1044,8 @@ msgstr "Zamanlayıcıyı sıfırla"
 
 #: menu.js:376
 msgid ""
-"Stop the current timer and return to the start. Your pomodoro count for this"
-" set is kept."
+"Stop the current timer and return to the start. Your pomodoro count for this "
+"set is kept."
 msgstr ""
 
 #: menu.js:388
@@ -1055,11 +1063,11 @@ msgstr ""
 msgid "Confirm reset"
 msgstr ""
 
-#: menu.js:412 menu.js:994
+#: menu.js:412 menu.js:1000
 msgid "Task list"
 msgstr "Görev listesi"
 
-#: menu.js:433 menu.js:983
+#: menu.js:433 menu.js:989
 msgid "Distractions"
 msgstr ""
 
@@ -1082,7 +1090,7 @@ msgstr "Ortam sesi"
 msgid "Site blocking"
 msgstr "Site engelleme"
 
-#: menu.js:480 menu.js:805 menu.js:1206
+#: menu.js:480 menu.js:808 menu.js:1226
 msgid "off"
 msgstr "kapalı"
 
@@ -1168,85 +1176,85 @@ msgstr "Mola bitti — odak için Başlat'a bas"
 msgid "%d min focus — press Start"
 msgstr "%d dk odak — Başlat'a bas"
 
-#: menu.js:798
+#: menu.js:801
 msgid "Task: none"
 msgstr "Görev: yok"
 
-#: menu.js:804 menu.js:1205
+#: menu.js:807 menu.js:1225
 #, javascript-format
 msgid "blocking %d"
 msgstr "%d engelleniyor"
 
-#: menu.js:805 menu.js:1206
+#: menu.js:808 menu.js:1226
 #, javascript-format
 msgid "%d in list"
 msgstr "listede %d"
 
-#: menu.js:848
+#: menu.js:851
 msgid "Resume break"
 msgstr "Molaya devam et"
 
-#: menu.js:848
+#: menu.js:851
 msgid "Resume focus"
 msgstr "Odağa devam et"
 
-#: menu.js:855
+#: menu.js:858
 msgid "Focusing — stay with it"
 msgstr "Odaklanılıyor — devam et"
 
-#: menu.js:860
+#: menu.js:863
 msgid "Pause focus"
 msgstr "Odağı duraklat"
 
-#: menu.js:860
+#: menu.js:863
 msgid "Pause break"
 msgstr "Molayı duraklat"
 
-#: menu.js:865
+#: menu.js:868
 msgid "Start next focus"
 msgstr "Sonraki odağa başla"
 
-#: menu.js:914
+#: menu.js:920
 msgid "Jot a distraction, press Enter"
 msgstr ""
 
-#: menu.js:960
+#: menu.js:966
 msgid "Delete"
 msgstr ""
 
-#: menu.js:977
+#: menu.js:983
 msgid "Clear all"
 msgstr ""
 
-#: menu.js:1009
+#: menu.js:1015
 msgid "Add task…"
 msgstr "Görev ekle…"
 
-#: menu.js:1013 menu.js:1148
+#: menu.js:1019 menu.js:1154
 msgid "Reorder…"
 msgstr ""
 
-#: menu.js:1024
+#: menu.js:1030
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr "Henüz görev yok — odaklanacağın şeyi 🍅 tahminiyle ekle."
 
-#: menu.js:1090
+#: menu.js:1096
 msgid "Reopen task"
 msgstr "Görevi yeniden aç"
 
-#: menu.js:1090
+#: menu.js:1096
 msgid "Mark done"
 msgstr "Tamamlandı işaretle"
 
-#: menu.js:1097
+#: menu.js:1103
 msgid "Delete task"
 msgstr "Görevi sil"
 
-#: menu.js:1144
+#: menu.js:1150
 msgid "Add preset…"
 msgstr "Ön ayar ekle…"
 
-#: menu.js:1180
+#: menu.js:1200
 msgid "Delete preset"
 msgstr "Ön ayarı sil"
 
@@ -1644,8 +1652,7 @@ msgid "Long Break Duration:"
 msgstr "Uzun mola süresi:"
 
 #. settings-schema.json->long_break_duration->tooltip
-msgid ""
-"Length of the longer break after a set of pomodoros (classic is 15–30)."
+msgid "Length of the longer break after a set of pomodoros (classic is 15–30)."
 msgstr "Bir pomodoro setinden sonraki uzun molanın uzunluğu (klasik 15–30)."
 
 #. settings-schema.json->pomodori_number->description
@@ -1653,8 +1660,7 @@ msgid "Number of pomodori before long break:"
 msgstr "Uzun moladan önceki pomodori sayısı:"
 
 #. settings-schema.json->pomodori_number->tooltip
-msgid ""
-"How many focus blocks to complete before the long break (classic is 4)."
+msgid "How many focus blocks to complete before the long break (classic is 4)."
 msgstr "Uzun moladan önce tamamlanacak odak bloğu sayısı (klasik 4'tür)."
 
 #. settings-schema.json->start_automatically_on_load->description
@@ -1777,8 +1783,7 @@ msgstr "Panel zamanlayıcısında saniyeleri göster"
 #. settings-schema.json->show_seconds->tooltip
 msgid "Off shows only the remaining minutes on the panel (less distracting)."
 msgstr ""
-"Kapalıyken panelde yalnızca kalan dakikalar görünür (daha az dikkat "
-"dağıtır)."
+"Kapalıyken panelde yalnızca kalan dakikalar görünür (daha az dikkat dağıtır)."
 
 #. settings-schema.json->hotkey->description
 msgid "Shortcut: open the applet menu"
@@ -1832,9 +1837,9 @@ msgstr "Zamanlayıcıyı panelde fareyle kontrol et"
 
 #. settings-schema.json->panel_scroll_control->tooltip
 msgid ""
-"Scroll up on the applet to start or resume, scroll down to pause, and "
-"middle-click to skip the phase. Turn this off if you sometimes scroll over "
-"the panel by accident."
+"Scroll up on the applet to start or resume, scroll down to pause, and middle-"
+"click to skip the phase. Turn this off if you sometimes scroll over the "
+"panel by accident."
 msgstr ""
 "Başlatmak ya da devam etmek için uygulamacıkta yukarı kaydır, duraklatmak "
 "için aşağı kaydır, aşamayı atlamak için orta tıkla. Bazen panel üzerinde "
@@ -1857,8 +1862,8 @@ msgid ""
 "What the mouse wheel does on the applet: start/pause the timer, or change "
 "the focus length (when idle). Middle-click always skips to the next phase."
 msgstr ""
-"Fare tekerleğinin uygulamacıkta yaptığı: zamanlayıcıyı başlat/duraklat ya da"
-" odak uzunluğunu değiştir (boştayken). Orta tık her zaman sonraki aşamaya "
+"Fare tekerleğinin uygulamacıkta yaptığı: zamanlayıcıyı başlat/duraklat ya da "
+"odak uzunluğunu değiştir (boştayken). Orta tık her zaman sonraki aşamaya "
 "atlar."
 
 #. settings-schema.json->focus_show_task_chip->description
@@ -1881,8 +1886,8 @@ msgstr ""
 
 #. settings-schema.json->focus_start_ritual->description
 msgid ""
-"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus"
-" begins"
+"Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus "
+"begins"
 msgstr ""
 "Başlangıç ritüeli: odak başlarken ortada kısa bir 'Odak: <görev>' yazısı ve "
 "yumuşak bir beliriş"
@@ -1978,8 +1983,8 @@ msgstr "Parıltı yoğunluğu"
 
 #. settings-schema.json->glow_intensity->tooltip
 msgid ""
-"How bright the on-screen edge glow is during focus — higher is more visible,"
-" lower is subtler."
+"How bright the on-screen edge glow is during focus — higher is more visible, "
+"lower is subtler."
 msgstr ""
 "Odak sırasında ekran kenarındaki parıltının ne kadar parlak olduğu — yüksek "
 "daha belirgin, düşük daha hafif."
@@ -2011,8 +2016,8 @@ msgstr "Rahatlatıcı 4-6"
 
 #. settings-schema.json->breathing_pattern->tooltip
 msgid ""
-"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6"
-" — seconds per phase."
+"Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 "
+"— seconds per phase."
 msgstr ""
 "Rehber için nefes ritmi: Kutu (4-4-4-4), sakinleştirici 4-7-8 ya da rahat "
 "4-6 — aşama başına saniye."
@@ -2074,8 +2079,8 @@ msgstr "Odak çerçevesini önizle"
 
 #. settings-schema.json->preview_appearance_button->tooltip
 msgid ""
-"Briefly show the on-screen focus frame and task chip with the current colors"
-" and style (works when no timer is running)."
+"Briefly show the on-screen focus frame and task chip with the current colors "
+"and style (works when no timer is running)."
 msgstr ""
 "Ekran odak çerçevesini ve görev etiketini mevcut renkler ve stille kısaca "
 "göster (zamanlayıcı çalışmıyorken çalışır)."
@@ -2176,8 +2181,8 @@ msgid ""
 "until a natural pause instead of interrupting you. Off by default; only "
 "applies when 'auto-continue to break' is off."
 msgstr ""
-"Bir odak pomodorosu sen aktif olarak çalışırken bittiğinde, mola seni bölmek"
-" yerine doğal bir duraklamayı bekler. Varsayılan olarak kapalı; yalnızca "
+"Bir odak pomodorosu sen aktif olarak çalışırken bittiğinde, mola seni bölmek "
+"yerine doğal bir duraklamayı bekler. Varsayılan olarak kapalı; yalnızca "
 "«molaya otomatik geç» kapalıyken geçerlidir."
 
 #. settings-schema.json->flow_soft_landing_behavior->description
@@ -2194,9 +2199,9 @@ msgstr "Odağı sessizce uzat"
 
 #. settings-schema.json->flow_soft_landing_behavior->tooltip
 msgid ""
-"Wait: hold quietly at the end until you pause, then offer the break. Quietly"
-" extend: silently add focus time (the 'Extend amount' above) and keep going,"
-" re-checking each time."
+"Wait: hold quietly at the end until you pause, then offer the break. Quietly "
+"extend: silently add focus time (the 'Extend amount' above) and keep going, "
+"re-checking each time."
 msgstr ""
 "Bekle: sonda sessizce duraklamanı bekle, sonra molayı öner. Sessizce uzat: "
 "sessizce odak süresi ekle (yukarıdaki «uzatma miktarı») ve devam et, her "
@@ -2208,11 +2213,11 @@ msgstr "Yumuşak iniş sınırı (dakika)"
 
 #. settings-schema.json->flow_soft_landing_max_minutes->tooltip
 msgid ""
-"The most extra time soft landing will hold or extend before the break begins"
-" anyway."
+"The most extra time soft landing will hold or extend before the break begins "
+"anyway."
 msgstr ""
-"Mola yine de başlamadan önce yumuşak inişin tutacağı veya uzatacağı en fazla"
-" ek süre."
+"Mola yine de başlamadan önce yumuşak inişin tutacağı veya uzatacağı en fazla "
+"ek süre."
 
 #. settings-schema.json->flow_soft_landing_pause_seconds->description
 msgid "Natural pause length (seconds)"
@@ -2296,10 +2301,27 @@ msgstr ""
 "Molalarda, rahatlamana yardımcı olmak için nefesine ritim veren, genişleyip "
 "daralan bir daire göster."
 
+#. settings-schema.json->break_lock_enabled->description
+msgid "Lock the screen during breaks"
+msgstr ""
+
+#. settings-schema.json->break_lock_enabled->tooltip
+msgid ""
+"When a break starts, show a brief warning and then lock the screen so you "
+"actually step away. Never locks during focus; off by default."
+msgstr ""
+
+#. settings-schema.json->break_lock_long_only->description
+msgid "Lock only on long breaks"
+msgstr ""
+
+#. settings-schema.json->break_lock_long_only->tooltip
+msgid "Only lock for the longer breaks, not every short break."
+msgstr ""
+
 #. settings-schema.json->zen_mode_enabled->description
 msgid ""
-"Enable Zen mode (focus spotlight — dims other windows, toggled from the "
-"menu)"
+"Enable Zen mode (focus spotlight — dims other windows, toggled from the menu)"
 msgstr ""
 
 #. settings-schema.json->zen_mode_enabled->tooltip
@@ -2336,8 +2358,8 @@ msgstr "Sıkı odak: odak bloğu sırasında duraklatma ya da atlama yok"
 
 #. settings-schema.json->strict_focus->tooltip
 msgid ""
-"While a focus block is running, hide pause and skip so you commit to it. You"
-" can still Reset to abandon the session — it's never a hard lock."
+"While a focus block is running, hide pause and skip so you commit to it. You "
+"can still Reset to abandon the session — it's never a hard lock."
 msgstr ""
 "Bir odak bloğu çalışırken, kendini ona adaman için duraklatma ve atlamayı "
 "gizle. Oturumu bırakmak için yine de Sıfırla'yı kullanabilirsin — bu asla "
@@ -2358,8 +2380,7 @@ msgstr "Odaklanırken bildirimleri sustur (Rahatsız Etme)"
 
 #. settings-schema.json->focus_dnd->tooltip
 msgid "Mute Cinnamon notifications while focusing; restored afterwards."
-msgstr ""
-"Odaklanırken Cinnamon bildirimlerini sustur; sonrasında geri yüklenir."
+msgstr "Odaklanırken Cinnamon bildirimlerini sustur; sonrasında geri yüklenir."
 
 #. settings-schema.json->pause_media->description
 msgid "Pause music & video on breaks and pauses"
@@ -2371,8 +2392,8 @@ msgid ""
 "pause starts, and resumes the same players when focus continues."
 msgstr ""
 "Bir mola veya duraklama başladığında çalan tüm ortamları (tarayıcı sekmesi, "
-"MPRIS aracılığıyla müzik uygulaması) duraklatır ve odak devam ettiğinde aynı"
-" oynatıcıları sürdürür."
+"MPRIS aracılığıyla müzik uygulaması) duraklatır ve odak devam ettiğinde aynı "
+"oynatıcıları sürdürür."
 
 #. settings-schema.json->run_command_enabled->description
 msgid "Run a command when focus or a break starts"
@@ -2388,8 +2409,8 @@ msgstr "Odak başlayınca çalıştırılacak komut"
 
 #. settings-schema.json->focus_start_command->tooltip
 msgid ""
-"Pick a script to run when a focus block starts (e.g. enable Do Not Disturb)."
-" You can also type a command."
+"Pick a script to run when a focus block starts (e.g. enable Do Not Disturb). "
+"You can also type a command."
 msgstr ""
 
 #. settings-schema.json->break_start_command->description
@@ -2426,8 +2447,7 @@ msgstr ""
 
 #. settings-schema.json->pushover_help->description
 msgid ""
-"Free phone/desktop alerts. Sign up at pushover.net and paste your keys "
-"below."
+"Free phone/desktop alerts. Sign up at pushover.net and paste your keys below."
 msgstr ""
 "Telefon/masaüstü için ücretsiz uyarılar. pushover.net'e kaydolun ve "
 "anahtarlarınızı aşağıya yapıştırın."
@@ -2464,8 +2484,8 @@ msgstr "Mesajları, sesleri ve önceliği özelleştir"
 
 #. settings-schema.json->pushover_customize->tooltip
 msgid ""
-"Show options to change the text, sound and priority for each event. Off uses"
-" sensible defaults."
+"Show options to change the text, sound and priority for each event. Off uses "
+"sensible defaults."
 msgstr ""
 "Her olay için metni, sesi ve önceliği değiştirme seçeneklerini göster. "
 "Kapalıyken makul varsayılanlar kullanılır."
@@ -2505,8 +2525,8 @@ msgstr ""
 #. settings-schema.json->enable_blocking->tooltip
 msgid ""
 "When on, the sites below are blocked right now and stay blocked until you "
-"turn this off. Run \"Set up passwordless blocking\" once so toggling doesn't"
-" ask for a password."
+"turn this off. Run \"Set up passwordless blocking\" once so toggling doesn't "
+"ask for a password."
 msgstr ""
 
 #. settings-schema.json->block_domains->description
@@ -2519,8 +2539,8 @@ msgstr "Alan adı"
 
 #. settings-schema.json->block_domains->tooltip
 msgid ""
-"Domains to block while blocking is on, one per row (e.g. youtube.com, "
-"www.youtube.com)."
+"Domains to block while blocking is on, one per row (e.g. youtube.com, www."
+"youtube.com)."
 msgstr ""
 
 #. settings-schema.json->sox-info->description
@@ -2719,8 +2739,8 @@ msgid ""
 "Asks for your password once and installs a small system policy so blocking "
 "no longer prompts during focus."
 msgstr ""
-"Parolanızı bir kez ister ve küçük bir sistem ilkesi kurar; böylece engelleme"
-" odak sırasında artık parola sormaz."
+"Parolanızı bir kez ister ve küçük bir sistem ilkesi kurar; böylece engelleme "
+"odak sırasında artık parola sormaz."
 
 #. settings-schema.json->remove_passwordless_button->description
 msgid "Remove passwordless setup"
@@ -2791,8 +2811,8 @@ msgid ""
 "Sent once when you hit your daily pomodoro goal. {task} and {minutes} are "
 "substituted. Leave empty to send nothing."
 msgstr ""
-"Günlük pomodoro hedefine ulaştığında bir kez gönderilir. {task} ve {minutes}"
-" yerine değer konur. Hiçbir şey göndermemek için boş bırak."
+"Günlük pomodoro hedefine ulaştığında bir kez gönderilir. {task} ve {minutes} "
+"yerine değer konur. Hiçbir şey göndermemek için boş bırak."
 
 #. settings-schema.json->pushover_snd_focus->description
 msgid "Focus start — sound"
@@ -2928,28 +2948,8 @@ msgstr "Ortam ses dosyası"
 
 #. settings-schema.json->focus_ambient_file->tooltip
 msgid ""
-"Pick your own looping ambient sound. Leave empty for the built-in soft brown"
-" noise."
+"Pick your own looping ambient sound. Leave empty for the built-in soft brown "
+"noise."
 msgstr ""
-"Kendi döngülü ortam sesini seç. Yerleşik yumuşak kahverengi gürültü için boş"
-" bırak."
-
-#, fuzzy
-#~ msgid "Zen Pomodoro — focus statistics"
-#~ msgstr "Odak istatistikleri"
-
-#, fuzzy, javascript-format
-#~ msgid "This week: %d 🍅 (%s)"
-#~ msgstr "Bu hafta: %d 🍅 · %s · en iyi gün %s"
-
-#, fuzzy, javascript-format
-#~ msgid "All time: %d 🍅 (%s)"
-#~ msgstr "Tüm zamanlar: %d"
-
-#, fuzzy, javascript-format
-#~ msgid "Best day: %d 🍅"
-#~ msgstr "En iyi gün: %d"
-
-#, fuzzy
-#~ msgid "Could not copy statistics."
-#~ msgstr "Odak istatistikleri"
+"Kendi döngülü ortam sesini seç. Yerleşik yumuşak kahverengi gürültü için boş "
+"bırak."

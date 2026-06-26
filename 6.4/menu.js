@@ -158,45 +158,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
     }
 
-    _makeSectionLabel(text) {
-        let item = new PopupMenu.PopupBaseMenuItem({ reactive: false });
-        let label = new St.Label({
-            text: text,
-            style_class: "pomodoro-section"
-        });
-        item.addActor(label);
-        return item;
-    }
-
-    _makeInfoRow(labelText, valueText) {
-        let item = new PopupMenu.PopupBaseMenuItem({ reactive: false });
-        let label = new St.Label({
-            text: labelText,
-            style_class: "pomodoro-info-label"
-        });
-        let value = new St.Label({
-            text: valueText,
-            style_class: "pomodoro-info-value"
-        });
-        // Let the menu item lay these out as two columns: the label keeps its
-        // natural width on the left, the value expands and right-aligns. This
-        // mirrors PopupMenuItem's label/status pattern and prevents the label
-        // and value from merging.
-        item.addActor(label);
-        item.addActor(value, { expand: true, span: -1, align: St.Align.END });
-        return { item: item, value: value };
-    }
-
-    _makeCompactInfoRow(presetLabel, sitesBlocked) {
-        let item = new PopupMenu.PopupBaseMenuItem({ reactive: false });
-        let label = new St.Label({
-            text: `${presetLabel}`,
-            style_class: "pomodoro-compact"
-        });
-        item.addActor(label);
-        return { item: item, label: label };
-    }
-
     _stylePrimaryAction() {
         if (!this._primaryActionItem || !this._primaryActionItem.label) {
             return;

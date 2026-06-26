@@ -22,16 +22,18 @@ const CinnamonEntry = imports.ui.cinnamonEntry;
 const UUID = "zen-pomodoro@vtestah";
 function _(str) { return Gettext.dgettext(UUID, str); }
 
-let C, SoundModule, DialogsModule;
+let C, SoundModule, DialogsModule, RecommendModule;
 if (typeof require !== 'undefined') {
     C = require('./constants');
     SoundModule = require('./sound');
     DialogsModule = require('./dialogs');
+    RecommendModule = require('./recommend');
 } else {
     const AppletDir = imports.ui.appletManager.applets[UUID];
     C = AppletDir.constants;
     SoundModule = AppletDir.sound;
     DialogsModule = AppletDir.dialogs;
+    RecommendModule = AppletDir.recommend;
 }
 const {
     POMODORO_STATE_FILE,
@@ -890,106 +892,31 @@ function install(proto) {
         dialog.open();
     };
 
-    // Recommendation engine for the smart onboarding wizard. Pure function:
-    // takes the user's answers and derives a tailored set of settings plus a
-    // human-readable list of reasons. No side effects — the wizard applies the
-    // returned settings only when the user accepts.
-    proto._computeFocusPlan = function(a) {
-        a = a || {};
-        let work = a.work || 'study';
-        let attention = a.attention || 'medium';
-        let struggle = a.struggle || 'none';
-        let sound = a.sound || 'silence';
-        let load = a.load || 'light';
-        let clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, Math.round(v)));
-
-        // Base rhythm from how long the person can concentrate.
-        let base = ({
-            short:  { f: 15, s: 5,  l: 15, n: 4 },
-            medium: { f: 25, s: 5,  l: 15, n: 4 },
-            long:   { f: 50, s: 10, l: 20, n: 4 },
-            flow:   { f: 50, s: 10, l: 20, n: 3 }
-        })[attention] || { f: 25, s: 5, l: 15, n: 4 };
-        let f = base.f, s = base.s, l = base.l, n = base.n;
-
-        // Nudge the rhythm toward the kind of work.
-        if (work === 'deep') { if (f <= 25) { f += 5; } }      // a little longer to ramp up
-        else if (work === 'creative') { l += 5; }              // longer breaks let ideas settle
-        else if (work === 'admin') { f = Math.max(15, f - 5); } // quicker cycles for small tasks
-
-        f = clamp(f, 1, 60); s = clamp(s, 1, 15); l = clamp(l, 1, 60); n = clamp(n, 1, 10);
-
-        let set = {
-            pomodoro_duration: f,
-            short_break_duration: s,
-            long_break_duration: l,
-            pomodori_number: n
+    // Translation + formatting hooks passed to the pure recommendation engine,
+    // so 6.4/recommend.js stays free of GJS dependencies and unit-testable.
+    proto._recoDeps = function() {
+        return {
+            _: _,
+            format: function(tmpl) {
+                let args = Array.prototype.slice.call(arguments, 1);
+                return tmpl.format.apply(tmpl, args);
+            }
         };
-        let reasons = [];
-        let why = (t) => reasons.push(t);
+    };
 
-        let workReason = ({
-            deep: _("longer focus blocks suit deep work"),
-            study: _("the classic rhythm suits studying"),
-            creative: _("a little more break time lets ideas settle"),
-            admin: _("shorter cycles keep small tasks moving")
-        })[work] || _("a balanced rhythm");
-        why(_("Focus rhythm %d / %d / %d min — %s.").format(f, s, l, workReason));
-
-        // Daily goal from how much they want to do.
-        let goal = ({ try: 0, light: 4, full: 6, push: 8 })[load];
-        if (goal === undefined) { goal = 4; }
-        set.daily_goal = goal;
-        if (goal > 0) { why(_("Daily goal: %d focus blocks.").format(goal)); }
-        else { why(_("No daily goal yet — just getting a feel for it.")); }
-
-        // Flow extension helps deep work / natural flow; off for anyone who overworks.
-        if (attention === 'flow' || work === 'deep') {
-            set.flow_extend = true;
-            set.flow_extend_minutes = 10;
-        }
-
-        // Soundscape / environment.
-        if (sound === 'silence') {
-            set.timer_sound = false; set.interval_chime = false; set.focus_ambient_choice = 'off';
-            why(_("Silent focus — no ticking or chimes."));
-        } else if (sound === 'ambient') {
-            set.focus_ambient_choice = 'brown'; set.focus_ambient_volume = 40;
-            set.timer_sound = false; set.interval_chime = false;
-            why(_("Soft brown-noise ambience while you focus."));
-        } else if (sound === 'chime') {
-            set.interval_chime = true;
-            set.interval_chime_seconds = (attention === 'short') ? 180 : 300;
-            set.timer_sound = false;
-            why(_("A gentle chime every %d min to mark time.").format(Math.round(set.interval_chime_seconds / 60)));
-        } else if (sound === 'shared') {
-            set.timer_sound = false; set.interval_chime = false; set.focus_ambient_choice = 'off';
-            set.start_sound = false; set.break_sound = false;
-            set.focus_show_task_chip = true; set.focus_dnd = true;
-            why(_("Quiet, visual-only cues for a shared space."));
-        }
-
-        // The main obstacle decides which assist to switch on.
-        if (struggle === 'notifications') {
-            set.focus_dnd = true;
-            why(_("Notifications are muted while you focus."));
-        } else if (struggle === 'websites') {
-            set.enable_blocking = true;
-            why(_("Distraction blocking is ready — add sites in Settings → Advanced."));
-        } else if (struggle === 'starting') {
-            set.start_on_click = true; set.focus_start_ritual = true; set.require_focus_task = false;
-            why(_("One-click start and a calm start ritual make it easier to begin."));
-        } else if (struggle === 'overwork') {
-            set.auto_start_after_pomodoro_ends = true; set.show_dialog_messages = true;
-            set.break_breathing = true; set.flow_extend = false;
-            why(_("Breaks start on their own so you don't overwork."));
-        } else if (struggle === 'anxiety') {
-            set.focus_calm_ending = true; set.show_seconds = false; set.warn_sound = false;
-            set.theme_preset = 'cool'; set.breathing_pattern = 'relax'; set.frame_style = 'glow';
-            why(_("A calm theme, no ticking seconds and no end-of-timer rush."));
-        }
-
-        return { settings: set, reasons: reasons };
+    // Recommendation engine for the smart onboarding wizard. Thin adapter over
+    // the pure module in 6.4/recommend.js: it returns the structured plan items
+    // plus the flat { settings, reasons } shape the wizard has always used (the
+    // settings are the union of applied items; reasons are their labels). No
+    // side effects — the wizard applies the result only when the user accepts.
+    proto._computeFocusPlan = function(a) {
+        let plan = RecommendModule.computeFocusPlan(a || {}, this._recoDeps());
+        let items = plan.items || [];
+        return {
+            items: items,
+            settings: RecommendModule.selectKeys(items),
+            reasons: items.filter((it) => it && it.label).map((it) => it.label)
+        };
     };
 
     // Smart, adaptive onboarding: ask a few diagnostic questions, then compute
@@ -1093,7 +1020,9 @@ function install(proto) {
 
         let finish = () => { try { sp.setValue('onboarding_done', true); } catch (e) {} dialog.close(); };
         let applyPlan = (plan, thenStart) => {
-            Object.keys(plan.settings).forEach((k) => { try { sp.setValue(k, plan.settings[k]); } catch (e) {} });
+            // Apply only the core items plus the ones still ticked on the review.
+            let settings = RecommendModule.selectKeys(plan.items);
+            Object.keys(settings).forEach((k) => { try { sp.setValue(k, settings[k]); } catch (e) {} });
             try { sp.setValue('onboarding_done', true); } catch (e) {}
             dialog.close();
             if (thenStart) { try { this._startTimerFromMenu(); } catch (e) {} }
@@ -1128,15 +1057,37 @@ function install(proto) {
             } else {
                 let plan = this._computeFocusPlan(answers);
                 content.add(title(_("Your tailored setup \ud83c\udf45")));
-                content.add(para(_("Based on your answers, here's what I'll set up. Apply it now, then tweak anything in Settings.")));
-                let list = new St.BoxLayout({ vertical: true, style: 'spacing: 5px; padding: 6px 0 2px 0;' });
-                plan.reasons.forEach((r) => {
-                    let row = new St.BoxLayout({ vertical: false, style: 'spacing: 8px;' });
-                    row.add(new St.Label({ text: "\u2713", style: 'color: #6fcf97; font-weight: bold;' }));
-                    let t = new St.Label({ text: r });
-                    t.clutter_text.line_wrap = true;
-                    row.add(t);
-                    list.add(row);
+                content.add(para(_("Based on your answers, here's what I'll set up. Untick anything you'd rather skip, then apply.")));
+                let list = new St.BoxLayout({ vertical: true, style: 'spacing: 4px; padding: 6px 0 2px 0;' });
+                plan.items.filter((it) => it.label).forEach((it) => {
+                    if (it.core) {
+                        // Core recommendation (the focus rhythm) — always applied.
+                        let row = new St.BoxLayout({ vertical: false, style: 'spacing: 8px; padding: 5px 6px;' });
+                        row.add(new St.Label({ text: "\u2713", style: 'color: #6fcf97; font-weight: bold;' }));
+                        let t = new St.Label({ text: it.label });
+                        t.clutter_text.line_wrap = true;
+                        row.add(t);
+                        list.add(row);
+                    } else {
+                        // Optional recommendation — a checkbox the user can untick.
+                        if (it.enabled === undefined) { it.enabled = true; }
+                        let box = new St.Button({ x_expand: true, style_class: 'button', style: 'padding: 5px 6px; border-radius: 6px;' });
+                        let inner = new St.BoxLayout({ vertical: false, x_expand: true, style: 'spacing: 8px;' });
+                        let check = new St.Label({ y_align: Clutter.ActorAlign.START });
+                        let label = new St.Label({ text: it.label, x_expand: true });
+                        label.clutter_text.line_wrap = true;
+                        inner.add(check);
+                        inner.add(label);
+                        box.set_child(inner);
+                        let paint = () => {
+                            check.set_text(it.enabled ? "\u2611" : "\u2610");
+                            check.set_style((it.enabled ? 'color: #6fcf97;' : 'color: rgba(150,150,150,0.9);') + ' font-weight: bold;');
+                            label.set_opacity(it.enabled ? 255 : 120);
+                        };
+                        paint();
+                        box.connect('clicked', () => { it.enabled = !it.enabled; paint(); });
+                        list.add(box);
+                    }
                 });
                 content.add(list);
                 buttons.push({ label: _("Back"), action: () => { st.step--; build(); } });
@@ -1180,6 +1131,7 @@ function install(proto) {
         card.add(new St.Label({ text: caption, style: 'font-size: 0.82em;' }));
         card.add(new St.Label({ text: value, style: 'font-size: 1.7em; font-weight: bold; color: ' + col + ';' }));
         card.add(new St.Label({ text: sub || "", style: 'font-size: 0.82em;' }));
+        this._dashSetA11y(card, caption + ": " + value + (sub ? (", " + sub) : ""));
         return card;
     };
 
@@ -1229,6 +1181,29 @@ function install(proto) {
         }
     };
 
+    // Map a raw activity value to a discrete level: 0 = none, 1..4 = increasing.
+    proto._dashHeatLevel = function(v, maxv) {
+        if (!(v > 0)) { return 0; }
+        if (maxv <= 0) { return 1; }
+        return Math.max(1, Math.min(4, Math.ceil((v / maxv) * 4)));
+    };
+
+    // Discrete 5-step intensity ramp for the activity heatmap and its legend.
+    // A single-hue luminance ramp (accent at well-separated, discrete alphas) is
+    // the colour-vision-safe choice: all CVD types preserve luminance ordering,
+    // and the discrete steps give clear boundaries between levels. The ordering
+    // stays monotonic over both dark and light dialog backgrounds.
+    // level 0 = no activity (faint neutral); levels 1..4 = increasing focus.
+    proto._dashHeatColor = function(cr, level) {
+        if (level <= 0) {
+            cr.setSourceRGBA(0.5, 0.5, 0.5, 0.16);
+            return;
+        }
+        let acc = this._dashAccent || [0.93, 0.42, 0.31];
+        let alpha = [0.28, 0.48, 0.70, 0.95][Math.max(1, Math.min(4, level)) - 1];
+        cr.setSourceRGBA(acc[0], acc[1], acc[2], alpha);
+    };
+
     proto._paintDashHeatmap = function(area) {
         let cr = area.get_context();
         try {
@@ -1243,18 +1218,13 @@ function install(proto) {
             let gap = 3;
             let cw = Math.max(3, (w - gap * (cols - 1)) / cols);
             let ch = Math.max(3, (h - gap * (rows - 1)) / rows);
-            let acc = this._dashAccent || [0.93, 0.42, 0.31];
             for (let col = 0; col < cols; col++) {
                 for (let row = 0; row < rows; row++) {
                     let idx = col * rows + row;
                     let v = (idx < data.length) ? data[idx] : 0;
                     let x = Math.round(col * (cw + gap));
                     let y = Math.round(row * (ch + gap));
-                    if (v > 0) {
-                        cr.setSourceRGBA(acc[0], acc[1], acc[2], 0.2 + 0.8 * (v / maxv));
-                    } else {
-                        cr.setSourceRGBA(0.5, 0.5, 0.5, 0.16);
-                    }
+                    this._dashHeatColor(cr, this._dashHeatLevel(v, maxv));
                     cr.rectangle(x, y, Math.round(cw), Math.round(ch));
                     cr.fill();
                 }
@@ -1268,17 +1238,12 @@ function install(proto) {
         let cr = area.get_context();
         try {
             let [w, h] = area.get_surface_size();
-            let acc = this._dashAccent || [0.93, 0.42, 0.31];
             let n = 5;
             let gap = 3;
             let cw = Math.max(3, (w - gap * (n - 1)) / n);
             for (let i = 0; i < n; i++) {
                 let x = Math.round(i * (cw + gap));
-                if (i === 0) {
-                    cr.setSourceRGBA(0.5, 0.5, 0.5, 0.16);
-                } else {
-                    cr.setSourceRGBA(acc[0], acc[1], acc[2], 0.2 + 0.8 * (i / (n - 1)));
-                }
+                this._dashHeatColor(cr, i);
                 cr.rectangle(x, 0, Math.round(cw), h);
                 cr.fill();
             }
@@ -1409,6 +1374,120 @@ function install(proto) {
         return (dd < 10 ? "0" : "") + dd + "." + (mm < 10 ? "0" : "") + mm;
     };
 
+    // Keep the floating dashboard tooltip fully inside the given monitor: offset
+    // from the cursor by default, but flip to the left / above when it would spill
+    // past the right / bottom edge, then hard-clamp to the monitor rectangle so it
+    // never leaves the screen. mon = { x, y, width, height }.
+    proto._dashClampTip = function(ex, ey, tw, th, mon) {
+        let ox = 14, oy = 10, margin = 6;
+        let px = Math.round(ex) + ox;
+        let py = Math.round(ey) + oy;
+        if (mon && mon.width && mon.height) {
+            if (px + tw > mon.x + mon.width - margin) { px = Math.round(ex) - tw - ox; }
+            if (py + th > mon.y + mon.height - margin) { py = Math.round(ey) - th - oy; }
+            px = Math.max(mon.x + margin, Math.min(px, mon.x + mon.width - tw - margin));
+            py = Math.max(mon.y + margin, Math.min(py, mon.y + mon.height - th - margin));
+        }
+        return [Math.round(px), Math.round(py)];
+    };
+
+    // Best-effort accessible name for a chart/card actor, so screen readers can
+    // announce a text summary of canvas-drawn graphics (mirrors the panel a11y).
+    proto._dashSetA11y = function(actor, name) {
+        try {
+            if (actor && typeof actor.get_accessible === 'function') {
+                let acc = actor.get_accessible();
+                if (acc && typeof acc.set_name === 'function') { acc.set_name(name); }
+            }
+        } catch (e) {}
+    };
+
+    // Write a text file asynchronously (mirrors _writeJsonAsync's IO style).
+    // Calls onDone(true|false) when finished. Best-effort: never throws.
+    proto._writeTextAsync = function(path, text, onDone) {
+        try {
+            GLib.mkdir_with_parents(GLib.path_get_dirname(path), 0o755);
+            let file = Gio.File.new_for_path(path);
+            let bytes = GLib.Bytes.new(ByteArray.fromString(text));
+            file.replace_contents_bytes_async(bytes, null, false,
+                Gio.FileCreateFlags.REPLACE_DESTINATION, null, (f, res) => {
+                    let ok = false;
+                    try { f.replace_contents_finish(res); ok = true; } catch (e) { ok = false; }
+                    if (onDone) { onDone(ok); }
+                });
+        } catch (e) {
+            if (onDone) { onDone(false); }
+        }
+    };
+
+    // A visible, user-owned destination for the export: the Documents folder,
+    // falling back to the home directory. Filename is date-stamped.
+    proto._statsExportPath = function() {
+        let dir = null;
+        try { dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DOCUMENTS); } catch (e) { dir = null; }
+        if (!dir) { dir = GLib.get_home_dir(); }
+        let now = GLib.DateTime.new_now_local();
+        let stamp = now ? now.format("%Y%m%d") : "export";
+        return GLib.build_filenamev([dir, "zen-pomodoro-stats-" + stamp + ".csv"]);
+    };
+
+    // Machine-readable CSV of the full daily history, with a human-readable
+    // summary as leading comment lines. Column headers stay in English so the
+    // file is consistent for spreadsheets / scripts regardless of UI language.
+    proto._statsExportCsv = function() {
+        let st = this._computeStats();
+        let h = (this._dailyStatsData && this._dailyStatsData.history) ? this._dailyStatsData.history : {};
+        let dates = Object.keys(h).filter((k) => /^\d{4}-\d{2}-\d{2}$/.test(k)).sort();
+        let now = GLib.DateTime.new_now_local();
+        let lines = [];
+        lines.push("# Zen Pomodoro statistics export");
+        lines.push("# generated: " + (now ? now.format("%Y-%m-%d %H:%M") : ""));
+        lines.push("# today: " + (st.today || 0) + " pomodoros, " + (st.todayMin || 0) + " min");
+        lines.push("# this week: " + (st.week || 0) + " pomodoros, " + (st.weekMin || 0) + " min");
+        lines.push("# this month: " + (st.month || 0) + " pomodoros, " + (st.monthMin || 0) + " min");
+        lines.push("# all time: " + (st.total || 0) + " pomodoros, " + (st.totalMinutes || 0) + " min");
+        lines.push("# streak: " + (st.streak || 0) + " (best " + (st.longestStreak || 0) + ")");
+        lines.push("# best day: " + (st.bestDay || 0) + " pomodoros");
+        lines.push("date,pomodoros,minutes,interruptions");
+        for (let d of dates) {
+            let c = h[d] || {};
+            lines.push([d, (c.c || 0), (c.m || 0), (c.i || 0)].join(","));
+        }
+        return lines.join("\n") + "\n";
+    };
+
+    // Short, localized, human-readable summary for the clipboard.
+    proto._statsExportSummaryText = function() {
+        let st = this._computeStats();
+        let lines = [];
+        lines.push(_("Zen Pomodoro \u2014 focus statistics"));
+        lines.push(_("Today: %d \ud83c\udf45 (%s)").format(st.today || 0, this._dashFmtMin(st.todayMin || 0)));
+        lines.push(_("This week: %d \ud83c\udf45 (%s)").format(st.week || 0, this._dashFmtMin(st.weekMin || 0)));
+        lines.push(_("This month: %d \ud83c\udf45 (%s)").format(st.month || 0, this._dashFmtMin(st.monthMin || 0)));
+        lines.push(_("All time: %d \ud83c\udf45 (%s)").format(st.total || 0, this._dashFmtMin(st.totalMinutes || 0)));
+        lines.push(_("Streak: %d \u00b7 best %d").format(st.streak || 0, st.longestStreak || 0));
+        lines.push(_("Best day: %d \ud83c\udf45").format(st.bestDay || 0));
+        return lines.join("\n");
+    };
+
+    // Copy a localized summary to the clipboard.
+    proto._dashCopyStats = function() {
+        try {
+            St.Clipboard.get_default().set_text(St.ClipboardType.CLIPBOARD, this._statsExportSummaryText());
+            Main.notify(_("Statistics copied to clipboard."));
+        } catch (e) {
+            Main.notify(_("Could not copy statistics."));
+        }
+    };
+
+    // Export the full history as a CSV file under Documents (or home).
+    proto._dashExportStats = function() {
+        let path = this._statsExportPath();
+        this._writeTextAsync(path, this._statsExportCsv(), (ok) => {
+            Main.notify(ok ? _("Saved to %s").format(path) : _("Could not save statistics export."));
+        });
+    };
+
     proto._showStatsDashboard = function() {
         let st = this._computeStats();
         let accent = [0.93, 0.42, 0.31];
@@ -1465,7 +1544,10 @@ function install(proto) {
                 if (text) {
                     dashTip.set_text(text);
                     dashTip.show();
-                    dashTip.set_position(Math.round(ex) + 14, Math.round(ey) + 10);
+                    let pref = dashTip.get_preferred_size();
+                    let mon = Main.layoutManager.focusMonitor || Main.layoutManager.primaryMonitor;
+                    let [px, py] = this._dashClampTip(ex, ey, pref[1] || 0, pref[3] || 0, mon);
+                    dashTip.set_position(px, py);
                 } else {
                     dashTip.hide();
                 }
@@ -1534,6 +1616,9 @@ function install(proto) {
             if (i < 0 || i > 23) { return null; }
             return ((i < 10 ? "0" : "") + i) + ":00 · " + (this._dashHours[i] || 0) + " \ud83c\udf45";
         });
+        this._dashSetA11y(hoursArea, peak
+            ? _("Focus by hour; most focused around %s").format(peak.label)
+            : _("Focus by hour; not enough data yet"));
         root.add(hoursArea);
         let axis = new St.BoxLayout({ vertical: false });
         [_("night"), _("morning"), _("afternoon"), _("evening")].forEach((t) => {
@@ -1569,6 +1654,15 @@ function install(proto) {
         barAxis.add(new St.Label({ text: bars[6].dateLabel, x_expand: true, x_align: Clutter.ActorAlign.CENTER, style: 'font-size: 0.7em; opacity: 0.6;' }));
         barAxis.add(new St.Label({ text: bars[13].dateLabel, style: 'font-size: 0.7em; opacity: 0.6;' }));
         colA.add(barAxis);
+        let bars14Total = bars.reduce((s, b) => s + (b.count || 0), 0);
+        let bestBar = bars.reduce((bestB, b) => ((b.count || 0) > (bestB.count || 0) ? b : bestB), { count: 0, dateLabel: "" });
+        let barsSummary = (bars14Total > 0)
+            ? _("Last 14 days: %d \ud83c\udf45 \u00b7 best %s (%d \ud83c\udf45)").format(bars14Total, bestBar.dateLabel, bestBar.count || 0)
+            : _("Last 14 days: no focus yet");
+        this._dashSetA11y(barArea, barsSummary);
+        let barsSummaryLabel = new St.Label({ text: barsSummary, style: 'font-size: 0.72em; opacity: 0.7;' });
+        barsSummaryLabel.clutter_text.line_wrap = true;
+        colA.add(barsSummaryLabel);
 
         colB.add(new St.Label({ text: _("Activity \u2014 last 12 weeks"), style: 'font-weight: bold;' }));
         let heatArea = new St.DrawingArea({ x_expand: true, style: 'height: 74px;' });
@@ -1596,6 +1690,16 @@ function install(proto) {
         legend.add(legendCells);
         legend.add(new St.Label({ text: _("More"), style: 'font-size: 0.8em;' }));
         colB.add(legend);
+        let hmMetaArr = this._dashHeatmapMeta || [];
+        let activeDays = hmMetaArr.filter((m) => m && !m.future && (m.value || 0) > 0).length;
+        let busiest = hmMetaArr.reduce((bestM, m) => ((m && !m.future && (m.value || 0) > (bestM.value || 0)) ? m : bestM), { value: 0, label: "" });
+        let heatSummary = (activeDays > 0)
+            ? _("Last 12 weeks: %d active days \u00b7 busiest %s (%d \ud83c\udf45)").format(activeDays, busiest.label, busiest.value || 0)
+            : _("Last 12 weeks: no focus yet");
+        this._dashSetA11y(heatArea, heatSummary);
+        let heatSummaryLabel = new St.Label({ text: heatSummary, style: 'font-size: 0.72em; opacity: 0.7;' });
+        heatSummaryLabel.clutter_text.line_wrap = true;
+        colB.add(heatSummaryLabel);
 
         cols.add(colA);
         cols.add(colB);
@@ -1618,6 +1722,7 @@ function install(proto) {
                 mb.connect('repaint', (a) => this._paintMiniBar(a, frac));
                 let tTitle = t.title, tDone = (t.done || 0);
                 wireHover(mb, () => tTitle + " · " + tDone + " \ud83c\udf45");
+                this._dashSetA11y(mb, _("%s: %d \ud83c\udf45").format(tTitle, tDone));
                 rowB.add(mb);
                 rowB.add(new St.Label({ text: (t.done || 0) + " \ud83c\udf45", style: 'width: 48px;' }));
                 root.add(rowB);
@@ -1643,6 +1748,8 @@ function install(proto) {
         };
         setDashButtons = () => {
             dialog.setButtons([
+                { label: _("Copy"), action: () => this._dashCopyStats() },
+                { label: _("Export\u2026"), action: () => this._dashExportStats() },
                 { label: _("Reset statistics\u2026"), action: () => confirmReset() },
                 { label: _("Close"), key: Clutter.KEY_Escape, default: true, action: () => dialog.close() }
             ]);

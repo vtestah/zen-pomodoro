@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pomodoro@gregfreeman.org 1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-26 21:11+0700\n"
+"POT-Creation-Date: 2026-06-26 22:11+0700\n"
 "PO-Revision-Date: 2025-07-27 02:35+08:00\n"
 "Last-Translator: Peter Dave Hello <hsu@peterdavehello.org>\n"
 "Language-Team: zh_TW\n"
@@ -29,144 +29,144 @@ msgstr "堅持下去 — 完成這個區塊，或重設以重新開始。"
 msgid "Focus length: %d min"
 msgstr "專注時長：%d 分鐘"
 
-#: applet.js:978
+#: applet.js:979
 msgid "Focus session restored — resume when ready"
 msgstr "專注工作階段已復原 — 準備好即可繼續"
 
-#: applet.js:1014
+#: applet.js:1015
 msgid "FOCUS"
 msgstr "專注"
 
-#: applet.js:1016
+#: applet.js:1017
 msgid "PAUSED FOCUS"
 msgstr "專注已暫停"
 
-#: applet.js:1019
+#: applet.js:1020
 msgid "BREAK"
 msgstr "休息"
 
-#: applet.js:1022
+#: applet.js:1023
 msgid "PAUSED BREAK"
 msgstr "休息已暫停"
 
-#: applet.js:1024
+#: applet.js:1025
 msgid "BREAK OVER"
 msgstr "休息結束"
 
-#: applet.js:1027 applet.js:1087 menu.js:214 menu.js:704
+#: applet.js:1028 applet.js:1088 menu.js:214 menu.js:710
 msgid "Ready to focus"
 msgstr "準備專注"
 
-#: applet.js:1045
+#: applet.js:1046
 msgid "Short break running"
 msgstr "短暫休息進行中"
 
-#: applet.js:1048
+#: applet.js:1049
 msgid "Short break paused"
 msgstr "短暫休息已暫停"
 
-#: applet.js:1051
+#: applet.js:1052
 msgid "Long break running"
 msgstr "長時間休息進行中"
 
-#: applet.js:1054
+#: applet.js:1055
 msgid "Long break paused"
 msgstr "長時間休息已暫停"
 
-#: applet.js:1057 applet.js:1571
+#: applet.js:1058 applet.js:1572
 msgid "Break ended"
 msgstr "休息結束"
 
-#: applet.js:1060
+#: applet.js:1061
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "第 %d 個番茄鐘，第 %d 組進行中"
 
-#: applet.js:1065 features.js:554 features.js:1492
+#: applet.js:1066 features.js:554 features.js:1492
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ %s 完成 · 還剩 %d 🍅"
 
-#: applet.js:1070
+#: applet.js:1071
 msgid "Pomodoro paused"
 msgstr "番茄鐘已暫停"
 
-#: applet.js:1073
+#: applet.js:1074
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "準備專注 — 捲動或按中鍵開始"
 
-#: applet.js:1241
+#: applet.js:1242
 msgid "Classic"
 msgstr "經典"
 
-#: applet.js:1242
+#: applet.js:1243
 msgid "Long focus"
 msgstr "長時間專注"
 
-#: applet.js:1436
+#: applet.js:1437
 msgid "Task complete"
 msgstr ""
 
 #. settings-schema.json->sec_preview->title
-#: applet.js:1537 visual.js:567
+#: applet.js:1538 visual.js:567
 msgid "Preview"
 msgstr "預覽"
 
-#: applet.js:1551
+#: applet.js:1552
 msgid "Pomodoro started"
 msgstr "番茄鐘已開始"
 
-#: applet.js:1629
+#: applet.js:1630
 msgid "Let's go to work!"
 msgstr "開始工作吧！"
 
-#: applet.js:1656
+#: applet.js:1657
 msgid "Pomodoro done"
 msgstr "番茄鐘完成"
 
-#: applet.js:1658
+#: applet.js:1659
 msgid "Take a short break"
 msgstr "來個短暫休息"
 
-#: applet.js:1659 applet.js:1690
+#: applet.js:1660 applet.js:1691
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d 分鐘"
 
-#: applet.js:1660 applet.js:1691
+#: applet.js:1661 applet.js:1692
 msgid "Skip break"
 msgstr "跳過休息"
 
-#: applet.js:1684
+#: applet.js:1685
 msgid "Set complete!"
 msgstr "這組完成了！"
 
-#: applet.js:1689
+#: applet.js:1690
 msgid "Take a long break"
 msgstr "來個長時間休息"
 
-#: applet.js:1735
+#: applet.js:1736
 msgid "Pomodoro ended"
 msgstr "番茄鐘已結束"
 
-#: applet.js:2003 features.js:2437
+#: applet.js:2004 features.js:2470
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "變更番茄鐘預設組合前請先停止計時器"
 
-#: applet.js:2021
+#: applet.js:2022
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "已套用番茄鐘預設組合 %s"
 
-#: applet.js:2028 features.js:744 menu.js:451 menu.js:795 menu.js:1156
+#: applet.js:2029 features.js:744 menu.js:451 menu.js:801 menu.js:1162
 msgid "Preset"
 msgstr "預設組合"
 
-#: applet.js:2054
+#: applet.js:2055
 msgid "Keep at least one preset"
 msgstr "至少保留一個預設"
 
-#: applet.js:2069
+#: applet.js:2070
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "休息已延長 %d 分鐘"
@@ -187,12 +187,12 @@ msgstr "例如 寫報告"
 msgid "Choose or type a focus task"
 msgstr "選擇或輸入專注任務"
 
-#: dialogs.js:69 dialogs.js:125 features.js:2486
+#: dialogs.js:69 dialogs.js:125 features.js:2519
 msgid "Start"
 msgstr "開始"
 
 #: dialogs.js:115 dialogs.js:440 features.js:829 features.js:892
-#: features.js:1607 features.js:2485
+#: features.js:1607 features.js:2518
 msgid "Cancel"
 msgstr "取消"
 
@@ -382,7 +382,7 @@ msgstr ""
 msgid "Move your body and let your mind wander."
 msgstr ""
 
-#: features.js:717 menu.js:1040
+#: features.js:717 menu.js:1046
 msgid "Edit task"
 msgstr "編輯任務"
 
@@ -430,7 +430,7 @@ msgstr "儲存"
 msgid "Add"
 msgstr "新增"
 
-#: features.js:840 menu.js:1130
+#: features.js:840 menu.js:1136
 msgid "Edit preset"
 msgstr "編輯預設"
 
@@ -924,7 +924,7 @@ msgstr "較多"
 msgid "By task"
 msgstr "依任務"
 
-#: features.js:1600 menu.js:700
+#: features.js:1600 menu.js:706
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "里程碑：%s"
@@ -986,32 +986,49 @@ msgstr "免密碼封鎖已啟用（不會詢問）。"
 msgid "Passwordless blocking removed."
 msgstr "免密碼封鎖已移除。"
 
-#: features.js:2295
-msgid "Click to exit Zen"
-msgstr "點擊離開禪模式"
+#: features.js:2283
+msgid ""
+"Your screen is now a calm, distraction-free focus view — just the timer, "
+"nothing else. Click it or press Esc to exit."
+msgstr ""
+
+#: features.js:2284
+msgid ""
+"Zen mode is armed. When your next focus session starts, the screen turns "
+"into a calm, distraction-free view with only the timer. Click it or press "
+"Esc to exit."
+msgstr ""
+
+#: features.js:2285 menu.js:463 menu.js:507
+msgid "Zen mode"
+msgstr "禪模式"
+
+#: features.js:2314
+msgid "Click or press Esc to exit"
+msgstr ""
 
 #. settings-schema.json->focus->title
-#: features.js:2330 visual.js:889
+#: features.js:2363 visual.js:889
 msgid "Focus"
 msgstr "專注"
 
-#: features.js:2407
+#: features.js:2440
 msgid "Breathe in"
 msgstr "吸氣"
 
-#: features.js:2410 features.js:2416
+#: features.js:2443 features.js:2449
 msgid "Hold"
 msgstr "屏息"
 
-#: features.js:2413
+#: features.js:2446
 msgid "Breathe out"
 msgstr "吐氣"
 
-#: features.js:2443
+#: features.js:2476
 msgid "Focus until"
 msgstr "專注至"
 
-#: features.js:2444
+#: features.js:2477
 msgid "Enter a time (HH:MM)"
 msgstr "輸入時間（HH:MM）"
 
@@ -1023,7 +1040,7 @@ msgstr "錯誤：選單無法使用"
 msgid "Ready to start"
 msgstr "準備開始"
 
-#: menu.js:239 menu.js:776
+#: menu.js:239 menu.js:782
 msgid "No task yet — tap to choose one"
 msgstr ""
 
@@ -1036,7 +1053,7 @@ msgstr "切換工作"
 msgid "Pomodoro %d / %d"
 msgstr "番茄鐘 %d / %d"
 
-#: menu.js:351 menu.js:849
+#: menu.js:351 menu.js:855
 msgid "Start focus"
 msgstr "開始專注"
 
@@ -1056,11 +1073,11 @@ msgstr "重設計數"
 msgid "Reset timer and counters"
 msgstr "重設計時器與計數"
 
-#: menu.js:408 menu.js:974
+#: menu.js:408 menu.js:980
 msgid "Task list"
 msgstr "任務清單"
 
-#: menu.js:429 menu.js:963
+#: menu.js:429 menu.js:969
 msgid "Distractions"
 msgstr ""
 
@@ -1068,184 +1085,187 @@ msgstr ""
 msgid "Focus until…"
 msgstr "專注至…"
 
-#: menu.js:463 menu.js:506
-msgid "Zen mode"
-msgstr "禪模式"
+#: menu.js:465 menu.js:509
+msgid ""
+"Full-screen, distraction-free focus: the desktop dims to a calm black with "
+"just the timer. It appears while a focus session is running — click it or "
+"press Esc to exit."
+msgstr ""
 
 #. settings-schema.json->sec_ambient->title
-#: menu.js:467 menu.js:509
+#: menu.js:468 menu.js:511
 msgid "Ambient sound"
 msgstr "背景音效"
 
-#: menu.js:472
+#: menu.js:473
 msgid "Site blocking"
 msgstr "網站封鎖"
 
-#: menu.js:475 menu.js:785 menu.js:1163
+#: menu.js:476 menu.js:791 menu.js:1169
 msgid "off"
 msgstr "關閉"
 
-#: menu.js:478
+#: menu.js:479
 msgid "Manage blocked sites"
 msgstr ""
 
-#: menu.js:483
+#: menu.js:484
 msgid "Statistics"
 msgstr "統計"
 
-#: menu.js:489
+#: menu.js:490
 msgid "Open the statistics dashboard"
 msgstr ""
 
-#: menu.js:494
+#: menu.js:495
 msgid "Setup wizard…"
 msgstr "設定精靈…"
 
-#: menu.js:670
+#: menu.js:676
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "最近 7 天：%d"
 
-#: menu.js:679
+#: menu.js:685
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "最近 30 天：%d"
 
-#: menu.js:682
+#: menu.js:688
 #, javascript-format
 msgid "All time: %d"
 msgstr "全部時間：%d"
 
-#: menu.js:685
+#: menu.js:691
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "專注時間：今天 %s · 總計 %s"
 
-#: menu.js:688
+#: menu.js:694
 #, javascript-format
 msgid "Best day: %d"
 msgstr "最佳一天：%d"
 
-#: menu.js:700
+#: menu.js:706
 msgid "none yet"
 msgstr "尚無"
 
-#: menu.js:710 menu.js:737
+#: menu.js:716 menu.js:743
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "約 %s 前完成你的任務"
 
-#: menu.js:721
+#: menu.js:727
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "第 %d 個番茄鐘，共 %d 個"
 
-#: menu.js:723
+#: menu.js:729
 msgid "Long break"
 msgstr "長時間休息"
 
-#: menu.js:725
+#: menu.js:731
 msgid "Short break"
 msgstr "短暫休息"
 
-#: menu.js:728
+#: menu.js:734
 #, javascript-format
 msgid "until %s"
 msgstr "至 %s"
 
-#: menu.js:731
+#: menu.js:737
 #, javascript-format
 msgid "≈ finish %s"
 msgstr "≈ 完成 %s"
 
-#: menu.js:735
+#: menu.js:741
 msgid "Break finished — press Start for focus"
 msgstr "休息結束 — 按開始進入專注"
 
-#: menu.js:739
+#: menu.js:745
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "專注 %d 分鐘 — 按開始"
 
-#: menu.js:778
+#: menu.js:784
 msgid "Task: none"
 msgstr "任務：無"
 
-#: menu.js:784 menu.js:1162
+#: menu.js:790 menu.js:1168
 #, javascript-format
 msgid "blocking %d"
 msgstr "正在封鎖 %d"
 
-#: menu.js:785 menu.js:1163
+#: menu.js:791 menu.js:1169
 #, javascript-format
 msgid "%d in list"
 msgstr "清單中 %d 個"
 
-#: menu.js:828
+#: menu.js:834
 msgid "Resume break"
 msgstr "繼續休息"
 
-#: menu.js:828
+#: menu.js:834
 msgid "Resume focus"
 msgstr "繼續專注"
 
-#: menu.js:835
+#: menu.js:841
 msgid "Focusing — stay with it"
 msgstr "專注中 — 堅持下去"
 
-#: menu.js:840
+#: menu.js:846
 msgid "Pause focus"
 msgstr "暫停專注"
 
-#: menu.js:840
+#: menu.js:846
 msgid "Pause break"
 msgstr "暫停休息"
 
-#: menu.js:845
+#: menu.js:851
 msgid "Start next focus"
 msgstr "開始下一段專注"
 
-#: menu.js:894
+#: menu.js:900
 msgid "Jot a distraction, press Enter"
 msgstr ""
 
-#: menu.js:940
+#: menu.js:946
 msgid "Delete"
 msgstr ""
 
-#: menu.js:957
+#: menu.js:963
 msgid "Clear all"
 msgstr ""
 
-#: menu.js:989
+#: menu.js:995
 msgid "Add task…"
 msgstr "新增任務…"
 
-#: menu.js:993 menu.js:1105
+#: menu.js:999 menu.js:1111
 msgid "Reorder…"
 msgstr ""
 
-#: menu.js:1004
+#: menu.js:1010
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr "尚無任務 — 新增你要專注的項目，並以 🍅 預估。"
 
-#: menu.js:1047
+#: menu.js:1053
 msgid "Reopen task"
 msgstr "重新開啟工作"
 
-#: menu.js:1047
+#: menu.js:1053
 msgid "Mark done"
 msgstr "標記為完成"
 
-#: menu.js:1054
+#: menu.js:1060
 msgid "Delete task"
 msgstr "刪除工作"
 
-#: menu.js:1101
+#: menu.js:1107
 msgid "Add preset…"
 msgstr "新增預設…"
 
-#: menu.js:1137
+#: menu.js:1143
 msgid "Delete preset"
 msgstr "刪除預設"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-26 21:11+0700\n"
+"POT-Creation-Date: 2026-06-26 22:11+0700\n"
 "PO-Revision-Date: 2020-12-21 17:23+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: da\n"
@@ -31,144 +31,144 @@ msgstr "Bliv ved — gør blokken færdig, eller nulstil for at begynde forfra."
 msgid "Focus length: %d min"
 msgstr "Fokuslængde: %d min"
 
-#: applet.js:978
+#: applet.js:979
 msgid "Focus session restored — resume when ready"
 msgstr "Fokussession gendannet — fortsæt, når du er klar"
 
-#: applet.js:1014
+#: applet.js:1015
 msgid "FOCUS"
 msgstr "FOKUS"
 
-#: applet.js:1016
+#: applet.js:1017
 msgid "PAUSED FOCUS"
 msgstr "FOKUS PÅ PAUSE"
 
-#: applet.js:1019
+#: applet.js:1020
 msgid "BREAK"
 msgstr "PAUSE"
 
-#: applet.js:1022
+#: applet.js:1023
 msgid "PAUSED BREAK"
 msgstr "PAUSE PÅ HOLD"
 
-#: applet.js:1024
+#: applet.js:1025
 msgid "BREAK OVER"
 msgstr "PAUSE SLUT"
 
-#: applet.js:1027 applet.js:1087 menu.js:214 menu.js:704
+#: applet.js:1028 applet.js:1088 menu.js:214 menu.js:710
 msgid "Ready to focus"
 msgstr "Klar til fokus"
 
-#: applet.js:1045
+#: applet.js:1046
 msgid "Short break running"
 msgstr "Den korte pause er i gang"
 
-#: applet.js:1048
+#: applet.js:1049
 msgid "Short break paused"
 msgstr "Kort pause på hold"
 
-#: applet.js:1051
+#: applet.js:1052
 msgid "Long break running"
 msgstr "Den lange pause er i gang"
 
-#: applet.js:1054
+#: applet.js:1055
 msgid "Long break paused"
 msgstr "Lang pause på hold"
 
-#: applet.js:1057 applet.js:1571
+#: applet.js:1058 applet.js:1572
 msgid "Break ended"
 msgstr "Pause slut"
 
-#: applet.js:1060
+#: applet.js:1061
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodori %d, sæt %d kører"
 
-#: applet.js:1065 features.js:554 features.js:1492
+#: applet.js:1066 features.js:554 features.js:1492
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ slut %s · %d 🍅 tilbage"
 
-#: applet.js:1070
+#: applet.js:1071
 msgid "Pomodoro paused"
 msgstr "Pomodoro på pause"
 
-#: applet.js:1073
+#: applet.js:1074
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Klar til fokus — rul eller midterklik for at starte"
 
-#: applet.js:1241
+#: applet.js:1242
 msgid "Classic"
 msgstr "Klassisk"
 
-#: applet.js:1242
+#: applet.js:1243
 msgid "Long focus"
 msgstr "Langt fokus"
 
-#: applet.js:1436
+#: applet.js:1437
 msgid "Task complete"
 msgstr ""
 
 #. settings-schema.json->sec_preview->title
-#: applet.js:1537 visual.js:567
+#: applet.js:1538 visual.js:567
 msgid "Preview"
 msgstr "Forhåndsvisning"
 
-#: applet.js:1551
+#: applet.js:1552
 msgid "Pomodoro started"
 msgstr "Pomodoro er startet"
 
-#: applet.js:1629
+#: applet.js:1630
 msgid "Let's go to work!"
 msgstr "Lad os komme i gang!"
 
-#: applet.js:1656
+#: applet.js:1657
 msgid "Pomodoro done"
 msgstr "Pomodoro færdig"
 
-#: applet.js:1658
+#: applet.js:1659
 msgid "Take a short break"
 msgstr "Tag en kort pause"
 
-#: applet.js:1659 applet.js:1690
+#: applet.js:1660 applet.js:1691
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d min"
 
-#: applet.js:1660 applet.js:1691
+#: applet.js:1661 applet.js:1692
 msgid "Skip break"
 msgstr "Spring pause over"
 
-#: applet.js:1684
+#: applet.js:1685
 msgid "Set complete!"
 msgstr "Sæt fuldført!"
 
-#: applet.js:1689
+#: applet.js:1690
 msgid "Take a long break"
 msgstr "Tag en lang pause"
 
-#: applet.js:1735
+#: applet.js:1736
 msgid "Pomodoro ended"
 msgstr "Pomodoro sluttede"
 
-#: applet.js:2003 features.js:2437
+#: applet.js:2004 features.js:2470
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Stop timeren, før du skifter Pomodoro-forindstilling"
 
-#: applet.js:2021
+#: applet.js:2022
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Pomodoro-forindstilling %s anvendt"
 
-#: applet.js:2028 features.js:744 menu.js:451 menu.js:795 menu.js:1156
+#: applet.js:2029 features.js:744 menu.js:451 menu.js:801 menu.js:1162
 msgid "Preset"
 msgstr "Forindstilling"
 
-#: applet.js:2054
+#: applet.js:2055
 msgid "Keep at least one preset"
 msgstr "Behold mindst én forudindstilling"
 
-#: applet.js:2069
+#: applet.js:2070
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Pause forlænget med %d min"
@@ -189,12 +189,12 @@ msgstr "f.eks. skriv rapporten"
 msgid "Choose or type a focus task"
 msgstr "Vælg eller skriv en fokusopgave"
 
-#: dialogs.js:69 dialogs.js:125 features.js:2486
+#: dialogs.js:69 dialogs.js:125 features.js:2519
 msgid "Start"
 msgstr "Start"
 
 #: dialogs.js:115 dialogs.js:440 features.js:829 features.js:892
-#: features.js:1607 features.js:2485
+#: features.js:1607 features.js:2518
 msgid "Cancel"
 msgstr "Annullér"
 
@@ -386,7 +386,7 @@ msgstr ""
 msgid "Move your body and let your mind wander."
 msgstr ""
 
-#: features.js:717 menu.js:1040
+#: features.js:717 menu.js:1046
 msgid "Edit task"
 msgstr "Rediger opgave"
 
@@ -434,7 +434,7 @@ msgstr "Gem"
 msgid "Add"
 msgstr "Tilføj"
 
-#: features.js:840 menu.js:1130
+#: features.js:840 menu.js:1136
 msgid "Edit preset"
 msgstr "Rediger forudindstilling"
 
@@ -932,7 +932,7 @@ msgstr "Mere"
 msgid "By task"
 msgstr "Efter opgave"
 
-#: features.js:1600 menu.js:700
+#: features.js:1600 menu.js:706
 #, javascript-format
 msgid "Milestones: %s"
 msgstr "Milepæle: %s"
@@ -994,32 +994,49 @@ msgstr "Adgangskodefri blokering slået til (ingen forespørgsel)."
 msgid "Passwordless blocking removed."
 msgstr "Adgangskodefri blokering fjernet."
 
-#: features.js:2295
-msgid "Click to exit Zen"
-msgstr "Klik for at forlade Zen"
+#: features.js:2283
+msgid ""
+"Your screen is now a calm, distraction-free focus view — just the timer, "
+"nothing else. Click it or press Esc to exit."
+msgstr ""
+
+#: features.js:2284
+msgid ""
+"Zen mode is armed. When your next focus session starts, the screen turns "
+"into a calm, distraction-free view with only the timer. Click it or press "
+"Esc to exit."
+msgstr ""
+
+#: features.js:2285 menu.js:463 menu.js:507
+msgid "Zen mode"
+msgstr "Zen-tilstand"
+
+#: features.js:2314
+msgid "Click or press Esc to exit"
+msgstr ""
 
 #. settings-schema.json->focus->title
-#: features.js:2330 visual.js:889
+#: features.js:2363 visual.js:889
 msgid "Focus"
 msgstr "Fokus"
 
-#: features.js:2407
+#: features.js:2440
 msgid "Breathe in"
 msgstr "Ånd ind"
 
-#: features.js:2410 features.js:2416
+#: features.js:2443 features.js:2449
 msgid "Hold"
 msgstr "Hold"
 
-#: features.js:2413
+#: features.js:2446
 msgid "Breathe out"
 msgstr "Ånd ud"
 
-#: features.js:2443
+#: features.js:2476
 msgid "Focus until"
 msgstr "Fokus indtil"
 
-#: features.js:2444
+#: features.js:2477
 msgid "Enter a time (HH:MM)"
 msgstr "Indtast et tidspunkt (TT:MM)"
 
@@ -1031,7 +1048,7 @@ msgstr "Fejl: menu utilgængelig"
 msgid "Ready to start"
 msgstr "Klar til start"
 
-#: menu.js:239 menu.js:776
+#: menu.js:239 menu.js:782
 msgid "No task yet — tap to choose one"
 msgstr ""
 
@@ -1044,7 +1061,7 @@ msgstr "Skift opgave"
 msgid "Pomodoro %d / %d"
 msgstr "Pomodoro %d / %d"
 
-#: menu.js:351 menu.js:849
+#: menu.js:351 menu.js:855
 msgid "Start focus"
 msgstr "Start fokus"
 
@@ -1064,11 +1081,11 @@ msgstr "Nulstil tællere"
 msgid "Reset timer and counters"
 msgstr "Nulstil timer og tællere"
 
-#: menu.js:408 menu.js:974
+#: menu.js:408 menu.js:980
 msgid "Task list"
 msgstr "Opgaveliste"
 
-#: menu.js:429 menu.js:963
+#: menu.js:429 menu.js:969
 msgid "Distractions"
 msgstr ""
 
@@ -1076,185 +1093,188 @@ msgstr ""
 msgid "Focus until…"
 msgstr "Fokus indtil…"
 
-#: menu.js:463 menu.js:506
-msgid "Zen mode"
-msgstr "Zen-tilstand"
+#: menu.js:465 menu.js:509
+msgid ""
+"Full-screen, distraction-free focus: the desktop dims to a calm black with "
+"just the timer. It appears while a focus session is running — click it or "
+"press Esc to exit."
+msgstr ""
 
 #. settings-schema.json->sec_ambient->title
-#: menu.js:467 menu.js:509
+#: menu.js:468 menu.js:511
 msgid "Ambient sound"
 msgstr "Baggrundslyd"
 
-#: menu.js:472
+#: menu.js:473
 msgid "Site blocking"
 msgstr "Webstedsblokering"
 
-#: menu.js:475 menu.js:785 menu.js:1163
+#: menu.js:476 menu.js:791 menu.js:1169
 msgid "off"
 msgstr "fra"
 
-#: menu.js:478
+#: menu.js:479
 msgid "Manage blocked sites"
 msgstr ""
 
-#: menu.js:483
+#: menu.js:484
 msgid "Statistics"
 msgstr "Statistik"
 
-#: menu.js:489
+#: menu.js:490
 msgid "Open the statistics dashboard"
 msgstr ""
 
-#: menu.js:494
+#: menu.js:495
 msgid "Setup wizard…"
 msgstr "Opsætningsguide…"
 
-#: menu.js:670
+#: menu.js:676
 #, javascript-format
 msgid "Last 7 days: %d"
 msgstr "Sidste 7 dage: %d"
 
-#: menu.js:679
+#: menu.js:685
 #, javascript-format
 msgid "Last 30 days: %d"
 msgstr "Sidste 30 dage: %d"
 
-#: menu.js:682
+#: menu.js:688
 #, javascript-format
 msgid "All time: %d"
 msgstr "Alle tider: %d"
 
-#: menu.js:685
+#: menu.js:691
 #, javascript-format
 msgid "Focus time: %s today · %s total"
 msgstr "Fokustid: %s i dag · %s i alt"
 
-#: menu.js:688
+#: menu.js:694
 #, javascript-format
 msgid "Best day: %d"
 msgstr "Bedste dag: %d"
 
-#: menu.js:700
+#: menu.js:706
 msgid "none yet"
 msgstr "ingen endnu"
 
-#: menu.js:710 menu.js:737
+#: menu.js:716 menu.js:743
 #, javascript-format
 msgid "Finish your tasks by ~%s"
 msgstr "Bliv færdig med opgaverne omkring ~%s"
 
-#: menu.js:721
+#: menu.js:727
 #, javascript-format
 msgid "Pomodoro %d of %d"
 msgstr "Pomodoro %d af %d"
 
-#: menu.js:723
+#: menu.js:729
 msgid "Long break"
 msgstr "Lang pause"
 
-#: menu.js:725
+#: menu.js:731
 msgid "Short break"
 msgstr "Kort pause"
 
-#: menu.js:728
+#: menu.js:734
 #, javascript-format
 msgid "until %s"
 msgstr "indtil %s"
 
-#: menu.js:731
+#: menu.js:737
 #, javascript-format
 msgid "≈ finish %s"
 msgstr "≈ slut %s"
 
-#: menu.js:735
+#: menu.js:741
 msgid "Break finished — press Start for focus"
 msgstr "Pause slut — tryk Start for fokus"
 
-#: menu.js:739
+#: menu.js:745
 #, javascript-format
 msgid "%d min focus — press Start"
 msgstr "%d min fokus — tryk Start"
 
-#: menu.js:778
+#: menu.js:784
 msgid "Task: none"
 msgstr "Opgave: ingen"
 
-#: menu.js:784 menu.js:1162
+#: menu.js:790 menu.js:1168
 #, javascript-format
 msgid "blocking %d"
 msgstr "blokerer %d"
 
-#: menu.js:785 menu.js:1163
+#: menu.js:791 menu.js:1169
 #, javascript-format
 msgid "%d in list"
 msgstr "%d på listen"
 
-#: menu.js:828
+#: menu.js:834
 msgid "Resume break"
 msgstr "Fortsæt pause"
 
-#: menu.js:828
+#: menu.js:834
 msgid "Resume focus"
 msgstr "Fortsæt fokus"
 
-#: menu.js:835
+#: menu.js:841
 msgid "Focusing — stay with it"
 msgstr "Fokuserer — bliv ved"
 
-#: menu.js:840
+#: menu.js:846
 msgid "Pause focus"
 msgstr "Sæt fokus på pause"
 
-#: menu.js:840
+#: menu.js:846
 msgid "Pause break"
 msgstr "Sæt pausen på hold"
 
-#: menu.js:845
+#: menu.js:851
 msgid "Start next focus"
 msgstr "Start næste fokus"
 
-#: menu.js:894
+#: menu.js:900
 msgid "Jot a distraction, press Enter"
 msgstr ""
 
-#: menu.js:940
+#: menu.js:946
 msgid "Delete"
 msgstr ""
 
-#: menu.js:957
+#: menu.js:963
 msgid "Clear all"
 msgstr ""
 
-#: menu.js:989
+#: menu.js:995
 msgid "Add task…"
 msgstr "Tilføj opgave…"
 
-#: menu.js:993 menu.js:1105
+#: menu.js:999 menu.js:1111
 msgid "Reorder…"
 msgstr ""
 
-#: menu.js:1004
+#: menu.js:1010
 msgid "No tasks yet — add what you'll focus on, with a 🍅 estimate."
 msgstr ""
 "Ingen opgaver endnu — tilføj det, du vil fokusere på, med et 🍅-estimat."
 
-#: menu.js:1047
+#: menu.js:1053
 msgid "Reopen task"
 msgstr "Genåbn opgave"
 
-#: menu.js:1047
+#: menu.js:1053
 msgid "Mark done"
 msgstr "Markér som udført"
 
-#: menu.js:1054
+#: menu.js:1060
 msgid "Delete task"
 msgstr "Slet opgave"
 
-#: menu.js:1101
+#: menu.js:1107
 msgid "Add preset…"
 msgstr "Tilføj forudindstilling…"
 
-#: menu.js:1137
+#: menu.js:1143
 msgid "Delete preset"
 msgstr "Slet forudindstilling"
 

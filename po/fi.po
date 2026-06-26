@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-26 20:35+0700\n"
+"POT-Creation-Date: 2026-06-26 20:41+0700\n"
 "PO-Revision-Date: 2024-11-18 14:34+0200\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: fi\n"
@@ -18,161 +18,161 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.3\n"
 
-#: applet.js:620
+#: applet.js:618
 msgid "Strict focus is on"
 msgstr "Tiukka fokus on päällä"
 
-#: applet.js:620
+#: applet.js:618
 msgid "Stay with it — finish the block, or reset to start over."
 msgstr "Pysy mukana — vie jakso loppuun tai nollaa aloittaaksesi alusta."
 
-#: applet.js:686
+#: applet.js:684
 #, javascript-format
 msgid "Focus length: %d min"
 msgstr "Fokuksen kesto: %d min"
 
-#: applet.js:980
+#: applet.js:977
 msgid "Focus session restored — resume when ready"
 msgstr "Fokusjakso palautettu — jatka kun olet valmis"
 
-#: applet.js:1016
+#: applet.js:1013
 msgid "FOCUS"
 msgstr "FOKUS"
 
-#: applet.js:1018
+#: applet.js:1015
 msgid "PAUSED FOCUS"
 msgstr "FOKUS PYSÄYTETTY"
 
-#: applet.js:1021
+#: applet.js:1018
 msgid "BREAK"
 msgstr "TAUKO"
 
-#: applet.js:1024
+#: applet.js:1021
 msgid "PAUSED BREAK"
 msgstr "TAUKO PYSÄYTETTY"
 
-#: applet.js:1026
+#: applet.js:1023
 msgid "BREAK OVER"
 msgstr "TAUKO OHI"
 
-#: applet.js:1029 applet.js:1089 menu.js:253 menu.js:740
+#: applet.js:1026 applet.js:1086 menu.js:253 menu.js:740
 msgid "Ready to focus"
 msgstr "Valmis keskittymään"
 
-#: applet.js:1047
+#: applet.js:1044
 msgid "Short break running"
 msgstr "Lyhyt tauko meneillään"
 
-#: applet.js:1050
+#: applet.js:1047
 msgid "Short break paused"
 msgstr "Lyhyt tauko pysäytetty"
 
-#: applet.js:1053
+#: applet.js:1050
 msgid "Long break running"
 msgstr "Pitkä tauko meneillään"
 
-#: applet.js:1056
+#: applet.js:1053
 msgid "Long break paused"
 msgstr "Pitkä tauko pysäytetty"
 
-#: applet.js:1059 applet.js:1573
+#: applet.js:1056 applet.js:1570
 msgid "Break ended"
 msgstr "Tauko päättyi"
 
-#: applet.js:1062
+#: applet.js:1059
 #, javascript-format
 msgid "Pomodori %d, set %d running"
 msgstr "Pomodori %d, erä %d käynnissä"
 
-#: applet.js:1067 features.js:554 features.js:1492
+#: applet.js:1064 features.js:554 features.js:1492
 #, javascript-format
 msgid "≈ finish %s · %d 🍅 left"
 msgstr "≈ valmis %s · %d 🍅 jäljellä"
 
-#: applet.js:1072
+#: applet.js:1069
 msgid "Pomodoro paused"
 msgstr "Pomodoro pysäytetty"
 
-#: applet.js:1075
+#: applet.js:1072
 msgid "Ready to focus — scroll or middle-click to start"
 msgstr "Valmis keskittymään — aloita vierittämällä tai keskipainikkeella"
 
-#: applet.js:1243
+#: applet.js:1240
 msgid "Classic"
 msgstr "Klassinen"
 
-#: applet.js:1244
+#: applet.js:1241
 msgid "Long focus"
 msgstr "Pitkä fokus"
 
-#: applet.js:1438
+#: applet.js:1435
 msgid "Task complete"
 msgstr ""
 
 #. settings-schema.json->sec_preview->title
-#: applet.js:1539 visual.js:567
+#: applet.js:1536 visual.js:567
 msgid "Preview"
 msgstr "Esikatselu"
 
-#: applet.js:1553
+#: applet.js:1550
 msgid "Pomodoro started"
 msgstr "Pomodoro alkaa"
 
-#: applet.js:1631
+#: applet.js:1628
 msgid "Let's go to work!"
 msgstr "Sitten töihin!"
 
-#: applet.js:1658
+#: applet.js:1655
 msgid "Pomodoro done"
 msgstr "Pomodoro valmis"
 
-#: applet.js:1660
+#: applet.js:1657
 msgid "Take a short break"
 msgstr "Pidä lyhyt tauko"
 
-#: applet.js:1661 applet.js:1692
+#: applet.js:1658 applet.js:1689
 #, javascript-format
 msgid "+%d min"
 msgstr "+%d min"
 
-#: applet.js:1662 applet.js:1693
+#: applet.js:1659 applet.js:1690
 msgid "Skip break"
 msgstr "Ohita tauko"
 
-#: applet.js:1686
+#: applet.js:1683
 msgid "Set complete!"
 msgstr "Erä valmis!"
 
-#: applet.js:1691
+#: applet.js:1688
 msgid "Take a long break"
 msgstr "Pidä pitkä tauko"
 
-#: applet.js:1737
+#: applet.js:1734
 msgid "Pomodoro ended"
 msgstr "Pomodoro päättyi"
 
-#: applet.js:1938
+#: applet.js:1935
 msgid "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 msgstr "http://en.wikipedia.org/wiki/Pomodoro_Technique"
 
-#: applet.js:2010 features.js:2492
+#: applet.js:2007 features.js:2440
 msgid "Stop the timer before changing Pomodoro preset"
 msgstr "Pysäytä ajastin ennen Pomodoro-esiasetuksen vaihtoa"
 
-#: applet.js:2028
+#: applet.js:2025
 #, javascript-format
 msgid "Pomodoro preset %s applied"
 msgstr "Pomodoro-esiasetus %s otettu käyttöön"
 
-#: applet.js:2035 features.js:744 menu.js:490 menu.js:831 menu.js:1191
+#: applet.js:2032 features.js:744 menu.js:490 menu.js:831 menu.js:1191
 msgid "Preset"
 msgstr "Esiasetus"
 
-#: applet.js:2061
+#: applet.js:2058
 msgid "Keep at least one preset"
 msgstr "Säilytä vähintään yksi esiasetus"
 
-#: applet.js:2076
+#: applet.js:2073
 #, javascript-format
 msgid "Break extended by %d min"
 msgstr "Taukoa jatkettu %d min"
@@ -193,12 +193,12 @@ msgstr "esim. kirjoita raportti"
 msgid "Choose or type a focus task"
 msgstr "Valitse tai kirjoita fokustehtävä"
 
-#: dialogs.js:69 dialogs.js:125 features.js:2541
+#: dialogs.js:69 dialogs.js:125 features.js:2489
 msgid "Start"
 msgstr "Aloita"
 
 #: dialogs.js:115 dialogs.js:440 features.js:829 features.js:892
-#: features.js:1607 features.js:2540
+#: features.js:1607 features.js:2488
 msgid "Cancel"
 msgstr "Peruuta"
 
@@ -992,74 +992,40 @@ msgstr ""
 msgid "Site blocking cleared."
 msgstr ""
 
-#: features.js:2235
-msgid "Passwordless blocking: set up (no prompt)."
-msgstr ""
-
-#: features.js:2236
-msgid "Passwordless blocking: not set up (asks for a password)."
-msgstr ""
-
-#: features.js:2238
-#, javascript-format
-msgid "Blocking %d site(s) in /etc/hosts now."
-msgstr ""
-
-#: features.js:2239
-msgid "Nothing is blocked right now."
-msgstr ""
-
-#: features.js:2240
-#, javascript-format
-msgid "%d site(s) in your list."
-msgstr ""
-
-#: features.js:2241
-msgid "Site blocking status"
-msgstr ""
-
-#: features.js:2254
-msgid ""
-"To block sites automatically during focus, turn on passwordless blocking in "
-"settings."
-msgstr ""
-"Estääksesi sivustot automaattisesti keskittymisen aikana ota salasanaton "
-"esto käyttöön asetuksissa."
-
-#: features.js:2309
+#: features.js:2257
 msgid "Passwordless blocking enabled (no prompt)."
 msgstr "Salasanaton esto käytössä (ei kyselyä)."
 
-#: features.js:2313
+#: features.js:2261
 msgid "Passwordless blocking removed."
 msgstr "Salasanaton esto poistettu."
 
-#: features.js:2350
+#: features.js:2298
 msgid "Click to exit Zen"
 msgstr "Poistu Zen-tilasta napsauttamalla"
 
 #. settings-schema.json->focus->title
-#: features.js:2385 visual.js:889
+#: features.js:2333 visual.js:889
 msgid "Focus"
 msgstr "Fokus"
 
-#: features.js:2462
+#: features.js:2410
 msgid "Breathe in"
 msgstr "Hengitä sisään"
 
-#: features.js:2465 features.js:2471
+#: features.js:2413 features.js:2419
 msgid "Hold"
 msgstr "Pidätä"
 
-#: features.js:2468
+#: features.js:2416
 msgid "Breathe out"
 msgstr "Hengitä ulos"
 
-#: features.js:2498
+#: features.js:2446
 msgid "Focus until"
 msgstr "Fokus kellonaikaan"
 
-#: features.js:2499
+#: features.js:2447
 msgid "Enter a time (HH:MM)"
 msgstr "Syötä kellonaika (TT:MM)"
 

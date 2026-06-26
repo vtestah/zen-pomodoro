@@ -115,7 +115,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
         // 'pomodoro', 'pomodoro-stop', 'short-break', 'long-break', 'break-over', '*-paused'
         this._currentState = 'pomodoro-stop';
-        this._focusBlockActive = false;
         this._focusFrame = null;
         this._focusFrames = [];
         this._focusTaskChip = null;
@@ -249,7 +248,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_pushoverPriGoal = null;
         this._opt_blockDomains = null;
         this._opt_enableBlocking = null;
-        this._blockSetupHintShown = false;
         this._opt_onboardingDone = null;
         this._dndActive = false;
         this._dndPrevValue = null;
@@ -822,7 +820,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
             activePreset: activePreset,
             timerRunning: Boolean(timer && timer.isRunning()),
             timerPaused: this._isPausedState(),
-            focusBlockActive: this._focusBlockActive,
             blockedSitesCount: this._getBlockedSitesCount(),
             blockingSectionActive: bstat.sectionActive,
             blockingHostsCount: bstat.hostsCount,

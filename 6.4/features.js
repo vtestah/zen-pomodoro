@@ -2226,58 +2226,6 @@ function install(proto) {
         };
     };
 
-    // Notify the current blocking status, so the user can tell whether
-    // passwordless is set up and what is actually blocked right now.
-    proto._verifyBlocking = function() {
-        let st = this._blockingStatus();
-        let lines = [];
-        lines.push(st.passwordlessInstalled
-            ? _("Passwordless blocking: set up (no prompt).")
-            : _("Passwordless blocking: not set up (asks for a password)."));
-        lines.push(st.sectionActive
-            ? _("Blocking %d site(s) in /etc/hosts now.").format(st.hostsCount)
-            : _("Nothing is blocked right now."));
-        lines.push(_("%d site(s) in your list.").format(st.listCount));
-        Main.notify(_("Site blocking status"), lines.join("\n"));
-    };
-
-    // Auto-block the configured domains for the duration of a focus. Returns
-    // true if a block was launched. Requires the passwordless helper so it does
-    // not prompt on every pomodoro; otherwise it hints once and does nothing.
-    proto._applyBuiltinBlock = function() {
-        let domains = this._collectBlockDomains();
-        if (!domains.length) { return false; }
-        let helper = this._passwordlessHelperPath();
-        if (!GLib.file_test(helper, GLib.FileTest.EXISTS)) {
-            if (!this._blockSetupHintShown) {
-                this._blockSetupHintShown = true;
-                Main.notify(_("To block sites automatically during focus, turn on passwordless blocking in settings."));
-            }
-            return false;
-        }
-        try {
-            Gio.Subprocess.new(['pkexec', helper, 'block'].concat(domains),
-                Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE);
-            return true;
-        } catch (e) {
-            global.logError('Zen Pomodoro: automatic block failed: ' + e.message);
-            return false;
-        }
-    };
-
-    proto._removeBuiltinBlock = function() {
-        let helper = this._passwordlessHelperPath();
-        if (!GLib.file_test(helper, GLib.FileTest.EXISTS)) { return false; }
-        try {
-            Gio.Subprocess.new(['pkexec', helper, 'unblock'],
-                Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE);
-            return true;
-        } catch (e) {
-            global.logError('Zen Pomodoro: automatic unblock failed: ' + e.message);
-            return false;
-        }
-    };
-
     // Block/unblock via a bundled helper run with pkexec (interactive admin
     // prompt). The helper only manages its own marked section of /etc/hosts.
     proto._runHostsHelper = function(argv, okMessage, onDone) {

@@ -1039,7 +1039,8 @@ function install(proto) {
                 if (btns[i]) { btns[i].b.grab_key_focus(); }
             };
             opts.forEach((o, i) => {
-                let b = new St.Button({ x_expand: true, style_class: 'button', can_focus: true });
+                let b = new St.Button({ x_expand: true, style_class: 'button' });
+                b.can_focus = true;   // St.Button ignores the constructor arg; set it so Tab/AT reach it
                 b.set_label(o.label);
                 b.connect('clicked', () => activate(i));
                 btns.push({ b: b, v: o.value });
@@ -1142,8 +1143,6 @@ function install(proto) {
                 content.add(para(_("Based on your answers, here's what I'll set up. Untick anything you'd rather skip, then apply.")));
                 let list = new St.BoxLayout({ vertical: true, style: 'spacing: 4px; padding: 6px 0 2px 0;' });
                 let toggles = [];           // optional items, in display order
-                let cursor = { i: 0 };
-                let repaintAll = () => { toggles.forEach((t) => t.paint()); };
                 plan.items.filter((it) => it.label).forEach((it) => {
                     if (it.core) {
                         // Core recommendation (the focus rhythm) — always applied.
@@ -1154,10 +1153,10 @@ function install(proto) {
                         row.add(t);
                         list.add(row);
                     } else {
-                        // Optional recommendation — a checkbox the user can untick.
+                        // Optional recommendation — a focusable checkbox the user can untick.
                         if (it.enabled === undefined) { it.enabled = true; }
-                        let myIndex = toggles.length;
-                        let box = new St.Button({ x_expand: true, style_class: 'button', can_focus: false });
+                        let box = new St.Button({ x_expand: true, style_class: 'button', style: 'padding: 5px 6px; border-radius: 6px;' });
+                        box.can_focus = true;   // St.Button ignores the constructor arg; set it so Tab/AT reach it
                         let inner = new St.BoxLayout({ vertical: false, x_expand: true, style: 'spacing: 8px;' });
                         let check = new St.Label({ y_align: Clutter.ActorAlign.START });
                         let label = new St.Label({ text: it.label, x_expand: true });
@@ -1169,29 +1168,41 @@ function install(proto) {
                             check.set_text(it.enabled ? "\u2611" : "\u2610");
                             check.set_style((it.enabled ? 'color: #6fcf97;' : 'color: rgba(150,150,150,0.9);') + ' font-weight: bold;');
                             label.set_opacity(it.enabled ? 255 : 120);
-                            box.set_style('padding: 5px 6px; border-radius: 6px;' + (myIndex === cursor.i ? HILITE : ''));
+                            // Accessible name carries the checkbox state (glyph is language-neutral).
+                            this._dashSetA11y(box, (it.enabled ? "\u2611 " : "\u2610 ") + it.label);
                         };
-                        box.connect('clicked', () => { it.enabled = !it.enabled; cursor.i = myIndex; repaintAll(); });
-                        toggles.push({ it: it, paint: paint });
+                        box.connect('clicked', () => { it.enabled = !it.enabled; paint(); });
+                        paint();
+                        toggles.push({ it: it, box: box });
                         list.add(box);
                     }
                 });
-                repaintAll();
                 content.add(list);
-                let toggleAt = (i) => { if (toggles[i]) { toggles[i].it.enabled = !toggles[i].it.enabled; cursor.i = i; repaintAll(); } };
+                let toggleAt = (i) => { if (toggles[i]) { toggles[i].box.emit('clicked', 1); toggles[i].box.grab_key_focus(); } };
                 st.nav = {
                     count: toggles.length,
                     selectIndex: (i) => toggleAt(i),
-                    move: (d) => { if (toggles.length) { cursor.i = Math.max(0, Math.min(toggles.length - 1, cursor.i + d)); repaintAll(); } },
-                    activateCursor: () => toggleAt(cursor.i),
+                    move: (d) => {
+                        let cur = global.stage.get_key_focus();
+                        let i = toggles.findIndex((t) => t.box === cur);
+                        i = (i === -1) ? 0 : Math.max(0, Math.min(toggles.length - 1, i + d));
+                        if (toggles[i]) { toggles[i].box.grab_key_focus(); }
+                    },
                     back: () => { st.step--; build(); }
                 };
+                if (toggles.length) { st.focusFirst = () => toggles[0].box.grab_key_focus(); }
                 buttons.push({ label: _("Back"), action: () => { st.step--; build(); } });
                 buttons.push({ label: _("Apply"), action: () => applyPlan(plan, false) });
                 buttons.push({ label: "\ud83c\udf45  " + _("Apply & start"), default: true, action: () => applyPlan(plan, true) });
             }
             dialog.setButtons(buttons);
-            content.grab_key_focus();
+            // Land keyboard focus on the first option/checkbox so keyboard and
+            // screen-reader users start inside the content (not on a footer button).
+            // Deferred to idle so the new rows are realized before we grab focus.
+            if (st.focusFirst) {
+                let ff = st.focusFirst;
+                GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { try { ff(); } catch (e) {} return GLib.SOURCE_REMOVE; });
+            }
         };
         build();
         dialog.open();

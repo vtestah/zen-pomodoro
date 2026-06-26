@@ -151,7 +151,7 @@ test('conflict: flow attention + overwork -> later assist clears flow_extend', (
     // attention=flow turns flow_extend on; the overwork assist must override it.
     const k = keys({ attention: 'flow', struggle: 'overwork' });
     assert.strictEqual(k.flow_extend, false);
-    assert.strictEqual(k.auto_start_after_pomodoro_ends, true);
+    assert.strictEqual(k.auto_start_next, true);
     assert.strictEqual(k.flow_extend_minutes, 10); // still set by the flow item
 });
 
@@ -231,7 +231,7 @@ test('multi: anxiety + overwork combine without losing either', () => {
     const k = keys({ struggle: ['anxiety', 'overwork'] });
     assert.strictEqual(k.theme_preset, 'cool');                  // anxiety
     assert.strictEqual(k.warn_sound, false);                     // anxiety
-    assert.strictEqual(k.auto_start_after_pomodoro_ends, true);  // overwork
+    assert.strictEqual(k.auto_start_next, true);  // overwork
     assert.strictEqual(k.break_breathing, true);                 // overwork
 });
 
@@ -339,7 +339,7 @@ test('chimeInterval overrides the chime period', () => {
 
 test('autobreak=yes adds an auto-break item that clears flow_extend', () => {
     const k = keys({ attention: 'flow', autobreak: 'yes' });
-    assert.strictEqual(k.auto_start_after_pomodoro_ends, true);
+    assert.strictEqual(k.auto_start_next, true);
     assert.strictEqual(k.break_breathing, true);
     assert.strictEqual(k.flow_extend, false); // overrides the flow item
 });

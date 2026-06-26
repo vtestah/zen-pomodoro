@@ -43,7 +43,7 @@ if (typeof require !== 'undefined') {
 }
 
 const Gettext = imports.gettext;
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 const {
     POMODORO_STATE_FILE,

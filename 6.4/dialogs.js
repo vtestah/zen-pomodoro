@@ -10,7 +10,7 @@ const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 
 const UUID = "zen-pomodoro@vtestah";
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
     return Gettext.dgettext(UUID, str);

@@ -8,7 +8,7 @@ const Gettext = imports.gettext;
 const Tooltips = imports.ui.tooltips;
 
 const UUID = "zen-pomodoro@vtestah";
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
     return Gettext.dgettext(UUID, str);

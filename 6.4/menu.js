@@ -542,6 +542,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         let sr = this._makeSkipResetItems();
         this.addMenuItem(sr.skipItem);
+        this._zenItem = new PopupMenu.PopupMenuItem(_("Zen mode"));
+        this._zenItem.connect('activate', () => { this.emit('toggle-zen'); });
+        this.addMenuItem(this._zenItem);
         this._ambientItem = new PopupMenu.PopupSwitchMenuItem(_("Ambient sound"), false);
         this._ambientItem.connect('toggled', (item, state) => this.emit('set-ambient', state));
         this.addMenuItem(this._ambientItem);

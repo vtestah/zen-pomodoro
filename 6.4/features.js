@@ -2273,9 +2273,6 @@ function install(proto) {
             if (this._zenOverlay) {
                 this._zenOverlay.hide();
             }
-            if (!isFocus) {
-                this._zenActive = false;
-            }
             return;
         }
 

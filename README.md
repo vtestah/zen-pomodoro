@@ -1,15 +1,26 @@
 <p align="center">
-  <img src="logo.svg" alt="Zen Pomodoro" width="120" height="120">
+  <img src="logo.svg" width="128" alt="Zen Pomodoro logo">
 </p>
 
-# Zen Pomodoro
+<h1 align="center">Zen Pomodoro</h1>
 
-[![tests](https://github.com/vtestah/zen-pomodoro/actions/workflows/tests.yml/badge.svg)](https://github.com/vtestah/zen-pomodoro/actions/workflows/tests.yml) [![release](https://img.shields.io/github/v/tag/vtestah/zen-pomodoro?label=release)](https://github.com/vtestah/zen-pomodoro/releases) [![License: GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
+<p align="center">
+  <strong>A calm, Zen-style Pomodoro timer for the Cinnamon panel.</strong>
+</p>
 
-A calm, Zen-style Pomodoro focus timer for the Cinnamon panel. It gives you
-gentle on-screen cues instead of anxious alarms: a soft glow frame that traces
-your progress, a quiet start ritual, a calm ending, an optional full-screen Zen
-mode, and a breathing guide on breaks.
+<p align="center">
+  <a href="https://github.com/vtestah/zen-pomodoro/actions/workflows/tests.yml"><img alt="tests" src="https://img.shields.io/github/actions/workflow/status/vtestah/zen-pomodoro/tests.yml?branch=main&style=flat-square&logo=githubactions&logoColor=white&label=tests"></a>
+  <a href="https://github.com/vtestah/zen-pomodoro/releases"><img alt="release" src="https://img.shields.io/github/v/tag/vtestah/zen-pomodoro?style=flat-square&logo=github&logoColor=white&label=release&color=e35a3c"></a>
+  <a href="LICENSE"><img alt="License: GPLv3" src="https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square&logo=gnu&logoColor=white"></a>
+</p>
+
+<p align="center">
+  <img src="screenshot.png" alt="Zen Pomodoro in action" width="760">
+</p>
+
+It gives you gentle on-screen cues instead of anxious alarms: a soft glow frame
+that traces your progress, a quiet start ritual, a calm ending, an optional
+full-screen Zen mode, and a breathing guide on breaks.
 
 This repository is the **single source of truth**, and the code in `6.4/` is the
 public applet exactly as published. There is no personal/public split. Optional

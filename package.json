@@ -1,0 +1,13 @@
+{
+  "name": "zen-pomodoro",
+  "private": true,
+  "description": "Dev tooling for the Zen Pomodoro Cinnamon applet (the applet itself runs under gjs, not Node).",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "lint": "eslint 6.4 tests/js",
+    "test": "node tests/js/recommend.test.js && node tests/js/flow.test.js"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0"
+  }
+}

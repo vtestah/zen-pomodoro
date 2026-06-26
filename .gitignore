@@ -14,3 +14,10 @@ __pycache__/
 # pytest / hypothesis caches
 .pytest_cache/
 .hypothesis/
+
+# Kiro planning / specs scratch (not part of the applet)
+.kiro/
+
+# Node dev tooling (eslint) — installed locally via `npm install`
+node_modules/
+.eslintcache

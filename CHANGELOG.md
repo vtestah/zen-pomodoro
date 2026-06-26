@@ -4,6 +4,20 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com),
 and the project follows [Semantic Versioning](https://semver.org).
 
+## [1.1.1] - 2026-06-26
+
+### Bug Fixes
+
+- *(build)* Ship all 6.4/*.js so new modules can't be dropped
+- *(i18n)* Use GLib.get_user_data_dir() for the locale path
+
+### Documentation
+
+- Desktop-style Spices screenshot (wallpaper, glow frame, open menu)
+- Add a Statistics dashboard showcase screenshot
+- Revert screenshot to the previous version
+- Show the statistics dashboard screenshot in the README
+
 ## [1.1.0] - 2026-06-26
 
 ### Bug Fixes

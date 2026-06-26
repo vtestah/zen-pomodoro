@@ -72,7 +72,7 @@ function install(proto) {
         if (this._opt_reduceMotion) {
             return false;
         }
-        if (this._opt_focusCalmEnding) {
+        if (true) {
             return false;
         }
 
@@ -131,7 +131,7 @@ function install(proto) {
 
         if (this._currentState === 'pomodoro') {
             if (ticks <= 60 || remainingRatio <= 0.05) {
-                if (this._opt_focusCalmEnding) {
+                if (true) {
                     return POMODORO_FOCUS_FRAME_WARNING_STYLE;
                 }
                 return this._getPulseStyle(POMODORO_FOCUS_FRAME_PULSE_STYLES, ticks);
@@ -154,7 +154,7 @@ function install(proto) {
 
         if (this._currentState === 'short-break' || this._currentState === 'long-break') {
             if (ticks <= 60 || remainingRatio <= 0.20) {
-                if (this._opt_focusCalmEnding) {
+                if (true) {
                     return POMODORO_BREAK_OVER_FRAME_STYLE;
                 }
                 return this._getPulseStyle(POMODORO_BREAK_FRAME_PULSE_STYLES, ticks);

@@ -91,7 +91,7 @@ function _recoAssistItem(key, _) {
                 label: _("Breaks start on their own so you don't overwork.") };
         case 'anxiety':
             return { id: 'assist:anxiety', core: false, group: 'assist',
-                keys: { focus_calm_ending: true, show_seconds: false, warn_sound: false,
+                keys: { show_seconds: false, warn_sound: false,
                         theme_preset: 'cool', breathing_pattern: 'relax', frame_style: 'glow' },
                 label: _("A calm theme, no ticking seconds and no end-of-timer rush.") };
         default:

@@ -103,8 +103,8 @@
             "title": "On-screen focus cues",
             "keys": [
                 "focus_show_task_chip",
-                "focus_calm_ending",
                 "focus_start_ritual",
+                "prompt_focus_task",
                 "require_focus_task"
             ]
         },
@@ -458,17 +458,17 @@
         "default": false,
         "tooltip": "Show the current task in a small on-screen chip while focusing."
     },
-    "focus_calm_ending": {
-        "type": "switch",
-        "description": "Calm ending: no anxious pulsing near the end of a timer",
-        "default": true,
-        "tooltip": "No anxious blinking near the end — a calm, steady cue instead."
-    },
     "focus_start_ritual": {
         "type": "switch",
         "description": "Start ritual: brief centered 'Focus: <task>' and a smooth fade-in when focus begins",
         "default": true,
         "tooltip": "Briefly show 'Focus: <task>' with a smooth fade-in when focus begins."
+    },
+    "prompt_focus_task": {
+        "type": "switch",
+        "description": "Ask which task to focus on before starting",
+        "default": true,
+        "tooltip": "When off, a focus session starts immediately with your current task instead of opening the task picker. If a task is required and none is set, the picker still appears."
     },
     "require_focus_task": {
         "type": "switch",
@@ -1363,7 +1363,7 @@
     "focus_ambient_file": {
         "type": "filechooser",
         "description": "Ambient sound file",
-        "default": "brownnoise.ogg",
+        "default": "",
         "dependency": "focus_ambient_choice=custom",
         "tooltip": "Pick your own looping ambient sound. Leave empty for the built-in soft brown noise."
     }

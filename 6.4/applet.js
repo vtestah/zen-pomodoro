@@ -189,10 +189,10 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_intervalChimeFile = null;
         this._opt_intervalChimeVolume = null;
         this._opt_focusShowTaskChip = null;
-        this._opt_focusCalmEnding = null;
         this._opt_focusStartRitual = null;
         this._opt_customPresets = null;
         this._opt_requireFocusTask = null;
+        this._opt_promptFocusTask = null;
         this._opt_themePreset = null;
         this._opt_accentFocusColor = null;
         this._opt_accentBreakColor = null;
@@ -480,9 +480,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_start_after_short_break_ends", "_opt_autoContinueAfterShortBreak", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "auto_start_after_break_ends", "_opt_autoStartNewAfterFinish", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_show_task_chip", "_opt_focusShowTaskChip", () => { this._updateFocusFrame(); });
-        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_calm_ending", "_opt_focusCalmEnding", () => { this._updateFocusFrame(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_start_ritual", "_opt_focusStartRitual", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "require_focus_task", "_opt_requireFocusTask", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "prompt_focus_task", "_opt_promptFocusTask", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "theme_preset", "_opt_themePreset", () => { this._applyAppearance(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "accent_focus_color", "_opt_accentFocusColor", () => { this._applyAppearance(); });
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "accent_break_color", "_opt_accentBreakColor", () => { this._applyAppearance(); });
@@ -1990,6 +1990,14 @@ class PomodoroApplet extends Applet.TextIconApplet {
     _promptFocusTaskBeforeStart() {
         if (!this._focusTaskDialog) {
             this._startTimerAfterFocusTask("");
+            return;
+        }
+
+        // If the user turned the task prompt off, start straight away with the
+        // current task — unless a task is required and none is set yet.
+        let prompt = (this._opt_promptFocusTask === null) ? true : Boolean(this._opt_promptFocusTask);
+        if (!prompt && (this._currentFocusTask || !this._opt_requireFocusTask)) {
+            this._startTimerAfterFocusTask(this._currentFocusTask || "");
             return;
         }
 

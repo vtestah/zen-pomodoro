@@ -158,7 +158,8 @@
                 "focus_ambient_choice",
                 "focus_ambient_file",
                 "focus_ambient_volume",
-                "focus_ambient_preview_button"
+                "focus_ambient_preview_button",
+                "focus_ambient_stop_button"
             ]
         },
         "sec_modes": {
@@ -673,8 +674,15 @@
     "focus_ambient_preview_button": {
         "type": "button",
         "description": "▶ Preview",
-        "tooltip": "Play a short sample of the chosen ambient sound at the set volume.",
+        "tooltip": "Loop a preview of the chosen ambient sound; drag the volume slider to adjust it live.",
         "callback": "_previewAmbientSound",
+        "dependency": "focus_ambient_choice!=off"
+    },
+    "focus_ambient_stop_button": {
+        "type": "button",
+        "description": "■ Stop",
+        "tooltip": "Stop the ambient preview.",
+        "callback": "_stopAmbientPreview",
         "dependency": "focus_ambient_choice!=off"
     },
     "break_breathing": {

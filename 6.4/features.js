@@ -2188,6 +2188,8 @@ function install(proto) {
     // switch or stop the loop live.
     proto._onAmbientChoiceChanged = function() {
         if (this._ambientEnabled()) { this._ambientLastChoice = this._opt_focusAmbientChoice; }
+        // A different sound was picked — stop any running preview of the old one.
+        this._stopAmbientPreview();
         this._updateAmbientSound();
         if (typeof this._updateMenuRuntime === 'function') { this._updateMenuRuntime(); }
     };
@@ -2260,11 +2262,26 @@ function install(proto) {
             Main.notify(_("Choose an ambient sound first (it's set to Off)."));
             return;
         }
-        if (this._ambientPreview) { this._ambientPreview.stop(); }
+        this._stopAmbientPreview();
         this._ambientPreview = new SoundModule.AmbientLoop(this._ambientPath());
-        let vol = Math.max(0, Math.min(1, (this._opt_focusAmbientVolume || 40) / 100));
-        // ~6 s preview with a soft fade-out (gapless), not a hard 2 s cut.
-        this._ambientPreview.previewFor(vol, 6000, 600);
+        this._ambientPreview.play({ loop: true, volume: this._ambientPreviewVolume() });
+        // Safety net: never let a forgotten preview loop forever (e.g. the
+        // settings window was closed without pressing Stop).
+        this._ambientPreviewTimeout = Mainloop.timeout_add(45000, () => {
+            this._ambientPreviewTimeout = 0;
+            this._stopAmbientPreview();
+            return false;
+        });
+    };
+
+    proto._ambientPreviewVolume = function() {
+        return Math.max(0, Math.min(1, (this._opt_focusAmbientVolume || 40) / 100));
+    };
+
+    // Stop the looping settings preview and cancel its safety timer.
+    proto._stopAmbientPreview = function() {
+        if (this._ambientPreviewTimeout) { try { Mainloop.source_remove(this._ambientPreviewTimeout); } catch (e) {} this._ambientPreviewTimeout = 0; }
+        if (this._ambientPreview) { try { this._ambientPreview.stop(); } catch (e) {} this._ambientPreview = null; }
     };
 
     // Live volume: replay the ambient loop at the new level while focusing.
@@ -2278,6 +2295,10 @@ function install(proto) {
         this._ambientVolTimeout = Mainloop.timeout_add(220, () => {
             this._ambientVolTimeout = 0;
             try {
+                // Live volume for the looping settings preview while you listen.
+                if (this._ambientPreview) {
+                    this._ambientPreview.play({ loop: true, volume: this._ambientPreviewVolume() });
+                }
                 if (this._ambientEnabled() && this._currentState === 'pomodoro' &&
                     this._ambientSound && this._ambientSound.isPlaying()) {
                     let snd = this._ensureAmbientSound();

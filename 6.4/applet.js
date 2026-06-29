@@ -552,7 +552,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         // prompts). Deferred so any session recovery runs first.
         this._blockReconcileTimeoutId = imports.gi.GLib.timeout_add(imports.gi.GLib.PRIORITY_DEFAULT, 3000, () => {
             this._blockReconcileTimeoutId = 0;
-            try { this._syncBlocking(false); this._blockingReady = true; } catch (e) { global.logError("Zen Pomodoro reconcile: " + e); }
+            try { this._syncBlockListFromHosts(); this._syncBlocking(false); this._blockingReady = true; } catch (e) { global.logError("Zen Pomodoro reconcile: " + e); }
             return false;
         });
     }

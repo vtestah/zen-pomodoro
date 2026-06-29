@@ -2735,6 +2735,28 @@ function install(proto) {
         };
     };
 
+    // Pull the domains from the marked /etc/hosts section into the configured
+    // list, so the list reflects what is actually blocked right now (a block
+    // left from a previous session, or a hand-edit of the section). Safe at
+    // startup: it matches the list to the section, so the reconcile that follows
+    // is a no-op and never prompts.
+    proto._syncBlockListFromHosts = function() {
+        let st;
+        try { st = this._blockingStatus(); } catch (e) { return; }
+        if (!st || !st.sectionActive) { return; }
+        let hostsDomains = (st.hostsDomains || []).slice();
+        if (hostsDomains.length === 0) { return; }
+        let current = this._collectBlockDomains();
+        if (current.slice().sort().join(",") === hostsDomains.slice().sort().join(",")) { return; }
+        let newList = hostsDomains.map((d) => ({ domain: d }));
+        try {
+            this._settingsProvider.setValue("block_domains", newList);
+            global.log("Zen Pomodoro: imported " + hostsDomains.length + " blocked domain(s) from /etc/hosts");
+        } catch (e) {
+            global.logError("Zen Pomodoro: failed to import block list from /etc/hosts: " + e.message);
+        }
+    };
+
     // The helper to run a block/unblock with: the installed passwordless one
     // (no prompt) if present, otherwise the bundled one (interactive pkexec).
     proto._blockHelperBinary = function() {

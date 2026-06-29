@@ -16,7 +16,7 @@ TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT
 for f in white pink brown rain sea fan wind stream street; do
     [ -f "$f.ogg" ] || continue
     ffmpeg -hide_banner -loglevel error -y -i "$f.ogg" -af "loudnorm=$TARGET" \
-        -ac 1 -ar 44100 -c:a libvorbis -b:a 64k "$TMP/$f.ogg" && mv "$TMP/$f.ogg" "$f.ogg"
+        -ac 2 -ar 44100 -c:a libvorbis -b:a 64k "$TMP/$f.ogg" && mv "$TMP/$f.ogg" "$f.ogg"
     echo "normalized $f.ogg"
 done
 echo "Done. All ambient loops normalized to $TARGET."

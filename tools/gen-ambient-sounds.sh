@@ -25,7 +25,7 @@ if ! command -v ffmpeg >/dev/null 2>&1; then
 fi
 
 FF=(ffmpeg -hide_banner -loglevel error -y)
-COMMON=(-ac 1 -ar 44100 -c:a libvorbis -b:a 56k)
+COMMON=(-ac 2 -ar 44100 -c:a libvorbis -b:a 56k)
 
 # Wrap a clip into a seamless loop: fold its last <xf> seconds over the first
 # <xf> (equal-power crossfade), so the end flows into the start with no seam.
@@ -34,13 +34,13 @@ seamless() {  # in out xf
     L=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 "$in")
     Lmxf=$(awk "BEGIN{printf \"%.3f\", $L-$xf}")
     "${FF[@]}" -i "$in" -filter_complex \
-"[0:a]aresample=44100,aformat=channel_layouts=mono,asplit=3[s1][s2][s3];\
+"[0:a]aresample=44100,aformat=channel_layouts=stereo,asplit=3[s1][s2][s3];\
 [s1]atrim=start=$Lmxf,asetpts=N/SR/TB,afade=t=out:st=0:d=$xf:curve=qsin[tail];\
 [s2]atrim=0:$xf,asetpts=N/SR/TB,afade=t=in:st=0:d=$xf:curve=qsin[head];\
 [tail][head]amix=inputs=2:normalize=0[seg1];\
 [s3]atrim=$xf:$Lmxf,asetpts=N/SR/TB[seg2];\
 [seg1][seg2]concat=n=2:v=0:a=1,alimiter=limit=0.95[out]" \
-        -map "[out]" -ac 1 -ar 44100 -c:a libvorbis -b:a 64k "$out"
+        -map "[out]" -ac 2 -ar 44100 -c:a libvorbis -b:a 64k "$out"
 }
 
 TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT

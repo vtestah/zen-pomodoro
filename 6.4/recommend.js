@@ -370,6 +370,22 @@ var keysymToOptionIndex = function(sym) {
     return -1;
 };
 
+// Normalize a user-entered block-list entry to a bare hostname. Accepts pasted
+// URLs and trims scheme, path/query, userinfo and port, plus a leading "www.",
+// e.g. "HTTPS://www.YA.ru:443/feed?x=1" -> "ya.ru". Returns "" for blank input.
+// Pure (no GJS), so the parsing that feeds /etc/hosts is unit-tested; the root
+// helper validates again before writing.
+var normalizeBlockDomain = function(raw) {
+    var d = (raw ? String(raw) : '').trim().toLowerCase();
+    if (!d) { return ''; }
+    d = d.replace(/^[a-z][a-z0-9+.\-]*:\/\//, '');       // strip scheme
+    d = d.split('/')[0].split('?')[0];                   // strip path / query
+    if (d.indexOf('@') >= 0) { d = d.split('@').pop(); } // strip userinfo
+    d = d.split(':')[0];                                 // strip port
+    d = d.replace(/^www\./, '');                         // strip leading www.
+    return d;
+};
+
 // Node / CommonJS export for the test runner. In the Cinnamon (GJS) runtime
 // `module` is undefined, so top-level `var`s are exposed via imports instead.
 if (typeof module !== 'undefined' && module.exports) {
@@ -379,6 +395,7 @@ if (typeof module !== 'undefined' && module.exports) {
         buildQuestionFlow: buildQuestionFlow,
         selectKeys: selectKeys,
         collectBackupKeys: collectBackupKeys,
-        keysymToOptionIndex: keysymToOptionIndex
+        keysymToOptionIndex: keysymToOptionIndex,
+        normalizeBlockDomain: normalizeBlockDomain
     };
 }

@@ -370,6 +370,50 @@ test('keysymToOptionIndex returns -1 for non-digit keys', () => {
     assert.strictEqual(reco.keysymToOptionIndex(0x020), -1); // space
 });
 
+// ========================================================================
+// Block-domain normalization (feeds /etc/hosts; pure + security-relevant)
+// ========================================================================
+
+test('normalizeBlockDomain keeps a bare hostname', () => {
+    assert.strictEqual(reco.normalizeBlockDomain('example.com'), 'example.com');
+});
+
+test('normalizeBlockDomain strips scheme, path and query', () => {
+    assert.strictEqual(reco.normalizeBlockDomain('https://ya.ru/feed?x=1'), 'ya.ru');
+    assert.strictEqual(reco.normalizeBlockDomain('http://example.com/a/b'), 'example.com');
+});
+
+test('normalizeBlockDomain strips a port', () => {
+    assert.strictEqual(reco.normalizeBlockDomain('ya.ru:443'), 'ya.ru');
+});
+
+test('normalizeBlockDomain strips userinfo (last @-segment wins)', () => {
+    assert.strictEqual(reco.normalizeBlockDomain('user:pass@ya.ru'), 'ya.ru');
+    assert.strictEqual(reco.normalizeBlockDomain('a@b@ya.ru'), 'ya.ru');
+});
+
+test('normalizeBlockDomain strips a single leading www.', () => {
+    assert.strictEqual(reco.normalizeBlockDomain('www.ya.ru'), 'ya.ru');
+    assert.strictEqual(reco.normalizeBlockDomain('www.www.x.com'), 'www.x.com');
+});
+
+test('normalizeBlockDomain lowercases and trims', () => {
+    assert.strictEqual(reco.normalizeBlockDomain('  EXAMPLE.COM  '), 'example.com');
+});
+
+test('normalizeBlockDomain handles a full messy URL', () => {
+    assert.strictEqual(reco.normalizeBlockDomain('HTTPS://user@www.YA.ru:443/feed?x=1'), 'ya.ru');
+});
+
+test('normalizeBlockDomain returns "" for blank or non-string input', () => {
+    assert.strictEqual(reco.normalizeBlockDomain(''), '');
+    assert.strictEqual(reco.normalizeBlockDomain('   '), '');
+    assert.strictEqual(reco.normalizeBlockDomain(null), '');
+    assert.strictEqual(reco.normalizeBlockDomain(undefined), '');
+    assert.strictEqual(reco.normalizeBlockDomain(0), '');
+    assert.strictEqual(reco.normalizeBlockDomain('www.'), '');
+});
+
 // ------------------------------------------------------------------------
 console.log('');
 console.log(passed + ' passed, ' + failed + ' failed');

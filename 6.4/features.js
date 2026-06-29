@@ -2687,15 +2687,9 @@ function install(proto) {
         let domains = [];
         let list = this._opt_blockDomains || [];
         for (let row of list) {
-            let d = (row && row.domain ? String(row.domain) : '').trim().toLowerCase();
-            if (!d) { continue; }
-            // Accept pasted URLs: reduce to a bare hostname (e.g.
-            // "https://ya.ru/path" -> "ya.ru"). The helper validates again.
-            d = d.replace(/^[a-z][a-z0-9+.\-]*:\/\//, '');
-            d = d.split('/')[0].split('?')[0];
-            if (d.indexOf('@') >= 0) { d = d.split('@').pop(); }
-            d = d.split(':')[0];
-            d = d.replace(/^www\./, '');
+            // Accept pasted URLs; reduce to a bare hostname. See
+            // RecommendModule.normalizeBlockDomain (pure + unit-tested).
+            let d = RecommendModule.normalizeBlockDomain(row && row.domain);
             if (d) { domains.push(d); }
         }
         return domains;

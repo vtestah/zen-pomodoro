@@ -872,13 +872,13 @@
     },
     "timer_sound": {
         "type": "switch",
-        "description": "Play Timer Sound",
+        "description": "Play the ticking sound",
         "default": false,
         "tooltip": "Play a soft ticking sound while focusing."
     },
     "timer_sound_file": {
         "type": "filechooser",
-        "description": "Timer Sound File",
+        "description": "Ticking sound file",
         "default": "tick.ogg",
         "select-dir": false,
         "dependency": "timer_sound",
@@ -890,19 +890,19 @@
         "min": 1,
         "max": 100,
         "step": 1,
-        "description": "Sound volume:",
+        "description": "Volume",
         "dependency": "timer_sound",
         "tooltip": "Volume of the ticking sound (0 = silent)."
     },
     "break_sound": {
         "type": "switch",
-        "description": "Play Break Sound",
+        "description": "Play a sound when a break starts",
         "default": true,
         "tooltip": "Play a sound when a break begins."
     },
     "break_sound_file": {
         "type": "filechooser",
-        "description": "Break Sound File",
+        "description": "Break sound file",
         "default": "deskbell.wav",
         "select-dir": false,
         "dependency": "break_sound",
@@ -914,13 +914,13 @@
         "min": 1,
         "max": 100,
         "step": 1,
-        "description": "Sound volume:",
+        "description": "Volume",
         "dependency": "break_sound",
         "tooltip": "Volume of the break sound (0 = silent)."
     },
     "warn_sound": {
         "type": "switch",
-        "description": "Play Warn Sound",
+        "description": "Play a warning before focus ends",
         "default": false,
         "tooltip": "Play a warning sound shortly before a focus block ends."
     },
@@ -930,13 +930,13 @@
         "min": 5,
         "max": 600,
         "step": 5,
-        "description": "Warn Delay (in secs):",
+        "description": "Warning lead time (seconds)",
         "dependency": "warn_sound",
         "tooltip": "How many seconds before the end the warning sound plays."
     },
     "warn_sound_file": {
         "type": "filechooser",
-        "description": "Warn Sound File",
+        "description": "Warning sound file",
         "default": "warn.wav",
         "select-dir": false,
         "dependency": "warn_sound",
@@ -948,19 +948,19 @@
         "min": 1,
         "max": 100,
         "step": 1,
-        "description": "Sound volume:",
+        "description": "Volume",
         "dependency": "warn_sound",
         "tooltip": "Volume of the warning sound (0 = silent)."
     },
     "start_sound": {
         "type": "switch",
-        "description": "Play Start Sound",
+        "description": "Play a sound when focus starts",
         "default": true,
         "tooltip": "Play a sound when a focus block starts."
     },
     "start_sound_file": {
         "type": "filechooser",
-        "description": "Start Sound File",
+        "description": "Start sound file",
         "default": "deskbell.wav",
         "select-dir": false,
         "dependency": "start_sound",
@@ -972,7 +972,7 @@
         "min": 1,
         "max": 100,
         "step": 1,
-        "description": "Sound volume:",
+        "description": "Volume",
         "dependency": "start_sound",
         "tooltip": "Volume of the start sound (0 = silent)."
     },
@@ -988,7 +988,7 @@
         "min": 10,
         "max": 600,
         "step": 5,
-        "description": "Chime interval (seconds):",
+        "description": "Chime interval (seconds)",
         "dependency": "interval_chime",
         "tooltip": "Seconds between chimes during focus."
     },
@@ -1006,7 +1006,7 @@
         "min": 1,
         "max": 100,
         "step": 1,
-        "description": "Chime volume:",
+        "description": "Volume",
         "dependency": "interval_chime",
         "tooltip": "Volume of the interval chime (0 = silent)."
     },

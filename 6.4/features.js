@@ -2883,6 +2883,7 @@ function install(proto) {
                 this._updateFocusFrame();
             });
         }
+        this._startZenPointerWatch();
         this._applyZenDim();
         if (this._zenTopStrip) { this._zenTopStrip.show(); }
         this._positionZenHud();
@@ -2964,10 +2965,36 @@ function install(proto) {
             let wt = mw.get_window_type();
             if (wt === Meta.WindowType.DOCK) { return false; }
             if (wt === Meta.WindowType.DESKTOP) { return Boolean(this._opt_zenDimDesktop); }
+            // Light up a whole *other* monitor the pointer moves to, but keep the
+            // spotlight (only the focused window lit) on the monitor that holds it.
+            if (typeof this._zenPointerMonitor === 'number' && this._zenPointerMonitor >= 0 && mw.get_monitor) {
+                let focusMon = (focus && focus.get_monitor) ? focus.get_monitor() : -1;
+                if (this._zenPointerMonitor !== focusMon && mw.get_monitor() === this._zenPointerMonitor) { return false; }
+            }
             return true;
         } catch (e) {
             try { return !(mw.is_skip_taskbar && mw.is_skip_taskbar()); } catch (e2) { return true; }
         }
+    };
+
+    // The spotlight keeps the monitor under the pointer fully lit. Poll the
+    // pointer's monitor and re-apply the dim whenever it changes, so moving to
+    // another screen brightens it right away.
+    proto._startZenPointerWatch = function() {
+        try { this._zenPointerMonitor = global.display.get_current_monitor(); } catch (e) { this._zenPointerMonitor = -1; }
+        if (this._zenPointerPollId) { return; }
+        this._zenPointerPollId = Mainloop.timeout_add(200, () => {
+            let isFocus = (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused' || this._currentState === 'pomodoro-overrun');
+            if (!(this._zenActive && this._opt_zenModeEnabled && isFocus)) { this._zenPointerPollId = 0; return false; }
+            let m = -1;
+            try { m = global.display.get_current_monitor(); } catch (e) {}
+            if (m !== this._zenPointerMonitor) { this._zenPointerMonitor = m; this._applyZenDim(); }
+            return true;
+        });
+    };
+
+    proto._stopZenPointerWatch = function() {
+        if (this._zenPointerPollId) { try { Mainloop.source_remove(this._zenPointerPollId); } catch (e) {} this._zenPointerPollId = 0; }
     };
 
     // Re-apply live when the dim settings change (only while the spotlight is up).
@@ -2997,6 +3024,7 @@ function install(proto) {
             try { global.display.disconnect(this._zenFocusSignal); } catch (e) {}
             this._zenFocusSignal = 0;
         }
+        this._stopZenPointerWatch();
         if (this._zenHudHideId) { try { Mainloop.source_remove(this._zenHudHideId); } catch (e) {} this._zenHudHideId = 0; }
         if (this._zenHudTweenId) { try { Mainloop.source_remove(this._zenHudTweenId); } catch (e) {} this._zenHudTweenId = 0; }
         try { global.display.set_cursor(Meta.Cursor.DEFAULT); } catch (e) {}

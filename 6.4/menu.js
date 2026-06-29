@@ -87,7 +87,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._compactInfoLabel = null;
         this._chooseTaskItem = null;
         this._zenItem = null;
-        this._focusUntilItem = null;
         this._ambientItem = null;
         this._focusLength = 0;
         this._primaryActionItem = null;
@@ -461,10 +460,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         // Optional modes + toggles, grouped by a separator instead of a header.
         this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        this._focusUntilItem = new PopupMenu.PopupMenuItem(_("Focus until\u2026"));
-        this._focusUntilItem.connect('activate', () => { this.emit('focus-until'); });
-        this.addMenuItem(this._focusUntilItem);
-
         this._zenItem = new PopupMenu.PopupSwitchMenuItem(_("Zen mode"), false);
         this._zenItem.connect('toggled', (item, state) => this.emit('toggle-zen', state));
         new Tooltips.Tooltip(this._zenItem.actor, _("Focus spotlight: while a focus session runs, every other window dims so the one you're working in stands out. Click the on-screen pill to exit."));
@@ -850,10 +845,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 this._zenItem.actor.hide();
             }
         }
-        if (this._focusUntilItem && this._focusUntilItem.actor) {
-            this._focusUntilItem.actor.show();
-        }
-
         if (this._primaryActionItem) {
             this._primaryActionItem.setSensitive(true);
             if (runtime.timerPaused) {

@@ -3246,62 +3246,6 @@ function install(proto) {
         }
     };
 
-    proto._focusUntilFromMenu = function() {
-        if (this._timerQueue.isRunning() || this._isPausedState()) {
-            Main.notify(_("Stop the timer before changing Pomodoro preset"));
-            return;
-        }
-
-        let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
-        let content = new Dialog.MessageDialogContent({
-            title: _("Focus until"),
-            description: _("Enter a time (HH:MM)")
-        });
-        let entry = new St.Entry({ style_class: 'run-dialog-entry', can_focus: true });
-        CinnamonEntry.addContextMenu(entry);
-        content.add_child(entry);
-        dialog.contentLayout.add(content);
-        dialog.setInitialKeyFocus(entry.clutter_text);
-
-        let confirm = () => {
-            let txt = entry.clutter_text.get_text().trim();
-            dialog.close();
-            let m = txt.match(/^(\d{1,2}):(\d{2})$/);
-            if (!m) {
-                return;
-            }
-            let h = parseInt(m[1], 10), min = parseInt(m[2], 10);
-            if (h > 23 || min > 59) {
-                return;
-            }
-            let now = new Date();
-            let target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), h, min, 0, 0);
-            if (target.getTime() <= now.getTime()) {
-                target = new Date(target.getTime() + 86400000);
-            }
-            let secs = Math.round((target.getTime() - now.getTime()) / 1000);
-            if (secs < 60) {
-                return;
-            }
-            this._startFocusForDuration(secs);
-        };
-
-        entry.clutter_text.connect('key-press-event', (_actor, event) => {
-            let symbol = event.get_key_symbol();
-            if (symbol === Clutter.KEY_Return || symbol === Clutter.KEY_KP_Enter) {
-                confirm();
-                return true;
-            }
-            return false;
-        });
-
-        dialog.setButtons([
-            { label: _("Cancel"), key: Clutter.KEY_Escape, action: () => dialog.close() },
-            { label: _("Start"), default: true, action: confirm },
-        ]);
-        dialog.open();
-    };
-
     proto._extendFocusFromDialog = function() {
         // At this point the queue points at the short break that follows the
         // just-finished pomodoro; step back to that pomodoro and run it again

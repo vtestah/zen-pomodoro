@@ -1842,10 +1842,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._toggleZenMode(state);
         });
 
-        menu.connect('focus-until', () => {
-            this._focusUntilFromMenu();
-        });
-
         menu.connect('apply-preset', (m, preset) => {
             if (this._applyDurationPreset(preset.pomodoro, preset.short_break, preset.long_break, preset.pomodori)) {
                 this._saveCurrentTaskPreset(preset);

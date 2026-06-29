@@ -57,7 +57,7 @@ cat > "$OUT/README.md" <<'EOF'
 A calm, Zen-style Pomodoro timer for the Cinnamon panel. It gives you gentle
 on-screen cues instead of anxious alarms, so a finished block never jolts you.
 
-![screenshot](screenshot.png)
+![screenshot](https://cinnamon-spices.linuxmint.com/git/applets/zen-pomodoro@vtestah/screenshot.png)
 
 ## Why Zen Pomodoro?
 
@@ -89,7 +89,7 @@ change your mind.
   an hourly focus pattern, 14-day bars, a 12-week heatmap, a by-task breakdown,
   milestones, and one-click export to a CSV file.
 
-![statistics dashboard](screenshot-stats.png)
+![statistics dashboard](https://cinnamon-spices.linuxmint.com/git/applets/zen-pomodoro@vtestah/screenshot-stats.png)
 
 - **Goals & flow:** a daily goal and streak, flow-extend, soft landing, idle
   auto-pause and resume, "Focus until" a set time, and an optional strict-focus

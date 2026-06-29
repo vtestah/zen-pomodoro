@@ -194,6 +194,7 @@
                 "timer_sound_file",
                 "timer_sound_volume",
                 "timer_sound_test",
+                "timer_sound_stop_button",
                 "hdr_alerts",
                 "break_sound",
                 "break_sound_file",
@@ -1011,9 +1012,15 @@
     },
     "timer_sound_test": {
         "type": "button",
-        "description": "Listen",
+        "description": "▶ Preview",
         "callback": "_previewTimerSound",
-        "tooltip": "Play the selected sound now."
+        "tooltip": "Loop a preview of the ticking sound; drag the volume slider to adjust it live."
+    },
+    "timer_sound_stop_button": {
+        "type": "button",
+        "description": "■ Stop",
+        "callback": "_stopTimerPreview",
+        "tooltip": "Stop the ticking preview."
     },
     "break_sound_test": {
         "type": "button",

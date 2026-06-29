@@ -485,6 +485,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             "_opt_tickerSoundPath",
             () => {
                 this._loadSoundEffects();
+                if (this._tickerPreview) { this._previewTimerSound(); return; }
                 if (this._onPlayTickedSoundChanged() === false) {
                     this._playTickerSound(true); // idle: short preview of the new file
                 }
@@ -496,6 +497,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             "timer_sound_volume",
             "_opt_tickerSoundVolume",
             () => {
+                if (this._tickerPreviewLiveVolume()) { return; }
                 if (this._onPlayTickedSoundChanged() === false) {
                     this._playTickerSound(true); // If not playing, play a preview
                 }

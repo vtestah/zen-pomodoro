@@ -98,7 +98,38 @@ function install(proto) {
             this._sounds[key].play({ volume: Math.max(0, Math.min(1, (volPct || 100) / 100)), preview: true });
         }
     };
-    proto._previewTimerSound = function() { this._previewSound('tick',  this._opt_tickerSoundVolume); };
+    proto._previewTimerSound = function() {
+        if (!SoundModule.isPlayable || !SoundModule.isPlayable()) { return; }
+        this._stopTimerPreview();
+        this._tickerPreview = new SoundModule.SoundEffect(this._opt_tickerSoundPath);
+        this._tickerPreview.play({ loop: true, volume: this._tickerPreviewVolume() });
+        // Safety net: stop a forgotten preview (e.g. settings closed without Stop).
+        this._tickerPreviewTimeout = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 45000, () => {
+            this._tickerPreviewTimeout = 0;
+            this._stopTimerPreview();
+            return false;
+        });
+    };
+    proto._tickerPreviewVolume = function() {
+        return Math.max(0, Math.min(1, (this._opt_tickerSoundVolume || 0) / 100));
+    };
+    proto._stopTimerPreview = function() {
+        if (this._tickerPreviewTimeout) { try { GLib.source_remove(this._tickerPreviewTimeout); } catch (e) {} this._tickerPreviewTimeout = 0; }
+        if (this._tickerVolTimeout) { try { GLib.source_remove(this._tickerVolTimeout); } catch (e) {} this._tickerVolTimeout = 0; }
+        if (this._tickerPreview) { try { this._tickerPreview.stop(); } catch (e) {} this._tickerPreview = null; }
+    };
+    // Live volume for the looping ticker preview. SoundEffect restarts on a new
+    // volume, so debounce to avoid stutter while dragging the slider.
+    proto._tickerPreviewLiveVolume = function() {
+        if (!this._tickerPreview) { return false; }
+        if (this._tickerVolTimeout) { try { GLib.source_remove(this._tickerVolTimeout); } catch (e) {} }
+        this._tickerVolTimeout = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 220, () => {
+            this._tickerVolTimeout = 0;
+            if (this._tickerPreview) { this._tickerPreview.play({ loop: true, volume: this._tickerPreviewVolume() }); }
+            return false;
+        });
+        return true;
+    };
     proto._previewBreakSound = function() { this._previewSound('break', this._opt_breakSoundVolume); };
     proto._previewWarnSound  = function() { this._previewSound('warn',  this._opt_warnSoundVolume); };
     proto._previewStartSound = function() { this._previewSound('start', this._opt_startSoundVolume); };

@@ -2863,8 +2863,8 @@ function install(proto) {
         try { this._settingsProvider.setValue("zen_intro_shown", true); } catch (e) {}
         let isFocus = (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused');
         let body = isFocus
-            ? _("Focus spotlight is on — every other window is dimmed so the one you're working in stands out. Click the on-screen pill (or switch Zen off) to exit.")
-            : _("Focus spotlight is armed. When your next focus session starts, every window except the one you're working in dims, so your task stands out. Click the on-screen pill to exit.");
+            ? _("Focus spotlight is on — every other window is dimmed so the one you're working in stands out. Slide your pointer to the top of the screen to see the time left and a way out.")
+            : _("Focus spotlight is armed. When your next focus session starts, every window except the one you're working in dims, so your task stands out. Slide your pointer to the top of the screen to see the time left and a way out.");
         try { Main.notify(_("Zen mode"), body); } catch (e) {}
     };
 
@@ -2884,9 +2884,9 @@ function install(proto) {
             });
         }
         this._applyZenDim();
-        this._zenHud.show();
-        if (typeof this._zenHud.raise_top === 'function') { this._zenHud.raise_top(); }
-        this._refreshZenLabels();
+        if (this._zenTopStrip) { this._zenTopStrip.show(); }
+        this._positionZenHud();
+        this._revealZenHud();
     };
 
     // Focus spotlight: darken every other window so the one you're working in
@@ -2997,57 +2997,123 @@ function install(proto) {
             try { global.display.disconnect(this._zenFocusSignal); } catch (e) {}
             this._zenFocusSignal = 0;
         }
+        if (this._zenHudHideId) { try { Mainloop.source_remove(this._zenHudHideId); } catch (e) {} this._zenHudHideId = 0; }
+        if (this._zenHudTweenId) { try { Mainloop.source_remove(this._zenHudTweenId); } catch (e) {} this._zenHudTweenId = 0; }
+        try { global.display.set_cursor(Meta.Cursor.DEFAULT); } catch (e) {}
         this._clearZenDim();
-        if (this._zenHud) {
-            try { this._zenHud.hide(); } catch (e) {}
-        }
+        if (this._zenHud) { try { this._zenHud.hide(); } catch (e) {} }
+        if (this._zenTopStrip) { try { this._zenTopStrip.hide(); } catch (e) {} }
     };
 
+    // Hidden by default so nothing sits over your work. Slide the pointer to the
+    // top edge and a small pill fades in with the time left and a way out. Both
+    // the pill and the edge trigger are registered as tracked chrome, so pointer
+    // events actually land on them (added straight to uiGroup, clicks fall through).
     proto._ensureZenHud = function() {
         if (this._zenHud) { return; }
-        this._zenHud = new St.BoxLayout({
+        this._zenHud = new St.Button({
             reactive: true,
+            can_focus: true,
             track_hover: true,
-            style: "background-color: rgba(8,8,8,0.82); border-radius: 14px; padding: 6px 16px; spacing: 12px;"
+            label: "--:--",
+            style: "background-color: rgba(8,8,8,0.85); border-radius: 12px; padding: 6px 16px; color: rgba(255,255,255,0.96); font-size: 1.0em; font-weight: bold;"
         });
-        this._zenTimeLabel = new St.Label({
-            y_align: Clutter.ActorAlign.CENTER,
-            style: "color: rgba(255,255,255,0.96); font-size: 1.25em; font-weight: bold;"
-        });
-        let exit = new St.Label({
-            text: "\u2715  " + _("Exit focus"),
-            y_align: Clutter.ActorAlign.CENTER,
-            style: "color: rgba(235,175,75,0.95);"
-        });
-        this._zenHud.add_actor(this._zenTimeLabel);
-        this._zenHud.add_actor(exit);
-        this._zenHud.connect('button-press-event', () => {
+        this._zenHud.connect('clicked', () => {
             this._zenActive = false;
             this._updateZenOverlay();
             this._updateMenuRuntime();
-            return Clutter.EVENT_STOP;
         });
-        Main.uiGroup.add_actor(this._zenHud);
+        this._zenHud.connect('enter-event', () => { try { global.display.set_cursor(Meta.Cursor.POINTING_HAND); } catch (e) {} this._revealZenHud(); return Clutter.EVENT_PROPAGATE; });
+        this._zenHud.connect('leave-event', () => { try { global.display.set_cursor(Meta.Cursor.DEFAULT); } catch (e) {} this._armZenHudHide(); return Clutter.EVENT_PROPAGATE; });
+        Main.layoutManager.addChrome(this._zenHud, { visibleInFullscreen: true, affectsInputRegion: true, affectsStruts: false });
+        this._zenHud.opacity = 0;
+        this._zenHud.hide();
+
+        this._zenTopStrip = new St.Widget({ reactive: true });
+        this._zenTopStrip.connect('enter-event', () => { this._revealZenHud(); return Clutter.EVENT_PROPAGATE; });
+        Main.layoutManager.addChrome(this._zenTopStrip, { visibleInFullscreen: true, affectsInputRegion: true, affectsStruts: false });
+    };
+
+    // Fade the pill in with the current time and (re)start the idle hide timer.
+    // A Mainloop-stepped tween — the actor .ease() resolves instantly in this
+    // context, but a manual step animates reliably (same approach as the dim
+    // fade). Honors the reduce-motion option.
+    proto._zenHudTween = function(toOpacity, toTransY, durationMs, onDone) {
+        if (!this._zenHud) { if (onDone) { onDone(); } return; }
+        if (this._zenHudTweenId) { try { Mainloop.source_remove(this._zenHudTweenId); } catch (e) {} this._zenHudTweenId = 0; }
+        if (this._opt_reduceMotion || !durationMs || durationMs <= 0) {
+            try { this._zenHud.opacity = toOpacity; this._zenHud.translation_y = toTransY; } catch (e) {}
+            if (onDone) { onDone(); }
+            return;
+        }
+        let startOp = this._zenHud.opacity;
+        let startTy = this._zenHud.translation_y || 0;
+        let steps = Math.max(1, Math.round(durationMs / 16));
+        let i = 0;
+        this._zenHudTweenId = Mainloop.timeout_add(16, () => {
+            i++;
+            let t = i / steps; if (t > 1) { t = 1; }
+            let eased = 1 - (1 - t) * (1 - t);
+            try {
+                this._zenHud.opacity = Math.round(startOp + (toOpacity - startOp) * eased);
+                this._zenHud.translation_y = startTy + (toTransY - startTy) * eased;
+            } catch (e) {}
+            if (i >= steps) {
+                this._zenHudTweenId = 0;
+                try { this._zenHud.opacity = toOpacity; this._zenHud.translation_y = toTransY; } catch (e) {}
+                if (onDone) { onDone(); }
+                return false;
+            }
+            return true;
+        });
+    };
+
+    // Slide the pill down from the top edge with a fade as it appears.
+    proto._revealZenHud = function() {
+        if (!this._zenHud) { return; }
+        if (this._zenHudHideId) { try { Mainloop.source_remove(this._zenHudHideId); } catch (e) {} this._zenHudHideId = 0; }
+        let wasHidden = (!this._zenHud.visible || this._zenHud.opacity < 30);
+        this._zenHud.show();
+        this._refreshZenLabels();
+        if (wasHidden) { this._zenHud.opacity = 0; this._zenHud.translation_y = -12; }
+        if (typeof this._zenHud.raise_top === 'function') { this._zenHud.raise_top(); }
+        this._zenHudTween(255, 0, wasHidden ? 220 : 120);
+        this._armZenHudHide();
+    };
+
+    // Tuck the pill away again a few seconds after the pointer leaves it.
+    proto._armZenHudHide = function() {
+        if (this._zenHudHideId) { try { Mainloop.source_remove(this._zenHudHideId); } catch (e) {} this._zenHudHideId = 0; }
+        this._zenHudHideId = Mainloop.timeout_add(2600, () => {
+            this._zenHudHideId = 0;
+            if (this._zenHud) {
+                this._zenHudTween(0, -8, 320, () => { try { this._zenHud.hide(); this._zenHud.translation_y = 0; } catch (e) {} });
+            }
+            return false;
+        });
     };
 
     proto._positionZenHud = function() {
         if (!this._zenHud) { return; }
         let mon = Main.layoutManager ? Main.layoutManager.primaryMonitor : null;
         if (!mon) { return; }
-        let natW = 200;
-        try { natW = this._zenHud.get_preferred_width(-1)[1] || 200; } catch (e) {}
-        this._zenHud.set_position(mon.x + Math.round((mon.width - natW) / 2), mon.y + 12);
+        let w = 0;
+        try { w = this._zenHud.get_preferred_width(-1)[1] || 0; } catch (e) {}
+        this._zenHud.set_position(mon.x + Math.round((mon.width - w) / 2), mon.y + 12);
+        if (this._zenTopStrip) {
+            this._zenTopStrip.set_position(mon.x, mon.y);
+            this._zenTopStrip.set_size(mon.width, 6);
+            if (typeof this._zenTopStrip.raise_top === 'function') { this._zenTopStrip.raise_top(); }
+        }
+        if (typeof this._zenHud.raise_top === 'function') { this._zenHud.raise_top(); }
     };
 
     proto._refreshZenLabels = function() {
-        if (!this._zenHud || !this._zenHud.visible) {
-            return;
-        }
+        if (!this._zenHud || !this._zenHud.visible) { return; }
         let timer = this._timerQueue ? this._timerQueue.getCurrentTimer() : null;
         let ticks = timer ? timer.getTicksRemaining() : 0;
-        if (this._zenTimeLabel) {
-            this._zenTimeLabel.set_text(this._getFormattedTimeLeft(ticks) || "--:--");
-        }
+        let t = this._getFormattedTimeLeft(ticks) || "--:--";
+        try { this._zenHud.set_label(t + "    \u2715 " + _("Exit focus")); } catch (e) {}
         this._positionZenHud();
     };
 

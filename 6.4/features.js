@@ -22,13 +22,14 @@ const CinnamonEntry = imports.ui.cinnamonEntry;
 const UUID = "zen-pomodoro@vtestah";
 function _(str) { return Gettext.dgettext(UUID, str); }
 
-let C, SoundModule, DialogsModule, RecommendModule, FlowModule;
+let C, SoundModule, DialogsModule, RecommendModule, FlowModule, DateMath;
 if (typeof require !== 'undefined') {
     C = require('./constants');
     SoundModule = require('./sound');
     DialogsModule = require('./dialogs');
     RecommendModule = require('./recommend');
     FlowModule = require('./flow');
+    DateMath = require('./datemath');
 } else {
     const AppletDir = imports.ui.appletManager.applets[UUID];
     C = AppletDir.constants;
@@ -36,6 +37,7 @@ if (typeof require !== 'undefined') {
     DialogsModule = AppletDir.dialogs;
     RecommendModule = AppletDir.recommend;
     FlowModule = AppletDir.flow;
+    DateMath = AppletDir.datemath;
 }
 const {
     POMODORO_STATE_FILE,
@@ -88,7 +90,7 @@ const {
 
 function install(proto) {
     proto._todayStr = function(d = new Date()) {
-        return `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`;
+        return DateMath.dayKey(d);
     };
 
     proto._loadDailyStatsAsync = function(onDone) {
@@ -160,16 +162,12 @@ function install(proto) {
     };
 
     proto._daysBetween = function(a, b) {
-        let da = new Date(a + "T00:00:00");
-        let db = new Date(b + "T00:00:00");
-        return Math.round((db - da) / 86400000);
+        return DateMath.daysBetween(a, b);
     };
 
-    // Calendar date N days before today, at local midnight. Uses date arithmetic
-    // (not 24h subtraction) so it stays correct across DST transitions.
+    // Calendar date N days before today, at local midnight (see datemath.js).
     proto._dateDaysAgo = function(n) {
-        let t = new Date();
-        return new Date(t.getFullYear(), t.getMonth(), t.getDate() - n);
+        return DateMath.dateDaysAgo(new Date(), n);
     };
 
     proto._recordPomodoroCompleted = function() {

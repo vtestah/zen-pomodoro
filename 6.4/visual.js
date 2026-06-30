@@ -182,6 +182,7 @@ function install(proto) {
 
     proto._rebuildFocusFrames = function() {
         this._destroyFocusFrameActors();
+        this._focusFrameGeomSig = null;   // new frames must be repositioned
 
         if (!Main.uiGroup) {
             return;
@@ -237,6 +238,14 @@ function install(proto) {
             this._rebuildFocusFrames();
             return;
         }
+
+        // Frame geometry only changes when the monitors do; skip the per-tick
+        // reposition (set_position/size + raise_top) when nothing has moved.
+        let geomSig = monitors.map((m) => m.x + "," + m.y + "," + m.width + "," + m.height).join("|");
+        if (geomSig === this._focusFrameGeomSig) {
+            return;
+        }
+        this._focusFrameGeomSig = geomSig;
 
         for (let i = 0; i < this._focusFrames.length; i++) {
             let frame = this._focusFrames[i];

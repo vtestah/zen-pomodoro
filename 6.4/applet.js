@@ -1405,7 +1405,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._cancelFocusRitual();
         this._focusRitualLabel.set_text("\u2713  " + text);
 
-        let primary = Main.layoutManager ? Main.layoutManager.primaryMonitor : null;
+        let primary = Main.layoutManager ? (Main.layoutManager.focusMonitor || Main.layoutManager.primaryMonitor) : null;
         if (primary) {
             let [, natW] = this._focusRitualLabel.get_preferred_width(-1);
             let [, natH] = this._focusRitualLabel.get_preferred_height(natW);
@@ -1456,7 +1456,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
     // Short, soft confetti burst on the primary monitor — a non-reactive overlay
     // (never blocks input), animated for ~1.2s, then torn down. No sound.
     _playConfetti() {
-        let primary = Main.layoutManager ? Main.layoutManager.primaryMonitor : null;
+        let primary = Main.layoutManager ? (Main.layoutManager.focusMonitor || Main.layoutManager.primaryMonitor) : null;
         if (!primary) {
             return;
         }

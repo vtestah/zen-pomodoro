@@ -3173,7 +3173,7 @@ function install(proto) {
 
     proto._positionZenHud = function() {
         if (!this._zenHud) { return; }
-        let mon = Main.layoutManager ? Main.layoutManager.primaryMonitor : null;
+        let mon = Main.layoutManager ? (Main.layoutManager.focusMonitor || Main.layoutManager.primaryMonitor) : null;
         if (!mon) { return; }
         let w = 0;
         try { w = this._zenHud.get_preferred_width(-1)[1] || 0; } catch (e) {}
@@ -3230,7 +3230,7 @@ function install(proto) {
             Main.uiGroup.add_actor(this._breathOverlay);
         }
 
-        let primary = Main.layoutManager ? Main.layoutManager.primaryMonitor : null;
+        let primary = Main.layoutManager ? (Main.layoutManager.focusMonitor || Main.layoutManager.primaryMonitor) : null;
         if (primary) {
             this._breathOverlay.set_position(primary.x, primary.y + Math.round(primary.height * 0.32));
             this._breathOverlay.set_size(primary.width, Math.round(primary.height * 0.36));

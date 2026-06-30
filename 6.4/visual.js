@@ -576,7 +576,7 @@ function install(proto) {
         if (this._focusTaskChip && this._focusTaskChipLabel) {
             this._focusTaskChipLabel.set_text(`\u25CF  ${_("Preview")}`);
             this._focusTaskChip.set_style(POMODORO_FOCUS_TASK_CHIP_STYLE);
-            let primary = Main.layoutManager ? Main.layoutManager.primaryMonitor : null;
+            let primary = Main.layoutManager ? (Main.layoutManager.focusMonitor || Main.layoutManager.primaryMonitor) : null;
             if (primary) {
                 let [, natW] = this._focusTaskChip.get_preferred_width(-1);
                 let [, natH] = this._focusTaskChip.get_preferred_height(natW);
@@ -816,7 +816,7 @@ function install(proto) {
                     ? POMODORO_FOCUS_TASK_CHIP_PAUSED_STYLE
                     : POMODORO_FOCUS_TASK_CHIP_STYLE);
 
-                let primary = Main.layoutManager ? Main.layoutManager.primaryMonitor : null;
+                let primary = Main.layoutManager ? (Main.layoutManager.focusMonitor || Main.layoutManager.primaryMonitor) : null;
                 if (primary) {
                     let [, natW] = this._focusTaskChip.get_preferred_width(-1);
                     let [, natH] = this._focusTaskChip.get_preferred_height(natW);
@@ -902,7 +902,7 @@ function install(proto) {
             : _("Focus");
         this._focusRitualLabel.set_text(text);
 
-        let primary = Main.layoutManager ? Main.layoutManager.primaryMonitor : null;
+        let primary = Main.layoutManager ? (Main.layoutManager.focusMonitor || Main.layoutManager.primaryMonitor) : null;
         if (primary) {
             let [, natW] = this._focusRitualLabel.get_preferred_width(-1);
             let [, natH] = this._focusRitualLabel.get_preferred_height(natW);

@@ -69,26 +69,8 @@ function install(proto) {
     };
 
     proto._isFocusFramePulseActive = function(ticks) {
-        if (this._opt_reduceMotion) {
-            return false;
-        }
-        if (true) {
-            return false;
-        }
-
-        let remainingRatio = this._getTimerRemainingRatio(ticks);
-        if (remainingRatio === null) {
-            return false;
-        }
-
-        if (this._currentState === 'pomodoro') {
-            return ticks <= 60 || remainingRatio <= 0.05;
-        }
-
-        if (this._currentState === 'short-break' || this._currentState === 'long-break') {
-            return ticks <= 60 || remainingRatio <= 0.20;
-        }
-
+        // The end-of-phase frame pulse is intentionally disabled — a calm ending
+        // is preferred over a blinking frame. Kept as a stub so callers stay simple.
         return false;
     };
 

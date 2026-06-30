@@ -82,10 +82,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._dailyLabel = null;
         this._taskLabel = null;
         this._sitesLabel = null;
-        this._presetSummaryLabel = null;
         this._presetSubmenu = null;
-        this._compactInfoLabel = null;
-        this._chooseTaskItem = null;
         this._zenItem = null;
         this._ambientItem = null;
         this._focusLength = 0;
@@ -95,7 +92,6 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._resetTimerItem = null;
         this._resetAllItem = null;
         this._skipTimerItem = null;
-        this._sessionSubmenu = null;
         this._statsSubmenu = null;
         this._statTodayItem = null;
         this._statValueLabel = null;
@@ -833,23 +829,8 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (this._sitesLabel) {
             this._sitesLabel.set_text(sitesText);
         }
-        if (this._presetSummaryLabel) {
-            this._presetSummaryLabel.set_text(activePreset);
-        }
         if (this._presetSubmenu && this._presetSubmenu.label) {
             this._presetSubmenu.label.set_text(_("Preset") + ": " + activePreset + this._activePresetRhythm(activePreset));
-        }
-
-        // Active layout: single compact "preset · status" row.
-        if (this._compactInfoLabel) {
-            this._compactInfoLabel.set_text(`${activePreset} \u00B7 ${sitesText}`);
-        }
-
-
-
-
-        if (this._chooseTaskItem) {
-            this._chooseTaskItem.setSensitive(state === "pomodoro-stop");
         }
         if (this._zenItem && this._zenItem.actor) {
             if (runtime.zenEnabled) {
@@ -1228,19 +1209,8 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
     _applyCachedPreset() {
         let preset = this._presetState || {};
 
-        if (this._presetSummaryLabel && preset.activePreset) {
-            this._presetSummaryLabel.set_text(preset.activePreset);
-        }
         if (this._presetSubmenu && this._presetSubmenu.label && preset.activePreset) {
             this._presetSubmenu.label.set_text(_("Preset") + ": " + preset.activePreset + this._activePresetRhythm(preset.activePreset));
-        }
-        if (this._compactInfoLabel && preset.activePreset && this._lastRuntimeState) {
-            let rt = this._lastRuntimeState;
-            let listN = (typeof rt.blockedSitesCount === "number") ? rt.blockedSitesCount : 0;
-            let hostsN = (typeof rt.blockingHostsCount === "number") ? rt.blockingHostsCount : 0;
-            let t = (rt.blockingSectionActive && hostsN > 0) ? _("blocking %d").format(hostsN)
-                : (listN > 0 ? _("%d in list").format(listN) : _("off"));
-            this._compactInfoLabel.set_text(`${preset.activePreset} \u00B7 ${t}`);
         }
         let active = preset.activePreset || "";
         for (let entry of (this._presetItems || [])) {

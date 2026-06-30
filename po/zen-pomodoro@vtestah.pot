@@ -2744,27 +2744,44 @@ msgid ""
 " noise."
 msgstr ""
 
-msgid "Remind before focus ends"
+msgid "Remind before focus or break ends"
 msgstr ""
 
 msgid ""
-"Send a Pushover push shortly before the focus block ends, so you can wrap "
-"up."
+"Send a Pushover push shortly before a focus block or break ends, so you can "
+"wrap up or get ready to come back."
 msgstr ""
 
 msgid "Reminder time (minutes before end)"
 msgstr ""
 
-msgid "How many minutes before the focus block ends to send the reminder."
+msgid "How many minutes before it ends to send the reminder."
 msgstr ""
 
 msgid "Reminder message"
 msgstr ""
 
 msgid ""
-"Sent before the focus block ends. {task} and {minutes} (minutes left) are "
+"Sent before the phase ends. {task} and {minutes} (minutes left) are "
 "substituted. Leave empty to send nothing."
 msgstr ""
 
 msgid "Preview each sound (play buttons) at https://pushover.net/api#sounds"
+msgstr ""
+
+msgid "Remind before"
+msgstr ""
+
+msgid "A break ends"
+msgstr ""
+
+msgid "Focus ends"
+msgstr ""
+
+msgid "Either ends"
+msgstr ""
+
+msgid ""
+"Whether the reminder fires before a break ends (to come back), before focus "
+"ends (to wrap up), or both."
 msgstr ""

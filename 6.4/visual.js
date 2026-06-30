@@ -710,6 +710,10 @@ function install(proto) {
             depth = Math.max(POMODORO_FOCUS_GLOW_DEPTH_MIN, Math.min(POMODORO_FOCUS_GLOW_DEPTH_MAX, depth));
             let baseAlpha = (typeof this._opt_glowIntensity === 'number' && this._opt_glowIntensity > 0)
                 ? this._opt_glowIntensity / 100 : POMODORO_FOCUS_GLOW_MAX_ALPHA;
+            // Scale the perimeter trace (track / ticks / progress) by glow
+            // intensity too, so lowering it dims the whole frame, not just the
+            // soft wash (1.0 at the default intensity — no change there).
+            let traceScale = baseAlpha / POMODORO_FOCUS_GLOW_MAX_ALPHA;
             let pw = POMODORO_FOCUS_GLOW_PROGRESS_WIDTH;
             let maxA = baseAlpha * (1 + (this._glowBreathBoost || 0));
             let cornersOnly = (this._opt_frameStyle === 'corners');
@@ -755,7 +759,7 @@ function install(proto) {
 
             // Faint full ∩ track.
             cr.setLineWidth(pw);
-            cr.setSourceRGBA(r, g, b, POMODORO_FOCUS_GLOW_TRACK_ALPHA);
+            cr.setSourceRGBA(r, g, b, POMODORO_FOCUS_GLOW_TRACK_ALPHA * traceScale);
             cr.moveTo(x0, y1);
             cr.lineTo(x0, y0);
             cr.lineTo(x1, y0);
@@ -764,7 +768,7 @@ function install(proto) {
 
             // Milestone marks: one per pomodoro boundary during focus
             // (k / segments), or quarters during a break.
-            cr.setSourceRGBA(r, g, b, POMODORO_FOCUS_GLOW_TICK_ALPHA);
+            cr.setSourceRGBA(r, g, b, POMODORO_FOCUS_GLOW_TICK_ALPHA * traceScale);
             let tickFracs = [];
             if (this._glowSegments > 1) {
                 for (let k = 1; k < this._glowSegments; k++) {
@@ -786,7 +790,7 @@ function install(proto) {
                 let sideLen = y1 - y0, topLen = x1 - x0;
                 let rem = (2 * sideLen + topLen) * frac;
 
-                cr.setSourceRGBA(r, g, b, POMODORO_FOCUS_GLOW_PROGRESS_ALPHA);
+                cr.setSourceRGBA(r, g, b, POMODORO_FOCUS_GLOW_PROGRESS_ALPHA * traceScale);
                 cr.setLineWidth(pw);
                 cr.moveTo(x0, y1);
 

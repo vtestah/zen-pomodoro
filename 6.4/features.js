@@ -2960,6 +2960,15 @@ function install(proto) {
             try { Mainloop.source_remove(fx._zenTweenId); } catch (e) {}
             fx._zenTweenId = 0;
         }
+        // Reduce motion: jump straight to the target brightness, no fade.
+        if (this._opt_reduceMotion) {
+            fx._zenB = target;
+            try { fx.set_brightness(target); } catch (e) {}
+            if (removeAtEnd && Math.abs(target) < 0.001) {
+                try { actor.remove_effect_by_name("zen-spotlight"); } catch (e) {}
+            }
+            return;
+        }
         let start = (typeof fx._zenB === 'number') ? fx._zenB : 0;
         let steps = 9;
         let i = 0;

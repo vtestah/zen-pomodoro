@@ -101,7 +101,11 @@ function _(str) {
 // i.e a setting of 25 in the options can mean 25 seconds if we comment out the '* 60'
 // makes it easy to test all of the timers quickly
 function convertMinutesToSeconds(minutes) {
-    return minutes * 60;
+    // Guard a corrupted/non-numeric setting: setTimerLimit throws on anything
+    // below 1, so clamp to a sane 1-minute floor instead of crashing the timer.
+    let m = Number(minutes);
+    if (!isFinite(m) || m < 1) { m = 1; }
+    return Math.round(m * 60);
 }
 
 function main(metadata, orientation, panelHeight, instanceId) {

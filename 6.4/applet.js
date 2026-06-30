@@ -148,6 +148,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         // Set when the current pomodoro is skipped, so the next phase doesn't
         // record it as a completed pomodoro (which would inflate the stats).
         this._skippedPomodoro = false;
+        // Armed at focus start; the pre-end warning fires once when the remaining
+        // time first crosses the threshold (robust to a skipped/drifted tick).
+        this._warnArmed = false;
         this._setTimerLabel(0);
         this._updatePanelFocusCue();
 
@@ -1625,12 +1628,19 @@ class PomodoroApplet extends Applet.TextIconApplet {
         pomodoroTimer.connect('timer-tick', (timer) => {
             this._timerTickUpdate(timer);
             let rem = timer.getTicksRemaining();
-            if (rem === this._opt_warnSoundDelay) {
+            // Warn once when the remaining time first crosses the threshold, so a
+            // skipped/drifted tick can't make it miss the exact second.
+            if (this._warnArmed && this._opt_warnSoundDelay > 0 && rem > 0 && rem <= this._opt_warnSoundDelay) {
+                this._warnArmed = false;
                 this._playWarnSound();
             }
-            if (this._opt_intervalChime && this._opt_intervalChimeSeconds > 0 &&
-                rem > 0 && (rem % this._opt_intervalChimeSeconds) === 0) {
-                this._playIntervalChime();
+            // Chime on elapsed interval boundaries — never at the very start, even
+            // when the focus length is an exact multiple of the chime interval.
+            if (this._opt_intervalChime && this._opt_intervalChimeSeconds > 0 && rem > 0) {
+                let elapsed = (timer.getTimerLimit() || 0) - rem;
+                if (elapsed > 0 && (elapsed % this._opt_intervalChimeSeconds) === 0) {
+                    this._playIntervalChime();
+                }
             }
         });
     
@@ -1643,6 +1653,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         pomodoroTimer.connect('timer-started', () => {
             this._glowBreathedForTimer = false;
             this._skippedPomodoro = false;   // fresh focus block — clear any stale skip flag
+            this._warnArmed = true;          // arm the pre-end warning for this block
             this._setCurrentState('pomodoro');
             this._playStartSound();
             this._playFocusStartRitual();

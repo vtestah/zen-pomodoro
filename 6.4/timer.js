@@ -217,6 +217,10 @@ class Timer {
         return this._currentTickCount;
     }
 
+    getTimerLimit() {
+        return this._timerLimit;
+    }
+
     // Extend (or shorten) a running or paused timer by some ticks, in place,
     // without restarting it. Used by the "+N min" break action.
     addTime(ticks) {

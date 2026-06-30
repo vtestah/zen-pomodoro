@@ -85,7 +85,7 @@
         },
         "sec_panel": {
             "type": "section",
-            "title": "Panel",
+            "title": "Display and controls",
             "keys": [
                 "panel_icon_style",
                 "panel_custom_icon",
@@ -498,7 +498,8 @@
         "max": 60,
         "step": 1,
         "description": "Glow intensity",
-        "tooltip": "How bright the on-screen edge glow is during focus — higher is more visible, lower is subtler."
+        "tooltip": "How bright the on-screen edge glow is during focus — higher is more visible, lower is subtler.",
+        "dependency": "frame_style=glow"
     },
     "breathing_pattern": {
         "type": "combobox",
@@ -509,7 +510,8 @@
             "4-7-8": "478",
             "Relaxing 4-6": "relax"
         },
-        "tooltip": "Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 — seconds per phase."
+        "tooltip": "Breathing rhythm for the guide: Box (4-4-4-4), calming 4-7-8, or relaxed 4-6 — seconds per phase.",
+        "dependency": "break_breathing"
     },
     "chip_position": {
         "type": "combobox",
@@ -521,7 +523,8 @@
             "Top-right": "tr",
             "Top-left": "tl"
         },
-        "tooltip": "Which screen corner the on-screen task chip appears in."
+        "tooltip": "Which screen corner the on-screen task chip appears in.",
+        "dependency": "focus_show_task_chip"
     },
     "reduce_motion": {
         "type": "switch",
@@ -823,7 +826,8 @@
         "expand-width": true,
         "description": "Notification title",
         "default": "Zen Pomodoro",
-        "tooltip": "Title shown on the push notifications."
+        "tooltip": "Title shown on the push notifications.",
+        "dependency": "pushover_enabled"
     },
     "pushover_msg_focus": {
         "type": "entry",

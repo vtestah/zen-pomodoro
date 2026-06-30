@@ -92,7 +92,8 @@ Cinnamon 6.x; the applet keeps its data under `~/.local/state/zen-pomodoro/`.
 - **Sounds:** a ticking option, phase alerts, an interval chime, and ambient
   soundscapes (white, pink or brown noise, rain, sea, or your own file).
 - **Push to your phone (optional):** phase changes via Pushover with your own
-  keys, and customizable message text, sound and priority.
+  keys (stored as plain text in the applet's settings, like other applet
+  settings), and customizable message text, sound and priority.
 - **Automation (optional):** run a command of your choice when focus starts, a
   break starts, or you reach your daily goal.
 - **Your look and controls:** theme presets and custom accent colours, frame

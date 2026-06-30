@@ -125,7 +125,7 @@ var SoundEffect = class SoundEffect {
 
     setSoundPath(soundPath) {
         soundPath = soundPath || "";
-        let exists = soundPath !== "" && GLib.file_test(soundPath, GLib.FileTest.EXISTS);
+        let exists = soundPath !== "" && GLib.file_test(soundPath, GLib.FileTest.IS_REGULAR);
         if (soundPath !== "" && !exists) {
             global.logError(`Zen Pomodoro: sound file not found: ${soundPath}`);
         }
@@ -292,7 +292,7 @@ var AmbientLoop = class AmbientLoop {
 
     setSoundPath(soundPath) {
         soundPath = soundPath || "";
-        let exists = soundPath !== "" && GLib.file_test(soundPath, GLib.FileTest.EXISTS);
+        let exists = soundPath !== "" && GLib.file_test(soundPath, GLib.FileTest.IS_REGULAR);
         if (soundPath !== "" && !exists) {
             global.logError(`Zen Pomodoro: sound file not found: ${soundPath}`);
         }
@@ -357,6 +357,14 @@ var AmbientLoop = class AmbientLoop {
                     let res = pb.query_duration(G.Format.TIME);
                     this._dur = (res && res.length > 1 && res[0]) ? res[1] : -1;
                 } catch (e) { this._dur = -1; }
+                if (this._dur <= 0) {
+                    // Unknown duration: the gapless segment loop would seek to a
+                    // stop position of -1 and thrash. Fall back to the one-shot looper.
+                    this._stopPlaybin();
+                    if (!this._fallback) { this._fallback = new SoundEffect(this._soundPath); }
+                    this._fallback.play({ loop: true, volume: volume });
+                    return;
+                }
                 try {
                     pb.seek(1.0, G.Format.TIME, G.SeekFlags.FLUSH | G.SeekFlags.SEGMENT,
                             G.SeekType.SET, 0, G.SeekType.SET, this._dur);
@@ -364,7 +372,7 @@ var AmbientLoop = class AmbientLoop {
                 try { pb.set_state(G.State.PLAYING); } catch (e) {}
             });
             let hSeg = bus.connect('message::segment-done', () => {
-                if (this._playbin !== pb) { return; }
+                if (this._playbin !== pb || this._dur <= 0) { return; }
                 try {
                     pb.seek(1.0, G.Format.TIME, G.SeekFlags.SEGMENT,
                             G.SeekType.SET, 0, G.SeekType.SET, this._dur);

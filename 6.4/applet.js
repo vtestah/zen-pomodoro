@@ -2559,6 +2559,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._clearIdleWatches();
         this._disarmSoftLanding();
         this._stopAllSounds();
+        this._stopTimerPreview();
+        this._stopAmbientPreview();
         this._disableDnd();
         this._resumePausedMedia();
         this._stopBreathing();

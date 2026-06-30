@@ -181,5 +181,6 @@ function install(proto) {
             }
         }
         this._stopAmbientSound();
+        if (this._tickerLoop) { try { this._tickerLoop.stop(); } catch (e) {} }
     };
 }

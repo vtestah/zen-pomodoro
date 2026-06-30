@@ -961,17 +961,8 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             let lab = new St.Label({ text: "• " + d.text, x_expand: true });
             row.add_child(lab);
             let id = d.id;
-            let del = new St.Button({
-                style_class: 'pomodoro-task-btn', can_focus: false,
-                child: new St.Icon({ icon_name: 'edit-delete-symbolic', icon_size: 14 })
-            });
-            new Tooltips.Tooltip(del, _("Delete"));
-            del.connect('button-press-event', () => true);
-            del.connect('button-release-event', (a, ev) => {
-                if (ev.get_button() === 1) {
-                    GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('delete-distraction', id); return GLib.SOURCE_REMOVE; });
-                }
-                return true;
+            let del = this._rowActionButton('edit-delete-symbolic', _("Delete"), () => {
+                GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('delete-distraction', id); return GLib.SOURCE_REMOVE; });
             });
             row.add_child(del);
             item.addActor(row, { expand: true, span: -1 });
@@ -990,6 +981,26 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         if (this._distractSubmenu.label) {
             this._distractSubmenu.label.set_text(_("Distractions") + (items.length ? " (" + items.length + ")" : ""));
         }
+    }
+
+    // An icon row-action button (delete/edit/done) that works with pointer,
+    // keyboard (Enter/Space) and screen readers: St.Button emits 'clicked' for
+    // both pointer and key activation once it is focusable, and we give it an
+    // accessible name so it isn't an anonymous icon to assistive tech.
+    _rowActionButton(iconName, label, onClicked) {
+        let btn = new St.Button({
+            style_class: "pomodoro-task-btn", can_focus: true,
+            child: new St.Icon({ icon_name: iconName, icon_size: 14 })
+        });
+        try {
+            if (typeof btn.get_accessible === 'function') {
+                let acc = btn.get_accessible();
+                if (acc && typeof acc.set_name === 'function') { acc.set_name(label); }
+            }
+        } catch (e) {}
+        new Tooltips.Tooltip(btn, label);
+        btn.connect('clicked', () => { onClicked(); return true; });
+        return btn;
     }
 
     setTasks(list, currentId, finishText, templates) {
@@ -1083,26 +1094,15 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 rlab.clutter_text.set_ellipsize(Pango.EllipsizeMode.END);
                 row.add_child(rlab);
             }
-            let editBtn = new St.Button({
-                style_class: "pomodoro-task-btn", can_focus: false,
-                child: new St.Icon({ icon_name: "document-edit-symbolic", icon_size: 14 })
-            });
-            editBtn.connect('clicked', () => { this.emit('task-edit', t.id); return true; });
-            new Tooltips.Tooltip(editBtn, _("Edit task"));
+            let editBtn = this._rowActionButton("document-edit-symbolic", _("Edit task"), () => this.emit('task-edit', t.id));
             row.add_child(editBtn);
-            let doneBtn = new St.Button({
-                style_class: "pomodoro-task-btn", can_focus: false,
-                child: new St.Icon({ icon_name: t.completed ? "edit-undo-symbolic" : "object-select-symbolic", icon_size: 14 })
+            let doneBtn = this._rowActionButton(t.completed ? "edit-undo-symbolic" : "object-select-symbolic", t.completed ? _("Reopen task") : _("Mark done"), () => {
+                GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('task-complete', t.id); return GLib.SOURCE_REMOVE; });
             });
-            doneBtn.connect('button-release-event', (a, ev) => { if (ev.get_button() === 1) { GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('task-complete', t.id); return GLib.SOURCE_REMOVE; }); } return true; });
-            new Tooltips.Tooltip(doneBtn, t.completed ? _("Reopen task") : _("Mark done"));
             row.add_child(doneBtn);
-            let delBtn = new St.Button({
-                style_class: "pomodoro-task-btn", can_focus: false,
-                child: new St.Icon({ icon_name: "edit-delete-symbolic", icon_size: 14 })
+            let delBtn = this._rowActionButton("edit-delete-symbolic", _("Delete task"), () => {
+                GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('task-delete', t.id); return GLib.SOURCE_REMOVE; });
             });
-            delBtn.connect('button-release-event', (a, ev) => { if (ev.get_button() === 1) { GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('task-delete', t.id); return GLib.SOURCE_REMOVE; }); } return true; });
-            new Tooltips.Tooltip(delBtn, _("Delete task"));
             row.add_child(delBtn);
             item.addActor(row, { expand: true, span: -1 });
             item.connect('activate', () => this.emit('select-task', t.id));
@@ -1182,24 +1182,15 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
                 label.set_style("font-weight: bold; color: " + this._accentColor("rgb(235, 175, 75)") + ";");
             }
             row.add_child(label);
-            let editBtn = new St.Button({
-                style_class: "pomodoro-task-btn", can_focus: false,
-                child: new St.Icon({ icon_name: "document-edit-symbolic", icon_size: 14 })
-            });
-            editBtn.connect('clicked', () => {
+            let editBtn = this._rowActionButton("document-edit-symbolic", _("Edit preset"), () => {
                 this._presetEditPending = true;
                 this.emit('preset-edit', idx);
                 GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this._presetEditPending = false; return GLib.SOURCE_REMOVE; });
-                return true;
             });
-            new Tooltips.Tooltip(editBtn, _("Edit preset"));
             row.add_child(editBtn);
-            let delBtn = new St.Button({
-                style_class: "pomodoro-task-btn", can_focus: false,
-                child: new St.Icon({ icon_name: "edit-delete-symbolic", icon_size: 14 })
+            let delBtn = this._rowActionButton("edit-delete-symbolic", _("Delete preset"), () => {
+                GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('preset-delete', idx); return GLib.SOURCE_REMOVE; });
             });
-            delBtn.connect('button-release-event', (a, ev) => { if (ev.get_button() === 1) { GLib.idle_add(GLib.PRIORITY_DEFAULT, () => { this.emit('preset-delete', idx); return GLib.SOURCE_REMOVE; }); } return true; });
-            new Tooltips.Tooltip(delBtn, _("Delete preset"));
             row.add_child(delBtn);
             item.addActor(row, { expand: true, span: -1 });
             item.connect('activate', () => {

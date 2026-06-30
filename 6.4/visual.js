@@ -23,10 +23,7 @@ const {
     POMODORO_FOCUS_FRAME_WARNING_STYLE,
     POMODORO_BREAK_OVER_FRAME_STYLE,
     POMODORO_OVERRUN_FRAME_STYLE,
-    POMODORO_FOCUS_FRAME_PULSE_INTERVAL_MS,
     POMODORO_FOCUS_FRAME_TRANSITION,
-    POMODORO_FOCUS_FRAME_PULSE_STYLES,
-    POMODORO_BREAK_FRAME_PULSE_STYLES,
     POMODORO_FOCUS_FRAME_STYLE,
     POMODORO_PANEL_FOCUS_CUE_STYLE,
     POMODORO_PANEL_BREAK_CUE_STYLE,
@@ -59,32 +56,6 @@ const {
 } = C;
 
 function install(proto) {
-    proto._getPulseStyle = function(styles, ticks) {
-        if (!styles || styles.length === 0) {
-            return POMODORO_FOCUS_FRAME_STYLE;
-        }
-
-        let pulseIndex = Math.floor(GLib.get_monotonic_time() / (POMODORO_FOCUS_FRAME_PULSE_INTERVAL_MS * 1000)) % styles.length;
-        return styles[pulseIndex];
-    };
-
-    proto._isFocusFramePulseActive = function(ticks) {
-        // The end-of-phase frame pulse is intentionally disabled — a calm ending
-        // is preferred over a blinking frame. Kept as a stub so callers stay simple.
-        return false;
-    };
-
-    proto._startFocusFramePulse = function() {
-        if (this._focusFramePulseSourceId !== null) {
-            return;
-        }
-
-        this._focusFramePulseSourceId = Mainloop.timeout_add(POMODORO_FOCUS_FRAME_PULSE_INTERVAL_MS, () => {
-            this._updateFocusFrame(this._focusFrameLastTicks);
-            return true;
-        });
-    };
-
     proto._stopFocusFramePulse = function() {
         if (this._focusFramePulseSourceId === null) {
             return;
@@ -113,10 +84,7 @@ function install(proto) {
 
         if (this._currentState === 'pomodoro') {
             if (ticks <= 60 || remainingRatio <= 0.05) {
-                if (true) {
-                    return POMODORO_FOCUS_FRAME_WARNING_STYLE;
-                }
-                return this._getPulseStyle(POMODORO_FOCUS_FRAME_PULSE_STYLES, ticks);
+                return POMODORO_FOCUS_FRAME_WARNING_STYLE;
             }
 
             if (remainingRatio <= 0.20) {
@@ -136,10 +104,7 @@ function install(proto) {
 
         if (this._currentState === 'short-break' || this._currentState === 'long-break') {
             if (ticks <= 60 || remainingRatio <= 0.20) {
-                if (true) {
-                    return POMODORO_BREAK_OVER_FRAME_STYLE;
-                }
-                return this._getPulseStyle(POMODORO_BREAK_FRAME_PULSE_STYLES, ticks);
+                return POMODORO_BREAK_OVER_FRAME_STYLE;
             }
         }
 
@@ -362,11 +327,7 @@ function install(proto) {
             return;
         }
 
-        if (this._isFocusFramePulseActive(ticks)) {
-            this._startFocusFramePulse();
-        } else {
-            this._stopFocusFramePulse();
-        }
+        this._stopFocusFramePulse();
 
         if (fstyle === 'glow' || fstyle === 'corners') {
             // Glow frame: soft inward vignette + perimeter progress (Cairo).

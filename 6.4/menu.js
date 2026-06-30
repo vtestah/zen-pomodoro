@@ -430,26 +430,9 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
 
         // Distractions: jot a thought and keep working; review / clear here.
-        this._distractSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Distractions"));
-        this.addMenuItem(this._distractSubmenu);
-        this._buildDistractEntry();
-        this._populateDistractions();
-        this._distractSubmenu.menu.connect('open-state-changed', (m, isOpen) => {
-            // Don't auto-focus the entry: holding key focus here means a later
-            // click (e.g. delete) blurs it and closes the menu. Just recolour
-            // the placeholder from the entry's theme. Click the field to type.
-            if (isOpen && this._distractEntry && this._distractHint) {
-                GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
-                    if (this._distractEntry && this._distractHint) {
-                        try {
-                            let ec = this._distractEntry.get_theme_node().get_foreground_color();
-                            this._distractHint.set_style("color: rgba(" + ec.red + ", " + ec.green + ", " + ec.blue + ", 0.55);");
-                        } catch (e) {}
-                    }
-                    return GLib.SOURCE_REMOVE;
-                });
-            }
-        });
+        // Idle auto-hides it when empty; the active layout shows it always so a
+        // thought can be jotted mid-focus (see _addDistractSubmenu).
+        this._addDistractSubmenu(false);
 
         // Session setup — preset (focus + breaks + cycle).
         this._presetSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Preset"));
@@ -497,6 +480,33 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this.addMenuItem(quickStart);
     }
 
+    // Distractions submenu — jot a thought without leaving focus; review / clear
+    // here. alwaysVisible keeps it shown even when empty (active layout) so the
+    // first thought is reachable; idle auto-hides it when empty.
+    _addDistractSubmenu(alwaysVisible) {
+        this._distractAlwaysVisible = !!alwaysVisible;
+        this._distractSubmenu = new PopupMenu.PopupSubMenuMenuItem(_("Distractions"));
+        this.addMenuItem(this._distractSubmenu);
+        this._buildDistractEntry();
+        this._populateDistractions();
+        this._distractSubmenu.menu.connect('open-state-changed', (m, isOpen) => {
+            // Don't auto-focus the entry: holding key focus here means a later
+            // click (e.g. delete) blurs it and closes the menu. Just recolour
+            // the placeholder from the entry's theme. Click the field to type.
+            if (isOpen && this._distractEntry && this._distractHint) {
+                GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
+                    if (this._distractEntry && this._distractHint) {
+                        try {
+                            let ec = this._distractEntry.get_theme_node().get_foreground_color();
+                            this._distractHint.set_style("color: rgba(" + ec.red + ", " + ec.green + ", " + ec.blue + ", 0.55);");
+                        } catch (e) {}
+                    }
+                    return GLib.SOURCE_REMOVE;
+                });
+            }
+        });
+    }
+
     _buildActiveLayout() {
         this._buildStatusHeader();
 
@@ -504,6 +514,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         let sr = this._makeSkipResetItems();
         this.addMenuItem(sr.skipItem);
+        this._addDistractSubmenu(true);
         this._zenItem = new PopupMenu.PopupSwitchMenuItem(_("Zen mode"), false);
         this._zenItem.connect('toggled', (item, state) => this.emit('toggle-zen', state));
         new Tooltips.Tooltip(this._zenItem.actor, _("Focus spotlight: while a focus session runs, every other window dims so the one you're working in stands out. Click the on-screen pill to exit."));
@@ -951,8 +962,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
         this._distractListItems = [];
         let items = this._distractions || [];
-        // Review surface: only show the section when there's something captured.
-        if (this._distractSubmenu.actor) { this._distractSubmenu.actor.visible = (items.length > 0); }
+        // Review surface: only show the section when there's something captured
+        // — unless the active layout asked to keep it shown so a thought can be
+        // jotted mid-focus even before anything is captured.
+        if (this._distractSubmenu.actor) { this._distractSubmenu.actor.visible = (this._distractAlwaysVisible || items.length > 0); }
 
         for (let d of items) {
             let item = new PopupMenu.PopupBaseMenuItem();

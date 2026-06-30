@@ -366,6 +366,10 @@ function install(proto) {
 
         this._focusFrameLastTicks = ticks;
 
+        // The task chip / HUD has its own toggle (focus_show_task_chip) and must
+        // update regardless of frame style — even when the frame is "off".
+        this._updateFocusHud(ticks);
+
         let fstyle = this._opt_frameStyle || 'glow';
         if (fstyle === 'off') {
             this._stopFocusFramePulse();
@@ -381,8 +385,6 @@ function install(proto) {
         } else {
             this._stopFocusFramePulse();
         }
-
-        this._updateFocusHud(ticks);
 
         if (fstyle === 'glow' || fstyle === 'corners') {
             // Glow frame: soft inward vignette + perimeter progress (Cairo).

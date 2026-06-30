@@ -1758,7 +1758,7 @@ function install(proto) {
         let goal = this._opt_dailyGoal || 0;
         let todaySub = (goal > 0) ? _("%d / %d goal").format(st.today || 0, goal) : this._dashFmtMin(st.todayMin || 0);
         cards.add(this._dashStatCard(_("Today"), (st.today || 0) + " \ud83c\udf45", todaySub, accent));
-        cards.add(this._dashStatCard(_("This week"), (st.week || 0) + " \ud83c\udf45", this._dashFmtMin(st.weekMin || 0) + (trend ? ("   " + trend) : ""), accent));
+        cards.add(this._dashStatCard(_("Last 7 days"), (st.week || 0) + " \ud83c\udf45", this._dashFmtMin(st.weekMin || 0) + (trend ? ("   " + trend) : ""), accent));
         cards.add(this._dashStatCard(_("Streak"), (st.streak || 0) + " \ud83d\udd25", _("best %d").format(st.longestStreak || 0), green));
         cards.add(this._dashStatCard(_("All time"), (st.total || 0) + " \ud83c\udf45", this._dashFmtMin(st.totalMinutes || 0), accent));
         root.add(cards);
@@ -1769,11 +1769,11 @@ function install(proto) {
             let bestDow = 0;
             for (let i = 1; i < 7; i++) { if (dowSum[i] > dowSum[bestDow]) { bestDow = i; } }
             let dowNames = [_("Sun"), _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat")];
-            let review = new St.Label({ text: _("This week: %d \ud83c\udf45 \u00b7 %s \u00b7 best day %s").format(st.week || 0, this._dashFmtMin(st.weekMin || 0), dowNames[bestDow]) });
+            let review = new St.Label({ text: _("Last 7 days: %d \ud83c\udf45 \u00b7 %s \u00b7 best weekday %s").format(st.week || 0, this._dashFmtMin(st.weekMin || 0), dowNames[bestDow]) });
             review.clutter_text.line_wrap = true;
             root.add(review);
 
-            let monthReview = new St.Label({ text: _("This month: %d \ud83c\udf45 \u00b7 %s \u00b7 best day %d \ud83c\udf45").format(st.month || 0, this._dashFmtMin(st.monthMin || 0), st.bestDay || 0) });
+            let monthReview = new St.Label({ text: _("Last 30 days: %d \ud83c\udf45 \u00b7 %s \u00b7 best day ever %d \ud83c\udf45").format(st.month || 0, this._dashFmtMin(st.monthMin || 0), st.bestDay || 0) });
             monthReview.clutter_text.line_wrap = true;
             root.add(monthReview);
         }

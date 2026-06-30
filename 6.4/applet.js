@@ -1254,13 +1254,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 let num = parseInt(p.pomodori) || 0;
                 if (pom > 0 && sb > 0 && lb > 0 && num > 0) {
                     let name = (p.name || "").toString().trim();
-                    out.push({
-                        name: name || `${pom}/${sb}/${lb} x${num}`,
-                        pomodoro: pom,
-                        short_break: sb,
-                        long_break: lb,
-                        pomodori: num
-                    });
+                    // Normalize like _addPreset, so a hand-edited custom_presets
+                    // entry can't carry out-of-range durations.
+                    out.push(this._normPreset(name || `${pom}/${sb}/${lb} x${num}`, pom, sb, lb, num));
                 }
             }
         }

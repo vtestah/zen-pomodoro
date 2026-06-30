@@ -239,6 +239,17 @@
                 "pushover_customize"
             ]
         },
+        "sec_po_reminder": {
+            "type": "section",
+            "title": "Reminder",
+            "dependency": "pushover_enabled",
+            "keys": [
+                "pushover_reminder",
+                "pushover_reminder_phase",
+                "pushover_reminder_minutes",
+                "pushover_msg_reminder"
+            ]
+        },
         "sec_po_messages": {
             "type": "section",
             "title": "Notification text",
@@ -249,11 +260,7 @@
                 "pushover_msg_short_break",
                 "pushover_msg_long_break",
                 "pushover_msg_resume",
-                "pushover_msg_goal",
-                "pushover_reminder",
-                "pushover_reminder_phase",
-                "pushover_reminder_minutes",
-                "pushover_msg_reminder"
+                "pushover_msg_goal"
             ]
         },
         "sec_po_alerts": {
@@ -613,7 +620,7 @@
         "type": "switch",
         "description": "Offer to extend focus when a pomodoro ends (stay in flow)",
         "default": false,
-        "tooltip": "When a pomodoro ends, offer to extend it to stay in flow."
+        "tooltip": "When a pomodoro ends, offer to extend it to stay in flow. Only applies when the next phase doesn't start automatically."
     },
     "flow_extend_minutes": {
         "type": "scale",
@@ -629,7 +636,7 @@
         "type": "switch",
         "description": "Soft landing: don't break focus while you're still working",
         "default": false,
-        "tooltip": "When a focus pomodoro ends while you're actively working, hold the break until a natural pause instead of interrupting you. Off by default; only applies when 'auto-continue to break' is off."
+        "tooltip": "When a focus pomodoro ends while you're actively working, hold the break until a natural pause instead of interrupting you. Off by default; only applies when the next phase doesn't start automatically."
     },
     "flow_soft_landing_behavior": {
         "type": "combobox",

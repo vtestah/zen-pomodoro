@@ -72,6 +72,17 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         }
     }
 
+    // Re-sync the menu font scale from the applet's current option. Appearance
+    // bindings can fire before the bound option updates, so the menu re-applies
+    // its scale on open to guarantee it matches the setting.
+    setFontScale(scale) {
+        let s = (typeof scale === "number" && scale > 0) ? scale : 100;
+        if (s !== this._menuFontScale) {
+            this._menuFontScale = s;
+            this._applyMenuActorStyle();
+        }
+    }
+
     _nullWidgetRefs() {
         this._statusItem = null;
         this._stateBadgeLabel = null;

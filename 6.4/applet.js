@@ -320,7 +320,14 @@ class PomodoroApplet extends Applet.TextIconApplet {
         // Refresh the runtime when the menu opens, so the blocking row reflects
         // the real /etc/hosts state (read only while the menu is open).
         this._appletMenu.connect('open-state-changed', (m, open) => {
-            if (open) { try { this._updateMenuRuntime(); } catch (e) {} }
+            if (open) {
+                try {
+                    // Appearance bindings can fire before the bound option updates,
+                    // so re-sync the menu font scale to the current setting on open.
+                    this._appletMenu.setFontScale(this._opt_menuFontScale || 100);
+                    this._updateMenuRuntime();
+                } catch (e) {}
+            }
         });
         this._updatePresetIndicator();
         this._createFocusFrame();

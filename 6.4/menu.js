@@ -457,6 +457,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         sitesItem.addActor(this._sitesLabel, { expand: true, align: St.Align.END });
         sitesItem.connect('activate', () => { this.emit('open-blocking-settings'); });
         new Tooltips.Tooltip(sitesItem.actor, _("Manage blocked sites. A browser using secure DNS (DoH) can bypass this."));
+        this._sitesItem = sitesItem;
         this.addMenuItem(sitesItem);
 
         // Statistics — one compact clickable row that opens the dashboard.
@@ -826,6 +827,10 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
             : (listN > 0 ? _("%d in list").format(listN) : _("off"));
 
         // Idle layout: separate Sites and Preset info rows.
+        if (this._sitesItem && this._sitesItem.actor) {
+            // Mirror the Zen item: hide the whole row when the feature is off.
+            if (runtime.blockingEnabled) { this._sitesItem.actor.show(); } else { this._sitesItem.actor.hide(); }
+        }
         if (this._sitesLabel) {
             this._sitesLabel.set_text(sitesText);
         }

@@ -830,6 +830,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             timerRunning: Boolean(timer && timer.isRunning()),
             timerPaused: this._isPausedState(),
             blockedSitesCount: this._getBlockedSitesCount(),
+            blockingEnabled: Boolean(this._opt_enableBlocking),
             blockingSectionActive: bstat.sectionActive,
             blockingHostsCount: bstat.hostsCount,
             hotkey: this._opt_hotkey || "",

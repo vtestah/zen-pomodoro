@@ -265,6 +265,12 @@ function install(proto) {
             if (run > longest) { longest = run; }
             prev = d;
         }
+        // Keep a single, consistent 🔥 number: when a daily goal is set the streak
+        // follows the goal streak (same value the menu and the goal celebration
+        // use, and unbounded); otherwise it's the run of consecutive days with any
+        // focus (bounded by the ~18-week history retention).
+        let hasGoal = (this._opt_dailyGoal || 0) > 0;
+        let goalStreak = (this._dailyStatsData && this._dailyStatsData.streak) || 0;
         return {
             today: todayCell.c,
             todayMin: todayCell.m,
@@ -278,7 +284,7 @@ function install(proto) {
             interruptionsToday: (todayCell.i || 0),
             interruptionsWeek: weekI,
             interruptionsTotal: (this._dailyStatsData && this._dailyStatsData.totalInterruptions) || 0,
-            streak: cur,
+            streak: hasGoal ? goalStreak : cur,
             longestStreak: longest,
             bestDay: best,
             hours: (this._dailyStatsData && Array.isArray(this._dailyStatsData.hours) && this._dailyStatsData.hours.length === 24) ? this._dailyStatsData.hours : new Array(24).fill(0)

@@ -3057,6 +3057,9 @@ function install(proto) {
     // another screen brightens it right away.
     proto._startZenPointerWatch = function() {
         try { this._zenPointerMonitor = global.display.get_current_monitor(); } catch (e) { this._zenPointerMonitor = -1; }
+        // Single monitor: the pointer can't move to another screen, so there's
+        // nothing to follow — skip the 200ms poll entirely.
+        try { if (global.display.get_n_monitors() <= 1) { return; } } catch (e) {}
         if (this._zenPointerPollId) { return; }
         this._zenPointerPollId = Mainloop.timeout_add(200, () => {
             let isFocus = (this._currentState === 'pomodoro' || this._currentState === 'pomodoro-paused' || this._currentState === 'pomodoro-overrun');
@@ -3266,7 +3269,10 @@ function install(proto) {
         }
         this._breathStartMs = GLib.get_monotonic_time() / 1000;
         this._tickBreathing();
-        this._breathSourceId = Mainloop.timeout_add(60, () => {
+        // The circle is static under reduce-motion, so a slow tick keeps the phase
+        // label current with far fewer wakeups; otherwise animate smoothly.
+        let breathMs = this._opt_reduceMotion ? 250 : 60;
+        this._breathSourceId = Mainloop.timeout_add(breathMs, () => {
             this._tickBreathing();
             return true;
         });

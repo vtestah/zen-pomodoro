@@ -2089,7 +2089,9 @@ msgid "Offer to extend focus when a pomodoro ends (stay in flow)"
 msgstr ""
 
 #. settings-schema.json->flow_extend->tooltip
-msgid "When a pomodoro ends, offer to extend it to stay in flow."
+msgid ""
+"When a pomodoro ends, offer to extend it to stay in flow. Only applies when "
+"the next phase doesn't start automatically."
 msgstr ""
 
 #. settings-schema.json->flow_extend_minutes->description
@@ -2108,7 +2110,7 @@ msgstr ""
 msgid ""
 "When a focus pomodoro ends while you're actively working, hold the break "
 "until a natural pause instead of interrupting you. Off by default; only "
-"applies when 'auto-continue to break' is off."
+"applies when the next phase doesn't start automatically."
 msgstr ""
 
 #. settings-schema.json->flow_soft_landing_behavior->description
@@ -2784,4 +2786,7 @@ msgstr ""
 msgid ""
 "Whether the reminder fires before a break ends (to come back), before focus "
 "ends (to wrap up), or both."
+msgstr ""
+
+msgid "Reminder"
 msgstr ""

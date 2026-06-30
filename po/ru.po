@@ -2184,8 +2184,12 @@ msgid "Offer to extend focus when a pomodoro ends (stay in flow)"
 msgstr "Предлагать продлить фокус в конце помидора (остаться в потоке)"
 
 #. settings-schema.json->flow_extend->tooltip
-msgid "When a pomodoro ends, offer to extend it to stay in flow."
-msgstr "По окончании помидора предлагать продлить, чтобы остаться в потоке."
+msgid ""
+"When a pomodoro ends, offer to extend it to stay in flow. Only applies when "
+"the next phase doesn't start automatically."
+msgstr ""
+"Когда помидор заканчивается, предложить продлить его, чтобы остаться в "
+"потоке. Работает, только если следующая фаза не запускается автоматически."
 
 #. settings-schema.json->flow_extend_minutes->description
 msgid "Extend amount (minutes)"
@@ -2203,11 +2207,11 @@ msgstr "Мягкое завершение: не прерывать фокус, �
 msgid ""
 "When a focus pomodoro ends while you're actively working, hold the break "
 "until a natural pause instead of interrupting you. Off by default; only "
-"applies when 'auto-continue to break' is off."
+"applies when the next phase doesn't start automatically."
 msgstr ""
-"Когда фокус-помидор заканчивается, а вы активно работаете, перерыв подождёт "
-"естественной паузы и не прервёт вас. По умолчанию выключено; работает только"
-" когда «автопереход к перерыву» выключен."
+"Когда помидор фокуса заканчивается, пока ты ещё работаешь — удержать перерыв"
+" до естественной паузы, не прерывая тебя. По умолчанию выключено; работает, "
+"только если следующая фаза не запускается автоматически."
 
 #. settings-schema.json->flow_soft_landing_behavior->description
 msgid "When focus ends and you're still working"
@@ -3099,3 +3103,6 @@ msgid ""
 msgstr ""
 "Когда срабатывать: перед концом перерыва (чтобы вернуться), перед концом "
 "фокуса (чтобы завершить) или в обоих случаях."
+
+msgid "Reminder"
+msgstr "Напоминание"

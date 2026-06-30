@@ -71,7 +71,7 @@ Cinnamon 6.x; the applet keeps its data under `~/.local/state/zen-pomodoro/`.
 - **Adaptive onboarding:** a short wizard tailors focus length, sounds, breaks
   and blocking from a few questions, with a review step, keyboard and
   screen-reader navigation, and a one-click "Undo last setup".
-- **Tasks:** a list with pomodoro estimates and per-task progress, templates, a
+- **Tasks:** a list with pomodoro estimates and per-task progress, a
   focus-task picker, and quick *Current task* / *Task list* access from the menu.
 - **Statistics dashboard:** today, this week, this month, streak and all-time, an
   hourly focus pattern, 14-day bars, a 12-week heatmap, a by-task breakdown,

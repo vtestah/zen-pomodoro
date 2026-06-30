@@ -1963,7 +1963,10 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._cancelSoftLanding();
             let timer = this._timerQueue.getCurrentTimer();
             // Skipping a running focus block must not count it as a completed pomodoro.
-            if (timer === this._timers.pomodoro) { this._skippedPomodoro = true; }
+            // Only arm the flag when skip() will actually act (it no-ops unless running),
+            // otherwise a skip while paused poisons the flag and the NEXT completed
+            // pomodoro gets swallowed at the record gate.
+            if (timer === this._timers.pomodoro && timer.isRunning()) { this._skippedPomodoro = true; }
             this._timerQueue.skip();
             if (timer === this._timers.longBreak) {
                 if (!this._opt_autoStartNext) {

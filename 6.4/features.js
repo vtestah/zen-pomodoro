@@ -2628,7 +2628,10 @@ function install(proto) {
         if (curTimer) {
             mins = String(Math.max(0, Math.ceil(curTimer.getTicksRemaining() / 60)));
         }
-        message = message.replace(/\{task\}/g, task).replace(/\{minutes\}/g, mins);
+        // html=1 is set below, so HTML-escape the interpolated task name (a user
+        // value) so stray markup can't break the rendered notification.
+        let esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        message = message.replace(/\{task\}/g, esc(task)).replace(/\{minutes\}/g, mins);
         try {
             if (!this._pushoverSession) {
                 this._pushoverSession = new Soup.Session();

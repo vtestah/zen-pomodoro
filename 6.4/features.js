@@ -2575,22 +2575,35 @@ function install(proto) {
 
     proto._lockScreen = function() {
         // Try the Cinnamon locker first, then a generic logind fallback so the
-        // option works beyond cinnamon-screensaver.
+        // option works beyond cinnamon-screensaver. Wait for each to actually
+        // succeed (exit 0) before giving up — a locker that's installed but fails
+        // (e.g. the screensaver isn't running) shouldn't silently skip the fallback.
         let tries = [
             ['cinnamon-screensaver-command', '--lock'],
             ['loginctl', 'lock-session']
         ];
-        for (let i = 0; i < tries.length; i++) {
-            try {
-                Gio.Subprocess.new(tries[i], Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE);
+        let tryNext = (i) => {
+            if (i >= tries.length) {
+                try { Main.notify(_("Couldn't lock the screen"), _("No screen locker was available.")); } catch (e) {}
                 return;
-            } catch (e) {
-                global.logError("Zen Pomodoro: lock via " + tries[i][0] + " failed: " + e.message);
             }
-        }
-        try {
-            Main.notify(_("Couldn't lock the screen"), _("No screen locker was available."));
-        } catch (e) {}
+            let proc;
+            try {
+                proc = Gio.Subprocess.new(tries[i], Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE);
+            } catch (e) {
+                global.logError("Zen Pomodoro: lock via " + tries[i][0] + " failed to start: " + e.message);
+                tryNext(i + 1);
+                return;
+            }
+            proc.wait_check_async(null, (p, res) => {
+                let ok = false;
+                try { ok = p.wait_check_finish(res); } catch (e) {
+                    global.logError("Zen Pomodoro: lock via " + tries[i][0] + " did not succeed: " + e.message);
+                }
+                if (!ok) { tryNext(i + 1); }
+            });
+        };
+        tryNext(0);
     };
 
     // Optional push notification (Pushover) on key events, opt-in. Uses the

@@ -607,7 +607,7 @@
     "flow_extend": {
         "type": "switch",
         "description": "Offer to extend focus when a pomodoro ends (stay in flow)",
-        "default": true,
+        "default": false,
         "tooltip": "When a pomodoro ends, offer to extend it to stay in flow."
     },
     "flow_extend_minutes": {

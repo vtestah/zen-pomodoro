@@ -456,7 +456,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this._sitesLabel = new St.Label({ text: _("off"), style_class: "pomodoro-info-value" });
         sitesItem.addActor(this._sitesLabel, { expand: true, align: St.Align.END });
         sitesItem.connect('activate', () => { this.emit('open-blocking-settings'); });
-        new Tooltips.Tooltip(sitesItem.actor, _("Manage blocked sites"));
+        new Tooltips.Tooltip(sitesItem.actor, _("Manage blocked sites. A browser using secure DNS (DoH) can bypass this."));
         this.addMenuItem(sitesItem);
 
         // Statistics — one compact clickable row that opens the dashboard.

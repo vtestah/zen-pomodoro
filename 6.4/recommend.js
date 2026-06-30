@@ -79,7 +79,7 @@ function _recoAssistItem(key, _) {
         case 'websites':
             return { id: 'assist:websites', core: false, group: 'assist',
                 keys: { enable_blocking: true },
-                label: _("Distraction blocking is ready — add sites in Settings → Advanced.") };
+                label: _("Distraction blocking is ready — add sites in Settings → Advanced. Browsers using secure DNS (DoH) may bypass it.") };
         case 'starting':
             return { id: 'assist:starting', core: false, group: 'assist',
                 keys: { start_on_click: true, focus_start_ritual: true, require_focus_task: false },

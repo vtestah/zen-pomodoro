@@ -205,9 +205,9 @@ function install(proto) {
             }
             s.lastGoalMetDate = today;
             // Celebrate locally (everyone), not only via Pushover.
-            let body = _("%d focus blocks today — great work!").format(goal);
+            let body = Gettext.dngettext(UUID, "%d focus block today — great work!", "%d focus blocks today — great work!", goal).format(goal);
             if ((s.streak || 0) > 1) {
-                body += "  " + _("\ud83d\udd25 %d-day streak").format(s.streak);
+                body += "  " + Gettext.dngettext(UUID, "\ud83d\udd25 %d-day streak", "\ud83d\udd25 %d-day streak", s.streak).format(s.streak);
             }
             Main.notify(_("Daily goal reached \ud83c\udf45"), body);
             this._sendPushover(this._opt_pushoverMsgGoal);
@@ -1510,7 +1510,7 @@ function install(proto) {
             return _("Daily goal reached — %d done today. Nice.").format(st.today || 0);
         }
         if ((st.interruptionsWeek || 0) >= 5) {
-            return _("%d interruptions this week — what keeps pulling you away?").format(st.interruptionsWeek);
+            return Gettext.dngettext(UUID, "%d interruption this week — what keeps pulling you away?", "%d interruptions this week — what keeps pulling you away?", st.interruptionsWeek).format(st.interruptionsWeek);
         }
         let peak = this._peakFocusHour(st.hours);
         if (peak) { return _("Most focused around %s — good time for deep work.").format(peak.label); }
@@ -1518,7 +1518,7 @@ function install(proto) {
         if (tasks.length && (tasks[0].done || 0) > 0) {
             return _("Most focus went to \u201c%s\u201d.").format(tasks[0].title);
         }
-        if ((st.week || 0) > 0) { return _("%d pomodoros this week. Keep it going.").format(st.week); }
+        if ((st.week || 0) > 0) { return Gettext.dngettext(UUID, "%d pomodoro this week. Keep it going.", "%d pomodoros this week. Keep it going.", st.week).format(st.week); }
         return _("Start a focus session — your insights will appear here.");
     };
 

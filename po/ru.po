@@ -294,13 +294,19 @@ msgstr "Готово"
 
 #: features.js:204
 #, javascript-format
-msgid "%d focus blocks today — great work!"
-msgstr "%d помидоров сегодня — отличная работа!"
+msgid "%d focus block today — great work!"
+msgid_plural "%d focus blocks today — great work!"
+msgstr[0] "%d помидор сегодня — отличная работа!"
+msgstr[1] "%d помидора сегодня — отличная работа!"
+msgstr[2] "%d помидоров сегодня — отличная работа!"
 
 #: features.js:206
 #, javascript-format
 msgid "🔥 %d-day streak"
-msgstr "🔥 серия %d дн."
+msgid_plural "🔥 %d-day streak"
+msgstr[0] "🔥 серия %d день"
+msgstr[1] "🔥 серия %d дня"
+msgstr[2] "🔥 серия %d дней"
 
 #: features.js:208
 msgid "Daily goal reached 🍅"
@@ -695,8 +701,11 @@ msgstr "Дневная цель достигнута — %d за сегодня.
 
 #: features.js:1492
 #, javascript-format
-msgid "%d interruptions this week — what keeps pulling you away?"
-msgstr "%d прерываний за неделю — что тебя отвлекает?"
+msgid "%d interruption this week — what keeps pulling you away?"
+msgid_plural "%d interruptions this week — what keeps pulling you away?"
+msgstr[0] "%d прерывание за неделю — что тебя отвлекает?"
+msgstr[1] "%d прерывания за неделю — что тебя отвлекает?"
+msgstr[2] "%d прерываний за неделю — что тебя отвлекает?"
 
 #: features.js:1495 features.js:1815
 #, javascript-format
@@ -710,8 +719,11 @@ msgstr "Больше всего фокуса — на «%s»."
 
 #: features.js:1500
 #, javascript-format
-msgid "%d pomodoros this week. Keep it going."
-msgstr "%d помидоров за неделю. Так держать."
+msgid "%d pomodoro this week. Keep it going."
+msgid_plural "%d pomodoros this week. Keep it going."
+msgstr[0] "%d помидор за неделю. Так держать."
+msgstr[1] "%d помидора за неделю. Так держать."
+msgstr[2] "%d помидоров за неделю. Так держать."
 
 #: features.js:1501
 msgid "Start a focus session — your insights will appear here."
@@ -2892,11 +2904,23 @@ msgstr ""
 "Выберите свой зацикленный фоновый звук. Оставьте пустым для встроенного "
 "коричневого шума."
 
-msgid "Focus spotlight is on — every other window is dimmed so the one you're working in stands out. Slide your pointer to the top of the screen to see the time left and a way out."
-msgstr "Прожектор фокуса включён — все окна, кроме рабочего, затемнены, чтобы выделить нужное. Подведите курсор к верхнему краю экрана, чтобы увидеть оставшееся время и выход."
+msgid ""
+"Focus spotlight is on — every other window is dimmed so the one you're "
+"working in stands out. Slide your pointer to the top of the screen to see "
+"the time left and a way out."
+msgstr ""
+"Прожектор фокуса включён — все окна, кроме рабочего, затемнены, чтобы "
+"выделить нужное. Подведите курсор к верхнему краю экрана, чтобы увидеть "
+"оставшееся время и выход."
 
-msgid "Focus spotlight is armed. When your next focus session starts, every window except the one you're working in dims, so your task stands out. Slide your pointer to the top of the screen to see the time left and a way out."
-msgstr "Прожектор фокуса наготове. С началом следующей фокус-сессии все окна, кроме рабочего, затемнятся, чтобы выделить вашу задачу. Подведите курсор к верхнему краю экрана, чтобы увидеть оставшееся время и выход."
+msgid ""
+"Focus spotlight is armed. When your next focus session starts, every window "
+"except the one you're working in dims, so your task stands out. Slide your "
+"pointer to the top of the screen to see the time left and a way out."
+msgstr ""
+"Прожектор фокуса наготове. С началом следующей фокус-сессии все окна, кроме "
+"рабочего, затемнятся, чтобы выделить вашу задачу. Подведите курсор к "
+"верхнему краю экрана, чтобы увидеть оставшееся время и выход."
 
 msgid "Play the ticking sound"
 msgstr "Проигрывать тиканье"
@@ -2940,8 +2964,12 @@ msgstr "За 7 дней: %d 🍅 · %s · лучший день недели %s"
 msgid "Last 30 days: %d 🍅 · %s · best day ever %d 🍅"
 msgstr "За 30 дней: %d 🍅 · %s · рекорд за день %d 🍅"
 
-msgid "Play a calming background soundscape while you focus (white/pink/brown noise, rain, sea, …). Choose the sound in Settings."
-msgstr "Спокойный фоновый звук во время фокуса (белый/розовый/коричневый шум, дождь, море, …). Выбрать звук в настройках."
+msgid ""
+"Play a calming background soundscape while you focus (white/pink/brown "
+"noise, rain, sea, …). Choose the sound in Settings."
+msgstr ""
+"Спокойный фоновый звук во время фокуса (белый/розовый/коричневый шум, дождь,"
+" море, …). Выбрать звук в настройках."
 
 msgid "Ready to focus — middle-click to start"
 msgstr "Готов к фокусу — средний клик, чтобы начать"
@@ -2970,14 +2998,31 @@ msgstr "Прокрутка — пауза · средний клик — про�
 msgid "Middle-click to skip"
 msgstr "Средний клик — пропустить"
 
-msgid "When on, the sites below are blocked right now and stay blocked until you turn this off. Run \"Set up passwordless blocking\" once so toggling doesn't ask for a password. Note: a browser using secure DNS (DoH) can bypass /etc/hosts blocking — disable the browser's secure DNS for it to take effect."
-msgstr "Когда включено, сайты ниже блокируются прямо сейчас и остаются заблокированными, пока не выключите. Запустите «Настроить блокировку без пароля» один раз, чтобы переключение не спрашивало пароль. Примечание: браузер с защищённым DNS (DoH) может обойти блокировку через /etc/hosts — отключите защищённый DNS в браузере, чтобы блокировка работала."
+msgid ""
+"When on, the sites below are blocked right now and stay blocked until you "
+"turn this off. Run \"Set up passwordless blocking\" once so toggling doesn't"
+" ask for a password. Note: a browser using secure DNS (DoH) can bypass "
+"/etc/hosts blocking — disable the browser's secure DNS for it to take "
+"effect."
+msgstr ""
+"Когда включено, сайты ниже блокируются прямо сейчас и остаются "
+"заблокированными, пока не выключите. Запустите «Настроить блокировку без "
+"пароля» один раз, чтобы переключение не спрашивало пароль. Примечание: "
+"браузер с защищённым DNS (DoH) может обойти блокировку через /etc/hosts — "
+"отключите защищённый DNS в браузере, чтобы блокировка работала."
 
-msgid "Manage blocked sites. A browser using secure DNS (DoH) can bypass this."
-msgstr "Управление заблокированными сайтами. Браузер с защищённым DNS (DoH) может это обойти."
+msgid ""
+"Manage blocked sites. A browser using secure DNS (DoH) can bypass this."
+msgstr ""
+"Управление заблокированными сайтами. Браузер с защищённым DNS (DoH) может "
+"это обойти."
 
-msgid "Distraction blocking is ready — add sites in Settings → Advanced. Browsers using secure DNS (DoH) may bypass it."
-msgstr "Блокировка отвлечений готова — добавьте сайты в Настройки → Дополнительно. Браузеры с защищённым DNS (DoH) могут её обойти."
+msgid ""
+"Distraction blocking is ready — add sites in Settings → Advanced. Browsers "
+"using secure DNS (DoH) may bypass it."
+msgstr ""
+"Блокировка отвлечений готова — добавьте сайты в Настройки → Дополнительно. "
+"Браузеры с защищённым DNS (DoH) могут её обойти."
 
 msgid "Authorization for toggling blocking"
 msgstr "Авторизация для переключения блокировки"
@@ -2988,8 +3033,17 @@ msgstr "Никогда не спрашивать (без пароля)"
 msgid "Ask once per login session (safer)"
 msgstr "Спрашивать раз за сессию (безопаснее)"
 
-msgid "How the one-time setup configures the pkexec policy: never ask (passwordless, convenient), or ask once per login session (safer — a stray process can't then toggle blocking silently). Re-run \"Set up passwordless blocking\" after changing this."
-msgstr "Как однократная настройка задаёт политику pkexec: никогда не спрашивать (без пароля, удобно) или спрашивать раз за сессию (безопаснее — посторонний процесс не сможет переключать блокировку молча). После изменения заново запустите «Настроить блокировку без пароля»."
+msgid ""
+"How the one-time setup configures the pkexec policy: never ask "
+"(passwordless, convenient), or ask once per login session (safer — a stray "
+"process can't then toggle blocking silently). Re-run \"Set up passwordless "
+"blocking\" after changing this."
+msgstr ""
+"Как однократная настройка задаёт политику pkexec: никогда не спрашивать (без"
+" пароля, удобно) или спрашивать раз за сессию (безопаснее — посторонний "
+"процесс не сможет переключать блокировку молча). После изменения заново "
+"запустите «Настроить блокировку без пароля»."
 
-msgid "Blocking set up — you'll be asked for your password once per login session."
+msgid ""
+"Blocking set up — you'll be asked for your password once per login session."
 msgstr "Блокировка настроена — пароль спросят один раз за сессию."

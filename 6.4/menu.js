@@ -450,6 +450,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
 
         this._ambientItem = new PopupMenu.PopupSwitchMenuItem(_("Ambient sound"), false);
         this._ambientItem.connect('toggled', (item, state) => this.emit('set-ambient', state));
+        new Tooltips.Tooltip(this._ambientItem.actor, _("Play a calming background soundscape while you focus (white/pink/brown noise, rain, sea, …). Choose the sound in Settings."));
         this.addMenuItem(this._ambientItem);
 
         let sitesItem = new PopupMenu.PopupBaseMenuItem();
@@ -521,6 +522,7 @@ var PomodoroMenu = class extends Applet.AppletPopupMenu {
         this.addMenuItem(this._zenItem);
         this._ambientItem = new PopupMenu.PopupSwitchMenuItem(_("Ambient sound"), false);
         this._ambientItem.connect('toggled', (item, state) => this.emit('set-ambient', state));
+        new Tooltips.Tooltip(this._ambientItem.actor, _("Play a calming background soundscape while you focus (white/pink/brown noise, rain, sea, …). Choose the sound in Settings."));
         this.addMenuItem(this._ambientItem);
         this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         this.addMenuItem(sr.resetItem);

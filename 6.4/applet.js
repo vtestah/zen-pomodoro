@@ -1063,7 +1063,17 @@ class PomodoroApplet extends Applet.TextIconApplet {
             message = _("Pomodoro paused") + focusTaskExtension + timeLeftExtension;
             break;
         case 'pomodoro-stop':
-            message = _("Ready to focus — scroll or middle-click to start");
+            // Tailor the start hint to the controls that are actually enabled,
+            // so it never promises a gesture the user hasn't turned on.
+            if (this._opt_panelScrollControl && this._opt_scrollAction !== 'focus_length') {
+                message = _("Ready to focus — scroll or middle-click to start");
+            } else if (this._opt_panelScrollControl) {
+                message = _("Ready to focus — middle-click to start");
+            } else if (this._opt_startOnClick) {
+                message = _("Ready to focus — click to start");
+            } else {
+                message = _("Ready to focus");
+            }
             break;
         default:
             message = "";

@@ -1035,15 +1035,18 @@ function install(proto) {
             let select = (i) => {
                 let o = opts[i];
                 if (!o) { return; }
+                let capped = false;
                 if (multi) {
                     let arr = answers[key];
                     let idx = arr.indexOf(o.value);
                     if (idx !== -1) { arr.splice(idx, 1); }
                     else if (arr.length < cap) { arr.push(o.value); }
+                    else { capped = true; }   // already at the limit — say why, don't silently ignore
                 } else {
                     answers[key] = o.value;
                 }
                 repaint();
+                if (capped && hint) { hint.set_text(_("You can pick up to %d — deselect one first").format(cap)); }
                 if (btns[i]) { btns[i].b.grab_key_focus(); }
             };
             opts.forEach((o, i) => {
@@ -1114,6 +1117,7 @@ function install(proto) {
             Object.keys(settings).forEach((k) => { try { sp.setValue(k, settings[k]); } catch (e) {} });
             try { sp.setValue('onboarding_done', true); } catch (e) {}
             dialog.close();
+            this._onboardingNotice(_("Setup applied \u2713"), _("You can undo it anytime in Settings \u2192 \u201cUndo last setup\u201d."));
             if (thenStart) { try { this._startTimerFromMenu(); } catch (e) {} }
         };
 

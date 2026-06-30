@@ -254,6 +254,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_pushoverReminder = null;
         this._opt_pushoverReminderMinutes = null;
         this._opt_pushoverMsgReminder = null;
+        this._opt_pushoverReminderPhase = null;
         this._opt_blockDomains = null;
         this._opt_enableBlocking = null;
         this._opt_blockingAuthMode = null;
@@ -466,6 +467,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_reminder", "_opt_pushoverReminder", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_reminder_minutes", "_opt_pushoverReminderMinutes", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_msg_reminder", "_opt_pushoverMsgReminder", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_reminder_phase", "_opt_pushoverReminderPhase", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_domains", "_opt_blockDomains", this._onBlockDomainsChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "enable_blocking", "_opt_enableBlocking", this._onBlockDomainsChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "blocking_auth_mode", "_opt_blockingAuthMode", emptyCallback);
@@ -1659,12 +1661,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 this._warnArmed = false;
                 this._playWarnSound();
             }
-            // Pushover pre-end reminder — independent threshold (minutes before end).
-            if (this._pushReminderArmed && this._opt_pushoverReminder && this._opt_pushoverReminderMinutes > 0 &&
-                rem > 0 && rem <= this._opt_pushoverReminderMinutes * 60) {
-                this._pushReminderArmed = false;
-                this._sendPushover(this._opt_pushoverMsgReminder);
-            }
             // Chime on elapsed interval boundaries — never at the very start, even
             // when the focus length is an exact multiple of the chime interval.
             if (this._opt_intervalChime && this._opt_intervalChimeSeconds > 0 && rem > 0) {
@@ -1714,6 +1710,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         
         shortBreakTimer.connect('timer-started', () => {
             this._setCurrentState('short-break');
+            this._pushReminderArmed = true;   // arm the pre-end reminder for this break
             this._playBreakSound();
             this._numPomodoriFinished++;
             this._appletMenu.updateCounts(this._numPomodoroSetFinished, this._numPomodoriFinished);
@@ -1745,6 +1742,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
     
         longBreakTimer.connect('timer-started', () => {
             this._setCurrentState('long-break');
+            this._pushReminderArmed = true;   // arm the pre-end reminder for this break
             this._playBreakSound();
             this._playCompletionFlourish(_("Set complete!"));
             if (this._skippedPomodoro) { this._skippedPomodoro = false; } else { this._recordPomodoroCompleted(); }
@@ -1805,8 +1803,30 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._setTimerLabel(timer.getTicksRemaining());   // also refreshes the menu runtime state
         this._setAppletTooltip(timer.getTicksRemaining());
         this._updateFocusFrame(timer.getTicksRemaining());
+        this._maybePushReminder(timer);
         this._persistSessionState();
         this._refreshZenLabels();
+    }
+
+    // Fire the pre-end Pushover reminder once per phase, for the phase(s) the
+    // user chose (focus / breaks / both). Armed at each phase start; runs for
+    // every timer because all ticks route through _timerTickUpdate.
+    _maybePushReminder(timer) {
+        if (!this._pushReminderArmed || !this._opt_pushoverReminder || !(this._opt_pushoverReminderMinutes > 0)) {
+            return;
+        }
+        let rem = timer.getTicksRemaining();
+        if (!(rem > 0) || rem > this._opt_pushoverReminderMinutes * 60) {
+            return;
+        }
+        let isBreak = (timer === this._timers.shortBreak || timer === this._timers.longBreak);
+        let mode = this._opt_pushoverReminderPhase || "breaks";
+        let phaseOk = (mode === "both") || (isBreak ? (mode === "breaks") : (mode === "focus"));
+        if (!phaseOk) {
+            return;
+        }
+        this._pushReminderArmed = false;
+        this._sendPushover(this._opt_pushoverMsgReminder);
     }
     
 

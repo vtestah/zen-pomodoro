@@ -251,6 +251,7 @@
                 "pushover_msg_resume",
                 "pushover_msg_goal",
                 "pushover_reminder",
+                "pushover_reminder_phase",
                 "pushover_reminder_minutes",
                 "pushover_msg_reminder"
             ]
@@ -1212,9 +1213,21 @@
     "pushover_reminder": {
         "type": "switch",
         "default": false,
-        "description": "Remind before focus ends",
-        "tooltip": "Send a Pushover push shortly before the focus block ends, so you can wrap up.",
+        "description": "Remind before focus or break ends",
+        "tooltip": "Send a Pushover push shortly before a focus block or break ends, so you can wrap up or get ready to come back.",
         "dependency": "pushover_enabled"
+    },
+    "pushover_reminder_phase": {
+        "type": "combobox",
+        "default": "breaks",
+        "description": "Remind before",
+        "options": {
+            "A break ends": "breaks",
+            "Focus ends": "focus",
+            "Either ends": "both"
+        },
+        "tooltip": "Whether the reminder fires before a break ends (to come back), before focus ends (to wrap up), or both.",
+        "dependency": "pushover_reminder"
     },
     "pushover_reminder_minutes": {
         "type": "scale",
@@ -1224,15 +1237,15 @@
         "step": 1,
         "units": "minutes",
         "description": "Reminder time (minutes before end)",
-        "tooltip": "How many minutes before the focus block ends to send the reminder.",
+        "tooltip": "How many minutes before it ends to send the reminder.",
         "dependency": "pushover_reminder"
     },
     "pushover_msg_reminder": {
         "type": "entry",
         "expand-width": true,
         "description": "Reminder message",
-        "default": "⏳ {minutes} min of focus left — time to wrap up.",
-        "tooltip": "Sent before the focus block ends. {task} and {minutes} (minutes left) are substituted. Leave empty to send nothing.",
+        "default": "⏳ {minutes} min left — get ready.",
+        "tooltip": "Sent before the phase ends. {task} and {minutes} (minutes left) are substituted. Leave empty to send nothing.",
         "dependency": "pushover_reminder"
     },
     "pushover_sound": {

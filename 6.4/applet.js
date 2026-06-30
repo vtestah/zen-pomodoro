@@ -248,6 +248,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_pushoverPriority = null;
         this._opt_blockDomains = null;
         this._opt_enableBlocking = null;
+        this._opt_blockingAuthMode = null;
         this._opt_onboardingDone = null;
         this._dndActive = false;
         this._dndPrevValue = null;
@@ -449,6 +450,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_priority", "_opt_pushoverPriority", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_domains", "_opt_blockDomains", this._onBlockDomainsChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "enable_blocking", "_opt_enableBlocking", this._onBlockDomainsChanged.bind(this));
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "blocking_auth_mode", "_opt_blockingAuthMode", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "onboarding_done", "_opt_onboardingDone", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_volume", "_opt_focusAmbientVolume", this._restartAmbientLive.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "focus_ambient_file", "_opt_focusAmbientFile", this._restartAmbientLive.bind(this));

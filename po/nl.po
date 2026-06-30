@@ -3004,3 +3004,18 @@ msgstr "Geblokkeerde sites beheren. Een browser met beveiligde DNS (DoH) kan dit
 
 msgid "Distraction blocking is ready — add sites in Settings → Advanced. Browsers using secure DNS (DoH) may bypass it."
 msgstr "Afleidingsblokkering is klaar — voeg sites toe in Instellingen → Geavanceerd. Browsers met beveiligde DNS (DoH) kunnen het omzeilen."
+
+msgid "Authorization for toggling blocking"
+msgstr "Autorisatie voor het omschakelen van blokkering"
+
+msgid "Never ask (passwordless)"
+msgstr "Nooit vragen (zonder wachtwoord)"
+
+msgid "Ask once per login session (safer)"
+msgstr "Eén keer per sessie vragen (veiliger)"
+
+msgid "How the one-time setup configures the pkexec policy: never ask (passwordless, convenient), or ask once per login session (safer — a stray process can't then toggle blocking silently). Re-run \"Set up passwordless blocking\" after changing this."
+msgstr "Hoe de eenmalige installatie het pkexec-beleid instelt: nooit vragen (zonder wachtwoord, handig) of eenmaal per sessie vragen (veiliger — een vreemd proces kan blokkering dan niet stil omschakelen). Voer „Wachtwoordloos blokkeren instellen“ opnieuw uit na wijziging."
+
+msgid "Blocking set up — you'll be asked for your password once per login session."
+msgstr "Blokkering ingesteld — je wachtwoord wordt eenmaal per sessie gevraagd."

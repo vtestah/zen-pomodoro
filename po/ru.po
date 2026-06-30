@@ -2978,3 +2978,18 @@ msgstr "Управление заблокированными сайтами. Б
 
 msgid "Distraction blocking is ready — add sites in Settings → Advanced. Browsers using secure DNS (DoH) may bypass it."
 msgstr "Блокировка отвлечений готова — добавьте сайты в Настройки → Дополнительно. Браузеры с защищённым DNS (DoH) могут её обойти."
+
+msgid "Authorization for toggling blocking"
+msgstr "Авторизация для переключения блокировки"
+
+msgid "Never ask (passwordless)"
+msgstr "Никогда не спрашивать (без пароля)"
+
+msgid "Ask once per login session (safer)"
+msgstr "Спрашивать раз за сессию (безопаснее)"
+
+msgid "How the one-time setup configures the pkexec policy: never ask (passwordless, convenient), or ask once per login session (safer — a stray process can't then toggle blocking silently). Re-run \"Set up passwordless blocking\" after changing this."
+msgstr "Как однократная настройка задаёт политику pkexec: никогда не спрашивать (без пароля, удобно) или спрашивать раз за сессию (безопаснее — посторонний процесс не сможет переключать блокировку молча). После изменения заново запустите «Настроить блокировку без пароля»."
+
+msgid "Blocking set up — you'll be asked for your password once per login session."
+msgstr "Блокировка настроена — пароль спросят один раз за сессию."

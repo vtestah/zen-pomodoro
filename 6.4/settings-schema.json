@@ -267,6 +267,7 @@
             "keys": [
                 "enable_blocking",
                 "block_domains",
+                "blocking_auth_mode",
                 "setup_passwordless_button",
                 "remove_passwordless_button"
             ]
@@ -864,6 +865,17 @@
         "default": [],
         "dependency": "enable_blocking",
         "tooltip": "Domains to block while blocking is on, one per row (e.g. youtube.com, www.youtube.com)."
+    },
+    "blocking_auth_mode": {
+        "type": "combobox",
+        "description": "Authorization for toggling blocking",
+        "default": "yes",
+        "options": {
+            "Never ask (passwordless)": "yes",
+            "Ask once per login session (safer)": "keep"
+        },
+        "dependency": "enable_blocking",
+        "tooltip": "How the one-time setup configures the pkexec policy: never ask (passwordless, convenient), or ask once per login session (safer — a stray process can't then toggle blocking silently). Re-run \"Set up passwordless blocking\" after changing this."
     },
     "sox-info": {
         "type": "label",

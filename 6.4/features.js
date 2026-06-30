@@ -2896,8 +2896,11 @@ function install(proto) {
     };
 
     proto._setupPasswordlessBlocking = function() {
-        this._runHostsHelper(['pkexec', this._setupScriptPath(), 'install', 'yes', this._bundledHelperPath()],
-            _("Passwordless blocking enabled (no prompt)."));
+        let mode = (this._opt_blockingAuthMode === 'keep') ? 'keep' : 'yes';
+        let okMsg = (mode === 'keep')
+            ? _("Blocking set up — you'll be asked for your password once per login session.")
+            : _("Passwordless blocking enabled (no prompt).");
+        this._runHostsHelper(['pkexec', this._setupScriptPath(), 'install', mode, this._bundledHelperPath()], okMsg);
     };
 
     proto._removePasswordlessBlocking = function() {

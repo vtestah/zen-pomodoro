@@ -3021,3 +3021,18 @@ msgstr "Blockierte Seiten verwalten. Ein Browser mit sicherem DNS (DoH) kann die
 
 msgid "Distraction blocking is ready — add sites in Settings → Advanced. Browsers using secure DNS (DoH) may bypass it."
 msgstr "Ablenkungsblockierung ist bereit — füge Seiten unter Einstellungen → Erweitert hinzu. Browser mit sicherem DNS (DoH) können sie umgehen."
+
+msgid "Authorization for toggling blocking"
+msgstr "Autorisierung zum Umschalten der Blockierung"
+
+msgid "Never ask (passwordless)"
+msgstr "Nie fragen (passwortlos)"
+
+msgid "Ask once per login session (safer)"
+msgstr "Einmal pro Sitzung fragen (sicherer)"
+
+msgid "How the one-time setup configures the pkexec policy: never ask (passwordless, convenient), or ask once per login session (safer — a stray process can't then toggle blocking silently). Re-run \"Set up passwordless blocking\" after changing this."
+msgstr "Wie die einmalige Einrichtung die pkexec-Richtlinie festlegt: nie fragen (passwortlos, bequem) oder einmal pro Sitzung fragen (sicherer — ein fremder Prozess kann die Blockierung dann nicht still umschalten). Nach der Änderung „Passwortlose Blockierung einrichten“ erneut ausführen."
+
+msgid "Blocking set up — you'll be asked for your password once per login session."
+msgstr "Blockierung eingerichtet — du wirst einmal pro Sitzung nach deinem Passwort gefragt."

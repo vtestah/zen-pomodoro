@@ -3388,6 +3388,8 @@ function install(proto) {
             return;
         }
         timer.setRemaining(minutes * 60);
+        this._warnArmed = true;            // re-arm the pre-end warning for the extended focus
+        this._pushReminderArmed = true;    // and the pre-end Pushover reminder
         this._timerQueue.preventStart(false);
         this._appletMenu.toggleTimerState(true);
         this._timerQueue.start();

@@ -1701,7 +1701,10 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._setCurrentState('pomodoro-stop');
             this._stopTickerSound();
             this._stopFocusBlockIfNeeded();
-            this._clearCurrentFocusTask();
+            // Keep the focus task across a natural finish (the set continues to the
+            // break and next pomodoro); only a real stop (time still left) clears it.
+            // Reset / turn-off clear it explicitly elsewhere.
+            if (pomodoroTimer.getTicksRemaining() > 0) { this._clearCurrentFocusTask(); }
         });
 
         // connect the short break timer signals
@@ -1815,8 +1818,14 @@ class PomodoroApplet extends Applet.TextIconApplet {
         if (!this._pushReminderArmed || !this._opt_pushoverReminder || !(this._opt_pushoverReminderMinutes > 0)) {
             return;
         }
+        let threshold = this._opt_pushoverReminderMinutes * 60;
         let rem = timer.getTicksRemaining();
-        if (!(rem > 0) || rem > this._opt_pushoverReminderMinutes * 60) {
+        if (!(rem > 0) || rem > threshold) {
+            return;
+        }
+        // Skip when the phase is no longer than the reminder window — it would
+        // fire at the very start, which isn't a useful "ending soon" cue.
+        if (timer.getTimerLimit() <= threshold) {
             return;
         }
         let isBreak = (timer === this._timers.shortBreak || timer === this._timers.longBreak);
@@ -2154,6 +2163,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             return;
         }
         timer.addTime(mins * 60);
+        this._pushReminderArmed = true;   // re-arm so the reminder can fire before the extended break ends
         Main.notify(_("Break extended by %d min").format(mins));
     }
     

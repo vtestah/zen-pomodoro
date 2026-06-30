@@ -40,7 +40,7 @@ cat > "$FILES/metadata.json" <<EOF
 {
     "uuid": "$UUID",
     "name": "$NAME",
-    "description": "A calm, Zen-style Pomodoro timer for focused work. Gentle on-screen cues instead of anxious alarms: a soft glow frame that traces your progress, a quiet start ritual, a calm ending with no last-minute blinking, an optional full-screen Zen mode, a breathing guide on breaks, ambient sound, daily goal and streak, a panel progress ring, a statistics dashboard, customizable theme colors with live preview, and full localization. Optional distraction blocking can block websites you choose during focus by editing /etc/hosts, only after you enable it and grant a one-time administrator authorization. Originally based on Pomodoro Timer by gfreeau, since substantially rewritten.",
+    "description": "A calm, Zen-style Pomodoro timer for focused work. Gentle on-screen cues instead of anxious alarms: a soft glow frame that traces your progress, a quiet start ritual, a calm ending with no last-minute blinking, an optional full-screen Zen mode, a breathing guide on breaks, ambient sound, daily goal and streak, a panel progress ring, a statistics dashboard, customizable theme colors with live preview, and full localization. Optional distraction blocking can block websites you choose by editing /etc/hosts, only after you enable it and grant a one-time administrator authorization. Originally based on Pomodoro Timer by gfreeau, since substantially rewritten.",
     "version": "$VERSION",
     "max-instances": "1"
 }
@@ -97,7 +97,7 @@ change your mind.
 - **Calmer breaks:** gentle rest reminders with "+5 min" and "Skip break" right
   in the notification, an optional breathing guide, an optional lock screen on
   breaks, and auto-pause/resume of music and video (MPRIS) while you step away.
-- **Stay focused:** optional site blocking during focus, Do-Not-Disturb while
+- **Stay focused:** optional site blocking, Do-Not-Disturb while
   focusing, and a global hotkey to jot a distracting thought without leaving
   your flow.
 - **Sounds:** ticking, phase alerts, an interval chime, and ambient soundscapes

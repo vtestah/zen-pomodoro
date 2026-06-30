@@ -85,7 +85,7 @@ Cinnamon 6.x; the applet keeps its data under `~/.local/state/zen-pomodoro/`.
   the notification, an optional breathing guide, an optional **lock screen on
   breaks** (long breaks only, if you prefer), and **auto-pause and resume of
   music and video** (MPRIS) while you step away.
-- **Stay focused:** optional **site blocking** during focus (edits a clearly
+- **Stay focused:** optional **site blocking** (edits a clearly
   marked block of `/etc/hosts` via a one-time polkit/pkexec authorization),
   **Do-Not-Disturb** while focusing, and a global hotkey to **jot a distracting
   thought** without leaving your flow.

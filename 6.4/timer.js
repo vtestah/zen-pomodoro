@@ -281,3 +281,9 @@ class Timer {
 }
 
 Signals.addSignalMethods(Timer.prototype);
+
+// Node / CommonJS export for the unit tests (tests/js/timer.test.js). In the
+// Cinnamon (GJS) runtime `module` is undefined, so this is a no-op there.
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { Timer: Timer, TimerQueue: TimerQueue };
+}

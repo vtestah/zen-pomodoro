@@ -5,7 +5,7 @@
   "license": "GPL-3.0-or-later",
   "scripts": {
     "lint": "eslint 6.4 tests/js",
-    "test": "node tests/js/recommend.test.js && node tests/js/flow.test.js",
+    "test": "node tests/js/recommend.test.js && node tests/js/flow.test.js && node tests/js/timer.test.js",
     "test:py": "pytest",
     "test:all": "npm run test && npm run test:py",
     "changelog": "git-cliff -o CHANGELOG.md",

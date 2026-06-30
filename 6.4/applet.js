@@ -145,6 +145,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._numPomodoriFinished = 0;
         // Number of finished sets.
         this._numPomodoroSetFinished = 0;
+        // Set when the current pomodoro is skipped, so the next phase doesn't
+        // record it as a completed pomodoro (which would inflate the stats).
+        this._skippedPomodoro = false;
         this._setTimerLabel(0);
         this._updatePanelFocusCue();
 
@@ -1639,6 +1642,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
     
         pomodoroTimer.connect('timer-started', () => {
             this._glowBreathedForTimer = false;
+            this._skippedPomodoro = false;   // fresh focus block — clear any stale skip flag
             this._setCurrentState('pomodoro');
             this._playStartSound();
             this._playFocusStartRitual();
@@ -1670,7 +1674,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._appletMenu.updateCounts(this._numPomodoroSetFinished, this._numPomodoriFinished);
             this._appletMenu.showPomodoroInProgress(this._opt_pomodoriNumber);
             this._playCompletionFlourish(_("Pomodoro done"));
-            this._recordPomodoroCompleted();
+            if (this._skippedPomodoro) { this._skippedPomodoro = false; } else { this._recordPomodoroCompleted(); }
             this._notifyWithActions(_("Take a short break"), this._restTip(false), [
                 { id: 'extend', label: _("+%d min").format(5), fn: () => this._extendBreak(5) },
                 { id: 'skip', label: _("Skip break"), fn: () => this._appletMenu.emit('skip-timer') }
@@ -1698,7 +1702,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._setCurrentState('long-break');
             this._playBreakSound();
             this._playCompletionFlourish(_("Set complete!"));
-            this._recordPomodoroCompleted();
+            if (this._skippedPomodoro) { this._skippedPomodoro = false; } else { this._recordPomodoroCompleted(); }
             if (this._opt_showDialogMessages) {
                 this._longBreakdialog.open();
             } else {
@@ -1939,6 +1943,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
             if (this._strictFocusBlocks()) { this._strictFocusNotice(); return; }
             this._cancelSoftLanding();
             let timer = this._timerQueue.getCurrentTimer();
+            // Skipping a running focus block must not count it as a completed pomodoro.
+            if (timer === this._timers.pomodoro) { this._skippedPomodoro = true; }
             this._timerQueue.skip();
             if (timer === this._timers.longBreak) {
                 if (!this._opt_autoStartNext) {

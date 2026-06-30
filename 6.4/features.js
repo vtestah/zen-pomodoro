@@ -575,7 +575,14 @@ function install(proto) {
         }
         if (remaining <= 0) { return null; }
         let brk = this._opt_shortBreakTimeMinutes || 5;
-        let mins = focusMins + Math.max(0, remaining - 1) * brk;
+        let longBrk = this._opt_longBreakTimeMinutes || 15;
+        let perSet = this._opt_pomodoriNumber || 4;
+        // Gaps between the remaining blocks: roughly every perSet-th gap is a long
+        // break, the rest are short — so the estimate doesn't run early.
+        let gaps = Math.max(0, remaining - 1);
+        let longBreaks = Math.floor(remaining / perSet);
+        let shortBreaks = Math.max(0, gaps - longBreaks);
+        let mins = focusMins + shortBreaks * brk + longBreaks * longBrk;
         let end = new Date(Date.now() + mins * 60000);
         let hh = end.getHours().toString().padStart(2, '0');
         let mm = end.getMinutes().toString().padStart(2, '0');

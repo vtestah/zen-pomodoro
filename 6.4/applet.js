@@ -155,6 +155,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
         // Armed at focus start; the pre-end warning fires once when the remaining
         // time first crosses the threshold (robust to a skipped/drifted tick).
         this._warnArmed = false;
+        this._pushReminderArmed = false;   // pre-end Pushover reminder, armed at focus start
         this._setTimerLabel(0);
         this._updatePanelFocusCue();
 
@@ -250,6 +251,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_pushoverMsgFocus = null;
         this._opt_pushoverSound = null;
         this._opt_pushoverPriority = null;
+        this._opt_pushoverReminder = null;
+        this._opt_pushoverReminderMinutes = null;
+        this._opt_pushoverMsgReminder = null;
         this._opt_blockDomains = null;
         this._opt_enableBlocking = null;
         this._opt_blockingAuthMode = null;
@@ -459,6 +463,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_msg_focus", "_opt_pushoverMsgFocus", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_sound", "_opt_pushoverSound", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_priority", "_opt_pushoverPriority", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_reminder", "_opt_pushoverReminder", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_reminder_minutes", "_opt_pushoverReminderMinutes", emptyCallback);
+        this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "pushover_msg_reminder", "_opt_pushoverMsgReminder", emptyCallback);
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "block_domains", "_opt_blockDomains", this._onBlockDomainsChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "enable_blocking", "_opt_enableBlocking", this._onBlockDomainsChanged.bind(this));
         this._settingsProvider.bindProperty(Settings.BindingDirection.IN, "blocking_auth_mode", "_opt_blockingAuthMode", emptyCallback);
@@ -1652,6 +1659,12 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 this._warnArmed = false;
                 this._playWarnSound();
             }
+            // Pushover pre-end reminder — independent threshold (minutes before end).
+            if (this._pushReminderArmed && this._opt_pushoverReminder && this._opt_pushoverReminderMinutes > 0 &&
+                rem > 0 && rem <= this._opt_pushoverReminderMinutes * 60) {
+                this._pushReminderArmed = false;
+                this._sendPushover(this._opt_pushoverMsgReminder);
+            }
             // Chime on elapsed interval boundaries — never at the very start, even
             // when the focus length is an exact multiple of the chime interval.
             if (this._opt_intervalChime && this._opt_intervalChimeSeconds > 0 && rem > 0) {
@@ -1672,6 +1685,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._glowBreathedForTimer = false;
             this._skippedPomodoro = false;   // fresh focus block — clear any stale skip flag
             this._warnArmed = true;          // arm the pre-end warning for this block
+            this._pushReminderArmed = true;  // arm the pre-end Pushover reminder for this block
             // Show the start toast before _setCurrentState enables Focus DND,
             // otherwise our own notification gets suppressed by the DND we just set.
             Main.notify(_("Let's go to work!"));

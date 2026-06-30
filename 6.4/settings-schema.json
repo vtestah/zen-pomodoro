@@ -249,7 +249,10 @@
                 "pushover_msg_short_break",
                 "pushover_msg_long_break",
                 "pushover_msg_resume",
-                "pushover_msg_goal"
+                "pushover_msg_goal",
+                "pushover_reminder",
+                "pushover_reminder_minutes",
+                "pushover_msg_reminder"
             ]
         },
         "sec_po_alerts": {
@@ -258,6 +261,7 @@
             "dependency": "pushover_customize",
             "keys": [
                 "pushover_sound",
+                "pushover_sound_help",
                 "pushover_priority"
             ]
         },
@@ -1205,6 +1209,32 @@
         "tooltip": "Sent once when you hit your daily pomodoro goal. {task} and {minutes} are substituted. Leave empty to send nothing.",
         "dependency": "pushover_enabled"
     },
+    "pushover_reminder": {
+        "type": "switch",
+        "default": false,
+        "description": "Remind before focus ends",
+        "tooltip": "Send a Pushover push shortly before the focus block ends, so you can wrap up.",
+        "dependency": "pushover_enabled"
+    },
+    "pushover_reminder_minutes": {
+        "type": "scale",
+        "default": 1,
+        "min": 1,
+        "max": 30,
+        "step": 1,
+        "units": "minutes",
+        "description": "Reminder time (minutes before end)",
+        "tooltip": "How many minutes before the focus block ends to send the reminder.",
+        "dependency": "pushover_reminder"
+    },
+    "pushover_msg_reminder": {
+        "type": "entry",
+        "expand-width": true,
+        "description": "Reminder message",
+        "default": "⏰ Focus ends in {minutes} min — time to wrap up.",
+        "tooltip": "Sent before the focus block ends. {task} and {minutes} (minutes left) are substituted. Leave empty to send nothing.",
+        "dependency": "pushover_reminder"
+    },
     "pushover_sound": {
         "type": "combobox",
         "description": "Notification sound",
@@ -1219,6 +1249,11 @@
             "Intermission": "intermission",
             "None": "none"
         },
+        "dependency": "pushover_enabled"
+    },
+    "pushover_sound_help": {
+        "type": "label",
+        "description": "Preview each sound (play buttons) at https://pushover.net/api#sounds",
         "dependency": "pushover_enabled"
     },
     "pushover_priority": {

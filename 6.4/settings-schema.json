@@ -1231,7 +1231,7 @@
         "type": "entry",
         "expand-width": true,
         "description": "Reminder message",
-        "default": "⏰ Focus ends in {minutes} min — time to wrap up.",
+        "default": "⏳ {minutes} min of focus left — time to wrap up.",
         "tooltip": "Sent before the focus block ends. {task} and {minutes} (minutes left) are substituted. Leave empty to send nothing.",
         "dependency": "pushover_reminder"
     },

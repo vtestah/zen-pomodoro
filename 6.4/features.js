@@ -165,9 +165,15 @@ function install(proto) {
         return Math.round((db - da) / 86400000);
     };
 
+    // Calendar date N days before today, at local midnight. Uses date arithmetic
+    // (not 24h subtraction) so it stays correct across DST transitions.
+    proto._dateDaysAgo = function(n) {
+        let t = new Date();
+        return new Date(t.getFullYear(), t.getMonth(), t.getDate() - n);
+    };
+
     proto._recordPomodoroCompleted = function() {
         let today = this._todayStr();
-        let yesterday = this._todayStr(new Date(Date.now() - 86400000));
         let s = this._dailyStatsData || { date: "", count: 0, streak: 0, lastGoalMetDate: "", history: {}, total: 0, totalMinutes: 0, totalInterruptions: 0, hours: new Array(24).fill(0) };
         if (!s.history) { s.history = {}; }
         if (typeof s.total !== "number") { s.total = 0; }
@@ -188,13 +194,13 @@ function install(proto) {
         s.total += 1;
         s.totalMinutes += dur;
         // Keep the per-day history bounded (~18 weeks).
-        let cutoff = this._todayStr(new Date(Date.now() - 126 * 86400000));
+        let cutoff = this._todayStr(this._dateDaysAgo(126));
         for (let k in s.history) {
             if (k < cutoff) { delete s.history[k]; }
         }
         let goal = this._opt_dailyGoal || 0;
         if (goal > 0 && s.count === goal) {
-            if (s.lastGoalMetDate === yesterday) {
+            if (s.lastGoalMetDate && this._daysBetween(s.lastGoalMetDate, today) === 1) {
                 s.streak = (s.streak || 0) + 1;
             } else if (s.lastGoalMetDate !== today) {
                 s.streak = 1;
@@ -240,13 +246,13 @@ function install(proto) {
         let today = this._todayStr();
         let weekC = 0, weekM = 0, monthC = 0, monthM = 0, weekI = 0;
         for (let i = 0; i < 30; i++) {
-            let cl = cellOf(this._todayStr(new Date(Date.now() - i * 86400000)));
+            let cl = cellOf(this._todayStr(this._dateDaysAgo(i)));
             monthC += cl.c; monthM += cl.m;
             if (i < 7) { weekC += cl.c; weekM += cl.m; weekI += (cl.i || 0); }
         }
         let lastWeek = 0;
         for (let i = 7; i < 14; i++) {
-            lastWeek += cellOf(this._todayStr(new Date(Date.now() - i * 86400000))).c;
+            lastWeek += cellOf(this._todayStr(this._dateDaysAgo(i))).c;
         }
         let total = (this._dailyStatsData && this._dailyStatsData.total) || 0;
         let totalMinutes = (this._dailyStatsData && this._dailyStatsData.totalMinutes) || 0;
@@ -256,7 +262,7 @@ function install(proto) {
         let cur = 0;
         let startI = (todayCell.c > 0) ? 0 : 1;
         for (let i = startI; i < 400; i++) {
-            if (cellOf(this._todayStr(new Date(Date.now() - i * 86400000))).c >= 1) { cur++; } else { break; }
+            if (cellOf(this._todayStr(this._dateDaysAgo(i))).c >= 1) { cur++; } else { break; }
         }
         let longest = 0, run = 0, prev = null;
         let activeDates = Object.keys(h).filter((k) => h[k].c >= 1).sort();
@@ -1701,7 +1707,7 @@ function install(proto) {
         let cellOf = (d) => h[d] || { c: 0, m: 0 };
         let bars = [];
         for (let i = 13; i >= 0; i--) {
-            let bd = new Date(Date.now() - i * 86400000);
+            let bd = this._dateDaysAgo(i);
             let cell = cellOf(this._todayStr(bd));
             bars.push({ min: cell.m, count: cell.c, today: (i === 0), dateLabel: this._dashDateLabel(bd) });
         }
@@ -1718,7 +1724,7 @@ function install(proto) {
                 let daysBack = (11 - col) * 7 + (dow0 - row);
                 let m = { value: 0, future: daysBack < 0, label: "" };
                 if (daysBack >= 0) {
-                    let dd = new Date(now0.getTime() - daysBack * 86400000);
+                    let dd = this._dateDaysAgo(daysBack);
                     let ds = this._todayStr(dd);
                     m.value = (h[ds] && h[ds].c) || 0;
                     m.label = dowShort[dd.getDay()] + " " + this._dashDateLabel(dd);

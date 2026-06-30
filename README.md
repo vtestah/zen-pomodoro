@@ -79,7 +79,7 @@ Cinnamon 6.x; the applet keeps its data under `~/.local/state/zen-pomodoro/`.
 - **Goals & flow:** a daily goal with a streak and a local celebration,
   flow-extend at the end of a pomodoro, **soft landing** (when a focus block ends
   while you're still working, it waits for a natural pause instead of cutting you
-  off), idle auto-pause and resume, *Focus until...* a set time, and an optional
+  off), idle auto-pause and resume, and an optional
   **strict focus** mode with no pause or skip mid-block.
 - **Calmer breaks:** rotating rest tips with *+5 min* and *Skip break* right in
   the notification, an optional breathing guide, an optional **lock screen on

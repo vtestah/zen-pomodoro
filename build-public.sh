@@ -92,7 +92,7 @@ change your mind.
 ![statistics dashboard](https://cinnamon-spices.linuxmint.com/git/applets/zen-pomodoro@vtestah/screenshot-stats.png)
 
 - **Goals & flow:** a daily goal and streak, flow-extend, soft landing, idle
-  auto-pause and resume, "Focus until" a set time, and an optional strict-focus
+  auto-pause and resume, and an optional strict-focus
   mode.
 - **Calmer breaks:** gentle rest reminders with "+5 min" and "Skip break" right
   in the notification, an optional breathing guide, an optional lock screen on

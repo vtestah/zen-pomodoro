@@ -2012,22 +2012,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._focusTaskDialog.open();
     }
 
-    _startFocusForDuration(secs) {
-        this._timerQueue.preventStart(false);
-        let timer = this._timerQueue.getCurrentTimer();
-        if (timer !== this._timers.pomodoro) {
-            this._resetTimerQueueState();
-            timer = this._timerQueue.getCurrentTimer();
-        }
-        if (timer !== this._timers.pomodoro) {
-            return;
-        }
-        this._setCurrentFocusTask("");
-        timer.setRemaining(secs);
-        this._appletMenu.toggleTimerState(true);
-        this._timerQueue.start();
-    }
-
     _startTimerAfterFocusTask(task) {
         this._setCurrentFocusTask(task);
         this._applyTaskPreset(this._currentTask());

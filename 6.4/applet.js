@@ -506,6 +506,8 @@ class PomodoroApplet extends Applet.TextIconApplet {
             "_opt_tickerSoundVolume",
             () => {
                 if (this._tickerPreviewLiveVolume()) { return; }
+                // In a real focus session, re-apply to the gapless loop (live, seamless).
+                if (this._opt_playTickerSound && this._currentState === 'pomodoro') { this._playTickerSound(); return; }
                 if (this._onPlayTickedSoundChanged() === false) {
                     this._playTickerSound(true); // If not playing, play a preview
                 }

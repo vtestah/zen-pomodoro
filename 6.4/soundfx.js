@@ -56,14 +56,37 @@ const {
 } = C;
 
 function install(proto) {
-    proto._playTickerSound = function(previewOnly = false) {
-        if (this._opt_playTickerSound) {
-            this._sounds.tick.play({ loop: true, volume: this._opt_tickerSoundVolume / 100, preview: previewOnly });
+    // Lazily build a gapless AmbientLoop for the real-session ticking sound — the
+    // one-shot SoundEffect loops by restarting, leaving an audible seam each cycle
+    // (noticeable for a rhythmic tick). Falls back to the SoundEffect if needed.
+    proto._ensureTickerLoop = function() {
+        if (!SoundModule || !SoundModule.AmbientLoop) { return null; }
+        if (!this._tickerLoop) {
+            this._tickerLoop = new SoundModule.AmbientLoop(this._opt_tickerSoundPath);
+        } else {
+            this._tickerLoop.setSoundPath(this._opt_tickerSoundPath);
         }
+        return this._tickerLoop;
+    };
+
+    proto._playTickerSound = function(previewOnly = false) {
+        if (!this._opt_playTickerSound) { return; }
+        let vol = Math.max(0, Math.min(1, (this._opt_tickerSoundVolume || 0) / 100));
+        if (previewOnly) {
+            this._sounds.tick.play({ loop: true, volume: vol, preview: true });
+            return;
+        }
+        // Real session: prefer the gapless loop. AmbientLoop.play adjusts volume
+        // live when it's already looping the same clip, so a mid-session volume
+        // change is seamless; a changed file restarts cleanly.
+        let loop = this._ensureTickerLoop();
+        if (loop) { loop.play({ volume: vol }); }
+        else { this._sounds.tick.play({ loop: true, volume: vol }); }
     };
 
     proto._stopTickerSound = function() {
-        this._sounds.tick.stop();
+        if (this._tickerLoop) { try { this._tickerLoop.stop(); } catch (e) {} }
+        if (this._sounds && this._sounds.tick) { this._sounds.tick.stop(); }
     };
 
     proto._playBreakSound = function(previewOnly = false) {

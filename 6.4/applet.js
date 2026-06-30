@@ -729,11 +729,6 @@ class PomodoroApplet extends Applet.TextIconApplet {
             timerText += ` ${panelTime}`;
         }
 
-        let progressPercent = this._getTimerProgressPercent(ticks);
-        if (progressPercent !== null) {
-            timerText += ` ${progressPercent}%`;
-        }
-
         if (this._numPomodoroSetFinished > 0) {
             timerText += ` \u00B7 ${this._numPomodoroSetFinished}`;
         }
@@ -1078,12 +1073,18 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this.set_applet_tooltip(message);
         // Expose the timer state to assistive technologies (the panel may be
         // icon-only, so the visible label isn't always available to readers).
+        // Throttle to state / whole-minute changes so a screen reader isn't
+        // re-announced every second — the tooltip above keeps live seconds.
         try {
             if (this.actor && typeof this.actor.get_accessible === 'function') {
                 let acc = this.actor.get_accessible();
                 if (acc && typeof acc.set_name === 'function') {
-                    let accMsg = (message && message.trim()) ? message : _("Ready to focus");
-                    acc.set_name("Zen Pomodoro: " + accMsg.replace(/\n/g, " \u00b7 "));
+                    let accKey = this._currentState + "|" + Math.max(0, Math.ceil((ticks || 0) / 60));
+                    if (accKey !== this._lastA11yKey) {
+                        this._lastA11yKey = accKey;
+                        let accMsg = (message && message.trim()) ? message : _("Ready to focus");
+                        acc.set_name("Zen Pomodoro: " + accMsg.replace(/\n/g, " \u00b7 "));
+                    }
                 }
             }
         } catch (e) {}

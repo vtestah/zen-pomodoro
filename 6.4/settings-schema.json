@@ -340,7 +340,7 @@
     "show_dialog_messages": {
         "type": "switch",
         "description": "Show a pop-up prompt at each phase change",
-        "default": true,
+        "default": false,
         "tooltip": "Show pop-up dialogs at the end of each phase (off keeps it quiet — only on-screen cues)."
     },
     "auto_start_next": {
@@ -378,7 +378,7 @@
     "show_seconds": {
         "type": "switch",
         "description": "Show seconds in the panel timer",
-        "default": true,
+        "default": false,
         "tooltip": "Off shows only the remaining minutes on the panel (less distracting).",
         "dependency": "show_timer"
     },

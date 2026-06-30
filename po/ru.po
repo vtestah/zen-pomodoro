@@ -2969,3 +2969,12 @@ msgstr "Прокрутка — пауза · средний клик — про�
 
 msgid "Middle-click to skip"
 msgstr "Средний клик — пропустить"
+
+msgid "When on, the sites below are blocked right now and stay blocked until you turn this off. Run \"Set up passwordless blocking\" once so toggling doesn't ask for a password. Note: a browser using secure DNS (DoH) can bypass /etc/hosts blocking — disable the browser's secure DNS for it to take effect."
+msgstr "Когда включено, сайты ниже блокируются прямо сейчас и остаются заблокированными, пока не выключите. Запустите «Настроить блокировку без пароля» один раз, чтобы переключение не спрашивало пароль. Примечание: браузер с защищённым DNS (DoH) может обойти блокировку через /etc/hosts — отключите защищённый DNS в браузере, чтобы блокировка работала."
+
+msgid "Manage blocked sites. A browser using secure DNS (DoH) can bypass this."
+msgstr "Управление заблокированными сайтами. Браузер с защищённым DNS (DoH) может это обойти."
+
+msgid "Distraction blocking is ready — add sites in Settings → Advanced. Browsers using secure DNS (DoH) may bypass it."
+msgstr "Блокировка отвлечений готова — добавьте сайты в Настройки → Дополнительно. Браузеры с защищённым DNS (DoH) могут её обойти."

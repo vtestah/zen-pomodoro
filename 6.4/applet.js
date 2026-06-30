@@ -2510,6 +2510,17 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._setTimerLabel(timer ? timer.getTicksRemaining() : 0);
     }
 
+    on_panel_height_changed() {
+        // Keep the panel progress ring sized to the (live) panel height; without
+        // this it kept its original size until the next Cinnamon restart.
+        if (this._panelProgressArea) {
+            let size = Math.max(16, Math.min(28, this._panelHeight || 22));
+            this._panelProgressArea.set_width(size);
+            this._panelProgressArea.set_height(size);
+            this._panelProgressArea.queue_repaint();
+        }
+    }
+
     on_applet_clicked() {
         if (this._opt_startOnClick && this._currentState === 'pomodoro-stop') {
             this._startTimerFromMenu();

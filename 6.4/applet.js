@@ -1658,10 +1658,12 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._glowBreathedForTimer = false;
             this._skippedPomodoro = false;   // fresh focus block — clear any stale skip flag
             this._warnArmed = true;          // arm the pre-end warning for this block
+            // Show the start toast before _setCurrentState enables Focus DND,
+            // otherwise our own notification gets suppressed by the DND we just set.
+            Main.notify(_("Let's go to work!"));
             this._setCurrentState('pomodoro');
             this._playStartSound();
             this._playFocusStartRitual();
-            Main.notify(_("Let's go to work!"));
             this._runEventCommand('focus');
             this._sendPushover(this._opt_pushoverMsgFocus);
         });

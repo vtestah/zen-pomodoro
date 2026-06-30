@@ -1080,7 +1080,15 @@ class PomodoroApplet extends Applet.TextIconApplet {
             break;
         }
     
-        this.set_applet_tooltip(message);
+        let tooltipMsg = message;
+        if (this._opt_panelScrollControl && this._currentState !== 'pomodoro-stop' && this._currentState !== 'break-over') {
+            // Surface the active-session gestures on hover (kept out of the a11y
+            // name below, which stays concise for screen readers).
+            tooltipMsg += "\n" + ((this._opt_scrollAction === 'focus_length')
+                ? _("Middle-click to skip")
+                : _("Scroll to pause · middle-click to skip"));
+        }
+        this.set_applet_tooltip(tooltipMsg);
         // Expose the timer state to assistive technologies (the panel may be
         // icon-only, so the visible label isn't always available to readers).
         // Throttle to state / whole-minute changes so a screen reader isn't

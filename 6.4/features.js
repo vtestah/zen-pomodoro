@@ -491,6 +491,7 @@ function install(proto) {
     proto._ensureReorderDialog = function() {
         if (!this._reorderDialog) {
             this._reorderDialog = new DialogsModule.PomodoroReorderDialog();
+            this._scaleDialogOnOpen(this._reorderDialog);
         }
         return this._reorderDialog;
     };
@@ -729,6 +730,7 @@ function install(proto) {
 
     proto._showAddTaskDialog = function(existing) {
         let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
+        this._scaleDialog(dialog);
         let content = new Dialog.MessageDialogContent({
             title: existing ? _("Edit task") : _("New task"),
             description: _("What do you want to work on?")
@@ -852,6 +854,7 @@ function install(proto) {
     // managed straight from the menu's Preset submenu.
     proto._showPresetDialog = function(existing, index) {
         let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
+        this._scaleDialog(dialog);
         let content = new Dialog.MessageDialogContent({
             title: existing ? _("Edit preset") : _("New preset"),
             description: _("Name it and set its rhythm.")
@@ -939,6 +942,7 @@ function install(proto) {
     // is available without re-running the onboarding wizard.
     proto._showAboutTechnique = function() {
         let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
+        this._scaleDialog(dialog);
         let scroll = new St.ScrollView({ style: 'max-height: 460px;' });
         scroll.set_policy(St.PolicyType.NEVER, St.PolicyType.AUTOMATIC);
         let box = new St.BoxLayout({ vertical: true, style: 'spacing: 9px; width: 540px; padding: 8px 16px;' });
@@ -959,6 +963,7 @@ function install(proto) {
     // A tiny one-message modal used by the onboarding undo flow.
     proto._onboardingNotice = function(heading, body) {
         let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
+        this._scaleDialog(dialog);
         let box = new St.BoxLayout({ vertical: true, style: 'spacing: 8px; width: 460px; padding: 8px 16px;' });
         box.add(new St.Label({ text: heading, style: 'font-size: 1.2em; font-weight: bold;' }));
         let p = new St.Label({ text: body });
@@ -989,6 +994,7 @@ function install(proto) {
 
     proto._showOnboardingWizard = function() {
         let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
+        this._scaleDialog(dialog);
         let sp = this._settingsProvider;
         let answers = {};
         let st = { step: 0 };
@@ -1695,6 +1701,30 @@ function install(proto) {
         }
     };
 
+    // Apply the user's "Menu font scale" to a modal dialog's content, so the
+    // readable surfaces (dashboard, onboarding, dialogs) honour the same scale
+    // as the dropdown menu. font-size cascades to the added children.
+    proto._scaleDialog = function(dialog) {
+        let scale = this._opt_menuFontScale || 100;
+        if (dialog && dialog.contentLayout && typeof dialog.contentLayout.set_style === "function") {
+            dialog.contentLayout.set_style("font-size: " + scale + "%;");
+        }
+    };
+
+    // Wrap a reused dialog's open() so it re-applies the current font scale every
+    // time it shows. Used for the class dialogs created once at startup, since
+    // their content persists between opens.
+    proto._scaleDialogOnOpen = function(dialog) {
+        if (!dialog || dialog.__scaleOnOpen || typeof dialog.open !== "function") { return; }
+        dialog.__scaleOnOpen = true;
+        let orig = dialog.open;
+        let self = this;
+        dialog.open = function() {
+            try { self._scaleDialog(dialog); } catch (e) {}
+            return orig.apply(this, arguments);
+        };
+    };
+
     proto._showStatsDashboard = function() {
         let st = this._computeStats();
         let accent = [0.93, 0.42, 0.31];
@@ -1737,6 +1767,7 @@ function install(proto) {
         this._dashPeakHour = peak ? peak.hour : null;
 
         let dialog = new ModalDialog.ModalDialog({ destroyOnClose: true });
+        this._scaleDialog(dialog);
         let root = new St.BoxLayout({ vertical: true, style: 'spacing: 9px; width: 680px; padding: 8px 16px;' });
 
         // Floating hover tooltip shared by all charts (sits above the dialog).

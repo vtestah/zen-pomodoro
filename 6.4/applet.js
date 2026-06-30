@@ -2125,6 +2125,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
     
     _createLongBreakDialog() {
         this._longBreakdialog = new DialogsModule.PomodoroSetFinishedDialog();
+        this._scaleDialogOnOpen(this._longBreakdialog);
     
         this._longBreakdialog.connect('switch-off-pomodoro', () => {
             if (!this._timerQueue.isRunning() && !this._opt_autoStartNext) {
@@ -2155,6 +2156,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
     
     _createShortBreakDialog() {
         this._shortBreakdialog = new DialogsModule.PomodoroShortBreakFinishedDialog();
+        this._scaleDialogOnOpen(this._shortBreakdialog);
     
         this._shortBreakdialog.connect('continue-current-pomodoro', () => {
             this._shortBreakdialog.close();
@@ -2172,6 +2174,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
     _createPomodoroFinishedDialog() {
         this._pomodoroFinishedDialog = new DialogsModule.PomodoroFinishedDialog();
+        this._scaleDialogOnOpen(this._pomodoroFinishedDialog);
     
         this._pomodoroFinishedDialog.connect('continue-current-pomodoro', () => {
             this._pomodoroFinishedDialog.close();
@@ -2194,6 +2197,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
 
     _createFocusTaskDialog() {
         this._focusTaskDialog = new DialogsModule.PomodoroFocusTaskDialog();
+        this._scaleDialogOnOpen(this._focusTaskDialog);
 
         this._focusTaskDialog.connect('focus-task-confirmed', (_dialog, task) => {
             if (this._taskSelectOnly) {

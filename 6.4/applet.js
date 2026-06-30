@@ -778,6 +778,12 @@ class PomodoroApplet extends Applet.TextIconApplet {
         if (!this._appletMenu || typeof this._appletMenu.updateRuntimeState !== 'function') {
             return;
         }
+        // The menu's runtime state only matters while it's visible; open-state-changed
+        // refreshes it on open, so skip the recompute (incl. _computeStats) when closed.
+        // (The panel label and ring are updated by _setTimerLabel regardless.)
+        if (!this._appletMenu.isOpen) {
+            return;
+        }
 
         if (ticks === null && this._timerQueue) {
             let timer = this._timerQueue.getCurrentTimer();
@@ -883,7 +889,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             } catch (e) {
                 obj = null;
             }
-            onResult(obj);
+            try { onResult(obj); } catch (e) { global.logError("Zen Pomodoro: JSON result handler failed: " + e.message); }
         });
     }
 
@@ -1770,10 +1776,9 @@ class PomodoroApplet extends Applet.TextIconApplet {
     }
     
     _timerTickUpdate(timer) {
-        this._setTimerLabel(timer.getTicksRemaining());
+        this._setTimerLabel(timer.getTicksRemaining());   // also refreshes the menu runtime state
         this._setAppletTooltip(timer.getTicksRemaining());
         this._updateFocusFrame(timer.getTicksRemaining());
-        this._updateMenuRuntime(timer.getTicksRemaining());
         this._persistSessionState();
         this._refreshZenLabels();
     }
@@ -2567,6 +2572,11 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._breakLockTimeoutId = 0;
         }
         this._teardownZenSpotlight();
+        if (this._zenTopStrip) {
+            try { Main.layoutManager.removeChrome(this._zenTopStrip); } catch (e) {}
+            try { this._zenTopStrip.destroy(); } catch (e) {}
+            this._zenTopStrip = null;
+        }
         if (this._zenHud) {
             this._zenHud.destroy();
             this._zenHud = null;
@@ -2579,11 +2589,11 @@ class PomodoroApplet extends Applet.TextIconApplet {
             this._breathOverlay.destroy();
             this._breathOverlay = null;
         }
-        this._destroyFocusFrame();
-        this._clearCurrentFocusTask();
-        this._resetTimerQueueState();
-        this._settingsProvider.finalize();
-        this._removeDialogs();
+        try { this._destroyFocusFrame(); } catch (e) {}
+        try { this._clearCurrentFocusTask(); } catch (e) {}
+        try { this._resetTimerQueueState(); } catch (e) {}
+        try { this._settingsProvider.finalize(); } catch (e) {}
+        try { this._removeDialogs(); } catch (e) {}
     }    
 }
 

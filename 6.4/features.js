@@ -1998,18 +1998,22 @@ function install(proto) {
 
         let minutes = this._opt_autoPauseIdleMinutes || 5;
         this._idleWatchId = this._idleMonitor.add_idle_watch(minutes * 60 * 1000, () => {
-            if (this._currentState !== 'pomodoro') {
-                return;
-            }
-            this._pauseTimerFromMenu();
-            if (this._opt_autoResumeOnActivity && this._idleMonitor) {
-                this._activeWatchId = this._idleMonitor.add_user_active_watch(() => {
-                    this._activeWatchId = 0;
-                    if (this._isPausedState()) {
-                        this._startTimerFromMenu();
-                    }
-                });
-            }
+            try {
+                if (this._currentState !== 'pomodoro') {
+                    return;
+                }
+                this._pauseTimerFromMenu();
+                if (this._opt_autoResumeOnActivity && this._idleMonitor) {
+                    this._activeWatchId = this._idleMonitor.add_user_active_watch(() => {
+                        try {
+                            this._activeWatchId = 0;
+                            if (this._isPausedState()) {
+                                this._startTimerFromMenu();
+                            }
+                        } catch (e) {}
+                    });
+                }
+            } catch (e) {}
         });
     };
 

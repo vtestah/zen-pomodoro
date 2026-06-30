@@ -244,6 +244,8 @@ class Timer {
         }
         this.emit('timer-running');
         this.emit('timer-tick');
+        // Defensive: never leak a previous tick source if _startTimer runs twice.
+        this._clearTickTimeout();
         this._tickTimeout = Mainloop.timeout_add_seconds(1, this._tick.bind(this));
     }
 

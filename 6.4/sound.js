@@ -95,6 +95,7 @@ function _buildPlayerArgv(player, soundPath, volume) {
 }
 
 function addPathIfRelative(soundPath, basePath) {
+    soundPath = soundPath || "";
     if (soundPath.startsWith('file://')) {
         soundPath = soundPath.substring(7);
     }

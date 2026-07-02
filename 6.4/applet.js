@@ -236,6 +236,13 @@ class PomodoroApplet extends Applet.TextIconApplet {
         this._opt_breakLockEnabled = null;
         this._opt_breakLockLongOnly = null;
         this._breakLockTimeoutId = 0;
+        // Set only while the screen is locked because of one of OUR breaks
+        // (never for a lock the user triggers themselves); cleared the moment
+        // the screensaver reports it deactivated, i.e. after real
+        // authentication has already happened. Never used to trigger or
+        // shortcut unlocking — purely a courtesy "welcome back" cue.
+        this._breakLockActive = false;
+        this._screensaverSubId = 0;
         this._opt_focusStartCommand = null;
         this._opt_breakStartCommand = null;
         this._opt_goalCommand = null;
@@ -1646,6 +1653,11 @@ class PomodoroApplet extends Applet.TextIconApplet {
                 if (this._opt_showDialogMessages) {
                     this._playStartSound();
                     this._shortBreakdialog.open();
+                } else {
+                    // Same silent-boundary gap as the focus->break case: without
+                    // this, the panel just shows a static 0:00 with no hint that
+                    // focus is waiting on a manual start.
+                    Main.notify(_("Break finished"), _("Focus ready — open the menu to start it."));
                 }
             }
         });
@@ -2634,6 +2646,7 @@ class PomodoroApplet extends Applet.TextIconApplet {
             try { GLib.source_remove(this._breakLockTimeoutId); } catch (e) {}
             this._breakLockTimeoutId = 0;
         }
+        this._disarmScreensaverWatch();
         this._teardownZenSpotlight();
         if (this._zenTopStrip) {
             try { Main.layoutManager.removeChrome(this._zenTopStrip); } catch (e) {}

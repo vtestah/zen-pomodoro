@@ -2218,6 +2218,11 @@ function install(proto) {
             this._pomodoroFinishedDialog.setExtend(this._opt_flowExtend ? (this._opt_flowExtendMinutes || 5) : 0);
             this._pomodoroFinishedDialog.setTip(this._restTip(false));
             this._pomodoroFinishedDialog.open();
+        } else if (!this._opt_autoStartNext) {
+            // Dialogs are off and the next phase won't auto-start: without a
+            // cue here the panel would just sit at 00:00 indistinguishable from
+            // idle, with no hint that a break is waiting on a manual start.
+            Main.notify(_("Focus finished"), _("Break ready — open the menu to start it."));
         }
     };
 
@@ -2596,6 +2601,8 @@ function install(proto) {
             // Lock only if still in the same break and nothing full-screen is
             // playing (a video/call/presentation) — don't interrupt that.
             if (this._currentState === lockState && !this._anyMonitorFullscreen()) {
+                this._breakLockActive = true;
+                this._armScreensaverWatch();
                 this._lockScreen();
             }
             return GLib.SOURCE_REMOVE;
@@ -2607,6 +2614,62 @@ function install(proto) {
             try { GLib.source_remove(this._breakLockTimeoutId); } catch (e) {}
             this._breakLockTimeoutId = 0;
         }
+    };
+
+    // Watch for the screen actually being unlocked — i.e. only after real
+    // authentication has already succeeded — so we can offer a calm "welcome
+    // back" cue. This never unlocks or bypasses anything; it purely reacts to
+    // cinnamon-screensaver's own ActiveChanged(false) signal, which it emits
+    // once the correct password has been entered. Safe to call repeatedly.
+    proto._armScreensaverWatch = function() {
+        if (this._screensaverSubId) {
+            return;
+        }
+        try {
+            this._screensaverSubId = Gio.DBus.session.signal_subscribe(
+                'org.cinnamon.ScreenSaver',
+                'org.cinnamon.ScreenSaver',
+                'ActiveChanged',
+                '/org/cinnamon/ScreenSaver',
+                null,
+                Gio.DBusSignalFlags.NONE,
+                (connection, sender, path, iface, signal, params) => {
+                    try {
+                        let [isActive] = params.deep_unpack();
+                        if (!isActive) {
+                            this._onScreensaverDeactivated();
+                        }
+                    } catch (e) {
+                        global.logError("Zen Pomodoro: screensaver signal handling failed: " + e.message);
+                    }
+                }
+            );
+        } catch (e) {
+            // No cinnamon-screensaver on the bus (different locker, or it
+            // isn't running) — the courtesy cue simply won't fire; nothing
+            // else depends on this subscription existing.
+            this._screensaverSubId = 0;
+        }
+    };
+
+    proto._disarmScreensaverWatch = function() {
+        if (this._screensaverSubId) {
+            try { Gio.DBus.session.signal_unsubscribe(this._screensaverSubId); } catch (e) {}
+            this._screensaverSubId = 0;
+        }
+        this._breakLockActive = false;
+    };
+
+    // Fires once real authentication has already happened (this signal only
+    // exists because the screensaver just deactivated). Only acts if WE were
+    // the ones who locked for a break — never for a lock/unlock the user
+    // triggers on their own, unrelated to Zen Pomodoro.
+    proto._onScreensaverDeactivated = function() {
+        if (!this._breakLockActive) {
+            return;
+        }
+        this._breakLockActive = false;
+        Main.notify(_("Welcome back"), _("Break's over, whenever you're ready."));
     };
 
     proto._anyMonitorFullscreen = function() {

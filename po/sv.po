@@ -55,6 +55,9 @@ msgstr "PAUS PAUSAD"
 msgid "BREAK OVER"
 msgstr "PAUS SLUT"
 
+msgid "FOCUS OVER"
+msgstr "FOKUS AVSLUTAD"
+
 #: applet.js:1023 applet.js:1083 menu.js:214 menu.js:738
 msgid "Ready to focus"
 msgstr "Redo att fokusera"
@@ -62,6 +65,9 @@ msgstr "Redo att fokusera"
 #: applet.js:1041
 msgid "Short break running"
 msgstr "Kort rast pågår"
+
+msgid "Focus finished — Break ready"
+msgstr "Fokus avslutad — Paus redo"
 
 #: applet.js:1044
 msgid "Short break paused"
@@ -1740,15 +1746,21 @@ msgstr ""
 "Visa popup-dialoger i slutet av varje fas (av håller det tyst — bara "
 "skärmsignaler)."
 
-#. settings-schema.json->auto_start_next->description
-msgid "Automatically start the next phase"
-msgstr ""
+#. settings-schema.json->auto_start_break->description
+msgid "Automatically start breaks"
+msgstr "Starta pauser automatiskt"
 
-#. settings-schema.json->auto_start_next->tooltip
-msgid ""
-"When a phase ends, start the next one (focus or break) automatically instead"
-" of waiting."
-msgstr ""
+#. settings-schema.json->auto_start_break->tooltip
+msgid "When a focus phase ends, start the break automatically."
+msgstr "När en fokusfas slutar, startas pausen automatiskt."
+
+#. settings-schema.json->auto_start_pomodoro->description
+msgid "Automatically start focus after a break"
+msgstr "Starta fokus automatiskt efter en paus"
+
+#. settings-schema.json->auto_start_pomodoro->tooltip
+msgid "When a break ends, start the next focus phase automatically."
+msgstr "När en paus slutar, startas nästa fokusfas automatiskt."
 
 #. settings-schema.json->panel_icon_style->description
 msgid "Panel icon"

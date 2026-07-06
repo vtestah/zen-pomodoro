@@ -55,6 +55,9 @@ msgstr "DESCANS EN PAUSA"
 msgid "BREAK OVER"
 msgstr "DESCANS ACABAT"
 
+msgid "FOCUS OVER"
+msgstr "FOCUS FINALITZAT"
+
 #: applet.js:1023 applet.js:1083 menu.js:214 menu.js:738
 msgid "Ready to focus"
 msgstr "A punt per concentrar-te"
@@ -62,6 +65,9 @@ msgstr "A punt per concentrar-te"
 #: applet.js:1041
 msgid "Short break running"
 msgstr "Descans curt en marxa"
+
+msgid "Focus finished — Break ready"
+msgstr "Focus finalitzat — Pausa a punt"
 
 #: applet.js:1044
 msgid "Short break paused"
@@ -1758,15 +1764,21 @@ msgstr ""
 "Mostra diàlegs emergents al final de cada fase (desactivat ho manté discret "
 "— només senyals en pantalla)."
 
-#. settings-schema.json->auto_start_next->description
-msgid "Automatically start the next phase"
-msgstr ""
+#. settings-schema.json->auto_start_break->description
+msgid "Automatically start breaks"
+msgstr "Inicia les pauses automàticament"
 
-#. settings-schema.json->auto_start_next->tooltip
-msgid ""
-"When a phase ends, start the next one (focus or break) automatically instead"
-" of waiting."
-msgstr ""
+#. settings-schema.json->auto_start_break->tooltip
+msgid "When a focus phase ends, start the break automatically."
+msgstr "Quan finalitza una fase de focus, inicia la pausa automàticament."
+
+#. settings-schema.json->auto_start_pomodoro->description
+msgid "Automatically start focus after a break"
+msgstr "Inicia el focus automàticament després d'una pausa"
+
+#. settings-schema.json->auto_start_pomodoro->tooltip
+msgid "When a break ends, start the next focus phase automatically."
+msgstr "Quan finalitza una pausa, inicia la següent fase de focus automàticament."
 
 #. settings-schema.json->panel_icon_style->description
 msgid "Panel icon"

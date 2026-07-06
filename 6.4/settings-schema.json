@@ -77,7 +77,8 @@
                 "start_automatically_on_load",
                 "session_recovery",
                 "show_dialog_messages",
-                "auto_start_next",
+                "auto_start_break",
+                "auto_start_pomodoro",
                 "onboarding_button",
                 "about_technique_button",
                 "restore_onboarding_button"
@@ -356,11 +357,17 @@
         "default": false,
         "tooltip": "Show pop-up dialogs at the end of each phase (off keeps it quiet — only on-screen cues)."
     },
-    "auto_start_next": {
+    "auto_start_break": {
         "type": "switch",
-        "description": "Automatically start the next phase",
+        "description": "Automatically start breaks",
         "default": true,
-        "tooltip": "When a phase ends, start the next one (focus or break) automatically instead of waiting."
+        "tooltip": "When a focus phase ends, start the break automatically."
+    },
+    "auto_start_pomodoro": {
+        "type": "switch",
+        "description": "Automatically start focus after a break",
+        "default": false,
+        "tooltip": "When a break ends, start the next focus phase automatically."
     },
     "panel_icon_style": {
         "type": "combobox",

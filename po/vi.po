@@ -55,6 +55,9 @@ msgstr "TẠM DỪNG NGHỈ"
 msgid "BREAK OVER"
 msgstr "HẾT GIỜ NGHỈ"
 
+msgid "FOCUS OVER"
+msgstr "HẾT GIỜ TẬP TRUNG"
+
 #: applet.js:1023 applet.js:1083 menu.js:214 menu.js:738
 msgid "Ready to focus"
 msgstr "Sẵn sàng tập trung"
@@ -62,6 +65,9 @@ msgstr "Sẵn sàng tập trung"
 #: applet.js:1041
 msgid "Short break running"
 msgstr "Đang nghỉ ngắn"
+
+msgid "Focus finished — Break ready"
+msgstr "Tập trung hoàn tất — Nghỉ giải lao sẵn sàng"
 
 #: applet.js:1044
 msgid "Short break paused"
@@ -1732,15 +1738,21 @@ msgstr ""
 "Hiện hộp thoại bật lên ở cuối mỗi giai đoạn (tắt sẽ yên tĩnh — chỉ còn gợi ý"
 " trên màn hình)."
 
-#. settings-schema.json->auto_start_next->description
-msgid "Automatically start the next phase"
-msgstr ""
+#. settings-schema.json->auto_start_break->description
+msgid "Automatically start breaks"
+msgstr "Tự động bắt đầu nghỉ giải lao"
 
-#. settings-schema.json->auto_start_next->tooltip
-msgid ""
-"When a phase ends, start the next one (focus or break) automatically instead"
-" of waiting."
-msgstr ""
+#. settings-schema.json->auto_start_break->tooltip
+msgid "When a focus phase ends, start the break automatically."
+msgstr "Khi kết thúc giai đoạn tập trung, tự động bắt đầu nghỉ giải lao."
+
+#. settings-schema.json->auto_start_pomodoro->description
+msgid "Automatically start focus after a break"
+msgstr "Tự động bắt đầu tập trung sau khi nghỉ"
+
+#. settings-schema.json->auto_start_pomodoro->tooltip
+msgid "When a break ends, start the next focus phase automatically."
+msgstr "Khi kết thúc nghỉ giải lao, tự động bắt đầu giai đoạn tập trung tiếp theo."
 
 #. settings-schema.json->panel_icon_style->description
 msgid "Panel icon"

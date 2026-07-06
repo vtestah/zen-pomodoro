@@ -50,6 +50,9 @@ msgstr "ПЕРЕРЫВ НА ПАУЗЕ"
 msgid "BREAK OVER"
 msgstr "ПЕРЕРЫВ ОКОНЧЕН"
 
+msgid "FOCUS OVER"
+msgstr "ФОКУС ЗАВЕРШЕН"
+
 #: applet.js:1023 applet.js:1083 menu.js:214 menu.js:738
 msgid "Ready to focus"
 msgstr "Готов к фокусу"
@@ -57,6 +60,9 @@ msgstr "Готов к фокусу"
 #: applet.js:1041
 msgid "Short break running"
 msgstr "Идёт короткий перерыв"
+
+msgid "Focus finished — Break ready"
+msgstr "Фокус завершен — перерыв готов"
 
 #: applet.js:1044
 msgid "Short break paused"
@@ -1756,17 +1762,21 @@ msgstr ""
 "Показывать всплывающие диалоги в конце каждой фазы (выкл — тихо, только "
 "экранные подсказки)."
 
-#. settings-schema.json->auto_start_next->description
-msgid "Automatically start the next phase"
-msgstr "Автоматически начинать следующую фазу"
+#. settings-schema.json->auto_start_break->description
+msgid "Automatically start breaks"
+msgstr "Автоматически запускать перерывы"
 
-#. settings-schema.json->auto_start_next->tooltip
-msgid ""
-"When a phase ends, start the next one (focus or break) automatically instead"
-" of waiting."
-msgstr ""
-"Когда фаза заканчивается, автоматически начинать следующую (фокус или "
-"перерыв), не дожидаясь."
+#. settings-schema.json->auto_start_break->tooltip
+msgid "When a focus phase ends, start the break automatically."
+msgstr "Когда фаза фокуса заканчивается, автоматически запускать перерыв."
+
+#. settings-schema.json->auto_start_pomodoro->description
+msgid "Automatically start focus after a break"
+msgstr "Автоматически запускать фокус после перерыва"
+
+#. settings-schema.json->auto_start_pomodoro->tooltip
+msgid "When a break ends, start the next focus phase automatically."
+msgstr "Когда перерыв заканчивается, автоматически запускать следующую фазу фокуса."
 
 #. settings-schema.json->panel_icon_style->description
 msgid "Panel icon"

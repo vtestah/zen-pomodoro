@@ -2013,6 +2013,23 @@ function install(proto) {
         this._activeWatchId = 0;
     };
 
+    proto._initIdleMonitor = function() {
+        if (this._idleMonitor) {
+            return;
+        }
+        try {
+            if (typeof global !== 'undefined' && global.core_idle_monitor) {
+                this._idleMonitor = global.core_idle_monitor;
+            } else if (imports.gi.Cinnamon && imports.gi.Cinnamon.IdleMonitor) {
+                this._idleMonitor = imports.gi.Cinnamon.IdleMonitor.get_core();
+            } else if (imports.gi.Meta && imports.gi.Meta.IdleMonitor) {
+                this._idleMonitor = imports.gi.Meta.IdleMonitor.get_core();
+            }
+        } catch (e) {
+            this._idleMonitor = null;
+        }
+    };
+
     proto._updateIdleWatch = function() {
         this._clearIdleWatches();
 
@@ -2020,13 +2037,7 @@ function install(proto) {
             return;
         }
 
-        try {
-            if (!this._idleMonitor) {
-                this._idleMonitor = Meta.IdleMonitor.get_core();
-            }
-        } catch (e) {
-            this._idleMonitor = null;
-        }
+        this._initIdleMonitor();
         if (!this._idleMonitor) {
             return;
         }
@@ -2065,14 +2076,10 @@ function install(proto) {
     // the idle monitor is unavailable, so a missing monitor never silently
     // holds a finished pomodoro forever.
     proto._flowProbeIdleMs = function() {
-        try {
-            if (!this._idleMonitor) {
-                this._idleMonitor = Meta.IdleMonitor.get_core();
-            }
-            if (this._idleMonitor) {
-                return this._idleMonitor.get_idletime();
-            }
-        } catch (e) {}
+        this._initIdleMonitor();
+        if (this._idleMonitor) {
+            try { return this._idleMonitor.get_idletime(); } catch (e) {}
+        }
         return 0;
     };
 
@@ -2096,13 +2103,7 @@ function install(proto) {
             return false; // one-shot
         });
 
-        try {
-            if (!this._idleMonitor) {
-                this._idleMonitor = Meta.IdleMonitor.get_core();
-            }
-        } catch (e) {
-            this._idleMonitor = null;
-        }
+        this._initIdleMonitor();
         if (this._idleMonitor) {
             let thresholdMs = FlowModule.flowPauseThresholdMs(20);
             this._flowPauseWatchId = this._idleMonitor.add_idle_watch(thresholdMs, () => {
@@ -2157,6 +2158,11 @@ function install(proto) {
             graceCapMs: FlowModule.flowGraceCapMs(10)
         });
 
+        // Fallback: If we can't monitor idle time, "wait" mode will hang indefinitely.
+        if (decision === 'wait' && !this._idleMonitor) {
+            decision = 'break-now';
+        }
+
         if (decision === 'break-now') {
             this._flowGraceStartMs = null;
             this._disarmSoftLanding();
@@ -2210,18 +2216,20 @@ function install(proto) {
     // Open the end-of-pomodoro break prompt. Extracted from the queue handler so
     // soft landing can defer it; mirrors the classic behaviour exactly.
     proto._openPomodoroFinishedPrompt = function() {
-        if (this._currentState !== 'pomodoro-stop') {
-            this._setCurrentState('pomodoro-stop');
+        if (this._currentState !== 'focus-over') {
+            this._setFocusOverState();
         }
         if (this._opt_showDialogMessages) {
             this._playStartSound();
             this._pomodoroFinishedDialog.setExtend(this._opt_flowExtend ? (this._opt_flowExtendMinutes || 5) : 0);
             this._pomodoroFinishedDialog.setTip(this._restTip(false));
             this._pomodoroFinishedDialog.open();
-        } else if (!this._opt_autoStartNext) {
+        } else if (!this._opt_autoStartBreak) {
             // Dialogs are off and the next phase won't auto-start: without a
             // cue here the panel would just sit at 00:00 indistinguishable from
             // idle, with no hint that a break is waiting on a manual start.
+            this._playBreakSound();
+            this._playCompletionFlourish(_("Focus finished"));
             Main.notify(_("Focus finished"), _("Break ready — open the menu to start it."));
         }
     };

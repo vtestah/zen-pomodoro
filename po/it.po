@@ -55,6 +55,9 @@ msgstr "PAUSA SOSPESA"
 msgid "BREAK OVER"
 msgstr "PAUSA FINITA"
 
+msgid "FOCUS OVER"
+msgstr "CONCENTRAZIONE TERMINATA"
+
 #: applet.js:1023 applet.js:1083 menu.js:214 menu.js:738
 msgid "Ready to focus"
 msgstr "Pronto per il focus"
@@ -62,6 +65,9 @@ msgstr "Pronto per il focus"
 #: applet.js:1041
 msgid "Short break running"
 msgstr "Pausa breve in esecuzione"
+
+msgid "Focus finished — Break ready"
+msgstr "Concentrazione terminata — Pausa pronta"
 
 #: applet.js:1044
 msgid "Short break paused"
@@ -1772,17 +1778,21 @@ msgstr ""
 "Mostra finestre di dialogo alla fine di ogni fase (disattivato resta "
 "silenzioso — solo segnali a schermo)."
 
-#. settings-schema.json->auto_start_next->description
-msgid "Automatically start the next phase"
-msgstr "Avvia automaticamente la fase successiva"
+#. settings-schema.json->auto_start_break->description
+msgid "Automatically start breaks"
+msgstr "Avvia automaticamente le pause"
 
-#. settings-schema.json->auto_start_next->tooltip
-msgid ""
-"When a phase ends, start the next one (focus or break) automatically instead"
-" of waiting."
-msgstr ""
-"Quando una fase finisce, avvia automaticamente la successiva (focus o pausa)"
-" invece di aspettare."
+#. settings-schema.json->auto_start_break->tooltip
+msgid "When a focus phase ends, start the break automatically."
+msgstr "Al termine di una fase di concentrazione, avvia automaticamente la pausa."
+
+#. settings-schema.json->auto_start_pomodoro->description
+msgid "Automatically start focus after a break"
+msgstr "Avvia la concentrazione automaticamente dopo una pausa"
+
+#. settings-schema.json->auto_start_pomodoro->tooltip
+msgid "When a break ends, start the next focus phase automatically."
+msgstr "Al termine di una pausa, avvia la fase di concentrazione successiva automaticamente."
 
 #. settings-schema.json->panel_icon_style->description
 msgid "Panel icon"

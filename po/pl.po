@@ -56,6 +56,9 @@ msgstr "PRZERWA WSTRZYMANA"
 msgid "BREAK OVER"
 msgstr "KONIEC PRZERWY"
 
+msgid "FOCUS OVER"
+msgstr "SKUPIENIE ZAKOŃCZONE"
+
 #: applet.js:1023 applet.js:1083 menu.js:214 menu.js:738
 msgid "Ready to focus"
 msgstr "Gotowy do skupienia"
@@ -63,6 +66,9 @@ msgstr "Gotowy do skupienia"
 #: applet.js:1041
 msgid "Short break running"
 msgstr "Krótka przerwa"
+
+msgid "Focus finished — Break ready"
+msgstr "Skupienie zakończone — Przerwa gotowa"
 
 #: applet.js:1044
 msgid "Short break paused"
@@ -1747,15 +1753,21 @@ msgstr ""
 "Pokazuj okna dialogowe na końcu każdej fazy (wyłączone — cicho, tylko "
 "wskazówki na ekranie)."
 
-#. settings-schema.json->auto_start_next->description
-msgid "Automatically start the next phase"
-msgstr ""
+#. settings-schema.json->auto_start_break->description
+msgid "Automatically start breaks"
+msgstr "Automatycznie rozpoczynaj przerwy"
 
-#. settings-schema.json->auto_start_next->tooltip
-msgid ""
-"When a phase ends, start the next one (focus or break) automatically instead"
-" of waiting."
-msgstr ""
+#. settings-schema.json->auto_start_break->tooltip
+msgid "When a focus phase ends, start the break automatically."
+msgstr "Gdy faza skupienia dobiegnie końca, automatycznie rozpocznij przerwę."
+
+#. settings-schema.json->auto_start_pomodoro->description
+msgid "Automatically start focus after a break"
+msgstr "Automatycznie rozpoczynaj skupienie po przerwie"
+
+#. settings-schema.json->auto_start_pomodoro->tooltip
+msgid "When a break ends, start the next focus phase automatically."
+msgstr "Gdy przerwa dobiegnie końca, automatycznie rozpocznij kolejną fazę skupienia."
 
 #. settings-schema.json->panel_icon_style->description
 msgid "Panel icon"

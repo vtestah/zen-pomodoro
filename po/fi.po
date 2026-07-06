@@ -55,6 +55,9 @@ msgstr "TAUKO PYSÄYTETTY"
 msgid "BREAK OVER"
 msgstr "TAUKO OHI"
 
+msgid "FOCUS OVER"
+msgstr "KESKITTYMINEN PÄÄTTYNYT"
+
 #: applet.js:1023 applet.js:1083 menu.js:214 menu.js:738
 msgid "Ready to focus"
 msgstr "Valmis keskittymään"
@@ -62,6 +65,9 @@ msgstr "Valmis keskittymään"
 #: applet.js:1041
 msgid "Short break running"
 msgstr "Lyhyt tauko meneillään"
+
+msgid "Focus finished — Break ready"
+msgstr "Keskittyminen päättynyt — Tauko valmis"
 
 #: applet.js:1044
 msgid "Short break paused"
@@ -1739,15 +1745,21 @@ msgstr ""
 "Näytä ponnahdusikkunat kunkin vaiheen lopussa (pois = hiljaista, vain näytön"
 " vihjeet)."
 
-#. settings-schema.json->auto_start_next->description
-msgid "Automatically start the next phase"
-msgstr ""
+#. settings-schema.json->auto_start_break->description
+msgid "Automatically start breaks"
+msgstr "Aloita tauot automaattisesti"
 
-#. settings-schema.json->auto_start_next->tooltip
-msgid ""
-"When a phase ends, start the next one (focus or break) automatically instead"
-" of waiting."
-msgstr ""
+#. settings-schema.json->auto_start_break->tooltip
+msgid "When a focus phase ends, start the break automatically."
+msgstr "Kun keskittymisvaihe päättyy, aloita tauko automaattisesti."
+
+#. settings-schema.json->auto_start_pomodoro->description
+msgid "Automatically start focus after a break"
+msgstr "Aloita keskittyminen automaattisesti tauon jälkeen"
+
+#. settings-schema.json->auto_start_pomodoro->tooltip
+msgid "When a break ends, start the next focus phase automatically."
+msgstr "Kun tauko päättyy, aloita seuraava keskittymisvaihe automaattisesti."
 
 #. settings-schema.json->panel_icon_style->description
 msgid "Panel icon"

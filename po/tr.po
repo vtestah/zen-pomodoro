@@ -55,6 +55,9 @@ msgstr "MOLA DURAKLATILDI"
 msgid "BREAK OVER"
 msgstr "MOLA BİTTİ"
 
+msgid "FOCUS OVER"
+msgstr "ODAKLANMA BİTTİ"
+
 #: applet.js:1023 applet.js:1083 menu.js:214 menu.js:738
 msgid "Ready to focus"
 msgstr "Odaklanmaya hazır"
@@ -62,6 +65,9 @@ msgstr "Odaklanmaya hazır"
 #: applet.js:1041
 msgid "Short break running"
 msgstr "Kısa mola yürütülüyor"
+
+msgid "Focus finished — Break ready"
+msgstr "Odaklanma bitti — Mola hazır"
 
 #: applet.js:1044
 msgid "Short break paused"
@@ -1738,15 +1744,21 @@ msgstr ""
 "Her aşamanın sonunda açılır iletişim kutuları göster (kapalıyken sessiz "
 "kalır — yalnızca ekran ipuçları)."
 
-#. settings-schema.json->auto_start_next->description
-msgid "Automatically start the next phase"
-msgstr ""
+#. settings-schema.json->auto_start_break->description
+msgid "Automatically start breaks"
+msgstr "Molaları otomatik olarak başlat"
 
-#. settings-schema.json->auto_start_next->tooltip
-msgid ""
-"When a phase ends, start the next one (focus or break) automatically instead"
-" of waiting."
-msgstr ""
+#. settings-schema.json->auto_start_break->tooltip
+msgid "When a focus phase ends, start the break automatically."
+msgstr "Odaklanma aşaması bittiğinde molayı otomatik olarak başlatır."
+
+#. settings-schema.json->auto_start_pomodoro->description
+msgid "Automatically start focus after a break"
+msgstr "Moladan sonra odaklanmayı otomatik olarak başlat"
+
+#. settings-schema.json->auto_start_pomodoro->tooltip
+msgid "When a break ends, start the next focus phase automatically."
+msgstr "Mola bittiğinde bir sonraki odaklanma aşamasını otomatik olarak başlatır."
 
 #. settings-schema.json->panel_icon_style->description
 msgid "Panel icon"

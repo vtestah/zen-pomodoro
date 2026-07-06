@@ -55,6 +55,9 @@ msgstr "休息已暂停"
 msgid "BREAK OVER"
 msgstr "休息结束"
 
+msgid "FOCUS OVER"
+msgstr "专注结束"
+
 #: applet.js:1023 applet.js:1083 menu.js:214 menu.js:738
 msgid "Ready to focus"
 msgstr "准备专注"
@@ -62,6 +65,9 @@ msgstr "准备专注"
 #: applet.js:1041
 msgid "Short break running"
 msgstr "短时休息运行中"
+
+msgid "Focus finished — Break ready"
+msgstr "专注已结束 — 休息已准备就绪"
 
 #: applet.js:1044
 msgid "Short break paused"
@@ -1697,15 +1703,21 @@ msgid ""
 "screen cues)."
 msgstr "在每个阶段结束时显示弹出对话框（关闭则保持安静 — 仅屏幕提示）。"
 
-#. settings-schema.json->auto_start_next->description
-msgid "Automatically start the next phase"
-msgstr ""
+#. settings-schema.json->auto_start_break->description
+msgid "Automatically start breaks"
+msgstr "自动开始休息"
 
-#. settings-schema.json->auto_start_next->tooltip
-msgid ""
-"When a phase ends, start the next one (focus or break) automatically instead"
-" of waiting."
-msgstr ""
+#. settings-schema.json->auto_start_break->tooltip
+msgid "When a focus phase ends, start the break automatically."
+msgstr "当专注阶段结束时，自动开始休息。"
+
+#. settings-schema.json->auto_start_pomodoro->description
+msgid "Automatically start focus after a break"
+msgstr "休息结束后自动开始专注"
+
+#. settings-schema.json->auto_start_pomodoro->tooltip
+msgid "When a break ends, start the next focus phase automatically."
+msgstr "当休息结束时，自动开始下一个专注阶段。"
 
 #. settings-schema.json->panel_icon_style->description
 msgid "Panel icon"

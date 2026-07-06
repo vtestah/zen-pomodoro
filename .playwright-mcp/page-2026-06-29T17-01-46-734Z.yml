@@ -1,0 +1,176 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - link "spices" [ref=e4] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e5]: spices
+    - generic [ref=e6]:
+      - link "Home" [ref=e7] [cursor=pointer]:
+        - /url: /
+      - link "Themes" [ref=e8] [cursor=pointer]:
+        - /url: /themes/popular
+      - link "Applets" [ref=e9] [cursor=pointer]:
+        - /url: /applets/popular
+      - link "Desklets" [ref=e10] [cursor=pointer]:
+        - /url: /desklets/popular
+      - link "Actions" [ref=e11] [cursor=pointer]:
+        - /url: /actions/popular
+      - link "Extensions" [ref=e12] [cursor=pointer]:
+        - /url: /extensions/popular
+      - link "Log In" [ref=e13] [cursor=pointer]:
+        - /url: /auth/login
+  - generic [ref=e15]:
+    - generic [ref=e16]:
+      - img [ref=e18]
+      - generic [ref=e19]:
+        - heading "Zen Pomodoro" [level=1] [ref=e20]
+        - generic [ref=e21]:
+          - text: by
+          - link "vtestah" [ref=e22] [cursor=pointer]:
+            - /url: https://github.com/vtestah
+      - generic [ref=e23]:
+        - generic [ref=e24] [cursor=pointer]:
+          - img [ref=e25]
+          - generic [ref=e26]: Score
+          - generic [ref=e27]: "2"
+        - link "Issues" [ref=e28] [cursor=pointer]:
+          - /url: https://github.com/linuxmint/cinnamon-spices-applets/issues?utf8=✓&q=is%3Aissue+is%3Aopen+zen-pomodoro%40vtestah
+        - link "Website" [ref=e29] [cursor=pointer]:
+          - /url: https://github.com/linuxmint/cinnamon-spices-applets/tree/master/zen-pomodoro@vtestah
+        - link "Download" [ref=e30] [cursor=pointer]:
+          - /url: https://cinnamon-spices.linuxmint.com/files/applets/zen-pomodoro@vtestah.zip?time=1782752503
+    - generic [ref=e31]:
+      - generic [ref=e32]: "UUID: zen-pomodoro@vtestah"
+      - generic [ref=e33]:
+        - text: "Last edited:"
+        - generic [ref=e34]:
+          - text: 2 days ago
+          - generic [ref=e35]: 2026-06-27, 06:45
+      - generic [ref=e36]:
+        - text: "Last commit: ["
+        - link "3a2d36d0" [ref=e38] [cursor=pointer]:
+          - /url: https://github.com/linuxmint/cinnamon-spices-applets/commits/master/zen-pomodoro@vtestah
+        - text: "] Zen Pomodoro: a calm Zen-style Pomodoro focus timer (#8834)"
+      - link [ref=e39] [cursor=pointer]:
+        - /url: https://cinnamon-spices.linuxmint.com/git/applets/zen-pomodoro@vtestah/screenshot.png
+        - img [ref=e40]
+      - generic [ref=e41]: "A calm, Zen-style Pomodoro timer for focused work. Gentle on-screen cues instead of anxious alarms: a soft glow frame that traces your progress, a quiet start ritual, a calm ending with no last-minute blinking, an optional full-screen Zen mode, a breathing guide on breaks, ambient sound, daily goal and streak, a panel progress ring, a statistics dashboard, customizable theme colors with live preview, and full localization. Optional distraction blocking can block websites you choose during focus by editing /etc/hosts, only after you enable it and grant a one-time administrator authorization. Originally based on Pomodoro Timer by gfreeau, since substantially rewritten."
+      - generic [ref=e42]:
+        - generic [ref=e43]:
+          - heading "README" [level=3] [ref=e44]
+          - generic [ref=e45] [cursor=pointer]: Close
+        - generic [ref=e46]:
+          - heading "Zen Pomodoro" [level=1] [ref=e47]
+          - paragraph [ref=e48]: A calm, Zen-style Pomodoro timer for the Cinnamon panel. It gives you gentle on-screen cues instead of anxious alarms, so a finished block never jolts you.
+          - paragraph [ref=e49]:
+            - img "screenshot" [ref=e50]
+          - heading "Why Zen Pomodoro?" [level=2] [ref=e51]
+          - paragraph [ref=e52]:
+            - text: "Most Pomodoro timers interrupt you: a jarring alarm, a popup that demands a click, a countdown that piles on pressure. Zen Pomodoro takes the opposite approach. Your progress shows as a soft glow at the edge of the screen, focus ends calmly instead of blinking at you, and if a block runs out while you're mid-thought,"
+            - strong [ref=e53]: soft landing
+            - text: waits for a natural pause instead of cutting you off. It stays out of your way, works with a screen reader, and speaks 20 languages.
+          - heading "Getting started" [level=2] [ref=e54]
+          - paragraph [ref=e55]:
+            - text: After enabling the applet,
+            - strong [ref=e56]: right-click it → Configure
+            - text: and run the short setup wizard — it asks a few questions and tailors focus length, sounds, breaks and optional blocking to your workflow. You can undo it with one click if you change your mind.
+          - heading "Highlights" [level=2] [ref=e57]
+          - list [ref=e58]:
+            - listitem [ref=e59]:
+              - strong [ref=e60]: "Calm focus cues:"
+              - text: a soft edge-glow frame traces your progress (the panel edge stays clear), a quiet start ritual, a calm ending with no last-minute blinking, an optional full-screen Zen spotlight, and a breathing guide on breaks.
+            - listitem [ref=e61]:
+              - strong [ref=e62]: "Adaptive onboarding:"
+              - text: a short wizard tailors focus length, sounds, breaks and blocking from a few questions, with a review step, keyboard and screen-reader navigation, and a one-click "Undo last setup".
+            - listitem [ref=e63]:
+              - strong [ref=e64]: "Tasks:"
+              - text: a list with pomodoro estimates and per-task progress, templates, and a focus-task picker.
+            - listitem [ref=e65]:
+              - strong [ref=e66]: "Statistics dashboard:"
+              - text: today, this week, this month, streak and all-time, an hourly focus pattern, 14-day bars, a 12-week heatmap, a by-task breakdown, milestones, and one-click export to a CSV file.
+          - paragraph [ref=e67]:
+            - img "statistics dashboard" [ref=e68]
+          - list [ref=e69]:
+            - listitem [ref=e70]:
+              - strong [ref=e71]: "Goals & flow:"
+              - text: a daily goal and streak, flow-extend, soft landing, idle auto-pause and resume, "Focus until" a set time, and an optional strict-focus mode.
+            - listitem [ref=e72]:
+              - strong [ref=e73]: "Calmer breaks:"
+              - text: gentle rest reminders with "+5 min" and "Skip break" right in the notification, an optional breathing guide, an optional lock screen on breaks, and auto-pause/resume of music and video (MPRIS) while you step away.
+            - listitem [ref=e74]:
+              - strong [ref=e75]: "Stay focused:"
+              - text: optional site blocking during focus, Do-Not-Disturb while focusing, and a global hotkey to jot a distracting thought without leaving your flow.
+            - listitem [ref=e76]:
+              - strong [ref=e77]: "Sounds:"
+              - text: ticking, phase alerts, an interval chime, and ambient soundscapes (white, pink or brown noise, rain, sea, fan, wind, stream or your own file).
+            - listitem [ref=e78]:
+              - strong [ref=e79]: "Push to your phone (optional):"
+              - text: phase changes via Pushover with your own keys, and customizable message text, sound and priority.
+            - listitem [ref=e80]:
+              - strong [ref=e81]: "Automation (optional):"
+              - text: run a command when focus starts, a break starts, or you reach your daily goal.
+            - listitem [ref=e82]:
+              - strong [ref=e83]: "Your look and controls:"
+              - text: theme presets and custom accent colours, frame style (glow, border, corners or off), glow intensity, breathing pattern and menu font scale, all with a live preview; scroll on the applet to start/pause or change the focus length, middle-click to skip, plus keyboard shortcuts.
+            - listitem [ref=e84]:
+              - strong [ref=e85]: "Resilient and accessible:"
+              - text: session recovery after a Cinnamon restart, screen-reader summaries for the charts, and localized into 20 languages.
+          - heading "Notes" [level=2] [ref=e86]
+          - paragraph [ref=e87]:
+            - text: Your stats and tasks are stored locally under
+            - code [ref=e88]: ~/.local/state/zen-pomodoro/
+            - text: .
+            - strong [ref=e89]: Optional distraction blocking
+            - text: edits a clearly marked section of
+            - code [ref=e90]: /etc/hosts
+            - text: via a pkexec prompt (standard graphical admin dialog) — off by default, and the only feature that touches a system file. Pushover notifications require your own credentials.
+          - heading "Credits & License" [level=2] [ref=e91]
+          - paragraph [ref=e92]:
+            - text: Originally based on
+            - strong [ref=e93]: Pomodoro Timer
+            - text: by
+            - emphasis [ref=e94]: gfreeau
+            - text: ", since substantially rewritten. Licensed under the"
+            - strong [ref=e95]: GPLv3
+            - text: .
+    - generic [ref=e96]:
+      - heading "Log In To Comment!" [level=2] [ref=e97]
+      - link "Github" [ref=e100] [cursor=pointer]:
+        - /url: /auth/github
+        - img [ref=e101]
+        - text: Github
+      - heading "0 Comments" [level=3] [ref=e102]
+  - generic [ref=e103]:
+    - generic [ref=e105]:
+      - list [ref=e106]:
+        - listitem [ref=e107]:
+          - link "Home" [ref=e108] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e109]:
+          - link "Themes" [ref=e110] [cursor=pointer]:
+            - /url: /themes/popular
+        - listitem [ref=e111]:
+          - link "Applets" [ref=e112]:
+            - /url: /applets/popular
+        - listitem [ref=e113]:
+          - link "Desklets" [ref=e114] [cursor=pointer]:
+            - /url: /desklets/popular
+        - listitem [ref=e115]:
+          - link "Actions" [ref=e116] [cursor=pointer]:
+            - /url: /actions/popular
+        - listitem [ref=e117]:
+          - link "Extensions" [ref=e118] [cursor=pointer]:
+            - /url: /extensions/popular
+      - list [ref=e119]:
+        - listitem [ref=e120]:
+          - link "Development" [ref=e121] [cursor=pointer]:
+            - /url: https://projects.linuxmint.com/reference/git/cinnamon-tutorials/extension-system.html
+        - listitem [ref=e122]:
+          - link "Github" [ref=e123] [cursor=pointer]:
+            - /url: http://github.com/linuxmint
+        - listitem [ref=e124]:
+          - link "Privacy policy" [ref=e125] [cursor=pointer]:
+            - /url: https://www.linuxmint.com/privacy.php
+    - generic [ref=e127]:
+      - text: Brought to you by
+      - link "LINUX MINT" [ref=e128] [cursor=pointer]:
+        - /url: https://www.linuxmint.com

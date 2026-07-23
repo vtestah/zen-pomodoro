@@ -113,10 +113,10 @@ function isPlayable() {
 }
 
 // Whether soundPath is an existing regular file. Uses Gio.File.query_info
-// (attempt-and-handle-error) rather than GLib.file_test — the latter is a
-// blocking synchronous stat the Spices best-practices scanner flags. Mirrors
-// file_test(IS_REGULAR): true only for an existing regular file (symlinks
-// followed), false on empty path or any error (including NOT_FOUND).
+// (attempt-and-handle-error) instead of a synchronous stat, which the Spices
+// best-practices scanner flags as blocking on slow/network filesystems.
+// Returns true only for an existing regular file (symlinks followed), and
+// false on an empty path or any error (including not-found).
 function _isRegularFile(soundPath) {
     if (!soundPath) {
         return false;

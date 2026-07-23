@@ -4,6 +4,106 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com),
 and the project follows [Semantic Versioning](https://semver.org).
 
+## [1.2.0] - 2026-07-23
+
+### Features
+
+- *(lock)* Arm dbus screensaver watch to offer courtesy welcome-back cue
+- *(settings)* Split auto-start options and add focus-over state with translations
+
+## [1.1.2] - 2026-06-30
+
+### Bug Fixes
+
+- *(build)* Keep store screenshots out of the shipped applet
+- *(sound)* Ship stereo audio so it plays in both channels
+- *(blocking)* Sync the block list from /etc/hosts on startup
+- *(spices)* Use absolute image URLs in the generated README
+- *(ux)* Mid-focus jot, task chip when frame off, honest stats labels
+- *(calm)* Quieter panel and screen-reader, calmer defaults
+- *(visual)* Instant Zen dim under reduce-motion; glow intensity dims the whole frame
+- *(multi-monitor)* Anchor focus overlays to the working monitor
+- *(panel)* Resize the progress ring when the panel height changes
+- *(stats)* Don't credit a skipped pomodoro as completed
+- *(blocking)* Warn that secure DNS (DoH) can bypass site blocking
+- *(stats)* Show one consistent streak (goal streak when a goal is set)
+- *(sound)* Robust chime/warn timing (no start chime, warn survives tick drift)
+- *(sound)* Harden custom ambient file handling
+- *(breaks)* Verify the screen actually locked before skipping the fallback
+- *(sound)* Stop previews and the ticker loop at applet teardown
+- *(notify)* Show the focus-start toast before enabling Focus DND
+- *(pushover)* Escape the task name in HTML-rendered push messages
+- *(presets)* Normalize hand-edited custom presets consistently
+- *(stats)* Account for long breaks in the finish-time estimate
+- *(audit)* Trim per-tick work, fix a teardown leak, harden error paths
+- *(blocking)* Only strip a well-formed hosts block, never truncate on corruption
+- *(stats)* Use calendar date math so DST changes don't drop a day
+- *(menu)* Hide the site-blocking row when blocking is disabled
+- *(timer)* Don't drop a completed pomodoro after skipping while paused
+- *(a11y)* Make row action buttons keyboard- and screen-reader-usable
+- *(settings)* Default flow-extend off (opt-in, calmer)
+- *(timer)* Clamp convertMinutesToSeconds against a corrupted setting
+- *(i18n)* Use dngettext so count strings pluralize correctly
+- *(menu)* Apply font scale on open so the slider actually takes effect
+- *(pushover)* Clearer default reminder text (minutes left)
+- *(timer)* Keep focus task across a finish; re-arm + guard the reminder
+- *(settings)* Clarify soft-landing/flow-extend caveats; surface the reminder
+
+### Documentation
+
+- *(build)* Improve Spices README — getting started, second screenshot, shorter notes
+- *(blocking)* Describe blocking as a persistent toggle, not focus-scoped
+- *(tasks)* Drop the unimplemented "templates" claim
+- *(readme)* Note that Pushover keys are stored as plain text
+
+### Features
+
+- *(zen)* Auto-hide focus HUD, reveal from the top edge
+- *(zen)* Light up another monitor when the pointer moves there
+- *(sound)* Loop the ambient preview with Stop and live volume
+- *(sound)* Loop the ticking preview too, with Stop and live volume
+- *(ux)* Surface gestures and wizard feedback (discoverability)
+- *(settings)* Gate dependent options behind their toggles
+- *(ux)* Show session gestures on hover; tidy the blocking heading
+- *(blocking)* Offer a safer 'ask once per session' authorization mode
+- *(sound)* Gapless ticking via AmbientLoop, with live volume
+- *(ui)* Scale the dashboard and dialogs with the font-scale setting
+- *(settings)* Rename 'Menu font scale' to 'Font scale' (wider scope)
+- *(pushover)* Add a pre-end reminder (time + text) and a sound preview link
+- *(pushover)* Reminder fires before breaks too, with a phase choice
+
+### Miscellaneous
+
+- *(i18n)* Translate the Zen focus-spotlight hint
+- *(i18n)* Translate the new UX strings across the maintained catalogs
+- *(i18n)* Translate the DoH blocking caveats across catalogs
+- *(i18n)* Translate new Pushover reminder + sound-link strings (ru)
+- *(i18n)* Translate the reworked reminder + phase strings (ru)
+- *(i18n)* Translate reworded soft-landing/flow-extend + Reminder (ru)
+
+### Performance
+
+- *(calm)* Skip the Zen pointer poll on one monitor; slower breathing tick under reduce-motion
+- *(visual)* Skip the per-tick focus-frame reposition when geometry is unchanged
+
+### Refactor
+
+- *(menu)* Remove the "Focus until" item
+- *(sound)* Drop dead preview-fade code and unused playOnce
+- *(blocking)* Extract pure normalizeBlockDomain and test it
+- *(cleanup)* Drop dead vestigial labels and the unreachable pulse tail
+- *(cleanup)* Remove the dead "Focus until" method and stale docs
+- *(visual)* Remove the disabled focus-frame pulse machinery
+- *(stats)* Extract datemath module with DST regression tests
+
+### Styling
+
+- *(settings)* Consistent sentence-case labels on the Sounds page
+
+### Testing
+
+- *(timer)* Add unit tests for the timer queue and tick-count math
+
 ## [1.1.1] - 2026-06-26
 
 ### Bug Fixes

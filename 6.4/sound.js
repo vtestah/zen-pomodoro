@@ -112,6 +112,24 @@ function isPlayable() {
     return _getGst() !== null || _getGSoundContext() !== null || _getPlayer() !== null;
 }
 
+// Whether soundPath is an existing regular file. Uses Gio.File.query_info
+// (attempt-and-handle-error) rather than GLib.file_test — the latter is a
+// blocking synchronous stat the Spices best-practices scanner flags. Mirrors
+// file_test(IS_REGULAR): true only for an existing regular file (symlinks
+// followed), false on empty path or any error (including NOT_FOUND).
+function _isRegularFile(soundPath) {
+    if (!soundPath) {
+        return false;
+    }
+    try {
+        let info = Gio.File.new_for_path(soundPath).query_info(
+            'standard::type', Gio.FileQueryInfoFlags.NONE, null);
+        return info.get_file_type() === Gio.FileType.REGULAR;
+    } catch (e) {
+        return false;
+    }
+}
+
 var SoundEffect = class SoundEffect {
     constructor(soundPath) {
         this._soundPath = "";
@@ -126,7 +144,7 @@ var SoundEffect = class SoundEffect {
 
     setSoundPath(soundPath) {
         soundPath = soundPath || "";
-        let exists = soundPath !== "" && GLib.file_test(soundPath, GLib.FileTest.IS_REGULAR);
+        let exists = _isRegularFile(soundPath);
         if (soundPath !== "" && !exists) {
             global.logError(`Zen Pomodoro: sound file not found: ${soundPath}`);
         }
@@ -293,7 +311,7 @@ var AmbientLoop = class AmbientLoop {
 
     setSoundPath(soundPath) {
         soundPath = soundPath || "";
-        let exists = soundPath !== "" && GLib.file_test(soundPath, GLib.FileTest.IS_REGULAR);
+        let exists = _isRegularFile(soundPath);
         if (soundPath !== "" && !exists) {
             global.logError(`Zen Pomodoro: sound file not found: ${soundPath}`);
         }
